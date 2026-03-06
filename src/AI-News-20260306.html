@@ -1,0 +1,416 @@
+INFO: AI Daily Digest - Requesting digest for 2026-03-06
+INFO: Fetching fresh articles for 2026-03-06
+INFO: Fetching from HackerNews...
+INFO: Fetched 0 articles from HackerNews
+INFO: Fetching from Reddit r/ChatGPT...
+INFO: Fetched 50 posts from Reddit r/ChatGPT
+INFO: Enriched 14 articles with full page content
+WARNING: Rejected article from Reddit r/ChatGPT: title must not be empty and have at least 5 characters - Title: dang
+INFO: Fetching from Reddit r/LocalLLaMA...
+INFO: Fetched 50 posts from Reddit r/LocalLLaMA
+INFO: Enriched 10 articles with full page content
+INFO: Fetching from Reddit r/artificial...
+INFO: Fetched 11 posts from Reddit r/artificial
+INFO: Enriched 3 articles with full page content
+INFO: Fetching from ArXiv AI/ML...
+INFO: Fetched 100 papers from ArXiv
+INFO: Fetching from OpenAI News...
+INFO: Fetched 28 articles from OpenAI News
+INFO: Fetching from Google DeepMind...
+INFO: Fetched 2 articles from Google DeepMind
+INFO: Enriched 2 articles with full page content
+INFO: Fetching from Anthropic Engineering...
+INFO: Fetched 0 articles from Anthropic Engineering
+INFO: Fetching from Meta AI Research...
+INFO: Fetched 0 articles from Meta AI Research
+INFO: Fetching from Sam Schillace (Sunday Letters)...
+INFO: Fetched 2 articles from Sam Schillace (Sunday Letters)
+INFO: Enriched 2 articles with full page content
+INFO: Fetching from Ethan Mollick (One Useful Thing)...
+INFO: Fetched 0 articles from Ethan Mollick (One Useful Thing)
+INFO: Fetching from Andrew Ng (The Batch)...
+INFO: Fetched 0 articles from Andrew Ng (The Batch)
+INFO: Fetching from Simon Willison's Weblog...
+INFO: Fetched 30 articles from Simon Willison's Weblog
+WARNING: Rejected article from Simon Willison's Weblog: published_at cannot be in the future relative to fetched_at - Title: Anthropic and the Pentagon
+INFO: Fetching from Latent Space (AI Engineering)...
+INFO: Fetched 19 articles from Latent Space (AI Engineering)
+INFO: Enriched 19 articles with full page content
+INFO: Fetching from AI Snake Oil...
+INFO: Fetched 1 articles from AI Snake Oil
+INFO: Enriched 1 articles with full page content
+INFO: Fetching from The Pragmatic Engineer...
+INFO: Fetched 6 articles from The Pragmatic Engineer
+INFO: Enriched 6 articles with full page content
+INFO: Fetching from Lenny's Newsletter...
+INFO: Fetched 13 articles from Lenny's Newsletter
+INFO: Enriched 13 articles with full page content
+INFO: Fetching from Import AI (Jack Clark)...
+INFO: Fetched 2 articles from Import AI (Jack Clark)
+INFO: Enriched 2 articles with full page content
+INFO: Fetching from SemiAnalysis...
+INFO: Fetched 0 articles from SemiAnalysis
+INFO: Fetching from Benedict Evans...
+INFO: Fetched 0 articles from Benedict Evans
+INFO: Fetching from Chip Huyen...
+INFO: Fetched 0 articles from Chip Huyen
+INFO: Fetched 312 articles from 21 sources (0 failed)
+INFO: Generating digest for 2026-03-06 from 312 articles
+INFO: Ranked 312 articles, selected top 30 (score range: 62.2-91.2)
+INFO: Digest generated: 15 curated entries from 312 total articles
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-03-06</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-03-06</h1>
+    <div class="subtitle">15 curated articles &middot; 21 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/this-week-on-how-i-ai-how-notions" target="_blank">🎙️ This week on How I AI: How Notion’s design team uses Claude Code to design</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Feb 24, 2026 &middot; 00:02 UTC</span>
+          </div>
+          <p class="summary"><span>“I haven’t written a single line of front-end code in 3 months”: How Notion’s design team uses Claude Code to design reliable applications and agentic workflows Brian Lovin , a product designer at Notion, built a shared AI-powered “prototype playground” that lets the entire design team turn Figma designs into working code using Claude Code.</span> <span>Detailed workflow walkthroughs from this episode: • How Notion Designs with AI: Brian Lovin’s Prototype Playground and Claude Code Workflows: https://www.chatprd.ai/how-i-ai/how-notion-designs-with-ai-brian-lovins-prototype-playground-and-claude-code-workflows • Automate Your Git and Deployment Workflow with a Custom AI Command: https://www.chatprd.ai/how-i-ai/workflows/automate-your-git-and-deployment-workflow-with-a-custom-ai-command • Build an AI Workflow to Convert Figma Designs to Code with a Self-Correction Loop: https://www.chatprd.ai/how-i-ai/workflows/build-an-ai-workflow-to-convert-figma-designs-to-code-with-a-self-correction-loop • Use Claude Code to Rapidly Build Interactive Prototypes from Ideas: https://www.chatprd.ai/how-i-ai/workflows/use-claude-code-to-rapidly-build-interactive-prototypes-from-ideas Biggest takeaways: Designs are shifting to code-first prototyping.</span> <span>This requires working with real models in code to “design something that’s plausible and possible.” Encounter reality as early as possible in the design process.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/this-week-on-how-i-ai-5-openclaw" target="_blank">🎙️ This week on How I AI: 5 OpenClaw agents run my home, finances, and code &amp; How Coinbase scaled AI to 1,000+ engineers</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Mar 03, 2026 &middot; 00:02 UTC</span>
+          </div>
+          <p class="summary"><span>Jesse’s entire agent management philosophy comes from her experience hiring employees.</span> <span>Running each agent on its own Mac Mini sounds extreme, but it solves a real problem: preventing one agent from accidentally leaking sensitive data through another agent’s communication channel.</span> <span>The scheduling agent can text, but has no financial data.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-coinbase-scaled-ai-to-1000-engineers" target="_blank">How Coinbase scaled AI to 1,000+ engineers | Chintan Turakhia</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Mar 02, 2026 &middot; 21:03 UTC</span>
+          </div>
+          <p class="summary"><span>Chintan Turakhia is Senior Director of Engineering at Coinbase, where he’s led the transformation of a 1,000-plus-engineer organization to embrace AI tools at scale.</span> <span>When tasked with rewriting Coinbase’s self-custody wallet into a consumer social app in just six to nine months, Chintan turned to AI as a force multiplier.</span> <span>His team has achieved remarkable efficiency gains, including reducing PR review times from 150 hours to just 15 hours, and dramatically compressing the cycle from user feedback to shipped features.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Feb/27/ai-agent-coding-in-excessive-detail/#atom-everything" target="_blank">An AI agent coding skeptic tries AI agent coding, in excessive detail</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Feb 28, 2026 &middot; 04:43 UTC</span>
+          </div>
+          <p class="summary"><span>An AI agent coding skeptic tries AI agent coding, in excessive detail Another in the genre of &quot;OK, coding agents got good in November&quot; posts, this one is by Max Woolf and is very much worth your time.</span> <span>I have been trying to break this damn model by giving it complex tasks that would take me months to do by myself despite my coding pedigree but Opus and Codex keep doing them correctly.</span> <span>Tags: python , ai , rust , max-woolf , generative-ai , llms , ai-assisted-programming , coding-agents , agentic-engineering , november-2025-inflection</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://www.businessinsider.com/claude-number-1-app-stores-chatgpt-apple-google-ai-2026-3?utm_source=reddit&amp;amp;utm_medium=social&amp;amp;utm_campaign=insider-chatgpt-sub-post" target="_blank">Chart shows Claude&#x27;s dethroning of ChatGPT in app downloads race</a></h2>
+          <div class="meta">
+            <span class="source">reddit-chatgpt</span>
+            <span class="date">Mar 06, 2026 &middot; 19:43 UTC</span>
+          </div>
+          <p class="summary"><span>Claude is now atop the Apple App Store and Google Play Store.</span> <span>Interest in Anthropic has exploded since its CEO, Dario Amodei, defied the Pentagon.</span> <span>OpenAI is paying a price for its rushed deal with the Pentagon.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://www.reddit.com/r/LocalLLaMA/comments/1rma5zs/qwen35_122b_and_claude_opus_46/" target="_blank">Qwen3.5 122B and Claude Opus 4.6</a></h2>
+          <div class="meta">
+            <span class="source">reddit-localllama</span>
+            <span class="date">Mar 06, 2026 &middot; 10:11 UTC</span>
+          </div>
+          <p class="summary"><span>I know, I know, Claude Opus is by far the best for coding.</span> <span>This result was achieved without using search tools or RAG.</span> <span>Claude Opus 4.6 : https://preview.redd.it/3c0hkgpkdeng1.png?width=2540&amp;format=png&amp;auto=webp&amp;s=a47a8e8b0423d276760f0f17c29456aeeb271d21 Qwen 3.5 122B https://preview.redd.it/zof1jg67feng1.png?width=3022&amp;format=png&amp;auto=webp&amp;s=61ab06270d3a3d79cde5e8b3fd9d1403466ea9e4 https://preview.redd.it/gfqoxm7ffeng1.png?width=2924&amp;format=png&amp;auto=webp&amp;s=85de1f65b28c8ea7f32b7aff6b158c84cc8741c9</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://www.reddit.com/r/ChatGPT/comments/1rmdd6d/is_prompting_really_what_matters_for_getting_llm/" target="_blank">Is prompting really what matters for getting LLM models to give us the answers we want?</a></h2>
+          <div class="meta">
+            <span class="source">reddit-chatgpt</span>
+            <span class="date">Mar 06, 2026 &middot; 13:01 UTC</span>
+          </div>
+          <p class="summary"><span>Can&#x27;t judge AI output without knowing your field.</span> <span>Juniors relying on AI without understanding get dumber.</span> <span>Treat AI as teacher not replacement 8+ years coder here, managed 100+ projects both remote and office based over the years Gonna level with you, prompting matters way less than people think.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/guides/agentic-engineering-patterns/first-run-the-tests/#atom-everything" target="_blank">First run the tests</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Feb 24, 2026 &middot; 20:30 UTC</span>
+          </div>
+          <p class="summary"><span>Agentic Engineering Patterns &gt; Automated tests are no longer optional when working with coding agents.</span> <span>Similar to &quot;Use red/green TDD&quot; , &quot;First run the tests&quot; provides a four word prompt that encompasses a substantial amount of software engineering discipline that&#x27;s already baked into the models.</span> <span>Tags: testing , tdd , ai , llms , coding-agents , ai-assisted-programming , generative-ai , agentic-engineering</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/amazon-partnership" target="_blank">OpenAI and Amazon announce strategic partnership</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Feb 27, 2026 &middot; 13:30 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI and Amazon announce a strategic partnership bringing OpenAI’s Frontier platform to AWS, expanding AI infrastructure, custom models, and enterprise AI agents.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/valuemule" target="_blank">Claude Code for Finance + The Global Memory Shortage: Doug O&#x27;Laughlin, SemiAnalysis</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Feb 25, 2026 &middot; 05:27 UTC</span>
+          </div>
+          <p class="summary"><span>First speakers for AIE Europe and AIEi Miami have been announced.</span> <span>This was then fixed by the team including Claude Code in the Claude Pro plan in early June, and then the virality caused us to make a rare trend call in late June : Now, 6 months on, Doug has just calculated that around 4% of GitHub is written by Claude Code : We talk about how Doug uses Claude Code to do SemiAnalysis work.</span> <span>It is still just like a, like I think of it once again as like a junior analyst, right?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Feb/25/claude-code-remote-control/#atom-everything" target="_blank">Claude Code Remote Control</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Feb 26, 2026 &middot; 01:33 UTC</span>
+          </div>
+          <p class="summary"><span>Claude Code Remote Control New Claude Code feature dropped yesterday: you can now run a &quot;remote control&quot; session on your computer and then use the Claude Code for web interfaces (on web, iOS and native desktop app) to send prompts to that session.</span> <span>If you upgrade the Claude iOS app it then shows up as &quot;Remote Control Session (Mac)&quot; in the Code tab.</span> <span>Via @claudeai Tags: ai , generative-ai , applescript , llms , anthropic , claude , coding-agents , claude-code , openclaw</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/gemini-3-1-flash-lite-built-for-intelligence-at-scale/" target="_blank">Gemini 3.1 Flash-Lite: Built for intelligence at scale</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Mar 04, 2026 &middot; 00:35 UTC</span>
+          </div>
+          <p class="summary"><span>Gemini 3.1 Flash-Lite: Built for intelligence at scale Mar 03, 2026 · Share x.com Facebook LinkedIn Mail Get best-in-class intelligence for your highest-volume workloads.</span> <span>The Gemini Team General summary Gemini 3.1 Flash-Lite is now available in preview to developers via the Gemini API in Google AI Studio and for enterprises via Vertex AI.</span> <span>Use 3.1 Flash-Lite for tasks like translation content moderation generating user interfaces and creating simulations.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://www.pcguide.com/pro/news-pro/meta-to-let-rival-ai-companies-put-their-chatbots-on-whatsapp-but-it-wont-be-cheap/" target="_blank">Meta to let rival AI companies put their chatbots on WhatsApp, but it won&#x27;t be cheap</a></h2>
+          <div class="meta">
+            <span class="source">reddit-artificial</span>
+            <span class="date">Mar 06, 2026 &middot; 15:42 UTC</span>
+          </div>
+          <p class="summary"><span>Home &gt; Pro &gt; News Meta to let rival AI companies put their chatbots on WhatsApp, but it won’t be cheap With a per-message pricing model, costs could add up quickly Abdul Haddi Last Updated on March 6, 2026 PC Guide is reader-supported.</span> <span>Read More Table of Contents Stay Connected Today&#x27;s Top Deals Rival AI companies will have to pay a fee per message Meta has confirmed that it will allow AI companies to offer their rival chatbots on WhatsApp through the platform’s Business API, but says access will come with a fee.</span> <span>Meta currently integrates its Llama-powered Meta AI chatbot into platforms such as Facebook, Instagram, WhatsApp, and Messenger.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-is-harness-engineering-real" target="_blank">[AINews] Is Harness Engineering real?</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Mar 05, 2026 &middot; 10:13 UTC</span>
+          </div>
+          <p class="summary"><span>The same debate is currently raging in “Harness Engineering”, the systems subset of Agent Engineering , and the main job of Agent Labs .</span> <span>And this is the thinnest possible wrapper over the model.</span> <span>Only the Harness Changed shows dramatic improvements in every model when you optimize the harness (Pi) Obviously Big Harness guys are trying to sell you their Harness, Big Model guys are trying to sell you their Model.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Feb/26/andrej-karpathy/#atom-everything" target="_blank">Quoting Andrej Karpathy</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Feb 27, 2026 &middot; 03:03 UTC</span>
+          </div>
+          <p class="summary"><span>It is hard to communicate how much programming has changed due to AI in the last 2 months: not gradually and over time in the &quot;progress as usual&quot; way, but specifically this last December.</span> <span>There are a number of asterisks but imo coding agents basically didn’t work before December and basically work since - the models have significantly higher quality, long-term coherence and tenacity and they can power through large and long tasks, well past enough that it is extremely disruptive to the default programming workflow.</span> <span>[...] — Andrej Karpathy Tags: andrej-karpathy , coding-agents , ai-assisted-programming , generative-ai , agentic-engineering , ai , llms , november-2025-inflection</span></p>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 312</span>
+      <span>&middot;</span>
+      <span>21/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
