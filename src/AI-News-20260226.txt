@@ -1,0 +1,355 @@
+INFO: AI Daily Digest - Requesting digest for 2026-02-26
+INFO: Using cached digest for 2026-02-26
+AI Daily Digest - 2026-02-26 [CACHED]
+Loaded from cache: 2026-02-26 17:50:28 UTC | Articles: 15 | Sources: 21/21
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. 🎙️ This week on How I AI: How Notion’s design team uses Claude Code to design
+Source: lennys-newsletter | Published: 2026-02-24 00:02:26 UTC
+URL: https://www.lennysnewsletter.com/p/this-week-on-how-i-ai-how-notions
+
+Your weekly listens from How I AI, part of the Lenny's Podcast Network
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2. How I think about Codex
+Source: simon-willison | Published: 2026-02-22 23:53:43 UTC
+URL: https://simonwillison.net/2026/Feb/22/how-i-think-about-codex/#atom-everything
+
+<p><strong><a
+href="https://www.linkedin.com/pulse/how-i-think-codex-gabriel-chua-ukhic">How
+I think about Codex</a></strong></p> Gabriel Chua (Developer Experience
+Engineer for APAC at OpenAI) provides his take on the confusing terminology
+behind the term "Codex", which can refer to a bunch of of different things
+within the OpenAI ecosystem:</p> <blockquote> <p>In plain terms, Codex is
+OpenAI’s software engineering agent, available through multiple interfaces,
+and an agent is a model plus instructions and tools, wrapped in a runtime that
+can execute tasks on your behalf. [...]</p> <p>At a high level, I see Codex as
+three parts working together:</p> <p><em>Codex = Model + Harness +
+Surfaces</em> [...]</p> <ul> <li>Model + Harness = the Agent</li> <li>Surfaces
+= how you interact with the Agent</li> </ul> </blockquote> <p>He defines the
+harness as "the collection of instructions and tools", which is notably open
+source and lives in the <a
+href="https://github.com/openai/codex">openai/codex</a> repository.</p>
+<p>Gabriel also provides the first acknowledgment I've seen from an OpenAI
+insider that the Codex model family are directly trained for the Codex
+harness:</p> <blockquote> <p>Codex models are trained in the presence of the
+harness. Tool use, execution loops, compaction, and iterative verification
+aren’t bolted on behaviors — they’re part of how the model learns to operate.
+The harness, in turn, is shaped around how the model plans, invokes tools, and
+recovers from failure.</p> </blockquote> <p>Tags: <a
+href="https://simonwillison.net/tags/definitions">definitions</a>, <a
+href="https://simonwillison.net/tags/openai">openai</a>, <a
+href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a
+href="https://simonwillison.net/tags/llms">llms</a>, <a
+href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a>,
+<a href="https://simonwillison.net/tags/codex-cli">codex-cli</a></p>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+3. The Claude C Compiler: What It Reveals About the Future of Software
+Source: simon-willison | Published: 2026-02-23 07:58:43 UTC
+URL: https://simonwillison.net/2026/Feb/22/ccc/#atom-everything
+
+<p><strong><a
+href="https://www.modular.com/blog/the-claude-c-compiler-what-it-reveals-about-the-future-of-software">The
+Claude C Compiler: What It Reveals About the Future of
+Software</a></strong></p> On February 5th Anthropic's Nicholas Carlini wrote
+about a project to use <a
+href="https://www.anthropic.com/engineering/building-c-compiler">parallel
+Claudes to build a C compiler</a> on top of the brand new Opus 4.6</p>
+<p>Chris Lattner (Swift, LLVM, Clang, Mojo) knows more about C compilers than
+most. AI has amplified this.</li> <li>AI coding is automation of
+implementation, so design and stewardship become more important.</li>
+<li>Manual rewrites and translation work are becoming AI-native tasks,
+automating a large category of engineering effort.</li> </ul> </blockquote>
+<p>Chris is generally impressed with CCC (the Claude C Compiler):</p>
+<blockquote> <p>Taken together, CCC looks less like an experimental research
+compiler and more like a competent textbook implementation, the sort of system
+a strong undergraduate team might build early in a project before years of
+refinement. That alone is remarkable.</p> </blockquote> <p>It's a long way
+from being a production-ready compiler though:</p> <blockquote> <p>Several
+design choices suggest optimization toward passing tests rather than building
+general abstractions like a human would. [...] These flaws are informative
+rather than surprising, suggesting that current AI systems excel at assembling
+known techniques and optimizing toward measurable success criteria, while
+struggling with the open-ended generalization required for production-quality
+systems.</p> </blockquote> <p>The project also leads to deep open questions
+about how agentic engineering interacts with licensing and IP for both open
+source and proprietary code:</p> <blockquote> <p>If AI systems trained on
+decades of publicly available code can reproduce familiar structures,
+patterns, and even specific implementations, where exactly is the boundary
+between learning and copying?</p> </blockquote> <p>Tags: <a
+href="https://simonwillison.net/tags/c">c</a>, <a
+href="https://simonwillison.net/tags/compilers">compilers</a>, <a
+href="https://simonwillison.net/tags/open-source">open-source</a>, <a
+href="https://simonwillison.net/tags/ai">ai</a>, <a
+href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a>,
+<a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a
+href="https://simonwillison.net/tags/claude">claude</a>, <a
+href="https://simonwillison.net/tags/nicholas-carlini">nicholas-carlini</a>,
+<a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a
+href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a></p>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+4. Quoting Thariq Shihipar
+Source: simon-willison | Published: 2026-02-20 15:13:19 UTC
+URL: https://simonwillison.net/2026/Feb/20/thariq-shihipar/#atom-everything
+
+<blockquote
+cite="https://twitter.com/trq212/status/2024574133011673516"><p>Long running
+agentic products like Claude Code are made feasible by prompt caching which
+allows us to reuse computation from previous roundtrips and significantly
+decrease latency and cost. [...]</p> <p>At Claude Code, we build our entire
+harness around prompt caching. A high prompt cache hit rate decreases costs
+and helps us create more generous rate limits for our subscription plans, so
+we run alerts on our prompt cache hit rate and declare SEVs if they're too
+low.</p></blockquote> <p class="cite">&mdash; <a
+href="https://twitter.com/trq212/status/2024574133011673516">Thariq
+Shihipar</a></p> <p>Tags: <a
+href="https://simonwillison.net/tags/prompt-engineering">prompt-engineering</a>,
+<a href="https://simonwillison.net/tags/anthropic">anthropic</a>, <a
+href="https://simonwillison.net/tags/claude-code">claude-code</a>, <a
+href="https://simonwillison.net/tags/ai-agents">ai-agents</a>, <a
+href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a
+href="https://simonwillison.net/tags/ai">ai</a>, <a
+href="https://simonwillison.net/tags/llms">llms</a></p>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+5. Mitchell Hashimoto’s new way of writing code
+Source: pragmatic-engineer | Published: 2026-02-26 00:45:17 UTC
+URL: https://newsletter.pragmaticengineer.com/p/mitchell-hashimoto
+
+Mitchell Hashimoto on building HashiCorp, navigating the cloud giants, and how
+AI agents have transformed his day-to-day engineering workflow.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+6. Writing about Agentic Engineering Patterns
+Source: simon-willison | Published: 2026-02-24 01:43:02 UTC
+URL: https://simonwillison.net/2026/Feb/23/agentic-engineering-patterns/#atom-everything
+
+<p>I've started a new project to collect and document <strong><a
+href="https://simonwillison.net/guides/agentic-engineering-patterns/">Agentic
+Engineering Patterns</a></strong> - coding practices and patterns to help get
+the best results out of this new era of coding agent development we find
+ourselves entering.</p> <p>I'm using <strong>Agentic Engineering</strong> to
+refer to building software using coding agents - tools like Claude Code and
+OpenAI Codex, where the defining feature is that they can both generate and
+<em>execute</em> code - allowing them to test that code and iterate on it
+independently of turn-by-turn guidance from their human supervisor.</p> <p>I
+think of <strong>vibe coding</strong> using its <a
+href="https://simonwillison.net/2025/Mar/19/vibe-coding/">original
+definition</a> of coding where you pay no attention to the code at all, which
+today is often associated with non-programmers using LLMs to write code.</p>
+<p>Agentic Engineering represents the other end of the scale: professional
+software engineers using coding agents to improve and accelerate their work by
+amplifying their existing expertise.</p> <p>There is so much to learn and
+explore about this new discipline! I've already published a lot <a
+href="https://simonwillison.net/tags/ai-assisted-programming/">under my
+ai-assisted-programming tag</a> (345 posts and counting) but that's been
+relatively unstructured. This feels like a format that might stick.</p> <p>If
+you're interested in the implementation you can find the code in the <a
+href="https://github.com/simonw/simonwillisonblog/blob/b9cd41a0ac4a232b2a6c90ca3fff9ae465263b02/blog/models.py#L262-L280">Guide</a>,
+<a
+href="https://github.com/simonw/simonwillisonblog/blob/b9cd41a0ac4a232b2a6c90ca3fff9ae465263b02/blog/models.py#L349-L405">Chapter</a>
+and <a
+href="https://github.com/simonw/simonwillisonblog/blob/b9cd41a0ac4a232b2a6c90ca3fff9ae465263b02/blog/models.py#L408-L423">ChapterChange</a>
+models and the <a
+href="https://github.com/simonw/simonwillisonblog/blob/b9cd41a0ac4a232b2a6c90ca3fff9ae465263b02/blog/views.py#L775-L923">associated
+Django views</a>, almost all of which was written by Claude Opus 4.6 running
+in Claude Code for web accessed via my iPhone.</p> <p>Tags: <a
+href="https://simonwillison.net/tags/blogging">blogging</a>, <a
+href="https://simonwillison.net/tags/design-patterns">design-patterns</a>, <a
+href="https://simonwillison.net/tags/projects">projects</a>, <a
+href="https://simonwillison.net/tags/writing">writing</a>, <a
+href="https://simonwillison.net/tags/ai">ai</a>, <a
+href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a
+href="https://simonwillison.net/tags/llms">llms</a>, <a
+href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a>,
+<a href="https://simonwillison.net/tags/vibe-coding">vibe-coding</a>, <a
+href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a
+href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a></p>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+7. First run the tests
+Source: simon-willison | Published: 2026-02-24 20:30:05 UTC
+URL: https://simonwillison.net/guides/agentic-engineering-patterns/first-run-the-tests/#atom-everything
+
+<p><em><a
+href="https://simonwillison.net/guides/agentic-engineering-patterns/">Agentic
+Engineering Patterns</a> &gt;</em></p> <p>Automated tests are no longer
+optional when working with coding agents.</p> <p>The old excuses for not
+writing them - that they're time consuming and expensive to constantly rewrite
+while a codebase is rapidly evolving - no longer hold when an agent can knock
+them into shape in just a few minutes.</p> <p>They're also <em>vital</em> for
+ensuring AI-generated code does what it claims to do. This makes it almost
+certain that the agent will run the tests in the future to ensure it didn't
+break anything.</li> <li>Most test harnesses will give the agent a rough
+indication of how many tests they are. Having run the tests it's natural for
+it to then expand them with its own tests later on.</li> </ol> <p>Similar to
+<a
+href="https://simonwillison.net/guides/agentic-engineering-patterns/red-green-tdd/">"Use
+red/green TDD"</a>, "First run the tests" provides a four word prompt that
+encompasses a substantial amount of software engineering discipline that's
+already baked into the models.</p> <p>Tags: <a
+href="https://simonwillison.net/tags/tdd">tdd</a>, <a
+href="https://simonwillison.net/tags/testing">testing</a>, <a
+href="https://simonwillison.net/tags/llms">llms</a>, <a
+href="https://simonwillison.net/tags/ai">ai</a>, <a
+href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a
+href="https://simonwillison.net/tags/ai-assisted-programming">ai-assisted-programming</a>,
+<a href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a
+href="https://simonwillison.net/tags/agentic-engineering">agentic-engineering</a></p>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+8. Claude Code Remote Control
+Source: simon-willison | Published: 2026-02-26 01:33:24 UTC
+URL: https://simonwillison.net/2026/Feb/25/claude-code-remote-control/#atom-everything
+
+<p><strong><a href="https://code.claude.com/docs/en/remote-control">Claude
+Code Remote Control</a></strong></p> New Claude Code feature dropped
+yesterday: you can now run a "remote control" session on your computer and
+then use the Claude Code for web interfaces (on web, iOS and native desktop
+app) to send prompts to that session.</p> <p>It's a little bit janky right
+now. User message: &quot;Play vampire by Olivia Rodrigo in music app&quot;.
+Response shows an API Error: 500
+{&quot;type&quot;:&quot;error&quot;,&quot;error&quot;:{&quot;type&quot;:&quot;api_error&quot;,&quot;message&quot;:&quot;Internal
+server
+error&quot;},&quot;request_id&quot;:&quot;req_011CYVBLH9yt2ze2qehrX8nk&quot;}
+with a &quot;Try again&quot; button.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+9. Writing code is cheap now
+Source: simon-willison | Published: 2026-02-24 00:20:42 UTC
+URL: https://simonwillison.net/guides/agentic-engineering-patterns/code-is-cheap/#atom-everything
+
+<p><em><a
+href="https://simonwillison.net/guides/agentic-engineering-patterns/">Agentic
+Engineering Patterns</a> &gt;</em></p> <p>The biggest challenge in adopting
+agentic engineering practices is getting comfortable with the consequences of
+the fact that <em>writing code is cheap now</em>.</p> <p>Code has always been
+expensive. Producing a few hundred lines of clean, tested code takes most
+software developers a full day or more. It's important to maintain <a
+href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">YAGNI</a> -
+code with added complexity to anticipate future changes that may never come is
+often bad code - but it's also important not to write code that makes future
+changes much harder than they should be.</li> <li>All of the other relevant
+"ilities" - accessibility, testability, reliability, security,
+maintainability, observability, scalability, usability - the non-functional
+quality measures that are appropriate for the particular class of software
+being developed.</li> </ul> <p>Coding agent tools can help with most of this,
+but there is still a substantial burden on the developer driving those tools
+to ensure that the produced code is good code for the subset of good that's
+needed for the current project.</p> <h2>We need to build new habits</h2>
+<p>The challenge is to develop new personal and organizational habits that
+respond to the affordances and opportunities of agentic engineering. </p>
+<p>These best practices are still being figured out across our industry.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+10. The Future of Software Engineering with AI: Six Predictions
+Source: pragmatic-engineer | Published: 2026-02-25 00:54:20 UTC
+URL: https://newsletter.pragmaticengineer.com/p/the-future-of-software-engineering-with-ai
+
+Notes from The Pragmatic Summit and &#8216;The Future of Software
+Development&#8217; workshop
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+11. OpenAI ChatGPT needs Anthropic Cowork capabilities ASAP
+Source: reddit-chatgpt | Published: 2026-02-26 15:56:14 UTC
+URL: https://www.reddit.com/r/ChatGPT/comments/1rfdvny/openai_chatgpt_needs_anthropic_cowork/
+
+Am I missing something that Anthropic Claude has released Cowork but that
+OpenAI doesn't offer anything as robust yet? If you're not aware The Claude
+desktop app now allows for much more robust interactions with your local
+system essentially letting you automate any tasks on your computer that you
+can describe. Still begs the question for me, is such a product in the OpenAI
+pipeline?
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+12. is Claude really better than Chatgpt at coding?
+Source: reddit-chatgpt | Published: 2026-02-26 06:26:15 UTC
+URL: https://www.reddit.com/r/ChatGPT/comments/1rf2quy/is_claude_really_better_than_chatgpt_at_coding/
+
+I pay 20€ per month for Claude Pro, and my friend pays 20€ per month for
+ChatGPT. We’re both working on personal coding projects, so we use our
+subscriptions heavily. Here’s the issue I’ve been running into with Claude
+Pro: I hit the usage limit very quickly.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+13. Recovering lost code
+Source: simon-willison | Published: 2026-02-20 07:48:35 UTC
+URL: https://simonwillison.net/2026/Feb/19/recovering-lost-code/#atom-everything
+
+<p>Reached the stage of parallel agent psychosis where I've lost a whole
+feature - I know I had it yesterday, but I can't seem to find the branch or
+worktree or cloud instance or checkout with it in.</p> <p>... found it! Turns
+out I'd been hacking on a random prototype in <code>/tmp</code> and then my
+computer crashed and rebooted and I lost the code... but it's all still there
+in <code>~/.claude/projects/</code> session logs and Claude Code can extract
+it out and spin up the missing feature again.</p> <p>Tags: <a
+href="https://simonwillison.net/tags/parallel-agents">parallel-agents</a>, <a
+href="https://simonwillison.net/tags/coding-agents">coding-agents</a>, <a
+href="https://simonwillison.net/tags/claude-code">claude-code</a>, <a
+href="https://simonwillison.net/tags/generative-ai">generative-ai</a>, <a
+href="https://simonwillison.net/tags/ai">ai</a>, <a
+href="https://simonwillison.net/tags/llms">llms</a></p>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+14. “I haven’t written a single line of front-end code in 3 months”: How Notion’s design team uses Claude Code to prototype
+Source: lennys-newsletter | Published: 2026-02-23 21:03:17 UTC
+URL: https://www.lennysnewsletter.com/p/i-havent-written-a-single-line-of
+
+Watch now | &#127897;&#65039; Notion's Brian Lovin on building a shared
+prototype playground, using Claude Code to transform Figma designs into
+working code, and why AI is changing how designers work
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+15. Google API Keys Weren't Secrets. But then Gemini Changed the Rules.
+Source: simon-willison | Published: 2026-02-26 12:28:55 UTC
+URL: https://simonwillison.net/2026/Feb/26/google-api-keys/#atom-everything
+
+<p><strong><a
+href="https://trufflesecurity.com/blog/google-api-keys-werent-secrets-but-then-gemini-changed-the-rules">Google
+API Keys Weren&#x27;t Secrets. Gemini API keys can be used to access private
+files and make billable API requests, so they absolutely should not be
+shared.</p> <p>If you don't understand this it's very easy to accidentally
+enable Gemini billing on a previously public API key that exists in the wild
+already.</p> <blockquote> <p>What makes this a privilege escalation rather
+than a misconfiguration is the sequence of events. </p> <ol> <li>A developer
+creates an API key and embeds it in a website for Maps. (At that point, the
+key is harmless.) </li> <li>The Gemini API gets enabled on the same project.
+(Now that same key can access sensitive Gemini endpoints.) </li> <li>The
+developer is never warned that the keys' privileges changed underneath it.
+(The key went from public identifier to secret credential).</li> </ol>
+</blockquote> <p>Truffle Security found 2,863 API keys in the November 2025
+Common Crawl that could access Gemini, verified by hitting the
+<code>/models</code> listing endpoint. This included several keys belonging to
+Google themselves, one of which had been deployed since February 2023
+(according to the Internet Archive) hence predating the Gemini API that it
+could now access.</p> <p>Google are working to revoke affected keys but it's
+still a good idea to check that none of yours are affected by this.
+<p><small></small>Via <a
+href="https://news.ycombinator.com/item?id=47156925">Hacker
+News</a></small></p> <p>Tags: <a
+href="https://simonwillison.net/tags/api-keys">api-keys</a>, <a
+href="https://simonwillison.net/tags/google">google</a>, <a
+href="https://simonwillison.net/tags/security">security</a>, <a
+href="https://simonwillison.net/tags/gemini">gemini</a></p>
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+End of Digest
+Curated: 15 of 236 articles

@@ -1,50 +1,115 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+  Sync Impact Report
+  ==================================================
+  Version change: 1.0.0 → 1.1.0 (MINOR: expanded content standards)
+  Modified principles: N/A
+  Modified sections:
+    - Content & Data Standards: added 15-article cap, insight-driven
+      curation mandate, complete-thought summary requirement
+  Added sections: N/A
+  Removed sections: N/A
+  Templates requiring updates:
+    - .specify/templates/plan-template.md ✅ no changes needed
+    - .specify/templates/spec-template.md ✅ no changes needed
+    - .specify/templates/tasks-template.md ✅ no changes needed
+  Follow-up TODOs: None
+  ==================================================
+-->
+
+# AI Daily Digest Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Content-First
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+Every feature MUST serve the goal of delivering concise, accurate
+AI news summaries to the user. Features that do not directly
+support content aggregation, summarization, or delivery are
+out of scope until all content-serving capabilities are complete.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+- New features MUST justify how they improve content quality,
+  freshness, or accessibility.
+- No feature bloat: if a capability does not help the user
+  consume AI news more effectively, it MUST NOT be built.
+- User-facing output MUST be brief, scannable, and actionable.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### II. Test-First (NON-NEGOTIABLE)
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+All production code MUST be written using Test-Driven Development.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+- Tests MUST be written before implementation code.
+- Tests MUST fail (red) before any implementation is written.
+- Implementation MUST make failing tests pass (green) with the
+  simplest possible code.
+- Refactoring MUST only occur after tests are green.
+- No pull request or merge is permitted without corresponding
+  passing tests for all new behavior.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### III. Simplicity
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+Start simple. Do not build what is not yet needed.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- YAGNI (You Aren't Gonna Need It) MUST be the default stance
+  for all design decisions.
+- Premature optimization is prohibited; optimize only when
+  profiling data justifies it.
+- Prefer standard library solutions over third-party packages
+  when both are viable.
+- Every added dependency MUST be justified in the PR description.
+- Complexity MUST be explicitly justified and documented when
+  unavoidable.
+
+## Technology Stack & Constraints
+
+- **Language**: Python 3.11+
+- **Deployment**: Local execution only (no cloud deployment required)
+- **Package management**: pip with a `requirements.txt` or
+  `pyproject.toml` for dependency pinning
+- **Testing**: pytest as the sole test runner
+- **Linting/Formatting**: ruff for linting and formatting
+- **Virtual environments**: All development MUST occur inside a
+  Python virtual environment (`venv`)
+- Third-party packages MUST be pinned to specific versions
+
+## Content & Data Standards
+
+- The daily digest MUST contain at most 15 articles, curated
+  for depth and insight over volume.
+- Articles MUST be ranked by practical relevance: prefer
+  content about applying AI to real work (building software,
+  workflow transformation, adoption lessons) and major
+  industry trends (model releases, paradigm shifts, policy
+  changes) over narrow academic feature-level research.
+- Every news item MUST include source attribution (publication
+  name and URL at minimum).
+- Duplicate content MUST be detected and deduplicated before
+  being presented to the user.
+- Content freshness: items older than 48 hours SHOULD be
+  deprioritized or excluded from the daily digest.
+- Summaries MUST capture at least one key insight or
+  takeaway as a complete thought — truncated text fragments
+  are prohibited. Raw article text MUST NOT be presented
+  verbatim without transformation.
+- Data fetched from external sources MUST be cached locally
+  to avoid redundant network calls within the same run.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution is the highest-authority document for the
+AI Daily Digest project. All code, reviews, and design decisions
+MUST comply with its principles.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+- **Amendments** require: (1) a written proposal describing the
+  change, (2) rationale for why existing principles are
+  insufficient, and (3) an updated constitution version.
+- **Versioning** follows semantic versioning:
+  - MAJOR: Principle removal or incompatible redefinition.
+  - MINOR: New principle or materially expanded guidance.
+  - PATCH: Wording clarifications, typo fixes, non-semantic edits.
+- **Compliance review**: Every PR MUST be checked against these
+  principles before merge. Reviewers MUST cite the specific
+  principle when requesting changes for constitution compliance.
+- **Complexity justification**: Any deviation from the Simplicity
+  principle MUST be documented in the PR with a clear rationale.
+
+**Version**: 1.2.0 | **Ratified**: 2026-02-23 | **Last Amended**: 2026-02-26

@@ -1,0 +1,220 @@
+INFO: AI Daily Digest - Requesting digest for 2026-02-26
+INFO: Using cached digest for 2026-02-26
+AI Daily Digest - 2026-02-26 [CACHED]
+Loaded from cache: 2026-02-26 17:18:07 UTC | Articles: 15 | Sources: 10/10
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. [D] Calling PyTorch models from scala/spark?
+Source: reddit-ml | Published: 2026-02-25 21:52:44 UTC
+URL: https://www.reddit.com/r/MachineLearning/comments/1rer4z7/d_calling_pytorch_models_from_scalaspark/
+
+Hey everybody, I work for a firm on an engineering team that uses AWS.
+Historically they’ve used PySpark to deploy deep loading models that I’ve
+built, but I’ve been tasked with researching to see if there’s a way to call
+models for inference as they say there is a decent amount of overhead as they
+are transitioning to a new mode of operation. They are running a spark cluster
+with around 300 nodes, and ultimately hope there is a solution to perform
+inference either using scala natively(preferred), or some aws service that
+could serve the results.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2. PhD in particle theory transitioning to ML [R]
+Source: reddit-ml | Published: 2026-02-25 23:13:05 UTC
+URL: https://www.reddit.com/r/MachineLearning/comments/1ret9y5/phd_in_particle_theory_transitioning_to_ml_r/
+
+Hi everyone, I finished my PhD last year and I'm transitioning to industry and
+ML was the most interesting. I’m currently at a crossroads between two
+projects to build out my portfolio and would love some "market" perspective on
+which carries more weight for industry roles. # Option 1: Mechanistic
+Interpretability of Particle Transformers I've already started exploring the
+mechanistic interpretability of Particle Transformers (ParT) used for jet
+tagging. Given my background, I’m interested in seeing if these models
+actually "learn" physical observables (like IRC safety or specific clustering
+hierarchies) or if they rely on spurious correlations. * **Pros:** Deeply
+aligns with my domain expertise; high research value.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+3. [D] where can I find more information about NTK wrt Lazy and Rich learning?
+Source: reddit-ml | Published: 2026-02-26 01:50:40 UTC
+URL: https://www.reddit.com/r/MachineLearning/comments/1rex3ax/d_where_can_i_find_more_information_about_ntk_wrt/
+
+Specifically, I'm curious about: 1. What are the practical heuristics (or
+methods) for determining which regime a model is operating in during training?
+2. Is there just one “rich“ regime or is richness a spectrum of regimes?
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+4. 2-Step Agent: A Framework for the Interaction of a Decision Maker with AI Decision Support
+Source: arxiv | Published: 2026-02-25 13:11:12 UTC
+URL: http://arxiv.org/abs/2602.21889v1
+
+Across a growing number of fields, human decision making is supported by
+predictions from AI models. Using this framework, we show by simulations how a
+single misaligned prior belief can be sufficient for decision support to
+result in worse downstream outcomes compared to no decision support. Our
+results reveal several potential pitfalls of AI-driven decision support and
+highlight the need for thorough model documentation and proper user training.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+5. OpenAI Codex and Figma launch seamless code-to-design experience
+Source: openai | Published: 2026-02-26 14:00:00 UTC
+URL: https://openai.com/index/figma-partnership
+
+OpenAI and Figma launch a new Codex integration that connects code and design,
+enabling teams to move between implementation and the Figma canvas to iterate
+and ship faster.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+6. [D] Mobile-MCP: Letting LLMs autonomously discover Android app capabilities (no pre-coordination required)
+Source: reddit-ml | Published: 2026-02-26 05:36:21 UTC
+URL: https://www.reddit.com/r/MachineLearning/comments/1rf1u76/d_mobilemcp_letting_llms_autonomously_discover/
+
+Hi all, We’ve been thinking about a core limitation in current mobile AI
+assistants: Most systems (e.g., Apple Intelligence, Google Assistant–style
+integrations) rely on predefined schemas and coordinated APIs. We’ve built a
+working prototype + released the spec and demo: GitHub:
+[https://github.com/system-pclub/mobile-mcp](https://github.com/system-pclub/mobile-mcp)
+Spec:
+[https://github.com/system-pclub/mobile-mcp/blob/main/spec/mobile-mcp\_spec\_v1.md](https://github.com/system-pclub/mobile-mcp/blob/main/spec/mobile-mcp_spec_v1.md)
+Demo:
+[https://www.youtube.com/watch?v=Bc2LG3sR1NY&amp;feature=youtu.be](https://www.youtube.com/watch?v=Bc2LG3sR1NY&amp;feature=youtu.be)
+Paper:
+[https://github.com/system-pclub/mobile-mcp/blob/main/paper/mobile\_mcp.pdf](https://github.com/system-pclub/mobile-mcp/blob/main/paper/mobile_mcp.pdf)
+Curious what people think: Is OS-native capability broadcasting + LLM
+reasoning a more scalable path than fixed assistant schemas or GUI automation?
+Would love feedback from folks working on mobile agents, security, MCP
+tooling, or Android system design.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+7. [D] ML Engineers — How did you actually learn PyTorch? I keep forgetting everything.
+Source: reddit-ml | Published: 2026-02-25 20:57:36 UTC
+URL: https://www.reddit.com/r/MachineLearning/comments/1repn7v/d_ml_engineers_how_did_you_actually_learn_pytorch/
+
+Hey everyone, I’m trying to get better at PyTorch, but I keep running into the
+same problem — I learn something, don’t use it for a while, and then forget
+most of it. Every time I come back, it feels like I’m starting from scratch
+again. Any tips to make the knowledge stick long-term?
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+8. [P] A lightweight FoundationPose TensorRT implementation
+Source: reddit-ml | Published: 2026-02-25 21:03:03 UTC
+URL: https://www.reddit.com/r/MachineLearning/comments/1repsnw/p_a_lightweight_foundationpose_tensorrt/
+
+After being frustrated with the official FoundationPose codebase for my
+robotics research, I built [a lightweight TensorRT
+implementation](https://github.com/seawee1/FoundationPose-TensorRT) and wanted
+to share it with the community. The core is based on model code from
+[tao-toolkit-triton-apps](https://github.com/NVIDIA-AI-IOT/tao-toolkit-triton-apps),
+but with the heavy Triton Inference Server dependency completely removed in
+favor of a direct TensorRT backend. I spent a long time looking for something
+like this without luck, so I figured some of you might find it useful too.
+[https://github.com/seawee1/FoundationPose-TensorRT](https://github.com/seawee1/FoundationPose-TensorRT)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+9. [D] Evaluating the inference efficiency of Sparse+Linear Hybrid Architectures (MiniCPM-SALA)
+Source: reddit-ml | Published: 2026-02-26 04:00:33 UTC
+URL: https://www.reddit.com/r/MachineLearning/comments/1rezy7m/d_evaluating_the_inference_efficiency_of/
+
+We’ve seen a lot of talk about Hybrid models lately (like Jamba). The
+challenge is to optimize sparse operator fusion and KV-cache efficiency for
+ultra-long context. Specs:
+[https://soar.openbmb.cn/en/competition](https://soar.openbmb.cn/en/competition)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+10. [P] Reproducing Google’s Nested Learning / HOPE in PyTorch (mechanism-faithful implementation + reproducible tooling and library)
+Source: reddit-ml | Published: 2026-02-25 22:29:11 UTC
+URL: https://www.reddit.com/r/MachineLearning/comments/1res42m/p_reproducing_googles_nested_learning_hope_in/
+
+A while back, Google released the Nested Learning / HOPE paper:
+https://arxiv.org/abs/2512.24695 I was very excited by this, because it looked
+like a real attempt at continual learning, not just a small transformer tweak.
+However, Google did not release code, and since `lucidrains` said he retired,
+I built a PyTorch reproduction:
+https://github.com/kmccleary3301/nested_learning I posted an early version
+months ago. Overall faithfulness to the paper was massively improved in
+general. - Stronger CI and release/security automation. ### Scope boundary
+(important) &gt; I am claiming mechanism-level implementation faithfulness and
+reproducible local workflows. &gt; I am **not** claiming full paper-scale
+results parity yet.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+11. [D] How do y'all stay up to date with papers?
+Source: reddit-ml | Published: 2026-02-25 19:24:11 UTC
+URL: https://www.reddit.com/r/MachineLearning/comments/1ren2m5/d_how_do_yall_stay_up_to_date_with_papers/
+
+So, for the past year or so, I've been looking up papers, reading them,
+understanding them, and implementing them trying to reproduce the results. But
+one thing I found insane is I don't really have a way to stay up to date. I
+have to search through dozens of search results to find what I'm looking for,
+and also I miss tons of advancements until I stumble upon them one way or
+another So, my question is, how do you guys stay up to date and able to know
+every new paper?
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+12. Arvind KC appointed Chief People Officer
+Source: openai | Published: 2026-02-24 21:40:00 UTC
+URL: https://openai.com/index/arvind-kc-chief-people-officer
+
+OpenAI appoints Arvind KC as Chief People Officer to help scale the company,
+strengthen its culture, and lead how work evolves in the age of AI.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+13. [D] AI Audio Hackathon in Santa Clara (March 20–22) | Looking for ML builders [Free Event]
+Source: reddit-ml | Published: 2026-02-26 15:08:31 UTC
+URL: https://www.reddit.com/r/MachineLearning/comments/1rfcm1n/d_ai_audio_hackathon_in_santa_clara_march_2022/
+
+I’m helping organize an upcoming hackathon in Santa Clara (March 20–22)
+focused on real-time audio AI systems, and thought it might be relevant to
+this community. At a previous event (\~200 participants), projects included: *
+Real-time conversational voice agents * Multimodal voice conversion systems *
+Audio-driven workflow tools Curious what this community would explore. Sign up
+here: [https://luma.com/3vnw0e0q](https://luma.com/3vnw0e0q)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+14. [P] PerpetualBooster v1.9.0 - GBM with no hyperparameter tuning, now with built-in causal ML, drift detection, and conformal prediction
+Source: reddit-ml | Published: 2026-02-26 14:11:59 UTC
+URL: https://www.reddit.com/r/MachineLearning/comments/1rfb6yq/p_perpetualbooster_v190_gbm_with_no/
+
+Set it, call `.fit()`, done. ```python model =
+PerpetualBooster(objective="SquaredLoss", budget=1.0) model.fit(X, y) ```
+Since then the Rust core basically doubled (~16.5k lines added). The only
+single GBM package I know of shipping causal ML, calibration, drift
+monitoring, ranking, and 19 objectives together. Pure Rust, Python/R bindings,
+Apache 2.0. ``` pip install perpetual ``` GitHub:
+https://github.com/perpetual-ml/perpetual | Blog:
+https://perpetual-ml.com/blog/how-perpetual-works Happy to answer questions
+about the algorithm or benchmarks.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+15. [P] MNIST from scratch in Metal (C++)
+Source: reddit-ml | Published: 2026-02-26 07:23:36 UTC
+URL: https://www.reddit.com/r/MachineLearning/comments/1rf3qb7/p_mnist_from_scratch_in_metal_c/
+
+I built a simple 2-layer MNIST MLP that trains + runs inference from scratch,
+only using Apple’s metal-cpp library. Not just a highly optimized matmul
+kernel, but also understanding Metal's API for buffer residency, command
+buffer structure, and CPU/GPU synchronization. Versions: \- MLX baseline \-
+Pure C CPU baseline \- GPU v1: naive Metal kernels (matmul + ReLU) \- GPU v2:
+forward + backward kernels + better buffer management + less CPU/GPU sync \-
+GPU v3: single command buffer per batch (sync only once per epoch for loss)
+Repo:
+[https://github.com/abeleinin/mnist-metal](https://github.com/abeleinin/mnist-metal)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+End of Digest
+Curated: 15 of 119 articles
