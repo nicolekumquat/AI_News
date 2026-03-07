@@ -48,7 +48,8 @@ def format_digest_html(
             # Expandable full content accordion
             expand_html = ""
             if article.content and len(article.content) > len(entry.summary) + 50:
-                content_esc = html.escape(article.content)
+                clean_content = _strip_html_tags(article.content)
+                content_esc = html.escape(clean_content)
                 content_esc = _linkify_urls(content_esc)
                 content_esc = _bullets_to_list(content_esc)
                 # Split into paragraphs for readability
@@ -338,6 +339,23 @@ def format_digest_html(
 </div>
 </body>
 </html>"""
+
+
+_TAG_RE = re.compile(r'<[^>]+>')
+
+
+def _strip_html_tags(text: str) -> str:
+    """Remove HTML tags from text, preserving readable content."""
+    # Replace block-level closing tags with newlines to preserve structure
+    text = re.sub(r'</(?:p|div|li|br|h[1-6]|blockquote|tr)\s*>', '\n', text, flags=re.IGNORECASE)
+    text = re.sub(r'<br\s*/?>', '\n', text, flags=re.IGNORECASE)
+    # Strip remaining tags
+    text = _TAG_RE.sub('', text)
+    # Decode common HTML entities
+    text = html.unescape(text)
+    # Collapse multiple blank lines
+    text = re.sub(r'\n{3,}', '\n\n', text)
+    return text.strip()
 
 
 _URL_RE = re.compile(r'(https?://[^\s<>&"]+)')
