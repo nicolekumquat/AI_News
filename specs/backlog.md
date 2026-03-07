@@ -45,9 +45,7 @@ The web application should be hosted on github (like this example is hosted:
 
 Automated daily digest delivered to inbox every morning.
 
-**Blocked:** Microsoft policy restricts programmatic email from personal tools. SMTP AUTH is disabled tenant-wide, and personal scripts are not an approved sending surface. Every compliant path (Graph API Mail.Send, Power Automate, Azure Communication Services) requires a service principal, admin consent, and security review — overhead that exceeds the value for a personal tool. The GitHub Pages site serves the same content.
-
-**If unblocked:** The Graph API + Power Automate path would be most viable. Would need a service principal with Mail.Send permission and admin consent.
+**Blocked:** Corporate email policy restricts programmatic sending from personal tools. The overhead of setting up an approved sending path exceeds the value for a personal project. The GitHub Pages site serves the same content.
 
 ---
 
