@@ -101,6 +101,24 @@
             color: var(--text-primary);
         }
 
+        .hero-cta {
+            display: inline-block;
+            margin-top: 1.25rem;
+            padding: 12px 28px;
+            background: var(--accent-blue);
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.15s, transform 0.15s;
+        }
+
+        .hero-cta:hover {
+            background: #4a6bff;
+            transform: translateY(-1px);
+        }
+
         /* Stats bar */
         .stats {
             display: grid;
@@ -512,6 +530,7 @@
                 sorted newest-first. No noise, no benchmarks, no fluff &mdash; just the AI news that matters
                 for builders and practitioners.
             </p>
+            <a class="hero-cta" href="src/AI-News-20260306.html">📰 Read Latest Digest</a>
         </section>
 
         <!-- Stats -->
