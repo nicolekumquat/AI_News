@@ -1,6 +1,7 @@
 """Digest formatter for styled HTML output."""
 
 import html
+import re
 from datetime import datetime
 
 from models.digest import Digest
@@ -37,6 +38,8 @@ def format_digest_html(
             source_esc = html.escape(article.source_id)
             pub_str = _format_datetime(article.published_at) if article.published_at else ""
             summary_esc = html.escape(entry.summary)
+            summary_esc = _linkify_urls(summary_esc)
+            summary_esc = _bullets_to_list(summary_esc)
 
             # Convert summary to paragraphs on sentence boundaries
             summary_html = summary_esc.replace(". ", ".</span> <span>")
@@ -46,6 +49,8 @@ def format_digest_html(
             expand_html = ""
             if article.content and len(article.content) > len(entry.summary) + 50:
                 content_esc = html.escape(article.content)
+                content_esc = _linkify_urls(content_esc)
+                content_esc = _bullets_to_list(content_esc)
                 # Split into paragraphs for readability
                 paragraphs = [p.strip() for p in content_esc.split("\n") if p.strip()]
                 content_body = "".join(f"<p>{p}</p>" for p in paragraphs[:20])
@@ -211,6 +216,25 @@ def format_digest_html(
     line-height: 1.7;
   }}
 
+  .summary a, .expanded-body a {{
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }}
+
+  .summary a:hover, .expanded-body a:hover {{
+    text-decoration: underline;
+  }}
+
+  .summary ul, .expanded-body ul {{
+    margin: 8px 0;
+    padding-left: 20px;
+  }}
+
+  .summary li, .expanded-body li {{
+    margin-bottom: 4px;
+  }}
+
   .empty {{
     text-align: center;
     color: var(--text-dim);
@@ -314,6 +338,25 @@ def format_digest_html(
 </div>
 </body>
 </html>"""
+
+
+_URL_RE = re.compile(r'(https?://[^\s<>&"]+)')
+
+
+def _linkify_urls(text: str) -> str:
+    """Convert plain-text URLs in already-escaped HTML into clickable links."""
+    return _URL_RE.sub(r'<a href="\1" target="_blank" rel="noopener">\1</a>', text)
+
+
+def _bullets_to_list(text: str) -> str:
+    """Convert bullet patterns (• item) into an HTML unordered list."""
+    parts = re.split(r'\s*•\s*', text)
+    if len(parts) <= 1:
+        return text
+    # First part is the text before any bullets
+    leading = parts[0]
+    items = ''.join(f'<li>{p.strip()}</li>' for p in parts[1:] if p.strip())
+    return f'{leading}<ul>{items}</ul>'
 
 
 def _format_datetime(dt: datetime) -> str:

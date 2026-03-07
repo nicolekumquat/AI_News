@@ -180,6 +180,10 @@ def _handle_digest(args):
                 if entry.article_id in article_map
             ]
             
+            # Enrich podcast articles with transcript summaries
+            if args.html:
+                _enrich_podcasts(entry_article_pairs, config)
+
             # Display
             fmt = format_digest_html if args.html else format_digest
             print(fmt(digest, entry_article_pairs))
@@ -209,6 +213,10 @@ def _handle_digest(args):
             (entry, article_map[entry.article_id])
             for entry in entries
         ]
+
+        # Enrich podcast articles with transcript summaries
+        if args.html:
+            _enrich_podcasts(entry_article_pairs, config)
         
         # Display
         fmt = format_digest_html if args.html else format_digest
@@ -219,6 +227,40 @@ def _handle_digest(args):
         logger.exception("Unexpected error")
         print(f"Error: {e}", file=sys.stderr)
         sys.exit(1)
+
+
+def _enrich_podcasts(entry_article_pairs, config):
+    """Transcribe podcast episodes and embed summaries into article content."""
+    from services.podcast_service import check_podcast_dependencies, summarize_podcast
+
+    deps = check_podcast_dependencies()
+    if deps:
+        logger.warning("Podcast deps missing, skipping transcription: %s", deps)
+        return
+
+    model = config.get("podcast", {}).get("default_model", "base")
+
+    for entry, article in entry_article_pairs:
+        if article is None:
+            continue
+        if "\U0001f399" not in article.title:
+            continue
+        # Skip if already has a transcript (from a prior run)
+        if article.content and "Podcast Transcript Summary:" in article.content:
+            continue
+
+        logger.info("Transcribing podcast: %s", article.title)
+        try:
+            result = summarize_podcast(article.url, model=model)
+            article.content = (
+                f"Podcast Transcript Summary:\n\n{result.summary}\n\n"
+                f"---\n\nFull Transcript ({result.summary_obj.transcript_word_count:,} words, "
+                f"{result.episode.duration_seconds // 60}min):\n\n"
+                f"{result.summary_obj.transcript}"
+            )
+            logger.info("Transcribed: %s (%d words)", article.title, result.summary_obj.transcript_word_count)
+        except Exception as e:
+            logger.warning("Failed to transcribe %s: %s", article.url, e)
 
 
 if __name__ == "__main__":

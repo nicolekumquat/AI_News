@@ -53,7 +53,7 @@ Automated daily digest delivered to inbox every morning.
 
 **Type:** Bug  
 **Priority:** High  
-**Status:** Open  
+**Status:** Done  
 
 The 03-06 digest (`src/AI-News-20260306.html`) shows articles in non-chronological order — oldest articles appear at the top. The article dates jump: Feb 24 → Mar 3 → Mar 2 → Feb 28 → Mar 6 → ... Expected: Mar 6 articles first, descending to oldest.
 
@@ -67,7 +67,7 @@ The 03-06 digest (`src/AI-News-20260306.html`) shows articles in non-chronologic
 
 **Type:** Bug  
 **Priority:** Medium  
-**Status:** Open  
+**Status:** Done  
 
 When article summaries contain URLs (e.g., the Notion/Claude Code article from Lenny's Newsletter), the URLs render as plain text rather than clickable `<a>` links. The `html_formatter.py` escapes all HTML in summaries via `html.escape()`, which is correct for security, but then doesn't post-process to convert URL patterns back into anchor tags.
 
@@ -81,7 +81,7 @@ When article summaries contain URLs (e.g., the Notion/Claude Code article from L
 
 **Type:** Bug  
 **Priority:** Medium  
-**Status:** Open  
+**Status:** Done  
 
 When article content contains bullet points (using `•` characters), the summarizer collapses them into a single run of inline text. For example, the Notion article summary shows `• Item1 • Item2 • Item3` all on one line instead of as a formatted bulleted list.
 
@@ -93,18 +93,14 @@ When article content contains bullet points (using `•` characters), the summar
 
 ---
 
-## FEAT-004: Podcast transcript generation button in digest
+## FEAT-004: Auto-transcribe podcast episodes during digest generation
 
 **Type:** Feature  
 **Priority:** Medium  
-**Status:** Open  
+**Status:** Done  
 
-For articles that are podcast episodes (identified by 🎙️ emoji in title or source type), the digest should include a "Generate Transcript" button. When clicked:
+During HTML digest generation, podcast episodes (identified by 🎙️ emoji in title) are automatically transcribed using the existing `podcast_service.py` (yt-dlp + faster-whisper). The transcript summary and full transcript are embedded in the article's expandable accordion, so the static page ships with transcripts already included.
 
-1. **Transcription** — Downloads and transcribes the podcast using the existing `podcast_service.py` (yt-dlp + faster-whisper).
-2. **Summary view** — After transcription completes, displays a generated summary of the transcript.
-3. **Full transcript view** — A toggle/accordion to view the complete transcript text.
+Gracefully skips transcription if podcast dependencies are missing or if the URL is not downloadable audio (e.g., blog show notes pages). In those cases, the existing blog content is preserved in the accordion.
 
-This extends the existing podcast CLI functionality (`ai-digest podcast <url>`) into the HTML digest output. The initial implementation can be a link that triggers the CLI command, with a future Web UI version providing inline processing.
-
-**Related:** Existing `src/services/podcast_service.py` already handles download, transcription, and summarization.
+**Related:** `src/services/podcast_service.py`, `src/cli/__main__.py` (`_enrich_podcasts`).
