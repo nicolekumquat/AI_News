@@ -383,6 +383,57 @@
             opacity: 0.85;
         }
 
+        /* Regenerate button */
+        .regen-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            min-height: 180px;
+            cursor: pointer;
+            transition: border-color 0.2s, background 0.2s;
+            text-decoration: none;
+            color: var(--text-secondary);
+        }
+
+        .regen-card:hover {
+            border-color: var(--accent-blue);
+            background: rgba(108, 140, 255, 0.05);
+        }
+
+        .regen-inner {
+            text-align: center;
+        }
+
+        .regen-inner .card-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .regen-inner h3 {
+            font-size: 1rem;
+            color: var(--accent-blue);
+            margin-bottom: 0.25rem;
+        }
+
+        .regen-inner p {
+            font-size: 0.82rem;
+        }
+
+        /* Source save indicator */
+        .save-indicator {
+            font-size: 0.78rem;
+            color: var(--accent-green);
+            margin-left: 0.75rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .save-indicator.visible {
+            opacity: 1;
+        }
+
         /* Quote */
         .quote {
             background: var(--card-bg);
@@ -521,6 +572,14 @@
                 <span class="card-tag tag-edition">Edition</span>
             </a>
 
+            <div class="regen-card" id="regenCard" title="Trigger digest generation via GitHub Actions">
+                <div class="regen-inner">
+                    <div class="card-icon">🔄</div>
+                    <h3>Regenerate Digest</h3>
+                    <p>Trigger a fresh digest via GitHub Actions</p>
+                </div>
+            </div>
+
         </div>
 
         <!-- Features -->
@@ -548,6 +607,7 @@
         <div class="sources-header">
             <h2 class="section-title" style="margin-bottom: 0;">Curated Sources</h2>
             <button class="edit-toggle" id="editToggle" title="Edit sources">✏️</button>
+            <span class="save-indicator" id="saveIndicator">✓ Saved</span>
         </div>
         <div id="sourcesContainer">
             <div class="add-source-form">
@@ -583,11 +643,11 @@
         <!-- Roadmap -->
         <h2 class="section-title">Roadmap</h2>
         <div class="doc-grid">
-            <div class="doc-card" style="cursor: default; opacity: 0.6;">
+            <div class="doc-card" style="cursor: default;">
                 <div class="card-icon">🌐</div>
                 <h3>Web UI</h3>
-                <p>Regenerate digests on demand, expand blog summaries inline with accordion UI, and manage sources &mdash; all from the browser.</p>
-                <span class="card-tag tag-coming">Coming Soon</span>
+                <p>Regenerate digests on demand, expand blog summaries inline, and manage sources &mdash; all from the browser.</p>
+                <span class="card-tag tag-latest">Shipped</span>
             </div>
             <div class="doc-card" style="cursor: default; opacity: 0.6;">
                 <div class="card-icon">📧</div>
@@ -617,31 +677,47 @@
 
     <script>
     (function() {
-        const toggle = document.getElementById('editToggle');
-        const container = document.getElementById('sourcesContainer');
-        const grid = document.getElementById('sourcesGrid');
+        var STORAGE_KEY = 'ai-digest-sources';
+        var toggle = document.getElementById('editToggle');
+        var container = document.getElementById('sourcesContainer');
+        var grid = document.getElementById('sourcesGrid');
+        var indicator = document.getElementById('saveIndicator');
+        var regenCard = document.getElementById('regenCard');
 
-        // Toggle edit mode
-        toggle.addEventListener('click', function() {
-            const editing = container.classList.toggle('editing');
-            toggle.classList.toggle('active', editing);
+        // ── Load saved sources from localStorage ──
+        loadSources();
+
+        // ── Regenerate button ──
+        regenCard.addEventListener('click', function() {
+            var repoUrl = document.querySelector('.footer a[href*="github.com"]');
+            if (repoUrl) {
+                var base = repoUrl.href.replace(/\/$/, '');
+                window.open(base + '/actions/workflows/generate.yml', '_blank');
+            }
         });
 
-        // Remove source
+        // ── Toggle edit mode ──
+        toggle.addEventListener('click', function() {
+            var editing = container.classList.toggle('editing');
+            toggle.classList.toggle('active', editing);
+            if (!editing) saveSources();
+        });
+
+        // ── Remove source ──
         grid.addEventListener('click', function(e) {
-            const btn = e.target.closest('.remove-btn');
+            var btn = e.target.closest('.remove-btn');
             if (!btn) return;
-            const item = btn.closest('.source-item');
+            var item = btn.closest('.source-item');
             item.style.transition = 'opacity 0.2s';
             item.style.opacity = '0';
-            setTimeout(function() { item.remove(); }, 200);
+            setTimeout(function() { item.remove(); saveSources(); }, 200);
         });
 
-        // Add source
-        const form = container.querySelector('.add-source-form');
-        const addBtn = form.querySelector('.add-source-btn');
-        const nameInput = form.querySelector('input[name="name"]');
-        const urlInput = form.querySelector('input[name="url"]');
+        // ── Add source ──
+        var form = container.querySelector('.add-source-form');
+        var addBtn = form.querySelector('.add-source-btn');
+        var nameInput = form.querySelector('input[name="name"]');
+        var urlInput = form.querySelector('input[name="url"]');
 
         addBtn.addEventListener('click', addSource);
         nameInput.addEventListener('keydown', function(e) { if (e.key === 'Enter') addSource(); });
@@ -654,7 +730,9 @@
 
             var item = document.createElement('div');
             item.className = 'source-item';
-            var label = url ? name + ' <span style="color:var(--text-secondary);font-size:0.8rem;">(' + escapeHtml(url) + ')</span>' : escapeHtml(name);
+            item.setAttribute('data-name', name);
+            item.setAttribute('data-url', url);
+            item.setAttribute('data-icon', '🔗');
             item.innerHTML = '<span class="source-icon">🔗</span> <strong>' + escapeHtml(name) + '</strong>' +
                 (url ? ' <span style="font-size:0.8rem;color:var(--text-secondary)">(' + escapeHtml(truncate(url, 30)) + ')</span>' : '') +
                 '<button class="remove-btn" title="Remove source">&times;</button>';
@@ -662,6 +740,77 @@
             nameInput.value = '';
             urlInput.value = '';
             nameInput.focus();
+            saveSources();
+        }
+
+        // ── Persistence ──
+        function saveSources() {
+            var items = grid.querySelectorAll('.source-item');
+            var sources = [];
+            for (var i = 0; i < items.length; i++) {
+                var el = items[i];
+                var strong = el.querySelector('strong');
+                var icon = el.querySelector('.source-icon');
+                sources.push({
+                    name: el.getAttribute('data-name') || (strong ? strong.textContent : ''),
+                    url: el.getAttribute('data-url') || '',
+                    icon: el.getAttribute('data-icon') || (icon ? icon.textContent : '🔗'),
+                    label: el.getAttribute('data-label') || ''
+                });
+            }
+            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(sources)); } catch(e) {}
+            flashSaved();
+        }
+
+        function loadSources() {
+            var raw;
+            try { raw = localStorage.getItem(STORAGE_KEY); } catch(e) {}
+            if (!raw) {
+                // First visit: snapshot the built-in sources so they're persisted
+                tagBuiltinSources();
+                return;
+            }
+            var sources;
+            try { sources = JSON.parse(raw); } catch(e) { return; }
+            if (!Array.isArray(sources) || sources.length === 0) return;
+
+            grid.innerHTML = '';
+            for (var i = 0; i < sources.length; i++) {
+                var s = sources[i];
+                var item = document.createElement('div');
+                item.className = 'source-item';
+                item.setAttribute('data-name', s.name);
+                item.setAttribute('data-url', s.url || '');
+                item.setAttribute('data-icon', s.icon || '🔗');
+                item.setAttribute('data-label', s.label || '');
+                var labelHtml = s.label ? ' ' + escapeHtml(s.label) : '';
+                item.innerHTML = '<span class="source-icon">' + escapeHtml(s.icon || '🔗') + '</span> <strong>' + escapeHtml(s.name) + '</strong>' + labelHtml +
+                    '<button class="remove-btn" title="Remove source">&times;</button>';
+                grid.appendChild(item);
+            }
+        }
+
+        function tagBuiltinSources() {
+            var items = grid.querySelectorAll('.source-item');
+            for (var i = 0; i < items.length; i++) {
+                var el = items[i];
+                var strong = el.querySelector('strong');
+                var icon = el.querySelector('.source-icon');
+                if (!el.getAttribute('data-name') && strong) {
+                    el.setAttribute('data-name', strong.textContent);
+                }
+                if (!el.getAttribute('data-icon') && icon) {
+                    el.setAttribute('data-icon', icon.textContent);
+                }
+                // Capture any extra text after <strong> as a label
+                var text = el.textContent.replace(strong ? strong.textContent : '', '').replace(icon ? icon.textContent : '', '').replace('×', '').trim();
+                if (text) el.setAttribute('data-label', text);
+            }
+        }
+
+        function flashSaved() {
+            indicator.classList.add('visible');
+            setTimeout(function() { indicator.classList.remove('visible'); }, 1500);
         }
 
         function escapeHtml(s) {

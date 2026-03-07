@@ -24,7 +24,7 @@ Articles in the generated digest should be sorted by publication date in descend
 
 **Type:** Feature  
 **Priority:** Medium  
-**Status:** Open  
+**Status:** Done  
 
 A local web application that provides:
 
