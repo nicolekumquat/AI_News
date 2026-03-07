@@ -142,6 +142,11 @@ def _handle_digest(args):
     """Handle default digest generation (existing behaviour)."""
     date_str = format_date(args.date)
 
+    # When generating HTML, suppress console logging so only the HTML
+    # document appears on stdout (file logging is unaffected).
+    if args.html:
+        _silence_console_logging()
+
     logger.info(f"AI Daily Digest - Requesting digest for {date_str}")
 
     try:
@@ -261,6 +266,21 @@ def _enrich_podcasts(entry_article_pairs, config):
             logger.info("Transcribed: %s (%d words)", article.title, result.summary_obj.transcript_word_count)
         except Exception as e:
             logger.warning("Failed to transcribe %s: %s", article.url, e)
+
+
+def _silence_console_logging():
+    """Remove console (StreamHandler) handlers from the root logger.
+
+    Keeps file-based logging intact so diagnostics are still captured in
+    the log file, but nothing leaks to stderr/stdout when we need clean
+    output (e.g. ``--html``).
+    """
+    root = logging.getLogger()
+    root.handlers = [
+        h for h in root.handlers
+        if not isinstance(h, logging.StreamHandler)
+        or isinstance(h, logging.FileHandler)
+    ]
 
 
 if __name__ == "__main__":
