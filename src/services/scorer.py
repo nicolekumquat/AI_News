@@ -1,6 +1,7 @@
 """Article scorer - ranks articles by user interest profile."""
 
 import logging
+from datetime import datetime, timezone
 
 from models.news_article import NewsArticle
 
@@ -333,6 +334,13 @@ def rank_and_select(
                 continue
             academic_count += 1
         selected.append((article, s))
+
+    # Sort by published_at descending (newest first), score as tiebreaker
+    _epoch = datetime(1970, 1, 1, tzinfo=timezone.utc)
+    selected.sort(
+        key=lambda x: (x[0].published_at if x[0].published_at else _epoch, x[1]),
+        reverse=True,
+    )
 
     logger.info(
         f"Ranked {len(articles)} articles, selected top {len(selected)} "
