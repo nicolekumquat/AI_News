@@ -42,6 +42,20 @@ def format_digest_html(
             summary_html = summary_esc.replace(". ", ".</span> <span>")
             summary_html = f"<span>{summary_html}</span>"
 
+            # Expandable full content accordion
+            expand_html = ""
+            if article.content and len(article.content) > len(entry.summary) + 50:
+                content_esc = html.escape(article.content)
+                # Split into paragraphs for readability
+                paragraphs = [p.strip() for p in content_esc.split("\n") if p.strip()]
+                content_body = "".join(f"<p>{p}</p>" for p in paragraphs[:20])
+                expand_html = (
+                    '\n          <details class="expand-content">'
+                    "<summary>Expand full summary</summary>"
+                    f'<div class="expanded-body">{content_body}</div>'
+                    "</details>"
+                )
+
             articles_html += f"""
       <article>
         <div class="article-number">{i}</div>
@@ -51,7 +65,7 @@ def format_digest_html(
             <span class="source">{source_esc}</span>
             <span class="date">{pub_str}</span>
           </div>
-          <p class="summary">{summary_html}</p>
+          <p class="summary">{summary_html}</p>{expand_html}
         </div>
       </article>"""
 
@@ -202,6 +216,56 @@ def format_digest_html(
     color: var(--text-dim);
     padding: 60px 0;
     font-size: 16px;
+  }}
+
+  /* ── Expand accordion ── */
+  .expand-content {{
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }}
+
+  .expand-content summary {{
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }}
+
+  .expand-content summary::-webkit-details-marker {{
+    display: none;
+  }}
+
+  .expand-content summary::before {{
+    content: '\u25b6 ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }}
+
+  .expand-content[open] summary::before {{
+    transform: rotate(90deg);
+  }}
+
+  .expanded-body {{
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }}
+
+  .expanded-body p {{
+    margin-bottom: 10px;
+  }}
+
+  .expanded-body p:last-child {{
+    margin-bottom: 0;
   }}
 
   /* ── Footer ── */
