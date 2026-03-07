@@ -114,6 +114,9 @@ def extract_content(url: str) -> str:
         for el in soup.select(tag):
             el.decompose()
 
+    # Substack: strip editor preamble above the first <hr> in .body
+    _strip_substack_preamble(soup)
+
     # Try each selector until we find substantial content
     for selector in ARTICLE_SELECTORS:
         elements = soup.select(selector)
@@ -130,6 +133,35 @@ def extract_content(url: str) -> str:
             return text[:MAX_CONTENT_LENGTH]
 
     return ""
+
+
+def _strip_substack_preamble(soup: BeautifulSoup) -> None:
+    """Remove editor/newsletter preamble above the first <hr> in Substack posts.
+
+    Many Substack guest-posts have an editor's note followed by an <hr>
+    separator before the actual article.  This removes everything above
+    that <hr> inside the .body element so the extracted text starts with
+    the real content.
+    """
+    body = (
+        soup.select_one(".body.markup")
+        or soup.select_one("article .body")
+    )
+    if body is None:
+        return
+
+    hr = body.find("hr")
+    if hr is None:
+        return
+
+    # Walk backwards from the <hr> and remove all preceding siblings
+    # (the <hr>'s parent wrapper is removed too if it's just a wrapper div)
+    hr_parent = hr.parent
+    target = hr_parent if hr_parent is not body else hr
+
+    for sibling in list(target.previous_siblings):
+        sibling.extract()
+    target.extract()
 
 
 def _clean_text(text: str) -> str:
