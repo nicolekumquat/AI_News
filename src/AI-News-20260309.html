@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-03-09</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-03-09</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Mar/7/codex-for-open-source/#atom-everything" target="_blank">Codex for Open Source</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Mar 07, 2026 &middot; 18:13 UTC</span>
+          </div>
+          <p class="summary"><span>Codex for Open Source Anthropic announced six months of free Claude Max for maintainers of popular open source projects (5,000+ stars or 1M+ NPM downloads) on 27th February .</span> <span>Now OpenAI have launched their comparable offer: six months of ChatGPT Pro (same $200/month price as Claude Max) with Codex and &quot;conditional access to Codex Security&quot; for core maintainers.</span> <span>Unlike Anthropic they don&#x27;t hint at the exact metrics they care about, but the application form does ask for &quot;information such as GitHub stars, monthly downloads, or why the project is important to the ecosystem.&quot; Via @openaidevs Tags: open-source , ai , openai , generative-ai , llms , codex-cli</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Codex for Open Source</p><p>Anthropic announced six months of free Claude Max for maintainers of popular open source projects (5,000+ stars or 1M+ NPM downloads) on 27th February.</p><p>Now OpenAI have launched their comparable offer: six months of ChatGPT Pro (same $200/month price as Claude Max) with Codex and &quot;conditional access to Codex Security&quot; for core maintainers.</p><p>Unlike Anthropic they don&#x27;t hint at the exact metrics they care about, but the application form does ask for &quot;information such as GitHub stars, monthly downloads, or why the project is important to the ecosystem.&quot;</p><p>Via @openaidevs</p><p>Tags: open-source, ai, openai, generative-ai, llms, codex-cli</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/community-wisdom-business-books-that" target="_blank">🧠 Community Wisdom: Business books that haven’t aged well, vibe coding with your Figma design systems, Claude Code vs. other coding tools and more</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Mar 07, 2026 &middot; 16:44 UTC</span>
+          </div>
+          <p class="summary"><span>Community wisdom 🧠 Community Wisdom: Business books that haven’t aged well, vibe coding with your Figma design systems, Claude Code vs.</span> <span>other coding tools and more Community Wisdom 176 Kiyani Mar 07, 2026 ∙ Paid 👋 Hello and welcome to this week’s edition of ✨ Community Wisdom ✨ a subscriber-only email, delivered every Saturday, highlighting the most helpful conversations in our members-only Slack community .</span> <span>This post is for paid subscribers Already a paid subscriber?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Mar/6/anthropic-and-the-pentagon/#atom-everything" target="_blank">Anthropic and the Pentagon</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Mar 06, 2026 &middot; 17:26 UTC</span>
+          </div>
+          <p class="summary"><span>Anthropic and the Pentagon This piece by Bruce Schneier and Nathan E.</span> <span>Sanders is the most thoughtful and grounded coverage I&#x27;ve seen of the recent and ongoing Pentagon/OpenAI/Anthropic contract situation.</span> <span>Tags: bruce-schneier , ai , openai , generative-ai , llms , anthropic , ai-ethics</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Anthropic and the Pentagon</p><p>This piece by Bruce Schneier and Nathan E. Sanders is the most thoughtful and grounded coverage I&#x27;ve seen of the recent and ongoing Pentagon/OpenAI/Anthropic contract situation.</p><p>AI models are increasingly commodified. The top-tier offerings have about the same performance, and there is little to differentiate one from the other. The latest models from Anthropic, OpenAI and Google, in particular, tend to leapfrog each other with minor hops forward in quality every few months. [...]</p><p>In this sort of market, branding matters a lot. Anthropic and its CEO, Dario Amodei, are positioning themselves as the moral and trustworthy AI provider. That has market value for both consumers and enterprise clients.</p><p>Tags: bruce-schneier, ai, openai, generative-ai, llms, anthropic, ai-ethics</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/descript" target="_blank">How Descript enables multilingual video dubbing at scale</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Mar 06, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>Descript uses OpenAI models to scale multilingual video dubbing, optimizing translations for both meaning and timing so dubbed speech sounds natural across languages.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/guides/agentic-engineering-patterns/agentic-manual-testing/#atom-everything" target="_blank">Agentic manual testing</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Mar 06, 2026 &middot; 05:43 UTC</span>
+          </div>
+          <p class="summary"><span>Just because code passes tests doesn&#x27;t mean it works as intended.</span> <span>I&#x27;ve found that getting agents to manually test code is valuable as well, frequently revealing issues that weren&#x27;t spotted by the automated tests.</span> <span>Tags: playwright , testing , agentic-engineering , ai , llms , coding-agents , ai-assisted-programming , rodney , showboat</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Agentic Engineering Patterns &gt;</p><p>The defining characteristic of a coding agent is that it can execute the code that it writes. This is what makes coding agents so much more useful than LLMs that simply spit out code without any way to verify it.</p><p>Never assume that code generated by an LLM works until that code has been executed.</p><p>Coding agents have the ability to confirm that the code they have produced works as intended, or iterate further on that code until it does.</p><p>Getting agents to write unit tests, especially using test-first TDD, is a powerful way to ensure they have exercised the code they are writing.</p><p>That&#x27;s not the only worthwhile approach, though.</p><p>Just because code passes tests doesn&#x27;t mean it works as intended. Anyone who&#x27;s worked with automated tests will have seen cases where the tests all pass but the code itself fails in some obvious way - it might crash the server on startup, fail to display a crucial UI element, or miss some detail that the tests failed to cover.</p><p>Automated tests are no replacement for manual testing. I like to see a feature working with my own eye before I land it in a release.</p><p>I&#x27;ve found that getting agents to manually test code is valuable as well, frequently revealing issues that weren&#x27;t spotted by the automated tests.</p><p>Mechanisms for agentic manual testing</p><p>How an agent should &quot;manually&quot; test a piece of code varies depending on what that code is.</p><p>For Python libraries a useful pattern is python -c &quot;... code ...&quot;. You can pass a string (or multiline string) of Python code directly to the Python interpreter, including code that imports other modules.</p><p>The coding agents are all familiar with this trick and will sometimes use it without prompting. Reminding them to test using python -c can often be effective though:</p><p>Try that new function on some edge cases using `python -c`</p><p>Other languages may have similar mechanisms, and if they don&#x27;t it&#x27;s still quick for an agent to write out a demo file and then compile and run it. I sometimes encourage it to use /tmp purely to avoid those files being accidentally committed to the repository later on.</p><p>Write code in `/tmp` to try edge cases of that function and then compile and run it</p><p>Many of my projects involve building web applications with JSON APIs. For these I tell the agent to exercise them using curl:</p><p>Run a dev server and explore that new JSON API using `curl`</p><p>Telling an agent to &quot;explore&quot; often results in it trying out a bunch of different aspects of a new API, which can quickly cover a whole lot of ground.</p><p>If an agent finds something that doesn&#x27;t work through their manual testing, I like to tell them to fix it with red/green TDD. This ensures the new case ends up covered by the permanent automated tests.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/ai-education-opportunity" target="_blank">Ensuring AI use in education leads to opportunity</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Mar 05, 2026 &middot; 09:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI shares new tools, certifications, and measurement resources to help schools and universities close AI capability gaps and expand opportunity.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-is-harness-engineering-real" target="_blank">[AINews] Is Harness Engineering real?</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Mar 05, 2026 &middot; 02:13 UTC</span>
+          </div>
+          <p class="summary"><span>Separately, one arena watcher claims “GPT-5.4 landed in the arena,” implying an imminent release window ( tweet ).</span> <span>Claude as “agent behavior” leader, not just coding : Nat Lambert argues the discussion should shift from Anthropic “going all-in on code” to their lead on general agent behavior , implying coding capability will commoditize but agent robustness will not ( tweet ).</span> <span>MathArena evaluation adds a datapoint: Claude Opus 4.6 is strong overall but weak on visual mathematics , and costly to evaluate (claimed ~$8k) ( tweet ).</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>AI News for 3/3/2026-3/4/2026. We checked 12 subreddits, 544 Twitters and 24 Discords ( 264 channels, and 14242 messages) for you. Estimated reading time saved (at 200wpm): 1397 minutes. AINews’ website lets you search all past issues. As a reminder, AINews is now a section of Latent Space . You can opt in/out of email frequencies! AI Twitter Recap Frontier model shipping: Gemini 3.1 Flash-Lite, GPT-5.4 rumors, and “agent-first” product positioning Gemini 3.1 Flash-Lite positioning (speed/$) : Demis Hassabis teased Gemini 3.1 Flash-Lite as “incredibly fast and cost-efficient” for its performance—clearly framing the model line around latency and cost per capability rather than raw frontier scores ( tweet ). Related product chatter NotebookLM as a “favorite AI tool” ( tweet ) and a major new NotebookLM Studio feature: Cinematic Video Overviews that generate bespoke, immersive videos from user sources for Ultra users ( tweet ). GPT-5.4 leak narrative (The Information) : Multiple tweets amplify a report that GPT-5.4 is coming with a ~1M token context window and a new “extreme reasoning mode” that can “think for hours,” targeting long-horizon agentic workflows and lower complex-task error rates ( tweet , tweet , tweet ). There’s also speculation that OpenAI is shifting to more frequent (monthly) model updates ( tweet ). Separately, one arena watcher claims “GPT-5.4 landed in the arena,” implying an imminent release window ( tweet ). Treat all of this as unconfirmed unless corroborated by OpenAI. Claude as “agent behavior” leader, not just coding : Nat Lambert argues the discussion should shift from Anthropic “going all-in on code” to their lead on general agent behavior , implying coding capability will commoditize but agent robustness will not ( tweet ). MathArena evaluation adds a datapoint: Claude Opus 4.6 is strong overall but weak on visual mathematics , and costly to evaluate (claimed ~$8k) ( tweet ).</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/introducing-the-adoption-news-channel" target="_blank">Introducing the Adoption news channel</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Mar 05, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>Practical insights and frameworks to turn AI progress into business advantage</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/guides/agentic-engineering-patterns/anti-patterns/#atom-everything" target="_blank">Anti-patterns: things to avoid</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Mar 04, 2026 &middot; 17:34 UTC</span>
+          </div>
+          <p class="summary"><span>Inflicting unreviewed code on collaborators This anti-pattern is common and deeply frustrating.</span> <span>Don&#x27;t file pull requests with code you haven&#x27;t reviewed yourself .</span> <span>Tags: ai , llms , ai-ethics , coding-agents , ai-assisted-programming , generative-ai , agentic-engineering , code-review</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Agentic Engineering Patterns &gt;</p><p>There are some behaviors that are anti-patterns in our weird new world of agentic engineering.</p><p>Inflicting unreviewed code on collaborators</p><p>This anti-pattern is common and deeply frustrating.</p><p>Don&#x27;t file pull requests with code you haven&#x27;t reviewed yourself.</p><p>If you open a PR with hundreds (or thousands) of lines of code that an agent produced for you, and you haven&#x27;t done the work to ensure that code is functional yourself, you are delegating the actual work to other people.</p><p>They could have prompted an agent themselves. What value are you even providing?</p><p>If you put code up for review you need to be confident that it&#x27;s ready for other people to spend their time on it. The initial review pass is your responsibility, not something you should farm out to others.</p><p>A good agentic engineering pull request has the following characteristics:</p><p>The code works, and you are confident that it works. Your job is to deliver code that works.</p><p>The change is small enough to be reviewed efficiently without inflicting too much additional cognitive load on the reviewer. Several small PRs beats one big one, and splitting code into separate commits is easy with a coding agent to do the Git finagling for you.</p><p>The PR includes additional context to help explain the change. What&#x27;s the higher level goal that the change serves? Linking to relevant issues or specifications is useful here.</p><p>Agents write convincing looking pull request descriptions. You need to review these too! It&#x27;s rude to expect someone else to read text that you haven&#x27;t read and validated yourself.</p><p>Given how easy it is to dump unreviewed code on other people, I recommend including some form of evidence that you&#x27;ve put that extra work in yourself. Notes on how you manually tested it, comments on specific implementation choices or even screenshots and video of the feature working go a long way to demonstrating that a reviewer&#x27;s time will not be wasted digging into the details.</p><p>Tags: ai, llms, ai-ethics, coding-agents, ai-assisted-programming, generative-ai, agentic-engineering, code-review</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Mar/4/qwen/#atom-everything" target="_blank">Something is afoot in the land of Qwen</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Mar 04, 2026 &middot; 15:50 UTC</span>
+          </div>
+          <p class="summary"><span>I&#x27;m behind on writing about Qwen 3.5, a truly remarkable family of open weight models released by Alibaba&#x27;s Qwen team over the past few weeks.</span> <span>It all started with this tweet from Junyang Lin ( @JustinLin610 ): me stepping down.</span> <span>bye my beloved qwen.</span> <span>Junyang Lin was the lead researcher building Qwen, and was key to releasing their open weight models from 2024 onwards.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>I&#x27;m behind on writing about Qwen 3.5, a truly remarkable family of open weight models released by Alibaba&#x27;s Qwen team over the past few weeks. I&#x27;m hoping that the 3.5 family doesn&#x27;t turn out to be Qwen&#x27;s swan song, seeing as that team has had some very high profile departures in the past 24 hours.</p><p>It all started with this tweet from Junyang Lin (@JustinLin610):</p><p>me stepping down. bye my beloved qwen.</p><p>Junyang Lin was the lead researcher building Qwen, and was key to releasing their open weight models from 2024 onwards.</p><p>As far as I can tell a trigger for this resignation was a re-org within Alibaba where a new researcher hired from Google&#x27;s Gemini team was put in charge of Qwen, but I&#x27;ve not confirmed that detail.</p><p>More information is available in this article from 36kr.com. Here&#x27;s Wikipedia on 36Kr confirming that it&#x27;s a credible media source established in 2010 with a good track record reporting on the Chinese technology industry.</p><p>The article is in Chinese - here are some quotes translated via Google Translate:</p><p>At approximately 1:00 PM Beijing time on March 4th, Tongyi Lab held an emergency All Hands meeting, where Alibaba Group CEO Wu Yongming frankly told Qianwen employees.</p><p>Twelve hours ago (at 0:11 AM Beijing time on March 4th), Lin Junyang, the technical lead for Alibaba&#x27;s Qwen Big Data Model, suddenly announced his resignation on X. Lin Junyang was a key figure in promoting Alibaba&#x27;s open-source AI models and one of Alibaba&#x27;s youngest P10 employees. Amidst the industry uproar, many members of Qwen were also unable to accept the sudden departure of their team&#x27;s key figure.</p><p>&quot;Given far fewer resources than competitors, Junyang&#x27;s leadership is one of the core factors in achieving today&#x27;s results,&quot; multiple Qianwen members told 36Kr. [...]</p><p>Regarding Lin Junyang&#x27;s whereabouts, no new conclusions were reached at the meeting. However, around 2 PM, Lin Junyang posted again on his WeChat Moments, stating, &quot;Brothers of Qwen, continue as originally planned, no problem,&quot; without explicitly confirming whether he would return. [...]</p><p>That piece also lists several other key members who have apparently resigned:</p><p>With Lin Junyang&#x27;s departure, several other Qwen members also announced their departure, including core leaders responsible for various sub-areas of Qwen models, such as:</p><p>Binyuan Hui: Lead Qwen code development, principal of the Qwen-Coder series models, responsible for the entire agent training process from pre-training to post-training, and recently involved in robotics research.</p><p>Bowen Yu: Lead Qwen post-training research, graduated from the University of Chinese Academy of Sciences, leading the development of the Qwen-Instruct series models.</p><p>Kaixin Li: Core contributor to Qwen 3.5/VL/Coder, PhD from the National University of Singapore.</p><p>Besides the aforementioned individuals, many young researchers also resigned on the same day.</p><p>Based on the above it looks to me like everything is still very much up in the air. The presence of Alibaba&#x27;s CEO at the &quot;emergency All Hands meeting&quot; suggests that the company understands the significance of these resignations and may yet retain some of the departing talent.</p><p>Qwen 3.5 is exceptional</p><p>This story hits particularly hard right now because the Qwen 3.5 models appear to be exceptionally good.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/understanding-ai-and-learning-outcomes" target="_blank">Understanding AI and learning outcomes</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Mar 04, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI introduces the Learning Outcomes Measurement Suite to assess AI’s impact on student learning across diverse educational environments over time.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/gemini-3-1-flash-lite-built-for-intelligence-at-scale/" target="_blank">Gemini 3.1 Flash-Lite: Built for intelligence at scale</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Mar 03, 2026 &middot; 16:35 UTC</span>
+          </div>
+          <p class="summary"><span>Gemini 3.1 Flash-Lite: Built for intelligence at scale Mar 03, 2026 · Share x.com Facebook LinkedIn Mail Get best-in-class intelligence for your highest-volume workloads.</span> <span>The Gemini Team General summary Gemini 3.1 Flash-Lite is now available in preview to developers via the Gemini API in Google AI Studio and for enterprises via Vertex AI.</span> <span>Use 3.1 Flash-Lite for tasks like translation content moderation generating user interfaces and creating simulations.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Gemini 3.1 Flash-Lite: Built for intelligence at scale Mar 03, 2026 · Share x.com Facebook LinkedIn Mail Get best-in-class intelligence for your highest-volume workloads. The Gemini Team General summary Gemini 3.1 Flash-Lite is now available in preview to developers via the Gemini API in Google AI Studio and for enterprises via Vertex AI. Priced at $0.25/1M input tokens and $1.50/1M output tokens, it&#x27;s cost-efficient and faster than 2.5 Flash. Use 3.1 Flash-Lite for tasks like translation content moderation generating user interfaces and creating simulations. Summaries were generated by Google AI. Generative AI is experimental. Basic explainer Google made a new AI model called Gemini 3.1 Flash-Lite. It&#x27;s super fast and cheap to use, so more people can use it. This AI is good at things like translating languages and checking content. Some companies are already using it to solve tough problems because it&#x27;s both smart and efficient. Summaries were generated by Google AI. Generative AI is experimental. Explore other styles: Share x.com Facebook LinkedIn Mail Your browser does not support the audio element. Listen to article This content is generated by Google AI. Generative AI is experimental [[duration]] minutes Today, we&#x27;re introducing Gemini 3.1 Flash-Lite, our fastest and most cost-efficient Gemini 3 series model. Built for high-volume developer workloads at scale, 3.1 Flash-Lite delivers high quality for its price and model tier. Starting today, 3.1 Flash-Lite is rolling out in preview to developers via the Gemini API in Google AI Studio and for enterprises via Vertex AI . Cost-efficiency without compromise Priced at just $0.25/1M input tokens and $1.50/1M output tokens, 3.1 Flash-Lite delivers enhanced performance at a fraction of the cost of larger models. It outperforms 2.5 Flash with a 2.5X faster Time to First Answer Token and 45% increase in output speed, according to the Artificial Analysis benchmark while maintaining similar or better quality. This low latency is needed for high-frequency workflows, making it an ideal model for developers to build responsive, real-time experiences. Gemini 3.1 Flash-Lite outperforms 2.5 Flash in speed and quality. 3.1 Flash-Lite achieves an impressive Elo score of 1432 on the Arena.ai Leaderboard and outperforms other models of similar tier across reasoning and multimodal understanding benchmarks, including 86.9% on GPQA Diamond and 76.8% on MMMU Pro–even surpassing larger Gemini models from prior generations like 2.5 Flash. Adaptive intelligence at scale for developers Beyond its raw performance, Gemini 3.1 Flash-Lite comes standard with thinking levels in AI Studio and Vertex AI, giving developers the control and flexibility to select how much the model “thinks” for a task, which is critical for managing high-frequency workloads. 3.1 Flash-Lite can tackle tasks at scale, like high-volume translation and content moderation, where cost is a priority. And it can also handle more complex workloads where more in-depth reasoning is needed, like generating user interfaces and dashboards, creating simulations or following instructions. 3.1 Flash-Lite instantly fills an e-commerce wireframe with hundreds of products in different categories. 3.1 Flash-Lite can generate dynamic weather dashboards in real-time , using live forecasts and historical data. 3.1 Flash-Lite creates a SaaS agent capable of executing versatile, multi-step tasks for a business . 3.1 Flash-Lite can analyze and sort large numbers of content like images quickly. Early-access developers on AI Studio and Vertex AI, and companies like Latitude, Cartwheel and Whering are already using 3.1 Flash-Lite to solve complex problems at scale. Early testers highlighted 3.1 Flash-Lite’s efficiency and reasoning capabilities, saying it can handle complex inputs with the precision of a larger-tier model, plus follow instructions and maintain adherence. We look forward to seeing what you build with 3.1 Flash-Lite and the rest of the Gemini 3 series models. Just one step more. Check your inbox to confirm your subscription. You are already You can also subscribe with a</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://newsletter.pragmaticengineer.com/p/ai-tooling-2026" target="_blank">AI Tooling for Software Engineers in 2026</a></h2>
+          <div class="meta">
+            <span class="source">pragmatic-engineer</span>
+            <span class="date">Mar 03, 2026 &middot; 16:05 UTC</span>
+          </div>
+          <p class="summary"><span>Most-used AI tools: Claude Code leads the pack, followed by chatbots and GitHub Copilot.</span> <span>AI agent usage rising : 55% of respondents now regularly use AI agents, with staff+ engineers leading adoption on 63.5% usage in the survey results.</span> <span>Tools engineers love: Claude Code is the most loved tool at 46%, far ahead of Cursor on 19% and GitHub Copilot at 9%.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Which AI tools are software engineers using, and what do they really think of them? We asked The Pragmatic Engineer subscribers, and nearly a thousand of you have shared your experiences of using AI tools for work. The survey ran for weeks, between 27 January and 17 February 2026. This article provides a high-level overview of those findings from our latest AI tooling survey. Thank you to everyone who participated! There are plenty of interesting details, most notably, validation of just how much Anthropic and Claude Code have risen to dominate tooling usage. Claude Code is today nearly as widespread as GitHub Copilot was in our survey three years ago (in the spring of 2023) – which shows how fast the AI market moves. In today’s issue, we cover: Interesting findings: Claude Code has rocketed to #1 in just eight months, AI is fully mainstream with 95% weekly usage among respondents, and more. Most-used AI tools: Claude Code leads the pack, followed by chatbots and GitHub Copilot. Cursor’s rising fast, and newcomers like Codex and Antigravity are gaining traction. Most engineers juggle two to four tools at once. Popular models: Anthropic’s Opus and Sonnet models dominate coding tasks by a wide margin, with more mentions than all others combined. AI trends: mainstream adoption achieved. 95% of respondents report using AI tools at least weekly, 75% use AI for half or more of their work, and 56% report doing 70%+ of their engineering work with AI. AI agent usage rising : 55% of respondents now regularly use AI agents, with staff+ engineers leading adoption on 63.5% usage in the survey results. Agent users are twice as excited about AI as non-users are. Company size and tool usage: smaller places overwhelmingly favor Claude Code (75% at the tiniest businesses), while large enterprises default to GitHub Copilot. This popularity is probably down to enterprise procurement preferences – and Microsoft’s enterprise marketing efforts. Tools engineers love: Claude Code is the most loved tool at 46%, far ahead of Cursor on 19% and GitHub Copilot at 9%. Senior leaders are especially enthusiastic about Claude Code. Demographics : Overview of who took part in the survey. Full subscribers also have access to a longer, 35-page report with additional details - linked at the end of this article. Interesting findings Here are my ten personal, most-interesting findings from this survey: Claude Code has gone from zero to be the #1 tool in only eight months. Released in May 2025, it’s already the most-used AI coding tool, overtaking GitHub Copilot and Cursor. AI is now mainstream. 95% of respondents use AI tools at least weekly, or more often, and 75% use AI for at least half their software engineering work. Among readers of The Pragmatic Engineer, it seems the question is no longer whether to use AI in day-to-day work, but which tools to use. Cursor is catching up fast on GitHub Copilot. As much as we hear about companies dropping Cursor for Claude Code, Cursor is doing more than fine, growing in mentions 35% since our previous survey nine months ago. Most engineers juggle multiple AI tools. 70% use between two and four tools simultaneously, while 15% use five or more. Staff+ engineers are the heaviest agent users. 63.5% use agents regularly; more than regular engineers (49.7%), engineering managers (46.1%), and directors/VPs (51.9%). Codex is seeing explosive early growth. Despite not existing during the last survey, OpenAI’s Codex already has 60% of Cursor’s usage (!!) Using agents correlates strongly with being positive about AI. People using agents are nearly twice as likely to feel excited about AI while non-users are twice as likely to be skeptical. Company size influences tool choice more than preference. Huge companies (10K+) more likely to use Copilot (56%), tiny startups mostly go with Claude Code (75%) and Cursor (42%). It seems like enterprise procurement, not individual preference, is behind this divergence. A tight chatbot race. ChatGPT, Gemini, and Claude as standalone chatbots have nearly equal numbers of mentions, suggesting there’s no clear winner outside of coding-specific tools among software engineers. Directors and senior leaders are especially into Claude Code . The survey finds this tool is twice as popular with these folks as it is at less senior levels, while Cursor gets less love as seniority increases. Let’s jump into some of the data: 2. Most-used AI tools Just eight months after its release, Claude Code is already the most-used tool, overtaking both GitHub Copilot and Cursor: Tools mentioned, in order of popularity: Claude Code : a terminal-first coding agent from Anthropic. We cover its history in the deepdive, How Claude Code is built Chatbots: ChatGPT, Claude, Gemini, and others GitHub Copilot : launched in 2021, it’s the “oldest” AI coding tool on this list Cursor : agent-powered coding IDE. Learn more about it in our deepdive, Real-world engineering challenges: building Cursor . Codex : OpenAI’s AI coding agent. We recently covered how Codex is built Gemini CLI : Google’s command line agent OpenCode : the most popular open source coding agent, where you can swap out the model being used, sidestepping vendor lock-in Antigravity : Google hired the original team behind Windsurf and launched its own agentic IDE JetBrains Junie : the AI coding agent by JetBrains Zed : a fast editor with agentic workflows Windsurf : when Google acquihired the team, it did not buy the product. An AI IDE, now owned and operated by Cognition Amp : a model-agnostic coding agent. A free version is supported by ads Augment Code : an enterprise-focused coding agent Factory : agent-native software development, which calls agents “droids.” It’s interesting to compare how people answered the same question just nine months ago, last May: Notable trends: Claude Code has massive momentum and is already the market leader. Since being released in May 2025, it has become the most-used AI coding tool among survey respondents. Anecdotally, I’ve heard several teams that have been Cursor power users are introducing Claude Code with great success (while still keeping Cursor in-place.) Cursor has grown circa 35% in nine months and now threatens GitHub’s popularity. In this survey, 35% more respondents mention using Cursor than in our previous research, last May. Such growth is impressive: at this rate, Cursor will have more users than GitHub in 6-9 months! Chatbot usage remains high. Combined mentions for ChatGPT, Claude, Gemini, Perplexity, and others used outside of coding apps are still higher than for any other tool except Claude Code. For context, the most-mentioned chatbot (ChatGPT, 107 times) only has as many as Gemini CLI (also 107). GitHub Copilot usage stable. Nine months ago, 46% of respondents said they used GitHub Copilot. Since then, it’s barely risen. Explosive growth for Codex. OpenAI’s Codex wasn’t available during our last survey. But it now already has 60% of Cursor’s usage(!), and could be growing even faster since this survey. Up-and-coming tools: OpenCode, Gemini CLI, Antigravity. None of these had launched nine months ago, but today they’re used by around 10% of respondents – no small feat! Tools growing more than before: The likes of Zed, Windsurf, Amp, Augment Code, and Factory appear less often in these results, but all are mentioned more by respondents than they were nine months ago. Chatbot usage: ChatGPT leads – just about Here’s how mentions of chatbot usage line up in our survey: Tool usage: multi-tool Most tech professionals use between two and four AI tools. An interesting detail is how many different ones are mentioned by respondents: Noteworthy details: 70% of survey participants mention using between two and four tools 15% use a single tool 15% are using 5 or more 3. Popular models Anthropic’s Opus and Sonnet dominate the ranking of models used for coding. This is not even a contest: Opus 4.5 and Sonnet 4.5 (latest models at the start of our survey) come up more often than all other models, combined. Anthropic has become the go-to model developer for coding-related work – for now, that is. When this survey launched, Opus 4.6, Sonnet 4.6, and GPT-5.3 were not yet out. Around 1 in 8 respondents say they just use whatever model is the default at their company. This is interesting to note: these are likely folks who might not bother changing default settings, and just go with whatever’s available. If the default model is powerful enough, that’s fine, but if the company’s default is a cheaper, less capable model, then these people could face a more frustrating experience than those who get to choose what they use. In the “other” category of models, some other mentions include: Cursor’s custom Composer/Composer-1 model, and its “Cursor Auto” auto-select model Kimi/Kimi K2.5 — Moonshot DeepSeek model variants like R1, V3.2, Coder Alibaba’s Qwen/Qwen3 xAI’s Grok Various Mistral models 4. AI trends: Mainstream adoption achieved How often do people use AI tools? Very often, as it turns out; 95% of respondents are using them weekly, at a minimum: It’s worth reflecting on this data in relation to insights s now mainstream in software engineering. Anecdotally, this has been my sense since the beginning of the year: everyone whom I talk with is using AI tooling on a roughly daily basis. Now, there’s data to prove it. How much software engineering work gets done with AI? This year, we asked readers to estimate the percentage of their software engineering work that’s done using AI. The results: The data show that AI is embedded in the workflows of participants in our survey: Only 25% of respondents use AI for less than 40% of their work 56% do 70% or more of their work using AI 75% use AI for at least half of their software engineering work 5. AI agent usage rising Eighteen months ago, AI usage was mostly for code generation and tab completion. There were one or two respondents who experimented with early AI agents in March 2024, as something equivalent to a junior software engineer. This year, 55% say they regularly use AI agents . This is 507 people, a massive jump! The most common use cases for agents: Code review and code validation Automating manual / annoying tasks Bug fixing / investigating bugs Code investigation Debugging “Crafting” code, or “weaving” it together with the agent Below is a typical-enough comment from one software engineer who uses agents at a smaller company: “I use agents for pretty much all coding work, mostly prompting with Cursor Chat. I use it for code investigation, bug investigation, creating commits and pull requests. It’s my tool for reviewing code, I am always still in the loop. Almost all of my AI-written code is still reviewed and ‘crafted’. When using it for code review, I find it helpful to chat with and gain understanding, rather than letting it loose on code review. So, I use it for everything, but I am still very much in the loop.” A common arrangement in the survey is the split-screen setup: a terminal with Claude Code open to drive work, and an IDE also open to review changes made by the agent. The tools mentioned by those who regularly use AI agents split almost identically to the broader survey results: Staff+ engineers are the heaviest users of agents. Here’s the data on agent usage by experience level: This data point is slightly amusing because it shows there’s not much difference between the lowest and highest levels: 46% of leads and engineering managers say they use AI agents regularly, while for Staff+ engineers it’s 63%. Does it suggest the most experienced engineers are also the most curious? The more someone uses AI, the more they also use AI agents. We segmented the data by the percentage of software engineering work that respondents do with AI: Heavy users have AI for 80% or more tasks, or use AI on an hourly basis Moderate users have AI for 30-80% of tasks, or use AI on a daily basis Light users employ AI for 30% of tasks or less, or use AI on a weekly or monthly basis The more positive someone is about AI, the more likely they are using agents on a regular basis. In contrast, those negative about AI barely use agents: One question is whether this finding indicates correlation or causation: that is, does starting to use AI agents more, actually cause people to feel more positive about AI? A couple of details: Using agents seems to make people nearly twice as enthusiastic about AI (61%) as those who do not use them (36%) Respondents who don’t use agents are twice as likely to be skeptical (22%) about AI than those using agents regularly (11%) It looks like that if you don’t use AI agents on a regular basis, you may have a negative opinion about the tools, in general, which could come at the cost of not experiencing what the technology has to offer. Company size and tool usage In our results, company size and tooling choice correlate for some tools; for example, the smaller a team or company is, the more likely it is to use Claude Code or Codex: Claude Code is used by a whopping 75% of the smallest companies and teams. This is a big number, far ahead of any other tools. At the smallest places, the most-used tools are, in order: Claude Code: 75% Chatbots: 55% Cursor: 42% GitHub Copilot: 35% Codex: 26% Gemini CLI: 14% OpenCode: 13% GitHub Copilot overtakes Claude Code at large companies. This confirms what was known: Microsoft is very good at enterprise sales, and at bundling GitHub Copilot in its suite of products: Cursor and OpenCode usage drops at massive companies with similar usage patterns. Across the board, usage is roughly the same, regardless of company size. We only see a drop at the very largest of companies with 10,000+ employees: One theory for such a drop at massive companies could be that large companies often build their own internal coding agents that engineers use; e.g., at fintech, Block, the agent is called Goose , Meta has its own agent, as does Google with Jetski (its version of Antigravity) and Cider . Google’s tools are evenly used across the spectrum of company size. Google’s Gemini CLI and Antigravity are the only tools in this survey whose usage is notably stable, regardless of company size. Both tools hover at around 10% from the smallest to largest workplaces: The feeling among survey respondents that they can experiment at work, correlates with Claude Code being available. We asked if readers experiment frequently with tools. Below are the “yes” responses by company size: When these responses are mapped to the percentage of people using Claude Code, there’s a very similar distribution. My theory is that Claude Code is new enough at 9 months old to have not yet been approved at companies with bureaucratic processes for approving new tools, and this is partly why some respondents feel their chance to experiment with the range of tooling is being thwarted. Engineers at places with lots of red tape for tooling are less empowered to experiment wit</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/reviews-dead" target="_blank">How to Kill the Code Review</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Mar 02, 2026 &middot; 22:13 UTC</span>
+          </div>
+          <p class="summary"><span>Humans already couldn’t keep up with code review when humans wrote code at human speed.</span> <span>AI code review is still review AI code review tools are just buying us time.</span> <span>If AI writes the code and AI reviews it, why do we need a pretty review UI to display that?</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Humans already couldn’t keep up with code review when humans wrote code at human speed. Every engineering org I’ve talked to has the same dirty secret: PRs sitting for days, rubber-stamp approvals, and reviewers skimming 500-line diffs because they have their own work to do. We tell ourselves it is a quality gate, but teams have shipped without line-by-line review for decades. Code review wasn’t even ubiquitous until around 2012-2014, one veteran engineer told me, there just aren’t enough of us around to remember. And even with reviews, things break. We have learned to build systems that handle failure because we accepted that review alone wasn’t enough. This shows in terms of feature flags, rollouts, and instant rollbacks. We have to give up on reading all the code Teams with high AI adoption complete 21% more tasks and merge 98% more pull requests, but PR review time increases 91%, based on data from over 10,000 developers across 1,255 teams. Two things are scaling exponentially: the number of changes and the size of changes. We cannot consume this much code. On top of that, developers keep saying that reviewing AI-generated code requires more effort than reviewing code written by their colleagues. Teams produce more code, then spend more time reviewing it. There is no way we win this fight with manual code reviews. Code review is a historical approval gate that no longer matches the shape of the work. AI code review is still review AI code review tools are just buying us time. If AI writes the code and AI reviews it, why do we need a pretty review UI to display that? As much as AI code reviews can be valuable, these will shift left in the dev cycle. There’s no reason to waste CI resources and manage versioning in between the review cycles. Post-PR review made sense when humans wrote code and needed fresh eyes. When agents write code, “fresh eyes” is just another agent with the same blind spots. The value is in the iteration loop here, not as an approval gate. We know from experience agents are not always reliable, and it’s very human to think, I caught the AI doing something dumb once; therefore, I must always check it. That instinct made sense when manual verification was feasible. At the current scale, it’s not anymore. And it’s just going to get worse. From reviewing Code to reviewing Intent The answer is to move the human checkpoint upstream. If the thought of not reviewing code seems scary, let me remind you that checkpoints have moved before in software development. We moved from waterfall sign-offs to continuous integration. We can move them again. Spec-driven development is becoming the main way of working with AI. Humans should review specs, plans, constraints, and acceptance criteria—not 500-line diffs. In this new paradigm, Specs become the source of truth . Code becomes an artifact of the spec. You don’t need to review the code. You review the steps. You review the verification rules . You review the contract the code must fulfill. Human-in-the-loop approval moves from “Did you write this correctly?” to “Are we solving the right problem with the right constraints?” The most valuable human judgment is exercised before the first line of code is generated, not after. Building trust through layers How comfortable do we need to get before we stop reading the code ? In rule form: Code must not be written by humans Code must not be reviewed by humans LLMs are not great at following commands. They deviate. And they’re unreliable at self-verification—they’ll confidently tell you the code works while it’s on fire. The fix isn’t to ask the LLM to verify. It’s to ask it to write a script that verifies. Shift from judgment to artifact. Trust is layered. This is the Swiss-cheese model : no single gate catches everything. You stack imperfect filters until the holes don’t align. So, where else can we put approval gates? Layer 1: Compare Multiple Options Instead of asking one agent to get it right, ask three agents to try differently and pick the best outcome. Let them compete. The cost of optionality is the lowest in the history of software engineering. The selection doesn’t have to be manual either. You can rank outputs by which one passes the most verification steps, which one produces the smallest diff, which one doesn’t introduce new dependencies. Competition creates a signal you wouldn’t get from a single attempt. Layer 2: Deterministic Guardrails There should be a deterministic way to verify the work. Tests, type checks, contract verification - things that don’t have opinions, just facts. Instead of asking an LLM “Did this work?” you define verification steps that produce a series of pass/fail artifacts. The agent can’t negotiate with a failing test. It either meets the specification or it doesn’t. These guardrails can be defined as layers themselves: Coding guidelines - these can be custom linters Organization-wide invariants - the non-negotiables, e.g. No hardcoded credentials, API keys, or tokens Domain Contracts - specific to a framework, a service, or a part of the code base, e.g. Payments domain: All amounts use the Money type Acceptance Criteria - specific to the task Verification steps should be defined before the code is written, not invented after to confirm what’s already there. If the agent writes both the code and the tests, you’ve just moved the problem—now you’re trusting the agent to test the right things. Verification criteria need to come from the spec, not from the implementation. Layer 3: Humans define acceptance criteria So where do humans add value? Upstream, defining what success looks like. This is where Behavior-Driven Development becomes newly relevant. BDD was always a good idea—write specifications in natural language that describe expected behavior, then automate those specs as tests. But it never fully caught on because writing specs felt like extra work when you were also going to write the code. With agents, the equation flips. The spec isn’t extra work; it’s the primary artifact. You write: The agent implements. The BDD framework verifies. You never have to read the implementation unless something fails. This is humans doing what humans are good at: defining what “correct” means, encoding business logic and edge cases, thinking about what could go wrong. The agent handles the translation from intent to code. The BDD specs become your verification layer—deterministic, automated, and defined before the first line is written. Acceptance criteria authored by humans, verified by machines. That’s the gate that actually matters. Layer 4: Permission Systems as Architecture What can this agent touch? What requires escalation? These become architectural decisions, not afterthoughts. Most agent frameworks treat permissions as an all-or-nothing setting. The agent either has shell access or it doesn’t. But granularity matters. An agent fixing a bug in a utility function doesn’t need access to your infrastructure configs. An agent writing tests doesn’t need to modify CI pipelines. Scope should be as narrow as possible while still letting the agent do useful work. If the task is “fix the date parsing bug in utils/dates.py,” the agent’s filesystem access should be limited to that file and its test file. Not the whole codebase. Not “src/ and tests/”. Just the files that matter for this task. Escalation triggers are equally important. Certain patterns—touching auth logic, modifying database schemas, adding new dependencies—should automatically flag for human review regardless of how confident the agent is. Layer 5: Adversarial Verification Separation of responsibilities: One agent does the work, another verifies. They don’t trust each other, and that’s the point. This is an old pattern—it’s why your QA team shouldn’t report to your engineering manager, and why the person who writes the code shouldn’t be the only one who reviews it. With agents, you can enforce this architecturally. The coding agent has no knowledge of what the verification agent will check. The verification agent has no ability to modify the code to make its own job easier. They’re adversarial by design. You can take this further: a third agent attempts to break what the first agent built, specifically targeting edge cases and failure modes. Red team, blue team—but automated and running on every change. Conclusions: What “good code” looks like is changing The incentive of an agentic system is simple: given a task, can I complete it? Can I please the person who gave it to me? The agent’s success is never inherently driven by long-term accuracy or business requirements. It’s our job to encode in the constraints. For code generated by agents and read by agents, what “good code” looks like will become more standardized. For a new codebase, you’ll have to provide less direction because the defaults will be more consistent. The future is ship fast, observe everything, revert faster. Not: review slowly, miss bugs anyway, debug in production. We’re not going to outread the machines. We need to outthink them—upstream, where the decisions actually matter. Ultimately, if agents can handle the code just fine, what does it matter if we can read it or not? Ankit Jain is the founder and CEO of Aviator , where he’s building the infrastructure for AI-native engineering teams. Aviator’s platform helps modern organizations improve AI adoption while maintaining high engineering standards.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/this-week-on-how-i-ai-5-openclaw" target="_blank">🎙️ This week on How I AI: 5 OpenClaw agents run my home, finances, and code &amp; How Coinbase scaled AI to 1,000+ engineers</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Mar 02, 2026 &middot; 16:02 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ This week on How I AI: 5 OpenClaw agents run my home, finances, and code &amp; How Coinbase scaled AI to 1,000+ engineers Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Mar 02, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 97</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
