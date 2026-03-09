@@ -512,6 +512,7 @@
                 sorted newest-first. No noise, no benchmarks, no fluff &mdash; just the AI news that matters
                 for builders and practitioners.
             </p>
+            <a class="hero-cta" id="latestDigestLink" href="src/AI-News-20260306.html">📰 Read Latest Digest</a>
         </section>
 
         <!-- Stats -->
@@ -542,36 +543,8 @@
 
         <!-- Digest Editions -->
         <h2 class="section-title">Digest Editions</h2>
-        <div class="doc-grid">
-
-            <a class="doc-card" href="src/AI-News-20260306.html">
-                <div class="card-icon">📰</div>
-                <h3>March 6, 2026</h3>
-                <p>15 curated articles from 21 sources. Claude dethroning ChatGPT, Qwen3.5 vs Opus 4.6, Coinbase scaling AI to 1,000+ engineers.</p>
-                <span class="card-tag tag-latest">Latest</span>
-            </a>
-
-            <a class="doc-card" href="src/AI-News-20260302.html">
-                <div class="card-icon">📰</div>
-                <h3>March 2, 2026</h3>
-                <p>15 curated articles covering the week's top AI developments across enterprise adoption, coding tools, and industry shifts.</p>
-                <span class="card-tag tag-edition">Edition</span>
-            </a>
-
-            <a class="doc-card" href="src/AI-News-20260227.html">
-                <div class="card-icon">📰</div>
-                <h3>February 27, 2026</h3>
-                <p>15 curated articles on AI agent coding, enterprise transformation, and the latest model releases and comparisons.</p>
-                <span class="card-tag tag-edition">Edition</span>
-            </a>
-
-            <a class="doc-card" href="src/AI-News-20260226.html">
-                <div class="card-icon">📰</div>
-                <h3>February 26, 2026</h3>
-                <p>The first edition &mdash; 15 curated articles launching the AI Daily Digest with top picks from across the AI landscape.</p>
-                <span class="card-tag tag-edition">Edition</span>
-            </a>
-
+        <div class="doc-grid" id="editionsGrid">
+            <!-- Dynamically populated from src/digests.json -->
             <div class="regen-card" id="regenCard" title="Trigger digest generation via GitHub Actions">
                 <div class="regen-inner">
                     <div class="card-icon">🔄</div>
@@ -579,7 +552,6 @@
                     <p>Trigger a fresh digest via GitHub Actions</p>
                 </div>
             </div>
-
         </div>
 
         <!-- Features -->
@@ -674,6 +646,58 @@
             &middot; <a href="https://github.com/nicolekumquat/AI_News">GitHub Repository</a>
         </p>
     </footer>
+
+    <script>
+    // ── Load digest editions dynamically from digests.json ──
+    (function() {
+        var MONTHS = [
+            'January','February','March','April','May','June',
+            'July','August','September','October','November','December'
+        ];
+
+        function formatDate(dateStr) {
+            // dateStr is YYYYMMDD
+            var y = dateStr.substring(0, 4);
+            var m = parseInt(dateStr.substring(4, 6), 10);
+            var d = parseInt(dateStr.substring(6, 8), 10);
+            return MONTHS[m - 1] + ' ' + d + ', ' + y;
+        }
+
+        function renderEditions(digests) {
+            var grid = document.getElementById('editionsGrid');
+            var cta = document.getElementById('latestDigestLink');
+            var regen = document.getElementById('regenCard');
+            if (!grid || !digests || digests.length === 0) return;
+
+            // Update hero CTA to latest
+            if (cta) {
+                cta.href = 'src/' + digests[0].file;
+            }
+
+            // Insert cards before the regen card
+            for (var i = 0; i < digests.length; i++) {
+                var d = digests[i];
+                var card = document.createElement('a');
+                card.className = 'doc-card';
+                card.href = 'src/' + d.file;
+                var tagClass = i === 0 ? 'tag-latest' : 'tag-edition';
+                var tagText = i === 0 ? 'Latest' : 'Edition';
+                var title = d.title || ('AI Daily Digest — ' + formatDate(d.date));
+                card.innerHTML =
+                    '<div class="card-icon">\ud83d\udcf0</div>' +
+                    '<h3>' + formatDate(d.date) + '</h3>' +
+                    '<p>' + title + '</p>' +
+                    '<span class="card-tag ' + tagClass + '">' + tagText + '</span>';
+                grid.insertBefore(card, regen);
+            }
+        }
+
+        fetch('src/digests.json')
+            .then(function(r) { return r.json(); })
+            .then(renderEditions)
+            .catch(function() { /* manifest not yet generated — cards stay empty */ });
+    })();
+    </script>
 
     <script>
     (function() {
