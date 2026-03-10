@@ -15,6 +15,12 @@ logger = logging.getLogger(__name__)
 # Articles with content similarity above this threshold are duplicates
 SIMILARITY_THRESHOLD = 0.40
 
+# Per-source caps to prevent any single source from dominating the digest.
+# Key = source_id prefix (matched with str.startswith), value = max articles.
+SOURCE_CAPS = {
+    "reddit-": 2,
+}
+
 
 def _content_fingerprint(article: NewsArticle) -> str:
     """Normalize article content for similarity comparison."""
@@ -103,14 +109,31 @@ def generate_digest(
     deduped = []
     selected_articles = []
     duplicates_removed = 0
+    source_counts: dict[str, int] = {}  # track per-source selections
     for article, score in ranked:
         if len(deduped) >= MAX_DIGEST_ARTICLES:
             break
         if _is_duplicate(article, selected_articles):
             duplicates_removed += 1
             continue
+        # Enforce per-source caps
+        capped = False
+        for prefix, cap in SOURCE_CAPS.items():
+            if article.source_id.startswith(prefix):
+                if source_counts.get(prefix, 0) >= cap:
+                    logger.debug(
+                        f"Source cap ({cap}) reached for {prefix}: "
+                        f"skipping '{article.title[:40]}'"
+                    )
+                    capped = True
+                break
+        if capped:
+            continue
         deduped.append((article, score))
         selected_articles.append(article)
+        for prefix in SOURCE_CAPS:
+            if article.source_id.startswith(prefix):
+                source_counts[prefix] = source_counts.get(prefix, 0) + 1
 
     entries = []
     for article, score in deduped:
