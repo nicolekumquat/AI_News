@@ -39,9 +39,9 @@ TIER2_KEYWORDS = {
     "product", "customer", "solve", "innovate",
     # Synthesized learnings & thought leadership
     "discovered", "realized", "conclusion", "takeaway",
-    "takeaways", "worked", "didn't", "failed", "succeeded",
+    "takeaways", "worked", "failed", "succeeded",
     "results", "outcome", "here's", "heres",
-    "changed", "rethink", "rethinking", "surprising",
+    "changed", "rethink", "rethinking",
     "counterintuitive", "unexpected",
     # Predictions & future of AI/work
     "prediction", "future", "vision", "paradigm", "shift",
@@ -284,7 +284,7 @@ def score_article(article: NewsArticle) -> float:
     )):
         score += 10
     # Penalize: asking for help or advice
-    if any(phrase in title_lower for phrase in (
+    title_is_question = any(phrase in title_lower for phrase in (
         "how do you", "how do i", "how can i",
         "any tips", "any advice", "should i",
         "looking for", "where can i", "where do i",
@@ -292,7 +292,16 @@ def score_article(article: NewsArticle) -> float:
         "transitioning to", "career", "stay up to date",
         "find more information", "can someone",
         "does anyone", "what are the best",
-    )):
+        "what's the", "whats the", "what is the",
+        "what do you", "what did you", "what has",
+        "have you", "do you", "did you",
+    )) or title_lower.rstrip().endswith("?")
+    if title_is_question:
+        score -= 15
+
+    # Extra penalty for short question posts (< 150 words) — these are
+    # crowdsourcing questions, not shareable insights
+    if title_is_question and word_count < 150:
         score -= 15
 
     # Unique word diversity bonus (max 10 points)
