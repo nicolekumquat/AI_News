@@ -40,6 +40,13 @@ Examples:
         default=False,
         help="Output as styled HTML instead of plain text",
     )
+    parser.add_argument(
+        "--output", "-o",
+        type=str,
+        default=None,
+        metavar="FILE",
+        help="Write output to FILE (UTF-8) instead of stdout",
+    )
 
     subparsers = parser.add_subparsers(dest="command")
 

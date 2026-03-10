@@ -35,7 +35,7 @@ jobs:
             ARGS="$ARGS --date $DATE"
           fi
           DATESTAMP="${DATE:-$(date +%Y%m%d)}"
-          python -m cli $ARGS > "AI-News-${DATESTAMP}.html"
+          python -m cli $ARGS --output "AI-News-${DATESTAMP}.html"
 
       - name: Update digest manifest
         working-directory: src
