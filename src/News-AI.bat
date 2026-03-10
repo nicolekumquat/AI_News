@@ -9,7 +9,7 @@ set "LOGFILE=News-AI-%datestring%.log"
 
 echo [%date% %time%] Starting digest generation for %datestring% >> "%LOGFILE%"
 
-python -c "from cli.__main__ import main; main()" --html > "AI-News-%datestring%.html" 2>> "%LOGFILE%"
+python -c "from cli.__main__ import main; main()" --html --output "AI-News-%datestring%.html" 2>> "%LOGFILE%"
 
 if %ERRORLEVEL% NEQ 0 (
     echo [%date% %time%] ERROR: Digest generation failed with exit code %ERRORLEVEL% >> "%LOGFILE%"

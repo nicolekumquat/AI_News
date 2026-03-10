@@ -138,6 +138,20 @@ def _handle_podcast(args):
             sys.exit(1)
 
 
+def _emit(text: str, args) -> None:
+    """Write text to --output file (UTF-8) or stdout.
+
+    Writing directly to a file avoids PowerShell's
+    [Console]::OutputEncoding (CP437) which corrupts non-ASCII chars
+    when stdout is redirected with '>'.
+    """
+    if getattr(args, "output", None):
+        with open(args.output, "w", encoding="utf-8") as f:
+            f.write(text)
+    else:
+        print(text)
+
+
 def _handle_digest(args):
     """Handle default digest generation (existing behaviour)."""
     date_str = format_date(args.date)
@@ -191,7 +205,7 @@ def _handle_digest(args):
 
             # Display
             fmt = format_digest_html if args.html else format_digest
-            print(fmt(digest, entry_article_pairs))
+            _emit(fmt(digest, entry_article_pairs), args)
             sys.exit(0)
         
         # Fetch fresh articles
@@ -225,7 +239,7 @@ def _handle_digest(args):
         
         # Display
         fmt = format_digest_html if args.html else format_digest
-        print(fmt(digest, entry_article_pairs))
+        _emit(fmt(digest, entry_article_pairs), args)
         sys.exit(0)
         
     except Exception as e:
