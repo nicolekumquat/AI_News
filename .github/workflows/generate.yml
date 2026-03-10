@@ -35,7 +35,7 @@ jobs:
             ARGS="$ARGS --date $DATE"
           fi
           DATESTAMP="${DATE:-$(date +%Y%m%d)}"
-          python -m cli $ARGS > "AI-News-${DATESTAMP}.html" 2>/dev/null
+          python -m cli $ARGS > "AI-News-${DATESTAMP}.html"
 
       - name: Update digest manifest
         working-directory: src
@@ -45,6 +45,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/AI-News-*.html src/digests.json
+          git add src/AI-News-*.html src/digests.json index.html
           git diff --cached --quiet || git commit -m "chore: generate daily digest $(date +%Y-%m-%d)"
           git push
