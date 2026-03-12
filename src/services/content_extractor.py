@@ -171,6 +171,12 @@ def _clean_text(text: str) -> str:
 
     # Strip newsletter/podcast boilerplate phrases
     boilerplate_patterns = [
+        # Podcast timestamp markers like ( 00:00 ) or (12:34)
+        r"\(\s*\d{1,2}:\d{2}\s*\)",
+        # "Tools referenced" / "Links mentioned" lists
+        r"(?:Tools? referenced|Links? mentioned|(?:Show\s*)?notes?|Resources?|References?)\s*:?\s*",
+        # "Where to find <person>" social links
+        r"Where to find [^:]+:\s*(?:X|Twitter|LinkedIn|YouTube)\s*:\s*(?:https?://\S+\s*)*",
         # Sponsor/promo blocks
         r"Brought to you by:?\s*[^.]{5,80}\s*(?:—[^.]{5,120}\.?)?",
         r"(?:Listen|Watch|Read)\s+(?:on|or watch on)\s+YouTube\s*,?\s*Spotify\s*,?\s*(?:and\s+)?Apple Podcasts?",
@@ -186,14 +192,17 @@ def _clean_text(text: str) -> str:
         r"Sponsored by[^.]{5,80}\.?",
         r"This (?:episode|post) is (?:brought|presented|sponsored) by[^.]*\.?",
         # Table of contents / bullet list headers
-        r"(?:We discuss|In this (?:episode|post|issue)|What we cover):?\s*",
-        r"(?:Topics covered|Key takeaways|Highlights):?\s*",
+        r"(?:We discuss|In this (?:episode|post|issue))(?:,?\s*we (?:cover|discuss))?:?\s*",
+        r"(?:What we cover|Topics covered|Key takeaways|Highlights):?\s*",
         # Sponsor taglines that leak through
         r"WorkOS\s*[^\.]{0,80}",
         r"Orkes\s*[^\.]{0,80}",
     ]
     for pattern in boilerplate_patterns:
         text = re.sub(pattern, " ", text, flags=re.IGNORECASE)
+
+    # Clean up leading punctuation/whitespace left after boilerplate removal
+    text = re.sub(r"^\s*[,;:\-–—]\s*", "", text)
 
     # Remove very short lines that are likely navigation/UI elements
     lines = text.split(". ")
