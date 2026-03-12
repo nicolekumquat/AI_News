@@ -12,6 +12,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 jobs:
   generate:
@@ -48,3 +50,20 @@ jobs:
           git add src/AI-News-*.html src/digests.json index.html
           git diff --cached --quiet || git commit -m "chore: generate daily digest $(date +%Y-%m-%d)"
           git push
+
+  deploy:
+    needs: generate
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4
