@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-03-16</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-03-16</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/guides/agentic-engineering-patterns/what-is-agentic-engineering/#atom-everything" target="_blank">What is agentic engineering?</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Mar 15, 2026 &middot; 22:41 UTC</span>
+          </div>
+          <p class="summary"><span>Agentic Engineering Patterns &gt; I use the term agentic engineering to describe the practice of developing software with the assistance of coding agents.</span> <span>For coding agents, those tools include one that can execute code.</span> <span>Tags: coding-agents , agent-definitions , generative-ai , agentic-engineering , ai , llms</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Agentic Engineering Patterns &gt;</p><p>I use the term agentic engineering to describe the practice of developing software with the assistance of coding agents.</p><p>What are coding agents? They&#x27;re agents that can both write and execute code. Popular examples include Claude Code, OpenAI Codex, and Gemini CLI.</p><p>What&#x27;s an agent? Clearly defining that term is a challenge that has frustrated AI researchers since at least the 1990s but the definition I&#x27;ve come to accept, at least in the field of Large Language Models (LLMs) like GPT-5 and Gemini and Claude, is this one:</p><p>Agents run tools in a loop to achieve a goal</p><p>The &quot;agent&quot; is software that calls an LLM with your prompt and passes it a set of tool definitions, then calls any tools that the LLM requests and feeds the results back into the LLM.</p><p>For coding agents, those tools include one that can execute code.</p><p>You prompt the coding agent to define a goal. The agent then generates and executes code in a loop until that goal has been met.</p><p>Code execution is the defining capability that makes agentic engineering possible. Without the ability to directly run the code, anything output by an LLM is of limited value. With code execution, these agents can start iterating towards software that demonstrably works.</p><p>Agentic engineering</p><p>Now that we have software that can write working code, what is there left for us humans to do?</p><p>The answer is so much stuff.</p><p>Writing code has never been the sole activity of a software engineer. The craft has always been figuring out what code to write. Any given software problem has dozens of potential solutions, each with their own tradeoffs. Our job is to navigate those options and find the ones that are the best fit for our unique set of circumstances and requirements.</p><p>Getting great results out of coding agents is a deep subject in its own right, especially now as the field continues to evolve at a bewildering rate.</p><p>We need to provide our coding agents with the tools they need to solve our problems, specify those problems in the right level of detail, and verify and iterate on the results until we are confident they address our problems in a robust and credible way.</p><p>LLMs don&#x27;t learn from their past mistakes, but coding agents can, provided we deliberately update our instructions and tool harnesses to account for what we learn along the way.</p><p>Used effectively, coding agents can help us be much more ambitious with the projects we take on. Agentic engineering should help us produce more, better quality code that solves more impactful problems.</p><p>Isn&#x27;t this just vibe coding?</p><p>The term &quot;vibe coding&quot; was coined by Andrej Karpathy in February 2025 - coincidentally just three weeks prior to the original release of Claude Code - to describe prompting LLMs to write code while you &quot;forget that the code even exists&quot;.</p><p>Some people extend that definition to cover any time an LLM is used to produce code at all, but I think that&#x27;s a mistake. Vibe coding is more useful in its original definition - we need a term to describe unreviewed, prototype-quality LLM-generated code that distinguishes it from code that the author has brought up to a production ready standard.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Mar/13/liquid/#atom-everything" target="_blank">Shopify/liquid: Performance: 53% faster parse+render, 61% fewer allocations</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Mar 13, 2026 &middot; 03:44 UTC</span>
+          </div>
+          <p class="summary"><span>Shopify/liquid: Performance: 53% faster parse+render, 61% fewer allocations PR from Shopify CEO Tobias Lütke against Liquid, Shopify&#x27;s open source Ruby template engine that was somewhat inspired by Django when Tobi first created it back in 2005 .</span> <span>Tobi found dozens of new performance micro-optimizations using a variant of autoresearch , Andrej Karpathy&#x27;s new system for having a coding agent run hundreds of semi-autonomous experiments to find new effective techniques for training nanochat .</span> <span>Tobi&#x27;s implementation started two days ago with this autoresearch.md prompt file and an autoresearch.sh script for the agent to run to execute the test suite and report on benchmark scores.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Shopify/liquid: Performance: 53% faster parse+render, 61% fewer allocations</p><p>PR from Shopify CEO Tobias Lütke against Liquid, Shopify&#x27;s open source Ruby template engine that was somewhat inspired by Django when Tobi first created it back in 2005.</p><p>Tobi found dozens of new performance micro-optimizations using a variant of autoresearch, Andrej Karpathy&#x27;s new system for having a coding agent run hundreds of semi-autonomous experiments to find new effective techniques for training nanochat.</p><p>Tobi&#x27;s implementation started two days ago with this autoresearch.md prompt file and an autoresearch.sh script for the agent to run to execute the test suite and report on benchmark scores.</p><p>The PR now lists 93 commits from around 120 automated experiments. The PR description lists what worked in detail - some examples:</p><p>Replaced StringScanner tokenizer with String#byteindex. Single-byte byteindex searching is ~40% faster than regex-based skip_until. This alone reduced parse time by ~12%.</p><p>Pure-byte parse_tag_token. Eliminated the costly StringScanner#string= reset that was called for every {% %} token (878 times). Manual byte scanning for tag name + markup extraction is faster than resetting and re-scanning via StringScanner. [...]</p><p>Cached small integer to_s. Pre-computed frozen strings for 0-999 avoid 267 Integer#to_s allocations per render.</p><p>This all added up to a 53% improvement on benchmarks - truly impressive for a codebase that&#x27;s been tweaked by hundreds of contributors over 20 years.</p><p>I think this illustrates a number of interesting ideas:</p><p>Having a robust test suite - in this case 974 unit tests - is a massive unlock for working with coding agents. This kind of research effort would not be possible without first having a tried and tested suite of tests.</p><p>The autoresearch pattern - where an agent brainstorms a multitude of potential improvements and then experiments with them one at a time - is really effective.</p><p>If you provide an agent with a benchmarking script &quot;make it faster&quot; becomes an actionable goal.</p><p>CEOs can code again! Tobi has always been more hands-on than most, but this is a much more significant contribution than anyone would expect from the leader of a company with 7,500+ employees. I&#x27;ve seen this pattern play out a lot over the past few months: coding agents make it feasible for people in high-interruption roles to productively work with code again.</p><p>Here&#x27;s Tobi&#x27;s GitHub contribution graph for the past year, showing a significant uptick following that November 2025 inflection point when coding agents got really good.</p><p>He used Pi as the coding agent and released a new pi-autoresearch plugin in collaboration with David Cortés, which maintains state in an autoresearch.jsonl file like this one.</p><p>Via @tobi</p><p>Tags: django, performance, rails, ruby, ai, andrej-karpathy, generative-ai, llms, ai-assisted-programming, coding-agents, agentic-engineering, november-2025-inflection, tobias-lutke</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Mar/12/coding-after-coders/#atom-everything" target="_blank">Coding After Coders: The End of Computer Programming as We Know It</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Mar 12, 2026 &middot; 19:23 UTC</span>
+          </div>
+          <p class="summary"><span>Coding After Coders: The End of Computer Programming as We Know It Epic piece on AI-assisted development by Clive Thompson for the New York Times Magazine, who spoke to more than 70 software developers from companies like Google, Amazon, Microsoft, Apple, plus other individuals including Anil Dash, Thomas Ptacek, Steve Yegge, and myself.</span> <span>I think the piece accurately and clearly captures what&#x27;s going on in our industry right now in terms appropriate for a wider audience.</span> <span>Tags: new-york-times , careers , ai , generative-ai , llms , ai-assisted-programming , press-quotes , deep-blue</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Coding After Coders: The End of Computer Programming as We Know It</p><p>Epic piece on AI-assisted development by Clive Thompson for the New York Times Magazine, who spoke to more than 70 software developers from companies like Google, Amazon, Microsoft, Apple, plus other individuals including Anil Dash, Thomas Ptacek, Steve Yegge, and myself.</p><p>I think the piece accurately and clearly captures what&#x27;s going on in our industry right now in terms appropriate for a wider audience.</p><p>I talked to Clive a few weeks ago. Here&#x27;s the quote from me that made it into the piece.</p><p>Given A.I.’s penchant to hallucinate, it might seem reckless to let agents push code out into the real world. But software developers point out that coding has a unique quality: They can tether their A.I.s to reality, because they can demand the agents test the code to see if it runs correctly. “I feel like programmers have it easy,” says Simon Willison, a tech entrepreneur and an influential blogger about how to code using A.I. “If you’re a lawyer, you’re screwed, right?” There’s no way to automatically check a legal brief written by A.I. for hallucinations — other than face total humiliation in court.</p><p>The piece does raise the question of what this means for the future of our chosen line of work, but the general attitude from the developers interviewed was optimistic - there&#x27;s even a mention of the possibility that the Jevons paradox might increase demand overall.</p><p>One critical voice came from an Apple engineer:</p><p>A few programmers did say that they lamented the demise of hand-crafting their work. “I believe that it can be fun and fulfilling and engaging, and having the computer do it for you strips you of that,” one Apple engineer told me. (He asked to remain unnamed so he wouldn’t get in trouble for criticizing Apple’s embrace of A.I.)</p><p>That request to remain anonymous is a sharp reminder that corporate dynamics may be suppressing an unknown number of voices on this topic.</p><p>Tags: new-york-times, careers, ai, generative-ai, llms, ai-assisted-programming, press-quotes, deep-blue</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://newsletter.pragmaticengineer.com/p/the-pulse-what-will-the-staff-engineer" target="_blank">The Pulse: What will the Staff Engineer role look like in 2027 and beyond?</a></h2>
+          <div class="meta">
+            <span class="source">pragmatic-engineer</span>
+            <span class="date">Mar 12, 2026 &middot; 17:46 UTC</span>
+          </div>
+          <p class="summary"><span>The Pulse is a series covering events, insights, and trends within Big Tech and startups.</span> <span>Before we start, I’d like to share updates about data in the two most recent articles: Uber’s AI adoption numbers.</span> <span>The Dev Platform folks at Uber have been kind enough to share the latest up-to-date numbers on AI adoption, following Tuesday’s article , which reported that 31% of all code is AI-authored.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>The Pulse is a series covering events, insights, and trends within Big Tech and startups. Notice an interesting event or trend? Hit reply and share it with me. Before we start, I’d like to share updates about data in the two most recent articles: Uber’s AI adoption numbers. The Dev Platform folks at Uber have been kind enough to share the latest up-to-date numbers on AI adoption, following Tuesday’s article , which reported that 31% of all code is AI-authored. It turns out this was incorrect, due to a bug with one of the tools. Here’s how things look there: 84% of devs at Uber are agentic coding users (either CLI-based agents, or making more agentic requests than tab-completion in the IDE). 65-72% of code is AI-generated inside IDE-based tools. For AI command line tools like Claude Code the figure is, naturally, 100%. Claude Code usage almost doubled in 3 months; from 32% last December, to 63% by February. Meanwhile, IDE-based tool usage (Cursor, IntelliJ) have plateaued. Separately, last week’s edition of The Pulse reported that Block did not make job cuts between 2022 and 2025, which was incorrect. Layoffs happened in Jan 2024 and March 2025 . I have updated my analysis with these details; apologies for the error. Today, we cover: Staff+ engineers in 2027 and beyond. What happens to the Staff engineer role when agents write more code? Actually, they could be more in demand than ever! New trend? AI token costs are a rising concern for CTOs. Accounts from two engineering leaders who are raising the alarm about steeply climbing AI costs and the need to slow down spending. 10% layoffs at Atlassian: is it AI’s fault? Atlassian says it wants to invest savings in AI, but is there more to it? Industry Pulse. An AI-powered library reimplementation sparks copyleft licensing debate, Anthropic launches $15–25 per-review code reviews, Microsoft ships a Claude-powered, Copilot Cowork clone, and Apple is the lone Big Tech not ramping up AI infrastructure spending. Staff+ engineers in 2027 and beyond At a recent two-day workshop in Utah, US, named ‘The Future of Software Development’ , and organized by Martin Fowler, I was among 50 attendees. We self-organized our own sessions, where everyone could suggest a topic close to their heart, which all went on an agenda:</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://newsletter.pragmaticengineer.com/p/from-ides-to-ai-agents-with-steve" target="_blank">From IDEs to AI Agents with Steve Yegge</a></h2>
+          <div class="meta">
+            <span class="source">pragmatic-engineer</span>
+            <span class="date">Mar 11, 2026 &middot; 16:58 UTC</span>
+          </div>
+          <p class="summary"><span>Steve Yegge has spent decades writing software and thinking about how the craft evolves.</span> <span>Steve argues that AI’s role is not primarily to replace engineers, but to amplify them.</span> <span>Key observation from Steve My 9 observations from this episode: 1.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Steve Yegge has spent decades writing software and thinking about how the craft evolves. From his early years at Amazon and Google, to his influential blog posts, he has often been early at spotting shifts in how software gets built. of Pragmatic Engineer , I talk with Steve about how AI is changing engineering work, why he believes coding by hand may gradually disappear, and what developers should focus on, instead. his latest book, Vibe Coding , and the open-source AI agent orchestrator he built called Gas Town, which he said most devs should avoid using. Steve shares his framework for levels of AI adoption by engineers, ranging from avoiding AI tools entirely, to running multiple agents in parallel. why he believes the knowledge that engineers need to know keeps changing, and why understanding how systems evolve may matter more than mastering any particular tool. We also explore broader implications. Steve argues that AI’s role is not primarily to replace engineers, but to amplify them. At the same time, he warns that the pace of change will create new kinds of technical debt, new productivity pressures, and fresh challenges for how teams operate. Key observation from Steve My 9 observations from this episode: 1. A prototype-as-product model is replacing the build-then-dump cycle. At Anthropic, Steve says teams create many prototypes rapidly and just ship the best one. Claude Cowork reportedly went from prototype to launch in just 10 days. Meanwhile, “slot machine programming” – building 20 implementations and picking the winner – is becoming normal practice for teams. The IDE could be evolving into a conversation and monitoring interface, not a code editor. Steve sees tools like Claude Cowork as the return of the IDE, focused on managing agent workflows above coding by hand. He predicts these new IDEs will focus on conversations with AI agents and monitoring them. Side I’m not sure I foresee conversational tools appearing just yet, or IDEs turning into such tools – but we do see tools like Claude Code being wildly popular among devs, as per our latest AI tooling survey. Reading ability is becoming a blocker for wider AI adoption. Some struggle with walls of text that current AI tools produce, and Steve predicts that in the very near future, most people will program by talking to a visual avatar, not reading terminal output because he observes that five paragraphs is already a lot to read for many devs. AI coding has a spectrum, and most engineers trend near the bottom. Steve describes eight levels, from “no AI” to “multi-agent orchestration,” with most engineers currently at levels 1–2: asking an IDE for suggestions and carefully reviewing output. He suspects such engineers will be left behind. Monolithic codebases are a big blocker to AI adoption in enterprises. AI agents have a ceiling of between roughly half a million to a few million lines of code which they can work with, effectively. If your codebase is a monolith that won’t fit in a context window, AI agents won’t work well with it. What software engineers need to know keeps changing. In the 1990s, any decent software engineer knew Assembly, and today almost no decent developer knows it because Assembly has long been superseded by technical progress. What engineers “need” to know these days is different from the ‘90s and that process continues with AI, changing the parts of the craft that are essential for devs. We grumble about this but that won’t change anything by itself. SaaS companies that don’t offer platforms and APIs will be out-competed. Steve uses Zendesk as an example: if your product doesn’t expose APIs, then AI-native companies will just build bespoke replacements. “If Zendesk doesn’t make themselves a platform, then they’ll put themselves out of existence.” 8. There’s a “Dracula Effect” where AI-augmented work drains engineers faster than traditional work because AI automates the easy tasks, meaning that engineers are stuck doing high-intensity thinking all day. Steve says you may only get three daily productive hours at max speed, but during that time, you could produce 100x more output than before. Even if AI progress stalls, it’s worthwhile getting proficient at working with parallel agents. Steve argues that since there’s a model as capable as Opus 4.5 is, we don’t need smarter models but better orchestration layers. The worst outcome for someone who invests in learning AI tools is that they gain a skill set that stays useful, whether the models improve or not! The Pragmatic Engineer deepdives relevant for this episode<ul><li>Steve Yegge on AI agents and the future of software engineering</li><li>Vibe coding as a software engineer</li><li>The full circle of developer productivity with Steve Yegge</li><li>AI Tooling for Software Engineers in 2026</li><li>The AI Engineering Stack Timestamps Intro Steve’s latest projects Important blog posts Shifts in what engineers need to know Steve’s current AI stance Steve’s book Vibe Coding Layoffs and disruption in tech Gas Town New ways of working The problem of too many people Why AI results lag in business Gamification and product stickiness ( 1:04:54 ) The ‘Bitter Lesson’ explained ( 1:07:14 ) The future of software development ( 1:23:06 ) Where languages stand ( 1:24:47 ) Adapting to change ( 1:27:32 ) Steve’s predictions Where to find Steve Yegge:</li><li>X: <a href="https://x.com/steve_yegge" target="_blank" rel="noopener">https://x.com/steve_yegge</a></li><li>LinkedIn: <a href="https://www.linkedin.com/in/steveyegge" target="_blank" rel="noopener">https://www.linkedin.com/in/steveyegge</a></li><li>Website: <a href="https://steve-yegge.blogspot.com/" target="_blank" rel="noopener">https://steve-yegge.blogspot.com/</a></li><li>Vibe Coding : <a href="https://itrevolution.com/product/vibe-coding-book" target="_blank" rel="noopener">https://itrevolution.com/product/vibe-coding-book</a> Mentions during the episode:</li><li>Steve Yegge on AI Agents and the Future of Software Engineering: <a href="https://newsletter.pragmaticengineer.com/p/steve-yegge-on-ai-agents-and-the" target="_blank" rel="noopener">https://newsletter.pragmaticengineer.com/p/steve-yegge-on-ai-agents-and-the</a></li><li>Amazon, Google and Vibe Coding with Steve Yegge: <a href="https://newsletter.pragmaticengineer.com/p/amazon-google-and-vibe-coding-with" target="_blank" rel="noopener">https://newsletter.pragmaticengineer.com/p/amazon-google-and-vibe-coding-with</a></li><li>Gas Town: <a href="https://github.com/steveyegge/gastown" target="_blank" rel="noopener">https://github.com/steveyegge/gastown</a></li><li>Execution in the Kingdom of Nouns: <a href="https://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html" target="_blank" rel="noopener">https://steve-yegge.blogspot.com/2006/03/execution-in-kingdom-of-nouns.html</a></li><li>Rich programmer food: <a href="https://steve-yegge.blogspot.com/2007/06/rich-programmer-food.html" target="_blank" rel="noopener">https://steve-yegge.blogspot.com/2007/06/rich-programmer-food.html</a></li><li>Wyvern on Steam: <a href="https://store.steampowered.com/app/1541710/Wyvern" target="_blank" rel="noopener">https://store.steampowered.com/app/1541710/Wyvern</a></li><li>Claude Code: <a href="https://claude.com/product/claude-code" target="_blank" rel="noopener">https://claude.com/product/claude-code</a></li><li>The death of the junior developer: <a href="https://sourcegraph.com/blog/the-death-of-the-junior-developer" target="_blank" rel="noopener">https://sourcegraph.com/blog/the-death-of-the-junior-developer</a></li><li>Erik Meijer on X: <a href="https://x.com/headinthebox" target="_blank" rel="noopener">https://x.com/headinthebox</a></li><li>Andy Jassy: <a href="https://en.wikipedia.org/wiki/Andy_Jassy" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Andy_Jassy</a></li><li>The Death of the IDE? w/ Steve Yegge &amp; Nathan Sobo:</li><li>Nathan Sobo on LinkedIn: <a href="https://www.linkedin.com/in/nathan-sobo-92b46720" target="_blank" rel="noopener">https://www.linkedin.com/in/nathan-sobo-92b46720</a></li><li>Claude Cowork: <a href="https://claude.com/product/cowork" target="_blank" rel="noopener">https://claude.com/product/cowork</a></li><li>Craft Agents: <a href="https://agents.craft.do" target="_blank" rel="noopener">https://agents.craft.do</a></li><li>Git Gui: <a href="https://git-scm.com/tools/guis" target="_blank" rel="noopener">https://git-scm.com/tools/guis</a></li><li>Fantasia: <a href="https://en.wikipedia.org/wiki/Fantasia_(1940_film)" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Fantasia_(1940_film)</a></li><li>Welcome to Gas Town: <a href="https://steve-yegge.medium.com/welcome-to-gas-town-4f25ee16dd04" target="_blank" rel="noopener">https://steve-yegge.medium.com/welcome-to-gas-town-4f25ee16dd04</a></li><li>Dolt: <a href="https://www.dolthub.com" target="_blank" rel="noopener">https://www.dolthub.com</a></li><li>The Bitter Lesson: <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html" target="_blank" rel="noopener">http://www.incompleteideas.net/IncIdeas/BitterLesson.html</a></li><li>Moltbook: <a href="https://www.moltbook.com" target="_blank" rel="noopener">https://www.moltbook.com</a></li><li>The ‘9-9-6 Work Schedule’ Could Be Coming To Your Workplace Soon: <a href="https://www.forbes.com/sites/bryanrobinson/2025/08/04/the-9-9-6-work-schedule-could-be-coming-to-your-workplace-soon" target="_blank" rel="noopener">https://www.forbes.com/sites/bryanrobinson/2025/08/04/the-9-9-6-work-schedule-could-be-coming-to-your-workplace-soon</a></li><li>Perl: <a href="https://www.perl.org" target="_blank" rel="noopener">https://www.perl.org</a></li><li>PHP: <a href="https://www.php.net" target="_blank" rel="noopener">https://www.php.net</a></li><li>Anthropic: <a href="https://www.anthropic.com" target="_blank" rel="noopener">https://www.anthropic.com</a></li><li>Purely Functional Data Structures : <a href="https://www.amazon.com/Purely-Functional-Data-Structures-Okasaki/dp/0521663504" target="_blank" rel="noopener">https://www.amazon.com/Purely-Functional-Data-Structures-Okasaki/dp/0521663504</a></li><li>Building Claude Code with Boris Cherny: <a href="https://newsletter.pragmaticengineer.com/p/building-claude-code-with-boris-cherny" target="_blank" rel="noopener">https://newsletter.pragmaticengineer.com/p/building-claude-code-with-boris-cherny</a></li><li>Gemini: <a href="https://gemini.google.com" target="_blank" rel="noopener">https://gemini.google.com</a></li><li>The Borderlands Gun Collector’s Club: <a href="https://steve-yegge.blogspot.com/2012/03/borderlands-gun-collectors-club.html" target="_blank" rel="noopener">https://steve-yegge.blogspot.com/2012/03/borderlands-gun-collectors-club.html</a></li><li>Ralph Wiggum as a “software engineer”: <a href="https://ghuntley.com/ralph" target="_blank" rel="noopener">https://ghuntley.com/ralph</a> — Production and marketing by Pen Name .</li></ul></p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/rakuten" target="_blank">Rakuten fixes issues twice as fast with Codex</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Mar 11, 2026 &middot; 13:00 UTC</span>
+          </div>
+          <p class="summary"><span>Rakuten uses Codex, the coding agent from OpenAI, to ship software faster and safer, reducing MTTR 50%, automating CI/CD reviews, and delivering full-stack builds in weeks.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/from-figma-to-claude-code-and-back" target="_blank">From Figma to Claude Code and back | Gui Seiz &amp; Alex Kern (Figma)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Mar 11, 2026 &middot; 12:03 UTC</span>
+          </div>
+          <p class="summary"><span>Introduction to Gui and Alex from Figma How AI has transformed Figma’s internal workflows The collapse of linear design-to-code workflows Demo: Pulling production code into Figma using MCPs Using Figma for precise design manipulation and team collaboration Demo: Pushing Figma designs back into code with Claude Code How AI has changed the role of software engineers The shift to upstream planning and downstream craft Demo: Exporting multiple code states back into Figma Synchronous vs.</span> <span>asynchronous collaboration with AI Eliminating design and engineering toil with AI Demo: Custom skills for automating pre-flight checks Code first or design first? Using AI to learn and explore codebases<ul><li>Figma: <a href="https://www.figma.com/" target="_blank" rel="noopener">https://www.figma.com/</a></li><li>From Claude Code to Figma: Turning production code into editable Figma designs: <a href="https://www.figma.com/blog/introducing-claude-code-to-figma/" target="_blank" rel="noopener">https://www.figma.com/blog/introducing-claude-code-to-figma/</a></li><li>Codex: <a href="https://codex.ai/" target="_blank" rel="noopener">https://codex.ai/</a></li><li>Claude Code: <a href="https://claude.ai/code" target="_blank" rel="noopener">https://claude.ai/code</a></li><li>Buildkite: <a href="https://buildkite.com/" target="_blank" rel="noopener">https://buildkite.com/</a> Other</li><li>Balsamiq: <a href="https://balsamiq.com/" target="_blank" rel="noopener">https://balsamiq.com/</a> LinkedIn: <a href="https://www.linkedin.com/in/guiseiz/" target="_blank" rel="noopener">https://www.linkedin.com/in/guiseiz/</a> LinkedIn: <a href="https://www.linkedin.com/in/alexanderskern/" target="_blank" rel="noopener">https://www.linkedin.com/in/alexanderskern/</a> Where to find Claire Vo: ChatPRD: <a href="https://www.chatprd.ai/" target="_blank" rel="noopener">https://www.chatprd.ai/</a> Website: <a href="https://clairevo.com/" target="_blank" rel="noopener">https://clairevo.com/</a> LinkedIn: <a href="https://www.linkedin.com/in/clairevo/" target="_blank" rel="noopener">https://www.linkedin.com/in/clairevo/</a> X: <a href="https://x.com/clairevo" target="_blank" rel="noopener">https://x.com/clairevo</a> Production and marketing by <a href="https://penname.co/" target="_blank" rel="noopener">https://penname.co/</a> .</span> <span>For inquiries about sponsoring the podcast, email [email protected] .</li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/designing-agents-to-resist-prompt-injection" target="_blank">Designing AI agents to resist prompt injection</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Mar 11, 2026 &middot; 11:30 UTC</span>
+          </div>
+          <p class="summary"><span>How ChatGPT defends against prompt injection and social engineering by constraining risky actions and protecting sensitive data in agent workflows.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/equip-responses-api-computer-environment" target="_blank">From model to agent: Equipping the Responses API with a computer environment</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Mar 11, 2026 &middot; 11:00 UTC</span>
+          </div>
+          <p class="summary"><span>How OpenAI built an agent runtime using the Responses API, shell tool, and hosted containers to run secure, scalable agents with files, tools, and state.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/guides/agentic-engineering-patterns/better-code/#atom-everything" target="_blank">AI should help us produce better code</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Mar 10, 2026 &middot; 22:25 UTC</span>
+          </div>
+          <p class="summary"><span>Shipping worse code with agents is a choice .</span> <span>Avoiding taking on technical debt I like to think about shipping better code in terms of technical debt.</span> <span>Tags: coding-agents , ai-assisted-programming , generative-ai , agentic-engineering , ai , llms</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Agentic Engineering Patterns &gt;</p><p>Many developers worry that outsourcing their code to AI tools will result in a drop in quality, producing bad code that&#x27;s churned out fast enough that decision makers are willing to overlook its flaws.</p><p>If adopting coding agents demonstrably reduces the quality of the code and features you are producing, you should address that problem directly: figure out which aspects of your process are hurting the quality of your output and fix them.</p><p>Shipping worse code with agents is a choice. We can choose to ship code that is better instead.</p><p>Avoiding taking on technical debt</p><p>I like to think about shipping better code in terms of technical debt. We take on technical debt as the result of trade-offs: doing things &quot;the right way&quot; would take too long, so we work within the time constraints we are under and cross our fingers that our project will survive long enough to pay down the debt later on.</p><p>The best mitigation for technical debt is to avoid taking it on in the first place.</p><p>In my experience, a common category of technical debt fixes is changes that are simple but time-consuming.</p><p>Our original API design doesn&#x27;t cover an important case that emerged later on. Fixing that API would require changing code in dozens of different places, making it quicker to add a very slightly different new API and live with the duplication.</p><p>We made a poor choice naming a concept early on - teams rather than groups for example - but cleaning up that nomenclature everywhere in the code is too much work so we only fix it in the UI.</p><p>Our system has grown duplicate but slightly different functionality over time which needs combining and refactoring.</p><p>One of our files has grown to several thousand lines of code which we would ideally split into separate modules.</p><p>All of these changes are conceptually simple but still need time dedicated to them, which can be hard to justify given more pressing issues.</p><p>Coding agents can handle these for us</p><p>Refactoring tasks like this are an ideal application of coding agents.</p><p>Fire up an agent, tell it what to change and leave it to churn away in a branch or worktree somewhere in the background.</p><p>I usually use asynchronous coding agents for this such as Gemini Jules, OpenAI Codex web, or Claude Code on the web. That way I can run those refactoring jobs without interrupting my flow on my laptop.</p><p>Evaluate the result in a Pull Request. If it&#x27;s good, land it. If it&#x27;s almost there, prompt it and tell it what to do differently. If it&#x27;s bad, throw it away.</p><p>The cost of these code improvements has dropped so low that we can afford a zero tolerance attitude to minor code smells and inconveniences.</p><p>AI tools let us consider more options</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://newsletter.pragmaticengineer.com/p/how-uber-uses-ai-for-development" target="_blank">How Uber uses AI for development: inside look</a></h2>
+          <div class="meta">
+            <span class="source">pragmatic-engineer</span>
+            <span class="date">Mar 10, 2026 &middot; 19:23 UTC</span>
+          </div>
+          <p class="summary"><span>Four layers spanning an internal AI platform, context sources, industry tools, and specialized agents for testing and code review.</span> <span>Internal tooling: MCP Gateway, Uber Agent Builder, and the AIFX CLI .</span> <span>Uber built several internal tools to make it easier for devs to use AI tools, and to make internal AI agents more effective.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>I spent four years working at Uber until 2020 and experienced firsthand the company’s standout engineering culture. Uber is a company that did the speed run of going from a small startup, through hypergrowth, to being a large company facing major risk during the pandemic, when the rideshare business briefly collapsed. Today, it’s maturing as a publicly traded, profitable company, and employs almost 3,000 people in the tech function. At the recent Pragmatic Summit in San Francisco, one of the most interesting behind-the-scenes sessions came from the ridesharing company’s principal engineer, Ty Smith , and director of engineering Anshu Chada , who pulled back the curtain on what Uber has been doing with AI tools, internally. They were candid about the amount of work it took to build up Uber’s internal “AI stack,” why all that work was necessary, and also discussed the drawbacks as well as benefits of this rapidly spreading technology. You can watch their presentation at The Pragmatic Summit here . In today’s issue, we cover: Agentic layers &amp; systems. Four layers spanning an internal AI platform, context sources, industry tools, and specialized agents for testing and code review. Internal tooling: MCP Gateway, Uber Agent Builder, and the AIFX CLI . Uber built several internal tools to make it easier for devs to use AI tools, and to make internal AI agents more effective. How AI changes developer workflows . A move away from single-threaded coding in an IDE, to orchestrating multiple parallel agents. Engineers naturally gravitate toward kicking off new agents, which starts to create and cost challenges. Minion: running background agents at scale. Uber built Minion, an internal background agent platform with monorepo access and optimized defaults. It’s a clever abstraction layer that works well in practice. New internal dev tools. More AI-generated code means more code reviews and more noise, so Uber built Code Inbox for smart PR routing, uReview for high-signal AI code review comments, Autocover for generating 5,000+ unit tests per month, and Shepherd for managing large-scale migrations end to end. AI adoption is slower than expected, even at a forward-thinking company like Uber. Top-down mandates are less efficient than engineers sharing their wins with peers. Impact in numbers. 92% of Uber devs use agents monthly, 65-72% of code is AI-generated inside IDEs, and 11% of pull requests opened by agents. At the same time, AI-related costs are up 6x since 2024, and token cost optimization is a growing priority. Longtime readers might recall we’ve covered Uber’s engineering culture over time: Developer Experience at Uber – with Uber’s founding engineer on Developer Platform, Gautam Korlam (2025) How Uber built its observability platform (2023) Inside Uber’s move to the Cloud (2023) How Uber is measuring engineering productivity (2022) The Program and Platform split at Uber (2021) Let’s get into it: AI is not new at Uber, but rolling it out companywide is. The company has used machine learning and AI technologies in many systems, including its Marketplace platform, which are responsible for routing and matching drivers with riders, forecasting demand, etc. What is relatively new at nearly all tech companies is the process of integrating AI across engineering and beyond. The official strategy at the ridesharing giant is to become a “GenAI-powered” company: I appreciate Uber sharing this approach openly because while most companies say that they want to be “AI-powered” – however cliche that claim might be – not all provide as much transparency. It’s worthwhile engineers internalizing how leadership views AI . These folks, in general, see a tool that can bring efficiency everywhere. My take is that in some ways, AI is seen similarly to the cloud, which has been perceived as a means to reduce costs and improve the flexibility and elasticity of hardware . Today, AI is seen as the way to increase efficiency and lower costs, such as customer support, software development, the finance function – or any function. Uber is focusing not on automating everything possible in engineering. Instead, it wants to: Eliminate toil: helping AI do “boring” work like upgrades, migrations, trivial bug fixes, etc. Free up engineers to focus more on creative work. As Anshu Chada, Engineering Director on Uber’s Dev Platform, puts it: “What we found is when we push some of the boring stuff to AI – upgrades, migrations, bug fixes – not only does it result in much higher satisfaction from our engineers, but they’re able to push our product and create features for end users in ways that we didn’t even think were possible.” 1. Agentic layers &amp; systems Uber’s “agentic system” for software engineering is actually made up of several systems: Categories of systems: Internal AI platform. Built on top of Michelangelo , Uber’s ML/AI platform. This layer provides things like a model gateway to proxy to frontier models or internally hosted models. Internal Uber context: accessing Uber’s source code, engineering documentation, Slack information, JIRA tickets, etc. These all serve as “memory” for agents to use. Industry agents: Uber’s approach is to enable the “latest &amp; greatest” AI agents for engineers, so they support several tools like Claude Code, GitHub Copilot, Codex, and other clients. Specialized agents: Uber’s background agent platform, the test generation platform, code review agents, and more. Engineering enablement: measuring the efficiency of agents, controlling costs, and educating engineers about which tools to use. Internal tooling: MCP Gateway, Uber Agent Builder, and the AIFX CLI MCP – the Model Context Protocol – has quickly become the standard way to connect agents and data sources with one another. A frequent analogy is that MCP is like the “USB-C interface for AI agents.” We published a deepdive on the MCP protocol and covered real-world MCP server use cases . Uber put together a “tiger team” (a temporary unit that gets things done fast) to design the MCP strategy and build the central MCP gateway, which looks like this: This MCP gateway allows: Proxy internal endpoints to MCPs : any internal Thrift, Protobuffer, or HTTP endpoint can be exposed as an MCP server with a simple configuration change. Uber uses the Apache Thrift protocol and Protobuffer protocols extensively for backend service communications First-party MCPs: these are exposed as a single, consistent interface Third-party MCPs: external MCP servers are also exposed via the gateway, which handles all authentication and authorization tasks. Platform concerns: the gateway takes care of authorization, telemetry, and logging in one central place. Plus, it conveniently offers a unified interface to interact with any MCP. The MCP gateway also provides: A registry: to look up MCP servers, and for devs to be able to register their own. A sandbox: for devs to experiment with MCP servers without long-winded setups. Uber Agent Builder Uber’s Agent Builder product is a no-code solution to build agents that can access Uber’s internal data sources (both MCP servers and Uber data sets), and hand off work to other agents: The platform includes a tool called Agent Studio, where multi-agent workflows can be visualized, debugged, traced, versioned, and evaluated. This is how it looks: The agents built in Agent Builder become discoverable through a registry: Accessing agents via the AIFX CLI Uber’s Developer Experience platform team had a few issues with deploying AI agent tooling at scale: How does the company update all clients when a new version comes out? For example, if a new version of Cursor is released, how can they ensure all devs use the latest one? How can the clients be configured with helpful defaults? Uber’s Dev Platform team might have found better defaults for tools, like more helpful models. How are these rolled out to all devs? How can devs easily discover MCP servers and configure them for agents? How can agents connect to Uber’s background task infrastructure? The Dev Experience team built the AIFX CLI, which is the AI tooling command line used by all engineers there. Here’s what it looks like: This tool supports: Provisioning AI agents (client tools like Claude Code, Codex, Cursor, and others) Finding and using MCP servers Running background agent tasks Updating AI agents and clients to the latest versions 3. How AI changes developer workflows The traditional way of building software: Devs spent some time planning, most time writing code (code authorship), and then some time in code review. The first AI agent-based workflows were single-threaded: devs worked with a single agent in the command line or inside their IDE: At Uber, the latest workflows which many software engineers follow are pretty different, involving parallel agents, each kicked off with their own tasks: As Ty explained, running multiple agents comes naturally to most devs: “[Once you start using agents] as an engineer, you’re giving a prompt and waiting for something. While it’s running and you’re waiting you’re thinking: ‘What am I going to do? Have a coffee or browse Reddit? Might as well kick off another background agent.’ And so, engineers get into this mode of running several agents at once, right? Both us [at Uber] and a lot of the industry is trying to push towards this.” 4. Minion: running background agents at scale</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/instruction-hierarchy-challenge" target="_blank">Improving instruction hierarchy in frontier LLMs</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Mar 10, 2026 &middot; 11:00 UTC</span>
+          </div>
+          <p class="summary"><span>IH-Challenge trains models to prioritize trusted instructions, improving instruction hierarchy, safety steerability, and resistance to prompt injection attacks.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Mar/9/not-so-boring/#atom-everything" target="_blank">Perhaps not Boring Technology after all</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Mar 09, 2026 &middot; 13:37 UTC</span>
+          </div>
+          <p class="summary"><span>A recurring concern I&#x27;ve seen regarding LLMs for programming is that they will push our technology choices towards the tools that are best represented in their training data, making it harder for new, better tools to break through the noise.</span> <span>With the latest models running in good coding agent harnesses I&#x27;m not sure this continues to hold up.</span> <span>Tags: ai , generative-ai , llms , ai-assisted-programming , boring-technology , coding-agents , agentic-engineering , november-2025-inflection</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>A recurring concern I&#x27;ve seen regarding LLMs for programming is that they will push our technology choices towards the tools that are best represented in their training data, making it harder for new, better tools to break through the noise.</p><p>This was certainly the case a couple of years ago, when asking models for help with Python or JavaScript appeared to give much better results than questions about less widely used languages.</p><p>With the latest models running in good coding agent harnesses I&#x27;m not sure this continues to hold up.</p><p>I&#x27;m seeing excellent results with my brand new tools where I start by prompting &quot;use uvx showboat --help / rodney --help / chartroom --help to learn about these tools&quot; - the context length of these new models is long enough that they can consume quite a lot of documentation before they start working on a problem.</p><p>Drop a coding agent into any existing codebase that uses libraries and tools that are too private or too new to feature in the training data and my experience is that it works just fine - the agent will consult enough of the existing examples to understand patterns, then iterate and test its own output to fill in the gaps.</p><p>This is a surprising result. I thought coding agents would prove to be the ultimate embodiment of the Choose Boring Technology approach, but in practice they don&#x27;t seem to be affecting my technology choices in that way at all.</p><p>Update: A few follow-on thoughts:</p><p>The issue of what technology LLMs recommend is a separate one. What Claude Code Actually Chooses is an interesting recent study where Edwin Ong and Alex Vikati where they proved Claude Code over 2,000 times and found a strong bias towards build-over-buy but also identified a preferred technical stack, with GitHub Actions, Stripe, and shadcn/ui seeing a &quot;near monopoly&quot; in their respective categories. For the sake of this post my interest is in what happens when the human makes a technology choice that differs from those preferred by the model harness.</p><p>The Skills mechanism that is being rapidly embraced by most coding agent tools is super-relevant here. We are already seeing projects release official skills to help agents use them - here are examples from Remotion, Supabase, Vercel, and Prisma.</p><p>Tags: ai, generative-ai, llms, ai-assisted-programming, boring-technology, coding-agents, agentic-engineering, november-2025-inflection</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/openai-to-acquire-promptfoo" target="_blank">OpenAI to acquire Promptfoo</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Mar 09, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI is acquiring Promptfoo, an AI security platform that helps enterprises identify and remediate vulnerabilities in AI systems during development.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Mar/7/codex-for-open-source/#atom-everything" target="_blank">Codex for Open Source</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Mar 07, 2026 &middot; 18:13 UTC</span>
+          </div>
+          <p class="summary"><span>Codex for Open Source Anthropic announced six months of free Claude Max for maintainers of popular open source projects (5,000+ stars or 1M+ NPM downloads) on 27th February .</span> <span>Now OpenAI have launched their comparable offer: six months of ChatGPT Pro (same $200/month price as Claude Max) with Codex and &quot;conditional access to Codex Security&quot; for core maintainers.</span> <span>Unlike Anthropic they don&#x27;t hint at the exact metrics they care about, but the application form does ask for &quot;information such as GitHub stars, monthly downloads, or why the project is important to the ecosystem.&quot; Via @openaidevs Tags: open-source , ai , openai , generative-ai , llms , codex-cli</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Codex for Open Source</p><p>Anthropic announced six months of free Claude Max for maintainers of popular open source projects (5,000+ stars or 1M+ NPM downloads) on 27th February.</p><p>Now OpenAI have launched their comparable offer: six months of ChatGPT Pro (same $200/month price as Claude Max) with Codex and &quot;conditional access to Codex Security&quot; for core maintainers.</p><p>Unlike Anthropic they don&#x27;t hint at the exact metrics they care about, but the application form does ask for &quot;information such as GitHub stars, monthly downloads, or why the project is important to the ecosystem.&quot;</p><p>Via @openaidevs</p><p>Tags: open-source, ai, openai, generative-ai, llms, codex-cli</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 87</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
