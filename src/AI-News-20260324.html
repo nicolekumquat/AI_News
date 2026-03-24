@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-03-24</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-03-24</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/state-of-the-product-job-market-in-372" target="_blank">State of the product job market in early 2026</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Mar 24, 2026 &middot; 09:02 UTC</span>
+          </div>
+          <p class="summary"><span>If you’re a premium lennysreads.com Contrary to what the headlines might be telling you, PM job openings are at their highest point in over three years, AI roles are hockey-sticking, and tech headcount is growing.</span> <span>Today’s episode is our fourth biannual update on the tech job market (the most optimistic yet) and breaks down seven key trends shaping the job landscape right now.</span> <span>Listen now: YouTube | Apple | Spotify , you’ll learn: Why PMs have reason to be optimistic How the influx of new AI roles is shaping the industry The unexpected sign of tech growth What current job openings look like for design and software engineering roles Surprising trends across remote job opportunities AI Practice Copilot for PM Interviews Analytical thinking interviews guide Google Career Dreamer How to pass any first-round interview How to use AI for your job interview The definitive guide to mastering product sense interviews TrueUp Read the post</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-dreamer-joins-meta-superintelligence" target="_blank">[AINews] Dreamer joins Meta Superintelligence Labs — 9 month retro of Personal Superintelligence</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Mar 24, 2026 &middot; 06:50 UTC</span>
+          </div>
+          <p class="summary"><span>AI Twitter Recap Claude Computer Use, Agent Harnesses, and the Shift From “Codegen” to Full Workflow Automation Anthropic pushed computer use onto the desktop : Claude can now control the mouse, keyboard, and screen to operate arbitrary apps in a macOS research preview via Claude Cowork and Claude Code, a notable widening of the agent surface beyond APIs and browser sandboxes.</span> <span>The claim is that these meta-level improvements transfer across domains including coding, paper review, robotics reward design, and Olympiad grading, addressing a key limitation of prior self-improving systems that kept the self-improvement loop itself hand-authored ( Jenny Zhang ).</span> <span>Luma Uni-1 : major engagement around a model that collapses reasoning and image generation into one product surface, though details remain sparse in the tweet itself ( Luma Labs ).</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>AI Twitter Recap Claude Computer Use, Agent Harnesses, and the Shift From “Codegen” to Full Workflow Automation Anthropic pushed computer use onto the desktop : Claude can now control the mouse, keyboard, and screen to operate arbitrary apps in a macOS research preview via Claude Cowork and Claude Code, a notable widening of the agent surface beyond APIs and browser sandboxes. The launch landed alongside strong community reactions about not needing a laptop for many tasks anymore and why Anthropic may have skipped acquiring broader external agent stacks in favor of owning the full “do anything on your computer” loop ( Claude announcement , Felix Rieseberg , Yuchen Jin , Alex Albert ). The agent stack is converging on long-running, parallel, tool-rich workflows : multiple tweets pointed to a maturing harness layer around coding and ops agents: Hermes Agent momentum and ecosystem curation ( awesome-hermes-agent , Teknium tips , open-source vibe shift ); T3 Code adding integrated browser and terminal capabilities ( T3 Code browser integration , Theo on open-sourcing T3 Code ); Command Center and similar orchestration tools for many-agent parallel execution from one workspace ( Jimmy Koppel ); and Parchi / BYOK workflows for very long-running autonomous tasks ( 0xSero , Qwen3.5-REAP in Parchi ). Operational reality is now the bottleneck, not just model IQ : several practitioners complained that newer top models can be too eager, over-agentic, or delegated to weaker subagents, hurting real coding workflows; this showed up in complaints about GPT-5.2 Pro subagents , Claude browser/computer use fragility , and the broader critique that superficial parallelization often becomes “ slop theater ” rather than throughput gains ( Mikhail Parakhin , Sarana , Jeremy Howard , bentlegen ). A recurring theme: the winning products will likely be those that close the loop with traces, evals, incidents, and production feedback, not just generate code ( LangSmith “close the loop” , PlayerZero summary ). Research on Self-Improving Agents, RL Post-Training, and Benchmark Generation Meta-affiliated work on self-improvement advanced beyond fixed meta-procedures : Hyperagents / DGM-H extends the Darwin Gödel Machine idea by allowing agents to improve not only task behavior but also the procedure that generates future improvements . The claim is that these meta-level improvements transfer across domains including coding, paper review, robotics reward design, and Olympiad grading, addressing a key limitation of prior self-improving systems that kept the self-improvement loop itself hand-authored ( Jenny Zhang ). Meta also presented a broader RL post-training unification story : RLLM = RL + LM-as-RM trains a language-model reward model on-policy from the policy’s own outputs, aiming to unify post-training over easy-to-verify, hard-to-verify, and non-verifiable tasks. The notable claim is that using a generative LM reward model can improve reward quality across task classes compared with more brittle bespoke reward setups ( Jase Weston ). Benchmark and environment generation is scaling up fast : WebArena-Infinity claims a dramatic reduction in browser environment construction cost—from months of grad-student labor to under 10 hours and &lt;$100 per environment —while producing harder, verifiable browser-use tasks where strong open-source models now score below 50% despite doing much better on legacy WebArena/OSWorld. This matters because RL for agents increasingly needs automatically generated, high-authenticity environments rather than a handful of handcrafted testbeds ( Shuyan Zhou ). Topical RL synthesis remained popular, though less novel : a high-engagement overview from The Turing Post catalogued 16 RL variants spanning RLHF, RLAIF, RLVR, process rewards, self-feedback, and critique-based methods—useful as a taxonomy, but the more technically significant tweets this cycle were about how RL environments and reward models are being industrialized ( Turing Post RL list ). World Models, JEPA, Mechanistic Interpretability, and Emerging Training Theory JEPA/world-model work had one of the stronger technical showings of the day : LeWorldModel claims stable end-to-end JEPA training directly from pixels with no teacher-student tricks, no EMA, and no heavy heuristics: 15M params , 1 GPU , and &lt;1 second planning , with follow-on summaries emphasizing ~48–50× planning speedups and competitive performance against prior world-model baselines. This attracted attention because JEPA-style methods have often been seen as fragile or trick-heavy; these results argue for a much simpler training recipe ( Lucas Maes , Randall Balestriero , RobotsDigest ). Mechanistic interpretability continues to mature from “vibes” into reverse engineering : a thread summarizing Anthropic’s “On the Biology of a Large Language Model” framed current mech interp as uncovering circuits and internal features with a level of specificity that would have sounded implausible a decade ago, while also cautioning that traced circuits need not correspond to what the model can explicitly verbalize about its own reasoning ( summary thread ). Training theory and optimizer scaling also got attention : Antonio Orvieto’s thread argued that optimization theory for adaptive methods explains much of known LLM hyperparameter scaling and can suggest transfer rules without brute-force sweeps, while follow-up discussion highlighted optimizer dependence and implications for Muon-style setups ( Orvieto , giffmana reaction , leloykun follow-up ). This is one of the more useful undercurrents of the day: people are trying to replace empirical scaling folklore with derivations. Document Parsing, Retrieval, and Search Infrastructure Became More “Agent-Native” Document parsing is becoming a serious systems layer, not a side utility : Google Devs and LlamaIndex highlighted a workflow combining LlamaParse + Gemini 3.1 Pro for extracting structured data from difficult financial PDFs, claiming roughly 15% accuracy gains on brokerage statements and complex tables. Separately, LlamaIndex’s new LiteParse targets a lighter-weight parsing path with URL and stream support and no VLM dependency, specifically pitched as something agents can call cheaply and quickly ( Google Devs , Jerry Liu , LiteParse ). Search/retrieval infra for coding agents improved materially : Cursor shipped Instant Grep , advertising regex search over millions of files in milliseconds , with a technical writeup on the indexing/algorithm tradeoffs. For agentic coding this kind of primitive matters more than another tiny model gain; search latency directly shapes whether agents can iterate over large repos fast enough to be useful ( Cursor announcement , blog link ). Late interaction / multi-vector retrieval is having a moment : the Weaviate/LightOn discussion argued that late interaction systems finally look practical for broader deployment, especially for code and reasoning-heavy retrieval. The core argument: token-level multi-vector representations can still be cheaper and more reusable than full cross-encoders, while materially improving recall and ranking quality for agentic workloads ( Connor Shorten podcast , softwaredoug , Amélie Chatelain ). Model and Product Releases: Sakana Chat, MiniMax Plans, Luma Uni-1, NVIDIA Kimodo, and More Sakana AI made the biggest concrete product launch in the set : it launched Sakana Chat for Japanese users, backed by a new Namazu alpha model family, described as post-trained open models tuned to reduce upstream bias and better reflect Japanese context and values. Sakana positioned this as both a consumer product and a demonstration of culturally localized post-training; the supporting technical blog also tied into its prior work using ensembles plus novelty search to extract narratives from 1.1M social posts in a Yomiuri collaboration on information operations analysis ( Sakana Chat , Namazu alpha , Hardmaru on the OSINT workflow ). MiniMax continued to push productization hard : it introduced a flat-rate “Token Plan” covering text, speech, music, video, and image APIs under one subscription, explicitly pitching predictable all-modality billing and compatibility with third-party harnesses. This is notable not because subscription packaging is flashy, but because multimodal API consumption has become operationally annoying enough that simplifying pricing is itself product differentiation ( MiniMax Token Plan ). Generative media shipped notable artifacts : Luma’s Uni-1 was pitched as a model that “thinks and generates pixels simultaneously,” while NVIDIA’s Kimodo drew strong engagement as a promptable motion/timeline model trained on 700 hours of mocap , supporting both human and robot skeletons and available on Hugging Face ( Luma Uni-1 , Kimodo ). Other release worth flagging : Hugging Face Kernels 0.12.3 added support for Flash-Attention 4 via cutlass.cute kernels ( Sayak Paul ); TRL v1.0.0 claimed up to 44× VRAM savings for long-sequence training with AsyncGRPO on the way ( Amine Dirhoussi ); and AI2’s MolmoPoint GUI targeted VLM-based GUI automation with grounding tokens rather than coordinate regression, reporting 61.1 on ScreenSpotPro ( HuggingPapers ). Top Tweets (by engagement, filtered for technical relevance) Claude computer use launch : Anthropic’s desktop control feature was the most consequential product release in the set and one of the clearest signs that mainstream assistants are moving from “answering” to operating software directly ( announcement ). Cursor Instant Grep : highly engaged because it addressed a real systems bottleneck for coding agents—repo-scale search latency—not just another benchmark increment ( Cursor ). Luma Uni-1 : major engagement around a model that collapses reasoning and image generation into one product surface, though details remain sparse in the tweet itself ( Luma Labs ). Sakana’s narrative intelligence / OSINT workflow : one of the more substantial applied-AI posts, combining LLM ensembles, novelty search, hypothesis generation, and human verification over 1.1M posts ( Sakana ). JEPA / LeWorldModel : strong engagement for a compact world model recipe that is much simpler and faster than many expected, and thus potentially more reproducible by ordinary labs ( LeWorldModel ). Hyperagents / DGM-H : among the most technically interesting research posts because it targets meta-level self-improvement , not just better task execution ( Hyperagents ).</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2603.22035v1" target="_blank">Future-Interactions-Aware Trajectory Prediction via Braid Theory</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Mar 23, 2026 &middot; 14:38 UTC</span>
+          </div>
+          <p class="summary"><span>To safely operate, an autonomous vehicle must know the future behavior of a potentially high number of interacting agents around it, a task often posed as multi-agent trajectory prediction.</span> <span>Many previous attempts to model social interactions and solve the joint prediction task either add extensive computational requirements or rely on heuristics to label multi-agent behavior types.</span> <span>We do so by proposing a novel auxiliary task, braid prediction, done in parallel with the trajectory prediction task.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>To safely operate, an autonomous vehicle must know the future behavior of a potentially high number of interacting agents around it, a task often posed as multi-agent trajectory prediction. Many previous attempts to model social interactions and solve the joint prediction task either add extensive computational requirements or rely on heuristics to label multi-agent behavior types. Braid theory, in contrast, provides a powerful exact descriptor of multi-agent behavior by projecting future trajectories into braids that express how trajectories cross with each other over time; a braid then corresponds to a specific mode of coordination between the multiple agents in the future. In past work, braids have been used lightly to reason about interacting agents and restrict the attention window of predicted agents. We show that leveraging more fully the expressivity of the braid representation and using it to condition the trajectories themselves leads to even further gains in joint prediction performance, with negligible added complexity either in training or at inference time. We do so by proposing a novel auxiliary task, braid prediction, done in parallel with the trajectory prediction task. By classifying edges between agents into their correct crossing types in the braid representation, the braid prediction task is able to imbue the model with improved social awareness, which is reflected in joint predictions that more closely adhere to the actual multi-agent behavior. This simple auxiliary task allowed us to obtain significant improvements in joint metrics on three separate datasets. We show how the braid prediction task infuses the model with future intention awareness, leading to more accurate joint predictions. Code is available at github.com/caiocj1/traj-pred-braid-theory.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-microsofts-ai-vp-automates-everything" target="_blank">How Microsoft’s AI VP automates everything with Warp | Marco Casalaina</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Mar 23, 2026 &middot; 12:01 UTC</span>
+          </div>
+          <p class="summary"><span>Introduction to Marco Casalaina Why Marco chose Warp for administrative tasks Demo: Using Warp to manage Azure and permissions How CLI tools eliminate GUI friction for complex tasks Creating rules to improve AI performance for specialized tasks Demo: Document scanning automation Combining odd and even pages using a Python automation The value of ephemeral AI solutions vs.</span> <span>permanent tools Video compression using FFmpeg commands The concept of “ad hoc agents” for specific tasks Demo: Creating triggered workflows in Microsoft 365 Copilot Demo: Setting up scheduled tasks in ChatGPT How AI automation changes time management Teaching AI skills to the next generation Strategies for improving AI performance with AutoHotkey<ul><li>Warp: <a href="https://www.warp.dev/" target="_blank" rel="noopener">https://www.warp.dev/</a></li><li>Microsoft Azure: <a href="https://azure.microsoft.com/en-us" target="_blank" rel="noopener">https://azure.microsoft.com/en-us</a></li><li>Azure CLI: <a href="https://learn.microsoft.com/en-us/cli/azure/" target="_blank" rel="noopener">https://learn.microsoft.com/en-us/cli/azure/</a></li><li>Microsoft 365 Copilot: <a href="https://www.microsoft.com/en-us/microsoft-365/copilot" target="_blank" rel="noopener">https://www.microsoft.com/en-us/microsoft-365/copilot</a></li><li>ChatGPT: <a href="https://chat.openai.com/" target="_blank" rel="noopener">https://chat.openai.com/</a> Other</li><li>NAPS2: <a href="https://www.naps2.com/" target="_blank" rel="noopener">https://www.naps2.com/</a></li><li>PyPDF2: <a href="https://pypdf2.readthedocs.io/" target="_blank" rel="noopener">https://pypdf2.readthedocs.io/</a></li><li>FFmpeg: <a href="https://ffmpeg.org/" target="_blank" rel="noopener">https://ffmpeg.org/</a> Where to find Claire Vo: ChatPRD: <a href="https://www.chatprd.ai/" target="_blank" rel="noopener">https://www.chatprd.ai/</a> Website: <a href="https://clairevo.com/" target="_blank" rel="noopener">https://clairevo.com/</a> LinkedIn: <a href="https://www.linkedin.com/in/clairevo/" target="_blank" rel="noopener">https://www.linkedin.com/in/clairevo/</a> X: <a href="https://x.com/clairevo" target="_blank" rel="noopener">https://x.com/clairevo</a> Production and marketing by <a href="https://penname.co/" target="_blank" rel="noopener">https://penname.co/</a> .</span> <span>For inquiries about sponsoring the podcast, email [email protected] .</li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Mar/23/starlette-1-skill/#atom-everything" target="_blank">Starlette 1.0 skill</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Mar 23, 2026 &middot; 00:05 UTC</span>
+          </div>
+          <p class="summary"><span>Research: Starlette 1.0 skill See Experimenting with Starlette 1.0 with Claude skills .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Research: Starlette 1.0 skill</p><p>See Experimenting with Starlette 1.0 with Claude skills.</p><p>Tags: starlette</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/the-art-of-influence-jessica-fain" target="_blank">The art of influence: The single most important skill that AI can’t replace | Jessica Fain (Webflow, ex-Slack)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Mar 22, 2026 &middot; 12:31 UTC</span>
+          </div>
+          <p class="summary"><span>ng with AI Vanta —Automate compliance, manage risk, and accelerate trust with AI Where to find Jessica Fain:<ul><li>LinkedIn: <a href="https://www.linkedin.com/in/jessica-fain-79b8989" target="_blank" rel="noopener">https://www.linkedin.com/in/jessica-fain-79b8989</a> d:</li><li>Box: <a href="https://www.box.com" target="_blank" rel="noopener">https://www.box.com</a></li><li>Slack: <a href="https://slack.com" target="_blank" rel="noopener">https://slack.com</a></li><li>Brightwheel: <a href="https://mybrightwheel.com" target="_blank" rel="noopener">https://mybrightwheel.com</a></li><li>Webflow: <a href="https://webflow.com" target="_blank" rel="noopener">https://webflow.com</a></li><li>April Underwood on LinkedIn: <a href="https://www.linkedin.com/in/aprilunderwood" target="_blank" rel="noopener">https://www.linkedin.com/in/aprilunderwood</a></li><li>Lessons in product leadership and AI strategy from Glean, Google, Amazon, and Slack | Tamar Yehoshua (Product at Glean, ex-Google and Slack): <a href="https://www.lennysnewsletter.com/p/you-dont-need-to-be-a-well-run-company-to-win-tamar-yehoshua" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/you-dont-need-to-be-a-well-run-company-to-win-tamar-yehoshua</a></li><li>Atlassian: <a href="https://www.atlassian.com" target="_blank" rel="noopener">https://www.atlassian.com</a></li><li>Behind the scenes of Calendly’s rapid growth | Annie Pearl (CPO): <a href="https://www.lennysnewsletter.com/p/behind-the-scenes-of-calendlys-rapid" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/behind-the-scenes-of-calendlys-rapid</a></li><li>Calendly: <a href="https://calendly.com" target="_blank" rel="noopener">https://calendly.com</a></li><li>Glassdoor: <a href="https://www.glassdoor.co.in/index.htm" target="_blank" rel="noopener">https://www.glassdoor.co.in/index.htm</a></li><li>The 10 traits of great PMs, how AI will impact your product, and Slack’s product development process | Noah Weiss (Slack, Foursquare, Google): <a href="https://www.lennysnewsletter.com/p/the-10-traits-of-great-pms-how-ai" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/the-10-traits-of-great-pms-how-ai</a></li><li>Ethan Eismann on X: <a href="https://x.com/eeismann" target="_blank" rel="noopener">https://x.com/eeismann</a></li><li>Slack founder: Mental models for building products people love ft.</span> <span>Stewart Butterfield: <a href="https://www.lennysnewsletter.com/p/slack-founder-stewart-butterfield" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/slack-founder-stewart-butterfield</a></li><li>Ilan Frank on LinkedIn: <a href="https://www.linkedin.com/in/ilanfrank" target="_blank" rel="noopener">https://www.linkedin.com/in/ilanfrank</a></li><li>Checkr: <a href="https://checkr.com" target="_blank" rel="noopener">https://checkr.com</a></li><li>Ali Rayl on LinkedIn: <a href="https://www.linkedin.com/in/alirayl" target="_blank" rel="noopener">https://www.linkedin.com/in/alirayl</a></li><li>Rachel Wolan on LinkedIn: <a href="https://www.linkedin.com/in/rachelwolan" target="_blank" rel="noopener">https://www.linkedin.com/in/rachelwolan</a></li><li>How Webflow’s CPO built an AI chief of staff to manage her calendar, prep for meetings, and drive AI adoption | Rachel Wolan: <a href="https://www.lennysnewsletter.com/p/how-webflows-cpo-built-an-ai-chief" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/how-webflows-cpo-built-an-ai-chief</a></li><li>Barbara Minto’s website: <a href="https://www.barbaraminto.com" target="_blank" rel="noopener">https://www.barbaraminto.com</a></li><li>How Slack invests in big little details through Customer Love Sprints: <a href="https://slack.design/articles/sweating-the-small-stuff" target="_blank" rel="noopener">https://slack.design/articles/sweating-the-small-stuff</a></li><li>Building product at Stripe: craft, metrics, and customer obsession | Jeff Weinstein (Product lead): <a href="https://www.lennysnewsletter.com/p/building-product-at-stripe-jeff-weinstein" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/building-product-at-stripe-jeff-weinstein</a></li><li>The Enneagram Institute: <a href="https://www.enneagraminstitute.com/type-descriptions" target="_blank" rel="noopener">https://www.enneagraminstitute.com/type-descriptions</a></li><li>The Pitt on Prime Video: <a href="https://www.amazon.com/The-Pitt-Season-1/dp/B0DNRR8QWD" target="_blank" rel="noopener">https://www.amazon.com/The-Pitt-Season-1/dp/B0DNRR8QWD</a></li><li>Towel warmer: <a href="https://www.amazon.com/FLYHIT-Large-Towel-Warmer-Bathroom/dp/B0CB5K34L2" target="_blank" rel="noopener">https://www.amazon.com/FLYHIT-Large-Towel-Warmer-Bathroom/dp/B0CB5K34L2</a></li><li>Casa: <a href="https://getcasa.com" target="_blank" rel="noopener">https://getcasa.com</a></li><li>Jimi Hendrix: <a href="https://en.wikipedia.org/wiki/Jimi_Hendrix" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Jimi_Hendrix</a></li><li>Greek Theatre: <a href="https://en.wikipedia.org/wiki/Greek_Theatre_(Los_Angeles)" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Greek_Theatre_(Los_Angeles)</a> Recommended books:</li><li>Pachinko : <a href="https://www.amazon.com/Pachinko-National-Book-Award-Finalist/dp/1455563927" target="_blank" rel="noopener">https://www.amazon.com/Pachinko-National-Book-Award-Finalist/dp/1455563927</a></li><li>Homegoing : <a href="https://www.amazon.com/Homegoing-Yaa-Gyasi/dp/1101971061" target="_blank" rel="noopener">https://www.amazon.com/Homegoing-Yaa-Gyasi/dp/1101971061</a></li><li>A History of Burning : <a href="https://www.amazon.com/History-Burning-Janika-Oza/dp/1538724243" target="_blank" rel="noopener">https://www.amazon.com/History-Burning-Janika-Oza/dp/1538724243</a></li><li>The Overstory : <a href="https://www.amazon.com/Overstory-Novel-Richard-Powers/dp/039335668X" target="_blank" rel="noopener">https://www.amazon.com/Overstory-Novel-Richard-Powers/dp/039335668X</a> Production and marketing by <a href="https://penname.co/" target="_blank" rel="noopener">https://penname.co/</a> .</span> <span>My biggest takeaways from this conversation:</li></ul></span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>ng with AI Vanta —Automate compliance, manage risk, and accelerate trust with AI Where to find Jessica Fain:<ul><li>LinkedIn: <a href="https://www.linkedin.com/in/jessica-fain-79b8989" target="_blank" rel="noopener">https://www.linkedin.com/in/jessica-fain-79b8989</a> d:</li><li>Box: <a href="https://www.box.com" target="_blank" rel="noopener">https://www.box.com</a></li><li>Slack: <a href="https://slack.com" target="_blank" rel="noopener">https://slack.com</a></li><li>Brightwheel: <a href="https://mybrightwheel.com" target="_blank" rel="noopener">https://mybrightwheel.com</a></li><li>Webflow: <a href="https://webflow.com" target="_blank" rel="noopener">https://webflow.com</a></li><li>April Underwood on LinkedIn: <a href="https://www.linkedin.com/in/aprilunderwood" target="_blank" rel="noopener">https://www.linkedin.com/in/aprilunderwood</a></li><li>Lessons in product leadership and AI strategy from Glean, Google, Amazon, and Slack | Tamar Yehoshua (Product at Glean, ex-Google and Slack): <a href="https://www.lennysnewsletter.com/p/you-dont-need-to-be-a-well-run-company-to-win-tamar-yehoshua" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/you-dont-need-to-be-a-well-run-company-to-win-tamar-yehoshua</a></li><li>Atlassian: <a href="https://www.atlassian.com" target="_blank" rel="noopener">https://www.atlassian.com</a></li><li>Behind the scenes of Calendly’s rapid growth | Annie Pearl (CPO): <a href="https://www.lennysnewsletter.com/p/behind-the-scenes-of-calendlys-rapid" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/behind-the-scenes-of-calendlys-rapid</a></li><li>Calendly: <a href="https://calendly.com" target="_blank" rel="noopener">https://calendly.com</a></li><li>Glassdoor: <a href="https://www.glassdoor.co.in/index.htm" target="_blank" rel="noopener">https://www.glassdoor.co.in/index.htm</a></li><li>The 10 traits of great PMs, how AI will impact your product, and Slack’s product development process | Noah Weiss (Slack, Foursquare, Google): <a href="https://www.lennysnewsletter.com/p/the-10-traits-of-great-pms-how-ai" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/the-10-traits-of-great-pms-how-ai</a></li><li>Ethan Eismann on X: <a href="https://x.com/eeismann" target="_blank" rel="noopener">https://x.com/eeismann</a></li><li>Slack founder: Mental models for building products people love ft. Stewart Butterfield: <a href="https://www.lennysnewsletter.com/p/slack-founder-stewart-butterfield" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/slack-founder-stewart-butterfield</a></li><li>Ilan Frank on LinkedIn: <a href="https://www.linkedin.com/in/ilanfrank" target="_blank" rel="noopener">https://www.linkedin.com/in/ilanfrank</a></li><li>Checkr: <a href="https://checkr.com" target="_blank" rel="noopener">https://checkr.com</a></li><li>Ali Rayl on LinkedIn: <a href="https://www.linkedin.com/in/alirayl" target="_blank" rel="noopener">https://www.linkedin.com/in/alirayl</a></li><li>Rachel Wolan on LinkedIn: <a href="https://www.linkedin.com/in/rachelwolan" target="_blank" rel="noopener">https://www.linkedin.com/in/rachelwolan</a></li><li>How Webflow’s CPO built an AI chief of staff to manage her calendar, prep for meetings, and drive AI adoption | Rachel Wolan: <a href="https://www.lennysnewsletter.com/p/how-webflows-cpo-built-an-ai-chief" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/how-webflows-cpo-built-an-ai-chief</a></li><li>Barbara Minto’s website: <a href="https://www.barbaraminto.com" target="_blank" rel="noopener">https://www.barbaraminto.com</a></li><li>How Slack invests in big little details through Customer Love Sprints: <a href="https://slack.design/articles/sweating-the-small-stuff" target="_blank" rel="noopener">https://slack.design/articles/sweating-the-small-stuff</a></li><li>Building product at Stripe: craft, metrics, and customer obsession | Jeff Weinstein (Product lead): <a href="https://www.lennysnewsletter.com/p/building-product-at-stripe-jeff-weinstein" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/building-product-at-stripe-jeff-weinstein</a></li><li>The Enneagram Institute: <a href="https://www.enneagraminstitute.com/type-descriptions" target="_blank" rel="noopener">https://www.enneagraminstitute.com/type-descriptions</a></li><li>The Pitt on Prime Video: <a href="https://www.amazon.com/The-Pitt-Season-1/dp/B0DNRR8QWD" target="_blank" rel="noopener">https://www.amazon.com/The-Pitt-Season-1/dp/B0DNRR8QWD</a></li><li>Towel warmer: <a href="https://www.amazon.com/FLYHIT-Large-Towel-Warmer-Bathroom/dp/B0CB5K34L2" target="_blank" rel="noopener">https://www.amazon.com/FLYHIT-Large-Towel-Warmer-Bathroom/dp/B0CB5K34L2</a></li><li>Casa: <a href="https://getcasa.com" target="_blank" rel="noopener">https://getcasa.com</a></li><li>Jimi Hendrix: <a href="https://en.wikipedia.org/wiki/Jimi_Hendrix" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Jimi_Hendrix</a></li><li>Greek Theatre: <a href="https://en.wikipedia.org/wiki/Greek_Theatre_(Los_Angeles)" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Greek_Theatre_(Los_Angeles)</a> Recommended books:</li><li>Pachinko : <a href="https://www.amazon.com/Pachinko-National-Book-Award-Finalist/dp/1455563927" target="_blank" rel="noopener">https://www.amazon.com/Pachinko-National-Book-Award-Finalist/dp/1455563927</a></li><li>Homegoing : <a href="https://www.amazon.com/Homegoing-Yaa-Gyasi/dp/1101971061" target="_blank" rel="noopener">https://www.amazon.com/Homegoing-Yaa-Gyasi/dp/1101971061</a></li><li>A History of Burning : <a href="https://www.amazon.com/History-Burning-Janika-Oza/dp/1538724243" target="_blank" rel="noopener">https://www.amazon.com/History-Burning-Janika-Oza/dp/1538724243</a></li><li>The Overstory : <a href="https://www.amazon.com/Overstory-Novel-Richard-Powers/dp/039335668X" target="_blank" rel="noopener">https://www.amazon.com/Overstory-Novel-Richard-Powers/dp/039335668X</a> Production and marketing by <a href="https://penname.co/" target="_blank" rel="noopener">https://penname.co/</a> . For inquiries about sponsoring the podcast, email [email protected] . Lenny may be an investor in the companies discussed. My biggest takeaways from this conversation:</li></ul></p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Mar/21/profiling-hacker-news-users/#atom-everything" target="_blank">Profiling Hacker News users based on their comments</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Mar 21, 2026 &middot; 23:59 UTC</span>
+          </div>
+          <p class="summary"><span>Here&#x27;s a mildly dystopian prompt I&#x27;ve been experimenting with recently: &quot;Profile this user&quot;, accompanied by a copy of their last 1,000 comments on Hacker News.</span> <span>The Algolia Hacker News API supports listing comments sorted by date that have a specific tag, and the author of a comment is tagged there as author_username .</span> <span>Here&#x27;s a JSON feed of my ( simonw ) most recent comments, for example: <a href="https://hn.algolia.com/api/v1/search_by_date?tags=comment,author_simonw" target="_blank" rel="noopener">https://hn.algolia.com/api/v1/search_by_date?tags=comment,author_simonw</a>&amp;hitsPerPage=1000 The Algolia API is served with open CORS headers, which means you can access the API from JavaScript running on any web page.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Here&#x27;s a mildly dystopian prompt I&#x27;ve been experimenting with recently: &quot;Profile this user&quot;, accompanied by a copy of their last 1,000 comments on Hacker News.</p><p>Obtaining those comments is easy. The Algolia Hacker News API supports listing comments sorted by date that have a specific tag, and the author of a comment is tagged there as author_username. Here&#x27;s a JSON feed of my (simonw) most recent comments, for example:</p><p><a href="https://hn.algolia.com/api/v1/search_by_date?tags=comment,author_simonw" target="_blank" rel="noopener">https://hn.algolia.com/api/v1/search_by_date?tags=comment,author_simonw</a>&amp;hitsPerPage=1000</p><p>The Algolia API is served with open CORS headers, which means you can access the API from JavaScript running on any web page.</p><p>Last August I had ChatGPT build me a simple tool for hitting that API for any user which fetches their comments and gives me a mobile-friendly &quot;copy to clipboard&quot; button. I&#x27;ve since tweaked it a few times with Claude.</p><p>I can then paste the whole lot into any LLM - these days I mostly use Claude Opus 4.6 for this - and prompt &quot;profile this user&quot; to see what it can figure out.</p><p>It&#x27;s startlingly effective! It feels invasive to quote the profile of another user here, so I&#x27;ll show you what it produces for me:</p><p>This is Simon Willison — a prolific, independent software developer, blogger, and one of the most visible voices in the AI-assisted coding space. Here&#x27;s a profile drawn from his comments:</p><p>Professional identity: Independent developer and writer. Co-creator of Django, creator of Datasette and many other open source tools. On the board of the Python Software Foundation. Runs a heavily-trafficked personal blog at simonwillison.net with multiple content types (entries, link blog, notes, quotations). Monetizes through GitHub sponsors, ethical ads, and occasional consulting — not through any AI company payroll, a point he defends frequently.</p><p>Core thesis on AI coding: He&#x27;s the leading evangelist for what he calls &quot;agentic engineering&quot; — using coding agents (Claude Code, Codex CLI) as productivity multipliers for skilled developers. His central argument: LLMs don&#x27;t replace programmers, they amplify existing expertise. He&#x27;s writing a guide/book on this at simonwillison.net/guides. He insists these tools are deceptively difficult to use well, and that most people who report bad results simply haven&#x27;t learned the craft yet.</p><p>Working style: He does most of his programming from his iPhone via Claude Code for web, often while riding BART, walking the dog, or sitting in the garden. He embraces &quot;YOLO mode&quot; (auto-approving agent actions) and frequently runs 2-3 agent sessions in parallel. He starts every session with &quot;run uv run pytest&quot; to anchor the agent in TDD. He&#x27;s on the $200/month Claude Max plan.</p><p>Key technical interests: Sandboxing and security (WebAssembly, Pyodide, sandbox-exec, Firecracker), SQLite (deeply), Python packaging and tooling (uv, PyPI distribution tricks), browser-in-a-browser experiments (v86, WASM Linux), and local LLM inference. He&#x27;s been learning Go &quot;by osmosis&quot; through coding agents.</p><p>Security consciousness: He coined the term &quot;prompt injection&quot; and the &quot;lethal trifecta&quot; (access to private data + exposure to untrusted input + ability to take actions). He&#x27;s genuinely alarmed about OpenClaw/Clawdbot security risks and has been predicting a headline-grabbing prompt injection attack &quot;in the next six months&quot; for over two years — acknowledging it keeps not happening while insisting the risk is real. He references the &quot;normalization of deviance&quot; pattern frequently.</p><p>Personality and debate style: Energetic, combative when challenged, but generally good-natured. He engages heavily in HN comment threads — sometimes dozens of replies in a single discussion. He&#x27;s transparent about his biases and maintains a public disclosures page. He pushes back hard against what he sees as motivated reasoning from AI skeptics, but also against AGI hype (&quot;I refer to that as the science fiction version of AI&quot;). He gets visibly frustrated by sock-puppet accounts and bad-faith criticism. He has a self-deprecating streak (&quot;my stupid pelican benchmark&quot;).</p><p>Recurring themes across hundreds of comments:</p><p>&quot;Two things can be true at the same time&quot; — he holds nuanced positions</p><p>Tests are for productivity, not just quality</p><p>The November 2025 model releases (Opus 4.5, GPT-5.2) were a genuine inflection point</p><p>Code review is the biggest bottleneck in agent-assisted workflows</p><p>&quot;Cognitive debt&quot; is a real and unsolved problem</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Mar/20/turbo-pascal/#atom-everything" target="_blank">Turbo Pascal 3.02A, deconstructed</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Mar 20, 2026 &middot; 23:59 UTC</span>
+          </div>
+          <p class="summary"><span>Turbo Pascal 3.02A, deconstructed In Things That Turbo Pascal is Smaller Than James Hague lists things (from 2011) that are larger in size than Borland&#x27;s 1985 Turbo Pascal 3.02 executable - a 39,731 byte file that somehow included a full text editor IDE and Pascal compiler.</span> <span>This inspired me to track down a copy of that executable (available as freeware since 2000) and see if Claude could interpret the binary and decompile it for me.</span> <span>Tags: computer-history , tools , ai , generative-ai , llms , claude</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Turbo Pascal 3.02A, deconstructed</p><p>In Things That Turbo Pascal is Smaller Than James Hague lists things (from 2011) that are larger in size than Borland&#x27;s 1985 Turbo Pascal 3.02 executable - a 39,731 byte file that somehow included a full text editor IDE and Pascal compiler.</p><p>This inspired me to track down a copy of that executable (available as freeware since 2000) and see if Claude could interpret the binary and decompile it for me.</p><p>It did a great job, so I had it create this interactive artifact illustrating the result. Here&#x27;s the sequence of prompts I used (in regular claude.ai chat, not Claude Code):</p><p>Read this <a href="https://prog21.dadgum.com/116.html" target="_blank" rel="noopener">https://prog21.dadgum.com/116.html</a></p><p>Now find a copy of that binary online</p><p>Explore this (I attached the zip file)</p><p>Build an artifact - no react - that embeds the full turbo.com binary and displays it in a way that helps understand it - broke into labeled segments for different parts of the application, decompiled to visible source code (I guess assembly?) and with that assembly then reconstructed into readable code with extensive annotations</p><p>Update: Annoyingly the Claude share link doesn&#x27;t show the actual code that Claude executed, but here&#x27;s the zip file it gave me when I asked to download all of the intermediate files.</p><p>I ran Codex CLI with GPT-5.4 xhigh against that zip file to see if it would spot any obvious hallucinations, and it did not. This project is low-enough stakes that this gave me enough confidence to publish the result!</p><p>Tags: computer-history, tools, ai, generative-ai, llms, claude</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Mar/19/openai-acquiring-astral/#atom-everything" target="_blank">Thoughts on OpenAI acquiring Astral and uv/ruff/ty</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Mar 19, 2026 &middot; 16:45 UTC</span>
+          </div>
+          <p class="summary"><span>The big news this morning: Astral to join OpenAI (on the Astral blog) and OpenAI to acquire Astral (the OpenAI announcement).</span> <span>The official line from OpenAI and Astral The Astral team will become part of the Codex team at OpenAI.</span> <span>Tags: python , ai , rust , openai , ruff , uv , astral , charlie-marsh , coding-agents , codex-cli , ty</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>The big news this morning: Astral to join OpenAI (on the Astral blog) and OpenAI to acquire Astral (the OpenAI announcement). Astral are the company behind uv, ruff, and ty - three increasingly load-bearing open source projects in the Python ecosystem. I have thoughts!</p><p>The official line from OpenAI and Astral</p><p>The Astral team will become part of the Codex team at OpenAI.</p><p>Charlie Marsh has this to say:</p><p>Open source is at the heart of that impact and the heart of that story; it sits at the center of everything we do. In line with our philosophy and OpenAI&#x27;s own announcement, OpenAI will continue supporting our open source tools after the deal closes. We&#x27;ll keep building in the open, alongside our community -- and for the broader Python ecosystem -- just as we have from the start. [...]</p><p>After joining the Codex team, we&#x27;ll continue building our open source tools, explore ways they can work more seamlessly with Codex, and expand our reach to think more broadly about the future of software development.</p><p>OpenAI&#x27;s message has a slightly different focus (highlights mine):</p><p>As part of our developer-first philosophy, after closing OpenAI plans to support Astral’s open source products. By bringing Astral’s tooling and engineering expertise to OpenAI, we will accelerate our work on Codex and expand what AI can do across the software development lifecycle.</p><p>This is a slightly confusing message. The Codex CLI is a Rust application, and Astral have some of the best Rust engineers in the industry - BurntSushi alone (Rust regex, ripgrep, jiff) may be worth the price of acquisition!</p><p>So is this about the talent or about the product? I expect both, but I know from past experience that a product+talent acquisition can turn into a talent-only acquisition later on.</p><p>uv is the big one</p><p>Of Astral&#x27;s projects the most impactful is uv. If you&#x27;re not familiar with it, uv is by far the most convincing solution to Python&#x27;s environment management problems, best illustrated by this classic XKCD:</p><p>Switch from python to uv run and most of these problems go away. I&#x27;ve been using it extensively for the past couple of years and it&#x27;s become an essential part of my workflow.</p><p>I&#x27;m not alone in this. According to PyPI Stats uv was downloaded more than 126 million times last month! Since its release in February 2024 - just two years ago - it&#x27;s become one of the most popular tools for running Python code.</p><p>Ruff and ty</p><p>Astral&#x27;s two other big projects are ruff - a Python linter and formatter - and ty - a fast Python type checker.</p><p>These are popular tools that provide a great developer experience but they aren&#x27;t load-bearing in the same way that uv is.</p><p>They do however resonate well with coding agent tools like Codex - giving an agent access to fast linting and type checking tools can help improve the quality of the code they generate.</p><p>I&#x27;m not convinced that integrating them into the coding agent itself as opposed to telling it when to run them will make a meaningful difference, but I may just not be imaginative enough here.</p><p>What of pyx?</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/how-we-monitor-internal-coding-agents-misalignment" target="_blank">How we monitor internal coding agents for misalignment</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Mar 19, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>How OpenAI uses chain-of-thought monitoring to study misalignment in internal coding agents—analyzing real-world deployments to detect risks and strengthen AI safety safeguards.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/openai-to-acquire-astral" target="_blank">OpenAI to acquire Astral</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Mar 19, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>Accelerates Codex growth to power the next generation of Python developer tools</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-built-lennyrpg-f85" target="_blank">How I built LennyRPG</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Mar 18, 2026 &middot; 15:27 UTC</span>
+          </div>
+          <p class="summary"><span>If you’re a premium lennysreads.com When I released my full podcast transcript archive, Ben Shih, a non-technical designer at Miro, built LennyRPG: a Pokémon-style RPG where you battle podcast guests with product trivia.</span> <span>, Ben walks through the exact six-step workflow he used to go from sketch to shipped game, including the tools, prompts, and decisions at every stage, along with the broader lessons he learnt along the way.</span> <span>Listen now: YouTube | Apple | Spotify , you’ll learn: How to have AI interview you instead of writing the PRD yourself When to pivot your framework, rather than force the wrong tool How to systematically process 300+ transcripts into game data Three core lessons Ben learned from building LennyRPG Ben Shih Brian Balfour Claude Code Awesome Skills marketplace LennysData.com LennyRPG Lenny’s Product Pass OpenGameArt.org Phaser 3 RPG-JS Supabase Wispr Flow Read the post</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/guides/agentic-engineering-patterns/subagents/#atom-everything" target="_blank">Subagents</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Mar 17, 2026 &middot; 12:32 UTC</span>
+          </div>
+          <p class="summary"><span>Subagents provide a simple but effective way to handle larger tasks without burning through too much of the coding agent’s valuable top-level context.</span> <span>Claude Code’s Explore subagent Claude Code uses subagents extensively as part of its standard way of working.</span> <span>Official documentation Several popular coding agents support subagents, each with their own documentation on how to use them: OpenAI Codex subagents Claude subagents Gemini CLI subagents Mistral Vibe subagents OpenCode agents Subagents in Visual Studio Code Cursor Subagents Tags: parallel-agents , coding-agents , generative-ai , agentic-engineering , ai , llms</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Agentic Engineering Patterns &gt;</p><p>LLMs are restricted by their context limit - how many tokens they can fit in their working memory at any given time. These values have not increased much over the past two years even as the LLMs themselves have seen dramatic improvements in their abilities - they generally top out at around 1,000,000, and benchmarks frequently report better quality results below 200,000.</p><p>Carefully managing the context such that it fits within those limits is critical to getting great results out of a model.</p><p>Subagents provide a simple but effective way to handle larger tasks without burning through too much of the coding agent’s valuable top-level context.</p><p>When a coding agent uses a subagent it effectively dispatches a fresh copy of itself to achieve a specified goal, with a new context window that starts with a fresh prompt.</p><p>Claude Code’s Explore subagent</p><p>Claude Code uses subagents extensively as part of its standard way of working. Let&#x27;s use that as an illustrative example.</p><p>Any time you start a new task against an existing repo Claude Code first needs to explore that repo to figure out its general shape and find relevant information needed to achieve that task.</p><p>It does this by constructing a prompt and dispatching a subagent to perform that exploration and return a description of what it finds.</p><p>I kicked off a Claude Code session with a screenshot of a page from my guide and this prompt:</p><p>Make the chapter diffs also show which characters have changed in this diff view with a darker color of red or green for the individually changed segments of text within the line</p><p>Here&#x27;s the transcript of that session.</p><p>Claude Code started by running an “Explore” subagent with the following starter prompt:</p><p>Find the code that implements the diff view for &quot;chapters&quot; in this Django blog. I need to find:</p><p>Templates that render diffs (look for diff-related HTML/CSS with red/green backgrounds)</p><p>Python code that generates diffs (look for difflib usage or similar)</p><p>Any JavaScript related to diff rendering</p><p>CSS styles for the diff view (red/green line backgrounds)</p><p>Search thoroughly - check templates/, static/, blog/ directories. Look for keywords like &quot;diff&quot;, &quot;chapter&quot;, &quot;revision&quot;, &quot;history&quot;, &quot;compare&quot;.</p><p>Subagents work similar to any other tool call: the parent agent dispatches them just as they would any other tool and waits for the response. It&#x27;s interesting to see models prompt themselves in this way - they generally have good taste in prompting strategies.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/japan-teen-safety-blueprint" target="_blank">OpenAI Japan announces Japan Teen Safety Blueprint to put teen safety first</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Mar 17, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI Japan announces the Japan Teen Safety Blueprint, introducing stronger age protections, parental controls, and well-being safeguards for teens using generative AI.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/introducing-gpt-5-4-mini-and-nano" target="_blank">Introducing GPT-5.4 mini and nano</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Mar 17, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>GPT-5.4 mini and nano are smaller, faster versions of GPT-5.4 optimized for coding, tool use, multimodal reasoning, and high-volume API and sub-agent workloads.</span></p>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 174</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
