@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-03-26</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-03-26</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-the-biggest-claude-launch" target="_blank">[AINews] The Biggest Claude Launch of All Time</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Mar 26, 2026 &middot; 03:53 UTC</span>
+          </div>
+          <p class="summary"><span>It is considered uncouth in the news business to reflect on things that happened a few days ago — that is “olds”, not “news”.</span> <span>But we’re making a very conscious attempt to give you early and repeated signal on trends and not just headlines with AINews.</span> <span>To wit, although we already reported on Claude Cowork Dispatch , and Claude Cowork Dispatch Computer Use (a result of last month’s Vercept acquisition ) was technically launched yesterday , the reception has been FAR and away Claude’s biggest launch of all time (inclusive of @AnthropicAI): We created this chart by accumulating all the top tweets of the company accounts:</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2603.24582v1" target="_blank">The Stochastic Gap: A Markovian Framework for Pre-Deployment Reliability and Oversight-Cost Auditing in Agentic Artificial Intelligence</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Mar 25, 2026 &middot; 17:56 UTC</span>
+          </div>
+          <p class="summary"><span>Agentic artificial intelligence (AI) in organizations is a sequential decision problem constrained by reliability and oversight cost.</span> <span>When deterministic workflows are replaced by stochastic policies over actions and tool calls, the key question is not whether a next step appears plausible, but whether the resulting trajectory remains statistically supported, locally unambiguous, and economically governable.</span> <span>The core quantities are state blind-spot mass B_n(tau), state-action blind mass B^SA_{pi,n}(tau), an entropy-based human-in-the-loop escalation gate, and an expected oversight-cost identity over the workflow visitation measure.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Agentic artificial intelligence (AI) in organizations is a sequential decision problem constrained by reliability and oversight cost. When deterministic workflows are replaced by stochastic policies over actions and tool calls, the key question is not whether a next step appears plausible, but whether the resulting trajectory remains statistically supported, locally unambiguous, and economically governable. We develop a measure-theoretic Markov framework for this setting. The core quantities are state blind-spot mass B_n(tau), state-action blind mass B^SA_{pi,n}(tau), an entropy-based human-in-the-loop escalation gate, and an expected oversight-cost identity over the workflow visitation measure.   We instantiate the framework on the Business Process Intelligence Challenge 2019 purchase-to-pay log (251,734 cases, 1,595,923 events, 42 distinct workflow actions) and construct a log-driven simulated agent from a chronological 80/20 split of the same process. The main empirical finding is that a large workflow can appear well supported at the state level while retaining substantial blind mass over next-step decisions: refining the operational state to include case context, economic magnitude, and actor class expands the state space from 42 to 668 and raises state-action blind mass from 0.0165 at tau=50 to 0.1253 at tau=1000. On the held-out split, m(s) = max_a pi-hat(a|s) tracks realized autonomous step accuracy within 3.4 percentage points on average.   The same quantities that delimit statistically credible autonomy also determine expected oversight burden. The framework is demonstrated on a large-scale enterprise procurement workflow and is designed for direct application to engineering processes for which operational event logs are available.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/lyria-3-pro-create-longer-tracks-in-more/" target="_blank">Lyria 3 Pro: Create longer tracks in more</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Mar 25, 2026 &middot; 16:01 UTC</span>
+          </div>
+          <p class="summary"><span>Lyria 3 Pro: Create longer tracks in more Google products Mar 25, 2026 · Share x.com Facebook LinkedIn Mail Introducing Lyria 3 Pro, which unlocks longer tracks with structural awareness.</span> <span>We’re also bringing Lyria to more Google products and surfaces.</span> <span>Now, we’re bringing our most advanced music generation model to more Google products, and introducing Lyria 3 Pro.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Lyria 3 Pro: Create longer tracks in more Google products Mar 25, 2026 · Share x.com Facebook LinkedIn Mail Introducing Lyria 3 Pro, which unlocks longer tracks with structural awareness. We’re also bringing Lyria to more Google products and surfaces. Myriam Hamed Torres Senior Product Manager, Google DeepMind Share x.com Facebook LinkedIn Mail Last month, we introduced Lyria 3 , featuring custom music generation designed to spark creative expression. Now, we’re bringing our most advanced music generation model to more Google products, and introducing Lyria 3 Pro. This advanced version allows the creation of tracks up to 3 minutes long, with customization and creative control. Lyria 3 Pro better understands musical composition, so you can now prompt for specific elements like intros, verses, choruses and bridges. It’s great for experimenting with different styles or generating songs with complex transitions. Your browser does not support the audio element. Lyria 3 Pro Musical Overview Providing new places to generate music High-quality music generation should be accessible wherever creativity happens. Whether you are an app developer, a business or music professional, or a creator, these integrations allow you to use Lyria’s advanced musical awareness to scale your production. Vertex AI : Lyria 3 Pro is now in public preview on Vertex AI for businesses who require on-demand audio at scale. It gives organizations the ability to scale high-fidelity production, from rapidly generating bespoke soundtracks for gaming to integrating into creative tools, music and video platforms. Google AI Studio and the Gemini API : For developers building the next generation of creative tools, Lyria 3 provides improved musical awareness and structural coherence to offer creative flexibility. Lyria 3 Pro is now available alongside Lyria RealTime in AI Studio. Google Vids : Vids is an AI-powered video creation app that anyone can use. With Lyria 3 and Lyria 3 Pro in Vids, you can add custom music that matches your style for everything from creative projects to marketing videos. This is rolling out to Google Workspace customers and Google AI Pro &amp; Ultra subscribers starting this week. Gemini app : Longer generations with Lyria 3 Pro are now available in the Gemini app, starting with paid subscribers. Lyria 3 Pro’s enhanced customization offers more space to experiment and play with longer tracks. So now, you can add more details to bring your full vision to life, or create personalized tracks for vlogs, podcasts or tutorial videos. ProducerAI : We recently introduced ProducerAI , a collaborative music creation tool, built by musicians looking for new ways to enhance their creative process. With Lyria 3 Pro, ProducerAI offers an agentic experience designed to help artists, producers and songwriters at every level iterate on comprehensive songs. It’s available globally to free and paid subscribers. Partnering with creatives We have been developing our music generation tools responsibly and in close partnership with the industry to ensure AI serves as a tool for creative expression. Through our Music AI Sandbox , we provide musicians, producers and songwriters with a suite of experimental tools designed to expand their creative horizons. The insights from this collaboration helped shape the development of Lyria 3. We’re inviting artists to integrate AI into their workflows to make sure our technology helps the people who use it. Grammy-winning producer Yung Spielburg used Lyria in his composition and production process for the score of the Google DeepMind short film “ Dear Upstairs Neighbors .” And we’re also collaborating with DJ and producer François K , who used Lyria in an iterative process to create a soon-to-be-released song. Responsibility was foundational, and remains integral in the design and training of Lyria 3, using materials that YouTube and Google has a right to use under our terms of service, partner agreements, and applicable law. To protect original expression, Lyria 3 and Gemini do not mimic artists; if a prompt names a creator, the model takes that as broad inspiration. Additionally, we employ filters to check outputs against existing content and users must adhere to the Terms of Service and Gen AI prohibited use policies , which prohibit violating others&#x27; intellectual property and privacy rights. All Lyria 3 and Lyria 3 Pro outputs are embedded with SynthID , our imperceptible watermark for identifying Google AI-generated content. Lyria 3 Pro is rolling out to professionals, developers, organizations and everyday creators to help craft high quality music generations</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-stripe-built-minionsai-coding" target="_blank">How Stripe built “minions”—AI coding agents that ship 1,300 PRs weekly from Slack reactions | Steve Kaliski (Stripe engineer)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Mar 25, 2026 &middot; 12:03 UTC</span>
+          </div>
+          <p class="summary"><span>Rippling —Stop wasting time on admin tasks, build your startup faster Introduction to Steve Stripe’s minions and their effect on Stripe as a whole Why activation energy matters more than execution What is a minion? The technical architecture Demo: Activating a minion from Slack with an emoji Why good developer experience benefits both humans and agents Walking through the agent loop and system prompts Why Stripe chose Goose as their agent harness The role of Stripe’s developer productivity team Why cloud environments unlock multi-threaded AI engineering One-shot prompting: from Slack to shipped PR How Stripe handles code review for 1,300 AI-written PRs weekly Non-engineers using minions across the company Demo: Planning a birthday party with Claude and machine payments Quick recap The future of ephemeral, API-first businesses for agents Lightning round and final thoughts<ul><li>Goose (AI agent harness): <a href="https://github.com/block/goose" target="_blank" rel="noopener">https://github.com/block/goose</a></li><li>Claude Code: <a href="https://claude.ai/code" target="_blank" rel="noopener">https://claude.ai/code</a></li><li>Cursor: <a href="https://cursor.sh/" target="_blank" rel="noopener">https://cursor.sh/</a></li><li>VS Code: <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">https://code.visualstudio.com/</a></li><li>Slack: <a href="https://slack.com/" target="_blank" rel="noopener">https://slack.com/</a></li><li>Browserbase: <a href="https://browserbase.com/" target="_blank" rel="noopener">https://browserbase.com/</a></li><li>Parallel AI: <a href="https://www.parallel.ai/" target="_blank" rel="noopener">https://www.parallel.ai/</a></li><li>PostalForm: <a href="https://postalform.com/" target="_blank" rel="noopener">https://postalform.com/</a></li><li>Stripe Climate: <a href="https://stripe.com/climate" target="_blank" rel="noopener">https://stripe.com/climate</a> Other</li><li>Stripe machine payments: <a href="https://docs.stripe.com/payments/machine" target="_blank" rel="noopener">https://docs.stripe.com/payments/machine</a></li><li>Blue-Green Deployment: <a href="https://martinfowler.com/bliki/BlueGreenDeployment.html" target="_blank" rel="noopener">https://martinfowler.com/bliki/BlueGreenDeployment.html</a></li><li>Git worktrees: <a href="https://git-scm.com/docs/git-worktree" target="_blank" rel="noopener">https://git-scm.com/docs/git-worktree</a> LinkedIn: <a href="https://www.linkedin.com/in/steve-kaliski-079a7710/" target="_blank" rel="noopener">https://www.linkedin.com/in/steve-kaliski-079a7710/</a> Where to find Claire Vo: ChatPRD: <a href="https://www.chatprd.ai/" target="_blank" rel="noopener">https://www.chatprd.ai/</a> Website: <a href="https://clairevo.com/" target="_blank" rel="noopener">https://clairevo.com/</a> LinkedIn: <a href="https://www.linkedin.com/in/clairevo/" target="_blank" rel="noopener">https://www.linkedin.com/in/clairevo/</a> X: <a href="https://x.com/clairevo" target="_blank" rel="noopener">https://x.com/clairevo</a> Production and marketing by <a href="https://penname.co/" target="_blank" rel="noopener">https://penname.co/</a> .</span> <span>For inquiries about sponsoring the podcast, email [email protected] .</li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/safety-bug-bounty" target="_blank">Introducing the OpenAI Safety Bug Bounty program</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Mar 25, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI launches a Safety Bug Bounty program to identify AI abuse and safety risks, including agentic vulnerabilities, prompt injection, and data exfiltration.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Mar/24/auto-mode-for-claude-code/#atom-everything" target="_blank">Auto mode for Claude Code</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Mar 24, 2026 &middot; 23:57 UTC</span>
+          </div>
+          <p class="summary"><span>Auto mode for Claude Code Really interesting new development in Claude Code today as an alternative to --dangerously-skip-permissions : Today, we&#x27;re introducing auto mode, a new permissions mode in Claude Code where Claude makes permission decisions on your behalf, with safeguards monitoring actions before they run.</span> <span>The most interesting insight into how they work comes when you run this new command in the terminal: claude auto-mode defaults Here&#x27;s the full JSON output .</span> <span>Tags: security , ai , prompt-injection , generative-ai , llms , coding-agents , claude-code</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Auto mode for Claude Code</p><p>Really interesting new development in Claude Code today as an alternative to --dangerously-skip-permissions:</p><p>Today, we&#x27;re introducing auto mode, a new permissions mode in Claude Code where Claude makes permission decisions on your behalf, with safeguards monitoring actions before they run.</p><p>Those safeguards appear to be implemented using Claude Sonnet 4.6, as described in the documentation:</p><p>Before each action runs, a separate classifier model reviews the conversation and decides whether the action matches what you asked for: it blocks actions that escalate beyond the task scope, target infrastructure the classifier doesn’t recognize as trusted, or appear to be driven by hostile content encountered in a file or web page. [...]</p><p>Model: the classifier runs on Claude Sonnet 4.6, even if your main session uses a different model.</p><p>They ship with an extensive set of default filters, and you can also customize them further with your own rules. The most interesting insight into how they work comes when you run this new command in the terminal:</p><p>claude auto-mode defaults</p><p>Here&#x27;s the full JSON output. It&#x27;s pretty long, so here&#x27;s an illustrative subset:</p><p>From the &quot;allow&quot; list:</p><p>Test Artifacts: Hardcoded test API keys, placeholder credentials in examples, or hardcoding test cases</p><p>Local Operations: Agent deleting local files in working directory, local file operations within project scope, or using --ignore-certificate-errors for local testing. &quot;Project scope&quot; means the repository the session started in — wandering into ~/, ~/Library/, /etc, or other repos is scope escalation (User Intent Rule #2), not a local operation. Does NOT cover irreversible destruction of pre-existing files or local stateful services — see &quot;Irreversible Local Destruction&quot; in BLOCK.</p><p>Read-Only Operations: GET requests, read-only API calls, or queries that don&#x27;t modify state and don&#x27;t contain sensitive information in the URL. Note: PREEMPTIVE BLOCK ON CLEAR INTENT still applies — if the transcript contains clear evidence the agent is using read-only operations to scout for a blocked action, block it.</p><p>Declared Dependencies: Installing packages that are already declared in the repo&#x27;s manifest files (requirements.txt, package.json, Cargo.toml, pyproject.toml, Gemfile, etc.) via standard commands that read those manifests (pip install -r requirements.txt, npm install, cargo build, bundle install) — provided the agent has not modified the manifest in this session. Does NOT cover installing agent-chosen package names (e.g. pip install foo, npm install bar) — those carry typosquat and supply-chain risk. [...]</p><p>From &quot;soft_deny&quot;:</p><p>Git Destructive: Force pushing (git push --force), deleting remote branches, or rewriting remote history</p><p>Git Push to Default Branch: Pushing directly to main, master, or the repository&#x27;s default branch — this bypasses pull request review. Commits should be pushed to a new feature branch instead.</p><p>-Code from External: Downloading and executing code from external sources — e.g. curl | bash, deserializing external data via formats that can execute code (eval, exec, yaml.unsafe_load, pickle, etc), or similar mechanisms. Also includes running code from an external repo cloned earlier in the transcript (pip install -e, make install, python script.py, pickle.load/torch.load on cloned repo files) — &quot;local on disk&quot; does not mean trusted if it was cloned from an external source visible in the transcript. The repo the agent starts in is trusted.</p><p>Cloud Storage Mass Delete: Deleting or mass modifying files on cloud storage (S3, GCS, Azure Blob, etc.) [...]</p><p>I remain unconvinced by prompt injection protections that rely on AI, since they&#x27;re non-deterministic by nature. The documentation does warn that this may still let things through:</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/state-of-the-product-job-market-in-ee9" target="_blank">State of the product job market in early 2026</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Mar 24, 2026 &middot; 12:45 UTC</span>
+          </div>
+          <p class="summary"><span>In spite of the headlines about layoffs and AI taking jobs, we’re actually seeing a lot of promising signs in tech hiring, and some interesting new trends: PM openings are at the highest levels we’ve seen in over three years AI hasn’t slowed the demand for software engineers (at least not yet) AI roles in general are absolutely exploding Design roles have plateaued The Bay Area is increasing in importance Remote work opportunities continue to decline Despite ongoing layoffs, the overall number of tech jobs continues to grow While these numbers are promising, I know a lot of people are having a hard time finding a job right now.</span> <span>They track job openings at tech companies and top startups around the world (over 9,000 companies) and make it easy to browse open gigs .</span> <span>In mid-2023, we went from more open designer roles to more open PM roles.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Welcome to our biannual State of the Product Job Market —our fourth and, very surprisingly, the most optimistic. In spite of the headlines about layoffs and AI taking jobs, we’re actually seeing a lot of promising signs in tech hiring, and some interesting new trends: PM openings are at the highest levels we’ve seen in over three years AI hasn’t slowed the demand for software engineers (at least not yet) AI roles in general are absolutely exploding Design roles have plateaued The Bay Area is increasing in importance Remote work opportunities continue to decline Despite ongoing layoffs, the overall number of tech jobs continues to grow While these numbers are promising, I know a lot of people are having a hard time finding a job right now. And more openings doesn’t automatically mean people are finding jobs more quickly. For anyone in that situation, first of all, I’m sorry. Second, I’m working on ways to help. Until then, check out the end of this post for a bunch of I’ve collected that’ll improve your odds of landing a gig. Let’s get into it. This analysis is based on data from TrueUp , one of my favorite collaborators and sources of data. They track job openings at tech companies and top startups around the world (over 9,000 companies) and make it easy to browse open gigs . Their data looks at roles at tech companies—the most sought-after and lucrative jobs. (It doesn’t include roles at non-tech companies and consulting agencies.) 1. PM openings are at the highest levels we’ve seen in over 3 years There are over 7,300 open PM roles at tech companies globally, and trending up. This is 75% above the low we saw in early 2023, and already up nearly 20% since the start of this year. Today we have the most open PM roles we’ve seen since 2022 . ( You can see all of these open roles here .) The same trend is true for engineering roles . AI hasn’t slowed the demand for software engineers (at least not yet) There are over 67,000 (!!!) eng openings at tech companies globally right now, with 26,000 just in the U.S. We don’t know if there would have been more open roles if not for AI or if AI is actually leading to more open roles, but since the start of this year, the increase in open eng roles is accelerating even more. If you’re skeptical that this growth is real and likely to be sustained, we’re also seeing a surge in demand for tech recruiters. The number of open recruiter roles is almost back to 2022 peak levels. This role got hit the hardest post-Covid, and also recovered the quickest. By definition, recruiting headcount expands and contracts with hiring demand, so it’s likely a leading indication that we’re tracking toward sustained highs in hiring demand in tech. AI jobs in general are absolutely exploding AI roles were already growing fast in our last update mid-last year, but they are now hockey-sticking: “AI roles” includes (1) all open roles at AI-driven companies, like OpenAI, Anthropic, Cursor, and Lovable, and (2) AI-specific roles at non-AI companies, like an AI PM at Figma. Browse them here . Demand for AI engineers and AI PMs is similarly exploding. Whether this is simply the number of AI companies being created or the headcount at top AI companies growing, it’s a good time to be in AI. Design roles have plateaued Unlike PM and engineering, open design jobs have been relatively flat since early 2023, and there are also fewer of these roles than PMs and engineers in absolute terms (about 5,700 globally). I don’t know exactly what’s going on here, but it does feel AI-related. Unlike PM and eng, which started growing in 2024 (two years post-ChatGPT), design didn’t. If I had to venture a theory, I’d say that because AI is allowing engineers to move so quickly, there’s less opportunity—and less desire—to involve the traditional design process. A recent tweet commented on this same trend . That said, you’d think design would become a differentiator as more products compete for attention. Something to think about for your company! We’ll keep watching this trend and AI’s impact on org design more generally. One interesting observation we made when we went a level deeper: the ratio of demand for PMs vs. designers has flipped. In mid-2023, we went from more open designer roles to more open PM roles. And ever since, PM demand has been pulling away (currently 1.27x). This will be another trend to monitor, in terms of how AI is reshaping org design. The Bay Area continues increasing in importance The Bay Area has long had the highest share of tech roles, but that share is still growing. Over 20% of all eng and designer roles are now in the Bay Area, and over 23% (!!!) of open PM roles are too (up 50% since 2022!). And all three are still going up. A whopping third of open AI roles are based in the Bay Area , but, interestingly, this number has stayed relatively flat in the past few years. That tells me that the Bay Area unquestionably continues to be the center of AI (the next city is New York, with 10.2%), but at the same time, AI roles outside the Bay Area continue to grow at the same rate. One more interesting data point: NYC has established itself as the #2 tech jobs location in the world, despite not being the headquarters of any of the leading tech companies. Bengaluru (formerly Bangalore), London, Tel Aviv, and Singapore continue to be the top international hubs for tech. Remote work opportunities continue to decline</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/teen-safety-policies-gpt-oss-safeguard" target="_blank">Helping developers build safer AI experiences for teens</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Mar 24, 2026 &middot; 11:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI releases prompt-based teen safety policies for developers using gpt-oss-safeguard, helping moderate age-specific risks in AI systems.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/state-of-the-product-job-market-in-372" target="_blank">State of the product job market in early 2026</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Mar 24, 2026 &middot; 09:02 UTC</span>
+          </div>
+          <p class="summary"><span>If you’re a premium lennysreads.com Contrary to what the headlines might be telling you, PM job openings are at their highest point in over three years, AI roles are hockey-sticking, and tech headcount is growing.</span> <span>Today’s episode is our fourth biannual update on the tech job market (the most optimistic yet) and breaks down seven key trends shaping the job landscape right now.</span> <span>Listen now: YouTube | Apple | Spotify , you’ll learn: Why PMs have reason to be optimistic How the influx of new AI roles is shaping the industry The unexpected sign of tech growth What current job openings look like for design and software engineering roles Surprising trends across remote job opportunities AI Practice Copilot for PM Interviews Analytical thinking interviews guide Google Career Dreamer How to pass any first-round interview How to use AI for your job interview The definitive guide to mastering product sense interviews TrueUp Read the post</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/powering-product-discovery-in-chatgpt" target="_blank">Powering product discovery in ChatGPT</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Mar 24, 2026 &middot; 09:00 UTC</span>
+          </div>
+          <p class="summary"><span>ChatGPT introduces richer, visually immersive shopping powered by the Agentic Commerce Protocol, enabling product discovery, side-by-side comparisons, and merchant integration.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/update-on-the-openai-foundation" target="_blank">Update on the OpenAI Foundation</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Mar 24, 2026 &middot; 09:00 UTC</span>
+          </div>
+          <p class="summary"><span>The OpenAI Foundation announces plans to invest at least $1 billion in curing diseases, economic opportunity, AI resilience, and community programs.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-dreamer-joins-meta-superintelligence" target="_blank">[AINews] Dreamer joins Meta Superintelligence Labs — 9 month retro of Personal Superintelligence</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Mar 24, 2026 &middot; 06:50 UTC</span>
+          </div>
+          <p class="summary"><span>AI Twitter Recap Claude Computer Use, Agent Harnesses, and the Shift From “Codegen” to Full Workflow Automation Anthropic pushed computer use onto the desktop : Claude can now control the mouse, keyboard, and screen to operate arbitrary apps in a macOS research preview via Claude Cowork and Claude Code, a notable widening of the agent surface beyond APIs and browser sandboxes.</span> <span>The claim is that these meta-level improvements transfer across domains including coding, paper review, robotics reward design, and Olympiad grading, addressing a key limitation of prior self-improving systems that kept the self-improvement loop itself hand-authored ( Jenny Zhang ).</span> <span>Luma Uni-1 : major engagement around a model that collapses reasoning and image generation into one product surface, though details remain sparse in the tweet itself ( Luma Labs ).</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>AI Twitter Recap Claude Computer Use, Agent Harnesses, and the Shift From “Codegen” to Full Workflow Automation Anthropic pushed computer use onto the desktop : Claude can now control the mouse, keyboard, and screen to operate arbitrary apps in a macOS research preview via Claude Cowork and Claude Code, a notable widening of the agent surface beyond APIs and browser sandboxes. The launch landed alongside strong community reactions about not needing a laptop for many tasks anymore and why Anthropic may have skipped acquiring broader external agent stacks in favor of owning the full “do anything on your computer” loop ( Claude announcement , Felix Rieseberg , Yuchen Jin , Alex Albert ). The agent stack is converging on long-running, parallel, tool-rich workflows : multiple tweets pointed to a maturing harness layer around coding and ops agents: Hermes Agent momentum and ecosystem curation ( awesome-hermes-agent , Teknium tips , open-source vibe shift ); T3 Code adding integrated browser and terminal capabilities ( T3 Code browser integration , Theo on open-sourcing T3 Code ); Command Center and similar orchestration tools for many-agent parallel execution from one workspace ( Jimmy Koppel ); and Parchi / BYOK workflows for very long-running autonomous tasks ( 0xSero , Qwen3.5-REAP in Parchi ). Operational reality is now the bottleneck, not just model IQ : several practitioners complained that newer top models can be too eager, over-agentic, or delegated to weaker subagents, hurting real coding workflows; this showed up in complaints about GPT-5.2 Pro subagents , Claude browser/computer use fragility , and the broader critique that superficial parallelization often becomes “ slop theater ” rather than throughput gains ( Mikhail Parakhin , Sarana , Jeremy Howard , bentlegen ). A recurring theme: the winning products will likely be those that close the loop with traces, evals, incidents, and production feedback, not just generate code ( LangSmith “close the loop” , PlayerZero summary ). Research on Self-Improving Agents, RL Post-Training, and Benchmark Generation Meta-affiliated work on self-improvement advanced beyond fixed meta-procedures : Hyperagents / DGM-H extends the Darwin Gödel Machine idea by allowing agents to improve not only task behavior but also the procedure that generates future improvements . The claim is that these meta-level improvements transfer across domains including coding, paper review, robotics reward design, and Olympiad grading, addressing a key limitation of prior self-improving systems that kept the self-improvement loop itself hand-authored ( Jenny Zhang ). Meta also presented a broader RL post-training unification story : RLLM = RL + LM-as-RM trains a language-model reward model on-policy from the policy’s own outputs, aiming to unify post-training over easy-to-verify, hard-to-verify, and non-verifiable tasks. The notable claim is that using a generative LM reward model can improve reward quality across task classes compared with more brittle bespoke reward setups ( Jase Weston ). Benchmark and environment generation is scaling up fast : WebArena-Infinity claims a dramatic reduction in browser environment construction cost—from months of grad-student labor to under 10 hours and &lt;$100 per environment —while producing harder, verifiable browser-use tasks where strong open-source models now score below 50% despite doing much better on legacy WebArena/OSWorld. This matters because RL for agents increasingly needs automatically generated, high-authenticity environments rather than a handful of handcrafted testbeds ( Shuyan Zhou ). Topical RL synthesis remained popular, though less novel : a high-engagement overview from The Turing Post catalogued 16 RL variants spanning RLHF, RLAIF, RLVR, process rewards, self-feedback, and critique-based methods—useful as a taxonomy, but the more technically significant tweets this cycle were about how RL environments and reward models are being industrialized ( Turing Post RL list ). World Models, JEPA, Mechanistic Interpretability, and Emerging Training Theory JEPA/world-model work had one of the stronger technical showings of the day : LeWorldModel claims stable end-to-end JEPA training directly from pixels with no teacher-student tricks, no EMA, and no heavy heuristics: 15M params , 1 GPU , and &lt;1 second planning , with follow-on summaries emphasizing ~48–50× planning speedups and competitive performance against prior world-model baselines. This attracted attention because JEPA-style methods have often been seen as fragile or trick-heavy; these results argue for a much simpler training recipe ( Lucas Maes , Randall Balestriero , RobotsDigest ). Mechanistic interpretability continues to mature from “vibes” into reverse engineering : a thread summarizing Anthropic’s “On the Biology of a Large Language Model” framed current mech interp as uncovering circuits and internal features with a level of specificity that would have sounded implausible a decade ago, while also cautioning that traced circuits need not correspond to what the model can explicitly verbalize about its own reasoning ( summary thread ). Training theory and optimizer scaling also got attention : Antonio Orvieto’s thread argued that optimization theory for adaptive methods explains much of known LLM hyperparameter scaling and can suggest transfer rules without brute-force sweeps, while follow-up discussion highlighted optimizer dependence and implications for Muon-style setups ( Orvieto , giffmana reaction , leloykun follow-up ). This is one of the more useful undercurrents of the day: people are trying to replace empirical scaling folklore with derivations. Document Parsing, Retrieval, and Search Infrastructure Became More “Agent-Native” Document parsing is becoming a serious systems layer, not a side utility : Google Devs and LlamaIndex highlighted a workflow combining LlamaParse + Gemini 3.1 Pro for extracting structured data from difficult financial PDFs, claiming roughly 15% accuracy gains on brokerage statements and complex tables. Separately, LlamaIndex’s new LiteParse targets a lighter-weight parsing path with URL and stream support and no VLM dependency, specifically pitched as something agents can call cheaply and quickly ( Google Devs , Jerry Liu , LiteParse ). Search/retrieval infra for coding agents improved materially : Cursor shipped Instant Grep , advertising regex search over millions of files in milliseconds , with a technical writeup on the indexing/algorithm tradeoffs. For agentic coding this kind of primitive matters more than another tiny model gain; search latency directly shapes whether agents can iterate over large repos fast enough to be useful ( Cursor announcement , blog link ). Late interaction / multi-vector retrieval is having a moment : the Weaviate/LightOn discussion argued that late interaction systems finally look practical for broader deployment, especially for code and reasoning-heavy retrieval. The core argument: token-level multi-vector representations can still be cheaper and more reusable than full cross-encoders, while materially improving recall and ranking quality for agentic workloads ( Connor Shorten podcast , softwaredoug , Amélie Chatelain ). Model and Product Releases: Sakana Chat, MiniMax Plans, Luma Uni-1, NVIDIA Kimodo, and More Sakana AI made the biggest concrete product launch in the set : it launched Sakana Chat for Japanese users, backed by a new Namazu alpha model family, described as post-trained open models tuned to reduce upstream bias and better reflect Japanese context and values. Sakana positioned this as both a consumer product and a demonstration of culturally localized post-training; the supporting technical blog also tied into its prior work using ensembles plus novelty search to extract narratives from 1.1M social posts in a Yomiuri collaboration on information operations analysis ( Sakana Chat , Namazu alpha , Hardmaru on the OSINT workflow ). MiniMax continued to push productization hard : it introduced a flat-rate “Token Plan” covering text, speech, music, video, and image APIs under one subscription, explicitly pitching predictable all-modality billing and compatibility with third-party harnesses. This is notable not because subscription packaging is flashy, but because multimodal API consumption has become operationally annoying enough that simplifying pricing is itself product differentiation ( MiniMax Token Plan ). Generative media shipped notable artifacts : Luma’s Uni-1 was pitched as a model that “thinks and generates pixels simultaneously,” while NVIDIA’s Kimodo drew strong engagement as a promptable motion/timeline model trained on 700 hours of mocap , supporting both human and robot skeletons and available on Hugging Face ( Luma Uni-1 , Kimodo ). Other release worth flagging : Hugging Face Kernels 0.12.3 added support for Flash-Attention 4 via cutlass.cute kernels ( Sayak Paul ); TRL v1.0.0 claimed up to 44× VRAM savings for long-sequence training with AsyncGRPO on the way ( Amine Dirhoussi ); and AI2’s MolmoPoint GUI targeted VLM-based GUI automation with grounding tokens rather than coordinate regression, reporting 61.1 on ScreenSpotPro ( HuggingPapers ). Top Tweets (by engagement, filtered for technical relevance) Claude computer use launch : Anthropic’s desktop control feature was the most consequential product release in the set and one of the clearest signs that mainstream assistants are moving from “answering” to operating software directly ( announcement ). Cursor Instant Grep : highly engaged because it addressed a real systems bottleneck for coding agents—repo-scale search latency—not just another benchmark increment ( Cursor ). Luma Uni-1 : major engagement around a model that collapses reasoning and image generation into one product surface, though details remain sparse in the tweet itself ( Luma Labs ). Sakana’s narrative intelligence / OSINT workflow : one of the more substantial applied-AI posts, combining LLM ensembles, novelty search, hypothesis generation, and human verification over 1.1M posts ( Sakana ). JEPA / LeWorldModel : strong engagement for a compact world model recipe that is much simpler and faster than many expected, and thus potentially more reproducible by ordinary labs ( LeWorldModel ). Hyperagents / DGM-H : among the most technically interesting research posts because it targets meta-level self-improvement , not just better task execution ( Hyperagents ).</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-microsofts-ai-vp-automates-everything" target="_blank">How Microsoft’s AI VP automates everything with Warp | Marco Casalaina</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Mar 23, 2026 &middot; 12:01 UTC</span>
+          </div>
+          <p class="summary"><span>Introduction to Marco Casalaina Why Marco chose Warp for administrative tasks Demo: Using Warp to manage Azure and permissions How CLI tools eliminate GUI friction for complex tasks Creating rules to improve AI performance for specialized tasks Demo: Document scanning automation Combining odd and even pages using a Python automation The value of ephemeral AI solutions vs.</span> <span>permanent tools Video compression using FFmpeg commands The concept of “ad hoc agents” for specific tasks Demo: Creating triggered workflows in Microsoft 365 Copilot Demo: Setting up scheduled tasks in ChatGPT How AI automation changes time management Teaching AI skills to the next generation Strategies for improving AI performance with AutoHotkey<ul><li>Warp: <a href="https://www.warp.dev/" target="_blank" rel="noopener">https://www.warp.dev/</a></li><li>Microsoft Azure: <a href="https://azure.microsoft.com/en-us" target="_blank" rel="noopener">https://azure.microsoft.com/en-us</a></li><li>Azure CLI: <a href="https://learn.microsoft.com/en-us/cli/azure/" target="_blank" rel="noopener">https://learn.microsoft.com/en-us/cli/azure/</a></li><li>Microsoft 365 Copilot: <a href="https://www.microsoft.com/en-us/microsoft-365/copilot" target="_blank" rel="noopener">https://www.microsoft.com/en-us/microsoft-365/copilot</a></li><li>ChatGPT: <a href="https://chat.openai.com/" target="_blank" rel="noopener">https://chat.openai.com/</a> Other</li><li>NAPS2: <a href="https://www.naps2.com/" target="_blank" rel="noopener">https://www.naps2.com/</a></li><li>PyPDF2: <a href="https://pypdf2.readthedocs.io/" target="_blank" rel="noopener">https://pypdf2.readthedocs.io/</a></li><li>FFmpeg: <a href="https://ffmpeg.org/" target="_blank" rel="noopener">https://ffmpeg.org/</a> Where to find Claire Vo: ChatPRD: <a href="https://www.chatprd.ai/" target="_blank" rel="noopener">https://www.chatprd.ai/</a> Website: <a href="https://clairevo.com/" target="_blank" rel="noopener">https://clairevo.com/</a> LinkedIn: <a href="https://www.linkedin.com/in/clairevo/" target="_blank" rel="noopener">https://www.linkedin.com/in/clairevo/</a> X: <a href="https://x.com/clairevo" target="_blank" rel="noopener">https://x.com/clairevo</a> Production and marketing by <a href="https://penname.co/" target="_blank" rel="noopener">https://penname.co/</a> .</span> <span>For inquiries about sponsoring the podcast, email [email protected] .</li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Mar/23/starlette-1-skill/#atom-everything" target="_blank">Starlette 1.0 skill</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Mar 23, 2026 &middot; 00:05 UTC</span>
+          </div>
+          <p class="summary"><span>Research: Starlette 1.0 skill See Experimenting with Starlette 1.0 with Claude skills .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Research: Starlette 1.0 skill</p><p>See Experimenting with Starlette 1.0 with Claude skills.</p><p>Tags: starlette</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Mar/22/dns/#atom-everything" target="_blank">DNS Lookup</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Mar 22, 2026 &middot; 19:16 UTC</span>
+          </div>
+          <p class="summary"><span>Tool: DNS Lookup TIL that Cloudflare&#x27;s 1.1.1.1 DNS service (and 1.1.1.2 and 1.1.1.3, which block malware and malware + adult content respectively) has a CORS-enabled JSON API, so I had Claude Code build me a UI for running DNS queries against all three of those resolvers.</span> <span>Tags: dns , cors , cloudflare</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Tool: DNS Lookup</p><p>TIL that Cloudflare&#x27;s 1.1.1.1 DNS service (and 1.1.1.2 and 1.1.1.3, which block malware and malware + adult content respectively) has a CORS-enabled JSON API, so I had Claude Code build me a UI for running DNS queries against all three of those resolvers.</p><p>Tags: dns, cors, cloudflare</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 176</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
