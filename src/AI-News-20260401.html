@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-04-01</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-04-01</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-the-claude-code-source-leak" target="_blank">[AINews] The Claude Code Source Leak</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Apr 01, 2026 &middot; 06:24 UTC</span>
+          </div>
+          <p class="summary"><span>AI Twitter Recap Top Story: Claude Code source leak — architecture discoveries, Anthropic’s response, and competitor reactions What happened Claude Code had substantial source artifacts exposed via shipped source maps / package contents, which triggered rapid public reverse-engineering, mirroring, and derivative ports.</span> <span>The discussion quickly shifted from “embarrassing leak” to “what does this reveal about state-of-the-art agent harness design?” Multiple observers highlighted that the leak exposed orchestration logic rather than model weights, including autonomous modes, memory systems, planning/review flows, and model-specific control logic.</span> <span>Later commentary put the exposed code volume at 500k+ lines ( Yuchenj_UW ).</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>AI Twitter Recap Top Story: Claude Code source leak — architecture discoveries, Anthropic’s response, and competitor reactions What happened Claude Code had substantial source artifacts exposed via shipped source maps / package contents, which triggered rapid public reverse-engineering, mirroring, and derivative ports. The discussion quickly shifted from “embarrassing leak” to “what does this reveal about state-of-the-art agent harness design?” Multiple observers highlighted that the leak exposed orchestration logic rather than model weights, including autonomous modes, memory systems, planning/review flows, and model-specific control logic. Public forks proliferated; one post claimed 32.6k stars and 44.3k forks on a fork before legal fear led to a Python conversion effort using Codex ( Yuchenj_UW ). Later commentary put the exposed code volume at 500k+ lines ( Yuchenj_UW ). Anthropic then moved to contain redistribution via DMCA takedowns according to several posters ( dbreunig , BlancheMinerva ). Separately, a Claude Code team member announced a product feature during the fallout — easier local/web GitHub credential setup via /web-setup ( catwu ) — implying normal product operations continued. The leak also created a live security hazard: attackers quickly registered suspicious npm packages such as color-diff-napi and modifiers-napi to target people trying to compile the leaked code ( Butanium_ ). opinions What is reasonably factual from the tweets:</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Apr/1/soohoon-choi/#atom-everything" target="_blank">Quoting Soohoon Choi</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Apr 01, 2026 &middot; 02:07 UTC</span>
+          </div>
+          <p class="summary"><span>I want to argue that AI models will write good code because of economic incentives.</span> <span>Good code will prevail, not only because we want it to (though we do!), but because economic forces demand it.</span> <span>Markets will not reward slop in coding, in the long-term.</span> <span>— Soohoon Choi , Slop Is Not Necessarily The Future Tags: slop , ai-assisted-programming , generative-ai , agentic-engineering , ai , llms</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>I want to argue that AI models will write good code because of economic incentives. Good code is cheaper to generate and maintain. Competition is high between the AI models right now, and the ones that win will help developers ship reliable features fastest, which requires simple, maintainable code. Good code will prevail, not only because we want it to (though we do!), but because economic forces demand it. Markets will not reward slop in coding, in the long-term.</p><p>— Soohoon Choi, Slop Is Not Necessarily The Future</p><p>Tags: slop, ai-assisted-programming, generative-ai, agentic-engineering, ai, llms</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2603.29981v1" target="_blank">Aligning Validation with Deployment: Target-Weighted Cross-Validation for Spatial Prediction</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Mar 31, 2026 &middot; 16:44 UTC</span>
+          </div>
+          <p class="summary"><span>Cross-validation (CV) is commonly used to estimate predictive risk when independent test data are unavailable.</span> <span>Its validity depends on the assumption that validation tasks are sampled from the same distribution as prediction tasks encountered during deployment.</span> <span>These results establish task distribution mismatch as a primary source of CV bias in spatial prediction and show that calibration weighting combined with a suitable validation task generator provides a viable approach to estimating predictive risk under dataset shift.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Cross-validation (CV) is commonly used to estimate predictive risk when independent test data are unavailable. Its validity depends on the assumption that validation tasks are sampled from the same distribution as prediction tasks encountered during deployment. In spatial prediction and other settings with structured data, this assumption is frequently violated, leading to biased estimates of deployment risk. We propose Target-Weighted CV (TWCV), an estimator of deployment risk that accounts for discrepancies between validation and deployment task distributions, thus accounting for (1) covariate shift and (2) task-difficulty shift. We characterize prediction tasks by descriptors such as covariates and spatial configuration. TWCV assigns weights to validation losses such that the weighted empirical distribution of validation tasks matches the corresponding distribution over a target domain. The weights are obtained via calibration weighting, yielding an importance-weighted estimator that targets deployment risk. Since TWCV requires adequate coverage of the deployment distribution&#x27;s support, we combine it with spatially buffered resampling that diversifies the task difficulty distribution. In a simulation study, conventional as well as spatial estimators exhibit substantial bias depending on sampling, whereas buffered TWCV remains approximately unbiased across scenarios. A case study in environmental pollution mapping further confirms that discrepancies between validation and deployment task distributions can affect performance assessment, and that buffered TWCV better reflects the prediction task over the target domain. These results establish task distribution mismatch as a primary source of CV bias in spatial prediction and show that calibration weighting combined with a suitable validation task generator provides a viable approach to estimating predictive risk under dataset shift.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2603.29935v1" target="_blank">Rethinking AI Literacy Education in Higher Education: Bridging Risk Perception and Responsible Adoption</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Mar 31, 2026 &middot; 16:08 UTC</span>
+          </div>
+          <p class="summary"><span>As AI becomes increasingly embedded across societal domains, understanding how future AI practitioners, particularly technology students, perceive its risks is essential for responsible development and adoption.</span> <span>This study analyzed responses from 139 students in Computer Science, Data Science/Data Analytics, and other disciplines using both explicit AI risk ratings and scenario-based assessments of risk and adoption willingness.</span> <span>Four key findings emerged: (1) Students expressed substantially higher concern for concrete, explicitly stated risks than for abstract or scenario-embedded risks; (2) Perceived risk and willingness to adopt AI demonstrated a clear inverse relationship; (3) Although technical education narrowed gender differences in risk awareness, male students reported higher adoption willingness; and (4) A form of &quot;risk underappreciation&quot; was observed, wherein students in AI-related specializations showed both elevated explicit risk awareness and higher willingness to adopt AI, despite lower recognition of risks in applied scenarios.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>As AI becomes increasingly embedded across societal domains, understanding how future AI practitioners, particularly technology students, perceive its risks is essential for responsible development and adoption. This study analyzed responses from 139 students in Computer Science, Data Science/Data Analytics, and other disciplines using both explicit AI risk ratings and scenario-based assessments of risk and adoption willingness. Four key findings emerged: (1) Students expressed substantially higher concern for concrete, explicitly stated risks than for abstract or scenario-embedded risks; (2) Perceived risk and willingness to adopt AI demonstrated a clear inverse relationship; (3) Although technical education narrowed gender differences in risk awareness, male students reported higher adoption willingness; and (4) A form of &quot;risk underappreciation&quot; was observed, wherein students in AI-related specializations showed both elevated explicit risk awareness and higher willingness to adopt AI, despite lower recognition of risks in applied scenarios. These findings underscore the need for differentiated AI literacy strategies that bridge the gap between awareness and responsible adoption and offer valuable insights for educators, policymakers, industry leaders, and academic institutions aiming to cultivate ethically informed and socially responsible AI practitioners.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2603.29755v1" target="_blank">CausalPulse: An Industrial-Grade Neurosymbolic Multi-Agent Copilot for Causal Diagnostics in Smart Manufacturing</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Mar 31, 2026 &middot; 13:54 UTC</span>
+          </div>
+          <p class="summary"><span>Modern manufacturing environments demand real-time, trustworthy, and interpretable root-cause insights to sustain productivity and quality.</span> <span>Traditional analytics pipelines often treat anomaly detection, causal inference, and root-cause analysis as isolated stages, limiting scalability and explainability.</span> <span>These results demonstrate how CausalPulse&#x27;s modular, human-in-the-loop design enables reliable, interpretable, and production-ready automation for next-generation manufacturing.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Modern manufacturing environments demand real-time, trustworthy, and interpretable root-cause insights to sustain productivity and quality. Traditional analytics pipelines often treat anomaly detection, causal inference, and root-cause analysis as isolated stages, limiting scalability and explainability. In this work, we present CausalPulse, an industry-grade multi-agent copilot that automates causal diagnostics in smart manufacturing. It unifies anomaly detection, causal discovery, and reasoning through a neurosymbolic architecture built on standardized agentic protocols. CausalPulse is being deployed in a Robert Bosch manufacturing plant, integrating seamlessly with existing monitoring workflows and supporting real-time operation at production scale. Evaluations on both public (Future Factories) and proprietary (Planar Sensor Element) datasets show high reliability, achieving overall success rates of 98.0% and 98.73%. Per-criterion success rates reached 98.75% for planning and tool use, 97.3% for self-reflection, and 99.2% for collaboration. Runtime experiments report end-to-end latency of 50-60s per diagnostic workflow with near-linear scalability (R^2=0.97), confirming real-time readiness. Comparison with existing industrial copilots highlights distinct advantages in modularity, extensibility, and deployment maturity. These results demonstrate how CausalPulse&#x27;s modular, human-in-the-loop design enables reliable, interpretable, and production-ready automation for next-generation manufacturing.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/accelerating-the-next-phase-ai" target="_blank">Accelerating the next phase of AI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Mar 31, 2026 &middot; 13:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI raises $122 billion in new funding to expand frontier AI globally, invest in next-generation compute, and meet growing demand for ChatGPT, Codex, and enterprise AI.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-the-last-4-jobs-in-tech" target="_blank">[AINews] The Last 4 Jobs in Tech</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Mar 31, 2026 &middot; 01:04 UTC</span>
+          </div>
+          <p class="summary"><span>Hermes Agent’s Rapid Rise, Multi-Agent Profiles, and the Open Harness Ecosystem Hermes has become the week’s breakout open agent stack : Nous shipped a major Hermes Agent update that drove a wave of migrations from OpenClaw/OpenClaw-like setups, with users emphasizing better compaction, less bloat, stronger adaptability, and faster shipping cadence ( Nous release , Teknium’s multi-agent profiles , community migration examples , another ).</span> <span>The new multi-agent profiles give each bot its own memory, skills, histories, and gateway connections, moving Hermes from “personal assistant” toward a reusable agent OS abstraction.</span> <span>Hermes Agent update : The broad community response to Nous’s major Hermes release suggests open agent harnesses have reached a new adoption phase.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>AI Twitter Recap Claude Code Computer Use, Codex Interop, and the Coding-Agent Harness Race Claude Code gets computer use : Anthropic added computer use inside Claude Code , letting the agent open apps, click through UIs, and test what it built directly from the CLI in research preview for Pro/Max users. The practical significance is closed-loop verification: code → run → inspect UI → fix → re-test, which several engineers called the missing piece for reliable app iteration, especially compared with open-ended desktop agents ( Claude announcement , @Yuchenj_UW on the “eyes” unlock , @omarsar0 ). Cross-agent composition is becoming standard : OpenAI shipped a Codex plugin for Claude Code that can trigger reviews, adversarial reviews, and “rescue” flows from inside Anthropic’s toolchain, using a ChatGPT subscription rather than custom glue code. This is notable less as a plugin novelty and more as a signal that coding stacks are becoming composable harnesses rather than monolithic products ( plugin by @dkundel , usage thread by @reach_vb , open-source ). Separately, OpenAI shared that late-night Codex tasks run longer , with jobs started around 11pm being 60% more likely to run 3+ hours , which fits the emerging pattern of delegating refactors and planning to background agents ( OpenAI Devs ). Harness quality is now visibly a first-order variable : Theo argued that Opus scores ~20% higher in Cursor than in Claude Code , and more broadly that closed-source harnesses make it hard for the community to diagnose or fix regressions ( performance gap claim , closed-source critique ). That theme repeated across the feed: model capability deltas are narrowing, while tooling, prompt/runtime orchestration, and review loops still create large practical differences. Hermes Agent’s Rapid Rise, Multi-Agent Profiles, and the Open Harness Ecosystem Hermes has become the week’s breakout open agent stack : Nous shipped a major Hermes Agent update that drove a wave of migrations from OpenClaw/OpenClaw-like setups, with users emphasizing better compaction, less bloat, stronger adaptability, and faster shipping cadence ( Nous release , Teknium’s multi-agent profiles , community migration examples , another ). The new multi-agent profiles give each bot its own memory, skills, histories, and gateway connections, moving Hermes from “personal assistant” toward a reusable agent OS abstraction. An ecosystem is forming around traces, remote control, and self-improvement : Several projects extend Hermes beyond core inference. @jayfarei’s opentraces.ai provides a CLI/schema/review flow for sanitizing and publishing agent traces to Hugging Face for analytics, evals, SFT, and RL. @kaiostephens uploaded ~4,000 GLM-5 Hermes traces to HF. @IcarusHermes described an integration where agents log their own decisions, export data, fine-tune smaller successors on their history, and switch over to cheaper models. @winglian’s ARC adds remote browser-based monitoring/control with E2E encryption. Open vs proprietary agent infra is being actively contested : @ClementDelangue explicitly argued that open-source agent tools should default to open-source models , both for privacy and durability. In parallel, vendors are attacking known pain points: @fchollet highlighted PokeeClaw as a more secure OpenClaw-style assistant with sandboxing, approvals, RBAC, and audit trails; Z AI launched AutoClaw , a local OpenClaw runtime with no API key required and optional GLM-5-Turbo. Qwen3.5-Omni, GLM-5-Turbo/AutoClaw, and the Push Toward Local/Agentic Specialization Qwen3.5-Omni is a major multimodal release : Alibaba introduced Qwen3.5-Omni , with native text/image/audio/video understanding, script-level captioning , built-in web search and function calling , and a standout “ audio-visual vibe coding ” demo where the model builds websites/games from spoken visual instructions. Reported capabilities include support for 10h audio / 400s of 720p video , 113 speech-recognition languages , and 36 spoken languages ; Alibaba claims it outperforms Gemini 3.1 Pro in audio and matches its AV understanding in some settings ( launch thread , demo thread , additional demo ). A useful caveat from @kimmonismus : “omni” here is about interpreting multimodal inputs, not arbitrary multimodal generation. Z AI continues to tune for agentic workloads : Artificial Analysis evaluated GLM-5-Turbo , Z AI’s proprietary agent-optimized variant. It scored 47 on the AA Intelligence Index, slightly behind open-weight GLM-5 (Reasoning) at 50 , but posted 1503 on GDPval-AA , ahead of GLM-5’s 1408 , supporting the claim that the model is tuned for real-world agent workflows rather than broad benchmark maximalism. Specialized open models are increasingly the deployment pattern : Several tweets converged on the same thesis: companies will increasingly own and specialize open models on proprietary data rather than rent general-purpose APIs indefinitely ( @oneill_c , @ClementDelangue ). Supporting evidence ranged from a Qwen3.5-27B model distilled from Claude 4.6 Opus trending on HF for weeks and reportedly fitting on 16GB in 4-bit ( Unsloth , @Hesamation ) to growing enthusiasm for local runtimes like llama.cpp and MLX. Local Inference and Systems: llama.cpp at 100k, Flash-MoE on MacBooks, and Web/Serving Toolchains Local AI had a symbolic milestone with llama.cpp hitting 100k GitHub stars : @ggerganov’s reflection framed 2026 as potentially the breakout year for local agentic workflows , arguing that useful automation doesn’t require frontier-scale hosted models and that the right portable runtime stack matters more than absolute scale. The post also emphasized the importance of cross-hardware, non-vendor-locked infra . Flash-MoE on Apple Silicon drew strong attention : A widely shared post claimed Qwen3.5-397B could run on a 48GB MacBook Pro at 4.4 tok/s using a pure C + Metal engine that streams weights from SSD and only loads the active experts, reportedly using ~5.5GB RAM during inference ( summary thread ). Related work includes anemll-flash-mlx , which focuses on optimizing only the MoE path on top of MLX, and AI Toolkit’s new Apple Silicon support . Web and serving stacks also moved : Transformers.js v4 added a WebGPU backend across browser/Node/Bun/Deno with major perf gains and 200+ architectures. vLLM-Omni v0.18.0 shipped 324 commits, production TTS/omni serving, unified quantization, diffusion runtime refactors, and a dozen-plus new models. On the speech side, Artificial Analysis covered Cohere Transcribe : a 2B conformer encoder-decoder , Apache 2.0 , trained on 14 languages , hitting 4.7% AA-WER and roughly 60x real-time transcription speed. Agent Research: Natural-Language Harnesses, Meta-Harness, Async SWE Agents, and Long-Context via Filesystems Harness engineering is becoming a research field of its own : A Tsinghua/Shenzhen paper on natural-language agent harnesses proposed letting an LLM execute orchestration logic from an SOP rather than hard-coded harness rules, a direction that multiple practitioners found mind-bending but plausible as context budgets rise ( @rronak_ summary ). Meta pushed the idea further with Meta-Harness , a method that optimizes the harness end-to-end over code, traces, and scores rather than just the base model; claims include #1 among Haiku agents on TerminalBench-2 and strong gains in text classification and transfer ( @yoonholeee , explainer by @LiorOnAI ). Async/multi-agent SWE design got stronger empirical backing : The CAID paper from CMU argues for centralized asynchronous isolated delegation using manager agents, dependency graphs, isolated git worktrees, self-verification, and merges. Reported gains were +26.7 absolute on PaperBench and +14.3 on Commit0 versus single-agent baselines, suggesting that concurrency and isolation beat simply giving one agent more iterations ( @omarsar0 summary ). Coding agents as long-context processors is one of the more interesting reframings : A paper highlighted by @dair_ai treats huge corpora as directory trees and lets off-the-shelf coding agents navigate them with shell commands and Python, rather than stuffing text into context windows or relying purely on retrieval. Reported results include 88.5% on BrowseComp-Plus (750M tokens) vs 80% previous best , and operation up to 3T tokens . Training, Optimization, Evaluation, and Production Case Studies Muon got a meaningful systems/math optimization : Gram Newton-Schulz is a drop-in replacement for Muon’s Newton-Schulz step that works on the smaller symmetric XXᵀ Gram matrix rather than the large rectangular matrix, reportedly making Muon up to 2x faster while preserving validation perplexity within 0.01 . The work drew praise from @tri_dao as the kind of cross-disciplinary linear algebra + fast-kernel result that actually matters. Two practical implementation details stood out : Ross Wightman flagged a subtle but important PyTorch trunc_normal_ misuse pattern in LLM training code: default a/b are absolute values, not standard deviations, so many codebases effectively aren’t truncating at all; he also d numerical oddities later fixed in nightlies. At the application layer, Shopify’s DSPy case study was notable for economics: one slide highlighted a reduction from $5.5M to $73K/year by decomposing business logic, modeling intent with DSPy, and switching to a smaller optimized model while maintaining performance ( follow-up ). New evals/benchmarks continued to expose gaps : World Reasoning Arena targets hypothetical/world-model reasoning and reports a substantial gap to humans. Tau Bench’s new banking domain adds a realistic 698-doc support environment where best models still only solve about 25% of tasks. Meanwhile, a Stanford-led paper highlighted by @Zulfikar_Ramzan found sycophantic AI can increase users’ certainty while reducing willingness to repair relationships, underscoring that “helpfulness” metrics can obscure socially harmful behavior. Top tweets (by engagement) Claude Code computer use : Anthropic’s release was the biggest technical product launch in the set, and likely the most consequential for day-to-day coding-agent UX ( announcement ). Claude Code hidden features : @bcherny’s thread drew massive engagement, reflecting how quickly expert users are now optimizing around coding-agent workflows rather than raw model prompts. Hermes Agent update : The broad community response to Nous’s major Hermes release suggests open agent harnesses have reached a new adoption phase. Qwen3.5-Omni launch : Alibaba’s multimodal release was one of the day’s biggest model announcements and especially notable for its practical demos around audio/video-driven app creation ( launch ). llama.cpp at 100k stars : @ggerganov’s milestone post captured the local-first mood of the week: increasingly capable open models plus increasingly capable local runtimes. AI Reddit Recap /r/LocalLlama + /r/localLLM Recap 1. Qwen Model Developments and Applications</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/this-week-on-how-i-ai-how-stripe" target="_blank">🎙️ This week on How I AI: How Stripe built “minions”—AI coding agents that ship 1,300 PRs per week + How to turn Claude Code into your personal life operating system</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Mar 30, 2026 &middot; 15:03 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ This week on How I AI: How Stripe built “minions”—AI coding agents that ship 1,300 PRs per week + How to turn Claude Code into your personal life operating system Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Mar 30, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-to-turn-claude-code-into-your" target="_blank">How to turn Claude Code into your personal life operating system | Hilary Gridley</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Mar 30, 2026 &middot; 12:04 UTC</span>
+          </div>
+          <p class="summary"><span>ing with AI Introduction to Hilary Gridley The opportunity cost of time as a new mom and entrepreneur Philosophy of the anti-system system Demo: Planning your day with Claude Code Setting up simple iPhone shortcuts for task capture How Claude organizes reminders and learns p automatically Breaking down overwhelming tasks into manageable first steps The yappers API: talking to Claude instead of building integrations Daily logging and observation patterns Quick summary The power of screenshots 10x impact framework for automation decisions Applying the framework to different career stages Building a “recording on” skill for anonymizing demos Building a returns tracking skill from scratch Building the muscle memory to reach for AI tools Where to find Hilary<ul><li>Claude Code: <a href="https://claude.ai/code" target="_blank" rel="noopener">https://claude.ai/code</a></li><li>Obsidian: <a href="https://obsidian.md/" target="_blank" rel="noopener">https://obsidian.md/</a></li><li>iPhone Shortcuts: <a href="https://support.apple.com/guide/shortcuts/welcome/ios" target="_blank" rel="noopener">https://support.apple.com/guide/shortcuts/welcome/ios</a></li><li>Cursor: <a href="https://cursor.sh/" target="_blank" rel="noopener">https://cursor.sh/</a> Other</li><li>Figma file Hilary demo’ed: <a href="https://www.writerbuilder.com/howiai" target="_blank" rel="noopener">https://www.writerbuilder.com/howiai</a> Where to find Hilary Gridley: Substack: <a href="https://hills.substack.com/" target="_blank" rel="noopener">https://hills.substack.com/</a> Website: <a href="https://writerbuilder.com" target="_blank" rel="noopener">https://writerbuilder.com</a> Where to find Claire Vo: ChatPRD: <a href="https://www.chatprd.ai/" target="_blank" rel="noopener">https://www.chatprd.ai/</a> Website: <a href="https://clairevo.com/" target="_blank" rel="noopener">https://clairevo.com/</a> LinkedIn: <a href="https://www.linkedin.com/in/clairevo/" target="_blank" rel="noopener">https://www.linkedin.com/in/clairevo/</a> X: <a href="https://x.com/clairevo" target="_blank" rel="noopener">https://x.com/clairevo</a> Production and marketing by <a href="https://penname.co/" target="_blank" rel="noopener">https://penname.co/</a> .</span> <span>For inquiries about sponsoring the podcast, email [email protected] .</li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/helping-disaster-response-teams-asia" target="_blank">Helping disaster response teams turn AI into action across Asia</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Mar 29, 2026 &middot; 22:15 UTC</span>
+          </div>
+          <p class="summary"><span>AI for Disaster Response in Asia: OpenAI Workshop with Gates Foundation</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/community-wisdom-when-ai-velocity" target="_blank">🧠 Community Wisdom: When AI velocity outpaces your product strategy, when your estimates keep slipping, one day in San Francisco, pairing Claude Code with Codex, and more</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Mar 28, 2026 &middot; 17:01 UTC</span>
+          </div>
+          <p class="summary"><span>Community wisdom 🧠 Community Wisdom: When AI velocity outpaces your product strategy, when your estimates keep slipping, one day in San Francisco, pairing Claude Code with Codex, and more Community Wisdom 179 Kiyani Mar 28, 2026 ∙ Paid 👋 Hello and welcome to this week’s edition of ✨ Community Wisdom ✨ a subscriber-only email, delivered every Saturday, highlighting the most helpful conversations in our members-only Slack community .</span> <span>This post is for paid subscribers Already a paid subscriber?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Mar/28/matt-webb/#atom-everything" target="_blank">Quoting Matt Webb</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Mar 28, 2026 &middot; 12:04 UTC</span>
+          </div>
+          <p class="summary"><span>The thing about agentic coding is that agents grind problems into dust.</span> <span>So at the bottom is really great libraries that encapsulate hard problems, with great interfaces that make the “right” way the easy way for developers building apps with them.</span> <span>While I’m vibing (I call it vibing now, not coding and not vibe coding) while I’m vibing, I am looking at lines of code less than ever before, and thinking about architecture more than ever before.</span> <span>— Matt Webb , An appreciation for (technical) architecture Tags: matt-webb , ai , llms , vibe-coding , coding-agents , ai-assisted-programming , generative-ai , agentic-engineering , definitions</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>The thing about agentic coding is that agents grind problems into dust. Give an agent a problem and a while loop and - long term - it’ll solve that problem even if it means burning a trillion tokens and re-writing down to the silicon. [...]</p><p>But we want AI agents to solve coding problems quickly and in a way that is maintainable and adaptive and composable (benefiting from improvements elsewhere), and where every addition makes the whole stack better.</p><p>So at the bottom is really great libraries that encapsulate hard problems, with great interfaces that make the “right” way the easy way for developers building apps with them. Architecture!</p><p>While I’m vibing (I call it vibing now, not coding and not vibe coding) while I’m vibing, I am looking at lines of code less than ever before, and thinking about architecture more than ever before.</p><p>— Matt Webb, An appreciation for (technical) architecture</p><p>Tags: matt-webb, ai, llms, vibe-coding, coding-agents, ai-assisted-programming, generative-ai, agentic-engineering, definitions</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/stadler" target="_blank">STADLER reshapes knowledge work at a 230-year-old company</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Mar 27, 2026 &middot; 22:00 UTC</span>
+          </div>
+          <p class="summary"><span>Learn how STADLER uses ChatGPT to transform knowledge work, saving time and accelerating productivity across 650 employees.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://newsletter.pragmaticengineer.com/p/the-pulse-is-github-still-best-for" target="_blank">The Pulse: is GitHub still best for AI-native development?</a></h2>
+          <div class="meta">
+            <span class="source">pragmatic-engineer</span>
+            <span class="date">Mar 26, 2026 &middot; 17:23 UTC</span>
+          </div>
+          <p class="summary"><span>Today, we cover: Does GitHub still merit “top git platform for AI-native development” status? Does GitHub still merit “top git platform for AI-native development” status? Here’s data from the third-party, “ missing GitHub status page ”, which was built after GitHub stopped updating its own status page due to terrible availability.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>The Pulse is a series covering events, insights, and trends within Big Tech and startups. Notice an interesting event or trend? Hit reply and share it with me. Today, we cover: Does GitHub still merit “top git platform for AI-native development” status? Availability has dropped to one nine (~90% – !!), partly due to not being able to handle increased traffic from AI coding agents. There’s also no CEO and an apparent lack of direction. Should a tool auto-add itself as a contributor to PRs? Claude Code and GitHub Copilot auto-add themselves to commits, which is effectively free advertising. Codex and OpenCode purposely do not. Microsoft promises Windows will not be “Microslop.” After years of forced Copilot integrations, Start menu ads, and mandatory Microsoft accounts, the Windows team is promising to undo the self-inflicted damage done to the OS. It’s better late than never, but why did Microsoft allow the “Microslop” perception to stick around so long? Industry pulse. Massive LLM supply chain attack via LiteLLM, backlash after Cursor forgets to mention that Composer 2 is based on an open source model, what happens when you stop reviewing AI code, OpenAI kills Sora, and more. Does GitHub still merit “top git platform for AI-native development” status? We’re used to highly reliable systems which target four-nines of availability (99.99%, meaning about 52 minutes of downtime per year), and for it to be embarrassing to barely hit three nines (around 9 hours of downtime per year.) And yet, in the past month, GitHub’s reliability is down to one nine! Here’s data from the third-party, “ missing GitHub status page ”, which was built after GitHub stopped updating its own status page due to terrible availability. Recently, things have looked poor:</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/gemini-3-1-flash-live-making-audio-ai-more-natural-and-reliable/" target="_blank">Gemini 3.1 Flash Live: Making audio AI more natural and reliable</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Mar 26, 2026 &middot; 15:23 UTC</span>
+          </div>
+          <p class="summary"><span>Everyone can experience it via Search Live and Gemini Live, which now supports over 200 countries.</span> <span>Bullet points &quot;Gemini 3.1 Flash Live&quot; is here, making AI audio sound more natural and reliable.</span> <span>Get real-time troubleshooting help using 3.1 Flash Live in Search Live Try Gemini 3.1 Flash Live All audio generated by 3.1 Flash Live is watermarked with SynthID.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Gemini 3.1 Flash Live: Making audio AI more natural and reliable Mar 26, 2026 · Share x.com Facebook LinkedIn Mail Our latest voice model has improved precision and lower latency to make voice interactions more fluid, natural and precise. Valeria Wu Product Manager Yifan Ding Software Engineer on behalf of the Gemini team General summary Gemini 3.1 Flash Live is Google&#x27;s highest-quality audio model, designed for natural and reliable real-time dialogue. Developers can access it through the Gemini Live API in Google AI Studio, while enterprises can use it for customer experience. Everyone can experience it via Search Live and Gemini Live, which now supports over 200 countries. Summaries were generated by Google AI. Generative AI is experimental. Bullet points &quot;Gemini 3.1 Flash Live&quot; is here, making AI audio sound more natural and reliable. This new audio model is faster and better at understanding tone for natural conversations. Developers can use it to build voice agents that handle complex tasks more reliably. Gemini Live and Search Live now offer more helpful responses in many languages. All audio from 3.1 Flash Live is watermarked to help prevent the spread of misinformation. Summaries were generated by Google AI. Generative AI is experimental. Explore other styles: Share x.com Facebook LinkedIn Mail Your browser does not support the audio element. Listen to article This content is generated by Google AI. Generative AI is experimental [[duration]] minutes Today, we’re advancing Gemini’s real-time dialogue capabilities with Gemini 3.1 Flash Live, our highest-quality audio and voice model yet. It delivers the speed and natural rhythm needed for the next generation of voice-first AI, offering a more intuitive experience for developers, enterprises and everyday users. 3.1 Flash Live is available across Google products: For developers in preview via the Gemini Live API in Google AI Studio For enterprises in Gemini Enterprise for Customer Experience For everyone via Search Live and Gemini Live For developers: Robust reasoning and task execution We’ve improved 3.1 Flash Live’s overall quality, making it more reliable for developers and enterprises to build voice-first agents that can complete complex tasks at scale. On ComplexFuncBench Audio , a benchmark that captures multi-step function calling with various constraints, it leads with a score of 90.8% compared to our previous model. On Scale AI’s Audio MultiChallenge , Gemini 3.1 Flash Live leads with a score of 36.1% with “thinking” on. The benchmark specifically tests complex instruction following and long-horizon reasoning amidst the interruptions and hesitations typical of real-world audio. 3.1 Flash Live also has improved tonal understanding to deliver more natural dialogue. In Gemini Enterprise for Customer Experience , it’s even more effective at recognizing acoustic nuances like pitch and pace than 2.5 Flash Native Audio. It’s also better at dynamically adjusting its response to users&#x27; expressions of frustration or confusion. 3.1 Flash Live lets you build voice-ready agents that handle complex tasks in noisy environments. Illustrative demonstration built with Gemini 3.1 Pro, powered by Gemini 3.1 Flash Live. 3.1 Flash Live lets you use your voice to vibe code and quickly iterate. Illustrative demonstration built with Gemini 3.1 Pro, powered by Gemini 3.1 Flash Live. Companies like Verizon, LiveKit and The Home Depot have given positive feedback on 3.1 Flash Live in their workflows, highlighting its improved, natural conversation. For everyone: More natural and intuitive interactions In Gemini Live and Search Live, the 3.1 Flash Live model delivers more helpful and natural responses, whether you’re asking quick daily questions or engaging in more complex conversations. With the 3.1 Flash Live model under the hood, Gemini Live delivers faster responses compared to the previous model and it can follow the thread of your conversation for twice as long, keeping your train of thought intact during longer brainstorms. 3.1 Flash Live makes Gemini Live faster and more helpful 3.1 Flash Live is also inherently multilingual, which enables this week’s global expansion of Search Live . With this launch, people in more than 200 countries and territories can now have real-time, multimodal conversations with Search in their preferred language. Get real-time troubleshooting help using 3.1 Flash Live in Search Live Try Gemini 3.1 Flash Live All audio generated by 3.1 Flash Live is watermarked with SynthID. This imperceptible watermark is interwoven directly into the audio output, allowing the reliable detection of AI-generated content to help prevent misinformation. For more information on our approach to safety and responsibility, see the model card . Experience the naturalness and reliability of 3.1 Flash Live, starting today. We look forward to seeing how you interact and build with it. Just one step more. Check your inbox to confirm your subscription. You are already You can also subscribe with a</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 175</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
