@@ -21,8 +21,8 @@ def summarize(text: str, max_sentences: int = 3) -> str:
     Returns:
         Summary as a complete, coherent paragraph
     """
-    # Strip any HTML tags from RSS content
-    text = _strip_html(text)
+    # Normalize and remove common non-article boilerplate.
+    text = clean_for_summary(text)
 
     sentences = _split_sentences(text)
 
@@ -49,6 +49,13 @@ def summarize(text: str, max_sentences: int = 3) -> str:
     return summary
 
 
+def clean_for_summary(text: str) -> str:
+    """Normalize text and trim common newsletter/podcast boilerplate."""
+    text = _strip_html(text)
+    text = _remove_noise_sections(text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
 def _strip_html(text: str) -> str:
     """Remove HTML tags and decode entities."""
     import html as html_mod
@@ -58,6 +65,47 @@ def _strip_html(text: str) -> str:
     text = html_mod.unescape(text)
     # Collapse whitespace
     text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
+def _remove_noise_sections(text: str) -> str:
+    """Remove URL-heavy resource/link sections that degrade summaries."""
+    markers = [
+        r"\blinks? mentioned\b",
+        r"\btools? mentioned\b",
+        r"\bresources?\b",
+        r"\breferences?\b",
+        r"\bwhere to find\b",
+        r"\blightning round\b",
+        r"\bshow notes\b",
+    ]
+
+    cut_index = None
+    for marker in markers:
+        match = re.search(marker, text, flags=re.IGNORECASE)
+        if not match:
+            continue
+
+        tail = text[match.start():]
+        tail_url_count = len(re.findall(r"https?://", tail, flags=re.IGNORECASE))
+        if tail_url_count >= 2 or len(tail) > 250:
+            if cut_index is None or match.start() < cut_index:
+                cut_index = match.start()
+
+    if cut_index is not None:
+        text = text[:cut_index]
+
+    # Remove isolated URL clusters even when marker labels are missing.
+    text = re.sub(r"(?:https?://\S+\s*){2,}", " ", text, flags=re.IGNORECASE)
+
+    # Remove social/contact blocks that often appear in podcast newsletters.
+    text = re.sub(
+        r"where to find\s+[^:]{1,80}:\s*(?:https?://\S+\s*){1,8}",
+        " ",
+        text,
+        flags=re.IGNORECASE,
+    )
+
     return text
 
 
