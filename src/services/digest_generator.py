@@ -8,7 +8,7 @@ from models.digest import Digest
 from models.digest_entry import DigestEntry
 from models.news_article import NewsArticle
 from services.scorer import MAX_DIGEST_ARTICLES, rank_and_select
-from services.summarizer import summarize
+from services.summarizer import clean_for_summary, summarize
 
 logger = logging.getLogger(__name__)
 
@@ -139,13 +139,15 @@ def generate_digest(
     for article, score in deduped:
         # Generate extractive summary capturing key insights
         summary = summarize(article.content, max_sentences=3)
+        used_fallback = False
 
         # Fallback: use first 2-3 complete sentences if summarizer
         # returns empty
         if not summary:
             summary = _fallback_summary(article.content)
+            used_fallback = True
 
-        summary_method = "frequency" if summary else "fallback"
+        summary_method = "fallback" if used_fallback else "frequency"
 
         compression = len(summary) / max(len(article.content), 1)
         # Clamp compression ratio to valid range
@@ -187,7 +189,8 @@ def _fallback_summary(content: str) -> str:
     """Extract first 2-3 complete sentences as fallback summary."""
     import re
 
-    sentences = re.split(r"(?<=[.!?])\s+(?=[A-Z])", content.strip())
+    cleaned = clean_for_summary(content)
+    sentences = re.split(r"(?<=[.!?])\s+(?=[A-Z])", cleaned.strip())
     result = []
     for s in sentences[:3]:
         s = s.strip()
@@ -195,4 +198,4 @@ def _fallback_summary(content: str) -> str:
             result.append(s)
         if len(result) >= 2:
             break
-    return " ".join(result) if result else content[:300]
+    return " ".join(result) if result else cleaned[:300]

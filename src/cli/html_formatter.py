@@ -7,6 +7,7 @@ from datetime import datetime
 from models.digest import Digest
 from models.digest_entry import DigestEntry
 from models.news_article import NewsArticle
+from services.summarizer import clean_for_summary
 
 
 def format_digest_html(
@@ -47,9 +48,12 @@ def format_digest_html(
 
             # Expandable full content accordion
             expand_html = ""
-            if article.content and len(article.content) > len(entry.summary) + 50:
-                clean_content = _strip_html_tags(article.content)
-                content_esc = html.escape(clean_content)
+            cleaned_content = clean_for_summary(article.content) if article.content else ""
+            if not cleaned_content and article.content:
+                cleaned_content = _strip_html_tags(article.content)
+
+            if cleaned_content and len(cleaned_content) > len(entry.summary) + 50:
+                content_esc = html.escape(cleaned_content)
                 content_esc = _linkify_urls(content_esc)
                 content_esc = _bullets_to_list(content_esc)
                 # Split into paragraphs for readability
