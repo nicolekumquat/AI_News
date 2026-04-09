@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-04-09</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-04-09</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://newsletter.pragmaticengineer.com/p/dhhs-new-way-of-writing-code" target="_blank">DHH’s new way of writing code</a></h2>
+          <div class="meta">
+            <span class="source">pragmatic-engineer</span>
+            <span class="date">Apr 08, 2026 &middot; 17:16 UTC</span>
+          </div>
+          <p class="summary"><span>Trusted by 2,000+ fast-growing companies, including OpenAI, Anthropic, Cursor, and Vercel.</span> <span>.com<ul><li>Sonar – The makers of SonarQube, the industry standard for automated code review.</span> <span>David Heinemeier Hansson (DHH) is the creator of Ruby on Rails and Omarchy, co-founder and CTO of 37signals (maker of Basecamp and HEY), and the author of several books including the best-seller, Remote: Office Not Required , co-written with Jason Fried .</span> <span>Key observations from DHH Here are 12 of my most interesting takeaways from talking with DHH: 1.</li></ul></span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Stream the latest episode Listen and watch now on YouTube , Spotify , and Apple . See the episode transcript at the top of this page, and timestamps for the episode at the bottom. Stop switching between different tools, and have them all in one place. It covers everything enterprise security requires: SSO, SCIM, RBAC, Audit Logs, AI governance, and more. Engineering teams ship it in days. Trusted by 2,000+ fast-growing companies, including OpenAI, Anthropic, Cursor, and Vercel. .com<ul><li>Sonar – The makers of SonarQube, the industry standard for automated code review. Sonar helps reduce outages, improve security, and lower risks associated with AI and agentic coding. See how SonarQube Advanced Security is empowering the Agent Centric Development Cycle (AC/DC) with new capabilities. David Heinemeier Hansson (DHH) is the creator of Ruby on Rails and Omarchy, co-founder and CTO of 37signals (maker of Basecamp and HEY), and the author of several books including the best-seller, Remote: Office Not Required , co-written with Jason Fried . Six months ago, in an episode of the Lex Fridman podcast , David shared how he doesn’t use AI tools to write code: he types out all his code. But things have changed a lot since then. his approach to building software, how it’s changed in the last six months, and why he now takes an agent-first approach, and how he barely writes any code by hand. We go into how he uses AI agents: which alter how he builds and explores ideas, but also how his standards of quality and craft remain the same. We also discuss how 37signals thinks about product development, from the role of designers to the importance of aesthetics and taste. David gets into how he sees beauty and functionality as closely linked, and why strong opinions about design lead to better software. Finally, we look into the uneven impact of AI which amplifies senior engineers while creating challenges for junior developers, and what this may mean for the role of the software engineer. Key observations from DHH Here are 12 of my most interesting takeaways from talking with DHH: 1. His philosophy on AI has not changed, but the available tools very much have. Autocomplete-style coding assistants were genuinely annoying for experienced developers six months ago. Things changed with the shift from tab-completion to agent harnesses, plus the emergence of powerful models like Opus 4.5 – when agents started producing code which DHH does want to merge with little to no alteration. Beautiful code and products aren’t matters of vanity; they’re signals of correctness. Dipping into philosophy, DHH says: “When something is beautiful, it’s likely to be correct.” He argues that Steve Jobs wanted the inside of a computer to be beautiful because people who care about circuit board layout are also those who sweat on the details of the UI. DHH’s development workflow, today: he runs tmux to have two models running, and neovim in the center. Specifics: One fast LLM running (typically Gemini 2.5) in one split terminal A slow but more powerful model in another terminal (usually Opus) NeoVim for reviewing diffs via Lazygit 4. Ruby on Rails seems to be enjoying a Renaissance thanks to AI. Rails is one of the most token-efficient ways of building web apps and is well-suited for agent workflows. Testing is part of the framework, which helps agents write tests and validate their own outputs. It also produces code that humans can read and verify, which matters when reviewing agent output at speed. A big win from using AI agents is tackling stuff that you wouldn’t have before. A senior engineer at 37signals ran a “P1 optimization” project to improve the fastest 1% of requests. They optimized the P1 from being at 4 milliseconds, to under half a millisecond. This is the sort of work that wouldn’t have been considered previously! 6. Running several AI agents feels less like “project management” and more like “wearing a mech suit.” Being a project manager of agents did not appeal to DHH, but now that he’s building with several agents, he feels like he’s in control of the work which is being hyper-accelerated. Senior engineers benefit from AI a lot more than juniors. At 37signals, senior engineers gain more from AI tools as they can validate whether an agent’s output is production-ready. DHH also that Amazon reached the same conclusion, and no longer lets junior programmers ship agent-generated code to production without review. 37signals has one designer for every two engineers. The company has around 20 software engineers and 10 designers. Designers do far more than design; they’re also product managers and “implementers” rolled into one. On top of making things look good, they figure out what should be built, how it should work, and often build the first version. DHH compares design at 37signals to jewelry design: “you should know the properties of gold. You should know how it bends.” 9. AI agents could turn 37signals’ “designer model” into the industry standard. AI tools now empower designers to implement more of their vision directly, and DHH suspects the rest of the industry is converging toward what 37signals has always done: working with small teams, where designers are also builders. Command Line Interfaces (CLI) feel like the ultimate AI interface, which validates the Unix philosophy of the 1970s . DHH is building CLIs for all 37signals products because they let agents chain tools together. “GitHub also has a CLI, and Sentry as well,” he says. “You can tie all these things together so an agent can check errors, write a fix, post a PR, and report back to basecamp.” 11. The demise of the two-month product development cycle described in the book ‘Shape Up: Stop Running in Circles and Ship Work that Matters’. The 2019 title by Ryan Signer covered how 37signals worked at the time, and DHH reveals that this methodology now needs rewriting because AI acceleration has made that timeline feel slow. Eight hours of sleep is non-negotiable – even during an AI gold rush! DHH believes the dopamine loop of shipping with agents is intoxicating and can lead to higher risk of burnout. So, he sleeps eight hours and doesn’t use an alarm. The Pragmatic Engineer deepdives relevant for this episode</li><li>Are AI agents actually slowing us down?</li><li>How Claude Code is built</li><li>The future of software engineering with AI: six predictions</li><li>The AI Engineering Stack</li><li>Mitchell Hashimoto’s new way of writing code</li><li>How Linux is built with Greg Kroah-Hartman Timestamps Intro Omarchy and Ruby on Rails 37signals overview Launching HEY Building HEY Designers at 37signals The craft of design Why DHH now embraces AI workflows The AI inflection point DHH’s agent-first workflow AI’s impact on junior developers ( 1:03:08 ) Developer experience with AI ( 1:16:43 ) What does AI mean for developers? ( 1:23:33 ) 37signals teams and hiring ( 1:38:20 ) Work-life balance with AI ( 1:41:41 ) Why DHH keeps building ( 1:45:24 ) Closing Where to find DHH:</li><li>X: <a href="https://x.com/dhh" target="_blank" rel="noopener">https://x.com/dhh</a></li><li>LinkedIn: <a href="https://www.linkedin.com/in/david-heinemeier-hansson-374b18221" target="_blank" rel="noopener">https://www.linkedin.com/in/david-heinemeier-hansson-374b18221</a></li><li>Website: <a href="https://dhh.dk" target="_blank" rel="noopener">https://dhh.dk</a></li><li>Newsletter: <a href="https://world.hey.com/dhh" target="_blank" rel="noopener">https://world.hey.com/dhh</a></li><li>Podcast: <a href="https://37signals.com/podcast" target="_blank" rel="noopener">https://37signals.com/podcast</a> Mentions during the episode:</li><li>Omarchy: <a href="https://omarchy.org" target="_blank" rel="noopener">https://omarchy.org</a></li><li>Linux: <a href="https://www.linux.org" target="_blank" rel="noopener">https://www.linux.org</a></li><li>Ubuntu: <a href="https://ubuntu.com" target="_blank" rel="noopener">https://ubuntu.com</a></li><li>Arch Linux: <a href="https://archlinux.org" target="_blank" rel="noopener">https://archlinux.org</a></li><li>Hyprland: <a href="https://hypr.land" target="_blank" rel="noopener">https://hypr.land</a></li><li>Ruby on Rails: <a href="https://rubyonrails.org" target="_blank" rel="noopener">https://rubyonrails.org</a></li><li>Basecamp: <a href="https://basecamp.com" target="_blank" rel="noopener">https://basecamp.com</a></li><li>Fizzy: <a href="https://www.fizzy.do" target="_blank" rel="noopener">https://www.fizzy.do</a></li><li>Jason Fried on X: <a href="https://x.com/jasonfried" target="_blank" rel="noopener">https://x.com/jasonfried</a></li><li>HEY: <a href="https://www.hey.com" target="_blank" rel="noopener">https://www.hey.com</a></li><li>Shape Up: Stop Running in Circles and Ship Work that Matters: <a href="https://basecamp.com/shapeup" target="_blank" rel="noopener">https://basecamp.com/shapeup</a></li><li>Zoltán Hosszú applying to 37signals: <a href="https://zoltan.co/37signals" target="_blank" rel="noopener">https://zoltan.co/37signals</a></li><li>Daring Fireball: <a href="https://daringfireball.net" target="_blank" rel="noopener">https://daringfireball.net</a></li><li>Smalltalk: <a href="https://en.wikipedia.org/wiki/Smalltalk" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Smalltalk</a></li><li>DHH: Future of Programming, AI, Ruby on Rails, Productivity &amp; Parenting | Lex Fridman Podcast #474:</li><li>Homer’s typing Bird:</li><li>Real-world engineering challenges: building Cursor: <a href="https://newsletter.pragmaticengineer.com/p/cursor" target="_blank" rel="noopener">https://newsletter.pragmaticengineer.com/p/cursor</a></li><li>Building a best-selling game with a tiny team – with Jonas Tyroller: <a href="https://newsletter.pragmaticengineer.com/p/thronefall" target="_blank" rel="noopener">https://newsletter.pragmaticengineer.com/p/thronefall</a></li><li>Andrej Karpathy on X: <a href="https://x.com/karpathy" target="_blank" rel="noopener">https://x.com/karpathy</a></li><li>Reflexive AI usage is now a baseline expectation at Shopify: tobi lutke @tobi <a href="https://t.co/6i6h3sKi3x" target="_blank" rel="noopener">https://t.co/6i6h3sKi3x</a> 287 Replies · 947 Reposts · 6.76K Likes</li><li>Claude Code: <a href="https://code.claude.com" target="_blank" rel="noopener">https://code.claude.com</a></li><li>OpenCode: <a href="https://opencode.ai" target="_blank" rel="noopener">https://opencode.ai</a></li><li>MacBook Neo: <a href="https://www.apple.com/macbook-neo/" target="_blank" rel="noopener">https://www.apple.com/macbook-neo/</a></li><li>tmux: <a href="https://github.com/tmux/tmux/wiki" target="_blank" rel="noopener">https://github.com/tmux/tmux/wiki</a></li><li>Kimi K2.5: <a href="https://kimik2ai.com/k2.5" target="_blank" rel="noopener">https://kimik2ai.com/k2.5</a></li><li>Agent first, agent native: <a href="https://basecamp.com/agents" target="_blank" rel="noopener">https://basecamp.com/agents</a></li><li>Sentry: <a href="https://sentry.io" target="_blank" rel="noopener">https://sentry.io</a></li><li>Moore’s law: <a href="https://en.wikipedia.org/wiki/Moore%27s_law" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Moore%27s_law</a></li><li>The Bitter Lesson: <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html" target="_blank" rel="noopener">http://www.incompleteideas.net/IncIdeas/BitterLesson.html</a></li><li>Scaling Uber with Thuan Pham (Uber’s first CTO): <a href="https://newsletter.pragmaticengineer.com/p/scaling-uber-with-thuan-pham-ubers" target="_blank" rel="noopener">https://newsletter.pragmaticengineer.com/p/scaling-uber-with-thuan-pham-ubers</a></li><li>Waymo: <a href="https://waymo.com" target="_blank" rel="noopener">https://waymo.com</a></li><li>Elon Musk: “There will not be a steering wheel” in 20 years: <a href="https://www.axios.com/2017/12/15/elon-musk-there-will-not-be-a-steering-wheel-in-20-years-1513304216" target="_blank" rel="noopener">https://www.axios.com/2017/12/15/elon-musk-there-will-not-be-a-steering-wheel-in-20-years-1513304216</a></li><li>Leopold Aschenbrenner — 2027 AGI, China/US super-intelligence race, &amp; the return of history: Dwarkesh Podcast Leopold Aschenbrenner — 2027 AGI, China/US super-intelligence race, &amp; the return of history Listen now 2 years ago · 89 likes · 16 comments · Dwarkesh Patel</li><li>Terminator 2 Things &amp; Ideas we would have never thought:</li><li>Commodore 64: <a href="https://en.wikipedia.org/wiki/Commodore_64" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Commodore_64</a></li><li>PlayStation: <a href="https://www.playstation.com" target="_blank" rel="noopener">https://www.playstation.com</a></li><li>Jevons paradox: <a href="https://en.wikipedia.org/wiki/Jevons_paradox" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Jevons_paradox</a></li><li>OpenClaw: <a href="https://openclaw.ai" target="_blank" rel="noopener">https://openclaw.ai</a></li><li>The creator of Clawd: “I ship code I don’t read”: <a href="https://newsletter.pragmaticengineer.com/p/the-creator-of-clawd-i-ship-code" target="_blank" rel="noopener">https://newsletter.pragmaticengineer.com/p/the-creator-of-clawd-i-ship-code</a></li><li>John Carmack on X: <a href="https://x.com/ID_AA_Carmack" target="_blank" rel="noopener">https://x.com/ID_AA_Carmack</a></li><li>TDD, AI agents and coding with Kent Beck: <a href="https://newsletter.pragmaticengineer.com/p/tdd-ai-agents-and-coding-with-kent" target="_blank" rel="noopener">https://newsletter.pragmaticengineer.com/p/tdd-ai-agents-and-coding-with-kent</a></li><li>Extreme Programming Explained: Embrace Change : <a href="https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0321278658" target="_blank" rel="noopener">https://www.amazon.com/Extreme-Programming-Explained-Embrace-Change/dp/0321278658</a></li><li>Smalltalk Best Practice Patterns : <a href="https://www.amazon.com/Smalltalk-Best-Practice-Patterns-Kent/dp/013476904X" target="_blank" rel="noopener">https://www.amazon.com/Smalltalk-Best-Practice-Patterns-Kent/dp/013476904X</a></li><li>From IDEs to AI Agents with Steve Yegge: <a href="https://newsletter.pragmaticengineer.com/p/from-ides-to-ai-agents-with-steve" target="_blank" rel="noopener">https://newsletter.pragmaticengineer.com/p/from-ides-to-ai-agents-with-steve</a> — Production and marketing by Pen Name .</li></ul></p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2604.07304v1" target="_blank">Chatbot-Based Assessment of Code Understanding in Automated Programming Assessment Systems</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Apr 08, 2026 &middot; 17:11 UTC</span>
+          </div>
+          <p class="summary"><span>Large Language Models (LLMs) challenge conventional automated programming assessment because students can now produce functionally correct code without demonstrating corresponding understanding.</span> <span>First, it reports a saturation-based scoping review of conversational assessment approaches in programming education.</span> <span>The review identifies three dominant architectural families: rule-based or template-driven systems, LLM-based systems, and hybrid systems.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Large Language Models (LLMs) challenge conventional automated programming assessment because students can now produce functionally correct code without demonstrating corresponding understanding. This paper makes two contributions. First, it reports a saturation-based scoping review of conversational assessment approaches in programming education. The review identifies three dominant architectural families: rule-based or template-driven systems, LLM-based systems, and hybrid systems. Across the literature, conversational agents appear promising for scalable feedback and deeper probing of code understanding, but important limitations remain around hallucinations, over-reliance, privacy, integrity, and deployment constraints. Second, the paper synthesizes these findings into a Hybrid Socratic Framework for integrating conversational verification into Automated Programming Assessment Systems (APASs). The framework combines deterministic code analysis with a dual-agent conversational layer, knowledge tracking, scaffolded questioning, and guardrails that tie prompts to runtime facts. The paper also discusses practical safeguards against LLM-generated explanations, including proctored deployment modes, randomized trace questions, stepwise reasoning tied to concrete execution states, and local-model deployment options for privacy-sensitive settings. Rather than replacing conventional testing, the framework is intended as a complementary layer for verifying whether students understand the code they submit.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/next-phase-of-enterprise-ai" target="_blank">The next phase of enterprise AI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 08, 2026 &middot; 14:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI outlines the next phase of enterprise AI, as adoption accelerates across industries with Frontier, ChatGPT Enterprise, Codex, and company-wide AI agents.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2604.07028v1" target="_blank">Strategic Persuasion with Trait-Conditioned Multi-Agent Systems for Iterative Legal Argumentation</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Apr 08, 2026 &middot; 12:46 UTC</span>
+          </div>
+          <p class="summary"><span>Strategic interaction in adversarial domains such as law, diplomacy, and negotiation is mediated by language, yet most game-theoretic models abstract away the mechanisms of persuasion that operate through discourse.</span> <span>We present the Strategic Courtroom Framework, a multi-agent simulation environment in which prosecution and defense teams composed of trait-conditioned Large Language Model (LLM) agents engage in iterative, round-based legal argumentation.</span> <span>Together, these findings demonstrate how language can be treated as a first-class strategic action space and provide a foundation for building autonomous agents capable of adaptive persuasion in multi-agent environments.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Strategic interaction in adversarial domains such as law, diplomacy, and negotiation is mediated by language, yet most game-theoretic models abstract away the mechanisms of persuasion that operate through discourse. We present the Strategic Courtroom Framework, a multi-agent simulation environment in which prosecution and defense teams composed of trait-conditioned Large Language Model (LLM) agents engage in iterative, round-based legal argumentation. Agents are instantiated using nine interpretable traits organized into four archetypes, enabling systematic control over rhetorical style and strategic orientation.   We evaluate the framework across 10 synthetic legal cases and 84 three-trait team configurations, totaling over 7{,}000 simulated trials using DeepSeek-R1 and Gemini~2.5~Pro. Our results show that heterogeneous teams with complementary traits consistently outperform homogeneous configurations, that moderate interaction depth yields more stable verdicts, and that certain traits (notably quantitative and charismatic) contribute disproportionately to persuasive success. We further introduce a reinforcement-learning-based Trait Orchestrator that dynamically generates defense traits conditioned on the case and opposing team, discovering strategies that outperform static, human-designed trait combinations.   Together, these findings demonstrate how language can be treated as a first-class strategic action space and provide a foundation for building autonomous agents capable of adaptive persuasion in multi-agent environments.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/i-built-a-custom-slack-inbox-it-was" target="_blank">I built a custom Slack inbox. It was easier than you’d think. | Yash Tekriwal (Clay)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Apr 08, 2026 &middot; 12:03 UTC</span>
+          </div>
+          <p class="summary"><span>oduct Introduction to Yash The burden of 150 daily Slack notifications When to use AI for tasks vs.</span> <span>building deterministic code Building the Slack digest with OpenClaw Introducing Perplexity Computer and the visual dashboard Three reasons Perplexity Computer beats Claude Code Using connectors to automate meeting follow-ups across Notion and Asana The Kanban-style Slack dashboard The long tail of customer requests and the future of micro-software The anti-to-do list framework Building a consolidated news, email, and Slack digest How Perplexity Computer handles authentication and deployment Team use case: Prototyping persona-based learning journeys for Clay University Lightning round and final thoughts<ul><li>Perplexity Computer: <a href="https://www.perplexity.ai/computer/new" target="_blank" rel="noopener">https://www.perplexity.ai/computer/new</a></li><li>OpenClaw: <a href="https://openclaw.ai/" target="_blank" rel="noopener">https://openclaw.ai/</a></li><li>Discord: <a href="https://discord.com/" target="_blank" rel="noopener">https://discord.com/</a></li><li>Claude Code: <a href="https://claude.ai/code" target="_blank" rel="noopener">https://claude.ai/code</a></li><li>Codex: <a href="https://openai.com/codex/" target="_blank" rel="noopener">https://openai.com/codex/</a></li><li>Asana: <a href="https://asana.com/" target="_blank" rel="noopener">https://asana.com/</a></li><li>Airtable: <a href="https://airtable.com/" target="_blank" rel="noopener">https://airtable.com/</a></li><li>Figma: <a href="https://www.figma.com/" target="_blank" rel="noopener">https://www.figma.com/</a></li><li>Vercel: <a href="https://vercel.com/" target="_blank" rel="noopener">https://vercel.com/</a></li><li>ChatGPT: <a href="https://chat.openai.com/" target="_blank" rel="noopener">https://chat.openai.com/</a> Other</li><li>Slack: <a href="https://slack.com/" target="_blank" rel="noopener">https://slack.com/</a></li><li>Notion: <a href="https://www.notion.so/" target="_blank" rel="noopener">https://www.notion.so/</a></li><li>Superhuman: <a href="https://superhuman.com/" target="_blank" rel="noopener">https://superhuman.com/</a></li><li>Clay University: <a href="https://www.clay.com/university" target="_blank" rel="noopener">https://www.clay.com/university</a></li><li>Kanban boards: <a href="https://en.wikipedia.org/wiki/Kanban_board" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Kanban_board</a> X: <a href="https://x.com/yash_tek" target="_blank" rel="noopener">https://x.com/yash_tek</a> Company: <a href="https://www.clay.com/" target="_blank" rel="noopener">https://www.clay.com/</a> Where to find Claire Vo: ChatPRD: <a href="https://www.chatprd.ai/" target="_blank" rel="noopener">https://www.chatprd.ai/</a> Website: <a href="https://clairevo.com/" target="_blank" rel="noopener">https://clairevo.com/</a> LinkedIn: <a href="https://www.linkedin.com/in/clairevo/" target="_blank" rel="noopener">https://www.linkedin.com/in/clairevo/</a> X: <a href="https://x.com/clairevo" target="_blank" rel="noopener">https://x.com/clairevo</a> Production and marketing by <a href="https://penname.co/" target="_blank" rel="noopener">https://penname.co/</a> .</span> <span>For inquiries about sponsoring the podcast, email [email protected] .</li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/listen-a-visual-guide-to-getting" target="_blank">Listen: A visual guide to getting out of a creative slump</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Apr 08, 2026 &middot; 02:51 UTC</span>
+          </div>
+          <p class="summary"><span>If you’re a premium lennysreads.com , my wife Michelle Rial, cartoonist and author, celebrates the launch of her new book Charts for Babies by sharing a pep talk for anyone stuck in a creative rut.</span> <span>She walks through 12 tried-and-tested steps designed to lift you out of a creative block and get back to making things that matter.</span> <span>Read the full article</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>If you’re a premium lennysreads.com , my wife Michelle Rial, cartoonist and author, celebrates the launch of her new book Charts for Babies by sharing a pep talk for anyone stuck in a creative rut. She walks through 12 tried-and-tested steps designed to lift you out of a creative block and get back to making things that matter. Listen now: YouTube | Apple | Spotify , you’ll learn: Why it’s necessary to create work that might feel embarrassing The simple mindset shift that stops stalling and gets you to just start How to reframe scorn as a positive signal The thought process that can help you move out of a state of rumination How to treat failed ideas as seeds for future breakthroughs Prefer text? Read the full article</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/this-week-on-how-i-ai-i-gave-claude" target="_blank">🎙️ This week on How I AI: I gave Claude Code our entire codebase. Our customers noticed.</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Apr 06, 2026 &middot; 15:03 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ This week on How I AI: I gave Claude Code our entire codebase.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>How I AI 🎙️ This week on How I AI: I gave Claude Code our entire codebase. Our customers noticed. Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Apr 06, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything. Catch you next week, Lenny P.S. Want every new episode delivered the moment it drops? Hit “Follow” on your favorite podcast app.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/i-gave-claude-code-our-entire-codebase" target="_blank">I gave Claude Code our entire codebase. Our customers noticed. | Al Chen (Galileo)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Apr 06, 2026 &middot; 12:03 UTC</span>
+          </div>
+          <p class="summary"><span>ines —Start building intelligent workflows today Introduction to Al Chen The problem: documentation wasn’t enough Pulling 15 repos into VS Code How Claude Code queries the entire codebase Why current code beats documentation The pull script that keeps everything updated Opening projects at the multi-repo level Live demo: answering deployment questions The customer quirks system Living in chaos: why organization matters less now Competing on customer experience, not just product Should customers be able to query the code directly? Where humans still add value Using AI for reactive Slack support The “and then” workflow discovery Scaling processes across the team Lightning round and final thoughts<ul><li>Claude Code: <a href="https://claude.ai/code" target="_blank" rel="noopener">https://claude.ai/code</a></li><li>VS Code: <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">https://code.visualstudio.com/</a></li><li>Pylon: <a href="https://usepylon.com/" target="_blank" rel="noopener">https://usepylon.com/</a></li><li>Confluence: <a href="https://www.atlassian.com/software/confluence" target="_blank" rel="noopener">https://www.atlassian.com/software/confluence</a> Other</li><li>Slack: <a href="https://slack.com/" target="_blank" rel="noopener">https://slack.com/</a></li><li>Kubernetes: <a href="https://kubernetes.io/" target="_blank" rel="noopener">https://kubernetes.io/</a></li><li>Stack Overflow: <a href="https://stackoverflow.com/" target="_blank" rel="noopener">https://stackoverflow.com/</a></li><li>Intercom: <a href="https://www.intercom.com/" target="_blank" rel="noopener">https://www.intercom.com/</a> Company: <a href="https://www.rungalileo.io" target="_blank" rel="noopener">https://www.rungalileo.io</a> Where to find Claire Vo: ChatPRD: <a href="https://www.chatprd.ai/" target="_blank" rel="noopener">https://www.chatprd.ai/</a> Website: <a href="https://clairevo.com/" target="_blank" rel="noopener">https://clairevo.com/</a> LinkedIn: <a href="https://www.linkedin.com/in/clairevo/" target="_blank" rel="noopener">https://www.linkedin.com/in/clairevo/</a> X: <a href="https://x.com/clairevo" target="_blank" rel="noopener">https://x.com/clairevo</a> Production and marketing by <a href="https://penname.co/" target="_blank" rel="noopener">https://penname.co/</a> .</span> <span>For inquiries about sponsoring the podcast, email [email protected] .</li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/introducing-openai-safety-fellowship" target="_blank">Announcing the OpenAI Safety Fellowship</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 06, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>A pilot program to support independent safety and alignment research and develop the next generation of talent</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Apr/6/google-ai-edge-gallery/#atom-everything" target="_blank">Google AI Edge Gallery</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Apr 06, 2026 &middot; 05:18 UTC</span>
+          </div>
+          <p class="summary"><span>Google AI Edge Gallery Terrible name, really great app: this is Google&#x27;s official app for running their Gemma 4 models (the E2B and E4B sizes, plus some members of the Gemma 3 family) directly on your iPhone.</span> <span>Sadly it&#x27;s missing permanent logs - conversations with this app are ephemeral.</span> <span>Via Hacker News Tags: google , iphone , ai , generative-ai , local-llms , llms , gemini , llm-tool-use</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Google AI Edge Gallery</p><p>Terrible name, really great app: this is Google&#x27;s official app for running their Gemma 4 models (the E2B and E4B sizes, plus some members of the Gemma 3 family) directly on your iPhone.</p><p>It works really well. The E2B model is a 2.54GB download and is both fast and genuinely useful.</p><p>The app also provides &quot;ask questions about images&quot; and audio transcription (up to 30s) with the two small Gemma 4 models, and has an interesting &quot;skills&quot; demo which demonstrates tool calling against eight different interactive widgets, each implemented as an HTML page (though sadly the source code is not visible): interactive-map, kitchen-adventure, calculate-hash, text-spinner, mood-tracker, mnemonic-password, query-wikipedia, and qr-code.</p><p>(That demo did freeze the app when I tried to add a follow-up prompt though.)</p><p>This is the first time I&#x27;ve seen a local model vendor release an official app for trying out their models on in iPhone. Sadly it&#x27;s missing permanent logs - conversations with this app are ephemeral.</p><p>Via Hacker News</p><p>Tags: google, iphone, ai, generative-ai, local-llms, llms, gemini, llm-tool-use</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Apr/6/cleanup-claude-code-paste/#atom-everything" target="_blank">Cleanup Claude Code Paste</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Apr 06, 2026 &middot; 02:55 UTC</span>
+          </div>
+          <p class="summary"><span>Tool: Cleanup Claude Code Paste Super-niche tool this.</span> <span>I sometimes copy prompts out of the Claude Code terminal app and they come out with a bunch of weird additional whitespace.</span> <span>Tags: tools , claude-code</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Tool: Cleanup Claude Code Paste</p><p>Super-niche tool this. I sometimes copy prompts out of the Claude Code terminal app and they come out with a bunch of weird additional whitespace. This tool cleans that up.</p><p>Tags: tools, claude-code</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Apr/5/building-with-ai/#atom-everything" target="_blank">Eight years of wanting, three months of building with AI</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Apr 05, 2026 &middot; 23:54 UTC</span>
+          </div>
+          <p class="summary"><span>Eight years of wanting, three months of building with AI Lalit Maganti provides one of my favorite pieces of long-form writing on agentic engineering I&#x27;ve seen in ages.</span> <span>They spent eight years thinking about and then three months building syntaqlite , which they describe as &quot; high-fidelity devtools that SQLite deserves &quot;.</span> <span>I&#x27;ve found myself wanting this kind of thing in the past myself, hence my (far less production-ready) sqlite-ast project from a few months ago.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Eight years of wanting, three months of building with AI</p><p>Lalit Maganti provides one of my favorite pieces of long-form writing on agentic engineering I&#x27;ve seen in ages.</p><p>They spent eight years thinking about and then three months building syntaqlite, which they describe as &quot;high-fidelity devtools that SQLite deserves&quot;.</p><p>The goal was to provide fast, robust and comprehensive linting and verifying tools for SQLite, suitable for use in language servers and other development tools - a parser, formatter, and verifier for SQLite queries. I&#x27;ve found myself wanting this kind of thing in the past myself, hence my (far less production-ready) sqlite-ast project from a few months ago.</p><p>Lalit had been procrastinating on this project for years, because of the inevitable tedium of needing to work through 400+ grammar rules to help build a parser. That&#x27;s exactly the kind of tedious work that coding agents excel at!</p><p>Claude Code helped get over that initial hump and build the first prototype:</p><p>AI basically let me put aside all my doubts on technical calls, my uncertainty of building the right thing and my reluctance to get started by giving me very concrete problems to work on. Instead of “I need to understand how SQLite’s parsing works”, it was “I need to get AI to suggest an approach for me so I can tear it up and build something better&quot;. I work so much better with concrete prototypes to play with and code to look at than endlessly thinking about designs in my head, and AI lets me get to that point at a pace I could not have dreamed about before. Once I took the first step, every step after that was so much easier.</p><p>That first vibe-coded prototype worked great as a proof of concept, but they eventually made the decision to throw it away and start again from scratch. AI worked great for the low level details but did not produce a coherent high-level architecture:</p><p>I found that AI made me procrastinate on key design decisions. Because refactoring was cheap, I could always say “I’ll deal with this later.” And because AI could refactor at the same industrial scale it generated code, the cost of deferring felt low. But it wasn’t: deferring decisions corroded my ability to think clearly because the codebase stayed confusing in the meantime.</p><p>The second attempt took a lot longer and involved a great deal more human-in-the-loop decision making, but the result is a robust library that can stand the test of time.</p><p>It&#x27;s worth setting aside some time to read this whole thing - it&#x27;s full of non-obvious downsides to working heavily with AI, as well as a detailed explanation of how they overcame those hurdles.</p><p>The key idea I took away from this concerns AI&#x27;s weakness in terms of design and architecture:</p><p>When I was working on something where I didn’t even know what I wanted, AI was somewhere between unhelpful and harmful. The architecture of the project was the clearest case: I spent weeks in the early days following AI down dead ends, exploring designs that felt productive in the moment but collapsed under scrutiny. In hindsight, I have to wonder if it would have been faster just thinking it through without AI in the loop at all.</p><p>But expertise alone isn’t enough. Even when I understood a problem deeply, AI still struggled if the task had no objectively checkable answer. Implementation has a right answer, at least at a local level: the code compiles, the tests pass, the output matches what you asked for. Design doesn’t. We’re still arguing about OOP decades after it first took off.</p><p>Via Hacker News</p><p>Tags: sqlite, ai, generative-ai, llms, ai-assisted-programming, vibe-coding, agentic-engineering</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/anthropics-1b-to-19b-growth-run" target="_blank">Head of Growth (Anthropic): “Claude is growing itself at this point” | Amol Avasare</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Apr 05, 2026 &middot; 12:31 UTC</span>
+          </div>
+          <p class="summary"><span>Automate compliance, manage risk, and accelerate trust with AI Where to find Amol Avasare:<ul><li>X: <a href="https://x.com/TheAmolAvasare" target="_blank" rel="noopener">https://x.com/TheAmolAvasare</a></li><li>LinkedIn: <a href="https://www.linkedin.com/in/amolavasare" target="_blank" rel="noopener">https://www.linkedin.com/in/amolavasare</a> d:</li><li>How a traumatic brain injury made me a better PM—and person: <a href="https://www.lennysnewsletter.com/p/how-a-traumatic-brain-injury-made" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/how-a-traumatic-brain-injury-made</a></li><li>Anthropic: <a href="https://www.anthropic.com" target="_blank" rel="noopener">https://www.anthropic.com</a></li><li>Snowflake: <a href="https://www.snowflake.com" target="_blank" rel="noopener">https://www.snowflake.com</a></li><li>Canva: <a href="https://www.canva.com" target="_blank" rel="noopener">https://www.canva.com</a></li><li>Palantir: <a href="https://www.palantir.com" target="_blank" rel="noopener">https://www.palantir.com</a></li><li>Atlassian: <a href="https://www.atlassian.com" target="_blank" rel="noopener">https://www.atlassian.com</a></li><li>Anthropic’s CPO on what comes next | Mike Krieger (co-founder of Instagram): <a href="https://www.lennysnewsletter.com/p/anthropics-cpo-heres-what-comes-next" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/anthropics-cpo-heres-what-comes-next</a></li><li>Claude Code: <a href="https://code.claude.com" target="_blank" rel="noopener">https://code.claude.com</a></li><li>Dario Amodei on X: <a href="https://x.com/DarioAmodei" target="_blank" rel="noopener">https://x.com/DarioAmodei</a></li><li>Facebook: <a href="https://www.facebook.com" target="_blank" rel="noopener">https://www.facebook.com</a></li><li>Uber: <a href="https://www.uber.com" target="_blank" rel="noopener">https://www.uber.com</a></li><li>DoorDash: <a href="https://www.doordash.com" target="_blank" rel="noopener">https://www.doordash.com</a></li><li>Anthropic co-founder on quitting OpenAI, AGI predictions, $100M talent wars, 20% unemployment, and the nightmare scenarios keeping him up at night | Ben Mann: <a href="https://www.lennysnewsletter.com/p/anthropic-co-founder-benjamin-mann" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/anthropic-co-founder-benjamin-mann</a></li><li>Mercury: <a href="https://mercury.com" target="_blank" rel="noopener">https://mercury.com</a></li><li>MasterClass: <a href="https://www.masterclass.com" target="_blank" rel="noopener">https://www.masterclass.com</a></li><li>Calm: <a href="https://www.calm.com" target="_blank" rel="noopener">https://www.calm.com</a></li><li>Alexey Komissarouk’s website: <a href="https://alexeymk.com" target="_blank" rel="noopener">https://alexeymk.com</a></li><li>Alexey’s “Mastering Growth Engineering” course: <a href="https://www.reforge.com/courses/mastering-growth-engineering" target="_blank" rel="noopener">https://www.reforge.com/courses/mastering-growth-engineering</a></li><li>Claude Cowork: <a href="https://www.anthropic.com/product/claude-cowork" target="_blank" rel="noopener">https://www.anthropic.com/product/claude-cowork</a></li><li>Making an impact through authenticity and curiosity | Ami Vora (CPO at Faire, ex-WhatsApp, FB, IG): <a href="https://www.lennysnewsletter.com/p/authenticity-and-curiosity-ami-vora" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/authenticity-and-curiosity-ami-vora</a></li><li>Ami Vora’s Substack: <a href="https://amivora.substack.com" target="_blank" rel="noopener">https://amivora.substack.com</a></li><li>Benepass: <a href="https://getbenepass.com" target="_blank" rel="noopener">https://getbenepass.com</a></li><li>Brex: <a href="https://www.brex.com" target="_blank" rel="noopener">https://www.brex.com</a></li><li>Granola: <a href="https://www.granola.ai" target="_blank" rel="noopener">https://www.granola.ai</a></li><li>The design process is dead.</span> <span>Here’s what’s replacing it.</span> <span>| Jenny Wen (head of design at Claude): <a href="https://www.lennysnewsletter.com/p/the-design-process-is-dead" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/the-design-process-is-dead</a></li><li>Marc Andreessen: The real AI boom hasn’t even started yet: <a href="https://www.lennysnewsletter.com/p/marc-andreessen-the-real-ai-boom" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/marc-andreessen-the-real-ai-boom</a></li><li>John Egan’s website: <a href="https://jwegan.com" target="_blank" rel="noopener">https://jwegan.com</a></li><li>Workday: <a href="https://www.workday.com" target="_blank" rel="noopener">https://www.workday.com</a></li><li>Figma: <a href="https://www.figma.com" target="_blank" rel="noopener">https://www.figma.com</a></li><li>Spirit Rock: <a href="https://www.spiritrock.org" target="_blank" rel="noopener">https://www.spiritrock.org</a></li><li>This will make you a better decision-maker | Annie Duke (author of “Thinking in Bets” and “Quit,” former pro poker player): <a href="https://www.lennysnewsletter.com/p/making-better-decisions-annie-duke" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/making-better-decisions-annie-duke</a></li><li>Marty Supreme : <a href="https://www.imdb.com/title/tt32916440" target="_blank" rel="noopener">https://www.imdb.com/title/tt32916440</a></li><li>Maruhachi Shinsui Maruhachi Pro: <a href="https://www.amazon.co.jp/-/en/Maruhachi-Shinsui-Feather-Pillow-Blissful/dp/B081DNVD3K" target="_blank" rel="noopener">https://www.amazon.co.jp/-/en/Maruhachi-Shinsui-Feather-Pillow-Blissful/dp/B081DNVD3K</a> Recommended books:</li><li>The Joy of Living: Unlocking the Secret and Science of Happiness : <a href="https://www.amazon.com/Joy-Living-Unlocking-Science-Happiness/dp/0307347311" target="_blank" rel="noopener">https://www.amazon.com/Joy-Living-Unlocking-Science-Happiness/dp/0307347311</a></li><li>Awareness: Conversations with the Masters : <a href="https://www.amazon.com/Awareness-Opportunities-Reality-Anthony-Mello/dp/0385249373" target="_blank" rel="noopener">https://www.amazon.com/Awareness-Opportunities-Reality-Anthony-Mello/dp/0385249373</a></li><li>Thinking in Bets: Making Smarter Decisions When You Don’t Have All the Facts : <a href="https://www.amazon.com/Thinking-Bets-Making-Smarter-Decisions/dp/0735216371" target="_blank" rel="noopener">https://www.amazon.com/Thinking-Bets-Making-Smarter-Decisions/dp/0735216371</a> Production and marketing by <a href="https://penname.co/" target="_blank" rel="noopener">https://penname.co/</a> .</span> <span>My biggest takeaways from this conversation:</li></ul></span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Automate compliance, manage risk, and accelerate trust with AI Where to find Amol Avasare:<ul><li>X: <a href="https://x.com/TheAmolAvasare" target="_blank" rel="noopener">https://x.com/TheAmolAvasare</a></li><li>LinkedIn: <a href="https://www.linkedin.com/in/amolavasare" target="_blank" rel="noopener">https://www.linkedin.com/in/amolavasare</a> d:</li><li>How a traumatic brain injury made me a better PM—and person: <a href="https://www.lennysnewsletter.com/p/how-a-traumatic-brain-injury-made" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/how-a-traumatic-brain-injury-made</a></li><li>Anthropic: <a href="https://www.anthropic.com" target="_blank" rel="noopener">https://www.anthropic.com</a></li><li>Snowflake: <a href="https://www.snowflake.com" target="_blank" rel="noopener">https://www.snowflake.com</a></li><li>Canva: <a href="https://www.canva.com" target="_blank" rel="noopener">https://www.canva.com</a></li><li>Palantir: <a href="https://www.palantir.com" target="_blank" rel="noopener">https://www.palantir.com</a></li><li>Atlassian: <a href="https://www.atlassian.com" target="_blank" rel="noopener">https://www.atlassian.com</a></li><li>Anthropic’s CPO on what comes next | Mike Krieger (co-founder of Instagram): <a href="https://www.lennysnewsletter.com/p/anthropics-cpo-heres-what-comes-next" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/anthropics-cpo-heres-what-comes-next</a></li><li>Claude Code: <a href="https://code.claude.com" target="_blank" rel="noopener">https://code.claude.com</a></li><li>Dario Amodei on X: <a href="https://x.com/DarioAmodei" target="_blank" rel="noopener">https://x.com/DarioAmodei</a></li><li>Facebook: <a href="https://www.facebook.com" target="_blank" rel="noopener">https://www.facebook.com</a></li><li>Uber: <a href="https://www.uber.com" target="_blank" rel="noopener">https://www.uber.com</a></li><li>DoorDash: <a href="https://www.doordash.com" target="_blank" rel="noopener">https://www.doordash.com</a></li><li>Anthropic co-founder on quitting OpenAI, AGI predictions, $100M talent wars, 20% unemployment, and the nightmare scenarios keeping him up at night | Ben Mann: <a href="https://www.lennysnewsletter.com/p/anthropic-co-founder-benjamin-mann" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/anthropic-co-founder-benjamin-mann</a></li><li>Mercury: <a href="https://mercury.com" target="_blank" rel="noopener">https://mercury.com</a></li><li>MasterClass: <a href="https://www.masterclass.com" target="_blank" rel="noopener">https://www.masterclass.com</a></li><li>Calm: <a href="https://www.calm.com" target="_blank" rel="noopener">https://www.calm.com</a></li><li>Alexey Komissarouk’s website: <a href="https://alexeymk.com" target="_blank" rel="noopener">https://alexeymk.com</a></li><li>Alexey’s “Mastering Growth Engineering” course: <a href="https://www.reforge.com/courses/mastering-growth-engineering" target="_blank" rel="noopener">https://www.reforge.com/courses/mastering-growth-engineering</a></li><li>Claude Cowork: <a href="https://www.anthropic.com/product/claude-cowork" target="_blank" rel="noopener">https://www.anthropic.com/product/claude-cowork</a></li><li>Making an impact through authenticity and curiosity | Ami Vora (CPO at Faire, ex-WhatsApp, FB, IG): <a href="https://www.lennysnewsletter.com/p/authenticity-and-curiosity-ami-vora" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/authenticity-and-curiosity-ami-vora</a></li><li>Ami Vora’s Substack: <a href="https://amivora.substack.com" target="_blank" rel="noopener">https://amivora.substack.com</a></li><li>Benepass: <a href="https://getbenepass.com" target="_blank" rel="noopener">https://getbenepass.com</a></li><li>Brex: <a href="https://www.brex.com" target="_blank" rel="noopener">https://www.brex.com</a></li><li>Granola: <a href="https://www.granola.ai" target="_blank" rel="noopener">https://www.granola.ai</a></li><li>The design process is dead. Here’s what’s replacing it. | Jenny Wen (head of design at Claude): <a href="https://www.lennysnewsletter.com/p/the-design-process-is-dead" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/the-design-process-is-dead</a></li><li>Marc Andreessen: The real AI boom hasn’t even started yet: <a href="https://www.lennysnewsletter.com/p/marc-andreessen-the-real-ai-boom" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/marc-andreessen-the-real-ai-boom</a></li><li>John Egan’s website: <a href="https://jwegan.com" target="_blank" rel="noopener">https://jwegan.com</a></li><li>Workday: <a href="https://www.workday.com" target="_blank" rel="noopener">https://www.workday.com</a></li><li>Figma: <a href="https://www.figma.com" target="_blank" rel="noopener">https://www.figma.com</a></li><li>Spirit Rock: <a href="https://www.spiritrock.org" target="_blank" rel="noopener">https://www.spiritrock.org</a></li><li>This will make you a better decision-maker | Annie Duke (author of “Thinking in Bets” and “Quit,” former pro poker player): <a href="https://www.lennysnewsletter.com/p/making-better-decisions-annie-duke" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/making-better-decisions-annie-duke</a></li><li>Marty Supreme : <a href="https://www.imdb.com/title/tt32916440" target="_blank" rel="noopener">https://www.imdb.com/title/tt32916440</a></li><li>Maruhachi Shinsui Maruhachi Pro: <a href="https://www.amazon.co.jp/-/en/Maruhachi-Shinsui-Feather-Pillow-Blissful/dp/B081DNVD3K" target="_blank" rel="noopener">https://www.amazon.co.jp/-/en/Maruhachi-Shinsui-Feather-Pillow-Blissful/dp/B081DNVD3K</a> Recommended books:</li><li>The Joy of Living: Unlocking the Secret and Science of Happiness : <a href="https://www.amazon.com/Joy-Living-Unlocking-Science-Happiness/dp/0307347311" target="_blank" rel="noopener">https://www.amazon.com/Joy-Living-Unlocking-Science-Happiness/dp/0307347311</a></li><li>Awareness: Conversations with the Masters : <a href="https://www.amazon.com/Awareness-Opportunities-Reality-Anthony-Mello/dp/0385249373" target="_blank" rel="noopener">https://www.amazon.com/Awareness-Opportunities-Reality-Anthony-Mello/dp/0385249373</a></li><li>Thinking in Bets: Making Smarter Decisions When You Don’t Have All the Facts : <a href="https://www.amazon.com/Thinking-Bets-Making-Smarter-Decisions/dp/0735216371" target="_blank" rel="noopener">https://www.amazon.com/Thinking-Bets-Making-Smarter-Decisions/dp/0735216371</a> Production and marketing by <a href="https://penname.co/" target="_blank" rel="noopener">https://penname.co/</a> . For inquiries about sponsoring the podcast, email [email protected] . Lenny may be an investor in the companies discussed. My biggest takeaways from this conversation:</li></ul></p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Apr/3/supply-chain-social-engineering/#atom-everything" target="_blank">The Axios supply chain attack used individually targeted social engineering</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Apr 03, 2026 &middot; 13:54 UTC</span>
+          </div>
+          <p class="summary"><span>The Axios team have published a full postmortem on the supply chain attack which resulted in a malware dependency going out in a release the other day , and it involved a sophisticated social engineering campaign targeting one of their maintainers directly.</span> <span>Here&#x27;s Jason Saayman&#x27;a description of how that worked : so the attack vector mimics what google has documented here: <a href="https://cloud.google.com/blog/topics/threat-intelligence/unc1069-targets-cryptocurrency-ai-social-engineering" target="_blank" rel="noopener">https://cloud.google.com/blog/topics/threat-intelligence/unc1069-targets-cryptocurrency-ai-social-engineering</a> they tailored this process specifically to me by doing the following: they reached out masquerading as the founder of a company they had cloned the companys founders likeness as well as the company itself.</span> <span>they then invited me to a real slack workspace.</span> <span>this workspace was branded to the companies ci and named in a plausible manner.</span> <span>the slack was thought out very well, they had channels where they were sharing linked-in posts, the linked in posts i presume just went to the real companys account but it was super convincing etc.</span> <span>they even had what i presume were fake profiles of the team of the company but also number of other oss maintainers.</span> <span>they scheduled a meeting with me to connect.</span> <span>the meeting was on ms teams.</span> <span>the meeting had what seemed to be a group of people that were involved.</span> <span>the meeting said something on my system was out of date.</span> <span>i installed the missing item as i presumed it was something to do with teams, and this was the RAT.</span> <span>everything was extremely well co-ordinated looked legit and was done in a professional manner.</span> <span>Tags: open-source , packaging , security , social-engineering , supply-chain</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>The Axios team have published a full postmortem on the supply chain attack which resulted in a malware dependency going out in a release the other day, and it involved a sophisticated social engineering campaign targeting one of their maintainers directly. Here&#x27;s Jason Saayman&#x27;a description of how that worked:</p><p>so the attack vector mimics what google has documented here: <a href="https://cloud.google.com/blog/topics/threat-intelligence/unc1069-targets-cryptocurrency-ai-social-engineering" target="_blank" rel="noopener">https://cloud.google.com/blog/topics/threat-intelligence/unc1069-targets-cryptocurrency-ai-social-engineering</a></p><p>they tailored this process specifically to me by doing the following:</p><p>they reached out masquerading as the founder of a company they had cloned the companys founders likeness as well as the company itself.</p><p>they then invited me to a real slack workspace. this workspace was branded to the companies ci and named in a plausible manner. the slack was thought out very well, they had channels where they were sharing linked-in posts, the linked in posts i presume just went to the real companys account but it was super convincing etc. they even had what i presume were fake profiles of the team of the company but also number of other oss maintainers.</p><p>they scheduled a meeting with me to connect. the meeting was on ms teams. the meeting had what seemed to be a group of people that were involved.</p><p>the meeting said something on my system was out of date. i installed the missing item as i presumed it was something to do with teams, and this was the RAT.</p><p>everything was extremely well co-ordinated looked legit and was done in a professional manner.</p><p>A RAT is a Remote Access Trojan - this was the software which stole the developer&#x27;s credentials which could then be used to publish the malicious package.</p><p>That&#x27;s a very effective scam. I join a lot of meetings where I find myself needing to install Webex or Microsoft Teams or similar at the last moment and the time constraint means I always click &quot;yes&quot; to things as quickly as possible to make sure I don&#x27;t join late.</p><p>Every maintainer of open source software used by enough people to be worth taking in this way needs to be familiar with this attack strategy.</p><p>Tags: open-source, packaging, security, social-engineering, supply-chain</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://newsletter.pragmaticengineer.com/p/the-pulse-industry-leaders-return" target="_blank">The Pulse: Industry leaders return to coding with AI</a></h2>
+          <div class="meta">
+            <span class="source">pragmatic-engineer</span>
+            <span class="date">Apr 02, 2026 &middot; 16:29 UTC</span>
+          </div>
+          <p class="summary"><span>Today, we cover: Founders back coding with AI: Mark Zuckerberg &amp; Garry Tan.</span> <span>Founders back coding with AI: Mark Zuckerberg &amp; Garry Tan Two interesting stories of AI tools encouraging busy founders to start writing code again with AI agents.</span> <span>Mark Zuckerberg back to landing diffs, 20 years later</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>The Pulse is a series covering events, insights, and trends within Big Tech and startups. Notice an interesting event or trend? Hit reply and share it with me. Today, we cover: Founders back coding with AI: Mark Zuckerberg &amp; Garry Tan. The Meta chief is shipping diffs after 20 years, while Garry Tan at Y Combinator is knee-deep in coding, 15 years later. Founders with technical backgrounds being hands-on with AI agents could be a good thing – especially when the “honeymoon” period ends. A bad week for Claude Code and GitHub. Claude Code’s source code was leaked when a sourcemap file was accidentally uploaded, and revealed that the tool uses anti-distillation to deal with competitors, and also some potential future features such as an always-on background agent. Also: DMCA copyright strikes from Anthropic raise a big question: can a codebase that is fully AI-generated be covered by copyright? Industry pulse. Meta sets targets for AI-generated code, GitHub’s 6 years of reliability issues, massive job losses at Oracle, GitHub Copilot rollouts and then rolls back ads, RAM prices fall (for now), and more. Founders back coding with AI: Mark Zuckerberg &amp; Garry Tan Two interesting stories of AI tools encouraging busy founders to start writing code again with AI agents. Mark Zuckerberg back to landing diffs, 20 years later</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 176</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
