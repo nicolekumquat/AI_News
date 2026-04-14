@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-04-14</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-04-14</h1>
+    <div class="subtitle">15 curated articles &middot; 17 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Apr/13/steve-yegge/#atom-everything" target="_blank">Steve Yegge</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Apr 13, 2026 &middot; 20:59 UTC</span>
+          </div>
+          <p class="summary"><span>Steve Yegge : I was chatting with my buddy at Google, who&#x27;s been a tech director there for about 20 years, about their AI adoption.</span> <span>The TL;DR is that Google engineering appears to have the same AI adoption footprint as John Deere, the tractor company.</span> <span>Tags: addy-osmani , steve-yegge , google , generative-ai , agentic-engineering , ai , llms</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Steve Yegge : I was chatting with my buddy at Google, who&#x27;s been a tech director there for about 20 years, about their AI adoption. Craziest convo I&#x27;ve had all year. The TL;DR is that Google engineering appears to have the same AI adoption footprint as John Deere, the tractor company. Most of the industry has the same internal adoption curve: 20% agentic power users, 20% outright refusers, 60% still using Cursor or equivalent chat tool. It turns out Google has this curve too. [...] There has been an industry-wide hiring freeze for 18+ months, during which time nobody has been moving jobs. So there are no clued-in people coming in from the outside to tell Google how far behind they are, how utterly mediocre they have become as an eng org. Addy Osmani : On behalf of @Google, this post doesn&#x27;t match the state of agentic coding at our company. Over 40K SWEs use agentic coding weekly here. Googlers have access to our own versions of @antigravity, @geminicli, custom models, skills, CLIs and MCPs for our daily work. Orchestrators, agent loops, virtual SWE teams and many other systems are actively available to folks. [...] Demis Hassabis : Maybe tell your buddy to do some actual work and to stop spreading absolute nonsense. This post is completely false and just pure clickbait. Tags: addy-osmani , steve-yegge , google , generative-ai , agentic-engineering , ai , llms</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/this-week-on-how-i-ai-claude-cowork" target="_blank">🎙️ This week on How I AI: Claude Cowork tutorial for non-engineers + Build your own Slack inbox (for $0)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Apr 13, 2026 &middot; 15:07 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ This week on How I AI: Claude Cowork tutorial for non-engineers + Build your own Slack inbox (for $0) Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Apr 13, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/claude-cowork-101-how-to-automate" target="_blank">Claude Cowork 101: How to automate your workday without touching code | JJ Englert (Tenex)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Apr 13, 2026 &middot; 12:03 UTC</span>
+          </div>
+          <p class="summary"><span>ith AI Introduction to JJ Englert What Cowork is and who it’s for Getting started: Opening the Cowork tab in Claude Desktop Understanding projects as folders on your computer Creating your “brain” file, with working p and context Demo: Building a daily operating system project from scratch How to prompt Cowork when starting a new project Understanding the project interface and shared memory Setting up connectors to Gmail, Slack, Google Calendar, and other tools Using connectors to analyze your emails and build personalized writing skills Creating a thinking-partner skill for decision support Cowork vs.</span> <span>OpenClaw Building a sub-advisory skill with multiple AI personas for feedback Advanced skill example: Multi-step newsletter creation with research and evaluation Setting up scheduled tasks for morning debriefs Going beyond one-off tasks with AI Progressive trust and the tradeoff of information for productivity Different use cases beyond work productivity</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/cloudflare-openai-agent-cloud" target="_blank">Enterprises power agentic workflows in Cloudflare Agent Cloud with OpenAI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 13, 2026 &middot; 06:00 UTC</span>
+          </div>
+          <p class="summary"><span>Cloudflare brings OpenAI’s GPT-5.4 and Codex to Agent Cloud, enabling enterprises to build, deploy, and scale AI agents for real-world tasks with speed and security.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/academy/marketing" target="_blank">ChatGPT for marketing teams</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 10, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>Learn how marketing teams use ChatGPT to plan campaigns, generate content, analyze performance, and move from ideas to execution faster.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/axios-developer-tool-compromise" target="_blank">Our response to the Axios developer tool compromise</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 10, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI responds to the Axios supply chain attack by rotating macOS code signing certificates, updating apps, and confirming no user data was compromised.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/academy/applications-of-ai" target="_blank">Applications of AI at OpenAI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 10, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>Explore how OpenAI products like ChatGPT, Codex, and APIs bring AI into real-world use for work, development, and everyday tasks.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/academy/financial-services" target="_blank">Financial services</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 10, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>Explore AI resources for financial services, including prompt packs, GPTs, guides, and tools to help institutions deploy and scale AI securely.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/academy/prompting" target="_blank">Prompting fundamentals</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 10, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>Learn prompting fundamentals and how to write clear, effective prompts to get better, more useful responses from ChatGPT.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/academy/customer-success" target="_blank">ChatGPT for customer success teams</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 10, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>Learn how customer success teams use ChatGPT to manage accounts, improve communication, reduce churn, and drive adoption and renewals.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/academy/operations" target="_blank">ChatGPT for operations teams</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 10, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>Learn how operations teams use ChatGPT to streamline workflows, improve coordination, standardize processes, and drive faster execution.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/academy/managers" target="_blank">ChatGPT for managers</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 10, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>Learn how managers use ChatGPT to prepare for conversations, write clear feedback, stay organized, and improve team effectiveness.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/cyberagent" target="_blank">CyberAgent moves faster with ChatGPT Enterprise and Codex</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 09, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>CyberAgent uses ChatGPT Enterprise and Codex to securely scale AI adoption, improve quality, and accelerate decisions across advertising, media, and gaming.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/full-fan-mode-contest-terms-conditions" target="_blank">OpenAI Full Fan Mode Contest: Terms &amp; Conditions</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 09, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>Explore the official terms and conditions for the OpenAI Full Fan Mode Contest, including eligibility, entry steps, judging criteria, and prize details.</span> <span>Learn how to participate, submit your entry on Instagram, and win IPL match tickets.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://newsletter.pragmaticengineer.com/p/dhhs-new-way-of-writing-code" target="_blank">DHH’s new way of writing code</a></h2>
+          <div class="meta">
+            <span class="source">pragmatic-engineer</span>
+            <span class="date">Apr 08, 2026 &middot; 17:16 UTC</span>
+          </div>
+          <p class="summary"><span>See how SonarQube Advanced Security is empowering the Agent Centric Development Cycle (AC/DC) with new capabilities.</span> <span>Key observations from DHH Here are 12 of my most interesting takeaways from talking with DHH: 1.</span> <span>DHH believes the dopamine loop of shipping with agents is intoxicating and can lead to higher risk of burnout.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Stream the latest episode Listen and watch now on YouTube , Spotify , and Apple . See the episode transcript at the top of this page, and timestamps for the episode at the bottom. Stop switching between different tools, and have them all in one place. It covers everything enterprise security requires: SSO, SCIM, RBAC, Audit Logs, AI governance, and more. Engineering teams ship it in days. Trusted by 2,000+ fast-growing companies, including OpenAI, Anthropic, Cursor, and Vercel. .com<ul><li>Sonar – The makers of SonarQube, the industry standard for automated code review. Sonar helps reduce outages, improve security, and lower risks associated with AI and agentic coding. See how SonarQube Advanced Security is empowering the Agent Centric Development Cycle (AC/DC) with new capabilities. David Heinemeier Hansson (DHH) is the creator of Ruby on Rails and Omarchy, co-founder and CTO of 37signals (maker of Basecamp and HEY), and the author of several books including the best-seller, Remote: Office Not Required , co-written with Jason Fried . Six months ago, in an episode of the Lex Fridman podcast , David shared how he doesn’t use AI tools to write code: he types out all his code. But things have changed a lot since then. his approach to building software, how it’s changed in the last six months, and why he now takes an agent-first approach, and how he barely writes any code by hand. We go into how he uses AI agents: which alter how he builds and explores ideas, but also how his standards of quality and craft remain the same. We also discuss how 37signals thinks about product development, from the role of designers to the importance of aesthetics and taste. David gets into how he sees beauty and functionality as closely linked, and why strong opinions about design lead to better software. Finally, we look into the uneven impact of AI which amplifies senior engineers while creating challenges for junior developers, and what this may mean for the role of the software engineer. Key observations from DHH Here are 12 of my most interesting takeaways from talking with DHH: 1. His philosophy on AI has not changed, but the available tools very much have. Autocomplete-style coding assistants were genuinely annoying for experienced developers six months ago. Things changed with the shift from tab-completion to agent harnesses, plus the emergence of powerful models like Opus 4.5 – when agents started producing code which DHH does want to merge with little to no alteration. Beautiful code and products aren’t matters of vanity; they’re signals of correctness. Dipping into philosophy, DHH says: “When something is beautiful, it’s likely to be correct.” He argues that Steve Jobs wanted the inside of a computer to be beautiful because people who care about circuit board layout are also those who sweat on the details of the UI. DHH’s development workflow, today: he runs tmux to have two models running, and neovim in the center. Specifics: One fast LLM running (typically Gemini 2.5) in one split terminal A slow but more powerful model in another terminal (usually Opus) NeoVim for reviewing diffs via Lazygit 4. Ruby on Rails seems to be enjoying a Renaissance thanks to AI. Rails is one of the most token-efficient ways of building web apps and is well-suited for agent workflows. Testing is part of the framework, which helps agents write tests and validate their own outputs. It also produces code that humans can read and verify, which matters when reviewing agent output at speed. A big win from using AI agents is tackling stuff that you wouldn’t have before. A senior engineer at 37signals ran a “P1 optimization” project to improve the fastest 1% of requests. They optimized the P1 from being at 4 milliseconds, to under half a millisecond. This is the sort of work that wouldn’t have been considered previously! 6. Running several AI agents feels less like “project management” and more like “wearing a mech suit.” Being a project manager of agents did not appeal to DHH, but now that he’s building with several agents, he feels like he’s in control of the work which is being hyper-accelerated. Senior engineers benefit from AI a lot more than juniors. At 37signals, senior engineers gain more from AI tools as they can validate whether an agent’s output is production-ready. DHH also that Amazon reached the same conclusion, and no longer lets junior programmers ship agent-generated code to production without review. 37signals has one designer for every two engineers. The company has around 20 software engineers and 10 designers. Designers do far more than design; they’re also product managers and “implementers” rolled into one. On top of making things look good, they figure out what should be built, how it should work, and often build the first version. DHH compares design at 37signals to jewelry design: “you should know the properties of gold. You should know how it bends.” 9. AI agents could turn 37signals’ “designer model” into the industry standard. AI tools now empower designers to implement more of their vision directly, and DHH suspects the rest of the industry is converging toward what 37signals has always done: working with small teams, where designers are also builders. Command Line Interfaces (CLI) feel like the ultimate AI interface, which validates the Unix philosophy of the 1970s . DHH is building CLIs for all 37signals products because they let agents chain tools together. “GitHub also has a CLI, and Sentry as well,” he says. “You can tie all these things together so an agent can check errors, write a fix, post a PR, and report back to basecamp.” 11. The demise of the two-month product development cycle described in the book ‘Shape Up: Stop Running in Circles and Ship Work that Matters’. The 2019 title by Ryan Signer covered how 37signals worked at the time, and DHH reveals that this methodology now needs rewriting because AI acceleration has made that timeline feel slow. Eight hours of sleep is non-negotiable – even during an AI gold rush! DHH believes the dopamine loop of shipping with agents is intoxicating and can lead to higher risk of burnout. So, he sleeps eight hours and doesn’t use an alarm. The Pragmatic Engineer deepdives relevant for this episode</li><li>Are AI agents actually slowing us down?</li><li>How Claude Code is built</li><li>The future of software engineering with AI: six predictions</li><li>The AI Engineering Stack</li><li>Mitchell Hashimoto’s new way of writing code</li><li>How Linux is built with Greg Kroah-Hartman Timestamps Intro Omarchy and Ruby on Rails 37signals overview Launching HEY Building HEY Designers at 37signals The craft of design Why DHH now embraces AI workflows The AI inflection point DHH’s agent-first workflow AI’s impact on junior developers ( 1:03:08 ) Developer experience with AI ( 1:16:43 ) What does AI mean for developers? ( 1:23:33 ) 37signals teams and hiring ( 1:38:20 ) Work-life balance with AI ( 1:41:41 ) Why DHH keeps building ( 1:45:24 ) Closing</li></ul></p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 98</span>
+      <span>&middot;</span>
+      <span>17/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
