@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-04-19</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-04-19</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/community-wisdom-sharing-claude-code" target="_blank">🧠 Community Wisdom: Sharing Claude Code skills across the org, Why did lennysjobs.com shut down, opening an LLC for side work, AI for SMB sales, and more</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Apr 18, 2026 &middot; 18:38 UTC</span>
+          </div>
+          <p class="summary"><span>Community wisdom 🧠 Community Wisdom: Sharing Claude Code skills across the org, Why did lennysjobs.com shut down, opening an LLC for side work, AI for SMB sales, and more Community Wisdom 182 Kiyani Apr 18, 2026 ∙ Paid 👋 Hello and welcome to this week’s edition of ✨ Community Wisdom ✨ a subscriber-only email, delivered every Saturday, highlighting the most helpful conversations in our members-only Slack community .</span> <span>This post is for paid subscribers Already a paid subscriber?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-the-two-sides-of-openclaw" target="_blank">[AINews] The Two Sides of OpenClaw</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Apr 18, 2026 &middot; 06:50 UTC</span>
+          </div>
+          <p class="summary"><span>AI Twitter Recap Anthropic’s Claude Opus 4.7 and Claude Design rollout Claude Design launched as Anthropic’s first design/prototyping surface : @claudeai announced Claude Design , a research-preview tool for generating prototypes, slides, and one-pagers from natural-language instructions, powered by Claude Opus 4.7 .</span> <span>Coding agents / computer use : @cursor_ai doubles Composer 2 limits in the new agents window and @HamelHusain on Codex Computer Use .</span> <span>Open-source agents : @ollama ships native Hermes Agent support .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>AI Twitter Recap Anthropic’s Claude Opus 4.7 and Claude Design rollout Claude Design launched as Anthropic’s first design/prototyping surface : @claudeai announced Claude Design , a research-preview tool for generating prototypes, slides, and one-pagers from natural-language instructions, powered by Claude Opus 4.7 . The launch immediately framed Anthropic as moving beyond chat/coding into design tooling; multiple observers called it a direct shot at Figma/Lovable/Bolt/v0 , including @Yuchenj_UW , @kimmonismus , and @skirano . The market reaction itself became part of the story, with @Yuchenj_UW and others noting Figma’s sharp drawdown after the announcement. Product details surfaced via @TheRundownAI : inline refinement, sliders, exports to Canva/PPTX/PDF/HTML , and handoff to Claude Code for implementation. Opus 4.7 looks stronger overall, but the rollout was noisy : third-party benchmark posts were broadly favorable. @arena put Opus 4.7 #1 in Code Arena , +37 over Opus 4.6 and ahead of non-Anthropic peers there; the same account also had it at #1 overall in Text Arena with category wins across coding and science-heavy domains here . @ArtificialAnlys reported a near three-way tie at the top of its Intelligence Index — Opus 4.7 57.3 , Gemini 3.1 Pro 57.2 , GPT-5.4 56.8 —while also placing Opus 4.7 first on GDPval-AA , their agentic benchmark. They also d ~35% fewer output tokens than Opus 4.6 at higher score, and introduction of task budgets plus full removal of extended thinking in favor of adaptive reasoning. But user experience was mixed in the first 24 hours: @VictorTaelin reported regressions and context failures, @emollick said Anthropic had already improved adaptive thinking behavior by the next day, and @alexalbert__ confirmed that many initial bugs had been fixed. There were also complaints about product stability in Design itself from @theo and account-level safety issues from the same account here . Cost/efficiency discussion became almost as important as raw quality : @scaling01 claimed ~10x fewer tokens for some ML problem runs versus prior high-end models while maintaining similar performance, while @ArtificialAnlys placed Opus 4.7 on the price/performance Pareto frontier for both text and code. Not every benchmark agreed on absolute leadership—e.g. @scaling01 d it still trails Gemini 3.1 Pro and GPT-5.4 on LiveBench —but the consensus from these posts is that Anthropic materially improved the model’s agentic utility and efficiency. Computer use, coding agents, and harness design Computer-use UX is becoming a mainstream product category : OpenAI’s Codex desktop/computer-use updates drew unusually strong practitioner reactions. @reach_vb called subagents + computer use “pretty close” to AGI in practical feel; @kr0der , @HamelHusain , @mattrickard , and @matvelloso all emphasized that Codex Computer Use is not just flashy but fast , able to drive Slack, browser flows, and arbitrary desktop apps , and may be the first genuinely usable computer-use platform for enterprise legacy software. @gdb explicitly framed Codex as becoming a full agentic IDE . The field is converging on “simple harness, strong evals, model-agnostic scaffolding” : several high-signal posts argued that reliability gains now come more from harnesses than from chasing the very largest models. @AsfiShaheen described a three-stage financial analyst pipeline— router / lane / analyst —with strict context boundaries and gold sets for each stage, arguing that many bugs were actually instruction/interface bugs. @AymericRoucher extracted the same lesson from the leaked Claude Code harness: simple planning constraints plus a cleaner representation layer outperform “fancy AI scaffolds.” @raw_works showed an even starker example: Qwen3-8B scored 33/507 on LongCoT-Mini with dspy.RLM , versus 0/507 vanilla, arguing the scaffold—not fine-tuning—did “100% of the lifting.” LangChain shipped more of these patterns into product: @sydneyrunkle added subagent support to deepagents deploy , and @whoiskatrin announced memory primitives in the Agents SDK . Open-source agent stacks continue to proliferate : Hermes Agent remained a focal point. Community ecosystem overviews from @GitTrend0x highlighted derivatives like Hermes Atlas , Hermes-Wiki , HUDs, and control dashboards. @ollama then shipped native Hermes support via ollama launch hermes , which @NousResearch amplified. Nous and Kimi also launched a $25k Hermes Agent Creative Hackathon @NousResearch , signaling a push from coding/productivity into creative agent workflows. Agent research: self-improvement, monitoring, web skills, and evaluation A cluster of papers pushed agent robustness and continual improvement forward : @omarsar0 summarized Cognitive Companion , which monitors reasoning degradation either with an LLM judge or a hidden-state probe . The headline result is notable: a logistic-regression probe on layer-28 hidden states can detect degradation with AUROC 0.840 at zero measured inference overhead , while the LLM-monitor version cuts repetition 52–62% with ~11% overhead. Separate work on web agents from @dair_ai described WebXSkill , where agents extract reusable skills from trajectories, yielding up to +9.8 points on WebArena and 86.1% on WebVoyager in grounded mode. And @omarsar0 also highlighted Autogenesis , a protocol for agents to identify capability gaps, propose improvements, validate them, and integrate working changes without retraining. Open-world evals are becoming a serious theme : several posts argued current benchmarks are too narrow. @CUdudec endorsed open-world evaluations for long-horizon, open-ended settings; @ghadfield connected this to regulation and “economy of agents” questions; and @PKirgis discussed CRUX , a project for regular open-world evaluations of AI agents in messy real environments. On the measurement side, @NandoDF proposed broad NLL/perplexity-based eval suites over out-of-training-domain books/articles across 2500 topic buckets , though that sparked debate about whether perplexity remains informative after RLHF/post-training from @eliebakouch , @teortaxesTex , and others. Document/OCR and retrieval evals also got more agent-centric : @llama_index expanded on ParseBench , an OCR benchmark centered on content faithfulness with 167K+ rule-based tests across omissions, hallucinations, and reading-order violations—explicitly reframing the bar from “human-readable” to “reliable enough for an agent to act on.” In retrieval, @Julian_a42f9a d new work showing late-interaction retrieval representations can substitute for raw document text in RAG , suggesting some RAG pipelines may be able to bypass full-text reconstruction. Open models, local inference, and inference systems Qwen3.6 local/quantized workflows were a practical bright spot : @victormustar shared a concrete llama.cpp + Pi setup for Qwen3.6-35B-A3B as a local agent stack, emphasizing how viable local agentic systems now feel. Red Hat quickly followed with an NVFP4-quantized Qwen3.6-35B-A3B checkpoint @RedHat_AI , reporting preliminary GSM8K Platinum 100.69% recovery , and @danielhanchen benchmarked dynamic quants, claiming many Unsloth quants sit on the Pareto frontier for KLD vs disk space . Consumer-hardware inference keeps improving : @RisingSayak announced work with PyTorch/TorchAO enabling offloading with FP8 and NVFP4 quants without major latency penalties, explicitly targeting consumer GPU users constrained by memory. Apple-side local inference also got a showcase with @googlegemma , which demoed Gemma 4 running fully offline on iPhone with long context. Inference infra updates worth noting : @vllm_project highlighted MORI-IO KV Connector with AMD/EmbeddedLLM, claiming 2.5× higher goodput on a single node via a PD-disaggregation-style connector. Cloudflare continued its agent/AI-platform push with isitagentready.com @Cloudflare , Flagship feature flags @fayazara , and shared compression dictionaries yielding dramatic payload reductions such as 92KB → 159 bytes in one example @ackriv . AI for science, medicine, and infrastructure Scientific discovery and personalized health were prominent applied themes : @JoyHeYueya and @Anikait_Singh_ posted about insight anticipation , where models generate a downstream paper’s core contribution from its “parent” papers; the latter introduced GIANTS-4B , an RL-trained model that reportedly beats frontier models on this task. On the health side, @SRSchmidgall shared a biomarker-discovery system over wearable data whose first finding was that “ late-night doomscrolling ” predicts depression severity with ρ=0.177, p&lt;0.001, n=7,497 —notable because the model itself named the feature. Separately, @patrickc argued current coding agents are already highly useful for personalized genome interpretation , describing &lt;$100 analysis runs that surfaced a roughly 30× elevated melanoma predisposition plus follow-on interventions. Large-scale compute buildout remains a core meta-story : @EpochAIResearch surveyed all 7 US Stargate sites and concluded the project appears on track for 9+ GW by 2029 , comparable to New York City peak demand . @gdb framed Stargate as infrastructure for a “ compute-powered economy ,” while @kimmonismus put today’s annual global datacenter capex at roughly 5–7 Manhattan Projects per year in inflation-adjusted terms. Top tweets (by engagement) Claude Design / Anthropic product expansion : @claudeai launches Claude Design , by far the day’s biggest pure-AI product launch signal. Model benchmarking / rankings : @ArtificialAnlys on Opus 4.7 tying for #1 overall and leading GDPval-AA . Coding agents / computer use : @cursor_ai doubles Composer 2 limits in the new agents window and @HamelHusain on Codex Computer Use . Open-source agents : @ollama ships native Hermes Agent support . Applied AI in medicine : @patrickc on coding agents for genome analysis and personalized prevention . Infra / power scaling : @EpochAIResearch on Stargate’s 9+ GW trajectory . AI Reddit Recap /r/LocalLlama + /r/localLLM Recap 1. Qwen3.6 Model Launch and Features</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-anthropic-claude-opus-47-literally" target="_blank">[AINews] Anthropic Claude Opus 4.7 - literally one step better than 4.6 in every dimension</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Apr 17, 2026 &middot; 01:36 UTC</span>
+          </div>
+          <p class="summary"><span>The release sparked unusually active technical discussion around benchmark gains, a new tokenizer , higher image resolution support , new xhigh reasoning effort , token-cost implications , and whether Opus 4.7 is a straightforward 4.6 successor, a new base model, or a partially distilled “Mythos-adjacent” system.</span> <span>Anthropic also launched or highlighted task budgets in public beta, /ultrareview in Claude Code, and broader Auto mode access for Claude Code Max users [ @kimmonismus ].</span> <span>Cat Wu said Claude Code now defaults to xhigh for Opus 4.7 [ @_catwu ].</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Top Story: Claude Opus 4.7 Anthropic officially launched Claude Opus 4.7 as its newest top-tier Opus model, positioning it as better at long-running work, coding, instruction following, self-verification, computer use, and knowledge work than Opus 4.6, while keeping list pricing unchanged at $5 / $25 per million input/output tokens according to user summaries and launch discussion [ @claudeai , @kimmonismus ]. The release sparked unusually active technical discussion around benchmark gains, a new tokenizer , higher image resolution support , new xhigh reasoning effort , token-cost implications , and whether Opus 4.7 is a straightforward 4.6 successor, a new base model, or a partially distilled “Mythos-adjacent” system. Release details and product changes Official framing. Anthropic’s launch pitch emphasized three behavioral improvements: better handling of long-running tasks , more precise instruction following , and stronger self-verification before responding [ @claudeai ]. Availability. Claude platform / app reported live immediately [ @dejavucoder ]. Claude Code shipped day-one support and set xhigh as the default effort level [ @_catwu , @_catwu ]. Anthropic also launched or highlighted task budgets in public beta, /ultrareview in Claude Code, and broader Auto mode access for Claude Code Max users [ @kimmonismus ]. New effort tier. Multiple users d a new xhigh reasoning effort mode, positioned between high and max [ @scaling01 , @scaling01 ]. Cat Wu said Claude Code now defaults to xhigh for Opus 4.7 [ @_catwu ]. Vision/computer use changes. User summaries reported support for images up to 2,576 px on the long edge (~3.75 MP) , described as 3x larger than previous Claude image inputs [ @kimmonismus ]. Anthropic employee Alex Albert highlighted “ No more downscaling of high-res images ” and better output taste in UI/slides/docs [ @alexalbert__ ]. This was repeatedly linked to better computer use and screenshot-heavy workflows [ @dejavucoder , @omarsar0 ]. Tokenizer and token economics. Several observers discovered Opus 4.7 uses a different tokenizer from 4.6 [ @natolambert , @nrehiew_ ]. Kimmonismus summarized Anthropic’s caveat that the same input can map to 1.0–1.35x more tokens depending on content type [ @kimmonismus ]. This triggered debate over whether 4.7 is effectively a new base model , a tokenizer-swapped continuation, or some kind of midtraining/distillation bridge from Mythos [ @natolambert , @stochasticchasm , @eliebakouch , @maximelabonne ]. Anthropic employee Boris Cherny later said they increased limits for all subscribers to offset increased token use [ @bcherny , @bcherny ]. Benchmarks and measurable progress Reported benchmark gains vs Opus 4.6 The most cited launch numbers came from benchmark screenshots and summaries shared by external accounts: SWE-bench Pro: 64.3% , with users citing roughly +11 points over Opus 4.6 [ @scaling01 , @kimmonismus ] SWE-bench Verified: 87.6% , roughly +7 points vs 4.6 [ @scaling01 , @scaling01 ] TerminalBench 2.0: 69.4% , around +4 points [ @scaling01 , @kimmonismus ] Document reasoning: 80.6% , up from 57.1% per third-party discussion [ @scaling01 , @llama_index ] GDPval-AA: 1753 Elo [ @scaling01 , @ArtificialAnlys ] ARC-AGI-1: 92% ; ARC-AGI-2: 75.83% per [ @scaling01 ] Artificial Analysis said Opus 4.7 launched as the new #1 on GDPval-AA , with an implied ~60% head-to-head win rate vs GPT-5.4 on that task set [ @ArtificialAnlys ]. Anthropic increased subscriber limits to compensate for greater token usage [ @bcherny , @bcherny ]. Anthropic acknowledges benchmark tradeoffs and retained MRCR in the system card “for scientific honesty,” while signaling a shift toward Graphwalks as a preferred long-context metric [ @bcherny ]. Vals AI said Opus 4.7 took the #1 spot on the Vals Index at 71.4% , up from a previous best 67.7% , and also ranked #1 on Vibe Code Bench, Vals Multimodal, Finance Agent, Mortgage Tax, SAGE, SWE-Bench, and Terminal Bench 2 [ @ValsAI ]. They separately said Opus 4.7 became #1 on Vibe Code Benchmark at 71% , versus no model above 25% when they first launched the benchmark 4.5 months earlier [ @ValsAI ]. Product/evals from partners and customers Cursor said its internal benchmark jumped from 58% to 70% with Opus 4.7 [ @cursor_ai , @scaling01 ]. A separate Cursor post said, across 500 teams , developers are tackling 68% more high-complexity tasks this year, though that was about better models generally, not solely Opus 4.7 [ @cursor_ai ]. Notion reportedly saw a 14% lift on internal evals with one-third of tool errors [ @mikeyk ]. GitHub reportedly saw similar improvements, though no hard numbers were included in the tweet thread [ @scaling01 ]. Document understanding: progress, but mixed economics LlamaIndex and Jerry Liu provided useful independent nuance: LlamaIndex’s ParseBench-style comparison said Opus 4.7 massively improved charts ( 13.5% → 55.8% ) but only slightly improved formatting ( 64.2% → 69.4% ), content ( 89.7% → 90.3% ), tables ( 86.5% → 87.2% ), and regressed on layout ( 16.5% → 14.0% ) [ @llama_index ]. Jerry Liu separately said Opus 4.7 is “quite good at tables,” better on charts, and strongest on content faithfulness, but expensive for OCR-like use at ~7¢/page vs their agentic mode at ~1.25¢/page and cost-effective mode around ~0.4¢/page [ @jerryjliu0 ]. This is one of the clearest examples of independent evaluation tempering launch optimism: broad capability improved, but specific enterprise document pipelines may still prefer specialized stacks on cost/performance grounds. Opinions / interpretations “This is a distilled version of Mythos” [ @eliebakouch ]. “This is a new base model because the tokenizer changed” [ @natolambert ]. “Anthropic artificially kept cyber scores low during training” is partly factual insofar as users quote the system card language about differentially reducing some capabilities, but broader claims about “nerfed Mythos” are interpretation [ @scaling01 , @Yuchenj_UW ]. “Benchmarks don’t do it justice” and “actual usage is massively improved” are subjective but widely repeated by hands-on users [ @mweinbach , @jeremyphoward ]. “System prompt has lobotomized the model” is a user complaint about behavior changes, not an established fact [ @theo ]. Different perspectives Supportive: meaningful real-world upgrade A large portion of technical users argued this is a substantial iteration, especially given more frequent release cadence. Scaling01 repeatedly pushed back on “mid update” takes, noting the jump from around 80% to almost 90% on SWE-bench Verified and emphasizing this would have looked huge in prior release cycles [ @scaling01 , @scaling01 , @scaling01 ]. Alex Albert highlighted better async work, more predictable effort levels, better image handling, and stronger taste in UI/docs [ @alexalbert__ ]. Michael Weinbach said after just two prompts that behavior and instruction following were “pretty massive” improvements [ @mweinbach ]. Jeremy Howard said it was the first model that “gets” what he’s doing and praised its willingness to discuss rather than bulldoze ahead [ @jeremyphoward , @jeremyphoward ]. Cat Wu explicitly advised users to treat it like an engineer you delegate to , not a pair programmer you micromanage, suggesting Anthropic sees it as stronger in autonomous execution [ @_catwu ]. Neutral / analytical: strong update with tradeoffs Some of the best commentary was technical and mixed. Kimmonismus called it a “solid upgrade” focused on Anthropic’s core buyer priorities: agentic coding reliability, vision for computer-use agents, and knowledge work —but also “obviously shy to Mythos” [ @kimmonismus ]. Artificial Analysis validated the GDPval-AA gain and #1 ranking, but did not frame it as an across-the-board blowout [ @ArtificialAnlys ]. LlamaIndex and ParseBench results suggested noticeable but uneven document gains with real pricing constraints [ @llama_index , @jerryjliu0 ]. Skeptical / critical: regressions, token inflation, and UX concerns There was also substantial pushback. Multiple users said long-context performance looked worse , especially on MRCR / needle-in-a-haystack-style metrics [ @scaling01 , @nrehiew_ , @eliebakouch , @kimmonismus ]. Anthropic’s Boris Cherny replied that MRCR is being phased out because it overweights distractor-stacking tricks and that Graphwalks is a better applied-reasoning signal; he gave numbers showing Graphwalks 38.7% → 58.6% from 4.6 to 4.7 [ @bcherny , @scaling01 ]. Tokenizer changes led to complaints about Opus becoming a “token guzzler” and potentially raising effective costs despite flat list pricing [ @dejavucoder , @madiator ]. Yuchen said Claude web only exposed “Adaptive” or non-thinking, with no explicit force-thinking toggle, which for some users made non-coding tasks feel worse in practice [ @Yuchenj_UW ]. Mikhail Parakhin similarly said first impressions on non-coding replies were “dumber” because he couldn’t force reasoning [ @MParakhin ]. Theo sharply criticized the new system prompt as “lobotomized,” and later suggested trying the model in T3 Chat “without the lobotomized system prompt” [ @theo , @theo ]. Safety / governance angle Scaling01 highlighted a system-card statement that Anthropic experimented with efforts to differentially reduce cyber capabilities during training [ @scaling01 ]. At the same time, users d Opus 4.7 still scores higher than 4.6 on some exploitation-related evaluations like Firefox shell exploitation, and has prompt-injection robustness close to Mythos [ @scaling01 , @scaling01 ]. One user hyperbolically said “Opus is going to be a bioweapon risk at this pace,” reflecting the ongoing tendency to conflate general capability jumps with worst-case misuse narratives [ @scaling01 ]. Claude Code workflow guidance from Anthropic Cat Wu’s thread is a useful operational signal for engineers: Delegate, don’t micromanage [ @_catwu ] Put full goal + constraints + acceptance criteria up front [ @_catwu ] Tell the model how to verify changes; encode testing workflows in claude.md or skills [ @_catwu ] That strongly suggests Anthropic optimized toward autonomous task loops where explicit validation is central. Examples of progress in practice</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://newsletter.pragmaticengineer.com/p/the-pulse-tokenmaxxing-as-a-weird" target="_blank">The Pulse: ‘Tokenmaxxing’ as a weird new trend</a></h2>
+          <div class="meta">
+            <span class="source">pragmatic-engineer</span>
+            <span class="date">Apr 16, 2026 &middot; 16:47 UTC</span>
+          </div>
+          <p class="summary"><span>The Pulse is a series covering events, insights, and trends within Big Tech and startups.</span> <span>Notice an interesting event or trend? Tokenmaxxing: weird new trend</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>The Pulse is a series covering events, insights, and trends within Big Tech and startups. Notice an interesting event or trend? Hit reply and share it with me. Today, we cover: Tokenmaxxing: weird new trend. At Meta, Microsoft, Salesforce and other large companies, devs are purposefully burning tokens (and money!) to inflate their AI usage and hit AI usage metrics which they treat as targets. Are coding AI-agent subsidies doomed? At the same time as Anthropic stopped subsidizing enterprise plans, Uber managed to burn through its entire 2026 AI token budget in just 3 months. I expect per-engineer AI budgets to be rolled out across more companies soon. Industry Pulse. The myth of Claude Mythos, Claude’s degradation, Cal.com going open source due to AI threat, Vercel open sources its “agent factories” tool, sensible AI usage guidelines in the Linux kernel, and more. Cal.com goes closed source – but is it really because of AI? The open source Calendly alternative moved a good part of its code to a closed repo, citing AI and security concerns. But perhaps this was just a business model change that would have happened, AI or not. Tokenmaxxing: weird new trend</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/introducing-gpt-rosalind" target="_blank">Introducing GPT-Rosalind for life sciences research</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 16, 2026 &middot; 01:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI introduces GPT-Rosalind, a frontier reasoning model built to accelerate drug discovery, genomics analysis, protein reasoning, and scientific research workflows.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Apr/15/gemini-flash-tts/#atom-everything" target="_blank">Gemini 3.1 Flash TTS</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Apr 15, 2026 &middot; 16:41 UTC</span>
+          </div>
+          <p class="summary"><span>Tool: Gemini 3.1 Flash TTS See my notes on Google&#x27;s new Gemini 3.1 Flash TTS text-to-speech model.</span> <span>Tags: gemini , google</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/gemini-3-1-flash-tts-the-next-generation-of-expressive-ai-speech/" target="_blank">Gemini 3.1 Flash TTS: the next generation of expressive AI speech</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Apr 15, 2026 &middot; 16:03 UTC</span>
+          </div>
+          <p class="summary"><span>Gemini 3.1 Flash TTS: the next generation of expressive AI speech Apr 15, 2026 · Share x.com Facebook LinkedIn Mail Our newest audio model introduces granular audio tags that give you precise control to direct AI speech for expressive audio generation.</span> <span>Bullet points &quot;Gemini 3.1 Flash TTS&quot; is a new AI speech model with better control, expressiveness, and quality.</span> <span>Watermarked with SynthID All audio generated by Gemini 3.1 Flash TTS is watermarked with SynthID.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Gemini 3.1 Flash TTS: the next generation of expressive AI speech Apr 15, 2026 · Share x.com Facebook LinkedIn Mail Our newest audio model introduces granular audio tags that give you precise control to direct AI speech for expressive audio generation. Vilobh Meshram Senior Product Manager Max Gubin Principal Research Engineer on behalf of the Gemini team General summary Gemini 3.1 Flash TTS is here, giving you improved AI speech quality and control. You can now use audio tags to adjust vocal style and pacing in over 70 languages. Test it out in Google AI Studio, Vertex AI, and Google Vids, and know that all audio is watermarked with SynthID to prevent misinformation. Summaries were generated by Google AI. Generative AI is experimental. Bullet points &quot;Gemini 3.1 Flash TTS&quot; is a new AI speech model with better control, expressiveness, and quality. This model has improved speech quality, making it sound more natural than previous versions. Audio tags let you control vocal style, pace, and delivery using natural language commands. Developers can use Google AI Studio to fine-tune voices and export settings for consistent use. Gemini 3.1 Flash TTS supports 70+ languages and uses SynthID watermarking to identify AI-generated audio. Summaries were generated by Google AI. Generative AI is experimental. Basic explainer Gemini 3.1 Flash TTS is a new AI that makes computer speech sound more real. It lets people change how the AI talks by using special commands in the text. This AI can speak in over 70 languages and adds a hidden watermark to the audio. This helps people know it&#x27;s AI-generated and not a real person. Summaries were generated by Google AI. Generative AI is experimental. Explore other styles: Share x.com Facebook LinkedIn Mail Your browser does not support the audio element. Listen to article This content is generated by Google AI. Generative AI is experimental [[duration]] minutes Today, we’re introducing Gemini 3.1 Flash TTS, the latest text-to-speech model that delivers improved controllability, expressivity and quality — empowering developers, enterprises and everyday users to build the next generation of AI-speech applications. Starting today, 3.1 Flash TTS is rolling out: For developers in preview via the Gemini API and Google AI Studio For enterprises in preview on Vertex AI For Workspace users via Google Vids Improved speech quality and controllability We’ve improved the overall speech quality of Gemini 3.1 Flash TTS, making it our most natural and expressive model to date. On the Artificial Analysis TTS leaderboard , a benchmark that captures thousands of blind human p , 3.1 Flash TTS achieved an impressive Elo score of 1,211. Artificial Analysis has also positioned Gemini 3.1 Flash TTS within its “ most attractive quadrant ” for its ideal blend of high-quality speech generation and low cost. The model stands out further with native multi-speaker dialogue, support for 70+ languages, and granular creative control via natural language. New audio tags for more expressive speech generation 3.1 Flash TTS also introduces audio tags — an intuitive way to control vocal style, pace and delivery. By embedding natural language commands directly into the text input, you can steer AI-speech output with improved levels of granularity. You can start experimenting with these audio tags along with other updates to the developer experience in Google AI Studio with configurable controls that place the developer in the “director’s chair”: Scene direction: Set the stage by defining the environment and providing specific dialogue instructions. This world-building context helps characters remain “in-character” and react to one another naturally across multiple turns. Speaker-level specificity: Cast characters using unique Audio Profiles, then specify Director’s to toggle pace, tone and accent. Using inline tags , speakers can pivot from these high-level settings to change expression mid-sentence. Seamless export: Once the performance is perfected, these exact parameters can be exported as Gemini API code to ensure consistent, recognizable voices across various projects and platforms. With these new configurations, developers can enhance precision for specific scenarios, creating memorable characters and immersive audio experiences. Get started with high-fidelity speech generation in the Google AI Studio Playground . Built for global scale Gemini 3.1 Flash TTS delivers high-fidelity speech and more precise control across more than 70 languages. These core optimizations bring advanced style, pacing and accent control to major markets — helping developers create localized, expressive speech experiences for users at global scale. Early developer and enterprise testers are already seeing the impact of 3.1 Flash TTS, highlighting its impressive controllability and expressivity. They’ve told us how audio tags provide a new level of creative precision, transforming simple text into a high-fidelity vocal performance. Watermarked with SynthID All audio generated by Gemini 3.1 Flash TTS is watermarked with SynthID. This imperceptible watermark is interwoven directly into the audio output, allowing the reliable detection of AI-generated content to help prevent misinformation. For more information on our approach to safety and responsibility, you can review the model card . Just one step more. Check your inbox to confirm your subscription. You are already You can also subscribe with a</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/the-next-evolution-of-the-agents-sdk" target="_blank">The next evolution of the Agents SDK</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 15, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI updates the Agents SDK with native sandbox execution and a model-native harness, helping developers build secure, long-running agents across files and tools.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-humanitys-last-gasp" target="_blank">[AINews] Humanity&#x27;s Last Gasp</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Apr 15, 2026 &middot; 03:05 UTC</span>
+          </div>
+          <p class="summary"><span>Tencent’s HYWorld 2.0 positions world models as editable 3D scene generators, not video models : Ahead of release, @DylanTFWang teased HYWorld 2.0 as an open-source, engine-ready 3D world model that generates editable 3D scenes from a single image.</span> <span>Google DeepMind shipped Gemini Robotics-ER 1.6 : The new model, announced by @GoogleDeepMind , improves visual/spatial reasoning for robotics, adds safer physical reasoning, and is available in Gemini API / AI Studio .</span> <span>Follow-up posts highlight 93% instrument-reading success and better handling of physical constraints like liquids and heavy objects.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>AI Twitter Recap Top Tweets (by engagement) Google’s Chrome “Skills” turns prompts into reusable browser workflows : Google introduced Skills in Chrome , letting users save Gemini prompts as one-click actions that run against the current page and selected tabs. Google also shipped a library of ready-made Skills , which makes this more than prompt history: it’s effectively lightweight end-user agentization inside the browser. Tencent’s HYWorld 2.0 positions world models as editable 3D scene generators, not video models : Ahead of release, @DylanTFWang teased HYWorld 2.0 as an open-source, engine-ready 3D world model that generates editable 3D scenes from a single image. Google DeepMind shipped Gemini Robotics-ER 1.6 : The new model, announced by @GoogleDeepMind , improves visual/spatial reasoning for robotics, adds safer physical reasoning, and is available in Gemini API / AI Studio . Follow-up posts highlight 93% instrument-reading success and better handling of physical constraints like liquids and heavy objects. OpenAI expanded Trusted Access for Cyber with GPT-5.4-Cyber : OpenAI says GPT-5.4-Cyber is a fine-tuned version of GPT-5.4 for defensive security workflows, available to higher-tier authenticated defenders under its Trusted Access program. Hugging Face launched “Kernels” on the Hub : @ClementDelangue announced a new repo type for GPU kernels , with precompiled artifacts matched to exact GPU/PyTorch/OS combinations and claimed 1.7x–2.5x speedups over PyTorch baselines. Cursor described a multi-agent CUDA optimization system built with NVIDIA : @cursor_ai says its multi-agent software engineering system delivered a 38% geomean speedup across 235 CUDA problems in 3 weeks , a concrete example of agents being applied to systems optimization rather than app scaffolding. Agent Infrastructure: Hermes, Deep Agents, and Production Harnesses Hermes Agent is becoming a serious open local-agent stack, with reliability and memory as the differentiators : Several posts converged on the same theme: users are migrating from alternatives to Hermes Agent because it is more durable for long-running work. The project shipped a substantial v0.9.0 update with web UI, model switching, iMessage/WeChat integration, backup/restore, and Android-via-tmux support via @AntoineRSX , while Tencent highlighted a one-click Lighthouse deployment for always-on cloud hosting with messaging integrations. On the memory side, hermes-lcm v0.2.0 from @SteveSchoettler adds lossless context management with persistent message storage, DAG summaries, and tools to expand compacted context. Community posts from @Teknium , @aiqiang888 , and others reinforce that Hermes’ key advantage is less raw model IQ than operational stability, extensibility, and deployability . LangChain is pushing “deep agents” toward deployable, multi-tenant, async systems : The deepagents 0.5 release adds async subagents, multimodal file support, and prompt-caching improvements . Related posts emphasize that deepagents deploy is an open alternative to managed agent hosting , with upcoming work around memory scoped to user/agent/org and custom auth / per-user thread isolation via @LangChain and @sydneyrunkle . The interesting pattern here is a shift from “agent demos” to platform concerns : tenancy, isolation, long-lived tasks, and integration surfaces like Salesforce and Agent Protocol-backed servers. Harness design is becoming a first-class engineering topic : Multiple posts argued that agent performance depends at least as much on the scaffold as the model. @Vtrivedy10 made the clearest case for task-specific open harnesses over ideology (“thin vs thick”), while @kmeanskaran stressed workflow design, memory switching, and tool output control over frontier-model chasing. This aligns with @ClementDelangue asking for a curated mapping from models to their best coding/agent harnesses , which is increasingly necessary as open-weight models diversify. Robotics, World Models, and 3D Generation Google’s Gemini Robotics-ER 1.6 is a notable productization step for embodied reasoning : The release from @GoogleDeepMind emphasizes better visual/spatial understanding , tool use, and physical constraint reasoning. Follow-ups 10% better human injury-risk detection , support for reading complex analog gauges, and availability in the API; @_philschmid highlighted 93% success on instrument-reading tasks . This feels less like a robotics foundation-model paper drop and more like a developer-facing embodied-reasoning API . World models are shifting from cinematic demos to editable spatial artifacts : Tencent’s HYWorld 2.0 teaser explicitly contrasted itself with video-generation systems by framing the output as a real 3D scene that is editable and engine-ready. On the web side, Spark 2.0 from @sparkjsdev shipped a streamable LoD system for 3D Gaussian splats , targeting 100M+ splat worlds on WebGL2 across mobile, web, and VR. Together these suggest the stack for “AI-generated 3D” is maturing from content generation into interactive rendering and downstream use . Open 3D generation is advancing on topology, UVs, rigging, and animation readiness : @DeemosTech introduced SATO , an autoregressive model for topology and UV generation , while @yanpei_cao released AniGen , which generates 3D shape, skeleton, and skinning weights from one image. These are meaningful because the bottleneck in production 3D pipelines is rarely “can you generate a mesh?”; it’s whether the asset is structured enough to animate, texture, and edit. Models, Benchmarks, and Specialized Systems</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/scaling-trusted-access-for-cyber-defense" target="_blank">Trusted access for the next era of cyber defense</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 14, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI expands its Trusted Access for Cyber program, introducing GPT-5.4-Cyber to vetted defenders and strengthening safeguards as AI cybersecurity capabilities advance.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Apr/13/steve-yegge/#atom-everything" target="_blank">Steve Yegge</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Apr 13, 2026 &middot; 20:59 UTC</span>
+          </div>
+          <p class="summary"><span>Steve Yegge : I was chatting with my buddy at Google, who&#x27;s been a tech director there for about 20 years, about their AI adoption.</span> <span>The TL;DR is that Google engineering appears to have the same AI adoption footprint as John Deere, the tractor company.</span> <span>Tags: addy-osmani , steve-yegge , google , generative-ai , agentic-engineering , ai , llms</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Steve Yegge : I was chatting with my buddy at Google, who&#x27;s been a tech director there for about 20 years, about their AI adoption. Craziest convo I&#x27;ve had all year. The TL;DR is that Google engineering appears to have the same AI adoption footprint as John Deere, the tractor company. Most of the industry has the same internal adoption curve: 20% agentic power users, 20% outright refusers, 60% still using Cursor or equivalent chat tool. It turns out Google has this curve too. [...] There has been an industry-wide hiring freeze for 18+ months, during which time nobody has been moving jobs. So there are no clued-in people coming in from the outside to tell Google how far behind they are, how utterly mediocre they have become as an eng org. Addy Osmani : On behalf of @Google, this post doesn&#x27;t match the state of agentic coding at our company. Over 40K SWEs use agentic coding weekly here. Googlers have access to our own versions of @antigravity, @geminicli, custom models, skills, CLIs and MCPs for our daily work. Orchestrators, agent loops, virtual SWE teams and many other systems are actively available to folks. [...] Demis Hassabis : Maybe tell your buddy to do some actual work and to stop spreading absolute nonsense. This post is completely false and just pure clickbait. Tags: addy-osmani , steve-yegge , google , generative-ai , agentic-engineering , ai , llms</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/this-week-on-how-i-ai-claude-cowork" target="_blank">🎙️ This week on How I AI: Claude Cowork tutorial for non-engineers + Build your own Slack inbox (for $0)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Apr 13, 2026 &middot; 15:07 UTC</span>
+          </div>
+          <p class="summary"><span>Biggest takeaways: Yash receives 100 to 150 Slack notifications daily, but only 30 to 40 require real action.</span> <span>Unlike Claude Code or Codex, Perplexity automatically uses different models for different subtasks: Sonnet for fetching data, Gemini for planning and coding, Opus for complex builds.</span> <span>Detailed workflow walkthroughs from this episode: How I AI: JJ Englert’s Guide to a ‘Daily Operating System’ with Claude Cowork: <a href="https://www.chatprd.ai/how-i-ai/jj-englerts-guide-to-a-daily-operating-system-with-claude-cowork" target="_blank" rel="noopener">https://www.chatprd.ai/how-i-ai/jj-englerts-guide-to-a-daily-operating-system-with-claude-cowork</a> Build a Multi-Persona ‘Sub-Advisory Board’ for Instant Feedback: <a href="https://www.chatprd.ai/how-i-ai/workflows/build-a-multi-persona-sub-advisory-board-for-instant-feedback" target="_blank" rel="noopener">https://www.chatprd.ai/how-i-ai/workflows/build-a-multi-persona-sub-advisory-board-for-instant-feedback</a> Train Claude Cowork to Write Emails in Your Personal Style: <a href="https://www.chatprd.ai/how-i-ai/workflows/train-claude-cowork-to-write-emails-in-your-personal-style" target="_blank" rel="noopener">https://www.chatprd.ai/how-i-ai/workflows/train-claude-cowork-to-write-emails-in-your-personal-style</a> How to Set Up a ‘Daily Operating System’ in Claude Cowork: <a href="https://www.chatprd.ai/how-i-ai/workflows/how-to-set-up-a-daily-operating-system-in-claude-cowork" target="_blank" rel="noopener">https://www.chatprd.ai/how-i-ai/workflows/how-to-set-up-a-daily-operating-system-in-claude-cowork</a> If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Listen now on YouTube<ul><li>Spotify</li><li>Apple Podcasts oduct , Claire talks with Yash Tekriwal , the head of education at Clay, about how he built a custom AI-powered Slack inbox that turns 150 daily notifications into around 30 that actually matter. Instead of reacting to messages, Yash designed a system that categorizes, prioritizes, and routes everything into a clean, actionable workflow. They walk through exactly how he built it using Perplexity Computer and OpenClaw, why most people are using AI wrong (doing tasks instead of building systems), and how anyone—technical or not—can start creating their own personalized software stack. Biggest takeaways: Yash receives 100 to 150 Slack notifications daily, but only 30 to 40 require real action. By categorizing messages into DMs, group mentions, threads, and channel mentions, then sub-categorizing into action-required, need-to-read, and FYI, he transformed anxiety-inducing notification overload into a manageable workflow. Use AI to build deterministic tools, not just to do tasks. There’s a crucial difference between asking AI to categorize things repeatedly versus using it to build code that handles structured data through APIs. Yash used OpenClaw to build a Slack digest that pulls notifications via API endpoints—AI built the tool once, but the categorization runs on deterministic code (except for the final action/read/FYI sorting). Perplexity Computer’s multi-model orchestration removes you from the loop. Unlike Claude Code or Codex, Perplexity automatically uses different models for different subtasks: Sonnet for fetching data, Gemini for planning and coding, Opus for complex builds. This eliminates the frustrating back-and-forth of “good try, but it doesn’t work; try again” that plagues single-model coding agents. Perplexity Computer’s cloud deployment and native connectors are game changers. Unlike local coding agents, Computer runs in the cloud with pre-authenticated connectors to Gmail, Slack, Notion, Asana, and more. Apps are automatically deployed and shareable via URL—no GitHub repos, no Vercel deployment, no technical overhead. This makes it accessible to non-technical builders. The anti-to-do list framework: spend an hour daily automating what you never want to do again. Instead of a to-do list, maintain an anti-to-do list of tasks you despise (manually deleting email spam, entering meeting action items into Asana, triaging unread Slack messages). Dedicate time to systematically eliminate these tasks through automation. SaaS isn’t dying; it’s about to explode into micro-software. Yash says the narrative that AI will kill SaaS is backward. Instead, we’ll see a Cambrian explosion of specialized software built on top of existing platforms. Yash would happily pay $15 a month for someone to maintain his Slack digest as a product—and thinks thousands of similar micro-businesses will emerge serving narrow use cases that were never venture-scale before. The future of productivity is personalized software. Every knowledge worker will eventually have custom apps optimized for their specific mental model and workflow. These won’t replace SaaS platforms but extend them, filling the gap between what Slack/Notion/Asana provide and what each individual actually needs to work at their best. Detailed workflow walkthroughs from this episode: How I AI: Yash Tekriwal on Taming Slack with a Custom AI-Built Dashboard: <a href="https://www.chatprd.ai/how-i-ai/taming-slack-with-a-custom-ai-built-dashboard" target="_blank" rel="noopener">https://www.chatprd.ai/how-i-ai/taming-slack-with-a-custom-ai-built-dashboard</a> How to Turn a Text Digest into an Interactive Kanban Dashboard: <a href="https://www.chatprd.ai/how-i-ai/workflows/how-to-turn-a-text-digest-into-an-interactive-kanban-dashboard" target="_blank" rel="noopener">https://www.chatprd.ai/how-i-ai/workflows/how-to-turn-a-text-digest-into-an-interactive-kanban-dashboard</a> How to Prototype a Website Redesign Using an AI with Browser Access: <a href="https://www.chatprd.ai/how-i-ai/workflows/how-to-prototype-a-website-redesign-using-an-ai-with-browser-access" target="_blank" rel="noopener">https://www.chatprd.ai/how-i-ai/workflows/how-to-prototype-a-website-redesign-using-an-ai-with-browser-access</a> How to Build a Custom AI-Powered Text Digest for Slack Notifications: <a href="https://www.chatprd.ai/how-i-ai/workflows/how-to-build-a-custom-ai-powered-text-digest-for-slack-notifications" target="_blank" rel="noopener">https://www.chatprd.ai/how-i-ai/workflows/how-to-build-a-custom-ai-powered-text-digest-for-slack-notifications</a> Claude Cowork 101: How to automate your workday without touching code | JJ Englert (Tenex) Listen now on YouTube</li><li>Spotify</li><li>Apple Podcasts ith AI , Claire talks with JJ Englert , the enablement and community lead at Tenex, about how he uses Claude Cowork to build a fully automated daily operating system that drafts emails, reviews his work, plans his day, and coordinates across his tools. They walk step-by-step through how to set it up—from creating a “brain” file that teaches AI how you think, to building reusable skills that write exactly like you, to running daily briefings that prepare your entire day before you even open your laptop. Biggest takeaways: Cowork is the first real bridge for non-technical knowledge workers to move beyond chat and actually have AI do things for them. While chat tools like ChatGPT tell you what to do, Cowork actually does it: drafting emails, organizing files, managing your calendar, and more. It’s the middle ground between passive chat and full coding in Claude Code, and it’s designed for people who want AI to be productive without learning terminal commands. Start every project with a “brain” file that tells Claude who you are, how you work, and who you work with. JJ’s secret weapon is a Markdown file that contains detailed instructions about his working p , team members, communication style, and more. Every time he starts a new task in that project, Claude reads this file and immediately understands his context. This eliminates the need to re-explain yourself every time and ensures consistent, personalized results. It’s like having a coworker who already knows everything about you. Always include good examples and bad examples when building skills. AI doesn’t know what success looks like for you unless you show it. When you get an output you love, save it as a good example. When you get something off-brand or low-quality, save it as a bad example with a “Don’t do this again.” Over time, Claude learns your subjective p and delivers increasingly consistent results. Build an anti-to-do list—things you never want to do again—and then automate them with skills. JJ recommends thinking about the repetitive tasks that drain your energy: first-drafting emails, preparing for meetings, writing social posts, organizing files. Each of those becomes a skill. Over time, you build a library of skills that handle the mundane work, freeing you to focus on creative and strategic decisions. The goal isn’t to eliminate your job; it’s to eliminate the parts of your job you hate. Cowork teaches you skills that transfer directly to Claude Code. JJ uses Cowork for business productivity and Claude Code for building. But Cowork is a great on-ramp because it introduces concepts like projects, skills, and file management without requiring you to use the terminal. As you get comfortable orchestrating agents and managing context in Cowork, you’re learning the mental models that make you effective in Code. Projects don’t have to be work-related—use them for house maintenance, wedding planning, recruiting, or anything else. You can create a house maintenance project with reminders to change air filters, seasonal checklists, and remodel plans. Whether a wedding planning project that finds vendors, drafts emails, and manages timelines, or a recruiting project with job descriptions, interview guides, and onboarding docs, the pattern is the same: organize context in a folder, connect it to Cowork, build skills, and let AI do the work. Detailed workflow walkthroughs from this episode: How I AI: JJ Englert’s Guide to a ‘Daily Operating System’ with Claude Cowork: <a href="https://www.chatprd.ai/how-i-ai/jj-englerts-guide-to-a-daily-operating-system-with-claude-cowork" target="_blank" rel="noopener">https://www.chatprd.ai/how-i-ai/jj-englerts-guide-to-a-daily-operating-system-with-claude-cowork</a> Build a Multi-Persona ‘Sub-Advisory Board’ for Instant Feedback: <a href="https://www.chatprd.ai/how-i-ai/workflows/build-a-multi-persona-sub-advisory-board-for-instant-feedback" target="_blank" rel="noopener">https://www.chatprd.ai/how-i-ai/workflows/build-a-multi-persona-sub-advisory-board-for-instant-feedback</a> Train Claude Cowork to Write Emails in Your Personal Style: <a href="https://www.chatprd.ai/how-i-ai/workflows/train-claude-cowork-to-write-emails-in-your-personal-style" target="_blank" rel="noopener">https://www.chatprd.ai/how-i-ai/workflows/train-claude-cowork-to-write-emails-in-your-personal-style</a> How to Set Up a ‘Daily Operating System’ in Claude Cowork: <a href="https://www.chatprd.ai/how-i-ai/workflows/how-to-set-up-a-daily-operating-system-in-claude-cowork" target="_blank" rel="noopener">https://www.chatprd.ai/how-i-ai/workflows/how-to-set-up-a-daily-operating-system-in-claude-cowork</a> If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything. Catch you next week, Lenny P.S. Want every new episode delivered the moment it drops? Hit “Follow” on your favorite podcast app.</li></ul></p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/cloudflare-openai-agent-cloud" target="_blank">Enterprises power agentic workflows in Cloudflare Agent Cloud with OpenAI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 13, 2026 &middot; 06:00 UTC</span>
+          </div>
+          <p class="summary"><span>Cloudflare brings OpenAI’s GPT-5.4 and Codex to Agent Cloud, enabling enterprises to build, deploy, and scale AI agents for real-world tasks with speed and security.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/academy/marketing" target="_blank">ChatGPT for marketing teams</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 10, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>Learn how marketing teams use ChatGPT to plan campaigns, generate content, analyze performance, and move from ideas to execution faster.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/axios-developer-tool-compromise" target="_blank">Our response to the Axios developer tool compromise</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 10, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI responds to the Axios supply chain attack by rotating macOS code signing certificates, updating apps, and confirming no user data was compromised.</span></p>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 98</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
