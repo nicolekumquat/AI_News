@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-04-26</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-04-26</h1>
+    <div class="subtitle">15 curated articles &middot; 17 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/community-wisdom-what-great-product" target="_blank">🧠 Community Wisdom: What great product leaders do differently, Claude vs. ChatGPT, receiving hard feedback two weeks into the job, tips for joining a pre-PMF startup, and more</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Apr 25, 2026 &middot; 19:51 UTC</span>
+          </div>
+          <p class="summary"><span>Community wisdom 🧠 Community Wisdom: What great product leaders do differently, Claude vs.</span> <span>ChatGPT, receiving hard feedback two weeks into the job, tips for joining a pre-PMF startup, and more Community Wisdom 182 Kiyani Apr 25, 2026 ∙ Paid 👋 Hello and welcome to this week’s edition of ✨ Community Wisdom ✨ a subscriber-only email, delivered every Saturday, highlighting the most helpful conversations in our members-only Slack community .</span> <span>This post is for paid subscribers Already a paid subscriber?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Apr/25/romain-huet/#atom-everything" target="_blank">Quoting Romain Huet</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Apr 25, 2026 &middot; 12:06 UTC</span>
+          </div>
+          <p class="summary"><span>Since GPT-5.4, we’ve unified Codex and the main model into a single system, so there’s no separate coding line anymore.</span> <span>GPT-5.5 takes this further, with strong gains in agentic coding, computer use, and any task on a computer.</span> <span>— Romain Huet , confirming OpenAI won&#x27;t release a GPT-5.5-Codex model Tags: generative-ai , gpt , openai , ai , llms</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-gpt-55-and-openai-codex-superapp" target="_blank">[AINews] GPT 5.5 and OpenAI Codex Superapp</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Apr 24, 2026 &middot; 04:40 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI also emphasized that in ChatGPT, stack-level inference gains made GPT-5.5 Pro more practical for demanding tasks @OpenAI .</span> <span>Pricing, context, infra, and practical behavior : API pricing was reported at $5/$30 per 1M input/output tokens for GPT-5.5 and $30/$180 for Pro @scaling01 , with Sam Altman noting a 1M context window in API and lower token use per task than 5.4.</span> <span>Vision Banana : Google DeepMind’s Vision Banana announcement was the standout pure-research vision post.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>AI Twitter Recap OpenAI’s GPT-5.5 launch: stronger agentic coding, broader computer use, and a push on token-efficiency GPT-5.5 is the day’s dominant release : OpenAI launched GPT-5.5 , positioned as “a new class of intelligence for real work,” with rollout across ChatGPT and Codex and API access delayed pending additional safeguards. OpenAI and community benchmark posts converged on a profile of better long-horizon execution, stronger computer-use behavior, and materially improved token efficiency rather than a pure across-the-board benchmark blowout. Reported numbers include 82.7% Terminal-Bench 2.0 , 58.6% SWE-Bench Pro , 84.9% GDPval , 78.7% OSWorld-Verified , 81.8% CyberGym , 84.4% BrowseComp , and 51.7% FrontierMath Tier 1–3 via @reach_vb , with Artificial Analysis saying GPT-5.5 now leads or ties several headline evals and sits on a new cost/performance frontier despite higher per-token pricing @ArtificialAnlys , @scaling01 . OpenAI also emphasized that in ChatGPT, stack-level inference gains made GPT-5.5 Pro more practical for demanding tasks @OpenAI . Pricing, context, infra, and practical behavior : API pricing was reported at $5/$30 per 1M input/output tokens for GPT-5.5 and $30/$180 for Pro @scaling01 , with Sam Altman noting a 1M context window in API and lower token use per task than 5.4. Multiple early users described the model as more “human,” less formal, and better suited to persistent agent workflows than prior GPTs, especially inside Codex @MatthewBerman , @danshipper , @omarsar0 . OpenAI claimed the model was co-designed for NVIDIA GB200/300 systems and that the model itself helped improve its own inference stack @scaling01 , while @sama framed the company increasingly as an AI inference company . A recurrent theme from users: GPT-5.5 often feels like a step-function upgrade in autonomy , but can also be exploratory and require tighter instruction to stay on track @theo . Codex becomes a fuller agent workspace : In parallel, OpenAI shipped substantial Codex upgrades: browser control , Sheets/Slides , Docs/PDFs , OS-wide dictation , and auto-review mode @ajambrosino . OpenAI says Codex can now interact with web apps, click through flows, capture screenshots, and iterate until task completion @OpenAIDevs , while Auto-review uses a secondary “guardian” agent to reduce approvals on longer runs @OpenAIDevs , @gdb . User reports suggest this is expanding Codex from a coding tool into a broader computer-work agent , spanning QA, spreadsheets, presentations, app building, research loops, and overnight experimental runs @gdb , @tszzl , @aidan_mclau . DeepSeek-V4 Preview: 1.6T MIT-licensed open model, 1M context, and aggressive pricing DeepSeek answered GPT-5.5 within hours : DeepSeek released DeepSeek-V4 Preview , open-sourcing V4-Pro and V4-Flash under an MIT license . The headline specs are unusually aggressive: V4-Pro: 1.6T total params / 49B active , V4-Flash: 284B / 13B active , both with 1M token context and support for thinking/non-thinking modes @deepseek_ai , @Yuchenj_UW . Community reactions quickly framed it as the new open-model flagship , competitive with top closed models from the prior generation and a major leap over DeepSeek V3.x @arena , @scaling01 , @kimmonismus . Technical report long-context efficiency, hybrid attention, and Muon : The launch was notable not just for weights but for a same-day tech report @scaling01 . Community summaries point to two new compressed/hybrid attention mechanisms , mHC , Muon-based training , FP4 quantization-aware training , and pretraining on roughly 32T tokens @scaling01 , @iScienceLuvr , @eliebakouch . The strongest technical discussion centered on making 1M context practical , with reported ~4x compute efficiency improvements and order-of-magnitude KV-cache reductions relative to earlier DeepSeek-style stacks @Hangsiin . The rapid infra response was also notable: vLLM announced day-0 support and detailed how it implemented the new attention stack; SGLang shipped day-0 optimizations and RL pipeline support . Pricing may be as important as the model : DeepSeek’s posted pricing is exceptionally aggressive: V4-Flash at $0.14/$0.28 and V4-Pro at $1.74/$3.48 per 1M input/output tokens @scaling01 , @teortaxesTex . Several commenters highlighted Flash as potentially the more disruptive SKU if serving quality holds, given the combination of very low cost , 1M context , and open weights @Hangsiin , @arena . The main caveat from DeepSeek: V4-Pro throughput is currently limited by high-end compute constraints , with the company explicitly pointing to future Ascend 950 availability for price drops @teortaxesTex . Agent infrastructure and tooling: memory, orchestration, browsers, and enterprise plumbing Agents are becoming systems problems, not just model problems : Several posts emphasized that production agent work is increasingly about harnesses, evals, memory, and orchestration . A useful example was the writeup on stateless decision memory for enterprise agents, which replaces mutable per-agent state with immutable decision logs/event sourcing to improve horizontal scalability, auditability, and fault tolerance @omarsar0 . In a similar vein, @Vtrivedy10 argued that trace data → evals/environments → harness engineering/SFT-RL is the core flywheel for improving production agents, and later used Anthropic’s Claude Code regression as a case study for why open harnesses and open evals matter @Vtrivedy10 . New tooling around control surfaces : Cua open-sourced Cua Driver , a macOS driver for letting agents control arbitrary apps in the background with multi-player/multi-cursor support. Cognition published a post on what it takes to build cloud agent infrastructure , naming the practical stack: VM isolation, session persistence, environment provisioning, orchestration, and integrations . LangChain continued expanding LangSmith Fleet with file editing, webpage/presentation generation, and slash-command skills @LangChain , while multiple users highlighted Fleet’s presentation renderer/viewer as a surprisingly useful agent-native artifact format @BraceSproul . Multi-agent orchestration is moving into products : Sakana AI launched the beta of Fugu , a multi-agent orchestration API that dynamically selects and coordinates frontier models, with claims of SOTA on SWE-Pro, GPQA-D, and ALE-Bench and even recursive test-time scaling via self-invocation @SakanaAILabs , @hardmaru . Hermes Agent shipped v0.11.0 with a large contributor release, expanded providers, image generation support, and effectively immediate GPT-5.5 support @Teknium . The direction is consistent: agents are becoming orchestration layers over heterogeneous tools and models , not single-model loops. Vision, video, and multimodal systems: Vision Banana, Sapiens2, HDR video, and omni models Google DeepMind’s Vision Banana reframes CV as generation : One of the more technically interesting research launches was Vision Banana , a unified vision model that treats 2D/3D vision tasks as image generation , reportedly outperforming specialist SOTA systems across multiple vision tasks. The reaction from computer-vision researchers was that it signals a broader shift in how segmentation, depth, normals, and related tasks may be approached going forward @sainingxie . On the open side, Meta also released Sapiens2 , a set of high-resolution vision transformers trained on 1B human images for human-centric perception tasks @HuggingPapers . Video stack updates are moving past raw resolution into production formats : Kling’s “native 4K” rollout spread across multiple platforms, but the technically more novel launch may be LTX HDR beta , which argues the real bottleneck for AI video in production has been dynamic range , not just resolution, by moving beyond 8-bit SDR toward footage that can survive grading and compositing @ltx_model . That’s a more substantive improvement than the usual “4K” marketing alone. Separately, World Labs launched World Jam around Marble 1.1 + Spark LoD for interactive 3D creation @theworldlabs . Broader multimodal trend: unified models with explicit cross-modal reasoning : The newly shared Context Unrolling in Omni Models proposes a unified model trained across text, images, video, 3D geometry, and hidden representations, explicitly unrolling reasoning across modalities before producing outputs @arankomatsuzaki . Together with Vision Banana, this points to a recurring motif: fold disparate perception/generation tasks into fewer general multimodal backbones , then let inference-time reasoning bridge modalities. Training, scaling, and research methods: globally distributed pretraining, self-play, and long-context internals Google’s Decoupled DiLoCo tackles resilient global pretraining : Google DeepMind and Google Research introduced Decoupled DiLoCo , which decouples distributed low-communication training to enable worldwide datacenter training , heterogeneous hardware , and tolerance to hardware failures without halting the job. This is a meaningful systems result because it targets a real frontier training bottleneck: keeping giant training runs alive and efficient across faulty, geographically distributed infrastructure , rather than assuming clean homogeneous clusters. Algorithmic scaling beyond brute-force sampling : A self-play paper highlighted by @LukeBailey181 studies why long-run self-play plateaus for LLMs and proposes an algorithm that lets a 7B model solve as many problems as pass@4 of a model 100x larger . Another recurring theme was token/computation efficiency as the real frontier metric; several posts argued that single-number intelligence comparisons are increasingly obsolete in a world where effort level and inference budget materially reshape capability @polynoamial . Relatedly, a thread on Neural Garbage Collection described training models to manage their own KV cache via RL rather than fixed heuristics, a potentially important direction for long-horizon agents @cwolferesearch . Infra adoption signals : Together AI reported growth from 30B to 300T tokens/month YoY @vipulved , a large-scale indicator of inference demand expansion. Epoch AI, meanwhile, revised down estimates for operational power at Stargate Abilene to ~0.3 GW currently and pushed the full 1.2 GW milestone to Q4 2026 , underscoring continued uncertainty in tracking frontier compute deployment @EpochAIResearch . Top tweets (by engagement) OpenAI GPT-5.5 launch : The highest-engagement technical post was OpenAI’s GPT-5.5 announcement , followed by @sama’s launch post and OpenAI DevRel’s framing of GPT-5.5 as its smartest frontier model yet @OpenAIDevs . Claude Code regression post-mortem : Anthropic’s acknowledgment that Claude Code quality had slipped due to three issues and was fixed in v2.1.116+ was one of the most engaged engineering-product posts of the day, and sparked substantial discussion about harness sensitivity and regression testing. DeepSeek-V4 Preview release : DeepSeek’s official V4 Preview launch quickly became the other major high-engagement technical event, especially given the combination of MIT license , 1M context , and aggressive pricing. Vision Banana : Google DeepMind’s Vision Banana announcement was the standout pure-research vision post. ML-Intern and autonomous research workflows : The Hugging Face-adjacent ml-intern passing an internship-style test in 15 minutes and subsequent reports of very high token consumption suggest strong interest in autonomous coding/research harnesses as distinct products, not just demos. AI Reddit Recap /r/LocalLlama + /r/localLLM Recap</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Apr/24/recent-claude-code-quality-reports/#atom-everything" target="_blank">An update on recent Claude Code quality reports</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Apr 24, 2026 &middot; 01:31 UTC</span>
+          </div>
+          <p class="summary"><span>An update on recent Claude Code quality reports It turns out the high volume of complaints that Claude Code was providing worse quality results over the past two months was grounded in real problems.</span> <span>The models themselves were not to blame, but three separate issues in the Claude Code harness caused complex but material problems which directly affected users.</span> <span>Via Hacker News Tags: ai , prompt-engineering , generative-ai , llms , anthropic , coding-agents , claude-code</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>An update on recent Claude Code quality reports It turns out the high volume of complaints that Claude Code was providing worse quality results over the past two months was grounded in real problems. The models themselves were not to blame, but three separate issues in the Claude Code harness caused complex but material problems which directly affected users. Anthropic&#x27;s postmortem describes these in detail. This one in particular stood out to me: On March 26, we shipped a change to clear Claude&#x27;s older thinking from sessions that had been idle for over an hour, to reduce latency when users resumed those sessions. A bug caused this to keep happening every turn for the rest of the session instead of just once, which made Claude seem forgetful and repetitive. I frequently have Claude Code sessions which I leave for an hour (or often a day or longer) before returning to them. Right now I have 11 of those (according to ps aux | grep &#x27;claude &#x27; ) and that&#x27;s after closing down dozens more the other day. I estimate I spend more time prompting in these &quot;stale&quot; sessions than sessions that I&#x27;ve recently started! If you&#x27;re building agentic systems it&#x27;s worth reading this article in detail - the kinds of bugs that affect harnesses are deeply complicated, even if you put aside the inherent non-deterministic nature of the models themselves. Via Hacker News Tags: ai , prompt-engineering , generative-ai , llms , anthropic , coding-agents , claude-code</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Apr/23/gpt-5-5/#atom-everything" target="_blank">A pelican for GPT-5.5 via the semi-official Codex backdoor API</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Apr 23, 2026 &middot; 19:59 UTC</span>
+          </div>
+          <p class="summary"><span>It&#x27;s available in OpenAI Codex and is rolling out to paid ChatGPT subscribers.</span> <span>We&#x27;ll bring GPT‑5.5 and GPT‑5.5 Pro to the API very soon.</span> <span>Tags: ai , openai , generative-ai , chatgpt , llms , llm , llm-pricing , pelican-riding-a-bicycle , llm-reasoning , llm-release , codex-cli , gpt</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>GPT-5.5 is out . It&#x27;s available in OpenAI Codex and is rolling out to paid ChatGPT subscribers. I&#x27;ve had some preview access and found it to be a fast, effective and highly capable model. As is usually the case these days, it&#x27;s hard to put into words what&#x27;s good about it - I ask it to build things and it builds exactly what I ask for! There&#x27;s one notable omission from today&#x27;s release - the API: API deployments require different safeguards and we are working closely with partners and customers on the safety and security requirements for serving it at scale. We&#x27;ll bring GPT‑5.5 and GPT‑5.5 Pro to the API very soon. When I run my pelican benchmark I always prefer to use an API, to avoid hidden system prompts in ChatGPT or other agent harnesses from impacting the results. The OpenClaw backdoor One of the ongoing tension points in the AI world over the past few months has concerned how agent harnesses like OpenClaw and Pi interact with the APIs provided by the big providers. Both OpenAI and Anthropic offer popular monthly subscriptions which provide access to their models at a significant discount to their raw API. OpenClaw integrated directly with this mechanism, and was then blocked from doing so by Anthropic. This kicked off a whole thing. OpenAI - who recently hired OpenClaw creator Peter Steinberger - saw an opportunity for an easy karma win and announced that OpenClaw was welcome to continue integrating with OpenAI&#x27;s subscriptions via the same mechanism used by their (open source) Codex CLI tool. Does this mean anyone can write code that integrates with OpenAI&#x27;s Codex-specific APIs to hook into those existing subscriptions? The other day Jeremy Howard asked : Anyone know whether OpenAI officially supports the use of the /backend-api/codex/responses endpoint that Pi and Opencode (IIUC) uses? It turned out that on March 30th OpenAI&#x27;s Romain Huet had tweeted : We want people to be able to use Codex, and their ChatGPT subscription, wherever they like! That means in the app, in the terminal, but also in JetBrains, Xcode, OpenCode, Pi, and now Claude Code. That’s why Codex CLI and Codex app server are open source too! 🙂 And Peter Steinberger replied to Jeremy that: OpenAI sub is officially supported. llm-openai-via-codex So... I had Claude Code reverse-engineer the openai/codex repo, figure out how authentication tokens were stored and build me llm-openai-via-codex , a new plugin for LLM which picks up your existing Codex subscription and uses it to run prompts! (With hindsight I wish I&#x27;d used GPT-5.4 or the GPT-5.5 preview, it would have been funnier. I genuinely considered rewriting the project from scratch using Codex and GPT-5.5 for the sake of the joke, but decided not to spend any more time on this!) Here&#x27;s how to use it: Install Codex CLI, buy an OpenAI plan, login to Codex Install LLM: uv tool install llm Install the new plugin: llm install llm-openai-via-codex Start prompting: llm -m openai-codex/gpt-5.5 &#x27;Your prompt goes here&#x27; All existing LLM features should also work - use -a filepath.jpg/URL to attach an image, llm chat -m openai-codex/gpt-5.5 to start an ongoing chat, llm logs to view logged conversations and llm --tool ... to try it out with tool support . And some pelicans Let&#x27;s generate a pelican! llm install llm-openai-via-codex llm -m openai-codex/gpt-5.5 &#x27; Generate an SVG of a pelican riding a bicycle &#x27; Here&#x27;s what I got back : I&#x27;ve seen better from GPT-5.4 , so I tagged on -o reasoning_effort xhigh and tried again : That one took almost four minutes to generate, but I think it&#x27;s a much better effort. If you compare the SVG code ( default , xhigh ) the xhigh one took a very different approach, which is much more CSS-heavy - as demonstrated by those gradients. xhigh used 9,322 reasoning tokens where the default used just 39. A few more notes on GPT-5.5 One of the most notable things about GPT-5.5 is the pricing. Once it goes live in the API it&#x27;s going to be priced at twice the cost of GPT-5.4 - $5 per 1M input tokens and $30 per 1M output tokens, where 5.4 is $2.5 and $15. GPT-5.5 Pro will be even more: $30 per 1M input tokens and $180 per 1M output tokens. GPT-5.4 will remain available. At half the price of 5.5 this feels like 5.4 is to 5.5 as Claude Sonnet is to Claude Opus. Ethan Mollick has a detailed review of GPT-5.5 where he put it (and GPT-5.5 Pro) through an array of interesting challenges. His verdict: the jagged frontier continues to hold, with GPT-5.5 excellent at some things and challenged by others in a way that remains difficult to predict. Tags: ai , openai , generative-ai , chatgpt , llms , llm , llm-pricing , pelican-riding-a-bicycle , llm-reasoning , llm-release , codex-cli , gpt</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/gpt-55-just-did-what-no-other-model" target="_blank">GPT 5.5 just did what no other model could</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Apr 23, 2026 &middot; 19:39 UTC</span>
+          </div>
+          <p class="summary"><span>Introduction to GPT 5.5 testing What is GPT 5.5 and how much does it cost? Testing GPT 5.5 in ChatGPT: the intelligence overhang problem Moving to Codex: where GPT 5.5 really shines Hacking a Chinese Bluetooth speaker Final thoughts on GPT 5.5’s intelligence and efficiency<ul><li>GPT 5.5 and GPT 5.5 Pro: <a href="https://openai.com/index/introducing-gpt-5-5/" target="_blank" rel="noopener">https://openai.com/index/introducing-gpt-5-5/</a></li><li>Codex: <a href="https://openai.com/codex/" target="_blank" rel="noopener">https://openai.com/codex/</a></li><li>ChatGPT: <a href="https://chat.openai.com/" target="_blank" rel="noopener">https://chat.openai.com/</a></li><li>Claude Code: <a href="https://claude.ai/code" target="_blank" rel="noopener">https://claude.ai/code</a></li><li>Sentry: <a href="https://sentry.io/" target="_blank" rel="noopener">https://sentry.io/</a></li><li>Divoom MiniToo: <a href="https://divoom.com/products/minitoo" target="_blank" rel="noopener">https://divoom.com/products/minitoo</a> Other</li><li>OpenAI Codex Security: <a href="https://openai.com/index/codex-security-now-in-research-preview/" target="_blank" rel="noopener">https://openai.com/index/codex-security-now-in-research-preview/</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-anthropics-product-team-moves" target="_blank">How Anthropic’s product team moves faster than anyone else | Cat Wu (Head of Product, Claude Code)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Apr 23, 2026 &middot; 15:01 UTC</span>
+          </div>
+          <p class="summary"><span>Automate compliance, manage risk, and accelerate trust with AI</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/academy/top-10-use-cases-codex-for-work" target="_blank">Top 10 uses for Codex at work</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 23, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>Explore 10 practical Codex use cases to automate tasks, create deliverables, and turn real inputs into outputs across tools, files, and workflows.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/academy/working-with-codex" target="_blank">Working with Codex</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 23, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>Learn how to set up your Codex workspace, create threads and projects, manage files, and start completing tasks with step-by-step guidance.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/academy/codex-settings" target="_blank">Codex settings</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 23, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>Learn how to configure Codex settings, including personalization, detail level, and permissions, to run tasks smoothly and customize your workflow.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/academy/codex-plugins-and-skills" target="_blank">Plugins and skills</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 23, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>Learn how to use Codex plugins and skills to connect tools, access data, and follow repeatable workflows to automate tasks and improve results.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-tasteful-tokenmaxxing" target="_blank">[AINews] Tasteful Tokenmaxxing</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Apr 23, 2026 &middot; 02:45 UTC</span>
+          </div>
+          <p class="summary"><span>AI Twitter Recap Open Models: Qwen3.6-27B, OpenAI Privacy Filter, and Xiaomi MiMo-V2.5 Qwen3.6-27B lands as a serious local/open coding model : @Alibaba_Qwen released Qwen3.6-27B , a dense , Apache 2.0 model with thinking + non-thinking modes and a unified multimodal checkpoint .</span> <span>OpenAI quietly open-sources a practical privacy model : Multiple observers flagged OpenAI’s new Privacy Filter , a lightweight Apache 2.0 open model for PII detection and masking .</span> <span>The non-Pro model adds native omnimodality and a 1M-token context window .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>AI Twitter Recap Open Models: Qwen3.6-27B, OpenAI Privacy Filter, and Xiaomi MiMo-V2.5 Qwen3.6-27B lands as a serious local/open coding model : @Alibaba_Qwen released Qwen3.6-27B , a dense , Apache 2.0 model with thinking + non-thinking modes and a unified multimodal checkpoint . Alibaba claims it beats the much larger Qwen3.5-397B-A17B on major coding evals, including SWE-bench Verified 77.2 vs 76.2 , SWE-bench Pro 53.5 vs 50.9 , Terminal-Bench 2.0 59.3 vs 52.5 , and SkillsBench 48.2 vs 30.0 . It also supports native vision-language reasoning over images and video . The ecosystem moved immediately: vLLM shipped day-0 support , Unsloth published 18GB-RAM local GGUFs , ggml added llama.cpp usage , and Ollama added a packaged release . Early user reports from @KyleHessling1 and @simonw were notably strong for local frontend/design and image tasks. OpenAI quietly open-sources a practical privacy model : Multiple observers flagged OpenAI’s new Privacy Filter , a lightweight Apache 2.0 open model for PII detection and masking . According to @altryne , @eliebakouch , and @mervenoyann , it is a 1.5B total / 50M active MoE token-classification model with a 128k context window , intended for cheap redaction over very large corpora and logs. This is a more operationally interesting release than a generic “small open model”: it targets a concrete infra problem in enterprise/agent pipelines where on-device or low-cost preprocessing matters. Xiaomi pushes agentic open models upward : @XiaomiMiMo announced MiMo-V2.5-Pro and MiMo-V2.5 . Xiaomi positions V2.5-Pro as a major jump in software engineering and long-horizon agents, citing SWE-bench Pro 57.2 , Claw-Eval 63.8 , and τ3-Bench 72.9 , with claims of 1,000+ autonomous tool calls. The non-Pro model adds native omnimodality and a 1M-token context window . Arena quickly listed MiMo-V2.5 in Text/Vision/Code evaluation , and Hermes/Nous integration followed via @Teknium . Google Cloud Next: TPU v8, Gemini Enterprise Agent Platform, and Workspace Intelligence Google’s infra announcements were substantial, not cosmetic : @Google and @sundarpichai introduced 8th-gen TPUs with a split design: TPU 8t for training and TPU 8i for inference. Google says 8t delivers nearly 3x compute per pod vs Ironwood , while 8i connects 1,152 TPUs per pod for low-latency inference and high-throughput multi-agent workloads. Commentary from @scaling01 highlighted an additional claim: Google can now scale to a million TPUs in a single cluster with TPU8t. The productization signal matters as much as the raw hardware: Google is clearly aligning chips, models, agent tooling, and enterprise control planes into one vertically integrated offering. Enterprise agents became a first-class Google product surface : @GoogleDeepMind and @Google launched Gemini Enterprise Agent Platform , framed as the evolution of Vertex AI into a platform for building, governing, and optimizing agents at scale. It includes Agent Studio , access to 200+ models via Model Garden , and support for Google’s current stack including Gemini 3.1 Pro , Gemini 3.1 Flash Image , Lyria 3 , and Gemma 4 . Related launches included Workspace Intelligence GA as a semantic layer over docs/sheets/meetings/mail, Gemini Enterprise inbox/canvas/reusable skills , Agentic Data Cloud , security agents with Wiz integration , and Gemini Embedding 2 GA , a unified embedding model across text, image, video, audio, and documents. Agents, Harnesses, Traces, and Team Workflows The “agent harness” abstraction is hardening across vendors : OpenAI introduced workspace agents in ChatGPT , shared Codex-powered agents for teams that can operate across docs, email, chat, code, and external systems, including Slack-based workflows and scheduled/background tasks . Google made a parallel enterprise move with Gemini Enterprise Agent Platform, while Cursor added Slack invocation for task kick-off and streaming updates . The pattern is converging: cloud-hosted agents, shared team context, approvals, and long-running execution rather than single-user chat. Developer ergonomics around harness/model independence improved : VS Code/Copilot rolled out bring-your-own-key/model support across plans and business/enterprise , enabling providers like Anthropic, Gemini, OpenAI, OpenRouter, Azure, Ollama, and local backends. This is strategically important because, as @omarsar0 d, most models still seem overfit to their own agent harnesses. Cognition’s Russell Kaplan made the complementary business case: enterprise buyers want model flexibility and infrastructure that spans the full SDLC, not attachment to one lab. Traces/evals/self-improvement are becoming the core agent data primitive : The strongest thread here came from LangChain-adjacent discussion. @Vtrivedy10 argued that traces capture agent errors and inefficiencies , and that compute should be pointed at understanding traces to generate better evals, skills, and environments; a longer follow-up expanded this into a concrete loop involving trace mining, skills, context engineering, subagents, and online evals. @ClementDelangue pushed for open traces as the missing data substrate for open agent training, while @gneubig promoted ADP / Agent Data Protocol standardization. LangChain also teased a stronger testing/evaluation product direction via @hwchase17 . Post-Training, RL, and Inference Systems Perplexity and others shared more of the post-training playbook : @perplexity_ai published details on a search-augmented SFT + RL pipeline that improves factuality, citation quality, instruction following, and efficiency; they say Qwen-based systems can match or beat GPT-family models on factuality at lower cost. @AravSrinivas added that Perplexity now runs a post-trained Qwen-derived model in production that unifies tool routing and summarization and is already serving a significant share of traffic. On the research side, @michaelyli__ introduced Neural Garbage Collection , using RL to jointly learn reasoning and KV-cache retention/eviction without proxy objectives; @sirbayes reported a Bayesian linguistic-belief forecasting agent matching human superforecasters on ForecastBench. The “minimal editing” problem in coding models got a useful benchmark treatment : @nrehiew_ presented work on Over-Editing , where coding models fix bugs by rewriting too much code. The study constructs minimally corrupted problems and measures excess edits with patch-distance and added Cognitive Complexity ; it finds GPT-5.4 over-edits the most while Opus 4.6 over-edits the least , and that RL outperforms SFT, DPO, and rejection sampling for learning a generalizable minimal-editing style without catastrophic forgetting. This is one of the more practical post-training/eval contributions in the set because it targets a failure mode engineers actually complain about in production code review. Inference efficiency work remained highly active : @cohere integrated production W4A8 inference into vLLM , reporting up to 58% faster TTFT and 45% faster TPOT vs W4A16 on Hopper; the details include per-channel FP8 scale quantization and CUTLASS LUT dequantization . @WentaoGuo7 reported SonicMoE throughput gains on Blackwell— 54% / 35% higher fwd/bwd TFLOPS than DeepGEMM baseline —while maintaining dense-equivalent activation memory for equal active params. @baseten introduced RadixMLP for shared-prefix elimination in reranking, with 1.4–1.6x realistic speedups. Top tweets (by engagement) OpenAI workspace agents : @OpenAI launched shared, Codex-powered workspace agents for Business/Enterprise/Edu/Teachers. Qwen3.6-27B release : @Alibaba_Qwen announced the new open 27B dense model with strong coding claims and Apache 2.0 licensing. Google TPU v8 : @sundarpichai previewed TPU 8t / 8i , with training/inference specialization. Flipbook / model-streamed UI : @zan2434 showed a prototype where the screen is rendered as pixels directly from a model rather than traditional UI stacks. OpenAI Privacy Filter : @scaling01 and others highlighted OpenAI’s new open-source PII detection/redaction model on Hugging Face. AI Reddit Recap /r/LocalLlama + /r/localLLM Recap 1. Qwen 3.6 Model Releases and Benchmarks Qwen 3.6 27B is out (Activity: 2576): Qwen 3.6 27B, a new language model, has been released on Hugging Face . This model features 27 billion parameters and is designed to improve upon previous iterations with enhanced performance benchmarks. A quantized version is also available, Qwen3.6-27B-FP8 , which allows for more efficient deployment in environments with limited computational . The release includes detailed benchmark results, showcasing its capabilities across various tasks. The community is expressing excitement about the release, with some users highlighting the significance of the model’s performance improvements and the availability of a quantized version for broader accessibility. Namra_7 shared a benchmark image for Qwen 3.6 27B, which likely includes performance metrics such as inference speed, accuracy, or other relevant statistics. However, the specific details of the benchmarks are not described in the comment itself. challis88ocarina mentioned a quantized version of Qwen 3.6 27B available on Hugging Face, specifically in FP8 format. Quantization can significantly reduce the model size and improve inference speed, making it more efficient for deployment without a substantial loss in accuracy. The link provided leads to the Hugging Face model repository for further exploration. Eyelbee posted another image link, which might contain additional visual data or performance metrics related to Qwen 3.6 27B. However, the comment does not provide specific insights or details about the content of the image. Qwen3.6-27B released! (Activity: 895): Qwen3.6-27B is a newly released dense, open-source model that excels in coding tasks, outperforming its predecessor, Qwen3.5-397B-A17B, on major coding benchmarks. It features strong reasoning capabilities across both text and multimodal tasks and offers flexibility with ‘thinking’ and ‘non-thinking’ modes. The model is released under the Apache 2.0 license, making it fully open-source and accessible for community use. More details can be found on their blog , GitHub , and Hugging Face . The comments reflect excitement and admiration for the Qwen team, with users expressing eagerness to utilize the model on their hardware and suggesting the team’s contributions are monument-worthy. ResearchCrafty1804 the impressive performance of Qwen3.6-27B, noting that despite having only 27 billion parameters, it surpasses the much larger Qwen3.5-397B-A17B model on several coding benchmarks. Specifically, it achieves scores of 77.2 on SWE-bench Verified, 53.5 on SWE-bench Pro, 59.3 on Terminal-Bench 2.0, and 48.2 on SkillsBench, outperforming the larger model by significant margins in each case. bwjxjelsbd comments on the competitive landscape, expressing satisfaction that Alibaba is advancing with Qwen models after META’s perceived setbacks. The commenter hopes for continued competition and transparency, suggesting that META should open-source their Muse family models to maintain a healthy competitive environment. Qwen3.6-35B becomes competitive with cloud models when paired with the right agent (Activity: 848): The post discusses the significant improvement in benchmark performance of the Qwen3.6-35B model when paired with the little-coder agent, achieving a 78.7% success rate on the Polyglot benchmark, placing it in the top 10. This improvement the impact of using appropriate scaffolds, suggesting that local models may underperform due to harness mismatches. The author plans to test further on Terminal Bench and GAIA for research capabilities. Full details and benchmarks are available on GitHub and Substack . Commenters express surprise at the performance gains from scaffold changes, questioning the validity of benchmarks that don’t control for such factors. There’s also interest in using pi.dev for its extensibility in harnessing models. DependentBat5432 a significant performance improvement in Qwen3.6-35B when changing the scaffold, noting a jump from 19% to 78% . This raises concerns about the validity of benchmark comparisons that do not control for such variables, suggesting that scaffold choice can dramatically affect model performance. Willing-Toe1942 reports that Qwen3.6, when used with pi-coding agents, performs almost twice as well as opencode. This comparison involved tasks like modifying HTML code and searching online for documentation, indicating that the choice of agent can significantly enhance the model’s effectiveness in practical coding scenarios. kaeptnphlop mentions the strong performance of Qwen-Coder-Next when paired with GitHub Copilot in VS Code, suggesting potential for further exploration with other tools like little-coder. This implies that integrating Qwen models with popular coding environments can leverage their strengths effectively.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/what-claude-design-is-actually-good" target="_blank">What Claude Design is actually good for (and why Figma isn’t dead yet)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Apr 22, 2026 &middot; 12:04 UTC</span>
+          </div>
+          <p class="summary"><span>n tasks, build your startup faster Welcome and what’s in the spring 2026 AI design drop Claude Design overview Importing Lenny’s Newsletter design system into Claude Design How Claude Design structures a design system Google Labs’ DESIGN.md standard Building Lenny Doc, a PRD generator landing page using the Lenny design system Why the three-variation output is Claude Design’s smartest UX choice Hitting the Claude Design limit and paying $200 to keep going Where Figma still wins Reviewing Lenny Doc Turning an Open Claude article into a branded slide deck The ’90s GeoCities “Lenny’s Product Zone” redesign Claude Design recap ChatGPT Images 2.0 and what makes it the first “thinking” image model Generating a multi-page brand kit for ChatPRD and iterating with images Personal color analysis demo Recap<ul><li>Claude Design: <a href="https://claude.ai/design" target="_blank" rel="noopener">https://claude.ai/design</a></li><li>ChatGPT Images 2.0: <a href="https://openai.com/index/introducing-chatgpt-images-2-0/" target="_blank" rel="noopener">https://openai.com/index/introducing-chatgpt-images-2-0/</a></li><li>Midjourney: <a href="https://www.midjourney.com/" target="_blank" rel="noopener">https://www.midjourney.com/</a> Other</li><li>Google’s DESIGN.md: <a href="https://stitch.withgoogle.com/docs/design-md/overview" target="_blank" rel="noopener">https://stitch.withgoogle.com/docs/design-md/overview</a></li><li>Lenny’s Newsletter: <a href="https://www.lennysnewsletter.com/" target="_blank" rel="noopener">https://www.lennysnewsletter.com/</a></li><li>Jamie Gannon “How I AI” episode on styles: <a href="https://www.lennysnewsletter.com/p/mastering-midjourney-how-to-create" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/mastering-midjourney-how-to-create</a></li><li>Brand prompt inspiration: <a href="https://x.com/riomadeit/status/2046682442791071787" target="_blank" rel="noopener">https://x.com/riomadeit/status/2046682442791071787</a></li><li>Figma team “How I AI” episode on design systems: <a href="https://www.lennysnewsletter.com/p/from-figma-to-claude-code-and-back" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/from-figma-to-claude-code-and-back</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/speeding-up-agentic-workflows-with-websockets" target="_blank">Speeding up agentic workflows with WebSockets in the Responses API</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 22, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>A deep dive into the Codex agent loop, showing how WebSockets and connection-scoped caching reduced API overhead and improved model latency.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/academy/workspace-agents" target="_blank">Workspace agents</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 22, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>Learn how to build, use, and scale workspace agents in ChatGPT to automate repeatable workflows, connect tools, and streamline team operations.</span></p>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 92</span>
+      <span>&middot;</span>
+      <span>17/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
