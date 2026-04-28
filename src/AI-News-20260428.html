@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-04-28</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-04-28</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-imagegen-is-on-the-path-to" target="_blank">[AINews] ImageGen is on the Path to AGI</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Apr 28, 2026 &middot; 05:38 UTC</span>
+          </div>
+          <p class="summary"><span>Parallel to that, @Hangsiin documented Codex usage multipliers: GPT-5.4 fast = 2x , GPT-5.5 fast = 2.5x , with 5.4-mini and GPT-5.3-Codex materially cheaper.</span> <span>@sama argued Codex at $20 remains a strong value.</span> <span>OpenAI also open-sourced Symphony , an orchestration layer connecting issue trackers to Codex agents for “open issue → agent → PR → human review,” via @OpenAIDevs .</span> <span>Gemma local browser agent : @googlegemma showing a 100% local browser-resident agent with WebGPU.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>AI Twitter Recap OpenAI Distribution Shift, GPT-5.5 Benchmarks, and Codex/Copilot Pricing Signals OpenAI loosens Azure exclusivity : @sama said OpenAI updated its Microsoft partnership so Microsoft remains the primary cloud , but OpenAI can now make products available across all clouds , with product/model commitments extending to 2032 and revenue share through 2030 . The implication was quickly drawn by @scaling01 and @kimmonismus : OpenAI can now distribute via Google TPU / AWS Trainium / Bedrock , and Microsoft’s license to OpenAI IP becomes non-exclusive . @ajassy confirmed OpenAI models are coming to AWS Bedrock in the coming weeks. @simonw d the new language likely means the old AGI clause is effectively gone . GPT-5.5 is a broad upgrade, but not uniformly dominant : Community evals from @htihle put GPT-5.5 no-thinking at 67.1% on WeirdML , up from 57.4% for GPT-5.4 , but still behind Opus 4.7 no-thinking at 76.4% while using fewer tokens. LMSYS Arena results from @arena placed GPT-5.5 at #9 in Code Arena , #6 Document , #7 Text , #3 Math , #2 Search , #5 Vision , with Expert Arena #5 . Arena also clarified current evaluation covers medium/high reasoning , with xHigh still pending ( 1 , 2 ). Practitioner feedback was positive for hard coding tasks such as GPU kernels from @gdb , but there were also reports of “compressed CoT leakage” / malformed outputs in no-thinking mode from @htihle . Developer economics are becoming more explicit : GitHub announced Copilot moves to usage-based billing on June 1 , a notable shift as agentic workflows consume much more runtime. Parallel to that, @Hangsiin documented Codex usage multipliers: GPT-5.4 fast = 2x , GPT-5.5 fast = 2.5x , with 5.4-mini and GPT-5.3-Codex materially cheaper. @sama argued Codex at $20 remains a strong value. OpenAI also open-sourced Symphony , an orchestration layer connecting issue trackers to Codex agents for “open issue → agent → PR → human review,” via @OpenAIDevs . Xiaomi MiMo-V2.5, Kimi K2.6, and China’s Agent-Oriented Open-Weights Push MiMo-V2.5 is one of the day’s biggest open releases : @XiaomiMiMo open-sourced MiMo‑V2.5-Pro and MiMo‑V2.5 under MIT , both with 1M-token context . The Pro model is framed as a complex agent/coding model and the smaller model as a native omni-modal agent . Community summaries from @eliebakouch add useful technical details: MiMo‑V2.5-Pro is roughly 1T total / 42B active , trained on 27T tokens in FP8 , while MiMo‑V2.5 is about 310B total / 15B active , trained on 48T tokens , with aggressive interleaved SWA/global attention and no shared expert. Xiaomi also announced a 100T token grant for builders via @_LuoFuli . Day-0 inference support landed quickly in vLLM and SGLang/vLLM . Kimi K2.6 continues to lead in mindshare and deployment : @Kimi_Moonshot said Kimi K2.6 is now #1 on OpenRouter’s weekly leaderboard . Secondary reporting described it as a model for coding and long-horizon agents , including scaling to 300 concurrent sub-agents across 4,000 coordinated steps ( dl_weekly ). Practitioners remain split on speed/quality tradeoffs: @teortaxesTex found Kimi in Hermes much slower than DeepSeek V4 but sometimes capable of fixing bugs V4 could not. Broader China-model trend : Multiple posts framed Chinese labs as pushing aggressively on open-ish, agent-oriented, long-context systems : Qwen 3.6 Flash , DeepSeek V4/Flash, GLM-5.1 promotions ( triple usage extension ), and Xiaomi’s MIT release. A recurring theme was that smaller / cheaper variants are often outperforming their larger siblings on practical agent benchmarks. Agent Runtimes, Orchestration, and Local-First Tooling Sakana’s Conductor is a notable multi-agent result : @SakanaAILabs introduced a 7B Conductor trained with RL to orchestrate a pool of frontier models in natural language rather than solving tasks directly. It dynamically decides which agent to call, what subtask to assign, and which context to expose , and reportedly reached 83.9% on LiveCodeBench and 87.5% on GPQA-Diamond , beating any single worker in its pool. @hardmaru highlighted “ AI managing AI ” and recursive self-selection as a new axis of test-time scaling . Local and hybrid agents keep getting better : Several posts showed coding/assistant stacks running locally. @patloeber and @_philschmid documented running Pi agent + Gemma 4 26B A4B locally via LM Studio/Ollama/llama.cpp. @googlegemma demoed a fully local browser agent using Gemma 4 + WebGPU , with native tool calling for browsing history, tab management, and page summarization. @cognition shipped Devin for Terminal , a local shell agent that can later hand off to the cloud . Agent ergonomics and framework evolution : Hermes had a strong day: @Teknium d Hermes Agent’s repo surpassed Claude Code , while native vision became the default when supported . The broader ecosystem kept filling in missing pieces: Cline Kanban now supports different agents/models per task card ; Future AGI open-sourced an eval/optimization stack for self-improving agents; and @_philschmid argued MCP works best either through explicit @mention loading or subagent-scoped tool assignment , not indiscriminate server attachment. Inference Infrastructure, Attention/KV Engineering, and Systems Work Google’s TPU split is a meaningful architecture signal : Several posts dissected Google’s Cloud Next announcement that TPU v8 is split into 8t for training and 8i for inference , with claims of roughly 2.8x faster training and 80% better inference performance/$ than prior generation. @kimmonismus emphasized this is the first time Google split custom silicon by workload and that OpenAI, Anthropic, and Meta are reportedly buying TPU capacity. DeepSeek V4 support is maturing quickly in infra stacks : @vllm_project said support for DeepSeek V4 base models is coming, requiring an expert_dtype config field to distinguish FP4 instruct vs FP8 base . In the vLLM 0.20.0 release , included DeepSeek V4 support , FA4 as default MLA prefill , TurboQuant 2-bit KV , and a DeepSeek-specific MegaMoE path on Blackwell. KV cache optimization remains a hot battleground : There was dense discussion around long-context bottlenecks and KV strategies. @cHHillee summarized three main levers for long contexts: local/sliding attention , interleaved local-global attention , and smaller KV per global layer via GQA/MLA/KV tying/quantization . On the implementation side, @vllm_project and Red Hat/AWS published an FP8 KV-cache deep dive where a fix to FA3 two-level accumulation improved 128k needle-in-a-haystack from 13% to 89% while retaining FP8 decode speedups. Community critics also questioned DeepSeek V4’s specific KV tradeoffs relative to offloading-heavy approaches such as HiSparse ( discussion ). Benchmarks, Evals, and Open Research Directions Open-world evaluation is gaining momentum : @sarahookr argued that most agentic benchmarks are overfit to automatically verifiable tasks, while the important frontier is open-world, uncertain, non-fully-verifiable work. Related threads connected this to continual learning , memory stores, and adaptive data systems ( 1 , 2 ). Cost-aware agent evaluation is becoming first-class : @dair_ai highlighted a new study on coding-agent spend over SWE-bench Verified: agentic coding can consume ~1000x more tokens than chat/code reasoning, usage can vary 30x across runs on identical tasks, and more spending does not monotonically improve accuracy. This lines up with pricing-model changes from Copilot and growing concern over uncontrolled agent runtime economics. New benchmarks and domain-specific evals : ParseBench from LlamaIndex adds 2k verified enterprise document pages for parsing agents. AgentIR reframes retrieval for research agents by embedding the reasoning trace alongside the query , with AgentIR-4B hitting 68% on BrowseComp-Plus vs 52% for larger conventional embedding models . There were also several benchmark snapshots for frontier models—e.g. Opus 4.7 leading GSO at 42.2% and WeirdML / ALE-Bench / PencilPuzzleBench chatter—but the stronger signal was methodological: more people are measuring runtime cost, retrieval quality, and open-world behavior , not just final answer accuracy. Top tweets (by engagement) OpenAI–Microsoft partnership reset : @sama on cross-cloud availability and continued Microsoft partnership. OpenAI on AWS : @ajassy confirming OpenAI models are coming to Bedrock . GitHub Copilot pricing change : @github announcing usage-based billing starting June 1. Xiaomi MiMo-V2.5 open-source release : @XiaomiMiMo with MIT license and 1M context . Open-source orchestration for Codex : @OpenAIDevs launching Symphony . Gemma local browser agent : @googlegemma showing a 100% local browser-resident agent with WebGPU. AI Reddit Recap /r/LocalLlama + /r/localLLM Recap 1. Qwen3.6 Model Performance and Optimization</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Apr/27/now-deceased-agi-clause/#atom-everything" target="_blank">Tracking the history of the now-deceased OpenAI Microsoft AGI clause</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Apr 27, 2026 &middot; 18:38 UTC</span>
+          </div>
+          <p class="summary"><span>For many years, Microsoft and OpenAI&#x27;s relationship has included a weird clause saying that, should AGI be achieved, Microsoft&#x27;s commercial IP rights to OpenAI&#x27;s technology would be null and void.</span> <span>OpenAI, July 22nd 2019 in Microsoft invests in and partners with OpenAI to support us building beneficial AGI (emphasis mine): OpenAI is producing a sequence of increasingly powerful AI technologies, which requires a lot of capital for computational power.</span> <span>Tags: computer-history , microsoft , ai , openai</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>For many years, Microsoft and OpenAI&#x27;s relationship has included a weird clause saying that, should AGI be achieved, Microsoft&#x27;s commercial IP rights to OpenAI&#x27;s technology would be null and void. That clause appeared to end today. I decided to try and track its expression over time on openai.com . OpenAI, July 22nd 2019 in Microsoft invests in and partners with OpenAI to support us building beneficial AGI (emphasis mine): OpenAI is producing a sequence of increasingly powerful AI technologies, which requires a lot of capital for computational power. The most obvious way to cover costs is to build a product, but that would mean changing our focus. Instead, we intend to license some of our pre-AGI technologies , with Microsoft becoming our preferred partner for commercializing them. But what is AGI? The OpenAI Charter was first published in April 2018 and has remained unchanged at least since this March 11th 2019 archive.org capture : OpenAI’s mission is to ensure that artificial general intelligence (AGI)—by which we mean highly autonomous systems that outperform humans at most economically valuable work—benefits all of humanity. Here&#x27;s the problem: if you&#x27;re going to sign an agreement with Microsoft that is dependent on knowing when &quot;AGI&quot; has been achieved, you need something a little more concrete. In December 2024 The Information reported the details (summarized here outside of their paywall by TechCrunch ): Last year’s agreement between Microsoft and OpenAI, which hasn’t been disclosed, said AGI would be achieved only when OpenAI has developed systems that have the ability to generate the maximum total profits to which its earliest investors, including Microsoft, are entitled, according to documents OpenAI distributed to investors. Those profits total about $100 billion, the documents showed. So AGI is now whenever OpenAI&#x27;s systems are capable of generating $100 billion in profit? In October 2025 the process changed to being judged by an &quot;independent expert panel&quot;. In The next chapter of the Microsoft–OpenAI partnership : The agreement preserves key elements that have fueled this successful partnership—meaning OpenAI remains Microsoft’s frontier model partner and Microsoft continues to have exclusive IP rights and Azure API exclusivity until Artificial General Intelligence (AGI). [...] Once AGI is declared by OpenAI, that declaration will now be verified by an independent expert panel. [...] Microsoft’s IP rights to research, defined as the confidential methods used in the development of models and systems, will remain until either the expert panel verifies AGI or through 2030, whichever is first. OpenAI on February 27th, 2026 in Joint Statement from OpenAI and Microsoft : AGI definition and processes are unchanged . The contractual definition of AGI and the process for determining if it has been achieved remains the same. OpenAI today, April 27th 2026 in The next phase of the Microsoft OpenAI partnership (emphasis mine): Microsoft will continue to have a license to OpenAI IP for models and products through 2032. Microsoft’s license will now be non-exclusive. Microsoft will no longer pay a revenue share to OpenAI. Revenue share payments from OpenAI to Microsoft continue through 2030, independent of OpenAI’s technology progress , at the same percentage but subject to a total cap. As far as I can tell &quot;independent of OpenAI’s technology progress&quot; is a declaration that the AGI clause is now dead. Here&#x27;s The Verge coming to the same conclusion: The AGI clause is dead . My all-time favorite commentary on OpenAI&#x27;s approach to AGI remains this 2023 hypothetical by Matt Levine : And the investors wailed and gnashed their teeth but it’s true, that is what they agreed to, and they had no legal recourse. And OpenAI’s new CEO, and its nonprofit board, cut them a check for their capped return and said “bye” and went back to running OpenAI for the benefit of humanity. It turned out that a benign, carefully governed artificial superintelligence is really good for humanity, and OpenAI quickly solved all of humanity’s problems and ushered in an age of peace and abundance in which nobody wanted for anything or needed any Microsoft products. And capitalism came to an end. Tags: computer-history , microsoft , ai , openai</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/this-week-on-how-i-ai-gpt-55-claude" target="_blank">🎙️ This week on How I AI: GPT 5.5, Claude Design, and GPT Images 2.0 hands-on reviews—plus an inside look at Memelord</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Apr 27, 2026 &middot; 15:02 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ This week on How I AI: GPT 5.5, Claude Design, and GPT Images 2.0 hands-on reviews—plus an inside look at Memelord Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Apr 27, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2604.24372v1" target="_blank">SeaEvo: Advancing Algorithm Discovery with Strategy Space Evolution</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Apr 27, 2026 &middot; 12:06 UTC</span>
+          </div>
+          <p class="summary"><span>LLM-guided evolutionary search has emerged as a promising paradigm for automated algorithm discovery, yet most systems track search progress primarily through executable programs and scalar fitness.</span> <span>Even when natural-language reflection is used, it is often used locally in mutation prompts or stored without an explicit population-level organization of strategic directions.</span> <span>These results suggest that persistent strategy representations provide a practical mechanism for improving the robustness and efficiency of LLM-guided evolutionary search, suggesting a path toward compound AI systems that accumulate algorithmic knowledge over time.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>LLM-guided evolutionary search has emerged as a promising paradigm for automated algorithm discovery, yet most systems track search progress primarily through executable programs and scalar fitness. Even when natural-language reflection is used, it is often used locally in mutation prompts or stored without an explicit population-level organization of strategic directions. As a result, evolutionary search can struggle to distinguish syntactically different implementations of the same idea, preserve lower-fitness but strategically promising directions, or detect when an entire family of strategies has saturated. We introduce \model, a modular strategy-space layer that elevates natural-language strategy descriptions from transient prompt context to first-class population-level evolutionary state in LLM-driven program search. \model augments each candidate program with an explicit natural language strategy description and uses this representation in three ways: Strategy Articulation turns mutation into a diagnose-direct-implement process; Stratified Experience Retrieval organizes the archive into strategy clusters and selects inspirations by behavioral complementarity; and Strategic Landscape Navigation periodically summarizes effective, saturated, and underexplored strategy families to guide future mutations. Across mathematical algorithm discovery, systems optimization, and agent-scaffold benchmarks, \model improves the underlying evolutionary backbones in most settings, with particularly large gains (21% relative improvement) on open-ended system optimization tasks. These results suggest that persistent strategy representations provide a practical mechanism for improving the robustness and efficiency of LLM-guided evolutionary search, suggesting a path toward compound AI systems that accumulate algorithmic knowledge over time.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/from-a-690-newsletter-to-3m-api-how" target="_blank">From a $6.90 newsletter to $3M API: How a non-coder built Memelord | Jason Levin</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Apr 27, 2026 &middot; 12:03 UTC</span>
+          </div>
+          <p class="summary"><span>ion for any use case Introduction to Jason Levin and Memelord Demo: Agentic meme creation with OpenClaw “No UX is the best UX”—building for an agent-first future How Memelord started as a $6.90 newsletter with Google Slides Building to $100K ARR on Bubble with 395 workflows Demo: Free tools section that generates hundreds of thousands of emails Why Cursor is perfect for non-technical founders Let your marketers cook—or watch them leave Commit graph that shows the vibe-coding inflection point Tools: Claude, Gemini, Linear, PostHog Build weird stuff in the real world Creative AI use cases Using OpenClaw for calendar analysis Can AI be funny? Which model is funniest? Memes are not slop What Jason doesn’t use AI for Final thoughts<ul><li>Memelord API: <a href="https://memelord.com/api" target="_blank" rel="noopener">https://memelord.com/api</a></li><li>Cursor: <a href="https://cursor.com/" target="_blank" rel="noopener">https://cursor.com/</a></li><li>Bubble: <a href="https://bubble.io/" target="_blank" rel="noopener">https://bubble.io/</a></li><li>OpenClaw: <a href="https://openclaw.ai" target="_blank" rel="noopener">https://openclaw.ai</a></li><li>Claude: <a href="https://claude.ai/" target="_blank" rel="noopener">https://claude.ai/</a></li><li>ChatGPT: <a href="https://chat.openai.com/" target="_blank" rel="noopener">https://chat.openai.com/</a></li><li>Gemini: <a href="https://gemini.google.com/" target="_blank" rel="noopener">https://gemini.google.com/</a></li><li>Grok: <a href="https://grok.x.ai/" target="_blank" rel="noopener">https://grok.x.ai/</a></li><li>Linear: <a href="https://linear.app/" target="_blank" rel="noopener">https://linear.app/</a></li><li>PostHog: <a href="https://posthog.com/" target="_blank" rel="noopener">https://posthog.com/</a></li><li>Zapier: <a href="https://zapier.com/" target="_blank" rel="noopener">https://zapier.com/</a> Other</li><li>Diego Zaks—“The best UX is no UX”: <a href="https://x.com/diegozaks/status/1966526522136649980" target="_blank" rel="noopener">https://x.com/diegozaks/status/1966526522136649980</a></li><li>Sam Lessin: <a href="https://wlessin.com/" target="_blank" rel="noopener">https://wlessin.com/</a></li><li>“Stop giving me advice”: <a href="https://stopgivingmeadvice.com" target="_blank" rel="noopener">https://stopgivingmeadvice.com</a></li><li>Memelord free tools: <a href="https://memelord.com/tools" target="_blank" rel="noopener">https://memelord.com/tools</a> Instagram: <a href="https://instagram.com/iamjasonlevin" target="_blank" rel="noopener">https://instagram.com/iamjasonlevin</a> LinkedIn: <a href="https://www.linkedin.com/in/iamjasonlevin/" target="_blank" rel="noopener">https://www.linkedin.com/in/iamjasonlevin/</a> Memelord: <a href="https://memelord.com" target="_blank" rel="noopener">https://memelord.com</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/announcing-our-partnership-with-the-republic-of-korea/" target="_blank">Announcing our partnership with the Republic of Korea</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Apr 27, 2026 &middot; 07:00 UTC</span>
+          </div>
+          <p class="summary"><span>April 27, 2026 Responsibility &amp; Safety Announcing our partnership with the Republic of Korea Google DeepMind team Share Using frontier AI to accelerate scientific breakthroughs, push the boundaries of innovation and support local talent.</span> <span>Alongside this milestone anniversary, we are taking a significant step forward by announcing a new partnership between Google DeepMind and the Republic of Korea&#x27;s Ministry of Science and ICT (MSIT).</span> <span>Department of Energy on Genesis: a national mission to accelerate innovation and scientific discovery December 2025 Science Learn more</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>April 27, 2026 Responsibility &amp; Safety Announcing our partnership with the Republic of Korea Google DeepMind team Share Using frontier AI to accelerate scientific breakthroughs, push the boundaries of innovation and support local talent. Ten years ago, the historic AlphaGo match in Seoul captured the world&#x27;s imagination and showcased the profound potential of artificial intelligence. Alongside this milestone anniversary, we are taking a significant step forward by announcing a new partnership between Google DeepMind and the Republic of Korea&#x27;s Ministry of Science and ICT (MSIT). We share a vision that AI will play a pivotal role in national economic development. Korea is uniquely positioned for this transformation, reaching a point where AI capabilities are becoming the foundation for future employment and innovation. The nation currently leads the world in AI innovation density and boasts the fastest-growing AI adoption rate among the world&#x27;s top 30 economies. Part of Google DeepMind’s National Partnerships for AI initiative, this collaboration is designed to support Korea&#x27;s AI strategy, cultivate a thriving AI ecosystem, and accelerate groundbreaking discoveries in critical fields like life sciences, weather and climate. Bringing frontier AI models to Korea’s scientific community Korea’s Ministry of Science and ICT (MSIT) has recently launched the K-Moonshot Missions, an initiative aimed at unlocking step-change improvements in research productivity and addressing national grand challenges. Helping make this vision a reality, Google will establish an AI Campus in the Republic of Korea — an AI-focused facility within its Seoul offices. The AI Campus will be a hub for Korean academia and research institutions to collaborate with Google’s world-leading AI experts to accelerate scientific breakthroughs through research and access to our most advanced AI for Science models, programs and events. We will begin by exploring collaborations with research-oriented institutions including Seoul National University (SNU), Korea Advanced Institute of Science and Technology (KAIST) and the Ministry’s three AI Bio Innovation Hubs, leveraging our models in fields such as life sciences, energy, weather and climate, for example: AlphaEvolve - a Gemini-powered coding agent for designing and optimising advanced algorithms. This has shown beneficial impact across many areas in computing and math, and we are seeing similar examples emerge in drug discovery and energy. AlphaGenome - an AI model to help scientists better understand how mutations in human DNA sequences impact a wide range of gene functions, speeding up research on genome biology and helping to improve disease understanding. AlphaFold - already used by more than 85,000 researchers in Korea, we will explore accelerating AI-enabled predictions for proteins, DNA and RNA. AI co-scientist - a multi-agent AI system that acts as a virtual scientific collaborator to help researchers brainstorm and verify hypotheses. This is showing promising benefits in a range of biomedical applications and we look forward to collaborating through joint research exploration and technical advisory to support the Ministry’s AI Scientist Project on ways to best integrate the system. WeatherNext - we will explore collaborations to support Korea&#x27;s energy and sustainability goals in predicting and analyzing the impacts of extreme weather events and optimizing renewable energy on grids. Cultivating AI talent and partnering on safety Realizing the full potential of AI requires investing in people and building responsibly. To support the next generation of Korean AI talent, we are opening doors to forge connections with Google DeepMind, including exploring internship opportunities for Korean students. This builds on Google’s broader commitment to the region, including the recent milestone of providing 50,000 AI Essentials scholarships to help job seekers gain foundational skills. Finally, following our Frontier AI Safety Commitments made at the AI Seoul Summit, we will collaborate with the Korean AI Safety Institute (AISI) on research and best practices. Building on the AlphaGo legacy As we look back on the legacy of AlphaGo, we are incredibly excited for what lies ahead. We look forward to collaborating with the government as they invest in important local AI infrastructure, such as a new National AI for Science Center (NAIS), due to open in May. By combining Google DeepMind&#x27;s frontier AI models with the brilliant scientific minds in Korea, we believe we can unlock scientific discoveries that will benefit society for generations to come. Related posts National Partnerships for AI Learn more Accelerating discovery in India through AI-powered science and education February 2026 Responsibility &amp; Safety Learn more Deepening our partnership with the UK AI Security Institute December 2025 Responsibility &amp; Safety Learn more Strengthening our partnership with the UK government to support prosperity and security in the AI era December 2025 Responsibility &amp; Safety Learn more Google DeepMind supports U.S. Department of Energy on Genesis: a national mission to accelerate innovation and scientific discovery December 2025 Science Learn more</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/next-phase-of-microsoft-partnership" target="_blank">The next phase of the Microsoft OpenAI partnership</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 27, 2026 &middot; 06:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI and Microsoft announce an amended agreement that simplifies the partnership, adds long-term clarity, and supports continued AI innovation at scale.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/choco" target="_blank">Choco automates food distribution with AI agents</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 27, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>How Choco used OpenAI APIs to streamline food distribution, boost productivity, and unlock growth—an in-depth customer story on real-world AI impact.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/open-source-codex-orchestration-symphony" target="_blank">An open-source spec for orchestration: Symphony</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 27, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>Learn how Symphony, an open-source spec for Codex orchestration, turns issue trackers into always-on agent systems—boosting engineering output and reducing context switching.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/community-wisdom-what-great-product" target="_blank">🧠 Community Wisdom: What great product leaders do differently, Claude vs. ChatGPT, receiving hard feedback two weeks into the job, tips for joining a pre-PMF startup, and more</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Apr 25, 2026 &middot; 19:51 UTC</span>
+          </div>
+          <p class="summary"><span>Community wisdom 🧠 Community Wisdom: What great product leaders do differently, Claude vs.</span> <span>ChatGPT, receiving hard feedback two weeks into the job, tips for joining a pre-PMF startup, and more Community Wisdom 182 Kiyani Apr 25, 2026 ∙ Paid 👋 Hello and welcome to this week’s edition of ✨ Community Wisdom ✨ a subscriber-only email, delivered every Saturday, highlighting the most helpful conversations in our members-only Slack community .</span> <span>This post is for paid subscribers Already a paid subscriber?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Apr/25/romain-huet/#atom-everything" target="_blank">Quoting Romain Huet</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Apr 25, 2026 &middot; 12:06 UTC</span>
+          </div>
+          <p class="summary"><span>Since GPT-5.4, we’ve unified Codex and the main model into a single system, so there’s no separate coding line anymore.</span> <span>GPT-5.5 takes this further, with strong gains in agentic coding, computer use, and any task on a computer.</span> <span>— Romain Huet , confirming OpenAI won&#x27;t release a GPT-5.5-Codex model Tags: generative-ai , gpt , openai , ai , llms</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-gpt-55-and-openai-codex-superapp" target="_blank">[AINews] GPT 5.5 and OpenAI Codex Superapp</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Apr 24, 2026 &middot; 04:40 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI also emphasized that in ChatGPT, stack-level inference gains made GPT-5.5 Pro more practical for demanding tasks @OpenAI .</span> <span>Pricing, context, infra, and practical behavior : API pricing was reported at $5/$30 per 1M input/output tokens for GPT-5.5 and $30/$180 for Pro @scaling01 , with Sam Altman noting a 1M context window in API and lower token use per task than 5.4.</span> <span>Vision Banana : Google DeepMind’s Vision Banana announcement was the standout pure-research vision post.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>AI Twitter Recap OpenAI’s GPT-5.5 launch: stronger agentic coding, broader computer use, and a push on token-efficiency GPT-5.5 is the day’s dominant release : OpenAI launched GPT-5.5 , positioned as “a new class of intelligence for real work,” with rollout across ChatGPT and Codex and API access delayed pending additional safeguards. OpenAI and community benchmark posts converged on a profile of better long-horizon execution, stronger computer-use behavior, and materially improved token efficiency rather than a pure across-the-board benchmark blowout. Reported numbers include 82.7% Terminal-Bench 2.0 , 58.6% SWE-Bench Pro , 84.9% GDPval , 78.7% OSWorld-Verified , 81.8% CyberGym , 84.4% BrowseComp , and 51.7% FrontierMath Tier 1–3 via @reach_vb , with Artificial Analysis saying GPT-5.5 now leads or ties several headline evals and sits on a new cost/performance frontier despite higher per-token pricing @ArtificialAnlys , @scaling01 . OpenAI also emphasized that in ChatGPT, stack-level inference gains made GPT-5.5 Pro more practical for demanding tasks @OpenAI . Pricing, context, infra, and practical behavior : API pricing was reported at $5/$30 per 1M input/output tokens for GPT-5.5 and $30/$180 for Pro @scaling01 , with Sam Altman noting a 1M context window in API and lower token use per task than 5.4. Multiple early users described the model as more “human,” less formal, and better suited to persistent agent workflows than prior GPTs, especially inside Codex @MatthewBerman , @danshipper , @omarsar0 . OpenAI claimed the model was co-designed for NVIDIA GB200/300 systems and that the model itself helped improve its own inference stack @scaling01 , while @sama framed the company increasingly as an AI inference company . A recurrent theme from users: GPT-5.5 often feels like a step-function upgrade in autonomy , but can also be exploratory and require tighter instruction to stay on track @theo . Codex becomes a fuller agent workspace : In parallel, OpenAI shipped substantial Codex upgrades: browser control , Sheets/Slides , Docs/PDFs , OS-wide dictation , and auto-review mode @ajambrosino . OpenAI says Codex can now interact with web apps, click through flows, capture screenshots, and iterate until task completion @OpenAIDevs , while Auto-review uses a secondary “guardian” agent to reduce approvals on longer runs @OpenAIDevs , @gdb . User reports suggest this is expanding Codex from a coding tool into a broader computer-work agent , spanning QA, spreadsheets, presentations, app building, research loops, and overnight experimental runs @gdb , @tszzl , @aidan_mclau . DeepSeek-V4 Preview: 1.6T MIT-licensed open model, 1M context, and aggressive pricing DeepSeek answered GPT-5.5 within hours : DeepSeek released DeepSeek-V4 Preview , open-sourcing V4-Pro and V4-Flash under an MIT license . The headline specs are unusually aggressive: V4-Pro: 1.6T total params / 49B active , V4-Flash: 284B / 13B active , both with 1M token context and support for thinking/non-thinking modes @deepseek_ai , @Yuchenj_UW . Community reactions quickly framed it as the new open-model flagship , competitive with top closed models from the prior generation and a major leap over DeepSeek V3.x @arena , @scaling01 , @kimmonismus . Technical report long-context efficiency, hybrid attention, and Muon : The launch was notable not just for weights but for a same-day tech report @scaling01 . Community summaries point to two new compressed/hybrid attention mechanisms , mHC , Muon-based training , FP4 quantization-aware training , and pretraining on roughly 32T tokens @scaling01 , @iScienceLuvr , @eliebakouch . The strongest technical discussion centered on making 1M context practical , with reported ~4x compute efficiency improvements and order-of-magnitude KV-cache reductions relative to earlier DeepSeek-style stacks @Hangsiin . The rapid infra response was also notable: vLLM announced day-0 support and detailed how it implemented the new attention stack; SGLang shipped day-0 optimizations and RL pipeline support . Pricing may be as important as the model : DeepSeek’s posted pricing is exceptionally aggressive: V4-Flash at $0.14/$0.28 and V4-Pro at $1.74/$3.48 per 1M input/output tokens @scaling01 , @teortaxesTex . Several commenters highlighted Flash as potentially the more disruptive SKU if serving quality holds, given the combination of very low cost , 1M context , and open weights @Hangsiin , @arena . The main caveat from DeepSeek: V4-Pro throughput is currently limited by high-end compute constraints , with the company explicitly pointing to future Ascend 950 availability for price drops @teortaxesTex . Agent infrastructure and tooling: memory, orchestration, browsers, and enterprise plumbing Agents are becoming systems problems, not just model problems : Several posts emphasized that production agent work is increasingly about harnesses, evals, memory, and orchestration . A useful example was the writeup on stateless decision memory for enterprise agents, which replaces mutable per-agent state with immutable decision logs/event sourcing to improve horizontal scalability, auditability, and fault tolerance @omarsar0 . In a similar vein, @Vtrivedy10 argued that trace data → evals/environments → harness engineering/SFT-RL is the core flywheel for improving production agents, and later used Anthropic’s Claude Code regression as a case study for why open harnesses and open evals matter @Vtrivedy10 . New tooling around control surfaces : Cua open-sourced Cua Driver , a macOS driver for letting agents control arbitrary apps in the background with multi-player/multi-cursor support. Cognition published a post on what it takes to build cloud agent infrastructure , naming the practical stack: VM isolation, session persistence, environment provisioning, orchestration, and integrations . LangChain continued expanding LangSmith Fleet with file editing, webpage/presentation generation, and slash-command skills @LangChain , while multiple users highlighted Fleet’s presentation renderer/viewer as a surprisingly useful agent-native artifact format @BraceSproul . Multi-agent orchestration is moving into products : Sakana AI launched the beta of Fugu , a multi-agent orchestration API that dynamically selects and coordinates frontier models, with claims of SOTA on SWE-Pro, GPQA-D, and ALE-Bench and even recursive test-time scaling via self-invocation @SakanaAILabs , @hardmaru . Hermes Agent shipped v0.11.0 with a large contributor release, expanded providers, image generation support, and effectively immediate GPT-5.5 support @Teknium . The direction is consistent: agents are becoming orchestration layers over heterogeneous tools and models , not single-model loops. Vision, video, and multimodal systems: Vision Banana, Sapiens2, HDR video, and omni models Google DeepMind’s Vision Banana reframes CV as generation : One of the more technically interesting research launches was Vision Banana , a unified vision model that treats 2D/3D vision tasks as image generation , reportedly outperforming specialist SOTA systems across multiple vision tasks. The reaction from computer-vision researchers was that it signals a broader shift in how segmentation, depth, normals, and related tasks may be approached going forward @sainingxie . On the open side, Meta also released Sapiens2 , a set of high-resolution vision transformers trained on 1B human images for human-centric perception tasks @HuggingPapers . Video stack updates are moving past raw resolution into production formats : Kling’s “native 4K” rollout spread across multiple platforms, but the technically more novel launch may be LTX HDR beta , which argues the real bottleneck for AI video in production has been dynamic range , not just resolution, by moving beyond 8-bit SDR toward footage that can survive grading and compositing @ltx_model . That’s a more substantive improvement than the usual “4K” marketing alone. Separately, World Labs launched World Jam around Marble 1.1 + Spark LoD for interactive 3D creation @theworldlabs . Broader multimodal trend: unified models with explicit cross-modal reasoning : The newly shared Context Unrolling in Omni Models proposes a unified model trained across text, images, video, 3D geometry, and hidden representations, explicitly unrolling reasoning across modalities before producing outputs @arankomatsuzaki . Together with Vision Banana, this points to a recurring motif: fold disparate perception/generation tasks into fewer general multimodal backbones , then let inference-time reasoning bridge modalities. Training, scaling, and research methods: globally distributed pretraining, self-play, and long-context internals Google’s Decoupled DiLoCo tackles resilient global pretraining : Google DeepMind and Google Research introduced Decoupled DiLoCo , which decouples distributed low-communication training to enable worldwide datacenter training , heterogeneous hardware , and tolerance to hardware failures without halting the job. This is a meaningful systems result because it targets a real frontier training bottleneck: keeping giant training runs alive and efficient across faulty, geographically distributed infrastructure , rather than assuming clean homogeneous clusters. Algorithmic scaling beyond brute-force sampling : A self-play paper highlighted by @LukeBailey181 studies why long-run self-play plateaus for LLMs and proposes an algorithm that lets a 7B model solve as many problems as pass@4 of a model 100x larger . Another recurring theme was token/computation efficiency as the real frontier metric; several posts argued that single-number intelligence comparisons are increasingly obsolete in a world where effort level and inference budget materially reshape capability @polynoamial . Relatedly, a thread on Neural Garbage Collection described training models to manage their own KV cache via RL rather than fixed heuristics, a potentially important direction for long-horizon agents @cwolferesearch . Infra adoption signals : Together AI reported growth from 30B to 300T tokens/month YoY @vipulved , a large-scale indicator of inference demand expansion. Epoch AI, meanwhile, revised down estimates for operational power at Stargate Abilene to ~0.3 GW currently and pushed the full 1.2 GW milestone to Q4 2026 , underscoring continued uncertainty in tracking frontier compute deployment @EpochAIResearch . Top tweets (by engagement) OpenAI GPT-5.5 launch : The highest-engagement technical post was OpenAI’s GPT-5.5 announcement , followed by @sama’s launch post and OpenAI DevRel’s framing of GPT-5.5 as its smartest frontier model yet @OpenAIDevs . Claude Code regression post-mortem : Anthropic’s acknowledgment that Claude Code quality had slipped due to three issues and was fixed in v2.1.116+ was one of the most engaged engineering-product posts of the day, and sparked substantial discussion about harness sensitivity and regression testing. DeepSeek-V4 Preview release : DeepSeek’s official V4 Preview launch quickly became the other major high-engagement technical event, especially given the combination of MIT license , 1M context , and aggressive pricing. Vision Banana : Google DeepMind’s Vision Banana announcement was the standout pure-research vision post. ML-Intern and autonomous research workflows : The Hugging Face-adjacent ml-intern passing an internship-style test in 15 minutes and subsequent reports of very high token consumption suggest strong interest in autonomous coding/research harnesses as distinct products, not just demos. AI Reddit Recap /r/LocalLlama + /r/localLLM Recap</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Apr/24/recent-claude-code-quality-reports/#atom-everything" target="_blank">An update on recent Claude Code quality reports</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Apr 24, 2026 &middot; 01:31 UTC</span>
+          </div>
+          <p class="summary"><span>An update on recent Claude Code quality reports It turns out the high volume of complaints that Claude Code was providing worse quality results over the past two months was grounded in real problems.</span> <span>The models themselves were not to blame, but three separate issues in the Claude Code harness caused complex but material problems which directly affected users.</span> <span>Via Hacker News Tags: ai , prompt-engineering , generative-ai , llms , anthropic , coding-agents , claude-code</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>An update on recent Claude Code quality reports It turns out the high volume of complaints that Claude Code was providing worse quality results over the past two months was grounded in real problems. The models themselves were not to blame, but three separate issues in the Claude Code harness caused complex but material problems which directly affected users. Anthropic&#x27;s postmortem describes these in detail. This one in particular stood out to me: On March 26, we shipped a change to clear Claude&#x27;s older thinking from sessions that had been idle for over an hour, to reduce latency when users resumed those sessions. A bug caused this to keep happening every turn for the rest of the session instead of just once, which made Claude seem forgetful and repetitive. I frequently have Claude Code sessions which I leave for an hour (or often a day or longer) before returning to them. Right now I have 11 of those (according to ps aux | grep &#x27;claude &#x27; ) and that&#x27;s after closing down dozens more the other day. I estimate I spend more time prompting in these &quot;stale&quot; sessions than sessions that I&#x27;ve recently started! If you&#x27;re building agentic systems it&#x27;s worth reading this article in detail - the kinds of bugs that affect harnesses are deeply complicated, even if you put aside the inherent non-deterministic nature of the models themselves. Via Hacker News Tags: ai , prompt-engineering , generative-ai , llms , anthropic , coding-agents , claude-code</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Apr/23/gpt-5-5/#atom-everything" target="_blank">A pelican for GPT-5.5 via the semi-official Codex backdoor API</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Apr 23, 2026 &middot; 19:59 UTC</span>
+          </div>
+          <p class="summary"><span>It&#x27;s available in OpenAI Codex and is rolling out to paid ChatGPT subscribers.</span> <span>We&#x27;ll bring GPT‑5.5 and GPT‑5.5 Pro to the API very soon.</span> <span>Tags: ai , openai , generative-ai , chatgpt , llms , llm , llm-pricing , pelican-riding-a-bicycle , llm-reasoning , llm-release , codex-cli , gpt</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>GPT-5.5 is out . It&#x27;s available in OpenAI Codex and is rolling out to paid ChatGPT subscribers. I&#x27;ve had some preview access and found it to be a fast, effective and highly capable model. As is usually the case these days, it&#x27;s hard to put into words what&#x27;s good about it - I ask it to build things and it builds exactly what I ask for! There&#x27;s one notable omission from today&#x27;s release - the API: API deployments require different safeguards and we are working closely with partners and customers on the safety and security requirements for serving it at scale. We&#x27;ll bring GPT‑5.5 and GPT‑5.5 Pro to the API very soon. When I run my pelican benchmark I always prefer to use an API, to avoid hidden system prompts in ChatGPT or other agent harnesses from impacting the results. The OpenClaw backdoor One of the ongoing tension points in the AI world over the past few months has concerned how agent harnesses like OpenClaw and Pi interact with the APIs provided by the big providers. Both OpenAI and Anthropic offer popular monthly subscriptions which provide access to their models at a significant discount to their raw API. OpenClaw integrated directly with this mechanism, and was then blocked from doing so by Anthropic. This kicked off a whole thing. OpenAI - who recently hired OpenClaw creator Peter Steinberger - saw an opportunity for an easy karma win and announced that OpenClaw was welcome to continue integrating with OpenAI&#x27;s subscriptions via the same mechanism used by their (open source) Codex CLI tool. Does this mean anyone can write code that integrates with OpenAI&#x27;s Codex-specific APIs to hook into those existing subscriptions? The other day Jeremy Howard asked : Anyone know whether OpenAI officially supports the use of the /backend-api/codex/responses endpoint that Pi and Opencode (IIUC) uses? It turned out that on March 30th OpenAI&#x27;s Romain Huet had tweeted : We want people to be able to use Codex, and their ChatGPT subscription, wherever they like! That means in the app, in the terminal, but also in JetBrains, Xcode, OpenCode, Pi, and now Claude Code. That’s why Codex CLI and Codex app server are open source too! 🙂 And Peter Steinberger replied to Jeremy that: OpenAI sub is officially supported. llm-openai-via-codex So... I had Claude Code reverse-engineer the openai/codex repo, figure out how authentication tokens were stored and build me llm-openai-via-codex , a new plugin for LLM which picks up your existing Codex subscription and uses it to run prompts! (With hindsight I wish I&#x27;d used GPT-5.4 or the GPT-5.5 preview, it would have been funnier. I genuinely considered rewriting the project from scratch using Codex and GPT-5.5 for the sake of the joke, but decided not to spend any more time on this!) Here&#x27;s how to use it: Install Codex CLI, buy an OpenAI plan, login to Codex Install LLM: uv tool install llm Install the new plugin: llm install llm-openai-via-codex Start prompting: llm -m openai-codex/gpt-5.5 &#x27;Your prompt goes here&#x27; All existing LLM features should also work - use -a filepath.jpg/URL to attach an image, llm chat -m openai-codex/gpt-5.5 to start an ongoing chat, llm logs to view logged conversations and llm --tool ... to try it out with tool support . And some pelicans Let&#x27;s generate a pelican! llm install llm-openai-via-codex llm -m openai-codex/gpt-5.5 &#x27; Generate an SVG of a pelican riding a bicycle &#x27; Here&#x27;s what I got back : I&#x27;ve seen better from GPT-5.4 , so I tagged on -o reasoning_effort xhigh and tried again : That one took almost four minutes to generate, but I think it&#x27;s a much better effort. If you compare the SVG code ( default , xhigh ) the xhigh one took a very different approach, which is much more CSS-heavy - as demonstrated by those gradients. xhigh used 9,322 reasoning tokens where the default used just 39. A few more notes on GPT-5.5 One of the most notable things about GPT-5.5 is the pricing. Once it goes live in the API it&#x27;s going to be priced at twice the cost of GPT-5.4 - $5 per 1M input tokens and $30 per 1M output tokens, where 5.4 is $2.5 and $15. GPT-5.5 Pro will be even more: $30 per 1M input tokens and $180 per 1M output tokens. GPT-5.4 will remain available. At half the price of 5.5 this feels like 5.4 is to 5.5 as Claude Sonnet is to Claude Opus. Ethan Mollick has a detailed review of GPT-5.5 where he put it (and GPT-5.5 Pro) through an array of interesting challenges. His verdict: the jagged frontier continues to hold, with GPT-5.5 excellent at some things and challenged by others in a way that remains difficult to predict. Tags: ai , openai , generative-ai , chatgpt , llms , llm , llm-pricing , pelican-riding-a-bicycle , llm-reasoning , llm-release , codex-cli , gpt</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/gpt-55-just-did-what-no-other-model" target="_blank">GPT 5.5 just did what no other model could</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Apr 23, 2026 &middot; 19:39 UTC</span>
+          </div>
+          <p class="summary"><span>Introduction to GPT 5.5 testing What is GPT 5.5 and how much does it cost? Testing GPT 5.5 in ChatGPT: the intelligence overhang problem Moving to Codex: where GPT 5.5 really shines Hacking a Chinese Bluetooth speaker Final thoughts on GPT 5.5’s intelligence and efficiency<ul><li>GPT 5.5 and GPT 5.5 Pro: <a href="https://openai.com/index/introducing-gpt-5-5/" target="_blank" rel="noopener">https://openai.com/index/introducing-gpt-5-5/</a></li><li>Codex: <a href="https://openai.com/codex/" target="_blank" rel="noopener">https://openai.com/codex/</a></li><li>ChatGPT: <a href="https://chat.openai.com/" target="_blank" rel="noopener">https://chat.openai.com/</a></li><li>Claude Code: <a href="https://claude.ai/code" target="_blank" rel="noopener">https://claude.ai/code</a></li><li>Sentry: <a href="https://sentry.io/" target="_blank" rel="noopener">https://sentry.io/</a></li><li>Divoom MiniToo: <a href="https://divoom.com/products/minitoo" target="_blank" rel="noopener">https://divoom.com/products/minitoo</a> Other</li><li>OpenAI Codex Security: <a href="https://openai.com/index/codex-security-now-in-research-preview/" target="_blank" rel="noopener">https://openai.com/index/codex-security-now-in-research-preview/</a></li></ul></span></p>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 195</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
