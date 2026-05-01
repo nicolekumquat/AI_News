@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-05-01</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-05-01</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Apr/30/codex-goals/#atom-everything" target="_blank">Codex CLI 0.128.0 adds /goal</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Apr 30, 2026 &middot; 23:23 UTC</span>
+          </div>
+          <p class="summary"><span>Codex CLI 0.128.0 adds /goal The latest version of OpenAI&#x27;s Codex CLI coding agent adds their own version of the Ralph loop : you can now set a /goal and Codex will keep on looping until it evaluates that the goal has been completed...</span> <span>or the configured token budget has been exhausted.</span> <span>It looks like the feature is mainly implemented though the goals/continuation.md and goals/budget_limit.md prompts, which are automatically injected at the end of a turn.</span> <span>Via @fcoury Tags: ai , openai , prompt-engineering , generative-ai , llms , coding-agents , system-prompts , codex-cli , agentic-engineering</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://newsletter.pragmaticengineer.com/p/the-pulse-github-breaks" target="_blank">The Pulse: AI load breaks GitHub – why not other vendors?</a></h2>
+          <div class="meta">
+            <span class="source">pragmatic-engineer</span>
+            <span class="date">Apr 30, 2026 &middot; 14:23 UTC</span>
+          </div>
+          <p class="summary"><span>Today, we cover: Load from AI breaks GitHub – but why not other vendors? GitHub’s reliability is less than one nine, and getting worse.</span> <span>This month, reliability has been down to zero nines – 86% – as per a third-party tracker , and last week, things got even worse: a frankly embarrassing data integrity incident, more outages, and a partial explanation from GitHub, eventually.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>The Pulse is a series covering events, insights, and trends within Big Tech and startups. Notice an interesting event or trend? Hit reply and share it with me. Today, we cover: Load from AI breaks GitHub – but why not other vendors? GitHub’s reliability is less than one nine, and getting worse. Prolific open source contributor, Mitchell Hashimoto, is quitting GitHub because he thinks it’s not suited for professional work. GitHub’s leadership blames the 3.5x increase in service load as the cause of degradation – or it might be self-inflicted. Anthropic’s speedrun to destroy trust. Anthropic could do no wrong until recently, but in the past month, that’s all changed. Silently nerfing Claude Code, banning companies from Claude, and baffling price rises all add to a sense that Anthropic is in its “extraction” era of generating more revenue for the same or worse service. Industry pulse. Dramatic price increases at GitHub Copilot, explosive growth at Codex, Google scrambling to build a good coding model, Cursor might be bought by SpaceX, AI agent deletes car business, and more. Mitchell Hashimoto &amp; the “building block economy . ” Ghostty’s creator finds that open source “building blocks” are the best way to win massive adoption by software components – but it’s got harder to build a business on top of open building blocks. The bottom of this article could be cut off in some email clients. Read the full article uninterrupted, online. Load from AI breaks GitHub – but why not other vendors? GitHub’s reliability has been beyond unacceptable recently: last month, third party measurements pinned it at one nine (right at 90%). This month, reliability has been down to zero nines – 86% – as per a third-party tracker , and last week, things got even worse: a frankly embarrassing data integrity incident, more outages, and a partial explanation from GitHub, eventually. Data integrity incident</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/building-the-compute-infrastructure-for-the-intelligence-age" target="_blank">Building the compute infrastructure for the Intelligence Age</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 29, 2026 &middot; 15:00 UTC</span>
+          </div>
+          <p class="summary"><span>April 29, 2026 Global Affairs Building the compute infrastructure for the Intelligence Age Stargate is OpenAI’s long-term effort to build the compute foundation required to deliver the benefits of AGI broadly and reliably to the world.</span> <span>We are building together with partners, local communities, and the broader infrastructure ecosystem to help get ahead of shortages for the emerging compute-powered economy.</span> <span>The only responsible way to meet it is to build more compute, faster.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>April 29, 2026 Global Affairs Building the compute infrastructure for the Intelligence Age Stargate is OpenAI’s long-term effort to build the compute foundation required to deliver the benefits of AGI broadly and reliably to the world. To meet the accelerating demand for AI across consumers, businesses, developers, and governments, we are continuing to expand our compute footprint and bring new capacity online faster. We are building together with partners, local communities, and the broader infrastructure ecosystem to help get ahead of shortages for the emerging compute-powered economy. When we announced Stargate in January 2025, we committed to securing 10GW of AI infrastructure in the United States by 2029. Just over a year later, we have already surpassed that milestone, with more than 3GW added in the last 90 days alone, as demand for AI continues to accelerate. That demand is growing quickly. The only responsible way to meet it is to build more compute, faster. Our strategy has not changed because the reality has not changed: bringing the benefits of AI to more people requires more compute. Compute is the critical input that makes advanced AI possible. It is what allows us to train better models, serve them reliably, improve performance, lower costs over time, and bring more powerful tools to more people. It is also the center of our AI flywheel: more compute enables better models, better models drive more usage, more usage improves products and revenue, and that allows us to reinvest in more infrastructure. The financing models and partnership structures may evolve, but what matters is capacity coming online at scale, on time, and in a way that preserves flexibility as technology and demand evolve. Building an ecosystem We are doing this with partners because no single company can build the infrastructure for the Intelligence Age alone. Building AGI infrastructure at this scale requires coordination across the entire ecosystem: local communities, utilities, energy providers, chipmakers, cloud providers, neoclouds, construction firms, investors, skilled trades, and public sector partners. Our approach is intentionally partner-centric. We want the ecosystem to succeed alongside us because delivering the compute required for the Intelligence Age will take all of us working together. That’s why Stargate brings together companies with deep expertise in cloud infrastructure, data centers, chips, energy, construction, finance, and operations. These partnerships help us move faster, build more efficiently, reduce execution risk, and preserve optionality as the technology changes. Why we are looking at more sites As we plan beyond the initial 10GW goal, OpenAI and our partners are evaluating potential data center locations across the country, and will significantly expand our compute capacity in the years ahead. These projects are complex, and they require the right combination of power, land, permitting, transmission, workforce, community support, and partner readiness. But the reason we are looking is simple: demand for AI is growing, and we are moving quickly to secure the infrastructure needed to meet it. Building with communities Compute is a critical differentiator, but how we build matters too. AI infrastructure should create clear local upside. That means good jobs, strong schools, new local revenue, responsible energy planning, careful water stewardship, and early engagement with state and local leaders. This week, we launched our community engagement program with a donation to the Port Washington-Saukville Education Foundation in Wisconsin alongside Vantage Data Centers and Oracle. The funding will support student opportunity, educator , and workforce readiness programming. This is the first of many local investments we expect to make in communities connected to Stargate infrastructure projects. We want these partnerships to be long-term, practical, and shaped by the priorities of the communities themselves. Our work with North America’s Building Trades Unions (NABTU) and affiliated skilled trades unions reflects the same approach. Building AI infrastructure at this scale requires a trained workforce that can deliver safely, quickly, and to a high standard. These projects can create new job pathways into the Intelligence Age for skilled workers and apprentices, not just engineers and researchers. The Abilene example Our Stargate site in Abilene, Texas shows how we think these projects should work. Abilene demonstrates that frontier AI infrastructure can be built quickly, responsibly, and in partnership with the surrounding community. It also shows that growth and stewardship can go together. Water is one area where details matter. Like many data centers, the Abilene site uses closed-loop cooling rather than traditional evaporative cooling towers. Once the system is filled, water continuously moves through sealed pipes and is recirculated rather than consumed. For Abilene, the one-time initial fill for each building is equal to roughly two Olympic-sized swimming pools. After that, annual water use for the entire cooling system at full buildout is expected to be comparable to a medium-sized office building, or about four average households. Responsible infrastructure matters because compute directly shapes what AI systems can do. From infrastructure to intelligence That approach is already translating into more capable AI systems. Our latest and smartest model yet, GPT‑5.5, was trained at our flagship Stargate site in Abilene, Texas. The site operates on Oracle Cloud Infrastructure and runs NVIDIA GB200 systems. This model brings intelligence closer to people around the world and businesses big and small so they can just build things. GPT‑5.5 helps close the capability overhang ⁠ (opens in a new window) —the productivity gap between those who are power users of AI and those who are not—in order to ensure the economic opportunities of AI are broad based. Why this matters The countries and companies that can build and scale compute will help shape the future of AI. More compute lets us train stronger models. Better systems let us serve those models faster and more reliably. Greater efficiency helps us lower the cost of delivering intelligence over time. Together, those improvements make it possible for more people and businesses to use AI to build, learn, discover, and solve problems. That is the point of Stargate: to build the infrastructure needed to bring the benefits of AI to everyone. We are ahead of schedule, but the work is just beginning. Demand is growing. The opportunity is enormous. And the communities that help build this infrastructure should share in the upside. The Intelligence Age will not arrive on its own. It has to be built. And we are building it alongside our partners and local communities for the benefit of all of humanity. 2026 Author OpenAI Keep reading View all Cybersecurity in the Intelligence Age Global Affairs Apr 29, 2026 OpenAI available at FedRAMP Moderate Global Affairs Apr 27, 2026 OpenAI helps Hyatt advance AI among colleagues Global Affairs Apr 20, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://newsletter.pragmaticengineer.com/p/building-pi-and-what-makes-self-modifying" target="_blank">Building Pi, and what makes self-modifying software so fascinating</a></h2>
+          <div class="meta">
+            <span class="source">pragmatic-engineer</span>
+            <span class="date">Apr 29, 2026 &middot; 14:30 UTC</span>
+          </div>
+          <p class="summary"><span>Stop switching between different tools, and have them all in one place.<ul><li>Sonar — The makers of SonarQube, the industry standard for code verification and automated code review.</span> <span>As AI agents generate extreme volumes of code, verification can’t be optional: SonarQube acts as the independent, zero‑trust, multi-layered verification engine that checks every line of code against your quality, security, and architectural standards, so only safe, reliable, and auditable code reaches production.</span> <span>Junior engineers &gt; AI agents.</li></ul></span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Stream the latest episode Listen and watch now on YouTube , Spotify , and Apple . See the episode transcript at the top of this page, and timestamps for the episode at the bottom. Stop switching between different tools, and have them all in one place.<ul><li>Sonar — The makers of SonarQube, the industry standard for code verification and automated code review. As AI agents generate extreme volumes of code, verification can’t be optional: SonarQube acts as the independent, zero‑trust, multi-layered verification engine that checks every line of code against your quality, security, and architectural standards, so only safe, reliable, and auditable code reaches production. Try it out for yourself . But one thing isn’t a tradeoff: enterprise features. gs – in days, not months. Visit .com to learn more. Mario Zechner is the creator of Pi , a minimalist, self-modifying AI coding agent, that is the foundation upon which OpenClaw (created by Peter Steinberger) is built. Meanwhile, Armin Ronacher is the creator of Flask, and a longtime user of Pi. The pair are also friends. I sat down with Mario and Armin for the latest episode of the Pragmatic Engineer Podcast for an interesting conversation about AI and their reservations about it – even though both are heavily invested in building AI-powered tools. Mario explains why he built Pi, and gives his take on why it has become so popular. Armin walks us through how he uses AI tools, including building a game with Pi, and why he always puts human judgment firmly at the heart of his approach. We cover the risks of over-automation, the limits of agentic workflows, and why strong engineers with informed judgment still matter. We also get into the challenges of working with code written by non-engineers, and whether open source can withstand a tidal wave of agent-generated code. My observations from the conversation with Mario and Armin Here are 9 of my most interesting takeaways from talking with Armin and Mario: 1. Pi was built because Claude Code became unpredictable. Mario was a big fan of Claude Code at first. But as the team behind it pushed velocity and added features, he found that bugs multiplied and the tool’s behavior started to change. Mario wanted an AI harness that behaves in a stable, consistent way. He observed that the addition of new features caused Claude Code to act unpredictably, so resolved to add as few features as possible to Pi. It should be MUCH easier to build specialized tools for specific tasks. Different projects need different harness types because, as Mario points out, the same hammer is not ideal for every single construction job. As such, Pi is built with the goal of allowing the creation of specialized harnesses. It can modify itself so that a user can create the bespoke harness needed for any task. Mario believes it’s a preview of how self-modifiable software might look in the future. Automation bias is one of the biggest risks of working with AI agents. Once devs confirm that an AI agent can produce acceptable code, they start to review its output less often, even though agents can – and do! – produce slop. Mario advises being far more sceptical with agents, and cautions that the quality of their output isn’t guaranteed, however well they performed previously. AI agents decrease code quality, but this is not on purpose. From talking with 30+ engineering teams, Armin found that code quality is down everywhere, and serious projects are shipping with “vibe slop.” A potential cause of this is that keeping agentic output clean and of high quality takes deliberate effort, but it’s not clear to many devs exactly how to do this. There’s also PR review fatigue and automation bias (the assumption that AI agents invariably generate good code). New trend: AI makes it harder for senior engineers to reject pointless complexity. Historically, senior engineers kept software complexity at bay simply by saying “no” a lot. But Armin observes that these days, more junior engineers and product managers deploy agent-scripted counterarguments when a senior colleague kicks an idea to the curb. This makes decision-making exhausting, and more bad ideas make it into production as a result. Junior engineers &gt; AI agents. Mario points out that, unlike humans, agents don’t retain lessons in the same way, nor feel the pain of bad code. Junior engineers do, and the pain of maintenance teaches them to simplify interfaces and avoid bad abstractions – which are both qualities of an effective senior engineer. In this way, a junior engineer is more valuable than an AI agent! 7. Agents refactor less because they feel no “pain.” Humans rewrite bad interfaces because maintaining them hurts , whereas agents will obliviously churn out and extend a terrible structure, ad infinitum . This is a big reason why AI agents keep adding more tech debt. Frictionless shipping can actually be harmful. Armin that some friction is desirable; for example, multi-reviewer approvals on critical services, SLO gates (different gates based on the service level objective offered), and migration checklists. The good thing about friction is that it makes humans stop and think. Does not being in San Francisco help people stay grounded about AI? I asked Mario how he keeps level-headed about AI while building one of the most popular AI agent harnesses. In response, he credits living in Austria, being a father, and enjoying the great outdoors, as his antidotes to all the hype. The Pragmatic Engineer deepdives relevant for this episode</li><li>The creator of OpenClaw: “I ship code that I don’t read”</li><li>Building great SDKs</li><li>What is inference engineering? Deepdive</li><li>The impact of AI on software engineers in 2026: key trends</li><li>Cycles of disruption in the tech industry</li><li>The AI engineering stack Timestamps Intro How Mario, Armin, and Peter Steinberger met How 30 dev teams use AI agents: learnings The importance of judgment Challenges when non-engineers write code Downsides of over-automation Pi OpenClaw + Pi “Clankers” Open source and AI ( 1:00:22 ) Complexity as the enemy ( 1:02:50 ) Building an AI-native startup ( 1:11:52 ) “Slow the F down” ( 1:16:40 ) MCPs vs. CLI ( 1:25:03 ) Predictions and staying up to date</li></ul></p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/openai-on-aws" target="_blank">OpenAI models, Codex, and Managed Agents come to AWS</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 28, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>April 28, 2026 Product OpenAI models, Codex, and Managed Agents come to AWS Today, OpenAI and AWS are expanding our strategic partnership to help enterprises build using OpenAI capabilities in their AWS environments.</span> <span>The expanded partnership with Amazon brings together three key areas of work, all launching today in limited preview: OpenAI models on AWS Codex on AWS Amazon Bedrock Managed Agents, powered by OpenAI Together, these capabilities give organizations more ways to use OpenAI across application development, software engineering, and agentic workflows—while building within the infrastructure, security, governance, and procurement workflows they already use on AWS.</span> <span>That’s why we’re launching OpenAI models, including our best frontier model GPT‑5.5, on Amazon Bedrock.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>April 28, 2026 Product OpenAI models, Codex, and Managed Agents come to AWS Today, OpenAI and AWS are expanding our strategic partnership to help enterprises build using OpenAI capabilities in their AWS environments. We’re excited to give AWS customers access to the best frontier models, agents, and tools, which will operate within the systems, security protocols, compliance requirements, and workflows they already use. The expanded partnership with Amazon brings together three key areas of work, all launching today in limited preview: OpenAI models on AWS Codex on AWS Amazon Bedrock Managed Agents, powered by OpenAI Together, these capabilities give organizations more ways to use OpenAI across application development, software engineering, and agentic workflows—while building within the infrastructure, security, governance, and procurement workflows they already use on AWS. Making OpenAI models and APIs accessible to customers on AWS For many companies, using AI at scale requires bringing the best models to the systems their teams already use. That’s why we’re launching OpenAI models, including our best frontier model GPT‑5.5, on Amazon Bedrock. Customers can now build with OpenAI models in AWS, alongside the services, security controls, identity systems, and procurement processes they already rely on. For developers, that means more flexibility in how they build with OpenAI, from new AI applications to intelligence embedded in existing products to agentic workflows that can reason, take action, and support more complex business processes. For enterprises, it means a clear single path from experimentation to production, with OpenAI capabilities available in the AWS environments where their most important workloads already run. Bringing Codex to AWS More than 4 million people now use Codex every week, and teams are using it across the software development lifecycle—to write code, explain systems, refactor applications, generate tests, modernize legacy codebases, and accelerate a broader set of professional workflows that extend beyond coding. Increasingly, they are also using Codex to accelerate research, analysis, and document-based work by connecting with the apps and tools they use every day, from summarizing source materials to creating briefs, slide decks, and spreadsheets. Codex is OpenAI’s frontier coding harness and product suite, and organizations can now power Codex with OpenAI models served directly from Amazon Bedrock. This allows any company with an AWS commit and Bedrock access to frictionlessly start using OpenAI’s powerful coding agent and products. Customers get started by configuring Codex to use Bedrock as the provider. This gives customers the enterprise-grade attributes they expect from AWS—including security, billing, and high availability. All customer data is processed by Amazon Bedrock, and eligible customers can apply Codex usage towards their AWS cloud commitments. Codex on Bedrock is available in limited preview. Customers can configure Codex to use Amazon Bedrock through the Bedrock API, starting with Codex CLI, the Codex desktop app, and Visual Studio Code extension. Launching Amazon Bedrock Managed Agents, powered by OpenAI We are also launching Amazon Bedrock Managed Agents ⁠ (opens in a new window) , powered by OpenAI, giving enterprises a new way to deploy advanced agents within their trusted AWS environments. With Bedrock Managed Agents, organizations can build agents that maintain context, execute multi-step workflows, use tools, and take action across complex business processes. This helps customers move from experimentation to production faster, while keeping agent development aligned with the infrastructure, security, and operational standards they expect from AWS. For enterprises, Bedrock Managed Agents lets teams focus on making agents useful for real work, not assembling the infrastructure around them. It handles the harder parts of deployment, tool use, orchestration, and governance, with built-in integration across Amazon’s security and compliance controls. The result is a faster path from prototype to production for agents that can operate in real enterprise environments. Expanding how enterprises can build with AI Our strategic partnership with Amazon is focused on helping organizations deploy advanced AI at production scale. With OpenAI models, Codex, and Managed Agents now coming to Amazon Bedrock, customers have a faster, more secure path to putting AI to work across their business. We’re excited to see what your organizations build. Get in touch here . Keep reading View all Introducing Advanced Account Security Product Apr 30, 2026 Introducing GPT-5.5 Product Apr 23, 2026 Making ChatGPT better for clinicians Product Apr 22, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Apr/27/now-deceased-agi-clause/#atom-everything" target="_blank">Tracking the history of the now-deceased OpenAI Microsoft AGI clause</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Apr 27, 2026 &middot; 18:38 UTC</span>
+          </div>
+          <p class="summary"><span>For many years, Microsoft and OpenAI&#x27;s relationship has included a weird clause saying that, should AGI be achieved, Microsoft&#x27;s commercial IP rights to OpenAI&#x27;s technology would be null and void.</span> <span>OpenAI, July 22nd 2019 in Microsoft invests in and partners with OpenAI to support us building beneficial AGI (emphasis mine): OpenAI is producing a sequence of increasingly powerful AI technologies, which requires a lot of capital for computational power.</span> <span>Tags: computer-history , microsoft , ai , openai</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>For many years, Microsoft and OpenAI&#x27;s relationship has included a weird clause saying that, should AGI be achieved, Microsoft&#x27;s commercial IP rights to OpenAI&#x27;s technology would be null and void. That clause appeared to end today. I decided to try and track its expression over time on openai.com . OpenAI, July 22nd 2019 in Microsoft invests in and partners with OpenAI to support us building beneficial AGI (emphasis mine): OpenAI is producing a sequence of increasingly powerful AI technologies, which requires a lot of capital for computational power. The most obvious way to cover costs is to build a product, but that would mean changing our focus. Instead, we intend to license some of our pre-AGI technologies , with Microsoft becoming our preferred partner for commercializing them. But what is AGI? The OpenAI Charter was first published in April 2018 and has remained unchanged at least since this March 11th 2019 archive.org capture : OpenAI’s mission is to ensure that artificial general intelligence (AGI)—by which we mean highly autonomous systems that outperform humans at most economically valuable work—benefits all of humanity. Here&#x27;s the problem: if you&#x27;re going to sign an agreement with Microsoft that is dependent on knowing when &quot;AGI&quot; has been achieved, you need something a little more concrete. In December 2024 The Information reported the details (summarized here outside of their paywall by TechCrunch ): Last year’s agreement between Microsoft and OpenAI, which hasn’t been disclosed, said AGI would be achieved only when OpenAI has developed systems that have the ability to generate the maximum total profits to which its earliest investors, including Microsoft, are entitled, according to documents OpenAI distributed to investors. Those profits total about $100 billion, the documents showed. So AGI is now whenever OpenAI&#x27;s systems are capable of generating $100 billion in profit? In October 2025 the process changed to being judged by an &quot;independent expert panel&quot;. In The next chapter of the Microsoft–OpenAI partnership : The agreement preserves key elements that have fueled this successful partnership—meaning OpenAI remains Microsoft’s frontier model partner and Microsoft continues to have exclusive IP rights and Azure API exclusivity until Artificial General Intelligence (AGI). [...] Once AGI is declared by OpenAI, that declaration will now be verified by an independent expert panel. [...] Microsoft’s IP rights to research, defined as the confidential methods used in the development of models and systems, will remain until either the expert panel verifies AGI or through 2030, whichever is first. OpenAI on February 27th, 2026 in Joint Statement from OpenAI and Microsoft : AGI definition and processes are unchanged . The contractual definition of AGI and the process for determining if it has been achieved remains the same. OpenAI today, April 27th 2026 in The next phase of the Microsoft OpenAI partnership (emphasis mine): Microsoft will continue to have a license to OpenAI IP for models and products through 2032. Microsoft’s license will now be non-exclusive. Microsoft will no longer pay a revenue share to OpenAI. Revenue share payments from OpenAI to Microsoft continue through 2030, independent of OpenAI’s technology progress , at the same percentage but subject to a total cap. As far as I can tell &quot;independent of OpenAI’s technology progress&quot; is a declaration that the AGI clause is now dead. Here&#x27;s The Verge coming to the same conclusion: The AGI clause is dead . My all-time favorite commentary on OpenAI&#x27;s approach to AGI remains this 2023 hypothetical by Matt Levine : And the investors wailed and gnashed their teeth but it’s true, that is what they agreed to, and they had no legal recourse. And OpenAI’s new CEO, and its nonprofit board, cut them a check for their capped return and said “bye” and went back to running OpenAI for the benefit of humanity. It turned out that a benign, carefully governed artificial superintelligence is really good for humanity, and OpenAI quickly solved all of humanity’s problems and ushered in an age of peace and abundance in which nobody wanted for anything or needed any Microsoft products. And capitalism came to an end. Tags: computer-history , microsoft , ai , openai</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/this-week-on-how-i-ai-gpt-55-claude" target="_blank">🎙️ This week on How I AI: GPT 5.5, Claude Design, and GPT Images 2.0 hands-on reviews—plus an inside look at Memelord</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Apr 27, 2026 &middot; 15:02 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ This week on How I AI: GPT 5.5, Claude Design, and GPT Images 2.0 hands-on reviews—plus an inside look at Memelord Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Apr 27, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/openai-available-at-fedramp-moderate" target="_blank">OpenAI available at FedRAMP Moderate</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 27, 2026 &middot; 14:00 UTC</span>
+          </div>
+          <p class="summary"><span>April 27, 2026 Global Affairs OpenAI available at FedRAMP Moderate Expanding secure AI for government.</span> <span>Loading… OpenAI has achieved FedRAMP 20x Moderate authorization ⁠ (opens in a new window) for ChatGPT Enterprise and API Platform, marking an important milestone in making frontier AI available to U.S.</span> <span>government agencies with the security, privacy, and governance expectations required for federal work.</span> <span>This FedRAMP 20x Moderate authorization expands the set of missions that can use OpenAI’s managed products, subject to each agency’s policies and authorization decisions.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>April 27, 2026 Global Affairs OpenAI available at FedRAMP Moderate Expanding secure AI for government. Loading… OpenAI has achieved FedRAMP 20x Moderate authorization ⁠ (opens in a new window) for ChatGPT Enterprise and API Platform, marking an important milestone in making frontier AI available to U.S. government agencies with the security, privacy, and governance expectations required for federal work. Public servants should not have to wait for secure access to the same advanced AI capabilities transforming the rest of the economy. Agencies are already leveraging AI to expedite permitting , draft resident communications , advance frontier science , summarize complex information, support public health analysis, accelerate software development, translate services, and help employees find answers across policy and program material. This FedRAMP 20x Moderate authorization expands the set of missions that can use OpenAI’s managed products, subject to each agency’s policies and authorization decisions. Thanks to FedRAMP 20x, this milestone did not require choosing between speed and rigor. The 20x process moves authorization toward cloud-native security evidence, Key Security Indicators, automated validation, and ongoing visibility into how a cloud service offering is operated. How we got here FedRAMP 20x, announced by GSA in March 2025, created a faster path for cloud service providers to demonstrate secure configurations and practices. OpenAI’s Security and Engineering teams worked through KSI implementation, evidence collection, validation, review cycles, and assessment materials to bring ChatGPT Enterprise and API Platform through the 20x Moderate path. Our close collaboration with the FedRAMP team has been essential to reaching this milestone. Their partnership helped translate the promise of FedRAMP 20x into a practical, security-focused authorization path that moves at the speed modern government technology requires. FedRAMP Moderate Expands Government Capabilities Agencies will no longer need to choose between cutting-edge AI and trusted deployment environments. For federal agencies, FedRAMP 20x Moderate opens a clearer path to adopt OpenAI’s managed AI products for internal, operational, and mission-support use cases. Program teams can use ChatGPT Enterprise to accelerate research, drafting, translation, analysis, and knowledge work. Technical teams can use the OpenAI API to build AI features into existing systems, copilots, case management tools, and citizen service workflows. Agencies can now access our most powerful models, including GPT‑5.5, in our FedRAMP environment. Additionally, agencies can soon access their Codex Cloud environment via their FedRAMP ChatGPT Enterprise workspace and utilize the Codex app via integration with FedRAMP account management and backend infrastructure. For security, privacy, and procurement teams, the authorization creates reusable FedRAMP authorization data for agency review. Agencies can evaluate the cloud service offering, its Minimum Assessment Scope, shared-responsibility expectations, supported features, and supporting evidence and validation materials in OpenAI’s Trust Portal ⁠ (opens in a new window) without starting from scratch. How to engage Agencies can find ChatGPT Enterprise and API Platform in the FedRAMP Marketplace ⁠ (opens in a new window) and contact OpenAI at fedramp@openai.com ⁠ for package access. Agencies can engage OpenAI directly, procure through Carahsoft, OpenAI’s authorized public sector reseller, or evaluate other acquisition paths that align with their requirements. OpenAI can help agencies identify the right deployment and acquisition path; teams can use our sales form ⁠ (opens in a new window) , email gov-gtm@openai.com, or work with their OpenAI account team for support. OpenAI will continue expanding supported features using the Significant Change Notification process, narrowing the gap between FedRAMP and commercial product experiences, and working with government customers to make frontier AI available with the controls, security, and assurance public sector missions require. 2026 ChatGPT API Platform Author OpenAI Keep reading View all Building the compute infrastructure for the Intelligence Age Global Affairs Apr 29, 2026 Cybersecurity in the Intelligence Age Global Affairs Apr 29, 2026 OpenAI helps Hyatt advance AI among colleagues Global Affairs Apr 20, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/from-a-690-newsletter-to-3m-api-how" target="_blank">From a $6.90 newsletter to $3M API: How a non-coder built Memelord | Jason Levin</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Apr 27, 2026 &middot; 12:03 UTC</span>
+          </div>
+          <p class="summary"><span>ion for any use case Introduction to Jason Levin and Memelord Demo: Agentic meme creation with OpenClaw “No UX is the best UX”—building for an agent-first future How Memelord started as a $6.90 newsletter with Google Slides Building to $100K ARR on Bubble with 395 workflows Demo: Free tools section that generates hundreds of thousands of emails Why Cursor is perfect for non-technical founders Let your marketers cook—or watch them leave Commit graph that shows the vibe-coding inflection point Tools: Claude, Gemini, Linear, PostHog Build weird stuff in the real world Creative AI use cases Using OpenClaw for calendar analysis Can AI be funny? Which model is funniest? Memes are not slop What Jason doesn’t use AI for Final thoughts<ul><li>Memelord API: <a href="https://memelord.com/api" target="_blank" rel="noopener">https://memelord.com/api</a></li><li>Cursor: <a href="https://cursor.com/" target="_blank" rel="noopener">https://cursor.com/</a></li><li>Bubble: <a href="https://bubble.io/" target="_blank" rel="noopener">https://bubble.io/</a></li><li>OpenClaw: <a href="https://openclaw.ai" target="_blank" rel="noopener">https://openclaw.ai</a></li><li>Claude: <a href="https://claude.ai/" target="_blank" rel="noopener">https://claude.ai/</a></li><li>ChatGPT: <a href="https://chat.openai.com/" target="_blank" rel="noopener">https://chat.openai.com/</a></li><li>Gemini: <a href="https://gemini.google.com/" target="_blank" rel="noopener">https://gemini.google.com/</a></li><li>Grok: <a href="https://grok.x.ai/" target="_blank" rel="noopener">https://grok.x.ai/</a></li><li>Linear: <a href="https://linear.app/" target="_blank" rel="noopener">https://linear.app/</a></li><li>PostHog: <a href="https://posthog.com/" target="_blank" rel="noopener">https://posthog.com/</a></li><li>Zapier: <a href="https://zapier.com/" target="_blank" rel="noopener">https://zapier.com/</a> Other</li><li>Diego Zaks—“The best UX is no UX”: <a href="https://x.com/diegozaks/status/1966526522136649980" target="_blank" rel="noopener">https://x.com/diegozaks/status/1966526522136649980</a></li><li>Sam Lessin: <a href="https://wlessin.com/" target="_blank" rel="noopener">https://wlessin.com/</a></li><li>“Stop giving me advice”: <a href="https://stopgivingmeadvice.com" target="_blank" rel="noopener">https://stopgivingmeadvice.com</a></li><li>Memelord free tools: <a href="https://memelord.com/tools" target="_blank" rel="noopener">https://memelord.com/tools</a> Instagram: <a href="https://instagram.com/iamjasonlevin" target="_blank" rel="noopener">https://instagram.com/iamjasonlevin</a> LinkedIn: <a href="https://www.linkedin.com/in/iamjasonlevin/" target="_blank" rel="noopener">https://www.linkedin.com/in/iamjasonlevin/</a> Memelord: <a href="https://memelord.com" target="_blank" rel="noopener">https://memelord.com</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/next-phase-of-microsoft-partnership" target="_blank">The next phase of the Microsoft OpenAI partnership</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 27, 2026 &middot; 06:00 UTC</span>
+          </div>
+          <p class="summary"><span>April 27, 2026 Company The next phase of the Microsoft OpenAI partnership Amended agreement provides long-term clarity.</span> <span>Today, we are announcing an amended agreement to simplify our partnership and the way we work together, grounded in flexibility, certainty, and a focus on delivering the benefits of AI broadly.</span> <span>Microsoft continues to participate directly in OpenAI’s growth as a major shareholder.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>April 27, 2026 Company The next phase of the Microsoft OpenAI partnership Amended agreement provides long-term clarity. Loading… The rapid pace of innovation requires us to continue to evolve our partnership to benefit our customers and both companies. Today, we are announcing an amended agreement to simplify our partnership and the way we work together, grounded in flexibility, certainty, and a focus on delivering the benefits of AI broadly. The greater predictability in the amended agreement strengthens our joint ability to build and operate AI platforms at scale while providing both companies the flexibility to pursue new opportunities. The agreement spells out: Microsoft remains OpenAI’s primary cloud partner, and OpenAI products will ship first on Azure, unless Microsoft cannot and chooses not to support the necessary capabilities. OpenAI can now serve all its products to customers across any cloud provider. Microsoft will continue to have a license to OpenAI IP for models and products through 2032. Microsoft’s license will now be non-exclusive. Microsoft will no longer pay a revenue share to OpenAI. Revenue share payments from OpenAI to Microsoft continue through 2030, independent of OpenAI’s technology progress, at the same percentage but subject to a total cap. Microsoft continues to participate directly in OpenAI’s growth as a major shareholder. While this amendment simplifies the partnership, the work we’re doing together remains ambitious. From scaling gigawatts of new datacenter capacity, to collaborating on next- generation silicon, to applying AI to advance cybersecurity, and more, we’re excited to keep partnering to advance and scale AI for people and organizations around the world. 2026 Author OpenAI Keep reading View all Our principles Company Apr 26, 2026 Introducing ChatGPT Images 2.0 Product Apr 21, 2026 Scaling Codex to enterprises worldwide Company Apr 21, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/choco" target="_blank">Choco automates food distribution with AI agents</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Apr 27, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>April 27, 2026 Choco automates food distribution with AI agents Using OpenAI APIs, Choco processes millions of orders, reducing manual work and enabling always-on operations across global food supply chains.</span> <span>By connecting restaurants, suppliers, and distributors into a unified system, Choco streamlines ordering, sales, and customer management across the food supply chain.</span> <span>As order volumes grew, Choco hit a major bottleneck: orders still arrived through emails, texts, voicemails, images, and even handwritten .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>April 27, 2026 Choco automates food distribution with AI agents Using OpenAI APIs, Choco processes millions of orders, reducing manual work and enabling always-on operations across global food supply chains. Contact sales Company size: Mid-market Region: Global Industry: Food &amp; Beverage, Technology Products: API Results 8.8M+ Orders processed annually Results 200B+ AI tokens processed in production Results ↑50% Reduction in manual order entry Results 2x Sales team productivity without added headcount Loading… Rebuilding food distribution for the AI era Choco ⁠ (opens in a new window) is an AI-powered platform modernizing food and beverage distribution, serving over 21,000 distributors and 100,000 buyers across the US, UK, Europe, and the GCC. By connecting restaurants, suppliers, and distributors into a unified system, Choco streamlines ordering, sales, and customer management across the food supply chain. As order volumes grew, Choco hit a major bottleneck: orders still arrived through emails, texts, voicemails, images, and even handwritten . Teams manually translated those inputs into structured ERP orders—a slow, error-prone process that limited scale and created constant operational friction. “Processing those inputs was the first barrier, but not the hardest one. The real problem was implicit context: customer-specific SKU mappings, unit p , delivery patterns. That knowledge lived in the heads of order desk reps, and we needed to encode it into inference layers that resolve ambiguity at the point of order capture.&quot; —Narbeh Mirzaei, VP Engineering With the emergence of production-ready LLMs, Choco saw an opportunity to move beyond workflow software and build AI systems capable of executing work directly. OpenAI APIs became central to that transformation. Inside the rollout Choco embedded OpenAI APIs at the core of its platform to power a new generation of AI-native products. The company introduced OrderAgent ⁠ (opens in a new window) , which processes multimodal inputs—including emails, SMS, images, and documents—and converts them into structured, ERP-ready orders. “The transcription and extraction capabilities gave us a strong foundation. The real engineering challenge was building dynamic in-context learning infrastructure, so the system resolves ambiguity against each customer&#x27;s ordering history and catalog. That&#x27;s what separates automation from intelligence.” —Narbeh Mirzaei, VP Engineering Choco has also built VoiceAgent ⁠ (opens in a new window) , powered by OpenAI’s Realtime API, enabling customers to place orders naturally over the phone with sub-second latency—even outside business hours. OpenAI was selected for its model performance, multimodal capabilities, structured outputs, and production reliability at scale. The ability to handle text, vision, and audio within a single ecosystem allowed Choco to unify previously disconnected workflows into one intelligent system. Implementation was fast and scalable. Using OpenAI’s SDKs and APIs, Choco rapidly integrated capabilities like speech-to-text, embeddings, and function calling into its infrastructure. The team also built a rigorous evaluation framework with ground-truth datasets, continuous monitoring, and A/B testing to ensure accuracy and performance in production. Adoption was driven by seamless integration across the entire ordering workflow. Customers didn’t need to change how they ordered—whether by phone, text, or email, the system adapted to them. Results at a glance Processes over 8.8 million orders annually, eliminating millions of manual workflows Achieves up to 50% reduction in manual order entry, freeing teams for higher-value work Enables 2x productivity gains, allowing teams to scale without additional headcount Maintains error rates below 1–5% with configurable automation thresholds Supports 24/7 order intake, eliminating delays from nights and weekends Leadership lessons Start with evaluation from day one: Even a small ground-truth dataset (10–20 examples) enables teams to measure progress, validate improvements, and iterate with confidence. Invest in AI-native observability: Debugging AI systems requires more than traditional logs—capturing model inputs, outputs, and reasoning traces is essential to understand and improve performance. Set the right expectations early: Unlike deterministic software, LLMs are probabilistic. Educating teams and users on this difference is key to building trust and avoiding friction during adoption. What’s next Choco is continuing to expand its AI capabilities across the food distribution ecosystem, deepening the role of agents in executing complex operational workflows. As AI systems take on more responsibility, the company is enabling a new class of users—non-engineers who act as “agent orchestrators,” designing and managing intelligent systems that drive business outcomes. Looking ahead, Choco plans to further scale its use of OpenAI APIs to power more autonomous, context-aware systems across sales, commerce, and supply chain operations—continuing its shift from workflow software to AI-powered execution infrastructure. Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading Introducing Advanced Account Security Product Apr 30, 2026 Where the goblins came from Publication Apr 29, 2026 Building the compute infrastructure for the Intelligence Age Global Affairs Apr 29, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/community-wisdom-what-great-product" target="_blank">🧠 Community Wisdom: What great product leaders do differently, Claude vs. ChatGPT, receiving hard feedback two weeks into the job, tips for joining a pre-PMF startup, and more</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Apr 25, 2026 &middot; 19:51 UTC</span>
+          </div>
+          <p class="summary"><span>Community wisdom 🧠 Community Wisdom: What great product leaders do differently, Claude vs.</span> <span>ChatGPT, receiving hard feedback two weeks into the job, tips for joining a pre-PMF startup, and more Community Wisdom 182 Kiyani Apr 25, 2026 ∙ Paid 👋 Hello and welcome to this week’s edition of ✨ Community Wisdom ✨ a subscriber-only email, delivered every Saturday, highlighting the most helpful conversations in our members-only Slack community .</span> <span>This post is for paid subscribers Already a paid subscriber?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-gpt-55-and-openai-codex-superapp" target="_blank">[AINews] GPT 5.5 and OpenAI Codex Superapp</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Apr 24, 2026 &middot; 04:40 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI also emphasized that in ChatGPT, stack-level inference gains made GPT-5.5 Pro more practical for demanding tasks @OpenAI .</span> <span>Pricing, context, infra, and practical behavior : API pricing was reported at $5/$30 per 1M input/output tokens for GPT-5.5 and $30/$180 for Pro @scaling01 , with Sam Altman noting a 1M context window in API and lower token use per task than 5.4.</span> <span>Vision Banana : Google DeepMind’s Vision Banana announcement was the standout pure-research vision post.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>AI Twitter Recap OpenAI’s GPT-5.5 launch: stronger agentic coding, broader computer use, and a push on token-efficiency GPT-5.5 is the day’s dominant release : OpenAI launched GPT-5.5 , positioned as “a new class of intelligence for real work,” with rollout across ChatGPT and Codex and API access delayed pending additional safeguards. OpenAI and community benchmark posts converged on a profile of better long-horizon execution, stronger computer-use behavior, and materially improved token efficiency rather than a pure across-the-board benchmark blowout. Reported numbers include 82.7% Terminal-Bench 2.0 , 58.6% SWE-Bench Pro , 84.9% GDPval , 78.7% OSWorld-Verified , 81.8% CyberGym , 84.4% BrowseComp , and 51.7% FrontierMath Tier 1–3 via @reach_vb , with Artificial Analysis saying GPT-5.5 now leads or ties several headline evals and sits on a new cost/performance frontier despite higher per-token pricing @ArtificialAnlys , @scaling01 . OpenAI also emphasized that in ChatGPT, stack-level inference gains made GPT-5.5 Pro more practical for demanding tasks @OpenAI . Pricing, context, infra, and practical behavior : API pricing was reported at $5/$30 per 1M input/output tokens for GPT-5.5 and $30/$180 for Pro @scaling01 , with Sam Altman noting a 1M context window in API and lower token use per task than 5.4. Multiple early users described the model as more “human,” less formal, and better suited to persistent agent workflows than prior GPTs, especially inside Codex @MatthewBerman , @danshipper , @omarsar0 . OpenAI claimed the model was co-designed for NVIDIA GB200/300 systems and that the model itself helped improve its own inference stack @scaling01 , while @sama framed the company increasingly as an AI inference company . A recurrent theme from users: GPT-5.5 often feels like a step-function upgrade in autonomy , but can also be exploratory and require tighter instruction to stay on track @theo . Codex becomes a fuller agent workspace : In parallel, OpenAI shipped substantial Codex upgrades: browser control , Sheets/Slides , Docs/PDFs , OS-wide dictation , and auto-review mode @ajambrosino . OpenAI says Codex can now interact with web apps, click through flows, capture screenshots, and iterate until task completion @OpenAIDevs , while Auto-review uses a secondary “guardian” agent to reduce approvals on longer runs @OpenAIDevs , @gdb . User reports suggest this is expanding Codex from a coding tool into a broader computer-work agent , spanning QA, spreadsheets, presentations, app building, research loops, and overnight experimental runs @gdb , @tszzl , @aidan_mclau . DeepSeek-V4 Preview: 1.6T MIT-licensed open model, 1M context, and aggressive pricing DeepSeek answered GPT-5.5 within hours : DeepSeek released DeepSeek-V4 Preview , open-sourcing V4-Pro and V4-Flash under an MIT license . The headline specs are unusually aggressive: V4-Pro: 1.6T total params / 49B active , V4-Flash: 284B / 13B active , both with 1M token context and support for thinking/non-thinking modes @deepseek_ai , @Yuchenj_UW . Community reactions quickly framed it as the new open-model flagship , competitive with top closed models from the prior generation and a major leap over DeepSeek V3.x @arena , @scaling01 , @kimmonismus . Technical report long-context efficiency, hybrid attention, and Muon : The launch was notable not just for weights but for a same-day tech report @scaling01 . Community summaries point to two new compressed/hybrid attention mechanisms , mHC , Muon-based training , FP4 quantization-aware training , and pretraining on roughly 32T tokens @scaling01 , @iScienceLuvr , @eliebakouch . The strongest technical discussion centered on making 1M context practical , with reported ~4x compute efficiency improvements and order-of-magnitude KV-cache reductions relative to earlier DeepSeek-style stacks @Hangsiin . The rapid infra response was also notable: vLLM announced day-0 support and detailed how it implemented the new attention stack; SGLang shipped day-0 optimizations and RL pipeline support . Pricing may be as important as the model : DeepSeek’s posted pricing is exceptionally aggressive: V4-Flash at $0.14/$0.28 and V4-Pro at $1.74/$3.48 per 1M input/output tokens @scaling01 , @teortaxesTex . Several commenters highlighted Flash as potentially the more disruptive SKU if serving quality holds, given the combination of very low cost , 1M context , and open weights @Hangsiin , @arena . The main caveat from DeepSeek: V4-Pro throughput is currently limited by high-end compute constraints , with the company explicitly pointing to future Ascend 950 availability for price drops @teortaxesTex . Agent infrastructure and tooling: memory, orchestration, browsers, and enterprise plumbing Agents are becoming systems problems, not just model problems : Several posts emphasized that production agent work is increasingly about harnesses, evals, memory, and orchestration . A useful example was the writeup on stateless decision memory for enterprise agents, which replaces mutable per-agent state with immutable decision logs/event sourcing to improve horizontal scalability, auditability, and fault tolerance @omarsar0 . In a similar vein, @Vtrivedy10 argued that trace data → evals/environments → harness engineering/SFT-RL is the core flywheel for improving production agents, and later used Anthropic’s Claude Code regression as a case study for why open harnesses and open evals matter @Vtrivedy10 . New tooling around control surfaces : Cua open-sourced Cua Driver , a macOS driver for letting agents control arbitrary apps in the background with multi-player/multi-cursor support. Cognition published a post on what it takes to build cloud agent infrastructure , naming the practical stack: VM isolation, session persistence, environment provisioning, orchestration, and integrations . LangChain continued expanding LangSmith Fleet with file editing, webpage/presentation generation, and slash-command skills @LangChain , while multiple users highlighted Fleet’s presentation renderer/viewer as a surprisingly useful agent-native artifact format @BraceSproul . Multi-agent orchestration is moving into products : Sakana AI launched the beta of Fugu , a multi-agent orchestration API that dynamically selects and coordinates frontier models, with claims of SOTA on SWE-Pro, GPQA-D, and ALE-Bench and even recursive test-time scaling via self-invocation @SakanaAILabs , @hardmaru . Hermes Agent shipped v0.11.0 with a large contributor release, expanded providers, image generation support, and effectively immediate GPT-5.5 support @Teknium . The direction is consistent: agents are becoming orchestration layers over heterogeneous tools and models , not single-model loops. Vision, video, and multimodal systems: Vision Banana, Sapiens2, HDR video, and omni models Google DeepMind’s Vision Banana reframes CV as generation : One of the more technically interesting research launches was Vision Banana , a unified vision model that treats 2D/3D vision tasks as image generation , reportedly outperforming specialist SOTA systems across multiple vision tasks. The reaction from computer-vision researchers was that it signals a broader shift in how segmentation, depth, normals, and related tasks may be approached going forward @sainingxie . On the open side, Meta also released Sapiens2 , a set of high-resolution vision transformers trained on 1B human images for human-centric perception tasks @HuggingPapers . Video stack updates are moving past raw resolution into production formats : Kling’s “native 4K” rollout spread across multiple platforms, but the technically more novel launch may be LTX HDR beta , which argues the real bottleneck for AI video in production has been dynamic range , not just resolution, by moving beyond 8-bit SDR toward footage that can survive grading and compositing @ltx_model . That’s a more substantive improvement than the usual “4K” marketing alone. Separately, World Labs launched World Jam around Marble 1.1 + Spark LoD for interactive 3D creation @theworldlabs . Broader multimodal trend: unified models with explicit cross-modal reasoning : The newly shared Context Unrolling in Omni Models proposes a unified model trained across text, images, video, 3D geometry, and hidden representations, explicitly unrolling reasoning across modalities before producing outputs @arankomatsuzaki . Together with Vision Banana, this points to a recurring motif: fold disparate perception/generation tasks into fewer general multimodal backbones , then let inference-time reasoning bridge modalities. Training, scaling, and research methods: globally distributed pretraining, self-play, and long-context internals Google’s Decoupled DiLoCo tackles resilient global pretraining : Google DeepMind and Google Research introduced Decoupled DiLoCo , which decouples distributed low-communication training to enable worldwide datacenter training , heterogeneous hardware , and tolerance to hardware failures without halting the job. This is a meaningful systems result because it targets a real frontier training bottleneck: keeping giant training runs alive and efficient across faulty, geographically distributed infrastructure , rather than assuming clean homogeneous clusters. Algorithmic scaling beyond brute-force sampling : A self-play paper highlighted by @LukeBailey181 studies why long-run self-play plateaus for LLMs and proposes an algorithm that lets a 7B model solve as many problems as pass@4 of a model 100x larger . Another recurring theme was token/computation efficiency as the real frontier metric; several posts argued that single-number intelligence comparisons are increasingly obsolete in a world where effort level and inference budget materially reshape capability @polynoamial . Relatedly, a thread on Neural Garbage Collection described training models to manage their own KV cache via RL rather than fixed heuristics, a potentially important direction for long-horizon agents @cwolferesearch . Infra adoption signals : Together AI reported growth from 30B to 300T tokens/month YoY @vipulved , a large-scale indicator of inference demand expansion. Epoch AI, meanwhile, revised down estimates for operational power at Stargate Abilene to ~0.3 GW currently and pushed the full 1.2 GW milestone to Q4 2026 , underscoring continued uncertainty in tracking frontier compute deployment @EpochAIResearch . Top tweets (by engagement) OpenAI GPT-5.5 launch : The highest-engagement technical post was OpenAI’s GPT-5.5 announcement , followed by @sama’s launch post and OpenAI DevRel’s framing of GPT-5.5 as its smartest frontier model yet @OpenAIDevs . Claude Code regression post-mortem : Anthropic’s acknowledgment that Claude Code quality had slipped due to three issues and was fixed in v2.1.116+ was one of the most engaged engineering-product posts of the day, and sparked substantial discussion about harness sensitivity and regression testing. DeepSeek-V4 Preview release : DeepSeek’s official V4 Preview launch quickly became the other major high-engagement technical event, especially given the combination of MIT license , 1M context , and aggressive pricing. Vision Banana : Google DeepMind’s Vision Banana announcement was the standout pure-research vision post. ML-Intern and autonomous research workflows : The Hugging Face-adjacent ml-intern passing an internship-style test in 15 minutes and subsequent reports of very high token consumption suggest strong interest in autonomous coding/research harnesses as distinct products, not just demos. AI Reddit Recap /r/LocalLlama + /r/localLLM Recap</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Apr/24/recent-claude-code-quality-reports/#atom-everything" target="_blank">An update on recent Claude Code quality reports</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Apr 24, 2026 &middot; 01:31 UTC</span>
+          </div>
+          <p class="summary"><span>An update on recent Claude Code quality reports It turns out the high volume of complaints that Claude Code was providing worse quality results over the past two months was grounded in real problems.</span> <span>The models themselves were not to blame, but three separate issues in the Claude Code harness caused complex but material problems which directly affected users.</span> <span>Via Hacker News Tags: ai , prompt-engineering , generative-ai , llms , anthropic , coding-agents , claude-code</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>An update on recent Claude Code quality reports It turns out the high volume of complaints that Claude Code was providing worse quality results over the past two months was grounded in real problems. The models themselves were not to blame, but three separate issues in the Claude Code harness caused complex but material problems which directly affected users. Anthropic&#x27;s postmortem describes these in detail. This one in particular stood out to me: On March 26, we shipped a change to clear Claude&#x27;s older thinking from sessions that had been idle for over an hour, to reduce latency when users resumed those sessions. A bug caused this to keep happening every turn for the rest of the session instead of just once, which made Claude seem forgetful and repetitive. I frequently have Claude Code sessions which I leave for an hour (or often a day or longer) before returning to them. Right now I have 11 of those (according to ps aux | grep &#x27;claude &#x27; ) and that&#x27;s after closing down dozens more the other day. I estimate I spend more time prompting in these &quot;stale&quot; sessions than sessions that I&#x27;ve recently started! If you&#x27;re building agentic systems it&#x27;s worth reading this article in detail - the kinds of bugs that affect harnesses are deeply complicated, even if you put aside the inherent non-deterministic nature of the models themselves. Via Hacker News Tags: ai , prompt-engineering , generative-ai , llms , anthropic , coding-agents , claude-code</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Apr/23/gpt-5-5/#atom-everything" target="_blank">A pelican for GPT-5.5 via the semi-official Codex backdoor API</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Apr 23, 2026 &middot; 19:59 UTC</span>
+          </div>
+          <p class="summary"><span>It&#x27;s available in OpenAI Codex and is rolling out to paid ChatGPT subscribers.</span> <span>We&#x27;ll bring GPT‑5.5 and GPT‑5.5 Pro to the API very soon.</span> <span>Tags: ai , openai , generative-ai , chatgpt , llms , llm , llm-pricing , pelican-riding-a-bicycle , llm-reasoning , llm-release , codex-cli , gpt</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>GPT-5.5 is out . It&#x27;s available in OpenAI Codex and is rolling out to paid ChatGPT subscribers. I&#x27;ve had some preview access and found it to be a fast, effective and highly capable model. As is usually the case these days, it&#x27;s hard to put into words what&#x27;s good about it - I ask it to build things and it builds exactly what I ask for! There&#x27;s one notable omission from today&#x27;s release - the API: API deployments require different safeguards and we are working closely with partners and customers on the safety and security requirements for serving it at scale. We&#x27;ll bring GPT‑5.5 and GPT‑5.5 Pro to the API very soon. When I run my pelican benchmark I always prefer to use an API, to avoid hidden system prompts in ChatGPT or other agent harnesses from impacting the results. The OpenClaw backdoor One of the ongoing tension points in the AI world over the past few months has concerned how agent harnesses like OpenClaw and Pi interact with the APIs provided by the big providers. Both OpenAI and Anthropic offer popular monthly subscriptions which provide access to their models at a significant discount to their raw API. OpenClaw integrated directly with this mechanism, and was then blocked from doing so by Anthropic. This kicked off a whole thing. OpenAI - who recently hired OpenClaw creator Peter Steinberger - saw an opportunity for an easy karma win and announced that OpenClaw was welcome to continue integrating with OpenAI&#x27;s subscriptions via the same mechanism used by their (open source) Codex CLI tool. Does this mean anyone can write code that integrates with OpenAI&#x27;s Codex-specific APIs to hook into those existing subscriptions? The other day Jeremy Howard asked : Anyone know whether OpenAI officially supports the use of the /backend-api/codex/responses endpoint that Pi and Opencode (IIUC) uses? It turned out that on March 30th OpenAI&#x27;s Romain Huet had tweeted : We want people to be able to use Codex, and their ChatGPT subscription, wherever they like! That means in the app, in the terminal, but also in JetBrains, Xcode, OpenCode, Pi, and now Claude Code. That’s why Codex CLI and Codex app server are open source too! 🙂 And Peter Steinberger replied to Jeremy that: OpenAI sub is officially supported. llm-openai-via-codex So... I had Claude Code reverse-engineer the openai/codex repo, figure out how authentication tokens were stored and build me llm-openai-via-codex , a new plugin for LLM which picks up your existing Codex subscription and uses it to run prompts! (With hindsight I wish I&#x27;d used GPT-5.4 or the GPT-5.5 preview, it would have been funnier. I genuinely considered rewriting the project from scratch using Codex and GPT-5.5 for the sake of the joke, but decided not to spend any more time on this!) Here&#x27;s how to use it: Install Codex CLI, buy an OpenAI plan, login to Codex Install LLM: uv tool install llm Install the new plugin: llm install llm-openai-via-codex Start prompting: llm -m openai-codex/gpt-5.5 &#x27;Your prompt goes here&#x27; All existing LLM features should also work - use -a filepath.jpg/URL to attach an image, llm chat -m openai-codex/gpt-5.5 to start an ongoing chat, llm logs to view logged conversations and llm --tool ... to try it out with tool support . And some pelicans Let&#x27;s generate a pelican! llm install llm-openai-via-codex llm -m openai-codex/gpt-5.5 &#x27; Generate an SVG of a pelican riding a bicycle &#x27; Here&#x27;s what I got back : I&#x27;ve seen better from GPT-5.4 , so I tagged on -o reasoning_effort xhigh and tried again : That one took almost four minutes to generate, but I think it&#x27;s a much better effort. If you compare the SVG code ( default , xhigh ) the xhigh one took a very different approach, which is much more CSS-heavy - as demonstrated by those gradients. xhigh used 9,322 reasoning tokens where the default used just 39. A few more notes on GPT-5.5 One of the most notable things about GPT-5.5 is the pricing. Once it goes live in the API it&#x27;s going to be priced at twice the cost of GPT-5.4 - $5 per 1M input tokens and $30 per 1M output tokens, where 5.4 is $2.5 and $15. GPT-5.5 Pro will be even more: $30 per 1M input tokens and $180 per 1M output tokens. GPT-5.4 will remain available. At half the price of 5.5 this feels like 5.4 is to 5.5 as Claude Sonnet is to Claude Opus. Ethan Mollick has a detailed review of GPT-5.5 where he put it (and GPT-5.5 Pro) through an array of interesting challenges. His verdict: the jagged frontier continues to hold, with GPT-5.5 excellent at some things and challenged by others in a way that remains difficult to predict. Tags: ai , openai , generative-ai , chatgpt , llms , llm , llm-pricing , pelican-riding-a-bicycle , llm-reasoning , llm-release , codex-cli , gpt</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 196</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
