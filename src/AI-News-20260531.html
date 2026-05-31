@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-05-31</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-05-31</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/May/30/how-we-contain-claude/#atom-everything" target="_blank">How we contain Claude across products</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">May 30, 2026 &middot; 21:36 UTC</span>
+          </div>
+          <p class="summary"><span>How we contain Claude across products A complaint I often have about sandboxing products is that they are rarely thoroughly documented , and in the absence of detailed documentation it&#x27;s hard to know how much I can trust them.</span> <span>Anthropic just published a fantastic overview of how their various sandbox techniques work across Claude.ai , Claude Code, and Cowork.</span> <span>Tags: sandboxing , security , ai , generative-ai , llms , anthropic , claude , claude-code</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>How we contain Claude across products A complaint I often have about sandboxing products is that they are rarely thoroughly documented , and in the absence of detailed documentation it&#x27;s hard to know how much I can trust them. Anthropic just published a fantastic overview of how their various sandbox techniques work across Claude.ai , Claude Code, and Cowork. We constrain where and how an agent can act with process sandboxes, VMs, filesystem boundaries, and egress controls. The goal is to set a hard boundary on what an agent can reach. For example, if credentials never enter the sandbox, they can&#x27;t be exfiltrated, regardless of whether the cause is a user, a model finding a “creative” path, or an attacker. Claude.ai uses gVisor. Claude Code, run locally, uses Seatbelt on macOS and Bubblewrap on Linux. Claude Cowork runs a full VM (Apple&#x27;s Virtualization framework on macOS, HCS on Windows). There&#x27;s a lot in here, including some interesting stories of risks they missed such as the api.anthropic.com/v1/files exfiltration vector covered here previously . This reminded me it&#x27;s time I took another look at Anthropic&#x27;s open source srt (Anthropic Sandbox Runtime) tool - it&#x27;s mature enough know that I&#x27;m ready to give it a proper go. Tags: sandboxing , security , ai , generative-ai , llms , anthropic , claude , claude-code</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/May/30/pyodide-asgi-browser/#atom-everything" target="_blank">Running Python ASGI apps in the browser via Pyodide + a service worker</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">May 30, 2026 &middot; 21:02 UTC</span>
+          </div>
+          <p class="summary"><span>Research: Running Python ASGI apps in the browser via Pyodide + a service worker Datasette Lite is my version of Datasette that runs entirely in the browser using Pyodide in WebAssembly.</span> <span>When I first built it four years ago I used Web Workers and code that intercepts navigation operations and fetches the generated HTML by running the Python app.</span> <span>Tags: javascript , python , datasette , asgi , service-workers , pyodide , datasette-lite , claude-code</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Research: Running Python ASGI apps in the browser via Pyodide + a service worker Datasette Lite is my version of Datasette that runs entirely in the browser using Pyodide in WebAssembly. When I first built it four years ago I used Web Workers and code that intercepts navigation operations and fetches the generated HTML by running the Python app. This worked, but had the disadvantage that any JavaScript in &lt;script&gt; tags would not be executed - breaking some Datasette functionality and a whole lot of Datasette plugins. This morning I set Claude Opus 4.8 the task (in Claude Code for web) of figuring out how to run Python ASGI apps in Pyodide using Service Workers instead, and it seems to work! Here&#x27;s a basic ASGI FastCGI demo and here&#x27;s a demo that runs Datasette 1.0a31 . I&#x27;m still getting my head around exactly how it works, but once I&#x27;ve done that I plan to upgrade Datasette Lite itself. Tags: javascript , python , datasette , asgi , service-workers , pyodide , datasette-lite , claude-code</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/braintrust" target="_blank">How Braintrust turns customer requests into code with Codex</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">May 29, 2026 &middot; 12:00 UTC</span>
+          </div>
+          <p class="summary"><span>May 29, 2026 How Braintrust turns customer requests into code with Codex Braintrust engineers use Codex with GPT‑5.5 to turn customer feature requests into preview branches in minutes and expand the scope of engineering experiments.</span> <span>Contact sales Company size: Enterprise Region: North America Industry: Technology Products: Codex 50% of the Braintrust team moved to Codex in one month Loading… Braintrust is the observability and eval platform for shipping quality AI products.</span> <span>In one month, half of the Braintrust team moved to Codex.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>May 29, 2026 How Braintrust turns customer requests into code with Codex Braintrust engineers use Codex with GPT‑5.5 to turn customer feature requests into preview branches in minutes and expand the scope of engineering experiments. Contact sales Company size: Enterprise Region: North America Industry: Technology Products: Codex 50% of the Braintrust team moved to Codex in one month Loading… Braintrust is the observability and eval platform for shipping quality AI products. With Codex, its engineers can now take customer feature requests and create preview branches to show working ideas to customers in minutes. In one month, half of the Braintrust team moved to Codex. For founder and CEO Ankur Goyal, the biggest change is not just faster coding. It’s a faster feedback loop with customers. “It sounds simple, but Codex can literally print more text in the terminal without getting slow, and other models just can’t replicate that,” says Goyal. “The biggest gain is speed.” —Ankur Goyal, Founder and CEO Turning customer requests into previews in minutes Speed is often treated as a property of a tool, one that exists separate from its core functionality, but for Goyal, the speed difference “changes the way I interact with Codex compared to other models.” With Codex, the Braintrust team can integrate iteration into its development workflow rather than letting requests sit and wait. “Codex unlocked our ability to try out customer feature requests in real time,” says Goyal. “Previously, if someone gave us a feature request, it would enter a backlog and get prioritized later.” Instead, the team can copy and paste requests into Codex, create a preview branch, and show the completed request to the customer in minutes. “The really cool thing with Codex is that we get to iterate and ideate on feature requests with the customer in real time,” says Goyal. “The more code we write, the more customer problems we can solve, and Codex is the most effective way to do that right now.” —Ankur Goyal, Founder and CEO Speed makes autonomous problem-solving possible For Goyal, Codex changes how much setup it takes to try new ideas. “With other models, I would have to try to prompt the model to solve a specific problem,” he says. Slower tools require more hands-on guidance, which raises the cost of experimentation. “With Codex, I’ve shifted to writing a test that demonstrates a problem, creating a sandbox environment, and then letting Codex run in that environment,” Goyal says. “This is a novel use case for me, and I can run experiments because of the speed.” That speed gives the Braintrust team more room to experiment. Instead of prompting step by step, engineers can define the problem, let Codex work in a controlled environment, and move faster from idea to working solution. “The really cool thing with Codex is that we get to iterate and ideate on feature requests with the customer in real time.” —Ankur Goyal, Founder and CEO Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading Boston Children’s uses AI to unlock new diagnoses May 29, 2026 Strengthening societal resilience with Rosalind Biodefense Product May 29, 2026 A shared playbook for trustworthy third party evaluations Safety May 29, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/boston-childrens-hospital" target="_blank">Boston Children’s uses AI to unlock new diagnoses</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">May 29, 2026 &middot; 12:00 UTC</span>
+          </div>
+          <p class="summary"><span>May 29, 2026 Boston Children’s uses AI to unlock new diagnoses Boston Children’s treats AI as infrastructure to cut costs, expand capacity and diagnose cases once thought impossible.</span> <span>The hospital embedded AI across the organization as a core part of its clinical and operational infrastructure to improve how care is delivered to its pediatric patients, particularly those with complex and rare conditions.</span> <span>At the same time, clinical teams face a different kind of limitation.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>May 29, 2026 Boston Children’s uses AI to unlock new diagnoses Boston Children’s treats AI as infrastructure to cut costs, expand capacity and diagnose cases once thought impossible. Contact sales Company size: Enterprise Region: North America Industry: Healthcare Products: ChatGPT Results 40+ rare conditions diagnosed that had previously gone unresolved Results 60,000 hours saved across AI-enabled workflows Results $7M+ in redeployed labor from operational time savings Results 50+ automations supporting operational workflows Loading… Boston Children’s Hospital did not pursue artificial intelligence simply to experiment with new technology. The hospital embedded AI across the organization as a core part of its clinical and operational infrastructure to improve how care is delivered to its pediatric patients, particularly those with complex and rare conditions. By integrating AI into daily workflows, the team has reduced operational costs, improved access to care, and helped diagnose more than 40 rare conditions that had previously gone unresolved. Operating under pressure Boston Children’s Hospital is one of the largest pediatric institutions in the world, serving patients across more than 40 specialties with close to 1 million outpatient visits each year. Like many health systems, it operates under tight financial constraints while managing increasing administrative burden. Teams across supply chain, billing and operations handle high volumes of repetitive tasks, from processing invoices to coordinating schedules. These processes are necessary but time-intensive, pulling staff away from higher-value work. At the same time, clinical teams face a different kind of limitation. Rare disease cases often involve fragmented genetic data, incomplete clinical histories and an overwhelming body of medical literature. Even in a leading research institution, physicians cannot synthesize all of that information fast enough to reach every diagnosis. “The problem isn’t effort,” says John Brownstein, Chief Innovation Officer at Boston Children’s. “It’s human cognitive limits.” Setting the foundation with an enterprise AI layer Boston Children’s began with individual AI use cases, including documentation and translation tools. But those early efforts quickly exposed the limits of a fragmented approach. “You cannot just rely on one-off solutions,” Brownstein says. The hospital shifted to building what Brownstein calls an enterprise AI layer: a secure internal ChatGPT environment used across research, clinical, and administrative teams. Instead of treating AI as a collection of tools, the organization created a shared foundation where new capabilities could be developed and deployed quickly. This system allows teams to work with AI in ways that are directly relevant to their roles, whether that involves accessing internal data, synthesizing medical literature or streamlining workflows. Governance structures were built alongside the technology to ensure safety, monitoring and consistent evaluation. The shift changed the pace of innovation. Tools that once required extended development cycles can now be deployed in days, allowing the organization to respond quickly to both operational demands and clinical needs. Today, more than one-third of employees use AI as part of their daily work, spanning clinical, research and administrative functions. Redesigning workflows across operations Boston Children’s focused first on areas where AI could deliver measurable operational impact. In supply chain operations, AI now manages invoice intake, routing and responses. In parallel, the hospital applied AI to surgical scheduling. By analyzing clinical and estimating patient acuity, the system improves how operating room time is allocated. This allows schedules to be planned further in advance, increasing utilization and enabling more patients to receive the care that they need faster. Additionally, physicians use AI for decision support and to synthesize complex clinical information. Researchers apply it to data analysis and cohort building. Administrative teams rely on it for drafting documents, coding and improving workflows. The organization ties these changes directly to measurable outcomes. Across more than 50 automations, Boston Children’s has captured about 60,000 hours in time savings, which is equivalent to more than $7 million in redeployed labor. The organization has focused on making AI relevant to everyday work rather than introducing it as a standalone initiative. “The key here is meeting people where they are,” Brownstein says. Advancing rare disease diagnosis and genetic research Alongside operational improvements, Boston Children’s invested in AI for clinical discovery. The hospital developed what it describes as a “co-pilot geneticist,” designed to integrate genetic data, phenotypic information and global medical literature. This system addresses one of the most difficult challenges in medicine: diagnosing rare diseases that have eluded explanation for years. As a result of this work, more than 40 diagnoses have been made to date that were previously thought impossible. The work has also led to the identification of new gene targets and potential therapeutic pathways. “We combine genetic information, phenotypic information, literature search, and the reasoning of AI to deliver diagnoses to families that were once left without any answers,” Brownstein says. For patients and families, the impact is immediate and tangible. Cases that once remained unresolved are now yielding answers and, in some instances, new directions for treatment. “This was unthinkable before, but is now providing hope to so many families,” Brownstein says. AI-enabled care at scale The next phase of Boston Children’s AI strategy focuses on deeper integration and broader adoption. Leadership sees significant opportunity to expand both usage and impact. The hospital is working to embed AI more fully into clinical decision-making, extend tools across specialties and continue refining models through collaboration with OpenAI. Over time, AI is expected to become a core component of medical practice. “How would you not want an incredibly trained physician alongside all the world’s medical knowledge?” Brownstein said. At Boston Children’s, AI is becoming part of the infrastructure that supports care delivery, research and discovery—redefining what’s possible for both clinicians and patients. Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading How Braintrust turns customer requests into code with Codex May 29, 2026 Strengthening societal resilience with Rosalind Biodefense Product May 29, 2026 A shared playbook for trustworthy third party evaluations Safety May 29, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/May/28/claude-opus-4-8/#atom-everything" target="_blank">Claude Opus 4.8: &quot;a modest but tangible improvement&quot;</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">May 28, 2026 &middot; 23:59 UTC</span>
+          </div>
+          <p class="summary"><span>Anthropic shipped Claude Opus 4.8 today.</span> <span>There’s still more to be done: we’re working on developing and releasing models that provide many of the same capabilities as Opus at a lower cost.</span> <span>The minimum cacheable prompt length on Claude Opus 4.8 is 1,024 tokens, lower than on Claude Opus 4.7.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Anthropic shipped Claude Opus 4.8 today. My favourite thing about it is this note in the release announcement: Users will find Opus 4.8 to be a modest but tangible improvement on its predecessor. There’s still more to be done: we’re working on developing and releasing models that provide many of the same capabilities as Opus at a lower cost. It&#x27;s so refreshing to see an AI lab honestly describe a release as a minor incremental improvement over the previous model! Honesty seems to be a theme. Here&#x27;s my other favorite note from that announcement: One of the most prominent improvements in Opus 4.8 is its honesty . We train all our models to be honest---for instance, to avoid making claims that they can&#x27;t support. But a general problem with AI models is that they sometimes jump to conclusions, confidently claiming to have made progress in their work despite the evidence being thin. Early testers report that Opus 4.8 is more likely to flag uncertainties about its work and less likely to make unsupported claims. This is borne out in our evaluations , which show that Opus 4.8 is around four times less likely than its predecessor to allow flaws in code it has written to pass unremarked. That linked system card includes the following: Claude Opus 4.8 had the lowest incorrect-rate of the six models on every benchmark—the most direct measure of factual hallucination. It achieved this mainly by abstaining on questions about which it was uncertain rather than by answering more questions correctly. Model characteristics Not much has changed since 4.7. It&#x27;s priced the same as Opus 4.5/4.6/4.7 - $5/million input and $25 per million output. &quot;Fast mode&quot; is twice that price, which is a significant reduction from their previous models - fast mode on 4.6/4.7 remains at $30/$150. Note that fast mode is only available to organizations that are part of the research preview, &quot;Contact your account manager to request access&quot;. Both the reliable knowledge cutoff and the training data cutoff are January 2026, the same as for 4.7. The context window is still 1,000,000 tokens, and the max output is 128,000 tokens. The What&#x27;s new in Claude Opus 4.8 document has some of the more interesting details. These caught my eye: Mid-conversation system messages . Claude Opus 4.8 accepts role: &quot;system&quot; messages immediately after a user turn in the messages array (subject to placement rules ). This lets you append updated instructions later in a long-running conversation without restating the full system prompt, which preserves prompt cache hits on the earlier turns and reduces input cost on agentic loops. See also this update to the Anthropic Python SDK. Being able to steer the system prompt mid-conversation sounds really powerful. I was worried this would be incompatible with the abstraction provided by my own LLM library , which expects a single system prompt per conversation... but it turns out my recent redesign should handle that just fine . Lower prompt cache minimum . The minimum cacheable prompt length on Claude Opus 4.8 is 1,024 tokens, lower than on Claude Opus 4.7. I checked and 4.7&#x27;s minimum was 4,096 . And some pelicans Here are pelicans riding bicycles for all five thinking levels, low , medium , high , xhigh , and max : low medium high xhigh max This time I ran them using the LLM CLI , exported the logs to Markdown and then had Claude Opus 4.8 build me an HTML tool that could render that Markdown with the svg fenced code blocks displayed as SVGs on the page. (I later had GPT-5.5 xhigh in Codex update that code to remove any XSS holes. I&#x27;m sure Claude could have done that if I&#x27;d asked, but GPT-5.5 is my code security blanket at the moment.) The max one was clearly the best, but it did take 25 input, 17,167 output tokens for a total cost of 43 cents ! Tags: ai , generative-ai , llms , anthropic , claude , pelican-riding-a-bicycle , llm-release</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/endava" target="_blank">How Endava builds an agentic organization with Codex</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">May 28, 2026 &middot; 12:00 UTC</span>
+          </div>
+          <p class="summary"><span>May 28, 2026 How Endava builds an agentic organization with Codex Endava uses Codex to scale senior engineering expertise across its full delivery lifecycle.</span> <span>Contact sales Company size: Enterprise Region: Europe &amp; UK Industry: Technology, Services Products: Codex Weeks → hours Reduced requirements analysis time with Codex Loading… Endava, a global software contracting firm with engineers across Europe, the Americas, and Asia, has been an early adopter of Codex.</span> <span>As a learning tool during development, I’m able to take my experience, codify it, and have Codex work with the team to teach them better practices in software architecture and development.” This knowledge transfer ends up being one of the core values and advantages of an agentic organization.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>May 28, 2026 How Endava builds an agentic organization with Codex Endava uses Codex to scale senior engineering expertise across its full delivery lifecycle. Contact sales Company size: Enterprise Region: Europe &amp; UK Industry: Technology, Services Products: Codex Weeks → hours Reduced requirements analysis time with Codex Loading… Endava, a global software contracting firm with engineers across Europe, the Americas, and Asia, has been an early adopter of Codex. For a business built around shipping quality software for banks, insurers, retailers, and media companies, the improvements have been substantial. “We went from producing a lot of the code ourselves to now overseeing the work that Codex can produce,” says Joe Dunleavy, Endava’s regional CTO for Europe. “The quality of output has just gone up exponentially.” Endava now calls itself an agentic organization : a company where senior expertise is codified into agents that work alongside teams across the entire client engagement lifecycle, from intake to ideation and, finally, delivery. “What Codex has really helped us do is have small teams of people deliver massive value in a very condensed timeframe.” —Joe Dunleavy, CTO Europe, Endava Magnifying every skill on the team Codex changes how senior and junior engineers work together, says Mike Krolnik, Endava’s Global SVP of Agentic Architecture. “Senior architects like myself, coming from complex environments, are able to articulate what we want, and Codex makes that an accessible piece of information for the more junior people on the team. And from the junior perspective, they’re able to adopt this tool and create senior, mature-level outputs.” In practice, that means giving junior developers work that would normally be reserved for senior engineers, with Codex acting as a guide on best practices and architectural decisions. “I can give Codex a point of view, and when they’re working, it will help them understand this point of view,” Krolnik explains. “They can ask questions about things they don’t understand. As a learning tool during development, I’m able to take my experience, codify it, and have Codex work with the team to teach them better practices in software architecture and development.” This knowledge transfer ends up being one of the core values and advantages of an agentic organization. Senior judgment, which normally comes through years of pairing, code review, and mentoring, becomes something a team can work alongside in real time. This changes how mentorship can happen for an organization’s junior developers. A single senior’s perspective, encoded into Codex, can guide multiple less-seasoned teams in parallel. “Codex has matured as a tool. We use it for requirements analysis, design, specifications, development, and operations; it’s a general desktop agent across our whole lifecycle.” —Mike Krolnik, Global SVP of Agentic Architecture, Endava Weeks of work, compressed into days When senior judgment is always available, every step of delivery can be improved. Endava no longer treats analysis, design, and build as sequential stages handed off between specialists. “Each of these stages used to take days or weeks of analysis,” Krolnik says. “Now with Codex packaging together analysis, design, and build, we can do that as a single unified tool.” A recent cross-team engagement shows what that looks like in practice. Endava’s legal team brought engineering a complex problem: thousands of pages of contracts to review against a specific set of criteria. Translating what the lawyers needed into something engineering could build against would normally take weeks of back-and-forth. Instead, Krolnik’s team recorded a two-hour deep-dive meeting with the legal stakeholders, fed the transcript to Codex, and used it to generate a working requirements specification. What could have taken a week or two of revision was compressed into two one-hour meetings and produced a usable spec. The same time-saving is also showing up in client work. Endava’s teams now produce design documents, diagrams, and specifications live in client sessions to illustrate ideas. “You can tell it to draw a diagram of the proposed software architecture so it’s easier to understand for our clients,” Krolnik says. “It rapidly accelerates the back-and-forth, and it really opens a lot of doors.” Leadership lessons Codify your seniors. The largest leverage comes from capturing senior architects’ judgment in Codex, so junior team members get senior guidance as they execute. Treat Codex as a desktop agent, not a coding assistant. The biggest unlocks at Endava came from applying Codex to requirements, design, client communication, and operations alongside code. Don’t just think about it, really try it! “The first piece of advice is you need to get beyond thinking about what you want to do and actually get in and try it,” Dunleavy says. Endava’s advice to teams just starting out: Pick a non-coding workflow first: requirements analysis, design documentation, or client communication. The fastest way to see Codex’s full value is to use it in a place where your team has never used a coding tool before. “Codex magnifies every skill I have, and everybody who learns how to use it gets every skill they have magnified.” —Mike Krolnik, Global SVP of Agentic Architecture, Endava Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading Boston Children’s uses AI to unlock new diagnoses May 29, 2026 How Braintrust turns customer requests into code with Codex May 29, 2026 Strengthening societal resilience with Rosalind Biodefense Product May 29, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/the-codex-feature-that-works-while" target="_blank">The Codex feature that works while you sleep</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">May 27, 2026 &middot; 12:03 UTC</span>
+          </div>
+          <p class="summary"><span>isode, we cover: Introduction What is /goal and when should you use it? The difference between prompts and Goal-based loops Claire’s first five-hour 45-minute autonomous coding task How to manage a Goal lifecycle: view, pause, resume, and clear How to write strong goals: outcomes vs.</span> <span>outputs The six components of effective Goals Example: Reducing P95 checkout latency with /goal Demo: Using /goal to eliminate Sentry errors in ChatPRD Demo: Burning down Vercel API errors Non-technical use case: Cleaning 3,900 emails with /goal Demo: Using /goal to clean up Linear project tasks When not to use /goal Why /goal changes everything<ul><li>Codex: <a href="https://openai.com/codex/" target="_blank" rel="noopener">https://openai.com/codex/</a></li><li>Sentry: <a href="https://sentry.io/" target="_blank" rel="noopener">https://sentry.io/</a></li><li>Vercel: <a href="https://vercel.com/" target="_blank" rel="noopener">https://vercel.com/</a></li><li>Linear: <a href="https://linear.app/" target="_blank" rel="noopener">https://linear.app/</a> Other</li><li>OpenAI blog post “Using Goals in Codex”: <a href="https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex" target="_blank" rel="noopener">https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/cisco" target="_blank">Cisco and OpenAI redefine enterprise engineering with Codex</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">May 27, 2026 &middot; 11:00 UTC</span>
+          </div>
+          <p class="summary"><span>May 27, 2026 Cisco and OpenAI redefine enterprise engineering with Codex By deploying Codex broadly, Cisco made AI-native development a core part of how enterprise software gets built.</span> <span>Contact sales Company size: Enterprise Region: Global, North America Industry: Technology, Services Products: API, Codex Results 95%+ Of new AI features written by Codex Results 10-15x Increase in defect resolution throughput using Codex CLI Results 1,500+ Engineering hours saved per month Loading… For decades, Cisco has built and operated some of the world’s most complex, mission-critical software systems.</span> <span>That approach is already shaping how Cisco builds new products, including AI Defense , where Codex helped compress critical engineering work from several quarters to weeks.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>May 27, 2026 Cisco and OpenAI redefine enterprise engineering with Codex By deploying Codex broadly, Cisco made AI-native development a core part of how enterprise software gets built. Contact sales Company size: Enterprise Region: Global, North America Industry: Technology, Services Products: API, Codex Results 95%+ Of new AI features written by Codex Results 10-15x Increase in defect resolution throughput using Codex CLI Results 1,500+ Engineering hours saved per month Loading… For decades, Cisco has built and operated some of the world’s most complex, mission-critical software systems. As generative AI matured from experimentation to real operational capability, Cisco leaned into what it knows best: scaling advanced technology inside demanding, real-world environments . That approach is already shaping how Cisco builds new products, including AI Defense , where Codex helped compress critical engineering work from several quarters to weeks. Rather than treat Codex as a standalone developer tool, Cisco began integrating it directly into production engineering workflows, exposing it to massive multi-repository systems, C/C++-heavy codebases, and the security, compliance, and governance requirements of a global enterprise. In the process, Cisco helped shape Codex into something fundamentally different from a developer productivity tool: an AI engineering teammate capable of operating at enterprise scale . &quot;I’ve loved discovering new opportunities to integrate Codex into Cisco&#x27;s enterprise software lifecycle workflows. Collaborating with the OpenAI team to get Codex enterprise production ready has been rewarding as well.&quot; —Ching Ho, a member of Cisco&#x27;s engineering leadership Building AI Defense with Codex Cisco’s work on AI Defense shows what that model can look like in practice. AI Defense is Cisco’s end-to-end AI security solution that protects against safety and security risks introduced by AI. Codex was used by Cisco’s team to write the majority of AI Defense and nearly every new feature that Cisco is building. “Features that would have taken several quarters to get into customers’ hands dropped to weeks.” —DJ Sampath, SVP/GM, AI Software and Platform, Cisco This work also reflects Cisco’s broader role in advancing AI security. Cisco is among the leading security organizations working with OpenAI’s Daybreak initiative, which brings together OpenAI models, Codex, and security partners to accelerate cyber defense and continuously secure software. As part of this program, they have governed access to GPT‑5.5‑Cyber, a model for cyber defenders. Cisco also used Codex to help build their Defense Squad, an open-source tool that moved from ideation to the developer community in under one week. Evaluating agentic AI in complex codebases Cisco already runs a mature engineering organization with multiple AI initiatives in flight. What made Codex compelling wasn’t code completion or surface-level automation, but agency . Codex demonstrated the ability to: Understand and reason across large, interconnected repositories Work fluently in complex languages Execute real workflows through CLI-based, autonomous compile-test-fix loops Operate within existing review, security, and governance frameworks By working directly with OpenAI, Cisco engineers were able to give feedback on how these capabilities behaved in real environments, shaping areas like workflow orchestration, security controls, and support for long-running engineering tasks—all of which are critical for enterprise use. Using Codex for critical engineering workflows Once Codex was embedded into everyday engineering work, teams began applying it to some of their most challenging and time-consuming workflows: Cross-repo build optimization : Codex analyzed build logs and dependency graphs across more than 15 interconnected repositories, identifying inefficiencies. The result: a ~20% reduction in build times and more than 1,500 engineering hours saved per month across global environments. Defect remediation at scale (CodeWatch) : Using Codex-CLI, Cisco automated defect repair with iterative, agentic execution on large-scale C/C++ codebases. What once took weeks of manual effort now completes in hours, delivering a 10-15× increase in defect resolution throughput and freeing engineers to focus on design and validation. Framework migrations in days, not weeks : When Splunk teams needed to migrate multiple UIs from React 18 to 19, Codex handled the bulk of repetitive changes autonomously, compressing weeks of work into days and allowing engineers to concentrate on judgment-heavy decisions. “The biggest gains came when we stopped thinking about Codex as a tool and started treating it as part of the team. We use Codex to generate and follow a plan document, allowing the reviewing team to more easily understand both the process and the code generated.” —Ryan Brady, a Principal Engineer in Cisco&#x27;s Splunk group Shaping Codex’s roadmap for the enterprise Cisco provided continuous feedback from real production use that helped OpenAI accelerate Codex’s readiness for large enterprises—particularly in areas like compliance, long-running task management, and integration with existing development pipelines. For Cisco, the collaboration established a repeatable model for adopting next-generation AI: deep technical partnership, real workloads, and leadership alignment from day one . Today, Codex is used across multiple Cisco business units, improving productivity, code quality, and time-to-resolution. Instead of sizing work only by traditional measures of effort, teams are increasingly asking, “How long will that Codex run take?” “Codex has become a meaningful part of how we think about AI-assisted development and operations going forward.” —Brad Murphy, a VP leading Cisco’s Splunk Engineering team Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading Boston Children’s uses AI to unlock new diagnoses May 29, 2026 How Braintrust turns customer requests into code with Codex May 29, 2026 Strengthening societal resilience with Rosalind Biodefense Product May 29, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/warp" target="_blank">Warp’s big bet on building open source with GPT-5.5</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">May 27, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>May 27, 2026 Startup Warp’s big bet on building open source with GPT‑5.5 Warp uses GPT‑5.5 to orchestrate agents across local, cloud, and open-source workflows.</span> <span>As coding agents moved from experiments to everyday engineering workflows, Warp saw the terminal becoming a natural place for developers to work with agents: where commands, context, collaboration, and review already meet.</span> <span>For Warp’s open-source workflows, GPT‑5.5 helps agents reason across larger problem spaces and prepare work for human review.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>May 27, 2026 Startup Warp’s big bet on building open source with GPT‑5.5 Warp uses GPT‑5.5 to orchestrate agents across local, cloud, and open-source workflows. Start building with OpenAI (opens in a new window) Company size: Startup Region: North America Industry: Technology Products: API 30% Fewer tokens per task with GPT-5.5 90% Of internal pull requests created with agents Loading… Warp ⁠ (opens in a new window) started as a modern terminal, earning early love from developers for its speed, collaboration features, command workflows, and AI-native interface. As coding agents moved from experiments to everyday engineering workflows, Warp saw the terminal becoming a natural place for developers to work with agents: where commands, context, collaboration, and review already meet. When Warp open-sourced ⁠ (opens in a new window) its terminal client this year, with OpenAI as the founding sponsor of the repo, the company also introduced Open Agentic Development: a model for building software in the open. Humans define objectives and supervise outcomes, while agents plan work, write code, test changes, and open pull requests. Recent improvements in frontier AI models helped make that kind of agent orchestration practical at scale. For Warp’s open-source workflows, GPT‑5.5 helps agents reason across larger problem spaces and prepare work for human review. In internal benchmarks, GPT‑5.5 used 30% fewer tokens per agentic coding task than GPT‑5.4, helping Warp improve efficiency as it scales long-running agent workflows. Today, Warp has nearly 1 million developers and is used by more than 56% of the Fortune 500. In Warp’s own engineering organization, agents now co-create around 90% of the company’s pull requests, giving the team a firsthand view into what long-running agent workflows need to scale: observability, coordination, memory, and human review. “We think we can ship a better Warp, more quickly, by working with our community to supervise a fleet of agents. OpenAI models help make that sustainable for the long-horizon coding work these systems require.” —Zach Lloyd, CEO The next generation of collaborative software development Open Agentic Development is Warp’s bet on where software development is heading. Agents will write code, and developers will specify intent, verify the outputs, and decide what ultimately ships. Those choices become reusable context for future agents, allowing the system to improve over time. If the orchestration is good enough, Warp believes agents can produce more consistent code than a loosely coordinated group of humans. Open source then becomes less about humans contributing implementation work directly, and more about contributing the product judgment and shared vision that only humans can provide. Persistent, parallelized agents need components like shared memory, reproducible environments, evaluation systems, permissions, and ways to coordinate work. Warp built Oz, its cloud orchestration platform, to manage agents across local and cloud environments. For Open Agentic Development workflows, Warp uses GPT‑5.5 for agents that help manage open-source contributions, according to the company. OpenAI models have also performed strongly in Warp’s internal evaluations for long-horizon engineering tasks involving reasoning, planning, code generation, and code review. Agentic orchestration with Oz Oz ⁠ (opens in a new window) acts as a control plane for deploying and coordinating agents across local and cloud environments. Developers can launch agents through a web interface, select predefined skills and environments, choose the model and hosting configurations, and monitor long-running workflows centrally as they execute. Once launched, agents can continue running remotely while developers inspect live sessions, monitor execution state, review generated artifacts, and hand workflows back and forth between cloud and local environments without losing context. Oz also supports recurring workflows, allowing agents to operate like scheduled cron jobs. As agents accumulate more state over time, maintaining focus and preserving important decisions becomes increasingly difficult. Oz uses techniques like context compaction, persistent memory, and dedicated subagents for tasks like code search and file analysis to help agents stay reliable across extended workflows. OpenAI models play several roles inside Oz. For the Warp agent, tasks are classified by type and difficulty, with more complex coding and reasoning work routed to stronger model configurations. GPT‑5.5 is part of the OpenAI model mix Warp uses for demanding agentic coding workflows. Warp also uses OpenAI models as LLM-as-a-judge systems inside its evaluation pipelines. “We’ve found that OpenAI models regularly provide frontier-level intelligence while taking fewer tokens and turns to complete the same tasks. The models are especially strong for coding tasks that require reasoning across large problem spaces.” —Zach Lloyd, CEO Building the infrastructure for agentic development For Warp, Open Agentic Development and the Oz orchestration platform are ultimately part of the same long-term bet: that software development is evolving from individual interactions with coding assistants into systems for coordinating large numbers of persistent agents over time. So far, that bet seems to be paying off. Warp’s ARR grew 35x last year, with enterprise revenue up more than 500% since Q4 2025. The company says much of that growth is coming from organizations looking for more flexible ways to scale agent workflows. The underlying workflows around agentic development are still early and highly experimental. By open sourcing its terminal client and building in public with Open Agentic Development workflows, Warp hopes developers can help shape how orchestration, supervision, and verification systems evolve as agents become more autonomous over time. “No one knows exactly what the future of agentic development will look like,” Lloyd says. “We think the community ought to be able to participate in shaping it.” OpenAI &lt;3 startups Join the community Start building (opens in a new window) Keep reading View all Parloa builds service agents customers want to talk to Startup May 7, 2026 Gradient Labs gives every bank customer an AI account manager Startup Apr 1, 2026 How Descript engineers multilingual video dubbing at scale Startup Mar 6, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://newsletter.pragmaticengineer.com/p/state-of-the-job-market-2026" target="_blank">State of the software engineering job market in 2026</a></h2>
+          <div class="meta">
+            <span class="source">pragmatic-engineer</span>
+            <span class="date">May 26, 2026 &middot; 18:10 UTC</span>
+          </div>
+          <p class="summary"><span>A year ago, most engineers found it harder to get responses to job applications, while hiring managers found it harder to hire than before.</span> <span>More software engineering job postings in the UK and the US, and a decline in Germany and France.</span> <span>“Top” tech companies are hiring 20% more vs a year ago.</span> <span>Meta went on a monster hiring spree for the last two years until layoffs, last week.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Last year, I described the tech jobs market as “weird”, based on reports from both job seekers and hiring managers. In this deepdive, we dig into what – if anything – has changed in 2026. A year ago, most engineers found it harder to get responses to job applications, while hiring managers found it harder to hire than before. We’ve now spent two months gathering fresh, never-before-shared data from a range of sources to find out if that paradoxical situation still exists or not. We collected the data with software engineer Jessica Salmon – who’s joined the team as a tech industry analyst. A big thank you to partner teams who shared exclusive details for this deepdive: TrueUp : a platform that scans every open job in Big Tech, top startups, and scaleups, typically paying in the top two tiers of the trimodal software engineering compensation model. Thanks, Amit Taylor. Workforce.ai , built by Live Data Technologies, which monitors 1M+ job changes and 300M+ employment validations each month across companies, roles, levels, functions, industries, and locations. Special thanks to Alex Hamilton for his input. Today, we cover: Software engineering recruitment: trending up, mostly. More software engineering job postings in the UK and the US, and a decline in Germany and France. “Top” tech companies are hiring 20% more vs a year ago. Big Tech and publicly-traded companies. Meta went on a monster hiring spree for the last two years until layoffs, last week. Microsoft and Amazon were flat, while Google and Apple consistently hired devs. Stripe, Shopify, and Atlassian all hired more than Big Tech. Who’s hiring the most software engineers? Apple, Amazon, and IBM are the top 3 by number of positions listed, while Meta dropped off the top 20 with layoffs there. The fastest-growing companies seem to be in fintech, observability, and security. AI engineering: explosive demand. Most tech companies seem to be prioritizing AI engineering recruitment over software engineers. Observability companies appear to be hiring fastest. Who’s hiring the most AI engineers? Apple, Google, and TikTok have the most openings, and many larger tech companies have 50-100% more AI engineering job listings than a year ago. Is AI engineering replacing software engineering hiring? The data doesn’t say, but are the basics of AI engineering becoming a baseline skill for software engineering job candidates? For more on the tech jobs market of 2025, check out last year’s deepdive. The bottom of this article could be cut off in some email clients. Read the full article uninterrupted, online. Read the full article online 1. Software engineering recruitment: trending up, mostly Top tech companies hiring more, slowly but surely TrueUp tracks open positions at top-paying companies, which are usually US-based. Among this group, recruitment of software engineers has been steadily increasing since March 2023: US growth, but less in Canada and Europe Let’s take a look at broader industry trends via software developer jobs listed on Indeed.com, the world’s largest job aggregator site. As a “jobs aggregator”, Indeed not only displays paid-for ads but also crawls many other career sites and lists the vacancies. Looking at trends over the last five years, the number of software engineering jobs listed is still lower than in May 2021: Obviously, 2021 was the pandemic which created a commercial boom for the tech industry, so it’s not exactly an ideal comparison. Zooming into the last twelve months shows encouraging growth signs: Outside of the US, let’s check out software engineering vacancy trends, per Indeed: In this list, the US and the UK are the only two countries where vacancies are up; Canada is flat, while Germany and France have seen declines. To me, it suggests US-headquartered companies are hiring more devs, mostly in the US and some in the UK, whereas European-headquartered companies are more cautious about recruitment. The software engineering industry still grows Let’s ask how much the software engineer population has grown or shrunk in the last seven years. Here are some numbers from profiles, as tracked by Workforce.ai: Let’s zoom into this chart: There are a few interesting details: Hiring mostly occurs between the months of March and June, and there’s very little net growth in the second half of the year. This makes sense as tech companies set annual headcount budgets at the beginning of the year and commence hiring from then, with most hires evidently made in the following months. Hiring budgets are usually spent by mid-year. The industry seemingly shrank in 2023. That year, it was only in Q2 that more software engineers were hired than left their jobs. It was the worst period for software engineers in two decades. …and also in 2024 and 2025 during Q3. Mass layoffs mostly happened between August and October, the charts show. Big Tech and publicly-traded companies Big Tech: modest jobs growth – but not at Meta Looking at the two years since May 2024, of the five largest tech companies, only Meta grew headcount aggressively: In that time, Meta increased its headcount by nearly 20%, so perhaps its recent 10% layoffs could be considered as not a total surprise. As for other tech giants, their software engineering headcount also changed in the last two years: Apple: +10% Google: +5% Microsoft: -1.1% Amazon: -1.3% Visualizing this: Apple and Google seem the most “stable” places when it comes to growing the software engineering function; Apple has not had mass layoffs for decades. In contrast, Meta is the most volatile place to work; hiring devs quickly and then letting them go. Elsewhere, Amazon and Microsoft are slowly employing more software folks. Meta’s hire-then-fire rollercoaster Meta warrants a closer look, where morale is reportedly as low as it’s ever been right now, due to layoffs of 10% of staff, while thousands of software engineers have been reassigned to manual data labeling from previous product development or infra work. From 2004 until 2022, Meta never did mass layoffs, but in the past three years there have been three sizeable redundancy rounds (at the end of 2022, early 2024, and last week), with the most rapid hiring growth of any tech giant sandwiched in between: Before 2022, Meta ranked with Google as one of the most stable places to work in tech. Safe to say, the company is currently the riskiest place to be in job-security terms – even if Mark Zuckerberg has said there will be no more mass layoffs this year. Publicly-traded tech companies: mostly flat recruitment A couple of years ago, larger tech companies were hiring even more than most of Big Tech. Software engineering headcount grew in the past two years at Shopify (+36%), Stripe (+29%), Atlassian (+23%), Snap (+15%) and Spotify (+6%). But that’s changed recently. In the past year, headcount growth has slowed at Stripe (+15%), Atlassian (+11%), Shopify (+6%), Snap (+2%), and Spotify (+1%), This data does not capture Atlassian letting go of 10% of staff this month , and Snap laying off 16% in April . Among this group, Stripe stands out as a place that keeps hiring at a higher pace than nearly all of Big Tech. Atlassian and Shopify have grown their software engineering headcount faster than Google, Microsoft, and Amazon did in the past two years. Who’s hiring the most software engineers? So, which companies are hiring the most? Let’s look at this via open positions and growth comparisons. Companies with the most open roles “Top” tech companies with the largest number of software engineering openings: Compared to last year: Observations: The top three are unchanged : It’s still Apple, IBM, and Amazon New entrants to the top 20: Accenture (consulting), Tesla, Cadence (hardware), Hewlett Packard Enterprise (HPE), and SpaceX. Dropouts: Meta and Oracle. Last year, Oracle was #4 on the list with 1,396 open software engineering roles, but the company announced up to 30,000 layoffs in March. Also no longer leading in jobs available are Speechify, NTT Data, Meta, and DXC Technology. Big Tech companies hiring more than last year : Apple and Google, which has +62% more engineering roles advertised than last year. Big companies hiring less vs last year : Meta, Oracle, and TikTok all have much fewer openings listed. For Meta and Oracle, there’s little surprise given recent layoffs. TikTok was in US regulatory limbo until January, when a new TikTok USDS joint venture was established. Hardware companies hiring more software talent : Micron, Qualcomm, and AMD all have considerably more software engineering openings than last year. Where are the “top” software engineering jobs? Most of these jobs are in the US, just as most companies leading in recruitment numbers are US-headquartered. Other leading locations for jobs are India, the UK, and Canada: Fastest-growing: fintech and security Then there are large companies where recruitment has been among the fastest anywhere in software engineering: Software engineering headcount growth at some companies was significant over the past two years: Ramp (fintech): +94% Wiz (security): +84% Datadog (observability): +68% Rippling (fintech): +55% Figma (design tooling): +41% Netflix (streaming): +37% Of this group, Datadog, Figma, and Netflix are publicly traded, and the largest by headcount: Datadog : AI agents are driving demand for observability through the roof, and Datadog is the leader of the pack. There’s demand to expand their infra and offerings. AI companies are also customers: OpenAI famously – or infamously! – spent around $170M on Datadog in 2025. Figma : the design tooling company went public in 2025 and is heavily investing in products related to AI, such as Figma AI. Netflix : the streaming behemoth is transitioning from “just” being a video streamer to becoming a broader entertainment platform, doing live events, advertising, gaming, and more. We did a podcast with Netflix CTO, Elizabeth Stone, in 2025 about Netflix’s engineering culture . AI engineering: explosive demand AI engineering demand is only going in one direction: upwards, at a fierce tick. Last September, our previous State of the Tech Job Market report found that AI Engineering was the hottest segment in tech for job listings growth. Today, the trend seems to continue:</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/May/26/copilot-cowork-exfiltrates-files/#atom-everything" target="_blank">Microsoft Copilot Cowork Exfiltrates Files</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">May 26, 2026 &middot; 15:36 UTC</span>
+          </div>
+          <p class="summary"><span>Microsoft Copilot Cowork Exfiltrates Files The biggest challenge in designing agentic systems continues to be preventing them from enabling attackers to exfiltrate data.</span> <span>Since OneDrive can create pre-authenticated download links, a successful prompt injection could cause those links to be leaked, allowing files to be downloaded by the attacker.</span> <span>Via Hacker News Tags: microsoft , security , ai , prompt-injection , generative-ai , llms , exfiltration-attacks , lethal-trifecta</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Microsoft Copilot Cowork Exfiltrates Files The biggest challenge in designing agentic systems continues to be preventing them from enabling attackers to exfiltrate data. In this case Microsoft Copilot Cowork (yes, that&#x27;s a real product name ) was allowing agents to send emails to the user&#x27;s own inbox without approval... but those messages were then displayed in a way that could leak data to an attacker via rendered images: Because these messages can contain external images that trigger network requests to external websites, data can be exfiltrated when a user opens a compromised message sent by the agent. Since OneDrive can create pre-authenticated download links, a successful prompt injection could cause those links to be leaked, allowing files to be downloaded by the attacker. Via Hacker News Tags: microsoft , security , ai , prompt-injection , generative-ai , llms , exfiltration-attacks , lethal-trifecta</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-ai-how-the-engineer-behind" target="_blank">🎙️ How I AI: How the engineer behind Claude Cowork actually uses Claude Cowork &amp; What launched at Google I/O 2026</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">May 25, 2026 &middot; 15:02 UTC</span>
+          </div>
+          <p class="summary"><span>Biggest takeaways: Gemini 3.5 Flash rivals leading frontier coding models in Google’s benchmarks while running four times faster.</span> <span>If the benchmarks hold in practice, this speed advantage could shift the coding agent landscape toward Google’s tools.</span> <span>Antigravity 2.0 brings Google’s IDE to feature parity with Claude Code and Codex—but it’s playing catch-up.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>What launched at Google I/O 2026 (30-minute day 1 recap) Listen now on YouTube<ul><li>Spotify</li><li>Apple Podcasts ered analytics into your product Claire breaks down the biggest launches from Google I/O 2026—from Gemini 3.5 Flash and Antigravity 2.0 to Google AI Studio, Omni, Flow, Stitch, and Pomelli. , she tests the tools live, shares what actually works, and explains where Google is catching up, where it may be pulling ahead, and why its launch-to-availability gap is still such a problem for builders. Biggest takeaways: Gemini 3.5 Flash rivals leading frontier coding models in Google’s benchmarks while running four times faster. Google positions this as their agentic coding model, optimized for tasks requiring both high reasoning and rapid execution. If the benchmarks hold in practice, this speed advantage could shift the coding agent landscape toward Google’s tools. Antigravity 2.0 brings Google’s IDE to feature parity with Claude Code and Codex—but it’s playing catch-up. The update includes projects (folder-constrained workspaces), scheduled tasks on Cron, and subagents for specific tasks. The UI looks nearly identical to Codex, and the features match what Anthropic and OpenAI shipped months ago. The advantage is speed: if Gemini 3.5 Flash delivers, developers might choose Antigravity for well-scoped tasks that need to ship fast. The /grill-me slash command is Antigravity’s aggressive take on Claude Code’s polite clarification tool. Instead of gently asking questions, /grill-me promises to interrogate your requirements and get to the heart of what you’re building. Whether this is actually more hardcore or just clever branding remains to be seen, but it signals Google’s attempt to differentiate on personality. Google AI Studio now integrates directly with Workspace apps—or it’s supposed to. The promise: build no-code apps that read Sheets, draft Gmails, organize Drive, and see Calendar without setup. Claire couldn’t get it to work during testing. If it delivers, it would capture internal enterprise productivity use cases and personal assistant workflows where Google already owns the data layer. Omni is Google’s answer to Sora, focused on longer, production-quality video. The model creates 10-second videos (versus Sora’s 6 or 7 seconds), maintains character consistency across edits, and allows conversational editing. Claire tested it by animating her kid’s drawing, and the output was impressive. The real power will be in production workflows where you iterate on the same characters and scenes multiple times. Flow is Google’s production-grade video editor built on Omni. It lets you define characters, create avatars, and edit videos conversationally while maintaining cinematic quality. The tool targets creators and marketers who need consistent, high-quality video at scale. Claire tried creating an avatar of herself, but the feature failed—a recurring theme throughout I/O announcements. Stitch and Pomelli are Google’s design and marketing tools. Stitch is like in-browser Figma with streaming design generation, inline AI edits, and code sync. Pomelli creates brand books, campaign assets, and websites from a URL. Both show promise but suffer from “Google slop,” the generic aesthetic of AI-generated design. Gemini’s multimodal capabilities remain its strongest differentiator. For work involving files, videos, or transformative work across modalities (document to video, image to text), Gemini models excel. Claire uses them for generating blog posts from podcast videos and animating drawings. The 3.5 family continues this strength; for these use cases, Gemini’s multimodal performance is best-in-class. The biggest problem: half the features don’t actually work yet. Claire encountered broken features, missing integrations, and “coming soon” disclaimers throughout testing. Workspace integration in AI Studio? Couldn’t access it. Avatar creation in Flow? Didn’t work. When you announce features that aren’t ready, people lose patience and stop trusting your roadmap. Blog: How I AI: My Live Test of Google I/O’s New AI Tools—From Gemini 3.5 Flash to Omni Video: <a href="https://www.chatprd.ai/how-i-ai/google-io-new-ai-tools-gemini-35-flash-to-omni-video" target="_blank" rel="noopener">https://www.chatprd.ai/how-i-ai/google-io-new-ai-tools-gemini-35-flash-to-omni-video</a> If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything. Catch you next week, Lenny P.S. Want every new episode delivered the moment it drops? Hit “Follow” on your favorite podcast app.</li></ul></p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-the-engineer-behind-claude-cowork" target="_blank">How the engineer behind Claude Cowork actually uses Claude | Felix Rieseberg (Anthropic)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">May 25, 2026 &middot; 12:03 UTC</span>
+          </div>
+          <p class="summary"><span>th Introduction to Felix Rieseberg Felix’s role at Anthropic The multiple tabs in Claude and why they exist Using Claude Cowork to design a new house using floor plans When to use Opus versus Sonnet 4.6 Building an interactive 3D furniture planner Using your email as a source of truth for personal inventory The anti-to-do list: going one abstraction layer up Introduction to live artifacts Building a personal dashboard with live data Being polite to Claude (and why it matters for your humanity) Claude interaction tips Looking at the daily dashboard How live artifacts work with connectors Redesigning the dashboard The biggest gap: people don’t know what problems AI can solve The reverse interview Making latency delightful through asynchronous design The redesigned dashboard AI should free up your creative energy Building a $20 hardware Claude buddy Why kids are magical AI users Recap and final thoughts<ul><li>Claude Cowork: <a href="https://www.anthropic.com/product/claude-cowork" target="_blank" rel="noopener">https://www.anthropic.com/product/claude-cowork</a></li><li>Claude Code: <a href="https://claude.ai/code" target="_blank" rel="noopener">https://claude.ai/code</a></li><li>Claude for Chrome: <a href="https://code.claude.com/docs/en/chrome" target="_blank" rel="noopener">https://code.claude.com/docs/en/chrome</a></li><li>Claude Desktop: <a href="https://claude.ai/download" target="_blank" rel="noopener">https://claude.ai/download</a></li><li>Live Artifacts: <a href="https://support.claude.com/en/articles/14729249-use-live-artifacts-in-claude-cowork" target="_blank" rel="noopener">https://support.claude.com/en/articles/14729249-use-live-artifacts-in-claude-cowork</a></li><li>Connectors (Spotify, Gmail, Calendar, Notion): <a href="https://claude.ai/settings/connectors" target="_blank" rel="noopener">https://claude.ai/settings/connectors</a></li><li>Slack: <a href="https://slack.com/" target="_blank" rel="noopener">https://slack.com/</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/grupo-folha-grupo-uol-partnership" target="_blank">OpenAI, Grupo Folha and Grupo UOL announce strategic content partnership</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">May 25, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>May 25, 2026 Global Affairs OpenAI, Grupo Folha, and Grupo UOL announce strategic content partnership OpenAI&#x27;s first media partnership in Brazil will bring Folha de S.Paulo and UOL&#x27;s journalism to ChatGPT.</span> <span>Loading… Starting today, more than 900 million weekly active ChatGPT users around the world will be able to access high-quality journalism and see summaries based on Folha de S.Paulo and UOL&#x27;s reporting.</span> <span>This is OpenAI’s first media partnership in Brazil and grounded in a broader effort to work collaboratively with news organizations around the world.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>May 25, 2026 Global Affairs OpenAI, Grupo Folha, and Grupo UOL announce strategic content partnership OpenAI&#x27;s first media partnership in Brazil will bring Folha de S.Paulo and UOL&#x27;s journalism to ChatGPT. Loading… Starting today, more than 900 million weekly active ChatGPT users around the world will be able to access high-quality journalism and see summaries based on Folha de S.Paulo and UOL&#x27;s reporting. This is OpenAI’s first media partnership in Brazil and grounded in a broader effort to work collaboratively with news organizations around the world. By partnering with publishers across multiple markets, including in the United States, UK, France, Germany and now Brazil, OpenAI aims to integrate trusted reporting into AI-powered experiences and help bring journalism into ChatGPT in ways that emphasize attribution, transparency, and links back to original sources. According to Sérgio Dávila, Editor-in-Chief of Folha de S.Paulo, “The interest of an artificial intelligence giant like OpenAI in displaying content produced by Folha de S.Paulo and UOL only reinforces the importance of professional journalism.” “Folha de S.Paulo and UOL are among Brazil&#x27;s most relevant sources of original reporting. By making their journalism accessible in ChatGPT, we want to bring more useful, timely, and locally relevant answers to ChatGPT, while supporting the broader news ecosystem,” said Varun Shetty, VP of Media Partnerships at OpenAI. This partnership creates opportunities for Folha de S. Paulo and UOL to reach new global audiences and will also help users discover credible information on ChatGPT. “AI will define the next era of the news industry and Folha wants to help shape that future. By partnering with OpenAI, we are putting Folha at the forefront of this transformation and creating new ways to expand the reach, relevance, and impact of trusted journalism,” says Carlos Ponce de Leon, Folha de S.Paulo&#x27;s Co-CEO. “AI platforms benefit from reliable sources for news. It is only natural that they partner with the creators of high-quality content for that,” says Paulo Samia, CEO of UOL. For Murilo Garavello, UOL Content Director, “We want our journalism in every environment Brazilians use—and that truthful information can be disseminated as widely as possible.” Brazil is currently one of the largest markets for ChatGPT globally, with more than 50 million monthly active users and around 140 million messages exchanged per day. Through this partnership, Grupo Folha and Grupo UOL will also gain access to Codex, ChatGPT Enterprise, and API to explore new ways AI can support their journalism, develop innovative products and features for readers, and enhance internal workflows and business operations. Partnerships 2026 Author OpenAI Keep reading View all Election information and safeguards in 2026 Global Affairs May 27, 2026 The next phase of OpenAI’s Education for Countries Global Affairs May 20, 2026 Introducing OpenAI for Singapore Global Affairs May 19, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/gartner-2026-agentic-coding-leader" target="_blank">OpenAI named a Leader in enterprise coding agents by Gartner</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">May 22, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>May 22, 2026 AI Adoption OpenAI named a Leader in enterprise coding agents by Gartner Read the report Contact sales Loading… OpenAI has been recognized as a Leader in the Gartner® Magic Quadrant™ for Enterprise AI Coding Agents.</span> <span>Since Gartner&#x27;s evaluation earlier this year, we have significantly improved Codex with the introduction of GPT‑5.5 ⁠ , as well as stronger tool use, faster performance, and deeper support for enterprise software development workflows.</span> <span>2026 Gartner Magic Quadrant™ for Enterprise AI Coding Agents.</span> <span>Source: Gartner, April 2026.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>May 22, 2026 AI Adoption OpenAI named a Leader in enterprise coding agents by Gartner Read the report Contact sales Loading… OpenAI has been recognized as a Leader in the Gartner® Magic Quadrant™ for Enterprise AI Coding Agents. We believe this evaluation reflects our progress in supporting enterprise-scale deployments of Codex, which is used by more than 4 million people each week and companies including Cisco ⁠ , Datadog ⁠ , Dell Technologies ⁠ , and NVIDIA ⁠ . Since Gartner&#x27;s evaluation earlier this year, we have significantly improved Codex with the introduction of GPT‑5.5 ⁠ , as well as stronger tool use, faster performance, and deeper support for enterprise software development workflows. 2026 Gartner Magic Quadrant™ for Enterprise AI Coding Agents. Source: Gartner, April 2026. Software development is becoming more agentic. Developers are moving beyond autocomplete to delegating complex tasks to Codex. Codex can understand large codebases, use tools, make changes, run tests, and prepare work for human review. For enterprises, the opportunity is speed with control: helping teams build faster while maintaining the governance, security, and auditability they need. In the report, Gartner recognized Codex’s strengths across its Ability to Execute and Completeness of Vision. Gartner recognized Codex’s strengths across agentic software development, enterprise governance, sandboxing, and flexible deployment options. Gartner highlighted Codex’s broad developer surface—including the Codex app, IDE extensions, CLI, SDKs, and cloud-based orchestration—as well as enterprise controls such as approval gates, RBAC, customizable policies, OS-level sandboxing, and auditable workspace governance. We believe these advantages helped make OpenAI the right partner for Cisco, which used Codex to develop the majority of its AI Defense security platform, shortening delivery time from several quarters to weeks. Cisco’s SVP of Products for AI Software and Platform, DJ Sampath, shares how Codex is changing the way Cisco builds software. In our view, the best coding agents will combine frontier model capabilities with a deeply integrated product experience. That&#x27;s why we are building Codex to reason through complex tasks, use developer tools, operate in controlled environments, and provide the governance, security, and control organizations need to deploy AI across the software development lifecycle. “Enterprises are no longer asking only whether AI can write quality code; they are asking how to safely deploy agentic systems at scale as a new operating layer for their businesses. To us, the Gartner recognition reflects the momentum we’re seeing with Codex, now one of OpenAI’s fastest-growing enterprise products, as it expands from coding assistance to broader enterprise workflows.” —Denise Dresser, CRO, OpenAI This recognition comes as Codex continues to improve for enterprises, with recent updates including Codex Security and GPT‑5.5‑Cyber ⁠ , mobile support ⁠ , Remote SSH for managed development environments ⁠ , scoped programmatic access tokens and hooks ⁠ , support for HIPAA-compliant use ⁠ , Codex on Amazon Bedrock ⁠ , and expanded deployment support through Codex Labs and GSI partners ⁠ including Accenture, Capgemini, Cognizant, Infosys, PwC, and TCS. You can read the Gartner report ⁠ today. For enterprises ready to try Codex, there’s never been a better time to switch. Until June 12, eligible enterprise accounts can contact our sales team ⁠ to request two months of free Codex usage for new users, making it easier to bring Codex to more builders across your company. Codex 2026 Author OpenAI Gartner, Magic Quadrant for Enterprise AI Coding Agents, Phillip Walsh, Matt Basier, Keith Holloway, Nitish Tyagi, May 20, 2026. Gartner and Magic Quadrant are trademarks of Gartner, Inc., and/or its affiliates. Gartner does not endorse any company, vendor, product or service depicted in its publications, and does not advise technology users to select only those vendors with the highest ratings or other designation. Gartner publications consist of the opinions of Gartner’s business and technology insights organization and should not be construed as statements of fact. Gartner disclaims all warranties, expressed or implied, with respect to this publication, including any warranties of merchantability or fitness for a particular purpose. Keep reading View all The five AI value models driving business reinvention AI Adoption Mar 5, 2026 Introducing the Adoption news channel AI Adoption Mar 5, 2026</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 95</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
