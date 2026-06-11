@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-06-11</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-06-11</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/supporting-eu-trustworthy-ai-ecosystem" target="_blank">Supporting Europe’s work in ensuring a trustworthy AI ecosystem</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jun 11, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>June 11, 2026 Global Affairs Supporting Europe’s work in ensuring a trustworthy AI ecosystem OpenAI announces support for the EU Code of Practice on Transparency of AI-generated content, building on years of provenance work.</span> <span>Today, following publication of the European Commission’s Code of Practice on Transparency of AI-Generated Content ⁠ (opens in a new window) , OpenAI is announcing its support for the Code and the ambition behind it.</span> <span>Our support builds on years of internal research, product development, and cooperation with the wider ecosystem to strengthen provenance for AI-generated content.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 11, 2026 Global Affairs Supporting Europe’s work in ensuring a trustworthy AI ecosystem OpenAI announces support for the EU Code of Practice on Transparency of AI-generated content, building on years of provenance work. Loading… People are using AI to create and edit content in new ways. As these tools become more capable and more widely used, people should have context about the content they see online. Today, following publication of the European Commission’s Code of Practice on Transparency of AI-Generated Content ⁠ (opens in a new window) , OpenAI is announcing its support for the Code and the ambition behind it. The Code is an important step in implementing the EU AI Act and building a more transparent digital ecosystem. Our support builds on years of internal research, product development, and cooperation with the wider ecosystem to strengthen provenance for AI-generated content. OpenAI has been developing and adopting provenance standards since 2024, when we began adding C2PA metadata to our DALL-E 3 image generation tool. Since then, we have continued to strengthen provenance through improved marking and detection methods, new research, and the release of our first public verification tool . Drawing on years of expertise, we contributed to the development of this Code alongside hundreds of other stakeholders to help ensure a trustworthy AI ecosystem. This builds on our broader approach to AI governance in Europe. In 2025, OpenAI was the first US company to sign the EU’s General-Purpose AI Code of Practice ⁠ (opens in a new window) , reflecting our belief that clear, workable rules can help AI develop responsibly while giving companies the certainty to keep building. We support this new Code in the same spirit. Advancing transparency of AI-generated content is an ecosystem-wide effort, requiring contribution from actors all along the value chain. The EU AI Act and the Code recognize this, and we are committed to doing our part by complying with the requirements that apply to our relevant products. Why provenance matters As AI tools become a part of how people build, imagine, and share, it’s important that people can understand where content comes from and interpret it with confidence. Provenance signals can help by giving people context about content’s source, how it was created or edited, and whether it is what it claims to be. Provenance can also help protect the digital ecosystem by making it easier to detect disinformation campaigns and support election integrity . Effective, reliable and robust provenance methods should be built collectively and work across the ecosystem. That is why we work with coalitions like C2PA, which brings together news organizations, device manufacturers, online platforms, and AI providers to advance interoperable standards. C2PA metadata is an important foundation for provenance. It helps content carry information about where it came from, how it was created or edited, and who signed that information. But metadata is not foolproof. It can be stripped, lost through uploads and downloads, or broken by transformations like file format changes, resizing, or screenshots. OpenAI’s multi-layered approach to provenance To make provenance more resilient, OpenAI takes a multi-layered approach that combines different signals, product safeguards, and collaboration across the wider ecosystem. Our current work includes: C2PA Content Credentials ⁠ (opens in a new window) for images: We began adding C2PA metadata to images created and edited by DALL·E 3 in ChatGPT and the OpenAI API, and have continued expanding provenance signals across OpenAI-generated images. Multiple signals for OpenAI-generated images: Images generated with ChatGPT, Codex, and the OpenAI API include both C2PA metadata and SynthID watermarks. Metadata can carry richer information, while watermarking can help preserve a signal across contexts. A public verification experience: openai.com/verify lets people check whether supported images contain provenance signals associated with OpenAI-generated images. Contributions to open standards. In 2024, OpenAI joined the C2PA Steering Committee , a cross-industry effort involving software companies, camera manufacturers, media organizations, and online platforms. Product safeguards: Provenance complements policies, classifiers, reporting channels, and enforcement processes that reduce deceptive uses of AI-generated content, including likeness misuse and election-related deception. Making content transparency work in practice While provenance is useful, it is still a nascent field. Signals can be lost as content moves online: metadata can be removed, watermarks can degrade, and labels only help where people encounter content. Advancing the reliability, robustness and interoperability of provenance techniques still requires significant work and cooperation among the ecosystem. The Code of Practice sets the right direction: a high level of ambition to advance provenance techniques. As it is implemented, it should stay grounded in methods that work in practice and flexible enough to reflect the limitations of current techniques. OpenAI will keep strengthening content transparency across our products, contributing to the development of interoperable standards, and improving verification tools. We look forward to working with the AI Office, Member States, and the wider AI community to build a safer, more transparent AI ecosystem. 2026 Author OpenAI Keep reading View all PRC-linked influence operations are targeting AI debates in the US Global Affairs Jun 10, 2026 Industrial policy for the Intelligence Age Industrial policy for the Intelligence Age Global Affairs Jun 9, 2026 Biodefense in the Intelligence Age Global Affairs Jun 4, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/openai-on-oracle-cloud" target="_blank">Access OpenAI models and Codex through your Oracle cloud commitment</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jun 10, 2026 &middot; 20:00 UTC</span>
+          </div>
+          <p class="summary"><span>June 10, 2026 Company Access OpenAI models and Codex through your Oracle cloud commitment Use your existing Oracle cloud commitment to give teams access to OpenAI’s most advanced models and Codex, without creating a new purchasing path.</span> <span>To help make that happen, OpenAI and Oracle are partnering to make OpenAI frontier models and Codex easier to access for Oracle Cloud Infrastructure (OCI) customers.</span> <span>Partnerships 2026 Codex API Platform Author OpenAI Keep reading View all Confidential submission of draft S-1 to the SEC Company Jun 8, 2026 Built to benefit everyone: our plan Company Jun 8, 2026 Introducing the OpenAI Economic Research Exchange Company Jun 8, 2026</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 10, 2026 Company Access OpenAI models and Codex through your Oracle cloud commitment Use your existing Oracle cloud commitment to give teams access to OpenAI’s most advanced models and Codex, without creating a new purchasing path. Loading… Enterprises often want to deploy AI through the procurement processes and governance frameworks they already trust. To help make that happen, OpenAI and Oracle are partnering to make OpenAI frontier models and Codex easier to access for Oracle Cloud Infrastructure (OCI) customers. In the coming weeks, Oracle customers will be able to apply eligible Oracle Universal Credits toward OpenAI models and Codex through OCI. This gives customers a path to access OpenAI models under their existing purchasing workflow and cloud commitment. With OpenAI models, teams can build AI applications, analyze complex information, automate workflows, and create new customer and employee experiences. For organizations with existing Oracle commitments, the partnership can help align AI adoption with planned cloud investments and established enterprise processes. The goal is to reduce friction for teams that are ready to bring advanced AI into their businesses, while meeting customers where they already manage critical technology decisions. By expanding access through OCI, OpenAI and Oracle are making it easier for more enterprises to move from AI ambition to production impact. Availability will begin in the coming weeks. Contact your Oracle sales representative for details, timing, and availability. Partnerships 2026 Codex API Platform Author OpenAI Keep reading View all Confidential submission of draft S-1 to the SEC Company Jun 8, 2026 Built to benefit everyone: our plan Company Jun 8, 2026 Introducing the OpenAI Economic Research Exchange Company Jun 8, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2606.12040v1" target="_blank">A Lightweight Multi-Agent Framework for Automated Concrete Barrier Design</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Jun 10, 2026 &middot; 13:06 UTC</span>
+          </div>
+          <p class="summary"><span>The design of reinforced concrete highway barriers is a safety-critical process that requires strict compliance with regulatory provisions such as the AASHTO-LRFD bridge design guidelines.</span> <span>To address these challenges, this study proposes a novel &quot;generation-evaluation-optimization&quot; closed-loop framework for automated concrete barrier design using the multi-agent orchestration capabilities of AutoGen.</span> <span>Keywords: Structural Engineering; Multi-Agent Systems; Large Language Models; Concrete Barrier Design; AutoGen; Design Automation.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>The design of reinforced concrete highway barriers is a safety-critical process that requires strict compliance with regulatory provisions such as the AASHTO-LRFD bridge design guidelines. Current engineering practice relies heavily on manual, iterative, and heuristic calculations to satisfy complex nonlinear material and mechanics constraints. Although Large Language Models (LLMs) demonstrate strong generative capabilities, their direct application to structural engineering remains limited by hallucination risks and insufficient physical grounding. To address these challenges, this study proposes a novel &quot;generation-evaluation-optimization&quot; closed-loop framework for automated concrete barrier design using the multi-agent orchestration capabilities of AutoGen. Experimental results demonstrate that the proposed agentic framework achieves over 98% design accuracy, significantly outperforming standalone general-purpose LLMs. More importantly, the study reveals that design performance is not necessarily correlated with model scale, where an 8B-parameter lightweight model could outperform unconstrained 631B-parameter flagship models. This finding highlights the potential to substantially reduce computational costs while improving the accessibility of AI-assisted engineering tools for industry applications. The source code for the proposed multi-agent design framework is available at the project GitHub repository: <a href="https://github.com/MXY820/barrier-design." target="_blank" rel="noopener">https://github.com/MXY820/barrier-design.</a> Keywords: Structural Engineering; Multi-Agent Systems; Large Language Models; Concrete Barrier Design; AutoGen; Design Automation.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/investing-in-multi-agent-ai-safety-research/" target="_blank">Investing in multi-agent AI safety research</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Jun 10, 2026 &middot; 10:21 UTC</span>
+          </div>
+          <p class="summary"><span>June 11, 2026 Responsibility &amp; Safety Investing in multi-agent AI safety research Google DeepMind, Schmidt Sciences, the Cooperative AI Foundation, ARIA and Google.org Share Scaling AI Safety Research for a Multi-Agent World For the past decade, we’ve focused on making individual AI models more capable, helpful and safe.</span> <span>Scaling the frontier of multi-agent safety research Although foundational frameworks for multi-agent safety exist, the rapid evolution of these systems requires an immediate, large-scale expansion of research.</span> <span>We are at a critical juncture where the complexity of multi-agent interactions is outpacing existing safety models.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 11, 2026 Responsibility &amp; Safety Investing in multi-agent AI safety research Google DeepMind, Schmidt Sciences, the Cooperative AI Foundation, ARIA and Google.org Share Scaling AI Safety Research for a Multi-Agent World For the past decade, we’ve focused on making individual AI models more capable, helpful and safe. Today, Google DeepMind — together with Schmidt Sciences , the Cooperative AI Foundation , the Advanced Research and Invention Agency , and supported by Google.org — is announcing a new technical research funding call of up to $10M for researchers worldwide. As AI technology scales, we’re entering a new era. Soon, millions of AI agents — built by different organizations — will interact across digital environments, communicating, negotiating and transacting with one another. When these systems interact, they must do so safely and predictably. This shift creates a vital opportunity: we can strengthen the safety and stability of the entire AI ecosystem from the very beginning. The funding call focuses on the study of how large-scale multi-agent AI systems behave as a group, and how we can provide frameworks to understand and mitigate against potential risks. By empowering researchers globally, we aim to solve the “invisible” safety risks that arise when independent systems interact across different networks. Why the agent ecosystem matters When large groups of AI agents interact, new collective behaviors and capabilities can emerge suddenly. Currently, we lack the tools to predict, measure and monitor these transitions. Most safety evaluations analyze models in isolation. However, as we and others have previously argued, interacting autonomous agents can produce complex, &quot;emergent&quot; behaviors that are difficult to anticipate. Because this is a new area of research, it is critical to understand how these shifts occur. For example, could they cause an unpredictable flurry of economic activity or lead to new security challenges? Understanding how to manage these system-wide behaviors is our core objective. Scaling the frontier of multi-agent safety research Although foundational frameworks for multi-agent safety exist, the rapid evolution of these systems requires an immediate, large-scale expansion of research. Our 2025 research established a framework for understanding these interactions, while our recent work on AI Agent Traps explores vulnerabilities agents face in adversarial environments. Now, we must move faster. We are at a critical juncture where the complexity of multi-agent interactions is outpacing existing safety models. This funding call aims to accelerate progress by supporting a global network of independent researchers. A diverse community is essential to ensure safety standards are transparent and robust for everyone. This effort also advances the mission of Schmidt Sciences’ Science of Trustworthy AI and AI Agents programs, which support foundational work on understanding and mitigating risks from frontier AI systems, as well as ARIA’s Scaling Trust programme, which seeks to unlock new forms of cyber-physical multi-agent coordination. A collaborative call to action No single lab can solve multi-agent safety alone. We invite academic and independent researchers to submit proposals in four priority areas: Sandboxes and testbeds: Building realistic, reproducible environments to evaluate, compare and accelerate progress across all areas of multi-agent safety. This includes virtual marketplaces, simulated ecosystems and multi-organisation workflows. The science of agent networks: Understanding the safety-relevant properties of interacting agent populations, including investigating how collective capabilities emerge and scale, how networks fail or become volatile and how to detect dangerous, unexpected population-level properties. Strengthening agent infrastructure: Stress-testing the protocols for identity, reputation and commitment that are secure cross-platform agent interactions. Oversight and control: Developing methods to monitor deployed agent populations and mitigate collective harms at scale. How to participate We invite researchers to review our call for proposals and join us in building a safe foundation for a multi-agent future. The deadline to apply is August 8, 2026, with awardees expected to be announced in Autumn 2026. For more details on technical requirements and the application process, visit our application portal .</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/lseg" target="_blank">From data to decisions: how LSEG is scaling trusted AI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jun 10, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>June 10, 2026 From data to decisions: how LSEG is scaling trusted AI LSEG combines OpenAI with its global data platform to accelerate insight, innovation, and time to market.</span> <span>A leading global financial markets infrastructure and data provider, it supports more than 40,000 customers and 400,000 end users across approximately 190 markets.</span> <span>For years, LSEG had invested heavily in AI and machine learning to power financial models and analytics.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 10, 2026 From data to decisions: how LSEG is scaling trusted AI LSEG combines OpenAI with its global data platform to accelerate insight, innovation, and time to market. Contact sales Products: ChatGPT, API Company size: Enterprise Region: Global Industry: Finance ~2 weeks product release cycles, from ~6 months to ~2 weeks ~4 weeks from customer request to production deployment Loading… Scaling insight across one of the world’s most complex data ecosystems London Stock Exchange Group (LSEG) ⁠ (opens in a new window) sits at the heart of financial markets. A leading global financial markets infrastructure and data provider, it supports more than 40,000 customers and 400,000 end users across approximately 190 markets. For years, LSEG had invested heavily in AI and machine learning to power financial models and analytics. But the emergence of generative AI introduced a fundamentally new opportunity: not just improving systems, but transforming how people interact with data, generate insight, and make decisions. The challenge was clear. Despite advanced infrastructure, knowledge work across the organization still involved manual synthesis, fragmented workflows, and time-intensive processes that slowed insight generation and limited scalability. “AI is a step change. But the real transformation comes when you rethink how you solve problems—not just how you execute them.” —Emily Prince, Group Head of Enterprise AI, LSEG At that moment, OpenAI became a natural partner—bringing powerful models, intuitive interfaces, and an ecosystem already being adopted by LSEG’s customers. Inside the rollout LSEG approached generative AI with a deliberate strategy: start with real problems, and scale responsibly. The company selected OpenAI based on model quality, enterprise readiness, and alignment with customer demand. Many LSEG clients were already using ChatGPT, creating a natural opportunity to integrate LSEG’s trusted data directly into those workflows. “That created a natural partnership,” says Max Grigoryev, Group Director for AI Products. “We could improve how we operate internally while helping customers use our data in the environments where they already work.” LSEG deployed ChatGPT Enterprise and OpenAI APIs across the organization, enabling thousands of employees globally within weeks. Teams across product, engineering, research, and operations began using AI to draft reports, synthesize market data, prototype products, and streamline internal workflows. Analysts, for example, now use ChatGPT to summarize large volumes of financial and market information—reducing time spent on initial research and accelerating insight generation. Product teams use AI to rapidly prototype features, while business teams generate client communications and documentation more efficiently. At the same time, LSEG embedded governance from the outset. This included model evaluation frameworks, human-in-the-loop review for critical outputs, and strict data privacy and security controls. “We don’t think about restricting people—we think about enabling them,” Max explains. “Give people the tools to move faster, while making sure everything remains safe and compliant.” Adoption scaled quickly, driven by grassroots enthusiasm. Early users demonstrated immediate value, creating momentum across teams and geographies. “Where customers once expected projects to take nine months, they now expect results in weeks or days. That mindset shift is profound.” —Max Grigoryev, Group Director AI, LSEG Results at a glance Employees reported positive feedback on the accuracy of ChatGPT for complex tasks, with clear time savings driven by faster, high-quality outputs and reduced manual effort. “What has changed with ChatGPT is that we can scale best practice more easily, complete tasks more quickly, and still embed the standards and skills we care about,” says Emily Prince, Group Head of AI at LSEG. “That is a step change not only in efficiency, but in how creatively people can solve problems.” Results: Reduced product release cycles from 3–6 months to 2 weeks Enabled thousands of employees globally within weeks Accelerated customer delivery timelines to ~4 weeks from request to production Increased analyst productivity through faster research and synthesis Improved cross-functional collaboration by accelerating information flow across functions Expanded innovation velocity, with ideas moving from concept to prototype in hours “Historically, bringing products to market often took three to six months because of regulatory, compliance, legal, cybersecurity, and delivery requirements. Now, many of the products we are adapting for AI consumption are on a two-week release cycle.” —Max Grigoryev, Group Director AI, LSEG Leadership lessons Rethink workflows, not just tasks: The biggest gains come from redesigning how work gets done Enable broadly, early: Giving teams access at scale accelerates learning and adoption Balance speed with trust: Strong governance enables faster, safer innovation Empower experimentation: Innovation emerges when employees are trusted to explore Avoid extremes: The most effective approach to AI is thoughtful, accountable adoption “The most impactful people aren’t just using AI—they’re challenging how they work entirely.” —Emily Prince, Group Head of Enterprise AI, LSEG Tips Start with high-impact, low-risk use cases: Governance is critical for scaling safely for LSEG. Empower early adopters: Adoption accelerated for LSEG when value was immediately visible. Invest in training and enablement: The best use cases often emerge from users themselves. Be demanding about outcomes: Be clear on what success looks like before scaling. What’s next LSEG is now expanding beyond individual productivity gains to more deeply embedded, workflow-level AI applications. This includes integrating AI directly into research processes, product development, and client-facing solutions. A key focus is combining OpenAI models with LSEG’s trusted data through systems like its Model Context Protocol—allowing customers to access precise, verifiable information directly within AI workflows. “Our customers care about time to insight—making decisions faster and more accurately,” says Max. “That’s what we’re enabling.” Looking ahead, LSEG sees its greatest opportunity in scale: empowering its global workforce and customers to fully leverage AI in how they think, build, and decide. “When you imagine the collective power of 27,000 employees leaning into AI with confidence, the potential is extraordinary. We are already seeing strong results, and there is much more to come.” —Emily Prince, Group Head of Enterprise AI, LSEG Keep reading Supporting Europe’s work in ensuring a trustworthy AI ecosystem Global Affairs Jun 11, 2026 How an astrophysicist uses Codex to help simulate black holes Applied AI Jun 11, 2026 Access OpenAI models and Codex through your Oracle cloud commitment Company Jun 10, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Jun/9/agentsview-custom-model-price/#atom-everything" target="_blank">Setting a custom price for a model in AgentsView</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Jun 09, 2026 &middot; 21:35 UTC</span>
+          </div>
+          <p class="summary"><span>TIL: Setting a custom price for a model in AgentsView I&#x27;ve been really enjoying AgentsView by Wes McKinney as a tool for exploring my token usage across different coding agents running on my laptop.</span> <span>Claude Fable 5 came out today and wasn&#x27;t yet included in the pricing database AgentsView uses.</span> <span>Here&#x27;s my Claude Fable 5 usage for today so far, plotted by AgentsView as a treemap across my different local projects: Tags: ai , generative-ai , llms , llm-pricing , claude-mythos</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>TIL: Setting a custom price for a model in AgentsView I&#x27;ve been really enjoying AgentsView by Wes McKinney as a tool for exploring my token usage across different coding agents running on my laptop. Claude Fable 5 came out today and wasn&#x27;t yet included in the pricing database AgentsView uses. I used Fable to reverse-engineer AgentsView and figured out this recipe for setting custom prices. Here&#x27;s my Claude Fable 5 usage for today so far, plotted by AgentsView as a treemap across my different local projects: Tags: ai , generative-ai , llms , llm-pricing , claude-mythos</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Jun/9/andrej-karpathy/#atom-everything" target="_blank">Quoting Andrej Karpathy</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Jun 09, 2026 &middot; 19:03 UTC</span>
+          </div>
+          <p class="summary"><span>I feel a lot of things changing as working software increasingly comes out on a tap.</span> <span>The Jevon&#x27;s paradox kicks in and I feel my own demand for software growing substantially.</span> <span>You can ask for anything - explainers, visualizers, dashboards, bespoke single-use apps (e.g.</span> <span>a full wandb that is hyper-specific just for your project), you can 10X your test suite, auto-optimize code, run giant research projects with custom HTML for the results, anything! &quot;Free your mind&quot; (Matrix ref).</span> <span>— Andrej Karpathy , on Claude Fable 5 Tags: andrej-karpathy , jevons-paradox , anthropic , generative-ai , ai , llms , claude-mythos</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/claude-fable-5-review-what-the-new" target="_blank">Claude Fable 5 review: what the new Mythos model gets right (and very wrong)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jun 09, 2026 &middot; 18:32 UTC</span>
+          </div>
+          <p class="summary"><span>Claude Fable 5 is the first Mythos-class intelligence model to be generally available, and I got early access to test it before launch.</span> <span>I walk through what Anthropic is promising, what actually stood out when I used it on real work, and where I think it fits in your AI stack.</span> <span>New product launches: Managed Agents and more Crushing benchmarks What it’s actually like to use (the good and the bad) Test 1: product graph spec Test 2: designing a skills registry Conservative on execution Test 3: multi-agent orchestration My takeaways<ul><li>Claude Fable 5: <a href="https://www.anthropic.com/news/claude-fable-5-mythos-5" target="_blank" rel="noopener">https://www.anthropic.com/news/claude-fable-5-mythos-5</a></li><li>Claude Managed Agents: <a href="https://platform.claude.com/docs/en/managed-agents/overview" target="_blank" rel="noopener">https://platform.claude.com/docs/en/managed-agents/overview</a> Other</li><li>SWBench Pro benchmark: <a href="https://www.swebench.com/" target="_blank" rel="noopener">https://www.swebench.com/</a></li></ul></span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Claude Fable 5 is the first Mythos-class intelligence model to be generally available, and I got early access to test it before launch. I walk through what Anthropic is promising, what actually stood out when I used it on real work, and where I think it fits in your AI stack. Listen or watch on YouTube , Spotify , or Apple Podcasts Introduction: Fable 5 is finally here What Anthropic says about the model Token-intensive by design Safety classifiers and the new fallback concept Is this or is this not Mythos? New product launches: Managed Agents and more Crushing benchmarks What it’s actually like to use (the good and the bad) Test 1: product graph spec Test 2: designing a skills registry Conservative on execution Test 3: multi-agent orchestration My takeaways<ul><li>Claude Fable 5: <a href="https://www.anthropic.com/news/claude-fable-5-mythos-5" target="_blank" rel="noopener">https://www.anthropic.com/news/claude-fable-5-mythos-5</a></li><li>Claude Managed Agents: <a href="https://platform.claude.com/docs/en/managed-agents/overview" target="_blank" rel="noopener">https://platform.claude.com/docs/en/managed-agents/overview</a> Other</li><li>SWBench Pro benchmark: <a href="https://www.swebench.com/" target="_blank" rel="noopener">https://www.swebench.com/</a></li></ul></p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/fluid-natural-voice-translation-with-gemini-35-live-translate/" target="_blank">Fluid, natural voice translation with Gemini 3.5 Live Translate</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Jun 09, 2026 &middot; 15:16 UTC</span>
+          </div>
+          <p class="summary"><span>Fluid, natural voice translation with Gemini 3.5 Live Translate Jun 09, 2026 · Share x.com Facebook LinkedIn Mail Gemini 3.5 Live Translate is our latest audio model, delivering near real-time speech-to-speech translation in over 70 languages.</span> <span>Today, we’re taking our next step with the release of Gemini 3.5 Live Translate, our latest audio model for live speech-to-speech translation.</span> <span>Get 3.5 Live Translate in the Google Translate app on Android or iOS The model is also rolling out on the Google Translate app globally, on both Android and iOS .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Fluid, natural voice translation with Gemini 3.5 Live Translate Jun 09, 2026 · Share x.com Facebook LinkedIn Mail Gemini 3.5 Live Translate is our latest audio model, delivering near real-time speech-to-speech translation in over 70 languages. Anuda Weerasinghe Product Manager Tony Lu Senior Staff Software Engineer Share x.com Facebook LinkedIn Mail Your browser does not support the audio element. Listen to article This content is generated by Google AI. Generative AI is experimental [[duration]] minutes Twenty years ago, translation at Google began as one of our pioneering machine learning experiments to turn the science of language into the magic of human connection. That experiment has come a long way with over a trillion words being translated for billions of users across our products every month. Today, we’re taking our next step with the release of Gemini 3.5 Live Translate, our latest audio model for live speech-to-speech translation. The model automatically detects 70+ languages and generates smooth, natural-sounding translated speech that preserves the speakers&#x27; intonation, pacing and pitch. Unlike turn by turn systems that wait for the speaker to finish speaking before responding, 3.5 Live Translate generates speech continuously, balancing the trade-off between waiting for context to improve quality and translating immediately to stay in sync with the speaker. It delivers fluid audio without awkward pauses and stays just a few seconds behind the speaker throughout the session. Gemini 3.5 Live Translate is rolling out starting today across Google products: For developers in public preview via the Gemini Live API and Google AI Studio For enterprises in private preview starting this month in Google Meet For everyone via Google Translate on Android and iOS Build with 3.5 Live Translate Gemini 3.5 Live Translate processes speech as it’s streamed, enabling a more seamless connection across languages. The model handles multilingual inputs without the need to manually configure settings. At the same time, its noise robustness ensures applications can handle loud, unpredictable environments. You can use its capabilities to help facilitate live interpretation for multilingual calls, meetings, lessons, broadcasts and more. Watch the Gemini Live API in action, enabling dubbing and simultaneous multi-language translation. Dive into the demo or more example code in the Gemini Cookbook. By utilizing the Gemini Live API, developer platforms like Agora , Fishjam , LiveKit , Pipecat , and Vision Agents enable developers to build and deploy voice translation apps with ease. These integrations handle the complex real-time media streaming infrastructure, so developers can focus on the user experience. Our partners at Grab are testing the model to enable multilingual communication in near real-time between drivers and travelers at pickups. These users make over 10 million voice calls per month through Grab. Read the early reviews In addition to Grab, companies like CJ ENM, LiveKit and others have shared positive feedback on 3.5 Live Translate highlighting its impressive translation quality, accuracy and low latency: Experience 3.5 Live Translate in your video meetings Speech translation in Google Meet will soon use 3.5 Live Translate, improving the experience by: Offering 70+ languages, an improvement from the previous limit of just five languages, Enabling conversations across over 2000+ language combinations in one meeting, expanding from the previous state of only translating to and from English, Updating the interface to provide instant access to speech translation. We’re launching this update in private preview for select business Google Workspace customers starting this month, followed by a broader rollout later this year. Get 3.5 Live Translate in the Google Translate app on Android or iOS The model is also rolling out on the Google Translate app globally, on both Android and iOS . When using the Live translate feature, simply connect any pair of headphones to experience a more seamless translation that mirrors the speaker’s tone across 70+ languages. For Android users, we’re also starting to roll out a new ‘listening mode’ with 3.5 Live Translate that lets you hear translations directly through your phone’s earpiece. Simply hold your phone to your ear just like a regular call, and the translated audio streams straight to you. This new experience can be helpful in situations where you want to quickly hear translations without others hearing, and you don’t have your headphones handy. Using the new listening mode, users can hear a near real-time English translation of a guided tour in Spanish directly through their phone&#x27;s earpiece. Watermarked with SynthID All audio generated by our models is watermarked with SynthID. This imperceptible watermark is woven directly into the audio output, ensuring AI-generated content remains detectable to help prevent misinformation. For details on our approach to safety and responsibility, review the model card . Just one step more. Check your inbox to confirm your subscription. You are already You can also subscribe with a</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/powering-the-future-of-robotics-in-europe/" target="_blank">Powering the future of robotics in Europe</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Jun 09, 2026 &middot; 14:02 UTC</span>
+          </div>
+          <p class="summary"><span>Powering the future of robotics in Europe Jun 09, 2026 · Share x.com Facebook LinkedIn Mail Google DeepMind Accelerator selects 15 robotics companies from across Europe to join the program.</span> <span>Carolina Parada VP Robotics, Google DeepMind General summary Google DeepMind is launching a three-month accelerator program to support early-stage robotics startups across Europe.</span> <span>Selected founders get access to Google’s AI stack, technical expertise and robotics models.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Powering the future of robotics in Europe Jun 09, 2026 · Share x.com Facebook LinkedIn Mail Google DeepMind Accelerator selects 15 robotics companies from across Europe to join the program. Providing 3 months of intensive mentorship and technical support, enabling the integration of AI into their core products. Carolina Parada VP Robotics, Google DeepMind General summary Google DeepMind is launching a three-month accelerator program to support early-stage robotics startups across Europe. These companies will receive technical mentorship, product guidance, and access to advanced artificial intelligence models to help turn their research into real-world applications. You can learn more about the selected cohort and their work on the official program page. Summaries were generated by Google AI. Generative AI is experimental. Bullet points Google DeepMind’s new accelerator helps European startups build the future of physical AI. Selected founders get access to Google’s AI stack, technical expertise and robotics models. Mentors provide hands-on guidance to turn complex research into real-world robotic applications. The cohort includes startups working on everything from healthcare and manufacturing to climate solutions. These companies are scaling innovative robotics to solve big challenges in the physical world. Summaries were generated by Google AI. Generative AI is experimental. Basic explainer Google DeepMind is launching a new program to help European startups build better robots. These companies are using AI to solve real-world problems in areas like healthcare, construction and recycling. Google experts will provide the teams with mentorship and advanced technology to speed up their work. It’s all about turning smart research into robots that can actually help people. Summaries were generated by Google AI. Generative AI is experimental. Explore other styles: Share x.com Facebook LinkedIn Mail Your browser does not support the audio element. Listen to article This content is generated by Google AI. Generative AI is experimental [[duration]] minutes AI has the potential to help solve some of the world’s biggest challenges — not just in the digital realm, but in the physical world, too. Robotics is one of the most exciting frontiers of AI, where advances in language, vision and action models can help create intelligent machines that interact with the real world in safer, more helpful and more adaptive ways. That’s why we’re launching the Google DeepMind Accelerator: Robotics, a three-month program for early-stage robotics startups across Europe. This week, the selected startup founders are coming together to kick off the program, meet the Google DeepMind and Google teams, and begin a journey designed to support the next generation of physical AI. They’ll have access to our AI stack, technical expertise and Gemini robotics models. Selected from a strong pool of applicants, these startups will receive hands-on support from Google DeepMind and Google experts throughout the program. Through technical mentorship, product guidance and a wide network of partners, the accelerator will help founders turn cutting-edge AI research into real-world robotics applications. The cohort joining us in London this week reflects the breadth of opportunity in embodied AI — from logistics and manufacturing to healthcare, climate, and advanced navigation. Meet the startups and founders shaping the future of robotics and embodied AI: 3D-Components AS ( Norway ): Developing RobTrack, an AI-driven platform that automates parameter selection and quality control for robotic welding and metal 3D-printing, 280X faster than current practices. Acumino ( Greece ): Develops hardware-agnostic Physical AI that enables robots to perform complex industrial tasks in a scalable, cost-efficient, reliable manner with high ROI. Adapta Robotics ( Romania ): Deploys physical AI replicating human touch to test devices and software for healthcare, automotive and consumer electronics, unlocking automated QA and supporting the circular economy. AUAR (Automated Architecture) ( United Kingdom ): Makes homebuilding more affordable by deploying robotic MicroFactories directly to construction sites. Bubble Robotics ( France ): Building the ocean&#x27;s autonomous workforce: a vessel-free constellation of self-docking surface and subsea robots that see, hear, and act, feeding a live underwater world model. Danu Robotics ( United Kingdom ): Uses embodied AI robotic systems to automate complex waste sorting, increasing efficiency, improving safety, and enabling scalable recovery of valuable materials that supports the circular economy. Deltia GmbH ( Germany ): Digitizes production-line work, transforming workflows into process graphs that help teams optimize manual processes and automate repetitive tasks so people can focus where they matter most. Embodied AI ( Switzerland ): Deploys teleoperated humanoids that collect data during customer service to continuously train and improve their manipulation skills. Extend Robotics ( United Kingdom ): Provides teleoperation software and data pipelines that help train and fine-tune foundation models for real-world robotics applications. Forgis ( Switzerland ): Develops AI agents that understand machines like experienced engineers, predicting failures and optimizing operations. Generative Bionics ( Italy ): Amplifies human potential by developing humanoid robots based on physical AI, developed in Europe but built to scale globally. Qualia ( Denmark ): Building infrastructure that enables companies to turn robotic foundation models into working deployments, automating and optimising time-consuming manual labor. ROBEAUTE ( France ): Building microrobots that navigate through brain tissue to diagnose, treat and monitor neuropathology, establishing a new physical infrastructure layer in neurosurgery. Staer ( Sweden ): Uses computer vision on existing cameras and sensors to build 3D spatial models of facilities, giving robots a shared environment to navigate and operators real-time visibility into how their physical operations actually run. Touchlab ( United Kingdom ): Uses advanced nano inks to create an “e-skin” that gives robots a high-resolution sense of touch across flexible surfaces. These startups reflect the growing momentum of robotics and intelligent systems across Europe. Each company will receive mentorship and strategic guidance from Google DeepMind and Google to help them accelerate development and scale responsibly. Congratulations to this cohort! To learn more about the Google DeepMind Accelerator: Robotics, visit the official program page . Just one step more. Check your inbox to confirm your subscription. You are already You can also subscribe with a</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/nextdoor" target="_blank">How engineers at Nextdoor use Codex to build without limits</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jun 09, 2026 &middot; 12:00 UTC</span>
+          </div>
+          <p class="summary"><span>June 9, 2026 How engineers at Nextdoor use Codex to build without limits On Nextdoor’s core platform team, Codex investigates issues and puts product engineers in the driver’s seat.</span> <span>Contact sales Company size: Enterprise Region: North America Industry: Technology Products: Codex Loading… A product like Nextdoor, which serves over 110 million users across 11 countries, puts many demands on a platform team.</span> <span>For Cory Dolphin, Head of Engineering at, Codex represents an essential shift: “away from iteratively prompting an agent, and towards outcome engineering, where engineers start to think about the result they want to see and work with an agent to engineer that result.” This means that individual engineers move up the stack—no longer locked up as specialists in a certain system or framework, they’re able to own the product experience more or less end-to-end, even across multiple platforms.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 9, 2026 How engineers at Nextdoor use Codex to build without limits On Nextdoor’s core platform team, Codex investigates issues and puts product engineers in the driver’s seat. Contact sales Company size: Enterprise Region: North America Industry: Technology Products: Codex Loading… A product like Nextdoor, which serves over 110 million users across 11 countries, puts many demands on a platform team. For Cory Dolphin, Head of Engineering at, Codex represents an essential shift: “away from iteratively prompting an agent, and towards outcome engineering, where engineers start to think about the result they want to see and work with an agent to engineer that result.” This means that individual engineers move up the stack—no longer locked up as specialists in a certain system or framework, they’re able to own the product experience more or less end-to-end, even across multiple platforms. Productivity has accelerated so much that the bottleneck is no longer engineering, but rather the hard strategic questions about what to build next. “Codex has fundamentally changed how we think about engineering, to the point that we can’t even imagine engineering without it.” —Cory Dolphin, Head of Engineering, Nextdoor Product engineers can focus on the product With Codex, “engineers get to spend a lot less time thinking about exactly how they build, and more time thinking about the outcome,” Dolphin explains. That outcome might take the form of screenshots or video that the agent can build towards, a certain performance or test result, or a brand new feature idea. Nextdoor recently released Opportunity Alerts, which let people find service providers near them; with Codex, engineers are driving the product experience and roadmap. As an example, one engineer working on the alerts realized it would be helpful to show service providers on a map. Historically, that kind of feature would have required collaboration between three teams—mobile, frontend, and backend engineering—and might have never made it out of the backlog. But with Codex, “we were able to have one engineer build it end to end,” Dolphin explains, “which means not only are they able to drive the product faster, but they’re able to better understand the actual product experience and what the right thing to ship is.” “As engineers start to shift up the stack, they get to be more responsible for the product that they’re building. You really see individual engineers start to drive products.” —Cory Dolphin, Head of Engineering, Nextdoor Compressing software engineering time Working with embedded Rust databases and systems with tight race conditions, Nextdoor turns to Codex for help debugging the most hard-to-reproduce issues. The team provides the agent with a clean environment and harness for investigation, then uses it for everything from figuring out why Kubernetes pods won’t start, to finding the right trend line in a data analysis. “With GPT‑5.4 and 5.5, it’s been a really impressive upgrade. We see Codex excel at being extremely persistent and trying to figure out the right solution, diving deep into some seemingly esoteric technical details to arrive at the root cause,” Dolphin explains. About Fast Mode with Codex and GPT‑5.5, Dolphin says, “I’ve got to be honest, a lot of the team are addicted to it. When you have a quick feedback loop with the problem that you’re working on, the feeling is exhilarating as an engineer.” Engineering work has gotten so much faster that Dolphin has seen a shift in the pressures on different parts of the organization. “We’re moving so much faster that the bottlenecks are no longer in engineering. It’s really now a question of, how can we identify the right things to build and the right strategy—and less about how we actually build it.” Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading Supporting Europe’s work in ensuring a trustworthy AI ecosystem Global Affairs Jun 11, 2026 How an astrophysicist uses Codex to help simulate black holes Applied AI Jun 11, 2026 Access OpenAI models and Codex through your Oracle cloud commitment Company Jun 10, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/notion" target="_blank">What Codex unlocks for Notion</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jun 09, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>June 9, 2026 What Codex unlocks for Notion How Notion uses Codex to one-shot specs and multiply its engineering power.</span> <span>Contact sales Company size: Enterprise Region: North America Products: Codex Industry: Software &amp; Engineering, Productivity 2 Weeks → 3 hours Codex reduced development time Loading… At Notion, Codex is changing how engineers build.</span> <span>Basically, I’ve got an intern available at Notion 24/7.” —Ryan Nystrom, AI Product Engineering, Notion Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 9, 2026 What Codex unlocks for Notion How Notion uses Codex to one-shot specs and multiply its engineering power. Contact sales Company size: Enterprise Region: North America Products: Codex Industry: Software &amp; Engineering, Productivity 2 Weeks → 3 hours Codex reduced development time Loading… At Notion, Codex is changing how engineers build. The company is rethinking the software primitives and abstractions it builds so that agents can use them. When bringing a new engineer onto the team, they&#x27;re hiring for curiosity and open-mindedness, since the years of experience the field would normally call for don&#x27;t exist yet. And managers who hadn&#x27;t written production code in years are back in the codebase, shipping alongside their teams. Ryan Nystrom runs AI Product Engineering at Notion. In his year-plus tenure, his team has built or touched nearly every AI feature in the product. They’re finding that turning to Codex has unlocked new possibilities for what they can take on. “What I appreciate about Codex is that it takes its time to figure things out before actually building. The result is that usually what it builds is to our codebase’s standards off the bat, rather than me having to go back and clean up a bunch of its work.” —Ryan Nystrom, AI Product Engineering, Notion Building Notion’s AI voice input on the web Codex’s ability to autonomously execute showed up clearly in a recent project. Ryan exclusively used Codex to bring Notion’s AI voice input to the web. &quot;When we talk, we can provide so much more context,&quot; he says. &quot;If I&#x27;m typing, I&#x27;m thinking about my prose, what words I&#x27;m using. By giving this feature to users on Notion, they&#x27;re able to ask more organic questions and include a lot more context. We wanted to bring that to Notion AI.&quot; When the feature request came in, Notion&#x27;s mobile app already had a functional version, but the desktop and web client didn&#x27;t. Even though Ryan wasn&#x27;t entirely sure how the feature worked on mobile, he was able to give the problem to Codex. He pointed it at the mobile codebase, gave it a clear description of how it would need to look on the web, and provided a way to verify the result. Codex came back with a complete first cut of the web implementation, in one shot, that matched Notion&#x27;s codebase conventions closely enough to ship the next day. &quot;If I were to build the Notion voice input feature two years ago, this is a project that would&#x27;ve taken me and maybe another engineer two weeks,&quot; Ryan says. &quot;With Codex, I was able to build this in maybe three or four hours, entirely by myself.&quot; “It spent a bunch of time exploring our mobile code, and then finally came back and wrote the entire feature basically in one shot. I shipped it the next day and immediately started letting users test it.” —Ryan Nystrom, AI Product Engineering, Notion How the work has changed Engineers at Notion can routinely hand Codex a set of tasks and a way to check its work, then step away while it runs. &quot;I&#x27;ve almost found myself spending a lot more time writing these spec documents that I can hand to Codex and let it work on,&quot; Ryan says. &quot;Honestly, I don&#x27;t really write code by hand anymore.&quot; Before Codex, each engineer on the team could really focus on only one task at a time, squeezed between meetings and supporting peers. Now they&#x27;re running multiple tasks in parallel, firing off work without losing any of the team support that used to be the bottleneck. &quot;I manage a team of people, and traditionally managers haven&#x27;t had time to write code,&quot; he says. &quot;The fact that I can build a feature solo while still supporting my team is crazy. I&#x27;ve been managing for five-plus years and never been able to go this deep on coding problems.&quot; Now he can simply queue up a task, head into a block of meetings, and come back to a finished feature. Or he and his team get a manager who can ship alongside them, and Ryan gets back a part of the job he&#x27;d assumed he had traded away. This availability runs past the workday, too. He&#x27;ll pose a research question before bed, let Codex run overnight, and wake up to a finished report. Codex has reset the baseline for what a small team (even a team of one!) can ship, and given Notion&#x27;s engineers more room to focus on the work they care about most. “Whenever I need to research a task, fix a bug, or make a little tweak, Codex is just there, ready and willing. Basically, I’ve got an intern available at Notion 24/7.” —Ryan Nystrom, AI Product Engineering, Notion Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading Supporting Europe’s work in ensuring a trustworthy AI ecosystem Global Affairs Jun 11, 2026 How an astrophysicist uses Codex to help simulate black holes Applied AI Jun 11, 2026 Access OpenAI models and Codex through your Oracle cloud commitment Company Jun 10, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-frontiercode-benchmarking" target="_blank">[AINews] FrontierCode: Benchmarking for Code Quality over Slop</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Jun 09, 2026 &middot; 06:12 UTC</span>
+          </div>
+          <p class="summary"><span>Cognition @cognition Introducing FrontierCode: a coding eval that raises the bar for difficulty &amp; quality.</span> <span>Each task took 40+ hrs of work by leading open-source maintainers.</span> <span>For AI engineers, the key implication is strategic: both OpenAI and Anthropic now appear to be preserving IPO optionality while ramping capacity and product breadth.</span> <span>bookLM and FrontierCode were the day’s biggest pure-product/eval launches : bookLM’s upgrade , Kimi Code , Kimi Work , and FrontierCode dominated the technical conversation, with FrontierCode in particular reshaping the discourse around what “good coding performance” should mean.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>It is rare that we are personally involved in the title story of the day, and Apple’s WWDC announcing Gemini-powered Siri was a possible candidate, but we’ve been fooled before . So instead, we’ve got FrontierCode , the latest in our War on Slop ! Cognition @cognition Introducing FrontierCode: a coding eval that raises the bar for difficulty &amp; quality. Each task took 40+ hrs of work by leading open-source maintainers. Models write sloppy code that works but isn’t maintainable. Our eval is first to measure: would you actually merge this code? 7:04 PM · Jun 8, 2026 · 470K Views 131 Replies · 189 Reposts · 2.16K Likes If that chart looks familiar, it’s because FrontierCode was explicitly inspired and named for FrontierMath - focusing its hardest tier on extremely hard problems for frontier models 2 years ago: Epoch AI @EpochAIResearch 3/10 We evaluated six leading models, including Claude 3.5 Sonnet, GPT-4o, and Gemini 1.5 Pro. Even with extended thinking time (10,000 tokens), Python access, and the ability to run experiments, success rates remained below 2%—compared to over 90% on traditional benchmarks. 9:05 PM · Nov 8, 2024 · 423K Views 12 Replies · 52 Reposts · 557 Likes The context of FrontierCode revolves around past work we have done around SWEBench-Verified . It is clear that even with the switch to SWEBench Pro, there has been insufficient articulation around WTF Happened in 2025 . As discussed with the OpenAI team in that podcast, there needed to be a lot more work around the rubrics for code quality and maintainability, and that is exactly what the Cog research team ended up building in this first release of FrontierCode. Separately, METR found that Many SWE-bench-Passing PRs Would Not Be Merged into Main and the problem of false positive trajectories (not quite “reward hacks”, but spiritually similar in terms of the unreliability of the benchmark rather than the model) was directly measured and addressed in the FrontierCode report. With hindsight, FrontierCode’s third tier of problems shows the huge accceleration going into Dec 2025 that suddenly made agentic engineering and vibe coding possible to go up one level of abstraction , to the /goals and loops and metaprompts we are discussing today. AI News for 6/5/2026-6/8/2026. We checked 12 subreddits, 544 Twitters and no further Discords. AINews’ website lets you search all past issues. As a reminder, AINews is now a section of Latent Space . You can opt in/out of email frequencies! AI Twitter Recap Coding Agents, Loops, and the Shift from “Passing Tests” to Mergeable Software FrontierCode raises the bar on coding evals : Cognition introduced FrontierCode , a new benchmark explicitly targeting whether code is actually mergeable , not merely unit-test passing. Tasks were built with open-source maintainers, with each taking 40+ hours and evaluated on dimensions like regression safety, cleanliness, scope, test correctness, and maintainability. The headline result is that the best model, Opus 4.8 , scores only about 13% on the hardest subset—far below the 50%+ regime common on SWE-Bench-style evals, suggesting coding is much less “solved” than popular benchmarks imply ( Cognition announcement , Scott Wu’s summary , swyx breakdown , theo’s questions on variance/reproducibility , Cognition response ). “Loops” are becoming the dominant agent-control metaphor—but with caveats : The day’s loudest practical theme was that coding agents should be given clear goals, verification criteria, and iteration structure rather than one-shot prompts. Popular examples include dzhng’s “don’t use loops, design state machines” , Claude Code’s retrospective on auto mode, routines, and verification , bcherny’s thread , OpenAI Codex tips on outcome-first prompting and Approve-for-me defaults , plus LangChain OSS “rubrics” . But several practitioners pushed back on naïve loop hype: Omar Sar0 and Graham Neubig emphasized that human checkpoints remain essential outside easily verifiable domains, while Hamel Husain joked about muting the word entirely. Agent ergonomics are improving around verification and orchestration : Product changes across the stack reflect this shift. ClaudeDevs added observability dashboards for MCP connector developers , including adoption, latency, and error views. MagicPath launched a Builder plan for external-agent workflows and multiplayer canvas editing. LangSmith Sandboxes and Modal’s sandbox scaling story point toward the same infrastructure trend: agents need isolated, inspectable, long-running environments. Practical usage patterns are settling : The strongest operator advice converged on measurable outcomes, bounded autonomy, and thread hygiene. Angaisb_ warned against overlong Codex threads degrading performance , while reach_vb reported success with single-thread context accumulation . That mismatch itself is useful signal: current agent performance is still strongly shaped by harness behavior and workflow choices , not just base-model quality. Model Releases, Local Inference, and Serving Stack Upgrades Kimi shipped both a stronger coding agent and a desktop agent product : Moonshot released a major update to Kimi Code , its open-source coding agent, adding one-line CLI install , drag-and-drop video as coding context , ACP support, plugins, and IDE integration ( announcement ). It also launched Kimi Work , a desktop agent product with up to 300 local sub-agents , browser-use via extension, finance-focused tool access, and persistent memory ( product launch , desktop availability ). Google pushed hard on efficient local deployment : Gemma got several notable upgrades. New QAT Gemma 4 checkpoints reportedly preserve performance while using ~4x less memory , with Gemma 4 E2B fitting in about 1GB using a mobile quantization format ( @_philschmid ). Separately, Gemma 4 MTP was merged into llama.cpp , enabling faster decoding when paired with QAT checkpoints ( Gemma team ). llama.cpp also added video input support , expanding local multimodal use cases. Open-source/open-weight competition remains intense : Artificial Analysis reported MiniMax-M3 at 55 on its Intelligence Index , which would make it the leading open-weights model once weights are released. M3 adds native multimodality and a 1M token context window , with strong GPQA/MMMU-Pro numbers but notable abstention on hallucination-sensitive evals. Meanwhile norpadon announced Apple-hardware-optimized quantized Qwen3.5 checkpoints . Serving infrastructure is broadening from text LLMs to world models and omni models : vLLM-Omni 0.22.0 added day-0 support for NVIDIA Cosmos 3 world models , robot serving APIs, TTS models such as Qwen3-TTS and VoxCPM2 , faster image/video serving, and broader quantization/hardware coverage ( release ). This reflects a broader trend toward generalized multimodal serving rather than text-only inference stacks. Benchmarks, Evaluation Methodology, and Real-World Agent Measurement Agent evaluation is moving from synthetic tasks to in-the-wild telemetry : Arena launched Agent Arena , a leaderboard based on over 1M real-world sessions , using causal tracing rather than voting to estimate treatment effects of orchestrators/harnesses across five signals: confirmed success, praise vs complaint, steerability, bash recovery, and tool hallucination ( overview , methodology thread ). Whether the methodology fully holds up remains to be seen, but it’s one of the clearest attempts yet to benchmark deployed agents using actual usage traces. Specialized benchmarks keep proliferating into new output domains : Hugging Face and Mecado released CADGenBench , a benchmark for generating and editing engineering-grade 3D CAD parts from drawings or STEP modifications, with metrics covering geometry, topology, interface compatibility, and CAD validity ( launch thread , Thom Wolf summary ). This is a meaningful shift: evaluation is expanding beyond text/code into structured artifacts where correctness is physical and geometric. A recurring thesis: good benchmarks become training pipelines : Ofir Press argued that the best benchmarks are scalable and rooted in real-world crawled data sources , making them useful not just for measurement but also for data generation. That view shows up implicitly in both FrontierCode and Agent Arena: benchmarks are no longer static scoreboards; they are becoming feedback loops for product and RL improvement . Google, Apple, and the Consumer AI Platform Race Google expanded AI packaging, Search, and developer surfaces : Google announced a more capable bookLM with agentic chat, stronger reasoning, and more output formats for Ultra subscribers ( launch ). It also cut Google AI Plus pricing from $7.99 to $4.99/month while doubling storage to 400GB ( pricing update ). On the platform side, Google highlighted a major Search upgrade , including multimodal search and Gemini 3.5 Flash as the new default in AI Mode. Apple’s WWDC AI story centered on integration, not frontier leadership : Commentary around WWDC focused on a rebuilt Siri AI with on-screen awareness, app actions, personal context, and better voice interaction, alongside concerns about EU availability and hardware gating ( kimmonismus live thread , regional limitation ). A technically notable detail came from awnihannun : Apple’s on-device model is reportedly a 20B-parameter query-routed architecture that loads experts from NAND into RAM once per query, a nonstandard design optimized for device constraints. Research Directions: Continual Learning, Agent Training, and Optimization Debates Anthropic framed one core blocker for AI in science as infrastructure mismatch : Its new science blog argues AI has advanced faster in coding than biology because biological databases and tooling were not designed for agent use; the bottleneck is less raw intelligence than agent-compatible scientific infrastructure ( Anthropic blog thread ). This pairs well with broader calls for harness/environment standardization. Open-source RL and environment protocols are becoming coordination points : OpenEnv was transferred to a consortium including Hugging Face, Meta-PyTorch, Reflection, Unsloth, Modal, Prime Intellect, NVIDIA, and others . The pitch is that frontier labs co-train models with tightly coupled harnesses, while open ecosystems need a shared protocol layer between model, harness, environment, and trainer. Continual learning for agents is re-emerging as a practical systems problem : Hivemind announced a system that turns traces from agents like Claude Code, Codex, Cursor, and Hermes into reusable skills , claiming measurable gains across setups. Relatedly, Nando de Freitas posted a long thread outlining a research program around learning from interaction consequences rather than token sequences alone. Optimization discourse was unusually active : Several threads debated whether Muon is materially distinct from Shampoo , with Arohan hinting at a better-than-Shampoo optimizer and Keller Jordan benchmarking Shampoo and Spectral Descent publicly . The substantive point beneath the drama: there is renewed appetite for optimizer-level gains as a real frontier lever, not just benchmark noise. Top Tweets (by engagement) Signal on UK device scanning : The highest-engagement technically relevant post was Signal’s statement opposing UK demands for on-device scanning and age-verification-linked content inspection . This is more privacy/security policy than AI, but directly relevant to client-side inference and platform trust. OpenAI corporate direction and liquidity : Sam Altman shared OpenAI’s current plan , and shortly after OpenAI announced it had confidentially filed an S-1 . For AI engineers, the key implication is strategic: both OpenAI and Anthropic now appear to be preserving IPO optionality while ramping capacity and product breadth. bookLM and FrontierCode were the day’s biggest pure-product/eval launches : bookLM’s upgrade , Kimi Code , Kimi Work , and FrontierCode dominated the technical conversation, with FrontierCode in particular reshaping the discourse around what “good coding performance” should mean. AI Reddit Recap /r/LocalLlama + /r/localLLM Recap</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Jun/8/wwdc/#atom-everything" target="_blank">Siri AI at WWDC 2026</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Jun 08, 2026 &middot; 23:58 UTC</span>
+          </div>
+          <p class="summary"><span>It integrates with Meta&#x27;s open source PyTorch ecosystem, using these Core AI PyTorch extensions : Core AI PyTorch Extensions ( coreai-torch ) is a Python package that bridges PyTorch and Core AI.</span> <span>Update : These Private Cloud Compute Gemini models are running in Google Cloud, and using NVIDIA hardware.</span> <span>Tags: vision-llms , apple , generative-ai , ai , llms , gemini , nvidia , google</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Given how badly burned anyone who took Apple&#x27;s 2024 WWDC Apple Intelligence announcements at face value was, I&#x27;m holding to a strict &quot;I&#x27;ll believe it when I see it&quot; policy for everything they announced today . The new Siri AI features do at least look feasible with today&#x27;s technology, especially since Apple are licensing a custom Gemini-derived model that they can run on their own Private Cloud Compute . It sounds like they&#x27;ll be taking advantage of vision LLMs to extract information from the user&#x27;s screen, which neatly sidesteps the need for every existing application to ship custom code in order to integrate with Apple Intelligence. Vision LLMs were a much less mature category in June 2024. The new Core AI library looks like a good step in enabling developers to finally take full advantage of Apple&#x27;s hardware for running their own models. It integrates with Meta&#x27;s open source PyTorch ecosystem, using these Core AI PyTorch extensions : Core AI PyTorch Extensions ( coreai-torch ) is a Python package that bridges PyTorch and Core AI. You can use it to bring up an existing PyTorch model — exported as a torch.export.ExportedProgram — into a Core AI AIProgram ready to run on Apple hardware, traversing the FX graph node-by-node and mapping ATen operators to Core AI operations. You can install an iOS 27 Developer Beta today, which supposedly has the new features - but you then have to make it through a waiting list for access to the new Siri AI. Aaron Perris from MacRumors reports having made it off the waitlist so we may start seeing credible reports on how well Siri AI works in the very near future. Update : These Private Cloud Compute Gemini models are running in Google Cloud, and using NVIDIA hardware. According to Expanding Private Cloud Compute on Apple&#x27;s Security Research blog: For the most demanding tasks, including agentic tool-use and complex reasoning, we worked with Google and NVIDIA to extend our PCC infrastructure to Google Cloud systems using NVIDIA GPUs, while maintaining Apple&#x27;s powerful security and privacy protections. [...] PCC on Google Cloud leverages many of the same architectural security patterns as PCC on Apple silicon to implement these layered protections: initial network data parsing for each request happens in a dedicated process within its own namespace, shared inference software is recycled with a short time-to-live duration, and attested keys are held in a separate, dedicated confidential VM isolated from external inputs. [...] As with PCC on Apple silicon, all binaries will be published for public inspection. Tags: vision-llms , apple , generative-ai , ai , llms , gemini , nvidia , google</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-ai-gemini-omni-clone-yourself" target="_blank">🎙️ How I AI: Gemini Omni: Clone yourself with AI in under 15 minutes &amp; Shopping with Claude</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jun 08, 2026 &middot; 15:01 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ How I AI: Gemini Omni: Clone yourself with AI in under 15 minutes &amp; Shopping with Claude Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Jun 08, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 199</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
