@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-06-19</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-06-19</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://newsletter.pragmaticengineer.com/p/the-pulse-big-implications-of-us" target="_blank">The Pulse: Big implications of US banning Anthropic’s new model, Fable</a></h2>
+          <div class="meta">
+            <span class="source">pragmatic-engineer</span>
+            <span class="date">Jun 18, 2026 &middot; 17:11 UTC</span>
+          </div>
+          <p class="summary"><span>The Pulse is a series covering events, insights, and trends within Big Tech and startups.</span> <span>SpaceX, Cursor, Continue.</span> <span>Meta follow-up Tuesday’s article about Meta destroying its engineering culture made quite the splash in terms of comments and debate online.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>The Pulse is a series covering events, insights, and trends within Big Tech and startups. Notice an interesting event or trend? Hit reply and share it with me. Today, we cover: Meta follow-up. A follow-up on Tuesday’s deepdive into Meta’s ongoing demolition of its own engineering org. Non-engineering teams lost more than 10% of their staff, while Integrity teams were already stretched before the cuts and reallocation. Big implications of the US banning Anthropic’s new model, Fable. The US government wants only US citizens to be able to use Fable. That could make China more influential as other countries and non-US companies look to capable open models – most of which come from China. SpaceX, Cursor, Continue. Elon Musk became a trillionaire with SpaceX’s IPO, while SpaceX acquired Cursor, and Cursor acquired Continue. SpaceX looks like it wants to go head-on against Anthropic and OpenAI. Industry Pulse. Gemini lead quits for OpenAI, Epic Games’ new open source version control system, Microsoft considers dropping OpenAI for DeepSeek, research confirms LLMs amplify existing expertise, and more. Meta follow-up Tuesday’s article about Meta destroying its engineering culture made quite the splash in terms of comments and debate online. From inside Meta, there was positive feedback on the accuracy of the deepdive into the situation, and there were also a few helpful clarifications and new information which I’m happy to publish here:</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/chatgpt-enterprise-spend-controls" target="_blank">New usage analytics and updated spend controls for enterprises</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jun 18, 2026 &middot; 17:00 UTC</span>
+          </div>
+          <p class="summary"><span>June 18, 2026 Product New usage analytics and updated spend controls for enterprises New usage analytics and updated spend controls give ChatGPT Enterprise admins more visibility, control, and confidence in their AI deployments.</span> <span>Companies need a clear view of usage, adoption, and spend so they can scale with confidence and understand where AI is creating value.</span> <span>Today, we’re introducing credit usage analytics and updated spend controls for ChatGPT Enterprise.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 18, 2026 Product New usage analytics and updated spend controls for enterprises New usage analytics and updated spend controls give ChatGPT Enterprise admins more visibility, control, and confidence in their AI deployments. Loading… As AI becomes part of everyday work, organizations need the ability to manage it with the same rigor they apply to any critical business investment. Companies need a clear view of usage, adoption, and spend so they can scale with confidence and understand where AI is creating value. Today, we’re introducing credit usage analytics and updated spend controls for ChatGPT Enterprise. These capabilities help companies track credit usage, understand adoption patterns, and make more informed decisions about how AI is deployed across their organizations. With clearer visibility and more flexible controls, organizations can proactively manage costs, give teams the access they need, and keep AI investments focused on the work that matters most. New credit usage analytics in the Global Admin Console The Global Admin Console brings ChatGPT and Codex credit usage into one view, so admins can see a more granular breakdown of credit consumption across users, products, and models—helping them understand where spend is coming from and how it maps to actual credit usage. This makes it easier to distinguish between increased usage driven by valuable work and usage patterns that may require closer review. Now admins can: Track usage and credit trends over time Identify top users and emerging credit usage patterns Break down credit spend across the workspace, including by user, product, and model Access the same credit usage data through the unified Cost API for deeper analysis in their own systems “ Zipline’s engineering has been all-in on Codex since January, and in recent months the broader company has adopted it. We asked the team at OpenAI to build usage analytics to help find and train-up folks who haven’t adopted Codex, and for granular usage controls to keep spend predictable. These new tools are helping us faster scale productivity of our employees while keeping safeguards in place. ” Set spend controls around the way teams work Earlier this year, we introduced granular credit usage limits ⁠ (opens in a new window) for custom roles in ChatGPT Enterprise, helping workspace owners manage advanced model usage across different types of users without one-size-fits-all restrictions. Now admins can also set a default limit for their ChatGPT Enterprise workspace, configure limits for specific groups, and create individual overrides for people who need more capacity. Employees can see their credit usage against their available budget, request additional credits when needed, and include context about what they’re working on so admins can make an informed decision. This allows individual power users to keep working without interruption or the need to increase limits for everyone else. Together, these updated controls help companies deploy intelligence more thoughtfully at scale, while giving teams the capabilities they need to do high-impact work. Availability and what you can do next ChatGPT Enterprise admins can start using the new analytics and updated spend controls today. Users in these workspaces can also view their credit usage by going to their workspace settings. Learn more in the help center on usage limits ⁠ (opens in a new window) and the global admin console ⁠ (opens in a new window) . Have questions about how best to implement controls for your workspace? Contact us here , or reach out directly to your OpenAI team. ChatGPT 2026 Author OpenAI Keep reading View all Improving health intelligence in ChatGPT Product Jun 18, 2026 Introducing the OpenAI Partner Network Product Jun 14, 2026 Better memory for a more helpful ChatGPT Dreaming: Better memory for a more helpful ChatGPT Research Jun 4, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Jun/17/charity-majors/#atom-everything" target="_blank">Quoting Charity Majors</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Jun 17, 2026 &middot; 17:12 UTC</span>
+          </div>
+          <p class="summary"><span>What happened in 2025 was this: the economics of code production were turned upside down .</span> <span>Lines of code went from being treasured, reused, cared for and carefully curated, to being disposable and regenerable, practically overnight.</span> <span>— Charity Majors , AI demands more engineering discipline.</span> <span>Not less Tags: charity-majors , ai-assisted-programming , generative-ai , ai , llms</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>What happened in 2025 was this: the economics of code production were turned upside down . Instead of being very hard, time-consuming, and expensive to generate code, it became effectively free and instant. Lines of code went from being treasured, reused, cared for and carefully curated, to being disposable and regenerable, practically overnight. — Charity Majors , AI demands more engineering discipline. Not less Tags: charity-majors , ai-assisted-programming , generative-ai , ai , llms</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-to-design-ai-agent-loops-schedules" target="_blank">How to design AI agent loops: schedules, goals, and subagents in Claude Code and Codex</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jun 17, 2026 &middot; 12:04 UTC</span>
+          </div>
+          <p class="summary"><span>r images, video, and more Prompts are out and loops are in Defining a loop The four ways to automate a prompt: heartbeat, cron, hooks, and goals Five things every effective loop needs The “onboarding an employee” framework for designing loops Live build #1: Daily aging PR loop in Claude Code Subagents inside loops Live build #2: Weekly skills identification loop in Codex Watching subagents spin up in real time Warning signals around loops What listeners are doing with loops<ul><li>Claude Code: <a href="https://claude.ai/code" target="_blank" rel="noopener">https://claude.ai/code</a></li><li>Codex: <a href="https://chatgpt.com/codex" target="_blank" rel="noopener">https://chatgpt.com/codex</a></li><li>OpenClaw: <a href="https://openclaw.ai/" target="_blank" rel="noopener">https://openclaw.ai/</a> Other</li><li>Claire’s article “Why OpenClaw Feels Alive Even Though It’s Not”: <a href="https://x.com/clairevo/article/2017741569521271175" target="_blank" rel="noopener">https://x.com/clairevo/article/2017741569521271175</a></li><li>Addy Osmani’s article on loop engineering: <a href="https://addyosmani.com/blog/loop-engineering/" target="_blank" rel="noopener">https://addyosmani.com/blog/loop-engineering/</a></li><li>Using Goals in Codex: <a href="https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex" target="_blank" rel="noopener">https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/securing-the-future-of-ai-agents/" target="_blank">Securing the future of AI agents</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Jun 16, 2026 &middot; 15:46 UTC</span>
+          </div>
+          <p class="summary"><span>Understanding AI Control Our approach to security starts with a strong foundation, incorporating traditional safeguards like sandboxing, endpoint security, and prompt injection resistance.</span> <span>On top of this, the AI Control Roadmap uses model alignment, i.e.</span> <span>training AI to be inherently safe and helpful, as a primary defense.</span> <span>It provides an additional layer of security by treating internal agents as potentially misaligned, providing assurance even if alignment is imperfect.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 18, 2026 Responsibility &amp; Safety Securing the future of AI agents Rohin Shah and Four Flynn Share How we’re securing internal systems against increasingly capable and imperfectly aligned AI AI agents are transforming our relationship with technology. By autonomously executing complex tasks — from cyber defence to scientific discovery and product development — these systems are unlocking a new era of productivity. In the U.S alone, AI agents could create $2.9 trillion in economic value by 2030. As these agents become more capable, they also require more sophisticated safeguards. That’s why we developed our AI Control Roadmap : a framework for building and managing the advanced AI we deploy within Google. This “defense-in-depth” approach, which could serve as a model for the wider industry, goes beyond traditional model alignment, adding a crucial layer of system-level security that provides assurance even if alignment is imperfect. Understanding AI Control Our approach to security starts with a strong foundation, incorporating traditional safeguards like sandboxing, endpoint security, and prompt injection resistance. On top of this, the AI Control Roadmap uses model alignment, i.e. training AI to be inherently safe and helpful, as a primary defense. It provides an additional layer of security by treating internal agents as potentially misaligned, providing assurance even if alignment is imperfect. Think of it like a driving instructor with dual controls. The instructor trusts the student but stays ready to take the wheel or hit the brakes if a mistake occurs. Similarly, our AI control system grants AI agents permissions based on their verified behavior, allowing us to build trust through controlled, incremental access. Our roadmap is built on a simple but cautious assumption: what if a highly capable AI agent isn’t aligned with our goals and acts in unexpected ways? To address this, our plan focuses on three key areas. First, following best practices in cybersecurity, we have developed a novel threat-modelling framework for AI. The roadmap treats untrusted AI agents as potential “insider threats” — similar to the way a company would treat a potential rogue employee who already has access to the office. By building on the industry-standard MITRE ATT&amp;CK framework, a globally-accessible knowledge base of adversary tactics and techniques based on real-world observations, we break down potential attacks into smaller tactics and techniques. This allows us to methodically track risks, spot bad behavior before it causes damage and safely run drills to test if our defenses actually hold up. Second, we develop a plan to deploy AI control mitigations to address these risks. Identifying the problem (Detection): Monitoring is the backbone of AI control. We use other, trusted AI systems as &quot;supervisors&quot; to constantly review a working agent&#x27;s reasoning, actions and plans to see if it is going off track. Managing the problem (Prevention and Response): If a supervisor sees the agent trying to do something harmful, it can step in to block the action before damage occurs. Finally, to ensure our systems are functional, we constantly measure performance across three critical metrics: coverage (the fraction of traffic monitored), recall (the fraction of misaligned behaviors caught), and time-to-response. Scaling security as AI gets smarter As AI models continue to advance, our defenses must also strengthen in tandem. In our AI Control Roadmap, we map security protocols to measurable milestones in AI capabilities on two critical fronts: Ability to evade detection: Today, we monitor a model&#x27;s visible chain-of-thought. However, as models learn to hide their reasoning — either through oversight awareness (knowing they are being monitored) or opaque reasoning (reasoning without using visible text) — simply reading their verbalized reasoning will not be enough. We will need to analyze their behavior and potentially inspect the model’s inner workings. Ability for potential harm: For low-risk and reversible actions, we can rely on reviewing transcripts with a delay and remediating issues quickly after they occur (asynchronous response). For particularly high-risk actions, such as major cyber attacks, we must shift to real-time prevention, blocking harmful actions before they can be executed (synchronous response). In other words, our response strategy must scale with the severity of the threat. Your browser does not support the video tag. Your browser does not support the video tag. Analyzing a million agent trajectories to inform live monitoring To build these systems, we need data. Our team has built an internal prototype of an asynchronous monitoring system that reviews coding agent trajectories, and escalates findings for human review. Each flagged event is classified against the threat taxonomy from our roadmap. We’ve already analyzed a million coding agent tasks, giving us valuable insights to refine our safety protocols and allowing us to move beyond simple keyword filtering to identifying high-signal behavioral patterns. For example, this research has been instrumental in building a live monitor for the Gemini Spark agent, allowing us to respond in real-time to emerging issues, like unintentional data deletion. It is important to that our data shows the majority of flagged events do not stem from adversarial intent; instead, they often result from agent misinterpretation or overeagerness to achieve a user’s goal. Understanding these nuances is critical for refining our safety and security protocols. Defending the agent ecosystem is a shared responsibility The AI Control Roadmap is one vital element of our multilayered approach to agent security. By integrating these protocols with our broader infrastructure, we are scaling our internal security to safely manage our most advanced AI models. Additionally, this multilayered approach to agent security should be a collaborative priority for industry, policymakers, and academia. By aligning the ecosystem around best practices and standards, we can empower cyber defenders and build societal resilience. That’s why today we are also publishing a technical framework for policymakers, &#x27;Three Layers of Agent Security’ . The paper details how we need to improve security at the level of individual agents; in multi-agent systems; and to empower cyber defenders and build resilience across the broader ecosystem. We intend to build on these frameworks to confidently deploy capable AI today while we continue to build a secure foundation for the future. Read the full technical report here: AI Control Roadmap Research authors Mary Phuong, Erik Jenner, Laurent Simon, Lewis Ho, Rohin Shah, Sebastian Farquhar, and Scott Coull. Acknowledgements Four Flynn, Anca Dragan, Alan Cooney, Bilal Chughtai, Buck Shlegeris, Cody Wild, David Lindner, Julian Stastny, Kevin Klyman, Li Ding, Myriam Khan, Raluca Ada Popa, Roland Zimmermann, Ryan Greenblatt, Senthooran Rajamanoharan, Victoria Krakovna and Xerxes Dotiwalla.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Jun/16/captcha-on-at-least-one-ampersand/#atom-everything" target="_blank">Cloudflare CAPTCHA on at least one ampersand</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Jun 16, 2026 &middot; 00:21 UTC</span>
+          </div>
+          <p class="summary"><span>TIL: Cloudflare CAPTCHA on at least one ampersand I&#x27;m using Cloudflare&#x27;s CAPTCHA (they call it a &quot;Web Application Firewall &gt; Custom rules &gt; Managed Challenge&quot; these days) to prevent crawlers from aggresively spidering my faceted search engine on this site, but I got fed up of even simple ?q=term searches triggering the challenge.</span> <span>Also included: notes on trying out the Cloudflare MCP with Claude Code , though it turned out not to be able to edit the rules in question so I had Claude Code switch to the Cloudflare API instead.</span> <span>Tags: captchas , cloudflare , model-context-protocol , claude-code</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>TIL: Cloudflare CAPTCHA on at least one ampersand I&#x27;m using Cloudflare&#x27;s CAPTCHA (they call it a &quot;Web Application Firewall &gt; Custom rules &gt; Managed Challenge&quot; these days) to prevent crawlers from aggresively spidering my faceted search engine on this site, but I got fed up of even simple ?q=term searches triggering the challenge. After some mucking around with Claude Code it turns out you can register the following rule instead, so the CAPTCHA only kicks in for search URLs containing at least one ampersand: (http.request.uri.path wildcard r&quot;/search/*&quot; and http.request.uri.query contains &quot;&amp;&quot;) And now /search/?q=lemur works without triggering a CAPTCHA! Also included: notes on trying out the Cloudflare MCP with Claude Code , though it turned out not to be able to edit the rules in question so I had Claude Code switch to the Cloudflare API instead. Tags: captchas , cloudflare , model-context-protocol , claude-code</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Jun/15/datasette-agent/#atom-everything" target="_blank">datasette-agent 0.3a0</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Jun 15, 2026 &middot; 17:19 UTC</span>
+          </div>
+          <p class="summary"><span>Release: datasette-agent 0.3a0 New tool, execute_write_sql , which requests user approval and then writes to a database - taking user permissions into account.</span> <span>#27 I added a mechanism for asking user approval in datasette agent 0.2a0 .</span> <span>Here&#x27;s an example where I add some pelican sightings to my pelican_sightings table: The new version also enhances the datasette agent chat terminal mode to support approvals, and adds several new options including --unsafe mode for auto-approving them: datasette agent chat can execute tools that require user approval.</span> <span>#30 Three new options for datasette agent chat - --root to run as root, --yes to approve all ask user questions, and --unsafe for both.</span> <span>Tags: projects , ai , datasette , annotated-release-notes , generative-ai , llms , llm-tool-use , datasette-agent</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Release: datasette-agent 0.3a0 New tool, execute_write_sql , which requests user approval and then writes to a database - taking user permissions into account. #27 I added a mechanism for asking user approval in datasette agent 0.2a0 . The new execute_write_sql tool can now prompt the user for all kinds of useful operations. Here&#x27;s an example where I add some pelican sightings to my pelican_sightings table: The new version also enhances the datasette agent chat terminal mode to support approvals, and adds several new options including --unsafe mode for auto-approving them: datasette agent chat can execute tools that require user approval. #30 Three new options for datasette agent chat - --root to run as root, --yes to approve all ask user questions, and --unsafe for both. Tools can now provide plain text alternatives to HTML, for display in the datasette agent chat CLI. #31 The datasette agent chat content.db -m gpt-5.5 --unsafe command can now be used to chat directly with a specific database and directly modify it through prompts like &quot;create a notes table&quot;, &quot;add a note about X&quot; etc. Tags: projects , ai , datasette , annotated-release-notes , generative-ai , llms , llm-tool-use , datasette-agent</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-ai-claude-fable-5-review-and" target="_blank">🎙️ How I AI: Claude Fable 5 review &amp; How Braintrust uses AI agents, evals, and CI to ship better software</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jun 15, 2026 &middot; 15:01 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ How I AI: Claude Fable 5 review &amp; How Braintrust uses AI agents, evals, and CI to ship better software Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Jun 15, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-braintrust-uses-ai-agents-evals" target="_blank">How Braintrust uses AI agents, evals, and CI to ship better software | Ankur Goyal</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jun 15, 2026 &middot; 12:04 UTC</span>
+          </div>
+          <p class="summary"><span>ase Introduction to Ankur Goyal Using AI agents for database optimization Running exhaustive benchmarks with coding agents Why staff engineers are wrong about AI limitations The “agent line” framework for delegation Ankur’s workflow: running 4 to 6 concurrent agents Technical setup: foreground agents, background agents, and cloud environments Spending time with AI tools Demystifying evals Live demo: Building an eval for documentation answers The alternative to evals: vibe checks and whack-a-mole Capturing designer taste in scoring functions Quick recap Managing velocity and throughput Why CI/CD investment is critical for AI-accelerated teams Ankur’s prompting strategy when agents fail Closing thoughts and how to connect<ul><li>Braintrust: <a href="https://www.braintrust.dev/" target="_blank" rel="noopener">https://www.braintrust.dev/</a></li><li>Codex: <a href="https://openai.com/codex/" target="_blank" rel="noopener">https://openai.com/codex/</a></li><li>GPT 5.4: <a href="https://developers.openai.com/api/docs/models/gpt-5.4" target="_blank" rel="noopener">https://developers.openai.com/api/docs/models/gpt-5.4</a></li><li>Claude: <a href="https://claude.ai/" target="_blank" rel="noopener">https://claude.ai/</a> Other</li><li>GPT 5.5 just did what no other model could: <a href="https://www.lennysnewsletter.com/p/gpt-55-just-did-what-no-other-model" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/gpt-55-just-did-what-no-other-model</a></li><li>Paul Graham’s Maker vs.</span> <span>Manager Schedule: <a href="http://www.paulgraham.com/makersschedule.html" target="_blank" rel="noopener">http://www.paulgraham.com/makersschedule.html</a></li><li>tmux: <a href="https://github.com/tmux/tmux" target="_blank" rel="noopener">https://github.com/tmux/tmux</a></li><li>Chris Tate at Vercel: <a href="https://www.linkedin.com/in/ctatedev/" target="_blank" rel="noopener">https://www.linkedin.com/in/ctatedev/</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/introducing-openai-partner-network" target="_blank">Introducing the OpenAI Partner Network</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jun 14, 2026 &middot; 17:00 UTC</span>
+          </div>
+          <p class="summary"><span>Today, we’re announcing the OpenAI Partner Network to deliver just that.</span> <span>The OpenAI Partner Network is a new program for partners around the world to build, sell, and deliver AI solutions with OpenAI.</span> <span>The OpenAI Partner Network launches with a select group of global partners with AI leadership across systems integration, management consulting, technology, and data.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 14, 2026 Product Introducing the OpenAI Partner Network Loading… The limiting factor for seeing value from AI in the enterprise is no longer model capabilities. Instead, it’s how organizations repeatably identify the right use cases, redesign workflows, integrate with existing systems, and drive adoption and change management at scale. Helping every organization adopt OpenAI frontier models and products and turn them into measurable impact requires an ecosystem of trusted partners with deep industry expertise, global delivery capacity, and customer relationships. Today, we’re announcing the OpenAI Partner Network to deliver just that. The OpenAI Partner Network is a new program for partners around the world to build, sell, and deliver AI solutions with OpenAI. We’re investing $150 million to support this ecosystem and help partners bring the benefits of AI to more organizations more quickly. The OpenAI Partner Network launches with a select group of global partners with AI leadership across systems integration, management consulting, technology, and data. We also aim to train and enable 300,000 certified consultants by the end of 2026. Helping enterprises move from ambition to outcome with AI Organizations across every industry are ready to transform how they operate with AI. But executing that change well requires both access to frontier models and clear strategy, secure integration with enterprise systems and data, workflow redesign, responsible deployment, and change management that helps people adopt new ways of working. Partners play a critical role in each of those steps. They help customers understand where AI can create the most value, build solutions that fit their operating environment, and deploy them with the reliability, governance, and support enterprises expect. Below are some examples of joint customer collaboration with our partners to drive adoption and impact with our partners: 1 of 4 “ AI is a top priority for Agilent as we strengthen our leadership, improve execution, and build differentiated capabilities for customers. Through a collaboration with OpenAI and BCG, we are accelerating deployment of AI across our business while advancing more intelligent instruments, software, and services. Our focus is simple: deliver faster, highest-quality insights to help our customers make better decisions. ” “ eBay has collaborated with Artium and OpenAI to develop a next-generation AI customer service platform designed to enhance experiences for both customers and customer service teams. This initiative sets a new standard in customer care, where human expertise and AI agents work together to deliver faster, more consistent, and more personalized resolutions. ” “ We set out to transform one of the most complex workflows in our business, and Bain and OpenAI were invaluable partners in helping us turn that vision into a production-scale AI solution that meets the demands of a mission-critical payroll environment. The result: an 80% reduction in wait time compared to humans and a 30% reduction in effort time for human-reviewed requests, while maintaining the accuracy, security, and trust our clients rely on every day. ” “ Our collaboration with Accenture and OpenAI is helping us explore the next generation of AI-enabled customer experiences. Through our IntentCX work, we&#x27;re evaluating how real-time intent and sentiment intelligence can enable faster, more personalized, and more seamless interactions for customers. ” Agilent &amp; BCG eBay &amp; Artium Paychex &amp; Bain T-Mobile &amp; Accenture How the OpenAI Partner Network works The OpenAI Partner Network makes it easier and more flexible for partners to work with OpenAI, whether they are co-selling, deploying, building, or helping customers connect to OpenAI technology. The program recognizes partners for the value they create and gives them access to the , enablement, and support they need to build successful AI practices. Partners can progress through three tiers: Select, Advanced, and Elite, each with a high bar for sales performance, technical capability, co-sell engagement, and deployment experience. As the platform evolves, partners will also be able to earn specializations that signal deeper expertise in high-impact areas such as Codex, cybersecurity, and agents. These specializations are designed to help customers identify partners with proven capabilities in the areas that matter most to their AI transformation, while giving partners a clearer path to build expertise, stay current with OpenAI’s rapid product delivery cycles, and bring more targeted solutions to market. For partners working on complex enterprise deployments, OpenAI is also piloting a Forward Deployed Experts program with a set of founding partners. The program is designed to help qualified partner practitioners better align with OpenAI’s Forward Deployed Engineering teams when customer needs call for deeper deployment support. Participants will gain exposure to OpenAI technologies, playbooks, and transformation patterns, helping them bring more OpenAI-native expertise into customer environments. Building a global ecosystem for AI transformation The OpenAI Partner Network brings together a diverse set of organizations with complementary strengths. Some partners help customers define strategy and redesign operating models. Others integrate AI into complex technology environments, build industry-specific solutions, modernize data foundations, or help organizations manage change across global workforces. Hear what our partners have to say: 1 of 6 “ By combining OpenAI’s frontier models with Accenture’s unmatched industry depth, global delivery scale, and decades of experience embedding advanced technology into the core of how organizations operate, we’re helping our clients reinvent entire value chains—not just deploy AI. Through our partnership with OpenAI, we’re turning AI ambition into enterprise-wide transformation at speed and scale. ” “ We&#x27;re proud to be part of OpenAI&#x27;s Partner Network and to build on our longstanding partnership that has delivered measurable impact for clients around the world. Together, OpenAI and Bain are helping organizations move from AI ambition to enterprise-wide impact. By combining OpenAI&#x27;s frontier AI technology with Bain&#x27;s expertise in strategy, technology, and enterprise transformation, we help clients deploy and scale AI more effectively, delivering measurable business impact and lasting competitive advantage. ” “ Our partnership with OpenAI brings together frontier AI, BCG’s expertise in transformation across industries and functions, and BCG X’s technology capabilities and forward deployed engineering talent. Together, we&#x27;re helping clients move beyond pilots to build and deploy applied AI at scale and deliver measurable business impact. We&#x27;re excited to be a part of the OpenAI Partner Network and extend that transformative impact to more organizations globally. ” “ At Eliza we’re all-in on OpenAI as our exclusive frontier model partnership, not just because of the technology advantage, but because of the mission. We share the belief that AI’s greatest impact over the next decade will come from helping organizations bring these capabilities into the real world: empowering employees, serving customers better, and creating meaningful value for communities. The future of AI should belong to everyone. We’re proud to be building alongside the OpenAI team to help make that happen. ” “ The leaders in AI are reimagining how their businesses create value, not simply where to deploy the technology. By bringing together McKinsey’s strategic and technology expertise, QuantumBlack’s delivery capabilities, and OpenAI’s frontier AI technology, we’re helping organizations accelerate adoption, create real value, and deliver impact with these remarkable tools. We look forward to expanding our collaboration with OpenAI and helping more clients transform ambition into impact. ” “ Unlocking AI&#x27;s full value takes more than technology, it takes the right strategy, operating model, governance, and execution. By combining OpenAI&#x27;s frontier capabilities with PwC&#x27;s transformation expertise, we&#x27;re helping clients build the intelligent enterprise: deploying AI responsibly, at scale, and with lasting impact. We&#x27;re proud to deepen our partnership with OpenAI and accelerate that journey. ” Accenture Bain BCG Eliza McKinsey PwC This ecosystem-led approach is central to how we believe AI will create value. No single company can deliver every solution, in every market, for every customer. By working with partners, OpenAI can help more organizations access AI in ways that are practical, trusted, and aligned to their needs. Expanding access to AI’s benefits AI is becoming a new foundation for how organizations operate. Realizing its full potential will require deep collaboration between OpenAI, partners, and customers. The OpenAI Partner Network is one way in which we’re investing in that future. Together with our partners, we’re working to bring the benefits of AI to enterprises around the world. Partners interested in building with OpenAI can learn more at <a href="https://openai.com/business/partners" target="_blank" rel="noopener">https://openai.com/business/partners</a> ⁠ Partnerships 2026 Author OpenAI Keep reading View all New usage analytics and updated spend controls for enterprises Product Jun 18, 2026 Improving health intelligence in ChatGPT Product Jun 18, 2026 Better memory for a more helpful ChatGPT Dreaming: Better memory for a more helpful ChatGPT Research Jun 4, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/academy-courses-applying-ai-at-work" target="_blank">New OpenAI Academy courses for the next era of work</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jun 12, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>June 12, 2026 AI Adoption New OpenAI Academy courses for the next era of work Loading… AI is giving organizations a new capacity to act.</span> <span>At OpenAI, we view learning as part of deployment.</span> <span>You can visit OpenAI Academy ⁠ (opens in a new window) to explore the courses.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 12, 2026 AI Adoption New OpenAI Academy courses for the next era of work Loading… AI is giving organizations a new capacity to act. Work that once waited for scarce time or expertise can increasingly move forward with AI. But that promise only becomes real when people know how to apply these tools in the context of their work and turn successful uses into repeatable ways of working. At OpenAI, we view learning as part of deployment. We build the models and products and work closely with organizations applying them across their businesses. OpenAI Academy turns those insights into practical learning that helps organizations build AI fluency across their workforce and shorten the distance between deployment and value. Today, we’re introducing three new courses on OpenAI Academy ⁠ (opens in a new window) : AI Foundations, Applied AI Foundations, and Agents and Workflows. Together, they give teams a shared path from understanding AI, to applying it to recurring work, to directing more structured workflows with agents. From AI fundamentals to repeatable workflows OpenAI Academy courses are built around a simple idea: people learn how to use AI best by practicing on work that matters to them. As part of this effort, we are working with partners including BCG, Accenture, and BBVA to help organizations build practical AI skills and apply them in their day-to-day work. AI Foundations introduces the core concepts and practices for using AI effectively in everyday work, including prompting, giving context, output review, and responsible use. Learners leave with the foundations they need to apply those habits and improve routine tasks such as drafting, summarizing, planning, and meeting preparation. Applied AI Foundations teaches how to turn effective prompts into structured, repeatable workflows. Learners understand how to develop a workflow plan that defines the right inputs, models, tools, checkpoints, and human review, while balancing quality, speed, and cost. Agents and Workflows focuses on how to direct agent-assisted work by providing context, defining outputs and boundaries, and reviewing results. Learners leave able to run and refine a reusable workflow while identifying where human judgment and oversight are required. Together, the courses take learners from improving one everyday task, to building a repeatable workflow plan, to practicing an agent-assisted workflow they can apply to future work. “We welcome initiatives such as OpenAI Academy that help professionals build practical AI skills and better understand how to apply these technologies in their everyday work,” Elena Alfaro, Head of Global AI Adoption at BBVA. Practical learning, directly from OpenAI OpenAI Academy is shaped by teams across AI research, product, safety, and deployment. The curriculum can evolve alongside our models and products, incorporating new capabilities, updated safety practices, and lessons from how organizations put AI to work. For enterprises, this creates a consistent learning standard grounded in the technology employees use every day. Recognize progress with course completion certificates Learners who complete a course receive a certificate of completion that they can share with their teams and networks. Certificates give companies a simple way to recognize participation, celebrate early adopters, and connect learning to practical work already underway. They can also help champions find peers who are building new workflows and encourage teams to share what is working across the organization. Bring Academy courses to your organization Organizations can use the courses for employee onboarding, enterprise learning programs, or broader AI adoption initiatives. They provide a common foundation for teams getting started and help more experienced organizations turn individual use into workflows that can be shared and improved across teams. “Scaling AI adoption is not just about giving people access to technology. It requires the learning systems, confidence, and new ways of working that help people apply AI every day,” said Dr. Lan Guan, Chief AI and Data Officer at Accenture. “OpenAI Academy is an important part of how we are helping our people build the practical skills, workflows, and habits to use AI responsibly and effectively. Together, we can bring that same hands-on approach to clients as they scale AI across their workforces.” These courses are the beginning of a broader OpenAI Academy learning roadmap. We will continue updating them as our products evolve, expand reporting capabilities for organizations, and introduce new learning paths for additional roles and use cases. You can visit OpenAI Academy ⁠ (opens in a new window) to explore the courses. To bring them to your organization, contact your OpenAI account team or contact sales ⁠ . 2026 Author OpenAI Keep reading View all OpenAI named a Leader in enterprise coding agents by Gartner AI Adoption May 22, 2026 The five AI value models driving business reinvention AI Adoption Mar 5, 2026 Introducing the Adoption news channel AI Adoption Mar 5, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/openai-to-acquire-ona" target="_blank">OpenAI to acquire Ona</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jun 11, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>June 11, 2026 Company OpenAI to acquire Ona Expands Codex with secure, customer-controlled cloud infrastructure for long-running agents across software and knowledge work.</span> <span>Loading… Today we’re announcing that OpenAI will acquire Ona ⁠ (opens in a new window) , bringing its secure cloud execution and orchestration technology into our rapidly expanding Codex ecosystem.</span> <span>After closing, the Ona team will join OpenAI and work with the Codex team to advance secure, persistent enterprise execution capabilities and help scale Codex to more enterprises worldwide.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 11, 2026 Company OpenAI to acquire Ona Expands Codex with secure, customer-controlled cloud infrastructure for long-running agents across software and knowledge work. Loading… Today we’re announcing that OpenAI will acquire Ona ⁠ (opens in a new window) , bringing its secure cloud execution and orchestration technology into our rapidly expanding Codex ecosystem. More than 5 million people use Codex each week to research, analyze, build, and automate their work—up 400% from earlier this year. Codex began as a tool for software developers and now helps a wider range of people do complex work from an initial request through to a finished result. As Codex becomes more capable, its most valuable work is unfolding over hours or days, rather than minutes. We believe people should be able to delegate more ambitious work without remaining tied to the machine where it began. The work should continue beyond the initial session, with Codex making it possible to stay connected and check progress, provide direction, make decisions, and review results from anywhere. Ona will help us do that. Its technology provides secure, persistent environments where agents can access the tools, systems, and context they need to make progress over time. By bringing Ona to OpenAI, we will expand Codex beyond work tied to a single device or active session and help more organizations deploy agents securely in production. Giving Codex a persistent place to work Ona has spent years helping developers move software development from local machines into the cloud. The company has helped 2 million developers work in secure, reproducible cloud environments and supports multiple shared customers. That experience is directly relevant to the next phase of Codex, enabling agents to continue working inside a customer’s cloud environment even when laptops are closed. Scaling Codex across production workflows As organizations move from experimenting with agents to deploying them across production workflows, capable models are only one part of what they need. Organizations should be able to give people the benefits of persistent agentic work with confidence, knowing agents are operating inside environments that meet their security, governance, and operational requirements. That means having control over where they run, what they can access, how credentials are scoped, how activity is logged, and how work moves through review. Ona’s customer-controlled execution model will allow agents to operate inside an organization’s own cloud environment while OpenAI provides the intelligence and orchestration that power the experience. This gives organizations greater control over their infrastructure, data, and security boundaries without limiting what Codex can accomplish. “ Agents need more than intelligence; they need a trusted workspace. We built Ona to give agents cloud environments with the context, control and collaboration enterprises require. Joining OpenAI lets us bring that foundation into Codex, helping organizations deploy agents with confidence and giving humans more agency over their work. ” “ Enterprises want powerful agents that can do real work while meeting the security and control requirements of their environments. Ona will help us make Codex easier to deploy securely across production workflows for customers operating at the highest standards of trust and scale. ” 1 of 2 “ Agents need more than intelligence; they need a trusted workspace. We built Ona to give agents cloud environments with the context, control and collaboration enterprises require. Joining OpenAI lets us bring that foundation into Codex, helping organizations deploy agents with confidence and giving humans more agency over their work. ” “ Enterprises want powerful agents that can do real work while meeting the security and control requirements of their environments. Ona will help us make Codex easier to deploy securely across production workflows for customers operating at the highest standards of trust and scale. ” —Johannes Landgraf, Co-Founder and CEO, Ona —Thibault Sottiaux, Core Products Lead, OpenAI What’s next The acquisition is subject to customary closing conditions, including receipt of required regulatory approvals. Until closing, OpenAI and Ona will remain separate and independent companies. After closing, the Ona team will join OpenAI and work with the Codex team to advance secure, persistent enterprise execution capabilities and help scale Codex to more enterprises worldwide. We’re excited to welcome the Ona team to OpenAI as we build AI systems that help people and businesses create and accomplish more while meeting the security and control requirements of real-world deployment. Together, we will help engineering teams safely take on sustained work across the software lifecycle, from running tests and resolving issues to modernizing applications, addressing vulnerabilities, and supporting complex workflows over time. 2026 Author OpenAI Keep reading View all Access OpenAI models and Codex through your Oracle cloud commitment Company Jun 10, 2026 Confidential submission of draft S-1 to the SEC Company Jun 8, 2026 Built to benefit everyone: our plan Company Jun 8, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/supporting-eu-trustworthy-ai-ecosystem" target="_blank">Supporting Europe’s work in ensuring a trustworthy AI ecosystem</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jun 11, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>June 11, 2026 Global Affairs Supporting Europe’s work in ensuring a trustworthy AI ecosystem OpenAI announces support for the EU Code of Practice on Transparency of AI-generated content, building on years of provenance work.</span> <span>Today, following publication of the European Commission’s Code of Practice on Transparency of AI-Generated Content ⁠ (opens in a new window) , OpenAI is announcing its support for the Code and the ambition behind it.</span> <span>Our support builds on years of internal research, product development, and cooperation with the wider ecosystem to strengthen provenance for AI-generated content.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 11, 2026 Global Affairs Supporting Europe’s work in ensuring a trustworthy AI ecosystem OpenAI announces support for the EU Code of Practice on Transparency of AI-generated content, building on years of provenance work. Loading… People are using AI to create and edit content in new ways. As these tools become more capable and more widely used, people should have context about the content they see online. Today, following publication of the European Commission’s Code of Practice on Transparency of AI-Generated Content ⁠ (opens in a new window) , OpenAI is announcing its support for the Code and the ambition behind it. The Code is an important step in implementing the EU AI Act and building a more transparent digital ecosystem. Our support builds on years of internal research, product development, and cooperation with the wider ecosystem to strengthen provenance for AI-generated content. OpenAI has been developing and adopting provenance standards since 2024, when we began adding C2PA metadata to our DALL-E 3 image generation tool. Since then, we have continued to strengthen provenance through improved marking and detection methods, new research, and the release of our first public verification tool . Drawing on years of expertise, we contributed to the development of this Code alongside hundreds of other stakeholders to help ensure a trustworthy AI ecosystem. This builds on our broader approach to AI governance in Europe. In 2025, OpenAI was the first US company to sign the EU’s General-Purpose AI Code of Practice ⁠ (opens in a new window) , reflecting our belief that clear, workable rules can help AI develop responsibly while giving companies the certainty to keep building. We support this new Code in the same spirit. Advancing transparency of AI-generated content is an ecosystem-wide effort, requiring contribution from actors all along the value chain. The EU AI Act and the Code recognize this, and we are committed to doing our part by complying with the requirements that apply to our relevant products. Why provenance matters As AI tools become a part of how people build, imagine, and share, it’s important that people can understand where content comes from and interpret it with confidence. Provenance signals can help by giving people context about content’s source, how it was created or edited, and whether it is what it claims to be. Provenance can also help protect the digital ecosystem by making it easier to detect disinformation campaigns and support election integrity . Effective, reliable and robust provenance methods should be built collectively and work across the ecosystem. That is why we work with coalitions like C2PA, which brings together news organizations, device manufacturers, online platforms, and AI providers to advance interoperable standards. C2PA metadata is an important foundation for provenance. It helps content carry information about where it came from, how it was created or edited, and who signed that information. But metadata is not foolproof. It can be stripped, lost through uploads and downloads, or broken by transformations like file format changes, resizing, or screenshots. OpenAI’s multi-layered approach to provenance To make provenance more resilient, OpenAI takes a multi-layered approach that combines different signals, product safeguards, and collaboration across the wider ecosystem. Our current work includes: C2PA Content Credentials ⁠ (opens in a new window) for images: We began adding C2PA metadata to images created and edited by DALL·E 3 in ChatGPT and the OpenAI API, and have continued expanding provenance signals across OpenAI-generated images. Multiple signals for OpenAI-generated images: Images generated with ChatGPT, Codex, and the OpenAI API include both C2PA metadata and SynthID watermarks. Metadata can carry richer information, while watermarking can help preserve a signal across contexts. A public verification experience: openai.com/verify lets people check whether supported images contain provenance signals associated with OpenAI-generated images. Contributions to open standards. In 2024, OpenAI joined the C2PA Steering Committee , a cross-industry effort involving software companies, camera manufacturers, media organizations, and online platforms. Product safeguards: Provenance complements policies, classifiers, reporting channels, and enforcement processes that reduce deceptive uses of AI-generated content, including likeness misuse and election-related deception. Making content transparency work in practice While provenance is useful, it is still a nascent field. Signals can be lost as content moves online: metadata can be removed, watermarks can degrade, and labels only help where people encounter content. Advancing the reliability, robustness and interoperability of provenance techniques still requires significant work and cooperation among the ecosystem. The Code of Practice sets the right direction: a high level of ambition to advance provenance techniques. As it is implemented, it should stay grounded in methods that work in practice and flexible enough to reflect the limitations of current techniques. OpenAI will keep strengthening content transparency across our products, contributing to the development of interoperable standards, and improving verification tools. We look forward to working with the AI Office, Member States, and the wider AI community to build a safer, more transparent AI ecosystem. 2026 Author OpenAI Keep reading View all PRC-linked influence operations are targeting AI debates in the US Global Affairs Jun 10, 2026 Industrial policy for the Intelligence Age Industrial policy for the Intelligence Age Global Affairs Jun 9, 2026 Biodefense in the Intelligence Age Global Affairs Jun 4, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/bbva" target="_blank">BBVA puts AI at the core of banking with OpenAI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jun 11, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>June 11, 2026 BBVA puts AI at the core of banking with OpenAI Through a strategic collaboration with OpenAI, BBVA is redesigning banking around AI across customer experience, operations, and work.</span> <span>To accelerate that transformation, BBVA and OpenAI have formed a strategic collaboration designed to integrate AI across customer experiences, operations, software development, and the day-to-day work of employees throughout the organization.</span> <span>Through the collaboration, OpenAI is working closely with BBVA teams across engineering, research, product development, and operations to help develop and scale these AI capabilities securely across a global banking organization.</span> <span>“‘The Eight’ is about building a more proactive, intelligent, and personalized bank.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 11, 2026 BBVA puts AI at the core of banking with OpenAI Through a strategic collaboration with OpenAI, BBVA is redesigning banking around AI across customer experience, operations, and work. Contact sales Products: ChatGPT Company size: Enterprise Region: Global Industry: Finance Results ~100,000 employees using ChatGPT Enterprise globally Results +70% monthly active usage ~3hrs saved per employee, per week Results ↑80% efficiency gains in selected workflows Loading… Founded in 1857, BBVA is a global financial institution supporting people and businesses across Europe, Mexico, South America, Turkey, and the U.S., serving tens of millions of customers worldwide. After pioneering digital and mobile banking over the last decade, BBVA is now entering a new phase: transforming banking around artificial intelligence. To accelerate that transformation, BBVA and OpenAI have formed a strategic collaboration designed to integrate AI across customer experiences, operations, software development, and the day-to-day work of employees throughout the organization. The collaboration marks a new level of partnership between a global financial institution and OpenAI, with teams from both companies working together on shared priorities and long-term transformation initiatives. By the end of 2025, that collaboration had evolved into a broader strategic alliance centered around &quot;The Eight,&quot; BBVA&#x27;s AI transformation roadmap for redesigning banking end-to-end—from customer experience and commercial banking to risk, operations, software development, and employee productivity. Rather than approaching AI as a standalone technology initiative, BBVA is rethinking how the bank operates across every layer of the organization: how customers interact with financial services, how employees make decisions, how risk is analyzed, and how operations are executed at scale. “Our alliance with OpenAI accelerates the native integration of artificial intelligence across the bank to create a smarter, more proactive, and completely personalized banking experience, anticipating the needs of every client.” —Carlos Torres Vila, Chair of BBVA The initiative spans every layer of the bank: from AI-powered financial assistants capable of anticipating customer needs, to tools that help bankers and risk analysts make faster and more informed decisions, to systems that automate operations and accelerate software development across the organization. Through the collaboration, OpenAI is working closely with BBVA teams across engineering, research, product development, and operations to help develop and scale these AI capabilities securely across a global banking organization. “‘The Eight’ is about building a more proactive, intelligent, and personalized bank. Working closely with OpenAI allows us to rethink customer experience, operations, and employee capabilities at a scale that was not possible before.” —Antonio Bravo, Head of AI Transformation at BBVA From enterprise adoption to strategic transformation The relationship between BBVA and OpenAI began in 2024 with an initial deployment of ChatGPT Enterprise to 3,000 employees across multiple countries and business areas. As adoption accelerated organically, BBVA expanded access across the organization. Today more than 100,000 employees globally use ChatGPT Enterprise, making BBVA one of the largest enterprise adopters of generative AI in the financial sector. Teams across legal, risk, engineering, operations, finance, marketing, and customer service integrated ChatGPT into everyday workflows. The deployment demonstrated how generative AI could scale securely inside a highly regulated organization while delivering measurable operational impact across the business. For a highly regulated global bank, scaling AI required more than simply deploying licenses. BBVA built its AI adoption strategy around three core pillars: trust, governance, and structured learning. From the beginning, BBVA aligned security, legal, compliance, and technology teams to ensure employees had access to trusted AI tools within clear governance frameworks. Rather than allowing unauthorized experimentation with consumer AI tools, the bank chose to provide employees with secure enterprise-grade access and formal enablement programs. To support adoption at scale, BBVA created a structured enablement framework that included an organization-wide AI champions network, along with advanced users known internally as AI “wizards.” These teams lead hands-on workshops, help colleagues integrate ChatGPT into everyday workflows, and identify valuable use cases across the organization. Leadership participation became a major accelerator for adoption. BBVA provided specific training to 250 leaders, including the CEO and chairman, and today members of the executive committee are among the company&#x27;s most active ChatGPT users. “We consider our investment in ChatGPT an investment in our people. AI amplifies our potential and helps us be more efficient and creative.” —Elena Alfaro, Head of Global AI Adoption at BBVA Once employees began seeing practical value in their daily work, adoption expanded organically across the company. Empowering every department with expert knowledge As adoption expanded, employees across BBVA began building custom GPTs tailored to specialized workflows across legal, risk, customer service, finance, and marketing. To date, employees have created more than 20,000 GPTs across the organization, with approximately 4,000 used frequently by teams around the world. In credit risk, BBVA developed Credit Analysis Pro GPT, which accelerates assessments by extracting and analyzing unstructured data from annual reports, ESG disclosures, and media coverage—work that was previously manual and time-intensive. By automating these tasks, analysts can focus more on strategic analysis and higher-value work, including how ESG factors are incorporated into risk models. In legal services, BBVA created a Retail Banking Legal Assistant GPT to help respond to approximately 40,000 annual client-related legal inquiries received from branch managers. The GPT drafts responses by pulling from multiple internal knowledge sources, dramatically reducing manual research time for the nine-person legal team. In Mexico, a Client Experience Assistant GPT analyzes thousands of open-ended customer survey responses, accelerating sentiment analysis, surfacing key themes, and recommending actions that help improve customer experience faster and at scale. In Peru, more than 3,000 employees now use an internal AI assistant that has reduced average query handling times from approximately 7.5 minutes to around 1 minute—an efficiency improvement of roughly 80%. These examples illustrate a broader shift underway at BBVA. What began as employee productivity gains is increasingly becoming a foundation for how the bank delivers services, makes decisions, and scales expertise across the organization. “We created a secure environment for learning and using AI.” —Elena Alfaro, Head of Global AI Adoption at BBVA Results at a glance 100,000 employees using ChatGPT Enterprise globally 70%+ weekly active usage across deployed employees ~3 hours saved per employee, per week Up to 80% efficiency gains in selected workflows 250 senior leaders trained, including the CEO and chairman Security, legal, and compliance aligned from day one Employee-led AI adoption across business functions 8 major transformation initiatives under “The Eight” Leadership lessons Treat AI as business transformation: BBVA approached AI as a redesign of customer experience, operations, and ways of working across the organization — not as a standalone innovation effort. Build with domain expertise: The collaboration combines OpenAI’s frontier AI capabilities with BBVA’s deep expertise in banking, risk, operations, and customer experience. Scale securely from day one: Transforming a global financial institution with AI requires governance, data architecture, and security frameworks designed to scale across the organization. Empower employees with AI: By extending AI capabilities broadly across the workforce, BBVA is enabling employees to become active participants in the bank’s transformation. Train leadership early: AI adoption accelerates when senior leaders actively use the technology themselves. Early training programs for executives — including the CEO and chairman — help establish AI as a strategic priority across the organization. Move from reactive to proactive banking: The long-term ambition is not simply greater efficiency, but a more intelligent and personalized banking experience capable of anticipating customer needs. What’s next For BBVA, ChatGPT Enterprise adoption is only one part of a much larger transformation. Through &quot;The Eight,&quot; the bank is pursuing a long-term vision for redesigning banking around AI—from customer engagement and commercial banking to risk, operations, software development, and employee productivity. Working closely with OpenAI, BBVA is continuing to explore how AI can help create a more proactive, intelligent, and personalized banking experience while improving how work gets done across the organization. The goal is not simply to deploy AI tools, but to rethink how a global bank operates in an AI-native era. Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading New usage analytics and updated spend controls for enterprises Product Jun 18, 2026 Improving health intelligence in ChatGPT Product Jun 18, 2026 Using AI to help physicians diagnose rare genetic diseases affecting children Applied AI Jun 18, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/openai-on-oracle-cloud" target="_blank">Access OpenAI models and Codex through your Oracle cloud commitment</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jun 10, 2026 &middot; 20:00 UTC</span>
+          </div>
+          <p class="summary"><span>June 10, 2026 Company Access OpenAI models and Codex through your Oracle cloud commitment Use your existing Oracle cloud commitment to give teams access to OpenAI’s most advanced models and Codex, without creating a new purchasing path.</span> <span>To help make that happen, OpenAI and Oracle are partnering to make OpenAI frontier models and Codex easier to access for Oracle Cloud Infrastructure (OCI) customers.</span> <span>Partnerships 2026 Codex API Platform Author OpenAI Keep reading View all OpenAI to acquire Ona Company Jun 11, 2026 Confidential submission of draft S-1 to the SEC Company Jun 8, 2026 Built to benefit everyone: our plan Company Jun 8, 2026</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 10, 2026 Company Access OpenAI models and Codex through your Oracle cloud commitment Use your existing Oracle cloud commitment to give teams access to OpenAI’s most advanced models and Codex, without creating a new purchasing path. Loading… Enterprises often want to deploy AI through the procurement processes and governance frameworks they already trust. To help make that happen, OpenAI and Oracle are partnering to make OpenAI frontier models and Codex easier to access for Oracle Cloud Infrastructure (OCI) customers. In the coming weeks, Oracle customers will be able to apply eligible Oracle Universal Credits toward OpenAI models and Codex through OCI. This gives customers a path to access OpenAI models under their existing purchasing workflow and cloud commitment. With OpenAI models, teams can build AI applications, analyze complex information, automate workflows, and create new customer and employee experiences. For organizations with existing Oracle commitments, the partnership can help align AI adoption with planned cloud investments and established enterprise processes. The goal is to reduce friction for teams that are ready to bring advanced AI into their businesses, while meeting customers where they already manage critical technology decisions. By expanding access through OCI, OpenAI and Oracle are making it easier for more enterprises to move from AI ambition to production impact. Availability will begin in the coming weeks. Contact your Oracle sales representative for details, timing, and availability. Partnerships 2026 Codex API Platform Author OpenAI Keep reading View all OpenAI to acquire Ona Company Jun 11, 2026 Confidential submission of draft S-1 to the SEC Company Jun 8, 2026 Built to benefit everyone: our plan Company Jun 8, 2026</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 190</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
