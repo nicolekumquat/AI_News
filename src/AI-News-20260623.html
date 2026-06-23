@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-06-23</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-06-23</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/omio" target="_blank">How Omio is building the future of conversational travel</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jun 23, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>June 23, 2026 How Omio is building the future of conversational travel From AI-powered trip planning to company-wide transformation, Omio is working with OpenAI to reinvent how travel is discovered, booked and delivered.</span> <span>As travel becomes increasingly digital, Omio is reimagining how people discover and book journeys through conversational AI.</span> <span>As consumer expectations shift toward conversational interfaces, Omio saw an opportunity to rethink how travel discovery works.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 23, 2026 How Omio is building the future of conversational travel From AI-powered trip planning to company-wide transformation, Omio is working with OpenAI to reinvent how travel is discovered, booked and delivered. Contact sales Company size: Mid-market Region: Global Industry: Technology, Travel Products: ChatGPT, Codex, API 3000+ Transportation providers connected through AI-powered travel experiences 47 Countries covered across Omio’s global transportation network 20% Of previous development effort required to build new products 3 months → 1 month From multiple developers over a quarter to one developer in a month Loading… Moving from search to conversation Omio ⁠ (opens in a new window) is one of the world’s leading multimodal travel platforms, connecting millions of travelers with trains, buses, ferries and flights. The company works with more than 3,000 transportation providers across 47 countries. As travel becomes increasingly digital, Omio is reimagining how people discover and book journeys through conversational AI. As consumer expectations shift toward conversational interfaces, Omio saw an opportunity to rethink how travel discovery works. Traditional travel planning often requires navigating multiple websites, comparing transportation modes, and piecing together itineraries across providers. Omio believed AI could create a fundamentally different experience—one where travelers simply describe where they want to go and receive personalized, bookable journeys in return. As an early OpenAI customer and partner, Omio became one of the first travel companies to experiment with conversational travel experiences powered by real-time transportation data. At the same time, the company recognized that the same technology reshaping customer experiences could transform how work gets done internally. We sat down with Tomas Vocetka, Omio’s CTO, to discuss the company’s vision for conversational travel, its journey toward becoming AI-native, and how OpenAI is helping accelerate innovation across both customer experiences and internal operations. Bringing conversational travel to life In 2023, Omio launched one of the earliest travel experiences available through ChatGPT, connecting OpenAI models directly to Omio’s transportation inventory and booking systems. The integration enabled travelers to ask natural-language questions such as “What’s the fastest route from Rome to Florence?” or “Should I take a train or flight from Paris to Barcelona?” Rather than relying on static information, the experience connected ChatGPT to live transportation inventory and pricing data, helping users discover real, bookable journeys through conversation. More recently, Omio expanded that vision with a dedicated ChatGPT experience built on OpenAI models and connected to its global transportation network. By grounding responses in verified travel data, the company is helping building towards a new category of conversational commerce where AI serves as the interface layer between customers and real-world transportation systems. For Omio, conversational travel is not simply a new feature. It represents a broader shift from search-based interfaces to AI-native customer experiences. Inside the rollout While Omio was building AI-powered experiences for travelers, it was also transforming how teams operate internally. The company began by rolling out ChatGPT to employees across the organization, enabling teams to experiment, learn, and identify opportunities to improve their work. As adoption matured, Omio expanded into Codex, embedding it deeply into engineering workflows and increasingly extending it to non-technical functions. “We rolled out ChatGPT. That was a teaser. Codex is where the real work gets done.” —Tomas Vocetka, CTO, Omio Today, every engineer uses Codex throughout the software development lifecycle—from research and planning to coding, testing, code reviews, monitoring, and maintenance. Omio is also building custom integrations and connectors that bring internal systems, data, and workflows directly into AI-powered tools, allowing employees to move beyond information retrieval and into execution. The company’s broader goal is to become AI-native—not by layering AI onto existing processes, but by rethinking how work gets done from the ground up. “All functions need to rethink how they do the work” explains Vocetka. That mindset has already reshaped the way Omio builds products. Teams are able to move from idea to execution significantly faster, reducing the cost and effort required to test new concepts and validate customer needs. Omio estimates that many products can now be built in roughly 20% of the time previously required. “Projects that used to take several developers a quarter can now be done by one developer in around a month.” says Vocetka. Faster development cycles have enabled more experimentation, quicker decision-making, and a greater ability to test and refine ideas before making larger investments. Throughout the transformation, Omio has maintained a clear principle around responsible deployment. “The responsibility and accountability stay with people. AI helps us develop faster, analyze faster, and make decisions faster, but people stay in charge.” —Tomas Vocetka, CTO, Omio By combining broad access to OpenAI tools with strong governance and human oversight, Omio is creating an operating model where AI accelerates execution while employees remain accountable for outcomes. Results at a glance Built one of the earliest conversational travel experiences on ChatGPT Connected OpenAI models to 3,000+ transportation providers across 47 countries Reduced product development effort to approximately 20% of previous levels Accelerated projects from one quarter to roughly one month Expanded AI adoption beyond engineering into business functions across the company Enabled faster experimentation, product iteration, and decision-making Leadership lessons Treat AI as a business transformation initiative, not a technology project Drive adoption from the top while enabling experimentation throughout the organization Focus on redesigning workflows rather than simply automating existing tasks Maintain human accountability while using AI to accelerate execution View AI as both a product strategy and an operating model What’s next Omio sees AI reshaping both sides of its business. Externally, conversational interfaces are changing how travelers discover, compare, and book transportation. Internally, AI is becoming a foundational layer for how teams build products, make decisions, and operate at scale. The company believes the future of travel will be less about navigating search results and more about interacting with intelligent systems connected directly to live transportation networks. “It’s changing how we work, what we build, how we build, and how we operate.” —Tomas Vocetka, CTO, Omio As Omio continues expanding its AI-native approach, the company is helping define what conversational commerce looks like in travel—combining OpenAI models with real-world transportation infrastructure to make travel planning faster, simpler, and more personalized. For Omio, becoming AI-native is not a future ambition. It is an active transformation already changing how travel is discovered, booked, and delivered today. Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading Daybreak: Tools for securing every organization in the world Security Jun 22, 2026 Patch the Planet: a Daybreak initiative to support open source maintainers Security Jun 22, 2026 Codex-Maxxing for Long-Running Work AI Adoption Jun 22, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2606.23537v1" target="_blank">SQLConductor: Search-to-Policy Learning for Step-wise Text-to-SQL Orchestration</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Jun 22, 2026 &middot; 16:13 UTC</span>
+          </div>
+          <p class="summary"><span>Existing systems often use multi-stage pipelines or reasoning models specialized for individual stages.</span> <span>In this paper, we propose SQLConductor, a step-wise orchestration learning framework for Text-to-SQL.</span> <span>Further analyses show that the learned policy adapts orchestration to diverse query demands.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Text-to-SQL enables users to access relational databases via natural language, but real-world settings remain challenging due to coordinated reasoning over complex database environments. Existing systems often use multi-stage pipelines or reasoning models specialized for individual stages. However, fixed pipelines rely on predefined stage orders, limiting their adaptivity to query demands and intermediate evidence. Recent orchestration-based methods provide flexibility by composing specialized modules for each query, but typical plan-then-execute approaches still commit to a complete workflow before execution and cannot adapt to intermediate artifacts and feedback. In this paper, we propose SQLConductor, a step-wise orchestration learning framework for Text-to-SQL. SQLConductor formulates Text-to-SQL subtasks as specialized actions for workflow composition and trains a policy model to select the next action based on intermediate artifacts and feedback. To learn this policy, SQLConductor introduces Search-to-Policy Learning, which uses Monte Carlo Tree Search to explore candidate workflows and stability estimation to identify robust supervision. The policy model is trained with Stability-weighted Supervised Fine-tuning to prioritize high-quality orchestration patterns and further enhanced through Curriculum Reinforcement Learning. This transforms offline workflow search into a deployable policy for step-wise orchestration at inference time. Experiments on BIRD-Dev and out-of-distribution datasets show that SQLConductor achieves superior execution accuracy and strong generalization, reaching 73.2% EX on BIRD-Dev with a compact orchestration policy coordinating frozen larger action models, outperforming prior methods that directly train comparable or larger Text-to-SQL backbones. Further analyses show that the learned policy adapts orchestration to diverse query demands.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2606.23449v1" target="_blank">AOHP: An Open-Source OS-Level Agent Harness for Personalized, Efficient and Secure Interaction</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Jun 22, 2026 &middot; 15:02 UTC</span>
+          </div>
+          <p class="summary"><span>Most existing end-user operating systems, however, are designed for application-centric workflows and offer little native support for AI agents.</span> <span>We present AOHP (Android Open Harness Project), an OS-level agent harness built on the Android Open Source Project (AOSP).</span> <span>Based on preliminary experiments on challenging tasks covering key capabilities of OS agents, AOHP shows clear advantages in task completion (+21.12% completion rate), execution cost (-51.55% token cost), and security-policy compliance.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>AI agents are driving a new software paradigm, with the ability to autonomously call tools, extract information, manage memory, and complete tasks that span applications and data sources. Most existing end-user operating systems, however, are designed for application-centric workflows and offer little native support for AI agents. This mismatch limits the wider adoption of agents and leads to execution overhead and safety risks when running agents on conventional systems. While the concept of agent-native operating systems is emerging, the research community lacks an open testbed to explore the architectural primitives desired for agent-mediated interaction. We present AOHP (Android Open Harness Project), an OS-level agent harness built on the Android Open Source Project (AOSP). The core design principle of AOHP is to treat agents as first-class OS actors, enabling adaptive user interfaces and agent-friendly runtime environments. AOHP preserves the mature Android software and hardware ecosystem while introducing three agent-oriented system mechanisms: personalized service composition, efficient agent interfaces, and secure information flow. Based on preliminary experiments on challenging tasks covering key capabilities of OS agents, AOHP shows clear advantages in task completion (+21.12% completion rate), execution cost (-51.55% token cost), and security-policy compliance.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-ai-how-to-write-ai-agent-loops" target="_blank">🎙️ How I AI: How to write AI agent loops in Claude Code and Codex + How Claude Mythos found a 15-year-old bug in Mozilla Firefox</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jun 22, 2026 &middot; 15:02 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ How I AI: How to write AI agent loops in Claude Code and Codex + How Claude Mythos found a 15-year-old bug in Mozilla Firefox Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Jun 22, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-claude-mythos-found-a-15-year" target="_blank">How Claude Mythos found a 15-year-old bug in Mozilla Firefox | Brian Grinstead</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jun 22, 2026 &middot; 12:03 UTC</span>
+          </div>
+          <p class="summary"><span>atform for winning teams Introduction to Brian Grinstead The viral chart: Firefox Security Bug Fixes by Month How the custom harness works Goal loops and guardrails How they built it Real bugs, including a 15-year-old one Open-sourcing it Why humans still review every fix Live demo and prioritizing files Mobilizing the team and recap</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/codex-maxxing-long-running-work" target="_blank">Codex-maxxing for long-running work</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jun 22, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>June 22, 2026 AI Adoption Codex-maxxing for long-running work How Codex helps work continue beyond a single prompt Read the guide (opens in a new window) Contact sales Loading… Organizations are increasingly using AI to support work that extends beyond a single prompt.</span> <span>In this whitepaper, Jason Liu shares practical strategies for using Codex as a persistent workspace that preserves context, manages complex workflows, and helps sustain progress across long-running projects.</span> <span>Read the full guide here ⁠ (opens in a new window) .</span> <span>2026 Author OpenAI Keep reading View all New OpenAI Academy courses for the next era of work AI Adoption Jun 12, 2026 OpenAI named a Leader in enterprise coding agents by Gartner AI Adoption May 22, 2026 The five AI value models driving business reinvention AI Adoption Mar 5, 2026</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 22, 2026 AI Adoption Codex-maxxing for long-running work How Codex helps work continue beyond a single prompt Read the guide (opens in a new window) Contact sales Loading… Organizations are increasingly using AI to support work that extends beyond a single prompt. In this whitepaper, Jason Liu shares practical strategies for using Codex as a persistent workspace that preserves context, manages complex workflows, and helps sustain progress across long-running projects. Learn how to break ambitious goals into verifiable steps, maintain continuity across workstreams, and determine when to delegate execution to Codex versus when human oversight is most valuable. Read the full guide here ⁠ (opens in a new window) . 2026 Author OpenAI Keep reading View all New OpenAI Academy courses for the next era of work AI Adoption Jun 12, 2026 OpenAI named a Leader in enterprise coding agents by Gartner AI Adoption May 22, 2026 The five AI value models driving business reinvention AI Adoption Mar 5, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/samsung-electronics-chatgpt-codex-deployment" target="_blank">Samsung Electronics brings ChatGPT and Codex to employees</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jun 21, 2026 &middot; 23:00 UTC</span>
+          </div>
+          <p class="summary"><span>June 21, 2026 Company Samsung Electronics brings ChatGPT and Codex to employees The deployment is one of our largest to date.</span> <span>Loading… ChatGPT Enterprise and Codex available to all Samsung Electronics employees in Korea and all Device eXperience (DX) employees worldwide Samsung’s global deployment is one of OpenAI’s largest enterprise launches ever Samsung Electronics to use ChatGPT and Codex across its operations, from R&amp;D and manufacturing to marketing, corporate functions, and other areas of its business Samsung Electronics is deploying ChatGPT Enterprise and Codex to its employees around the world as it accelerates AI adoption across the company.</span> <span>Under the agreement, ChatGPT and Codex will be made available to all Samsung Electronics employees in Korea, and all employees worldwide in its Device eXperience (DX) division.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 21, 2026 Company Samsung Electronics brings ChatGPT and Codex to employees The deployment is one of our largest to date. Loading… ChatGPT Enterprise and Codex available to all Samsung Electronics employees in Korea and all Device eXperience (DX) employees worldwide Samsung’s global deployment is one of OpenAI’s largest enterprise launches ever Samsung Electronics to use ChatGPT and Codex across its operations, from R&amp;D and manufacturing to marketing, corporate functions, and other areas of its business Samsung Electronics is deploying ChatGPT Enterprise and Codex to its employees around the world as it accelerates AI adoption across the company. Under the agreement, ChatGPT and Codex will be made available to all Samsung Electronics employees in Korea, and all employees worldwide in its Device eXperience (DX) division. This represents one of OpenAI’s largest enterprise deployments to date. Samsung Electronics plans to use ChatGPT and Codex for technical and non-technical work, across a broad range of functions, including software development, marketing, product development, and manufacturing, to enhance employee productivity and problem-solving capabilities. Codex started as a tool for software development, but it’s increasingly useful for more kinds of work. With ChatGPT, Samsung Electronics employees perform a wide range of knowledge-based tasks more efficiently, including searching for and analyzing information, drafting documents, developing ideas, and interpreting data. ChatGPT Enterprise provides enterprise-grade capabilities that enable organizations to use AI securely and effectively, including data protection, user and access management, and security controls. These capabilities allow Samsung Electronics employees to use advanced AI within the company’s security policies and governance framework. Codex can enhance not only developer productivity through tasks such as writing, reviewing, and debugging code, but also the productivity of non-technical teams in their day-to-day work. For example, employees can use Codex to turn ideas into working software, internal tools, websites, and automated workflows. More than 5 million people now use Codex every week for technical and non-technical workflows and roles. Codex weekly active users in Korea have grown nearly 800% since February 1, 2026. “This historic deployment for OpenAI is particularly significant because Samsung Electronics, a global leader in technology and manufacturing, is embracing AI not as a tool limited to certain teams or functions, but as a core platform for improving how employees around the world work and innovate,” said Harrison Kim, General Manager of OpenAI Korea. “OpenAI will work closely with Samsung Electronics to help its employees level up with ChatGPT and Codex to move from ideas to execution faster, solve complex problems, and create new products and services.” OpenAI and Samsung Electronics previously began collaborating in the field of global AI infrastructure. Samsung Electronics is working with OpenAI to supply advanced memory semiconductors required for next-generation AI infrastructure. With Samsung Electronics’ adoption of ChatGPT Enterprise, the relationship between the two companies is expanding beyond AI infrastructure to encompass workforce transformation and company-wide AI adoption. Also in Korea, Seoul National University recently began providing ChatGPT Edu to all 47,000 members of its community, including students, faculty, and staff, as part of its transition toward becoming an AI-native campus. OpenAI has also worked with Kakao to enable people to ask ChatGPT questions and receive responses directly within KakaoTalk group chats, bringing ChatGPT into Korea’s widely used everyday messaging platform. Companies across a wide range of industries in Korea, including LG Electronics, LG Uplus, LG CNS, GS E&amp;C, Samsung SDS, TVING, Krafton, Toss, MUSINSA, Korea Zinc, Nexen Tire, and HanaTour are also using ChatGPT Enterprise, OpenAI APIs, and Codex. 2026 Author OpenAI Keep reading View all Daybreak: Tools for securing every organization in the world Security Jun 22, 2026 OpenAI to acquire Ona Company Jun 11, 2026 Access OpenAI models and Codex through your Oracle cloud commitment Company Jun 10, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/building-the-most-ai-pilled-engineering" target="_blank">What happens after coding is solved? | Fiona Fung (Manager of the Claude Code and Cowork Teams)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jun 21, 2026 &middot; 12:31 UTC</span>
+          </div>
+          <p class="summary"><span>Radically different banking, now with Command</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/community-wisdom-fractional-cpo-compensation" target="_blank">🧠 Community Wisdom: Fractional CPO compensation, free e-signature tools, why some users pay but never use your product, sharing Claude Code context across a team, and more</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jun 20, 2026 &middot; 15:53 UTC</span>
+          </div>
+          <p class="summary"><span>Community wisdom 🧠 Community Wisdom: Fractional CPO compensation, free e-signature tools, why some users pay but never use your product, sharing Claude Code context across a team, and more Community Wisdom 190 Kiyani Jun 20, 2026 ∙ Paid 👋 Hello and welcome to this week’s edition of ✨ Community Wisdom ✨ a subscriber-only email, delivered every Saturday, highlighting the most helpful conversations in our members-only Slack community .</span> <span>This post is for paid subscribers Already a paid subscriber?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://newsletter.pragmaticengineer.com/p/the-pulse-big-implications-of-us" target="_blank">The Pulse: Big implications of US banning Anthropic’s new model, Fable</a></h2>
+          <div class="meta">
+            <span class="source">pragmatic-engineer</span>
+            <span class="date">Jun 18, 2026 &middot; 17:11 UTC</span>
+          </div>
+          <p class="summary"><span>The Pulse is a series covering events, insights, and trends within Big Tech and startups.</span> <span>SpaceX, Cursor, Continue.</span> <span>Meta follow-up Tuesday’s article about Meta destroying its engineering culture made quite the splash in terms of comments and debate online.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>The Pulse is a series covering events, insights, and trends within Big Tech and startups. Notice an interesting event or trend? Hit reply and share it with me. Today, we cover: Meta follow-up. A follow-up on Tuesday’s deepdive into Meta’s ongoing demolition of its own engineering org. Non-engineering teams lost more than 10% of their staff, while Integrity teams were already stretched before the cuts and reallocation. Big implications of the US banning Anthropic’s new model, Fable. The US government wants only US citizens to be able to use Fable. That could make China more influential as other countries and non-US companies look to capable open models – most of which come from China. SpaceX, Cursor, Continue. Elon Musk became a trillionaire with SpaceX’s IPO, while SpaceX acquired Cursor, and Cursor acquired Continue. SpaceX looks like it wants to go head-on against Anthropic and OpenAI. Industry Pulse. Gemini lead quits for OpenAI, Epic Games’ new open source version control system, Microsoft considers dropping OpenAI for DeepSeek, research confirms LLMs amplify existing expertise, and more. Meta follow-up Tuesday’s article about Meta destroying its engineering culture made quite the splash in terms of comments and debate online. From inside Meta, there was positive feedback on the accuracy of the deepdive into the situation, and there were also a few helpful clarifications and new information which I’m happy to publish here:</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/chatgpt-enterprise-spend-controls" target="_blank">New usage analytics and updated spend controls for enterprises</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jun 18, 2026 &middot; 17:00 UTC</span>
+          </div>
+          <p class="summary"><span>June 18, 2026 Product New usage analytics and updated spend controls for enterprises New usage analytics and updated spend controls give ChatGPT Enterprise admins more visibility, control, and confidence in their AI deployments.</span> <span>Companies need a clear view of usage, adoption, and spend so they can scale with confidence and understand where AI is creating value.</span> <span>Today, we’re introducing credit usage analytics and updated spend controls for ChatGPT Enterprise.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 18, 2026 Product New usage analytics and updated spend controls for enterprises New usage analytics and updated spend controls give ChatGPT Enterprise admins more visibility, control, and confidence in their AI deployments. Loading… As AI becomes part of everyday work, organizations need the ability to manage it with the same rigor they apply to any critical business investment. Companies need a clear view of usage, adoption, and spend so they can scale with confidence and understand where AI is creating value. Today, we’re introducing credit usage analytics and updated spend controls for ChatGPT Enterprise. These capabilities help companies track credit usage, understand adoption patterns, and make more informed decisions about how AI is deployed across their organizations. With clearer visibility and more flexible controls, organizations can proactively manage costs, give teams the access they need, and keep AI investments focused on the work that matters most. New credit usage analytics in the Global Admin Console The Global Admin Console brings ChatGPT and Codex credit usage into one view, so admins can see a more granular breakdown of credit consumption across users, products, and models—helping them understand where spend is coming from and how it maps to actual credit usage. This makes it easier to distinguish between increased usage driven by valuable work and usage patterns that may require closer review. Now admins can: Track usage and credit trends over time Identify top users and emerging credit usage patterns Break down credit spend across the workspace, including by user, product, and model Access the same credit usage data through the unified Cost API for deeper analysis in their own systems “ Zipline’s engineering has been all-in on Codex since January, and in recent months the broader company has adopted it. We asked the team at OpenAI to build usage analytics to help find and train-up folks who haven’t adopted Codex, and for granular usage controls to keep spend predictable. These new tools are helping us faster scale productivity of our employees while keeping safeguards in place. ” Set spend controls around the way teams work Earlier this year, we introduced granular credit usage limits ⁠ (opens in a new window) for custom roles in ChatGPT Enterprise, helping workspace owners manage advanced model usage across different types of users without one-size-fits-all restrictions. Now admins can also set a default limit for their ChatGPT Enterprise workspace, configure limits for specific groups, and create individual overrides for people who need more capacity. Employees can see their credit usage against their available budget, request additional credits when needed, and include context about what they’re working on so admins can make an informed decision. This allows individual power users to keep working without interruption or the need to increase limits for everyone else. Together, these updated controls help companies deploy intelligence more thoughtfully at scale, while giving teams the capabilities they need to do high-impact work. Availability and what you can do next ChatGPT Enterprise admins can start using the new analytics and updated spend controls today. Users in these workspaces can also view their credit usage by going to their workspace settings. Learn more in the help center on usage limits ⁠ (opens in a new window) and the global admin console ⁠ (opens in a new window) . Have questions about how best to implement controls for your workspace? Contact us here , or reach out directly to your OpenAI team. ChatGPT 2026 Author OpenAI Keep reading View all Improving health intelligence in ChatGPT Product Jun 18, 2026 Introducing the OpenAI Partner Network Product Jun 14, 2026 Better memory for a more helpful ChatGPT Dreaming: Better memory for a more helpful ChatGPT Research Jun 4, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Jun/17/charity-majors/#atom-everything" target="_blank">Quoting Charity Majors</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Jun 17, 2026 &middot; 17:12 UTC</span>
+          </div>
+          <p class="summary"><span>What happened in 2025 was this: the economics of code production were turned upside down .</span> <span>Lines of code went from being treasured, reused, cared for and carefully curated, to being disposable and regenerable, practically overnight.</span> <span>— Charity Majors , AI demands more engineering discipline.</span> <span>Not less Tags: charity-majors , ai-assisted-programming , generative-ai , ai , llms</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>What happened in 2025 was this: the economics of code production were turned upside down . Instead of being very hard, time-consuming, and expensive to generate code, it became effectively free and instant. Lines of code went from being treasured, reused, cared for and carefully curated, to being disposable and regenerable, practically overnight. — Charity Majors , AI demands more engineering discipline. Not less Tags: charity-majors , ai-assisted-programming , generative-ai , ai , llms</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-to-design-ai-agent-loops-schedules" target="_blank">How to design AI agent loops: schedules, goals, and subagents in Claude Code and Codex</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jun 17, 2026 &middot; 12:04 UTC</span>
+          </div>
+          <p class="summary"><span>r images, video, and more Prompts are out and loops are in Defining a loop The four ways to automate a prompt: heartbeat, cron, hooks, and goals Five things every effective loop needs The “onboarding an employee” framework for designing loops Live build #1: Daily aging PR loop in Claude Code Subagents inside loops Live build #2: Weekly skills identification loop in Codex Watching subagents spin up in real time Warning signals around loops What listeners are doing with loops<ul><li>Claude Code: <a href="https://claude.ai/code" target="_blank" rel="noopener">https://claude.ai/code</a></li><li>Codex: <a href="https://chatgpt.com/codex" target="_blank" rel="noopener">https://chatgpt.com/codex</a></li><li>OpenClaw: <a href="https://openclaw.ai/" target="_blank" rel="noopener">https://openclaw.ai/</a> Other</li><li>Claire’s article “Why OpenClaw Feels Alive Even Though It’s Not”: <a href="https://x.com/clairevo/article/2017741569521271175" target="_blank" rel="noopener">https://x.com/clairevo/article/2017741569521271175</a></li><li>Addy Osmani’s article on loop engineering: <a href="https://addyosmani.com/blog/loop-engineering/" target="_blank" rel="noopener">https://addyosmani.com/blog/loop-engineering/</a></li><li>Using Goals in Codex: <a href="https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex" target="_blank" rel="noopener">https://developers.openai.com/cookbook/examples/codex/using_goals_in_codex</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/securing-the-future-of-ai-agents/" target="_blank">Securing the future of AI agents</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Jun 16, 2026 &middot; 15:46 UTC</span>
+          </div>
+          <p class="summary"><span>Understanding AI Control Our approach to security starts with a strong foundation, incorporating traditional safeguards like sandboxing, endpoint security, and prompt injection resistance.</span> <span>On top of this, the AI Control Roadmap uses model alignment, i.e.</span> <span>training AI to be inherently safe and helpful, as a primary defense.</span> <span>It provides an additional layer of security by treating internal agents as potentially misaligned, providing assurance even if alignment is imperfect.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 18, 2026 Responsibility &amp; Safety Securing the future of AI agents Rohin Shah and Four Flynn Share How we’re securing internal systems against increasingly capable and imperfectly aligned AI AI agents are transforming our relationship with technology. By autonomously executing complex tasks — from cyber defence to scientific discovery and product development — these systems are unlocking a new era of productivity. In the U.S alone, AI agents could create $2.9 trillion in economic value by 2030. As these agents become more capable, they also require more sophisticated safeguards. That’s why we developed our AI Control Roadmap : a framework for building and managing the advanced AI we deploy within Google. This “defense-in-depth” approach, which could serve as a model for the wider industry, goes beyond traditional model alignment, adding a crucial layer of system-level security that provides assurance even if alignment is imperfect. Understanding AI Control Our approach to security starts with a strong foundation, incorporating traditional safeguards like sandboxing, endpoint security, and prompt injection resistance. On top of this, the AI Control Roadmap uses model alignment, i.e. training AI to be inherently safe and helpful, as a primary defense. It provides an additional layer of security by treating internal agents as potentially misaligned, providing assurance even if alignment is imperfect. Think of it like a driving instructor with dual controls. The instructor trusts the student but stays ready to take the wheel or hit the brakes if a mistake occurs. Similarly, our AI control system grants AI agents permissions based on their verified behavior, allowing us to build trust through controlled, incremental access. Our roadmap is built on a simple but cautious assumption: what if a highly capable AI agent isn’t aligned with our goals and acts in unexpected ways? To address this, our plan focuses on three key areas. First, following best practices in cybersecurity, we have developed a novel threat-modelling framework for AI. The roadmap treats untrusted AI agents as potential “insider threats” — similar to the way a company would treat a potential rogue employee who already has access to the office. By building on the industry-standard MITRE ATT&amp;CK framework, a globally-accessible knowledge base of adversary tactics and techniques based on real-world observations, we break down potential attacks into smaller tactics and techniques. This allows us to methodically track risks, spot bad behavior before it causes damage and safely run drills to test if our defenses actually hold up. Second, we develop a plan to deploy AI control mitigations to address these risks. Identifying the problem (Detection): Monitoring is the backbone of AI control. We use other, trusted AI systems as &quot;supervisors&quot; to constantly review a working agent&#x27;s reasoning, actions and plans to see if it is going off track. Managing the problem (Prevention and Response): If a supervisor sees the agent trying to do something harmful, it can step in to block the action before damage occurs. Finally, to ensure our systems are functional, we constantly measure performance across three critical metrics: coverage (the fraction of traffic monitored), recall (the fraction of misaligned behaviors caught), and time-to-response. Scaling security as AI gets smarter As AI models continue to advance, our defenses must also strengthen in tandem. In our AI Control Roadmap, we map security protocols to measurable milestones in AI capabilities on two critical fronts: Ability to evade detection: Today, we monitor a model&#x27;s visible chain-of-thought. However, as models learn to hide their reasoning — either through oversight awareness (knowing they are being monitored) or opaque reasoning (reasoning without using visible text) — simply reading their verbalized reasoning will not be enough. We will need to analyze their behavior and potentially inspect the model’s inner workings. Ability for potential harm: For low-risk and reversible actions, we can rely on reviewing transcripts with a delay and remediating issues quickly after they occur (asynchronous response). For particularly high-risk actions, such as major cyber attacks, we must shift to real-time prevention, blocking harmful actions before they can be executed (synchronous response). In other words, our response strategy must scale with the severity of the threat. Your browser does not support the video tag. Your browser does not support the video tag. Analyzing a million agent trajectories to inform live monitoring To build these systems, we need data. Our team has built an internal prototype of an asynchronous monitoring system that reviews coding agent trajectories, and escalates findings for human review. Each flagged event is classified against the threat taxonomy from our roadmap. We’ve already analyzed a million coding agent tasks, giving us valuable insights to refine our safety protocols and allowing us to move beyond simple keyword filtering to identifying high-signal behavioral patterns. For example, this research has been instrumental in building a live monitor for the Gemini Spark agent, allowing us to respond in real-time to emerging issues, like unintentional data deletion. It is important to that our data shows the majority of flagged events do not stem from adversarial intent; instead, they often result from agent misinterpretation or overeagerness to achieve a user’s goal. Understanding these nuances is critical for refining our safety and security protocols. Defending the agent ecosystem is a shared responsibility The AI Control Roadmap is one vital element of our multilayered approach to agent security. By integrating these protocols with our broader infrastructure, we are scaling our internal security to safely manage our most advanced AI models. Additionally, this multilayered approach to agent security should be a collaborative priority for industry, policymakers, and academia. By aligning the ecosystem around best practices and standards, we can empower cyber defenders and build societal resilience. That’s why today we are also publishing a technical framework for policymakers, &#x27;Three Layers of Agent Security’ . The paper details how we need to improve security at the level of individual agents; in multi-agent systems; and to empower cyber defenders and build resilience across the broader ecosystem. We intend to build on these frameworks to confidently deploy capable AI today while we continue to build a secure foundation for the future. Read the full technical report here: AI Control Roadmap Research authors Mary Phuong, Erik Jenner, Laurent Simon, Lewis Ho, Rohin Shah, Sebastian Farquhar, and Scott Coull. Acknowledgements Four Flynn, Anca Dragan, Alan Cooney, Bilal Chughtai, Buck Shlegeris, Cody Wild, David Lindner, Julian Stastny, Kevin Klyman, Li Ding, Myriam Khan, Raluca Ada Popa, Roland Zimmermann, Ryan Greenblatt, Senthooran Rajamanoharan, Victoria Krakovna and Xerxes Dotiwalla.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Jun/16/captcha-on-at-least-one-ampersand/#atom-everything" target="_blank">Cloudflare CAPTCHA on at least one ampersand</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Jun 16, 2026 &middot; 00:21 UTC</span>
+          </div>
+          <p class="summary"><span>TIL: Cloudflare CAPTCHA on at least one ampersand I&#x27;m using Cloudflare&#x27;s CAPTCHA (they call it a &quot;Web Application Firewall &gt; Custom rules &gt; Managed Challenge&quot; these days) to prevent crawlers from aggresively spidering my faceted search engine on this site, but I got fed up of even simple ?q=term searches triggering the challenge.</span> <span>Also included: notes on trying out the Cloudflare MCP with Claude Code , though it turned out not to be able to edit the rules in question so I had Claude Code switch to the Cloudflare API instead.</span> <span>Tags: captchas , cloudflare , model-context-protocol , claude-code</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>TIL: Cloudflare CAPTCHA on at least one ampersand I&#x27;m using Cloudflare&#x27;s CAPTCHA (they call it a &quot;Web Application Firewall &gt; Custom rules &gt; Managed Challenge&quot; these days) to prevent crawlers from aggresively spidering my faceted search engine on this site, but I got fed up of even simple ?q=term searches triggering the challenge. After some mucking around with Claude Code it turns out you can register the following rule instead, so the CAPTCHA only kicks in for search URLs containing at least one ampersand: (http.request.uri.path wildcard r&quot;/search/*&quot; and http.request.uri.query contains &quot;&amp;&quot;) And now /search/?q=lemur works without triggering a CAPTCHA! Also included: notes on trying out the Cloudflare MCP with Claude Code , though it turned out not to be able to edit the rules in question so I had Claude Code switch to the Cloudflare API instead. Tags: captchas , cloudflare , model-context-protocol , claude-code</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 189</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
