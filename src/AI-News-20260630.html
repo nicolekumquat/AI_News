@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-06-30</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-06-30</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-not-much-happened-today-07e" target="_blank">[AINews] not much happened today</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Jun 30, 2026 &middot; 06:47 UTC</span>
+          </div>
+          <p class="summary"><span>Cursor shipped iOS + remote agents in one of the day’s biggest product launches: @cursor_ai introduced Cursor for iOS with always-on cloud agents and remote control of agents on your computer; follow-up tweets highlighted Live Activities and diff review on phone .</span> <span>Open-weight model access is being productized , not just discussed: @cline launched a $9.99/mo pass for discounted access to GLM 5.2, DeepSeek, Kimi, MiniMax, Qwen, etc.; @cognition introduced Devin Fusion , claiming 35% lower cost for “Fable-level” coding via a hybrid-model harness.</span> <span>One user provided comparative llama.cpp RPC-style benchmarks using an M3 Ultra Studio 256GB + M3 Max MBP 128GB running GLM-5.2-UD-IQ4_XS : 13.03 tok/s at 2,377 context tokens with TTFT 3.09s , 8.64 tok/s at 22,485 context with TTFT 2.33s , and 6.21 tok/s at 32,595 context with TTFT 5.53s .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>AI Twitter Recap Meta’s non-invasive brain-to-text milestone drew the biggest technical attention. @AIatMeta announced Brain2Qwerty v2 , a real-time sentence decoder from raw brain signals; @JeanRemiKing summarized the release and links; @AIatMeta added that Meta is releasing the training code for v1/v2 and BCBL is releasing the v1 dataset . Cursor shipped iOS + remote agents in one of the day’s biggest product launches: @cursor_ai introduced Cursor for iOS with always-on cloud agents and remote control of agents on your computer; follow-up tweets highlighted Live Activities and diff review on phone . Open-weight model access is being productized , not just discussed: @cline launched a $9.99/mo pass for discounted access to GLM 5.2, DeepSeek, Kimi, MiniMax, Qwen, etc.; @cognition introduced Devin Fusion , claiming 35% lower cost for “Fable-level” coding via a hybrid-model harness. Arena crossed meaningful commercial scale : @arena and @ml_angelopoulos said Arena reached $100M ARR run rate eight months after launching its evaluation product, with a platform now emphasizing post-deployment and agent evaluation. Infrastructure pressure remains a first-order theme : @kimmonismus argued China’s energy, data center, and domestic-hardware strategy is becoming a serious strategic threat; @garrytan condensed the operational response to “ Build power and datacenters .” Brain-computer interfaces and AI-for-science tooling Brain2Qwerty v2 is the clearest research release of the day. Meta says the system decodes words and semantics , not just characters, from non-invasive recordings in real time, narrowing the gap with invasive BCIs. Community summaries highlighted reported jumps from prior non-invasive results to ~61% word accuracy overall and 78% for the best participant , trained on data from 9 volunteers in controlled typing settings. The key engineering point is not consumer readiness, but that the stack combines raw neural-signal modeling with language modeling strongly enough to make sentence-level decoding practical in the lab. See Meta’s announcement , the code/data release details , @JeanRemiKing’s thread , and a cautious external summary from @kimmonismus . The release also became a datapoint for agent-assisted research . @stalkermustang pointed to Meta’s that an Auto Research workflow, powered by a coding agent, discovered and implemented improvements that reduced word error rate beyond standard HPO. Whether or not one buys the “vibe-science” framing, the more sober takeaway is that coding agents are increasingly useful for closed-loop experimental iteration on ML systems, not just repo scaffolding. Inference systems: DSpark, vLLM, and decoding mechanics DeepSeek’s DSpark was the most substantive inference topic. A long explainer from @ZhihuFrontier framed DSpark as an important step in speculative decoding , with emphasis on two ideas: better draft generation and smarter verification scheduling. Reported gains include 30.9% higher accepted length vs Eagle3 and 16.3% vs DFlash on Qwen3-4B, plus production deployment in preview engines for DeepSeek-V4-Flash and V4-Pro . Follow-on commentary from @teortaxesTex and @vllm_project underscored the practical consequence: DSpark looks like a new SoTA single-GPU spec decode path , and the vLLM community is already integrating it. More broadly, several tweets sharpened the mental model of current inference bottlenecks. @_avichawla gave a solid explainer of prefill vs decode , TTFT vs inter-token latency, and why decode is often memory-bound because of KV-cache reads. This is useful context for why speculative decoding, KV-cache optimization, grouped-query attention, and attention redesigns matter more than raw FLOPs in many production workloads. NVIDIA/vLLM also pushed practical self-hosting: @vllm_project highlighted a guide for serving Nemotron-3-Ultra 550B with four DGX Spark boxes behind a single OpenAI-compatible endpoint. The notable part is less the stunt than the normalization of private, multi-node frontier-ish inference using standard serving stacks. Agent harnesses, routing, and multi-model orchestration The center of gravity in agent systems continues to move from “pick the best model” to harness engineering . @cognition launched Devin Fusion , a hybrid-model coding harness claiming 35% cost reduction while maintaining “Fable-level” quality. @walden_yan described related work around sidekick and mid-session routing , and @jerryjliu0 d the cache-efficiency advantage of sidekick-style delegation. The emerging pattern: keep an expensive planner in the loop, hand bounded subtasks to cheaper models, and preserve cache locality/context continuity. Dynamic subagents became another common motif. @LangChain , @sydneyrunkle , and @hwchase17 all highlighted workflows where the main agent writes orchestration code rather than merely invoking tool calls. This is notable because it shifts the abstraction from “tool-using chatbot” to something closer to a programmable control plane for large task fanout. Open routing and retrieval stacks also got more concrete. @LlamaIndex and @jerryjliu0 introduced a Retrieval Harness combining semantic search, grep, file listing, and file reading in one agent loop—essentially a rebuttal to simplistic “grep is all you need” positions also criticized by @max_paperclips . On the eval side, @hwchase17 announced a Trace Judge model for detecting trajectory errors at ~1/100th the cost of closed models. Open models, Chinese labs, and commercialization of access GLM 5.2 remained the focal open model in discussion, not because of an official launch today but because many builders are now treating it as a default serious option. @cline productized access with a monthly pass bundling GLM 5.2, DeepSeek, Kimi, MiniMax, Mimo, and Qwen , reducing friction around API keys and provider churn. @tonbistudio tested Mixture-of-Agents configurations using GLM 5.2 with Kimi and MiniMax. @Astrodevil_ used GLM 5.2 as the driver for a DevRel content-research agent. A second thread is the continued acceleration of Chinese open-weight competition . @eliebakouch flagged an upcoming LongCat 2.0 / Owl Alpha model from Meituan: 1.6T total / ~48B active , 1M context , 35T training tokens , n-gram embeddings , sparse attention, and training on 50k Chinese accelerators . @sun_hanchi framed this as potentially the first near-frontier model trained at this scale on domestic Chinese hardware. Even allowing for uncertainty in the hardware details, this is strategically meaningful. On the policy/commercial side, open-source proponents argued that clampdowns on frontier APIs may backfire by pushing developers toward weights they control. See @theinformation , @ClementDelangue , and @MTSlive for the recurring theme that open weights are structurally harder to suppress than APIs . RL, training infrastructure, and benchmark/eval platforms Snowflake Arctic RL is one of the stronger infra releases in the batch. @StasBekman announced an open-source project integrating with VeRL and SkyRL , featuring ZoRRo for up to 6x actor-update acceleration and 3.5x end-to-end speedup , reducing a Text2SQL training run from roughly 5 days to ~36 hours on 32 H200s . Snowflake also claims its Arctic-Text2SQL-R2 beat tested configurations of Gemini 3.1 Pro and Claude 4.7 on its enterprise SQL benchmark, with open recipes for text-to-SQL and multi-hop QA. Arena continued its transition from benchmark project to evaluation company. @arena and @ml_angelopoulos reported 700M+ conversations , 82M+ votes , and over 10M monthly visitors , with newer emphasis on agent-mode evaluations like task completion and hallucination rates. That makes Arena increasingly relevant as a post-deployment CI/CD layer for models , not just a p leaderboard. Several other releases fit the same trend toward specialized infrastructure: @wandb launched ARIA , an autoresearch agent inside W&amp;B; @agenticin promoted Micro-Agent routing; and @fitsumreda introduced Nemotron-TwoTower , which clones an AR LLM into a diffusion-style parallel generator, claiming 98.7% AR quality at 2.42× throughput for a 30B model. Platform and developer product updates Cursor’s mobile/remote push is notable because it makes “cloud agents from your phone” feel operational rather than aspirational. The product now supports launching always-on cloud agents and remotely controlling computer-bound agents from iOS, with PR diff review and notifications in-app ( launch , details ). Claude on Azure Foundry is now GA. @Azure , @claudeai , and @ClaudeDevs said customers can run Claude Opus 4.8 and Haiku 4.5 in Microsoft Foundry with Azure identity, billing, governance controls, prompt caching, and thinking support. Rampart from @ndstudio stood out as a pragmatic privacy tool: a 14.7MB browser-side model for redacting PII before data leaves the client. For teams trying to make AI usable in regulated settings, this kind of small, local preprocessing model may matter more than another general-purpose chat UI tweak. AI Reddit Recap /r/LocalLlama + /r/localLLM Recap 1. GLM-5.2 Extreme Local Inference Tests GLM-5.2 753B (IQ1_S) fully local across 2×M5 Max over one TB5 cable — ~16 tok/s, llama.cpp RPC [video] (Activity: 377): A user reports running GLM-5.2 753B fully locally using Unsloth dynamic IQ1_S quantization: nominally ~ 1.6 bits but ~ 2.1 effective bits due to mixed higher-precision layers, yielding a 202GB on-disk model. The setup shards weights across 2× M5 Max systems with 128GB unified memory each over a single Thunderbolt 5 link using llama.cpp RPC, keeping all weights resident with no SSD paging and achieving ~ 16 tok/s generation, 16k context, and q8 KV cache; TTFT is prompt-length dependent due to prefill. Commenters found 16 tok/s for a 753B model over two Macs surprisingly high, with one asking whether the video appeared faster than reported. Another d the setup is impressive but questioned how the very low-bit 753B quant compares on complex reasoning against a smaller higher-precision model such as a 70B at 4-bit. A commenter questioned whether the reported ~16 tok/s for GLM-5.2 753B IQ1_S across 2× M5 Max over Thunderbolt 5 was accurate, noting the video appeared faster; another highlighted that while the throughput is impressive for a 753B local setup, the very low-bit IQ1_S quantization raises the technical question of reasoning quality versus a smaller 70B at 4-bit model. One user provided comparative llama.cpp RPC-style benchmarks using an M3 Ultra Studio 256GB + M3 Max MBP 128GB running GLM-5.2-UD-IQ4_XS : 13.03 tok/s at 2,377 context tokens with TTFT 3.09s , 8.64 tok/s at 22,485 context with TTFT 2.33s , and 6.21 tok/s at 32,595 context with TTFT 5.53s . They clarified that TTFT included cache prefill , making the measurements more comparable for long-context generation. Another commenter asked whether multi-Mac connectivity is already supported in llama.cpp or requires a custom driver, pointing to the implementation-level question around whether this setup uses built-in llama.cpp RPC capabilities or bespoke Thunderbolt networking/inference orchestration.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2606.30616v1" target="_blank">Scaling the Horizon, Not the Parameters: Reaching Trillion-Parameter Performance with a 35B Agent</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Jun 29, 2026 &middot; 17:50 UTC</span>
+          </div>
+          <p class="summary"><span>We introduce Agents-A1, a 35B Mixture-of-Experts Agentic Model that reaches trillion-parameter-level performance by scaling the agent horizon.</span> <span>We investigate agent-horizon scaling from two perspectives: scaling long-horizon trajectories and scaling heterogeneous agent abilities.</span> <span>Agents-A1 achieves strong and broad performance for long-horizon agent benchmarks.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>We introduce Agents-A1, a 35B Mixture-of-Experts Agentic Model that reaches trillion-parameter-level performance by scaling the agent horizon. We investigate agent-horizon scaling from two perspectives: scaling long-horizon trajectories and scaling heterogeneous agent abilities. To support this goal, we build a long-horizon knowledge-action infrastructure that connects external knowledge, actions, observations, and verifier outcomes, producing agentic trajectories with an average length of 45K tokens. Based on this, we train Agents-A1 with a three-stage recipe. First, we perform full-domain supervised fine-tuning to align the base model with broad agentic behaviors. Second, we train domain-level teacher models to capture specialized expertise in each domain. Third, we propose a multi-teacher domain-routed on-policy distillation with salient vocabulary alignment to improve knowledge transfer efficiency across different domains, unifying six heterogeneous domains into one deployable student model. Agents-A1 achieves strong and broad performance for long-horizon agent benchmarks. Compared with 1T-parameter model such as Kimi-K2.6 and DeepSeek-V4-pro, Agents-A1 achieves leading results on SEAL-0 (56.4), IFBench (80.6), HiPhO (46.4), FrontierScience-Olympiad (79.0), and MolBench-Bind (56.8), and remains highly competitive on SciCode (44.3), HLE (47.6) and BrowseComp (75.5). We hope this work provides the community with a practical path for scaling the horizon using a 35B agent that can reach or match the performance of 1T models on long-horizon tasks.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2606.30549v1" target="_blank">To Tab or Not to Tab: Measuring Critical Engagement in AI Code Completion Tools Using Behavioral Signals and Attention Checks</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Jun 29, 2026 &middot; 16:47 UTC</span>
+          </div>
+          <p class="summary"><span>AI code completion tools, such as Github Copilot, provide students with code suggestions to help them write programs.</span> <span>However, recent qualitative studies suggest that students fail to critically evaluate these suggestions.</span> <span>We conclude by discussing how programming process data and attention checks might support reflective engagement in AI-assisted programming.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>AI code completion tools, such as Github Copilot, provide students with code suggestions to help them write programs. However, recent qualitative studies suggest that students fail to critically evaluate these suggestions. We present Clover, a code completion tool that logs students&#x27; interactions with code suggestions and additionally offers attention checks to probe reflective engagement during programming tasks. We also develop a taxonomy of behavioral interaction metrics for AI-assisted programming, informed by literature. We analyzed relationships between interaction patterns, engagement with attention checks, and task performance. We observed that higher rates of tab accept were associated with lower attention check performance, while increased dwell time was associated with higher attention check performance. We conclude by discussing how programming process data and attention checks might support reflective engagement in AI-assisted programming.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-ai-glm-52-review-and-how-gusto" target="_blank">🎙️ How I AI: GLM-5.2 review &amp; How Gusto built a new product line with Claude Code</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jun 29, 2026 &middot; 15:02 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ How I AI: GLM-5.2 review &amp; How Gusto built a new product line with Claude Code Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Jun 29, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2606.30356v1" target="_blank">OLIVE: View-Augmented Latent Prediction with Waveform Reconstruction for Speech SSL</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Jun 29, 2026 &middot; 14:24 UTC</span>
+          </div>
+          <p class="summary"><span>We propose Online Latent prediction with Invariant Views and rEconstruction (OLIVE), a self-supervised speech representation learning framework that jointly optimizes analysis and synthesis objectives.</span> <span>OLIVE combines view-augmented masked latent prediction with waveform reconstruction under a unified objective.</span> <span>In particular, OLIVE improves results on generation and speaker tasks, maintains competitive performance on recognition and semantic tasks, and improves waveform reconstruction.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>We propose Online Latent prediction with Invariant Views and rEconstruction (OLIVE), a self-supervised speech representation learning framework that jointly optimizes analysis and synthesis objectives. OLIVE combines view-augmented masked latent prediction with waveform reconstruction under a unified objective. Reconstruction constrains early encoder features to retain signal-level information, while masked latent prediction shapes later contextual representations toward invariance for robust downstream performance. We show that these objectives enable representations that support a broad range of tasks. In particular, OLIVE improves results on generation and speaker tasks, maintains competitive performance on recognition and semantic tasks, and improves waveform reconstruction.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/no-figma-no-jira-no-docs-how-gusto" target="_blank">No Figma. No Jira. No docs. How Gusto built a new product line with Claude Code | Eddie Kim (CTO)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jun 29, 2026 &middot; 12:03 UTC</span>
+          </div>
+          <p class="summary"><span>rioritize with insights, build with confidence Intro: five people, 10 weeks The origins of Cofounder Inside the 10-week build process Building with no PMs The “trash can” method The stack architecture Shipping to production from day one How a designer became a top engineer Demo: Cofounder over text and Slack Demo: running a real payroll Live coding with evals in Claude Code Recap: prototype, small team, permission</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/mapping-ai-jobs-transition-eu" target="_blank">Mapping Europe’s AI Workforce Opportunity</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jun 29, 2026 &middot; 07:00 UTC</span>
+          </div>
+          <p class="summary"><span>June 29, 2026 Global Affairs Mapping Europe’s AI Workforce Opportunity How the EU’s mix of occupations and institutions can shape where AI supports growth, redesigns work, and encourages adaptation Read the full report (opens in a new window) AI capabilities can cross borders quickly.</span> <span>The framework identifies four transition archetypes: occupations that may grow with AI, occupations at higher automation potential, occupations likely to reorganize, and occupations with less immediate change.</span> <span>About 14% is in occupations with relatively higher near-term automation potential .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 29, 2026 Global Affairs Mapping Europe’s AI Workforce Opportunity How the EU’s mix of occupations and institutions can shape where AI supports growth, redesigns work, and encourages adaptation Read the full report (opens in a new window) AI capabilities can cross borders quickly. Jobs do not change in such a frictionless way. Work is shaped by licensing systems, local institutions, and the practical realities of delivering care, education, justice, public services, and other forms of human support. These systems matter because they help determine if and how AI changes the labor market. What will AI’s labor market impact be? Where will the impacts be felt most and when? And how can we ensure that the AI transition works for everyone? These are the questions at the center of OpenAI Economic Research&#x27;s new report, The AI Jobs Transition Framework for the EU. The report extends the AI Jobs Transition Framework ⁠ (opens in a new window) , first developed for the United States in April 2026, to the European labor market. It uses the official European Skills, Competences, Qualifications and Occupations (“ESCO”) taxonomy, along with Eurostat employment data, to examine how AI capabilities may translate into different kinds of near-term occupational change across EU member states. Compared with the U.S., the EU has a smaller share of employment in occupations with higher near-term automation potential. The framework identifies four transition archetypes: occupations that may grow with AI, occupations at higher automation potential, occupations likely to reorganize, and occupations with less immediate change. These categories are not employment forecasts. They are a planning map for where different kinds of adjustment pressure and opportunity may emerge. Applied to the EU, the framework suggests that AI may increase demand in some occupations, reduce labor needs in others, and reorganize many more: About 12% of employment is in occupations that may grow with AI as lower costs expand access or make more projects viable. About 14% is in occupations with relatively higher near-term automation potential . Another 27% is in occupations likely to reorganize, where AI may change workflows and skill needs even when people remain central to delivery. The remaining 47% is in occupations with less immediate change . The report shows that country-level patterns vary across the EU. Luxembourg, Sweden, and the Netherlands have larger shares in occupations that may grow with AI. Germany, Greece, and Italy have larger employment shares in occupations classified as higher automation potential. These differences reflect differences in the occupational structure across countries. For policymakers, employers, educators, and researchers, the practical implication is to anticipate change and plan for it at a more detailed level. Aggregate employment statistics will reveal major changes only after firms, workers, and institutions have already begun to adapt. Europe has strong occupation, training, vacancy, wage, and official statistical systems. Connecting those systems to measures of AI capability and workplace adoption could help identify where transition pressure and opportunity are emerging before the effects show up in headline labor-market data. The European extension of the AI Jobs Transition Framework is best understood as a map for preparation – a way to ask more useful questions about how AI capability becomes economic change in specific occupations and specific institutional settings. Better evidence gives workers, firms, and policymakers more time to prepare. The report also offers preliminary ideas for public and private institutions working on AI and jobs, including strengthening monitoring capabilities to track labor market change, or establishing national readiness plans to tailor interventions. Over the coming months, we will expand and build out these ideas through engagement with stakeholders at both national and EU levels, with the goal of identifying practical ways to ensure that AI supports prosperity and progress across Europe. Economic Research 2026 Author OpenAI Keep reading View all Helping build shared standards for advanced AI Global Affairs Jun 23, 2026 Supporting Europe’s work in ensuring a trustworthy AI ecosystem Global Affairs Jun 11, 2026 PRC-linked influence operations are targeting AI debates in the US Global Affairs Jun 10, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Jun/28/jon-udell/#atom-everything" target="_blank">Quoting Jon Udell</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Jun 28, 2026 &middot; 21:57 UTC</span>
+          </div>
+          <p class="summary"><span>Human Agent in the loop I dislike the phrase “human in the loop” because it cedes authority to the machines.</span> <span>It’s our loop, we work the same way we always have, now we recruit agents to join the team.</span> <span>Not as a loop we’ve been excluded from, instead as one we invite agents into.</span> <span>— Jon Udell , “Doctor, it hurts when agents create unreviewable PRs.” “Don’t do that.” Tags: jon-udell , coding-agents , generative-ai , agentic-engineering , ai , llms</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Human Agent in the loop I dislike the phrase “human in the loop” because it cedes authority to the machines. Let’s flip the narrative. It’s our loop, we work the same way we always have, now we recruit agents to join the team. An agent-assisted process need not be a black box that takes in prompts and emits features. [...] Let’s do agentic software development like that. Not as a loop we’ve been excluded from, instead as one we invite agents into. — Jon Udell , “Doctor, it hurts when agents create unreviewable PRs.” “Don’t do that.” Tags: jon-udell , coding-agents , generative-ai , agentic-engineering , ai , llms</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/hp-frontier-partnership" target="_blank">HP Inc. launches Frontier strategic partnership with OpenAI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jun 28, 2026 &middot; 17:00 UTC</span>
+          </div>
+          <p class="summary"><span>June 28, 2026 Company HP Inc.</span> <span>launches Frontier strategic partnership with OpenAI Loading… Enterprise transformation rarely starts all at once.</span> <span>The strategic partnership extends how HP is deploying frontier capabilities to help its global efforts to enhance customer-facing experiences and accelerate transformation across its operations.</span> <span>As soon as HP began testing OpenAI Frontier in February 2026, the company started exploring different ways it can use the platform.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 28, 2026 Company HP Inc. launches Frontier strategic partnership with OpenAI Loading… Enterprise transformation rarely starts all at once. More often, it begins when small teams prove a new way of working is possible. That was the case with HP Inc., which just announced it will scale activation of its OpenAI Frontier strategic partnership, following a series of successful pilots across different areas. The strategic partnership extends how HP is deploying frontier capabilities to help its global efforts to enhance customer-facing experiences and accelerate transformation across its operations. Once scaled, the strategic partnership will focus on deploying AI across the organization in areas ranging from customer and partner-facing solutions and experiences, customer telemetry insights and reporting, employee productivity, and software development. As soon as HP began testing OpenAI Frontier in February 2026, the company started exploring different ways it can use the platform. Early signs of success arrived quickly. One engineer used OpenAI models to move through 122 pull requests across 43 projects in a matter of weeks. A security team used these models to remediate several software bugs in a day, work they estimated could otherwise have taken up to a month. As pilot usage deepened, it also became clearer how the tools powered by OpenAI could move from experiment to daily workflows. For enterprise teams, time often disappears as code moves through tests, reviews, security checks, and handoffs across tools and sprint plans. At HP, OpenAI tools helped compress that time into a faster, more collaborative rhythm. “It has been an amazing tool, and I am using it daily,” said one HP engineer. From pilot wins to enterprise deployment That growing utility across its test cases started to show how these individual wins could become part of a repeatable system HP could scale across the enterprise. Early successes also included HP teams finding immediate value in OpenAI APIs and tools like ChatGPT and Codex inside real everyday work, proving where AI could compress time, reduce friction, and improve execution. Frontier will play a critical role in the next phase. As HP expands from pilots to a broader portfolio of agents and AI workflows built across OpenAI tools, the company is using Frontier as a unified platform to understand what is running, what context each system can use, how actions are governed, and how outcomes are evaluated. Frontier gives HP the operating model for that motion: connecting access, context, deployment, and evaluation as the work moves from pilots toward production. Frontier as a connective layer For a company as complex and distributed as HP, agents need to know which context to trust, which tools they can access, what actions they are allowed to take, and how their outputs will be evaluated over time. That connective layer under Frontier is already taking shape across several HP workstreams: Pricing, partner, store, and customer support workflows: HP’s channel ecosystem is a major platform opportunity with more than 80% of its business flowing through partners, and 100,000+ partners using the Partner Portal globally. Frontier will help HP create a more consistent self-service layer across store, partner, chat, and voice experiences, giving customers and partners faster ways to get answers, complete routine workflows, and move toward resolution or conversion. For partners, AI agents can provide always-on guidance across program navigation, business information, and various aspects of partner operations management, shortening information-to-action times, improving satisfaction, and reducing manual load. Workforce Experience Platform (WXP) and device context: HP’s WXP platform offers a single pane of glass that can manage entire fleets of devices and provide peace of mind for CIOs. Using Frontier, HP is exploring how device telemetry, support knowledge, operational objects, schemas, and runbooks can help AI reason across fleet health signals, investigate crashes, Wi-Fi issues, and app hangs faster, eventually supporting grounded remediation. Cyber/security: Security is both a proof point and a governance layer. HP teams have used ChatGPT to proactively remediate critical vulnerabilities and speed security analysis across tools, with a directional estimate of roughly 82 hours/week of security-team capacity unlocked. As these cases scale, Frontier’s support for permissioning, evaluation, and deployment controls helps HP move quickly and free up human capital while keeping the work reviewable. ChatGPT and Codex: HP is using ChatGPT to support broad knowledge work such as research, analysis, ideation, and workflow automation, while Codex supports modernization, planning, UI scaffolding, and parallel software-delivery tasks. Building an AI-driven operating model What makes HP’s work with OpenAI notable is the breadth of the program under one strategic partnership, with the early proof points showing strong momentum. Frontier is helping build a connective tissue that turns pilot momentum into a governed operating model: shared context, clear permissions, evaluation, reusable deployment patterns, and a path from proof of concept to production. For HP, AI is becoming a new layer for how work gets done across the company. With OpenAI Frontier, that layer can be built with the context, governance, and execution capacity needed to move from early wins to enterprise-wide transformation. 2026 Partnerships Author OpenAI Keep reading View all How agents are transforming work Company Jun 25, 2026 OpenAI and Broadcom unveil LLM-optimized inference chip Company Jun 24, 2026 Daybreak: Tools for securing every organization in the world Security Jun 22, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/openai-codex-lead-on-the-new-shape" target="_blank">OpenAI Codex lead on the new shape of product work | Andrew Ambrosino</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jun 28, 2026 &middot; 12:31 UTC</span>
+          </div>
+          <p class="summary"><span>Radically different banking, now with Command</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Jun/26/incident-report/#atom-everything" target="_blank">Incident Report: CVE-2026-LGTM</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Jun 26, 2026 &middot; 17:58 UTC</span>
+          </div>
+          <p class="summary"><span>Incident Report: CVE-2026-LGTM Spectacular hypothetical incident report by Andrew Nesbitt.</span> <span>After 340 comments and $41,255 in inference spend, Finance revokes both API keys; one vendor&#x27;s marketing team, cc&#x27;d on the cost anomaly alert, issues a press release citing &quot;a 430% YoY increase in adversarial multi-agent security reasoning.&quot; The stock opens up 6%.</span> <span>Tags: security , ai , prompt-injection , generative-ai , llms , supply-chain , ai-security-research , andrew-nesbitt</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Incident Report: CVE-2026-LGTM Spectacular hypothetical incident report by Andrew Nesbitt. Day 2, 16:00 UTC --- Two AI review agents from competing vendors, both attached to a downstream pull request bumping foxhole-lz4 , enter a disagreement loop over whether the package is malicious. After 340 comments and $41,255 in inference spend, Finance revokes both API keys; one vendor&#x27;s marketing team, cc&#x27;d on the cost anomaly alert, issues a press release citing &quot;a 430% YoY increase in adversarial multi-agent security reasoning.&quot; The stock opens up 6%. Tags: security , ai , prompt-injection , generative-ai , llms , supply-chain , ai-security-research , andrew-nesbitt</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Jun/25/ai-and-liability/#atom-everything" target="_blank">AI and Liability</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Jun 25, 2026 &middot; 22:28 UTC</span>
+          </div>
+          <p class="summary"><span>AI and Liability Bruce Schneier and Nathan Sanders on the recent German ruling that Google be held liable for errors introduced in their AI overviews: AI agents are agents of the person or organization that deploys them—and should be treated by the law as such.</span> <span>If a company hired human writers to write its summaries, that company would be liable for inaccuracies in those summaries.</span> <span>[...] To allow businesses to hide behind the excuse of faulty AI in those same circumstances would be a massive handout to companies, and would introduce disastrous incentives for corporate misbehavior.</span> <span>Tags: bruce-schneier , google , law , ai , generative-ai , llms , ai-ethics , hallucinations</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>AI and Liability Bruce Schneier and Nathan Sanders on the recent German ruling that Google be held liable for errors introduced in their AI overviews: AI agents are agents of the person or organization that deploys them—and should be treated by the law as such. If a company hired human writers to write its summaries, that company would be liable for inaccuracies in those summaries. [...] To allow businesses to hide behind the excuse of faulty AI in those same circumstances would be a massive handout to companies, and would introduce disastrous incentives for corporate misbehavior. Why hire human writers, lawyers or doctors when AIs are not only cheaper, but also absolve employers whenever they make a mistake? Tags: bruce-schneier , google , law , ai , generative-ai , llms , ai-ethics , hallucinations</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-its-meta-harness-summer" target="_blank">[AINews] It&#x27;s Meta-Harness Summer</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Jun 25, 2026 &middot; 02:14 UTC</span>
+          </div>
+          <p class="summary"><span>SkyPilot launched Endpoints for unified inference across owned clusters, and Modal claimed open-source inference setups outperforming proprietary providers on latency.</span> <span>Qwen-AgentWorld : Alibaba Qwen launches and open-sources language world models for agents .</span> <span>Anthropic’s agent identity model : Claude in Slack now uses its own credentials and audit trail , clarifying one of the thorniest enterprise-agent design questions.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>AI Twitter Recap OpenAI’s Jalapeño Chip and the Race Toward Full-Stack AI Infrastructure OpenAI goes deeper into hardware : OpenAI announced Jalapeño , its first custom AI chip for LLM inference, built with Broadcom and intended for ChatGPT, Codex, API traffic, and future agent products. The strategic message is straightforward: own more of the stack—chips, kernels, memory, networking, scheduling, deployment—so compute economics and product behavior become less dependent on merchant GPU supply. @gdb emphasized strong performance-per-watt , while @kimmonismus highlighted the reported 9-month design-to-tapeout cycle , unusually fast for a high-performance ASIC and reportedly accelerated by OpenAI’s own models. Technical read-through and ecosystem implications : Community reverse-engineering suggests Jalapeño looks TPU-like: @scaling01 estimated a near-reticle die, roughly 216GB HBM3E , ~7.1–7.4 TB/s bandwidth , and ~10 PFLOPS FP4 . Even if those numbers remain unofficial, the signal is that hyperscaler-style inference silicon is now table stakes for frontier labs. The same day also reshaped the compiler/runtime landscape: Chris Lattner announced Qualcomm is acquiring Modular , while Modular said Mojo open-sourcing remains on track . That combination points to more serious competition around vertically integrated inference stacks beyond NVIDIA/CUDA. Serving and throughput remain active fronts : On the infra side, NVIDIA said NeMo AutoModel delivers 3.4–3.7x higher training throughput for MoE models via Expert Parallelism, DeepEP, and TransformerEngine kernels. SkyPilot launched Endpoints for unified inference across owned clusters, and Modal claimed open-source inference setups outperforming proprietary providers on latency. For local optimization, @jon_durbin reported 30–50% real-world decode gains from training custom DFLASH draft/speculator models. Agent UX Shifts From “Tool” to “Coworker,” Raising New Security and Cost Questions Anthropic’s Slack-native agent model is the big UI story : Several tweets converged on the significance of Claude embedded into Slack/team workflows. @karpathy argued people are underrating it because it is not “just a feature” or Slack bot, but an org-level harness . @gallabytes described the experiential jump from Claude Code as a “pairing partner” to Tags as “managing a team.” @dabit3 pushed the idea further: eventually, you may not even need to explicitly tag agents. The hard part is identity, permissions, and lock-in : Anthropic detailed its agent identity model in this thread : Claude gets its own credentials, actions are auditable under that identity, and access can be revoked centrally. That design drew both praise and concern. @KentonVarda argued explicit per-agent permissioning does not scale and advocated capability-based security with fine-grained, task-scoped access. @random_walker framed Claude Tag as “a coworker that remembers everything and bills by the thought,” warning of tacit-knowledge lock-in, prompt-injection risk, and budget opacity once one shared agent becomes deeply embedded in org workflows. @JubbaOnJeans similarly flagged attribution ambiguity for write actions and future access-control complexity outside clean Slack-like boundaries. The open/DIY response is immediate : Hugging Face described its internal Slack-based coding agent Moon Bot in a blog tweet , emphasizing self-hosting, custom tools, auditable sessions, and zero lock-in. A follow-up from @calebfahlgren listed production integrations spanning GitHub, Athena, analytics, MongoDB, Elasticsearch, and HF Buckets. The larger pattern: teams increasingly want agent-native UX, but many would rather own the harness and memory layer than outsource organizational intelligence to a vendor. Qwen-AgentWorld, OpenThoughts-Agent, and Memory as the Next Agent Scaling Axis Qwen-AgentWorld pushes “language world models” for agents : Alibaba Qwen introduced Qwen-AgentWorld , positioning it as a native language world model that simulates 7 environments —MCP, Search, Terminal, SWE, Web, OS, Android—inside a single model. Qwen claims two paths: build the simulator itself, and use world modeling as agent pretraining. They open-sourced Qwen-AgentWorld-35B-A3B and AgentWorldBench , with a 35B MoE / 3B active , 256K context model. One notable result: single-turn environment prediction transfers to multi-turn agent tasks with gains across both in-domain and out-of-domain benchmarks, as summarized in this follow-up . OpenThoughts-Agent contributes a serious open data recipe : @iScienceLuvr and @RichardZ412 highlighted OpenThoughts-Agent , an open curation/training pipeline for agentic models with 100+ controlled ablations . The team builds a 100K-example training set and fine-tunes Qwen3-32B , reaching 44.8% average accuracy across seven agentic benchmarks . The key findings are useful for practitioners: instruction choice matters disproportionately, strongest benchmark teacher ≠ best teacher, longer execution traces help, and source diversity beats over-repetition at scale. Memory is turning into a first-class systems layer : A lot of high-signal discussion centered on memory as the unresolved problem in agents. Weaviate’s Engram GA frames memory as asynchronous infrastructure that extracts, deduplicates, reconciles, and scopes memories rather than dumping everything into context. @hwchase17 showed a LangSmith/Context Hub workflow for “sleep-time compute,” where traces are analyzed offline and written back as memory. @dair_ai pointed to a paper arguing agent memory should be evaluated as a full data-management layer —storage, retrieval, update, consolidation, lifecycle—not a black box judged only by end-task success. This is increasingly where agent differentiation appears to be moving. Chinese Open Models Keep Closing the Gap: GLM-5.2, Kimi Distribution, and Compute Scale GLM-5.2 continues to dominate the open-model conversation : Multiple tweets positioned GLM-5.2 as the strongest open-weight contender right now. CoreWeave said it tops open-model rankings on Artificial Analysis and Agent Arena, while Baseten and Cursor availability showed rapid serving/distribution uptake. @nutlope compared GLM 5.2 against Opus 4.8 on web tasks, reporting similar quality , ~2x token output , but still faster and roughly 3x cheaper . Arena also said GLM-5.2 Max leads Code Arena: Frontend against a strong field. Benchmark nuance matters : GLM-5.2 also showed up on ARC-AGI-2. @fchollet called it the strongest ARC-AGI-2 result to date by an open-source model , while others debated what its 22.8% really implies relative to frontier Western models. The broader takeaway is less about any single benchmark and more about open Chinese models being consistently “in the room” across coding, agents, and knowledge work. Commercialization and infrastructure acceleration : Moonshot’s Kimi API is now on AWS Marketplace , easing enterprise procurement via consolidated billing and EDP drawdown. Meanwhile, Chinese domestic compute remains a major theme: @teortaxesTex flagged reports that Huawei may demo a 950 SuperPOD scale system, implying production of large domestic NPU clusters at meaningful scale. If true, that would materially improve the economics and resilience of China’s model-serving ecosystem. Policy, Talent, and Frontier-Lab Strategy Are Reshaping the Competitive Landscape Anthropic remains at the center of policy disputes : @kimmonismus reported the first major legal challenge to Trump-era AI export controls, with Legion arguing hosted model access is not equivalent to exporting weights or technical data. In parallel, the much-discussed Mythos story gained context: Reuters/AP details summarized here suggest Anthropic’s model found vulnerabilities in sensitive U.S. systems during a restricted testing exercise, though some commenters warned earlier coverage had been overstated. Distillation and access control are becoming geopolitical issues : @kimmonismus also reported Anthropic’s accusation that Alibaba-linked operators used ~25,000 fraudulent accounts and 28.8 million Claude exchanges to distill frontier capabilities into Qwen-class systems. If accurate, that escalates the “adversarial distillation” debate from rumor to something closer to enforcement and statecraft. Talent and new labs : The day also brought talent movement and new institutional formation. Arthur Conmy joining Anthropic is notable on the alignment side. Mirendil AI launched with a $200M seed round and a thesis around self-accelerating AI R&amp;D for science. In the UK, BOLD Lab and SOFAIR received £60M in seed funding across two new national fundamental AI labs, with UCL DARK merging into BOLD . And on the commercial side, Bloomberg-reported departures from Google DeepMind toward Anthropic underscore how startup upside is continuing to pull frontier talent. Top Tweets (by engagement) OpenAI Jalapeño : OpenAI announces its first custom inference chip — the most consequential product/infra launch in the set. GPT-5.5 Instant update : OpenAI rolls out a revised GPT-5.5 Instant with improved intent understanding, constraint handling, and conversational style. Qwen-AgentWorld : Alibaba Qwen launches and open-sources language world models for agents . Anthropic’s agent identity model : Claude in Slack now uses its own credentials and audit trail , clarifying one of the thorniest enterprise-agent design questions. Cursor x Notion : Cursor tasks can now be delegated directly from Notion , another sign that agent workflows are moving into existing team software rather than living in standalone chat apps. AI Reddit Recap /r/LocalLlama + /r/localLLM Recap</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/how-agents-are-transforming-work" target="_blank">How agents are transforming work</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jun 25, 2026 &middot; 02:00 UTC</span>
+          </div>
+          <p class="summary"><span>Through August 2025, the average OpenAI worker spent less than 10% of their tokens on Codex.</span> <span>Codex adoption grew in tandem with Codex’s capabilities.</span> <span>Across Individual users, Organizational users, and OpenAI workers, we document four trends over the past year: People use Codex for longer-horizon work .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>June 25, 2026 Company How agents are transforming work A new Economic Research paper measuring Codex’s economic potential at the frontier. Read the paper (opens in a new window) Loading… Agentic AI changes the unit of knowledge work from single interactions to delegated, long-horizon tasks. Chatbot interactions are often short and self-contained. Agents can operate independently for minutes or hours while orchestrating tool calls, interacting with environments, and iterating towards solutions. As a result, agents are quickly becoming the most powerful AI tool for work. Over the last year, we witnessed this transformation first-hand at OpenAI. For the first few months after Codex was released to the public, ChatGPT remained the default AI tool for work within OpenAI. Through August 2025, the average OpenAI worker spent less than 10% of their tokens on Codex. Now, every department, including non-technical departments such as Legal and Recruiting, uses Codex as their primary AI tool for work. This pattern reflects what we believe will be the future of work given the expanded capabilities and accessibility of agentic tools. Codex adoption grew in tandem with Codex’s capabilities. As Codex leveraged stronger models and new product features, it became capable of taking on an expanding set of productive tasks. Across Individual users, Organizational users, and OpenAI workers, we document four trends over the past year: People use Codex for longer-horizon work . By May 2026, 80.6% of sampled individual users made at least one Codex request estimated to exceed 30 minutes of human work, 70.2% made one estimated to exceed one hour, and 25.6% made at least one Codex request estimated to exceed eight hours. Codex became the primary AI tool for every department at OpenAI . Engineering moved first, but Legal, Finance, and Recruiting crossed into Codex being their primary AI tool around April 2026. For the average OpenAI worker, Codex usage now accounts for more than 85% of output tokens. Since Codex users tend to use more tokens than non-users, its share of overall tokens is even higher: Codex accounts for 99.8% of weekly output tokens generated within OpenAI. Non-developer adoption grew especially rapidly, outpacing developer adoption . Since August 2025, non-developer users rose 137x for individual users, 189x for organizational users, and 12x within OpenAI. Codex enabled OpenAI workers to do tasks outside their job description . While technical usage is still most prevalent among engineers, non-technical users regularly use Codex to take on coding or technical execution, including automation, data transformation, tooling, debugging, and structured analysis. Agents work longer hours on harder tasks Nearly a quarter of all Codex requests are for tasks that would take a person more than one hour to complete 1 . As Codex’s capacity for independent long-context work improved, users shifted from short interactions toward more difficult tasks with longer horizons. The chart below estimates the share of individual users that crossed four human-time thresholds: tasks that would take a person more than 30 minutes, more than one hour, more than four hours, and more than eight hours 2 . From December 2025 to May 2026, the share of users who made a request that was estimated to correspond to work that would take a person more than 30 minutes rose to 80.6%. The share making a request that would take a person more than one hour rose to 70.2%. The share requesting work that would take a person more than eight hours grew the fastest from a low base. The growth in agentic usage can be seen in daily Codex runtime. Among daily active users at OpenAI, the heaviest users ask Codex to run many hours of agent work in a single day. By June 2026, users at the 99th percentile regularly generated more than 60 hours of Codex agent turns per day, distributed across multiple, parallel agents. As Codex became more powerful and parallelizable, users moved from only asking Codex for one answer at a time into increasingly orchestrating multiple agent tasks over the course of a day. Adoption continues to move from engineers to the rest of OpenAI Engineers at OpenAI began adopting Codex first, gradually. The average engineer at the company shifted the majority of their usage of OpenAI products to Codex by December 2025. Today, the average engineer generates 99% of their output tokens with Codex rather than ChatGPT. Legal, finance, and recruiting crossed over to majority use of Codex later, around April 2026, but their transitions were much faster. The average lawyer or recruiter at OpenAI now generates more than 85% of their output tokens on Codex. Over the last six months, Codex usage has deepened and intensified at OpenAI. Among active internal users, change in combined output tokens rose sharply across departments. Research saw the biggest jump: by June 2026, median use was 56 times higher than in November 2025. Customer Support rose 32 times and Engineering rose 27 times, while Legal grew more gradually but still reached 13 times its November level. These two patterns together illustrate how Codex has transformed how OpenAI uses AI to do productive work. Across the company, users are switching from chatbots to agents as their primary form of AI interaction and are deploying an exponentially growing amount of agentic labor. Non-developers are the fastest-growing user groups Across all user groups—OpenAI, organizational, and individual users—Codex use began with developers, the natural target audience for what began as a coding tool. However, as Codex expanded toward more general knowledge work, adoption among non-developers grew even more quickly. As shown in the user growth chart below, weekly non-developer users rose faster than developer users among individual, organizational, and OpenAI populations. By early June 2026, non-developer individual users multiplied 137 times since August 2025. Non-developer organizational users increased 189-fold, and non-developer OpenAI users increased 12-fold, likely because this group already started at a well above average starting point. The shift does not mean every non-developer is using Codex in the same way as an engineer. Rather, it means that more non-developers are using Codex for some kind of agentic work. Codex is expanding the horizon of potential productive work Codex enables non-technical departments to accelerate workflows previously bottlenecked by technical expertise. The heat map below compares inferred occupations within OpenAI to the type of work represented in Codex outputs. Engineering and coding show up as the largest category for data science and research, whereas knowledge work is the largest category for finance and business operations, marketing, operations, and other departments. That said, agentic tools can expand what an individual worker can do. For instance, over one-fourth of work done with Codex by workers in business functions was engineering or coding. Agents can lower the cost of moving across task boundaries and help workers do adjacent work that used to require more specialized technical support. Occupation vs. work done with Codex Occupation vs. work done with Codex Work category Consolidated inferred department Engineering 72% 4% 1% 18% 5% Data Science / Research 51% 10% 0% 30% 9% Finance / Biz Ops 31% 9% 16% 34% 10% Product / Marketing / Ops 25% 3% 7% 51% 15% Other 50% 7% 2% 38% 4% What this means for agents’ economic potential Increased use of agentic tools by non-engineer employees expands the frontier of what these workers can do. That matters for businesses deciding how to redesign workflows, for employees learning which skills become more valuable, and for policymakers and researchers trying to understand how AI changes the labor market. Our paper shows how frontier users adopt capable agentic tools at the frontier. Our results demonstrate what unfolds when people have broad, low-friction access to capable agentic tools: as the tools improve, people use them for longer, more complex, and more cross-functional work. As time goes on, this is likely to be what the future of work looks like. 2026 Economic Research Codex Author OpenAI Foot 1 Task horizon is estimated using an LLM-as-judge with access to Codex transcripts. 2 These thresholds are model-estimated, so they should be treated as directional rather than exact. This is also based only on individual data and based on the queries of a random sample of 0.1% of users. Keep reading View all How HP is scaling early AI wins across the enterprise Company Jun 28, 2026 OpenAI and Broadcom unveil LLM-optimized inference chip Company Jun 24, 2026 Daybreak: Tools for securing every organization in the world Security Jun 22, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash/" target="_blank">Introducing computer use in Gemini 3.5 Flash</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Jun 24, 2026 &middot; 16:30 UTC</span>
+          </div>
+          <p class="summary"><span>Introducing computer use in Gemini 3.5 Flash Jun 24, 2026 · Share x.com Facebook LinkedIn Mail Computer use is now a built-in tool in Gemini 3.5 Flash to build agents that can interact across platforms.</span> <span>Generative AI is experimental [[duration]] minutes Computer use is now a built-in tool supported in Gemini 3.5 Flash, delivering our best performance yet for agentic computer use tasks.</span> <span>Previously only available as a standalone Gemini 2.5 computer use model, computer use is now integrated natively in the main Gemini Flash model.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Introducing computer use in Gemini 3.5 Flash Jun 24, 2026 · Share x.com Facebook LinkedIn Mail Computer use is now a built-in tool in Gemini 3.5 Flash to build agents that can interact across platforms. Mateo Quiros Product Manager, Google DeepMind Share x.com Facebook LinkedIn Mail Your browser does not support the audio element. Listen to article This content is generated by Google AI. Generative AI is experimental [[duration]] minutes Computer use is now a built-in tool supported in Gemini 3.5 Flash, delivering our best performance yet for agentic computer use tasks. Previously only available as a standalone Gemini 2.5 computer use model, computer use is now integrated natively in the main Gemini Flash model. Gemini already excels at function calling and using built-in tools like Search and Maps grounding. With built-in computer use capability, developers can now use 3.5 Flash to reliably build custom agents that can see, reason and take action across browser, mobile and desktop environments. This unlocks improved performance for long-horizon and enterprise automation tasks like continuous software testing and knowledge work across professional applications. Developers and enterprises can start using computer use in 3.5 Flash via the Gemini API and Gemini Enterprise Agent Platform . 3.5 Flash uses computer use to analyse the Gemini app and return a categorized list of features. 3.5 Flash with computer use audits its own documentation for accessibility issues. Making computer use safe in 3.5 Flash To mitigate some of the prompt injection risks for agents operating in live environments, we use targeted adversarial training for computer use in Gemini 3.5 Flash. We’re also releasing two optional enterprise safeguard systems that enable enterprises to: Require explicit user confirmation for sensitive or irreversible actions. Automatically stop tasks if an indirect prompt injection is identified. Taking a “defense-in-depth” approach, we encourage developers to combine these features with secure sandboxing, human-in-the-loop verification and strict access controls. Additional information on safety measures can be found in our best practices documentation. We are already seeing customers drive value with computer use. Here’s what some of them have to say: To start building with computer use today: Try it now : Test the capabilities in a demo environment hosted by Browserbase. Start building : Dive into our implementation and documentation via Gemini API and Gemini Enterprise Agent Platform . Just one step more. Check your inbox to confirm your subscription. You are already You can also subscribe with a</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 181</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
