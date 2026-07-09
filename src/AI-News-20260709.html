@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-07-09</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-07-09</h1>
+    <div class="subtitle">15 curated articles &middot; 17 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/adam-mosseri-ai-is-a-tailwind-for" target="_blank">Adam Mosseri: AI is a tailwind for authenticity</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jul 09, 2026 &middot; 12:32 UTC</span>
+          </div>
+          <p class="summary"><span>Radically different banking, now with Command</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-spacexai-launches-grok-45" target="_blank">[AINews] SpaceXAI launches Grok 4.5, first Opus-class model post Cursor acquisition</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Jul 09, 2026 &middot; 06:05 UTC</span>
+          </div>
+          <p class="summary"><span>As GPT 5.6 is confirmed to launch tomorrow , today is pretty much the last day anyone will be excited about a GPT 5.5 equivalent model launch, and that is exactly what SpaceXAI did: Cursor @cursor_ai We&#x27;ve partnered with SpaceXAI to train Grok 4.5.</span> <span>Key results: #4 on Artificial Analysis Intelligence Index , score 54 , behind only Fable 5, GPT-5.5, and Opus 4.8 @ArtificialAnlys +16 points vs Grok 4.3 on the same index @ArtificialAnlys GDPval-AA v2 Elo 1543 , also ranking #4 , behind Anthropic’s latest Claude releases @ArtificialAnlys Top score on τ³-Banking: 33% , above 31% for GPT-5.5 (xhigh) @ArtificialAnlys Artificial Analysis Coding Agent Index score 76 in Grok Build, “on par with GPT-5.5 in Codex” and below Fable 5 in Claude Code @ArtificialAnlys Cost per Intelligence Index task: $0.31 @ArtificialAnlys Cost per GDPval task: $0.49 @ArtificialAnlys Cost per Coding Agent Index task: $2.59 @ArtificialAnlys Average output tokens per Intelligence Index task: ~14k , over 60% lower than Opus 4.8 @ArtificialAnlys Average total tokens per Coding Agent Index task: 1.9M , versus 7.2M for Fable 5 in Claude Code and 6.2M for GPT-5.5 in Codex @ArtificialAnlys Artificial Analysis’ interpretation was clear: Grok 4.5 is near-frontier on capability, but unusually strong on efficiency, making it sit on the Pareto frontier for cost/performance.</span> <span>Musk explicitly amplified the Artificial Analysis assessment @elonmusk .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>As GPT 5.6 is confirmed to launch tomorrow , today is pretty much the last day anyone will be excited about a GPT 5.5 equivalent model launch, and that is exactly what SpaceXAI did: Cursor @cursor_ai We&#x27;ve partnered with SpaceXAI to train Grok 4.5. It’s our most powerful model yet and the first we&#x27;ve built for more than software engineering. 605 Replies · 1.26K Reposts · 14.4K Likes The new Grok 4.5 is a different weight class than the Composer series ( 1.5T ) and despite the solid evals still performs very comparably to the current workhorse Opus and GPTs, although per OpenAI’s evals team even the mighty SWE-Bench Pro is now saturated/terminally flawed - leaving presumably a small list of successors including FrontierCode . As for training and data disclosures, this is all the information we have. AI News for 7/07/2026-7/08/2026. We checked 12 subreddits, 544 Twitters and no further Discords. AINews’ website lets you search all past issues. As a reminder, AINews is now a section of Latent Space . You can opt in/out of email frequencies! AI Twitter Recap Top Story: Grok 4.5 release What happened xAI/“SpaceXAI” publicly launched Grok 4.5 as a new coding-and-agents-focused frontier model, positioned on capability-per-dollar rather than absolute benchmark supremacy. Elon Musk first said Grok 4.5 would be made public “tomorrow” based on strong beta feedback, calling it “Opus-class,” but faster, more token-efficient, and lower cost @elonmusk . Musk later framed Grok 4.5 internally as “roughly comparable to Opus 4.7, but much faster,” emphasizing usefulness to Tesla and SpaceX engineers over benchmark chasing @elonmusk . The official launch came from xAI’s account, describing Grok 4.5 as “our first model trained specifically for coding and agents,” trained with Cursor, and offering “frontier intelligence at leading speeds and cost efficiency” @SpaceXAI . Cursor said it partnered with xAI to train Grok 4.5, called it “our most powerful model yet,” and stressed that it was “the first we’ve built for more than software engineering” @cursor_ai . Cursor also announced in-product availability with “double usage for the first week” @cursor_ai . Cursor clarified that “Grok 4.5 and Composer are two different model weight classes,” and that Composer 2.5 would remain available with future models in that smaller class @cursor_ai . Early ecosystem support appeared immediately: Grok 4.5 became available in Grok Build/API/Cursor @milichab , day-0 support was announced for Hermes Agent @Teknium , and later live availability in Hermes Agent/Portal/OpenRouter/Grok subscriptions was confirmed @Teknium . Musk said the context window would likely move from 500k back to 1M “by next week” @elonmusk . Official claims and product details Positioning Officially, xAI’s message was not “best overall model,” but near-Opus quality with materially better economics and speed: “Opus-class model, but faster, more token-efficient and lower cost” @elonmusk “First model trained specifically for coding and agents” @SpaceXAI “Frontier intelligence at leading speeds and cost efficiency” @SpaceXAI “Most powerful model yet” and “first we’ve built for more than software engineering” @cursor_ai This framing matters: xAI is explicitly targeting the coding-agent workflow market that has recently been dominated by Anthropic/OpenAI/Cursor-style tool-using systems, not just general chat. Pricing and context The concrete numbers that surfaced: Official pricing: $2 / 1M input tokens, $6 / 1M output tokens @scaling01 Artificial Analysis repeated the same price point and added: cache hits discounted by 75% to $0.5 / 1M tokens long inputs over 200k tokens cost double 500k context window , down from Grok 4.3’s 1M vision input retained configurable reasoning retained @ArtificialAnlys Musk later said the context window would probably upgrade back to 1M soon @elonmusk . Relative pricing comparisons cited by users: Grok 4.5: $2 in / $6 out GPT-5.6: $5 in / $30 out Opus 4.8: $5 in / $25 out @kimmonismus Model size One important spec surfaced via third-party reporting of Musk’s disclosure: Grok 4.5 is 3x larger than Grok 4.3 at 1.5T parameters @ArtificialAnlys That is a notable jump, and likely central to why multiple observers interpreted 4.5 as xAI’s first entry into the true flagship coding-agent tier rather than an iterative refresh. Benchmarks and independent evaluations Artificial Analysis Artificial Analysis provided the most substantive external evaluation in the tweet set. Key results: #4 on Artificial Analysis Intelligence Index , score 54 , behind only Fable 5, GPT-5.5, and Opus 4.8 @ArtificialAnlys +16 points vs Grok 4.3 on the same index @ArtificialAnlys GDPval-AA v2 Elo 1543 , also ranking #4 , behind Anthropic’s latest Claude releases @ArtificialAnlys Top score on τ³-Banking: 33% , above 31% for GPT-5.5 (xhigh) @ArtificialAnlys Artificial Analysis Coding Agent Index score 76 in Grok Build, “on par with GPT-5.5 in Codex” and below Fable 5 in Claude Code @ArtificialAnlys Cost per Intelligence Index task: $0.31 @ArtificialAnlys Cost per GDPval task: $0.49 @ArtificialAnlys Cost per Coding Agent Index task: $2.59 @ArtificialAnlys Average output tokens per Intelligence Index task: ~14k , over 60% lower than Opus 4.8 @ArtificialAnlys Average total tokens per Coding Agent Index task: 1.9M , versus 7.2M for Fable 5 in Claude Code and 6.2M for GPT-5.5 in Codex @ArtificialAnlys Artificial Analysis’ interpretation was clear: Grok 4.5 is near-frontier on capability, but unusually strong on efficiency, making it sit on the Pareto frontier for cost/performance. Musk explicitly amplified the Artificial Analysis assessment @elonmusk .</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2607.07612v1" target="_blank">Towards Agentic AI Governance: A Preliminary Assessment</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Jul 08, 2026 &middot; 16:29 UTC</span>
+          </div>
+          <p class="summary"><span>Artificial intelligence is rapidly evolving from generative systems to agentic AI capable of autonomously planning and executing tasks.</span> <span>This paper presents a systematic review of the emerging literature on agentic AI governance.</span> <span>As an initial scholarly effort, this review lays the preliminary groundwork for developing a structured roadmap to guide responsible and adaptive agentic AI governance.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Artificial intelligence is rapidly evolving from generative systems to agentic AI capable of autonomously planning and executing tasks. Widely characterized as the Year of Agentic AI, 2025 marked accelerated development and deployment, introducing new ethical and governance challenges. This paper presents a systematic review of the emerging literature on agentic AI governance. Our analysis identifies features that distinguish agentic AI from traditional systems and why it warrants targeted governance attention. We synthesize prevailing governance priorities, proposed mechanisms, and stakeholder roles shaping this evolving domain. As an initial scholarly effort, this review lays the preliminary groundwork for developing a structured roadmap to guide responsible and adaptive agentic AI governance.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2607.07397v1" target="_blank">Agentic Data Environments</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Jul 08, 2026 &middot; 13:32 UTC</span>
+          </div>
+          <p class="summary"><span>Autonomous agents promise substantial gains in speed, scale, and labor efficiency, but their failures can impose abrupt and often irreversible costs.</span> <span>The central challenge for agentic automation is therefore to increase the benefits of automation while bounding the consequences of failure.</span> <span>This perspective reframes data systems from passive stores of state into active substrates for safe, reliable execution.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Autonomous agents promise substantial gains in speed, scale, and labor efficiency, but their failures can impose abrupt and often irreversible costs. The central challenge for agentic automation is therefore to increase the benefits of automation while bounding the consequences of failure. While databases remain central to modern computing, agents operate over a broader data environment spanning files, APIs, applications, and system state. In this talk, I will outline early work on Agentic Data Environments -- the execution substrate in which agents operate -- that both amplify agent capabilities and enforce safety guarantees. This perspective reframes data systems from passive stores of state into active substrates for safe, reliable execution.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/government-national-security-partnerships" target="_blank">Our approach to government and national security partnerships</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jul 08, 2026 &middot; 13:30 UTC</span>
+          </div>
+          <p class="summary"><span>July 8, 2026 Global Affairs Our approach to government and national security partnerships Read the principles (opens in a new window) Loading… Governments are beginning to use frontier AI systems for increasingly important work, including in national security.</span> <span>We believe democratic societies should be able to use AI to protect people, defend critical infrastructure, deliver public services, and respond to emerging threats, including in areas like cyber defense and biological security where AI can meaningfully advantage defenders.</span> <span>Today we are publishing OpenAI’s National Security Principles to offer transparency into how we approach government partnerships and national security uses of our technology.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>July 8, 2026 Global Affairs Our approach to government and national security partnerships Read the principles (opens in a new window) Loading… Governments are beginning to use frontier AI systems for increasingly important work, including in national security. That creates new imperatives for AI labs, governments, and civil society to work together on how these tools should be used in sensitive settings. We believe democratic societies should be able to use AI to protect people, defend critical infrastructure, deliver public services, and respond to emerging threats, including in areas like cyber defense and biological security where AI can meaningfully advantage defenders. But increasingly capable AI systems must be deployed in ways that reinforce democratic accountability, meaningful human judgment, and the rule of law, and that strengthen democratic institutions rather than concentrate power. Today we are publishing OpenAI’s National Security Principles to offer transparency into how we approach government partnerships and national security uses of our technology. These principles reflect a cross-company effort to develop a more comprehensive approach to our work in the national security and law enforcement area as our technology continues to advance. We engaged a leading national security expert, David Kris, to help facilitate the process and provide his independent judgment, held listening sessions across the company, and engaged employees representing a range of teams from research and safety to policy and government partnerships. We are publishing them now as we expand our work with the U.S. government and allied partners in critical defensive areas, particularly cyber and biosecurity. In the past month, as part of our Daybreak ⁠ cyber defense program, we have already established Trusted Access for Cyber partnerships with Australia, Canada, Japan, Republic of Korea, France, Germany, Poland, the Netherlands and EU institutions like ENISA. We also have a growing and trusted partnership with the UK government around cyber, testing and evaluation. We are taking a similar approach in biosecurity. Last month, we also announced expanded trusted access to our GPT‑Rosalind model for select U.S. government and allied partners supporting public health and biodefense missions. These principles apply to our current and future national security and law enforcement partnerships, including our existing work with the Department of War. When we announced our agreement earlier this year, we articulated several contractual restrictions: no use of OpenAI technology for mass domestic surveillance, no use of OpenAI technology to direct autonomous weapons systems, and no use of OpenAI technology for high-stakes automated decisions. Those restrictions are consistent with the principles we are sharing today. We believe the right thing to do is to be clear about how our technology can and cannot be used, and to be transparent about them. But many of the most consequential questions about AI in government, especially in national security, should be answered through the democratic process. The role of companies like ours is to help inform those decisions, not make them alone. That is why we support legislative efforts to establish safeguards around some of the highest-risk military uses of AI, including in the contexts of domestic surveillance, autonomous weapons systems, and other high-risk uses that directly affect U.S. national security. Read the principles here ⁠ (opens in a new window) . 2026 Partnerships Author OpenAI Keep reading View all Helping K–12 educators build practical AI skills Global Affairs Jul 8, 2026 How ChatGPT adoption has expanded Global Affairs Jun 30, 2026 Mapping Europe’s AI Workforce Opportunity Global Affairs Jun 29, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/what-a-harness-is-and-how-to-build" target="_blank">What a harness is and how to build one with Claude Agent SDK</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jul 08, 2026 &middot; 12:03 UTC</span>
+          </div>
+          <p class="summary"><span>.new —Turn your idea into a real product Customer.io —Build customer engagement campaigns from a single prompt What is an AI harness? When to build a harness Why Claire picked bug triage Why not just use Claude Code? Demo: The custom harness interface Architecture: runs, tasks, tools, and artifacts Building it with Codex and Claude Code map and file layout A look at the code The live investigation result How to build your own harness<ul><li>Claude Agent SDK (Anthropic): <a href="https://code.claude.com/docs/en/agent-sdk/overview" target="_blank" rel="noopener">https://code.claude.com/docs/en/agent-sdk/overview</a></li><li>Claude Sonnet 4.6 (model used inside the harness): <a href="https://www.anthropic.com/news/claude-sonnet-4-6" target="_blank" rel="noopener">https://www.anthropic.com/news/claude-sonnet-4-6</a></li><li>Claude Opus (used to build the harness): <a href="https://www.anthropic.com/claude/opus" target="_blank" rel="noopener">https://www.anthropic.com/claude/opus</a></li><li>GPT-5.5 (Codex, used to build the harness): <a href="https://openai.com/index/introducing-gpt-5-5/" target="_blank" rel="noopener">https://openai.com/index/introducing-gpt-5-5/</a></li><li>Ink (terminal UI library for Node.js): <a href="https://github.com/vadimdemedes/ink" target="_blank" rel="noopener">https://github.com/vadimdemedes/ink</a></li><li>Sentry (error monitoring): <a href="https://sentry.io/" target="_blank" rel="noopener">https://sentry.io/</a></li><li>Linear (project management): <a href="https://linear.app/" target="_blank" rel="noopener">https://linear.app/</a></li><li>GitHub: <a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a></li><li>Vercel: <a href="https://vercel.com/" target="_blank" rel="noopener">https://vercel.com/</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/k-12-educators-practical-skills" target="_blank">Helping K–12 educators build practical AI skills</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jul 08, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>July 8, 2026 Global Affairs Helping K–12 educators build practical AI skills Loading… Every day, K–12 teachers, administrators, district leaders, and school communities help students learn, grow, and prepare for the future.</span> <span>That’s why OpenAI Academy, in partnership with the Walton Family Foundation ⁠ (opens in a new window) , will host a flagship AI Skills Jam for K–12 Educators this summer to offer a hands-on, high-trust environment where teachers and administrators can move from curiosity to practical use.</span> <span>Building on the success of the Nonprofit AI Jam ⁠ (opens in a new window) and Small Business AI Jam ⁠ (opens in a new window) , the Jam will bring together more than 1,600 K–12 teachers, administrators, and district leaders for in-person, hands-on workshops across U.S.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>July 8, 2026 Global Affairs Helping K–12 educators build practical AI skills Loading… Every day, K–12 teachers, administrators, district leaders, and school communities help students learn, grow, and prepare for the future. They are also being asked to navigate rapid technological change while managing limited time, growing responsibilities, and uneven access to practical support. That’s why OpenAI Academy, in partnership with the Walton Family Foundation ⁠ (opens in a new window) , will host a flagship AI Skills Jam for K–12 Educators this summer to offer a hands-on, high-trust environment where teachers and administrators can move from curiosity to practical use. Building on the success of the Nonprofit AI Jam ⁠ (opens in a new window) and Small Business AI Jam ⁠ (opens in a new window) , the Jam will bring together more than 1,600 K–12 teachers, administrators, and district leaders for in-person, hands-on workshops across U.S. Through the AI Skills Jam for K–12 Educators, OpenAI Academy aims to help educators explore how AI can support teaching, planning, communication, and other day-to-day work more effectively, while helping advance AI literacy, opportunity, and responsible adoption in education. Research from The Walton Family Foundation and Gallup, Teaching for Tomorrow: Closing the Expectations Gap Report ⁠ (opens in a new window) , shows that teachers who use AI tools at least weekly estimate saving 5.9 hours per week, on average. Multiplied across a typical school year, that amounts to approximately six weeks of time. Teachers say they reinvest this time into things like more nuanced student feedback, individualized lesson planning, parent communication, or even getting home at a more reasonable hour. At the AI Skills Jam, teachers and administrators will get the support they need to confidently start using and benefiting from incorporating AI into their work. During the Jam, participants will work alongside OpenAI mentors to learn how to incorporate AI into everyday work like lesson planning, parent and staff communications, administrative tasks, and more. The sessions will be hands-on and focused on real classroom and school system needs, providing time and space to try tools, ask questions, share concerns, and build confidence. Participants will also be connected to OpenAI Academy ⁠ (opens in a new window) , a free online platform which provides and best practice guidance about leveraging AI, so they can continue building on what they started at the Jam. OpenAI’s goal isn’t to just host a one-day workshop; it’s to expand our relationships with educators, school system leaders, and ecosystem partners over time. “Educators are at the center of helping communities understand and adapt to new technology,” said Leah Belsky, Vice President of Education at OpenAI. “Through the AI Skills Jam for K–12 Educators, we want to give teachers and school leaders practical support, trusted learning environments, and direct opportunities to shape how AI can be used responsibly in education. Access to AI is just the starting point, the real opportunity is building the agency to use these tools thoughtfully and solve meaningful problems.” Confirmed locations and partners for the AI Skills Jam for K–12 Educators, include: Jonesboro, GA, with Clayton County Public Schools — Wednesday, July 8 Fairfax, VA, with Fairfax County Public Schools — Thursday, July 9 Orlando, FL, at the PTA Conference with the Parent Teacher Association — Saturday, July 11 Chicago, IL, with District 211 — Wednesday, July 15 San Bernardino, CA, with San Bernardino City Unified School District — Wednesday, July 22 Phoenix, AZ, with Vertex Education &amp; Legacy Traditional Schools — Friday, July 31 Salt Lake City, UT, with Davis School District — Friday, August 7 Las Vegas, NV, with Vertex Education &amp; Legacy Traditional Schools — Friday, September 4 We are grateful to the districts, school systems, educators, partners and the Walton Family Foundation for helping shape this effort. Their leadership and expertise are essential to making AI useful, responsible, and accessible in education. 2026 Author OpenAI Keep reading View all Our approach to government and national security partnerships Global Affairs Jul 8, 2026 How ChatGPT adoption has expanded Global Affairs Jun 30, 2026 Mapping Europe’s AI Workforce Opportunity Global Affairs Jun 29, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-lilian-weng-summarizes-35" target="_blank">[AINews] Lilian Weng summarizes 35 papers on Harness Engineering for RSI</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Jul 08, 2026 &middot; 02:20 UTC</span>
+          </div>
+          <p class="summary"><span>Congrats to Meta Superintelligence on having the top 2/3 image/video models in the world! Today she is thinking about the relationship of harnesses to RSI: Lilian Weng @lilianweng new post on harness engineering for AI self-improvement: lilianweng.github.io/posts/2026-07-… It is hard to forecast how much the future of RSI will rely on harnesses.</span> <span>AI Twitter Recap Agent Products, Harnesses, and Long-Running Workflows Anthropic expands “background agent” UX on top of Claude : The biggest product launch by engagement was Claude Cowork coming to mobile and web , positioning Claude as a task-running background teammate rather than a foreground chat UI.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Congrats to Meta Superintelligence on having the top 2/3 image/video models in the world! This would’ve been a candidate for a title story, but unfortunately that is pretty much all the detail we have about Muse Image/Video - no paper, no technical detail whatsoever. Still, this beats the Microsoft MAI models from last month which is nice. We are d Lilian Weng fans , so we take notice whenever she drops another research recap, especially rare now that she is a cofounder at Thinky. Today she is thinking about the relationship of harnesses to RSI: Lilian Weng @lilianweng new post on harness engineering for AI self-improvement: lilianweng.github.io/posts/2026-07-… It is hard to forecast how much the future of RSI will rely on harnesses. Likely harness engineering will evolve in the direction of self-improvement and enable auto-research, and, in turn, smarter lilianweng.github.io Harness Engineering for Self-Improvement 72 Replies · 534 Reposts · 3.89K Likes While we have written before about how even Greg Brockman is now quietly endorsing agent/harness engineering , it is refreshing for a respected thinker and neolab cofounder like Lilian to also agree that “ Even when many harness improvement[s] get eventually internalized into core model, the need to specify goals and context will not disappear .” Her post breaks out the main proven design trends in harnesses that everyone should know, and then recaps the harness optimization literature, most notably from the well known ACE paper to even more recent trends like Meta-Harnesses , which we have covered anecdotally on AINews . It surely also provides a hint as to what Thinky is Thinking, beyond just Interaction Models . AI News for 7/06/2026-7/07/2026. We checked 12 subreddits, 544 Twitters and no further Discords. AINews’ website lets you search all past issues. As a reminder, AINews is now a section of Latent Space . You can opt in/out of email frequencies! AI Twitter Recap Agent Products, Harnesses, and Long-Running Workflows Anthropic expands “background agent” UX on top of Claude : The biggest product launch by engagement was Claude Cowork coming to mobile and web , positioning Claude as a task-running background teammate rather than a foreground chat UI. Related posts show the product convergence around a shared home tab and tighter Chat/Cowork integration from @mikeyk . Separately, Anthropic extended access to Claude Fable 5 on paid plans through July 12 in a highly engaged announcement from @claudeai , though many users d the awkward timing relative to weekly limits in reactions from @kimmonismus and others. Harness engineering is increasingly the center of agent design : Lilian Weng’s new post was widely d as reframing recursive self-improvement around the harness , not direct weight self-modification; Sakana’s summary connects this to The AI Scientist , ShinkaEvolve , and Darwin Gödel Machine in their thread . LangChain echoed the same shift with a new Deep Agents course and an open-source harness project in posts from @LangChain and @hwchase17 . Google is also productizing this direction: Gemini API Managed Agents added background execution , remote MCP servers , custom function calling , and credential refresh in posts from @_philschmid and @OfficialLoganK . Practical agent infra keeps getting more opinionated : There were several notable operator-facing updates: Codex Mobile iOS added task management, filtered diffs, SSH key login, branch comparison, and attachment flows in posts from @Dimillian and @reach_vb ; Hermes Agent added pluggable secrets managers plus native 1Password integration and export of sessions/datasets to formats including private Hugging Face repos in @Teknium’s threads ; Weaviate 1.38 made its MCP server GA with runtime-gated write access, notably allowing MCP_SERVER_WRITE_ACCESS_ENABLED to be flipped live without restart in @victorialslocum’s post . A more experimental pattern came from @omarsar0 , using a Dial MCP server so agents can escalate decisions via phone call/SMS/iMessage for human-in-the-loop control. Model and Modality Releases: Audio, Speech, Robotics, and Media Generation Meta’s Muse Image/Muse Video push agentic generation into media : Meta Superintelligence Labs launched Muse Image and previewed Muse Video in announcements from @AIatMeta , @alexandr_wang , and @_tim_brooks . The notable technical angle is not just image quality, but an explicitly agentic generation loop : planning, web search, tool use, code execution, and self-refinement before rendering. Meta also says performance improves with scaled test-time compute , and that self-refinement behavior emerged during RL rather than being hand-scripted in this follow-up . On public evals, Muse Image quickly reached #2 on Image Arena behind GPT Image 2 in Arena’s ranking , while Muse Video debuted at #3 on Video Arena in another Arena post . NVIDIA and Cohere both shipped strong audio releases : NVIDIA released Audex , a 30B parameter / 3B active MoE with 1M context for unified text+audio work, summarized by @HuggingPapers and described in more detail by @_weiping . The model’s core claim is preserving text intelligence while adding broad audio generation and understanding via a single MoE backbone. Cohere launched Cohere Transcribe Arabic , described as the most accurate open-source Arabic ASR model, under Apache 2.0 , with emphasis on dialects , code-switching , and Arabic-accented English in posts from @cohere and @JayAlammar . Open robotics keeps consolidating around Hugging Face + NVIDIA : NVIDIA expanded its robotics stack into the HF ecosystem by bringing GR00T 1.7 and Isaac Teleop into LeRobot , aimed at open humanoid robotics workflows, in @NVIDIARobotics’s announcement and integration guide . On the embodied side, UMA showed a strong full-stack robotics narrative: @RemiCadene described a prototype built by a small team in 9 months, while the Northstar reveal and @psermanet’s safety emphasized vertically integrated hardware/software for trustworthy robots. Training, Inference, and Post-Training Techniques Liquid AI’s “Antidoom” directly targets reasoning-loop failure modes : One of the clearest technical releases of the day was Liquid AI’s Antidoom , an open-source training method to reduce doom loops where small reasoning models repeat tokens until context exhaustion. The reported reductions are substantial: LFM2.5-2.6B from 10.2% → 1.4% and Qwen3.5-4B from 22.9% → 1% under greedy sampling, with downstream eval gains. The method, FTPO (Final Token P Optimization) , relabels the loop-triggering token and redistributes probability toward alternatives, summarized well by @helloiamleonie and @LiorOnAI . This is a good example of the field’s recent pattern: removing specific failure modes rather than only scaling parameters. Inference efficiency and compression remain a major frontier : NVIDIA’s Puzzle-75B-A9B compression work got strong attention via @omarsar0 : compressing a hybrid MoE parent model while preserving reasoning, coding, long-context, and agentic quality, with roughly 2x server throughput and 1M-context concurrency on H100 rising from 1 request to 8 . On the tooling side, Nsight Python 1.0 launched in @HagedornBastian’s post , making GPU perf analysis scriptable in Python. Unsloth also shipped GGUFs for DeepSeek-V4-Flash , plus export to NVFP4/FP8 and speedups for GRPO and MoEs in @danielhanchen’s update . Agent RL and verification are getting more specialized : @cwolferesearch highlighted how GRPO-style normalization is being adapted for agentic RL at the task or environment level to handle higher reward variance in multi-turn environments. Separately, @omarsar0 flagged a training-free verifier paper from Stanford/NVIDIA/Berkeley that reads calibrated continuous scores off scoring-token logits, posting strong numbers across Terminal-Bench V2, SWE-Bench Verified, RoboRewardBench, and MedAgentBench and suggesting verification is becoming an independent scaling axis. Interpretability, Model Internals, and the “J-Space” Debate Anthropic’s J-space work dominated interpretability discussion, but also drew sharp criticism : The community split between seeing the work as useful mechanistic analysis and objecting to the consciousness framing. Strong critiques came from @danburonline , @paul_cal , and @scaling01 , who argued the vectors are causal largely by construction under the Jacobian-lens definition. A useful historical came from @jacobandreas , pointing readers back to the original Jacobian lenses paper. The stronger technical takeaway is cross-model structure, not consciousness rhetoric : @eliebakouch computed CKA similarity on J-lens geometry across 38 open models and found surprisingly universal layer/depth organization, even across unrelated families like Llama and OLMo . Anthropic and Neuronpedia also released J-lens weights for open models , d in this follow-up . In parallel, Goodfire introduced Block-Sparse Featurizers for multidimensional concepts in activations, arguing many vision concepts are inherently 2–4 dimensional blocks rather than single directions, in their thread . Benchmarks, Evaluations, and Domain-Specific Systems Agent and legal benchmarks continue to expose the gap between “passes many criteria” and “fully solves real work” : Agent Arena placed Claude Sonnet 5 (Thinking) at #6 , with strongest signals in confirmed task success and bash usage, but still with uncertainty around steerability. Artificial Analysis launched Harvey LAB-AA , a legal-agent benchmark over 120 private legal tasks across 24 practice areas , where Claude Fable 5 led at 14.2% all-pass rate ; Claude Opus 4.8 and GLM-5.2 tied at 7.5% , with GLM hitting that at roughly ~6% of Fable’s cost per task in their release . The big message is that models can satisfy many individual rubric items yet still fail to produce acceptable end-to-end deliverables. Research automation and specialized domain systems are broadening : Google promoted Experience AI Scientist , a multi-agent system for end-to-end scientific workflows, in this ICML post . DeepMind also launched Predicting the Past , grounding Gemini in Aeneas and Ithaca for Greek/Latin historical analysis via plain-English interactions, in their thread . On legal AI commercialization, Norm Ai announced a $120M Series C at $1.2B valuation and described a full-stack “agentic law” setup spanning software plus an AI-native law firm in @johnjnay’s post . Top tweets (by engagement) Claude access / product rollout : Claude Cowork on mobile and web and Fable 5 access extended through July 12 were the most-engaged technically relevant product announcements. Open-source developer program : @ClaudeDevs offering 6 months of Claude Max 20x for open-source maintainers drew massive engagement and is likely to matter for tool adoption in OSS ecosystems. Meta media generation : Muse Image launch and Arena’s #2 ranking for Muse Image were the biggest multimodal product stories. Reasoning reliability : Liquid AI’s Antidoom release stood out as the day’s highest-signal training technique post. Interpretability : Cross-model J-lens universality across 38 open models was the strongest technical follow-on to the J-space discourse. AI Reddit Recap /r/LocalLlama + /r/localLLM Recap 1. Open Model Releases and Inference Efficiency New open model from Tencent Hy: Hy3 (295B total 21B active - apache 2.0) (Activity: 653): Tencent released the non-preview Hy3 open model collection on Hugging Face , described as a 295B -parameter MoE with 21B active parameters, now under Apache 2.0 rather than the prior restrictive community license. The post that the earlier license reportedly excluded use in regions including South Korea, the UK, and the EU, while top comments point to claimed benchmark gains over HY3-Preview and frame this as potentially relevant for high-end local/home inference setups. Commenters viewed the Apache 2.0 relicensing as the most important change, especially given Tencent’s recent translation models also using Apache licensing. There was cautious optimism that the reported benchmark improvements may translate to real-world usefulness, but with implicit skepticism until tested outside vendor charts. Commenters highlighted that Hunyuan/HY3 is now listed as Apache 2.0 , contrasting it with the prior “community” license that reportedly restricted usage in regions such as South Korea, the UK, and the EU . This was viewed as technically important for deployment because Apache 2.0 removes many commercial and geographic usage barriers. Several users focused on whether Tencent’s claimed benchmark improvements over HY3-Preview will translate into real-world workloads. Given the reported 295B total / 21B active MoE-style configuration, commenters suggested it could be relevant for “high-end home setups” if inference formats such as GGUF become available. There was early speculation that HY3 could become an alternative to Qwen and MiniMax models in local/open-weight workflows, but commenters were waiting for quantized releases and independent testing before drawing conclusions.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Jul/7/sqlite-utils-2/#atom-everything" target="_blank">sqlite-utils 4.0rc4</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Jul 07, 2026 &middot; 05:36 UTC</span>
+          </div>
+          <p class="summary"><span>Release: sqlite-utils 4.0rc4 The last RC before the 4.0 stable release.</span> <span>Mainly implements feedback from a detailed review by Claude Fable 5.</span> <span>Tags: sqlite-utils , claude-mythos-fable</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/australian-payments-plus" target="_blank">Australian Payments Plus moves faster with ChatGPT and Codex</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jul 07, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>July 7, 2026 Australian Payments Plus moves faster with ChatGPT and Codex With ChatGPT Enterprise and Codex, AP+ teams save time, improve work quality, and investigate complex payments issues faster.</span> <span>In one reconciliation instance, AP+ teams used Codex to trace a subtle timestamp inconsistency across system logs and reconciliation data, reducing days of manual investigation to minutes.</span> <span>For AP+, this shows how AI can help technical teams investigate complex issues more efficiently in a demanding payments environment.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>July 7, 2026 Australian Payments Plus moves faster with ChatGPT and Codex With ChatGPT Enterprise and Codex, AP+ teams save time, improve work quality, and investigate complex payments issues faster. Contact sales Company size: Enterprise Region: Asia-Pacific &amp; Oceania Industry: Finance, Technology Products: ChatGPT, Codex 2+ hours saved each week by 77% of surveyed employees using ChatGPT 80% of surveyed employees report improved creativity or work quality 1 day to build working simulations with Codex, down from what could previously take days to weeks 30 mins investigation time for complex reconciliation issues using Codex, down from 4 hours previously Loading… Australian Payments Plus ⁠ (opens in a new window) , or AP+, operates payments and identity infrastructure across Australia. It sits at the center of the payments ecosystem, supporting products and services used by millions of people every day. Its teams work across scheme rules, technical specifications, member obligations, operational processes, cybersecurity and resilience, and regulatory expectations, where speed matters but accuracy and accountability matter more. That makes knowledge work unusually complex. Employees often need to synthesize large volumes of context and turn technical information into clear decisions, documents, and member-facing guidance. AP+ introduced ChatGPT Enterprise across the company to help employees move through that complexity faster, with Codex emerging as the next stage for product, engineering, and technical workflows. “With AI, the goal is not simply greater efficiency, it is also about helping our people to do their best work.” —Steve Reid, Chief People and Culture Officer, Australian Payments Plus Accelerating technical investigation Codex is helping AP+ technical teams investigate complex issues across payment systems. In one reconciliation instance, AP+ teams used Codex to trace a subtle timestamp inconsistency across system logs and reconciliation data, reducing days of manual investigation to minutes. For AP+, this shows how AI can help technical teams investigate complex issues more efficiently in a demanding payments environment. AP+ is also exploring how Codex can assist security teams in areas such as threat modeling, vulnerability analysis, alert triage, and visibility across interconnected systems. These early use cases show how AI can help specialists investigate complex issues faster while keeping human experts accountable for risk decisions, validation, and response. Moving faster through payments complexity Before ChatGPT Enterprise, finding the right information could be a slow, manual process. AP+ employees often needed to search across scheme rules, technical specifications, and internal documents to answer a question or move work forward. In the payments environment, a small detail can change the answer. AP+ teams now use ChatGPT Enterprise to summarize complex material, help draft data-driven member communications, and structure ambiguous problems. For instance, by using ChatGPT to navigate eftpos specifications and related documents, employees can find the right starting point faster before applying expert review. “ChatGPT helps our teams find the right specifications and documents faster, so they can respond to customer queries with more confidence, backed by expert review.” —Jason Backhouse, Chief Operations and Delivery Officer, Australian Payments Plus Turning rough inputs into decision-ready work Across AP+, employees use ChatGPT to turn information and working inputs into structured outputs faster. become meeting summaries. Workshop inputs become decision materials. Dense design documents become solution overviews. Draft communications become clearer before they are shared. This work has always required careful synthesis: understanding the context, finding the right structure, and shaping information for the audience. ChatGPT helps reduce the time spent getting to a first useful version, so employees can focus more on judgment, clarity, and quality. Rather than automating work, ChatGPT acts as a sparring partner, helping teams sharpen their messages, test their thinking, and remove ambiguity before work is shared. According to AP+&#x27;s internal data, ChatGPT helped 80% of employees be more creative or improve work quality. Across AP+, employees have also created more than 300 custom GPTs and more than 1,000 Projects, reflecting broad adoption. “Using ChatGPT, our teams can get to a structured first draft faster, whether they are working from meeting , workshop outputs, or complex documents. That gives people more time to refine their thinking and make the work stronger.” —Jo Pforr, Head of AI, Australian Payments Plus Testing ideas earlier with ChatGPT and Codex In product development, teams are using ChatGPT Enterprise and Codex to move from static prototypes to more functional product concepts. Previously, early-stage product testing often relied on click-through screens that showed what an experience might look like, but not how it would behave. Now, teams can simulate payment journeys, mobile interactions, authentication flows, and checkout experiences in environments that behave closer to real systems. For instance, AP+ uses Codex to build working simulations in 1 day, down from what could previously take days to weeks. That matters in payments, where customer behavior can change depending on timing, authentication prompts, device interactions, or transaction flows. By testing more realistic concepts earlier, AP+ teams can gather better feedback and reduce innovation risk before significant engineering investment is required. “Our job is to reduce risk and make better payment experience easier to achieve across the ecosystem. With AI, our teams can explore more ideas and validate or invalidate thinking faster—which means we deliver on that faster.” —Jason Backhouse, Chief Operations and Delivery Officer, Australian Payments Plus Leadership lessons AP+&#x27;s experience offers practical lessons for regulated organizations looking to scale AI responsibly across everyday work. Make the secure path the easy path. AP+ focused on giving employees secure, governed tools with appropriate access so they could experiment safely within clear boundaries. Make governance a launch partner. In a regulated environment, adoption depends on high-quality conversations across the teams accountable for privacy, security, governance, and operational risk. Let teams learn in context. AP+ found that AI adoption works best when employees see relevant examples from their own teams, not generic training alone. Use champions to make change tangible. AI champions help bring use cases into existing team rhythms, reducing the need for extra meetings or standalone AI programs. “AI creates the most value when employee-driven innovation is backed by leadership-led enablement.” —Steve Reid, Chief People and Culture Officer, Australian Payments Plus What&#x27;s next As ChatGPT Enterprise becomes part of daily work and Codex adoption grows, AP+ is expanding how teams use AI across product development, technical investigation, and member-facing workflows, always with expert review and human accountability. With OpenAI&#x27;s solutions, AP+ is helping its employees move faster through complexity while keeping responsible adoption central. Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading Our approach to government and national security partnerships Global Affairs Jul 8, 2026 Separating signal from noise in coding evaluations Research Jul 8, 2026 Helping K–12 educators build practical AI skills Global Affairs Jul 8, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/mufg" target="_blank">MUFG aims to become AI-native with OpenAI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jul 07, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>July 7, 2026 MUFG aims to become AI-native with OpenAI MUFG has deployed ChatGPT Enterprise to approximately 35,000 employees at Mitsubishi UFJ Bank and, together with OpenAI, is advancing operational transformation and creating new customer experiences in the retail sector.</span> <span>Contact sales Company size: Enterprise Region: Asia-Pacific &amp; Oceania Industry: Finance Products: ChatGPT Adoption 35,000 MUFG employees using ChatGPT Enterprise Loading… MUFG is one of Japan&#x27;s largest financial groups, with Mitsubishi UFJ Bank at its core.</span> <span>Beginning in 2026, Mitsubishi UFJ Bank began a phased rollout of ChatGPT Enterprise so that approximately 35,000 employees could use it in their daily work, as MUFG continues its journey toward becoming an AI-native company.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>July 7, 2026 MUFG aims to become AI-native with OpenAI MUFG has deployed ChatGPT Enterprise to approximately 35,000 employees at Mitsubishi UFJ Bank and, together with OpenAI, is advancing operational transformation and creating new customer experiences in the retail sector. Contact sales Company size: Enterprise Region: Asia-Pacific &amp; Oceania Industry: Finance Products: ChatGPT Adoption 35,000 MUFG employees using ChatGPT Enterprise Loading… MUFG is one of Japan&#x27;s largest financial groups, with Mitsubishi UFJ Bank at its core. Through banking, trust banking, securities, cards, leasing, and other financial services, MUFG supports individuals and businesses in Japan and around the world. For MUFG, AI is more than an efficiency tool. The company sees it as a way to extend human thinking and creativity, helping employees and AI learn together as they build better financial services. To advance that vision, MUFG is working with OpenAI to roll out ChatGPT Enterprise across Mitsubishi UFJ Bank and create new AI-powered customer experiences. In October 2024, MUFG began working with OpenAI to modernize financial operations and improve efficiency with generative AI. Beginning in 2026, Mitsubishi UFJ Bank began a phased rollout of ChatGPT Enterprise so that approximately 35,000 employees could use it in their daily work, as MUFG continues its journey toward becoming an AI-native company. Building an AI-native foundation with OpenAI MUFG is building the systems, environments, and culture that make AI part of everyday work. Its transformation combines top-down commitment from leadership with bottom-up enablement for employees using AI in daily workflows. &quot;I believe AI will fundamentally change the nature of finance,&quot; says Tadashi Yamamoto, Group CDTO at MUFG. &quot;To bring AI into the organization quickly, it is important to have an environment and culture where every employee can use AI naturally.&quot; OpenAI became MUFG&#x27;s partner of choice for that shift. Yamamoto describes OpenAI as a hands-on partner from service design through implementation, helping MUFG pursue both customer-service innovation and banking transformation. “OpenAI shared our vision of becoming an AI-native company. With its frontier technology and models, we saw a partner that could help us turn that vision into reality.” Tadashi Yamamoto, Group CDTO, MUFG One core part of the initiative is the bank-wide rollout of ChatGPT Enterprise. Kohei Shimano, Managing Director and Head of the Artificial Intelligence and Solutions Department at Mitsubishi UFJ Bank, says the deciding factors were broad applicability and secure use. Many employees were already familiar with ChatGPT, and enterprise-grade security made it possible to roll out the tool while meeting the management and governance requirements expected of a financial institution. &quot;We are aiming for a world where AI is not a tool used only by a small number of experts, but something every employee can use in daily work, almost like a partner,&quot; Shimano says. He adds that OpenAI worked with MUFG on security requirements, offering concrete proposals through product improvements and updates to address security and governance barriers that could otherwise have slowed the rollout. Helping employees use AI with confidence As MUFG rolled out ChatGPT Enterprise, access alone would not create impact. Employees needed to understand when and how to use the tool, incorporate it into their work, and use it with confidence. As a financial institution, MUFG also needed clear processes for information management, approval routes, and rules for what employees could and could not do. OpenAI supported the rollout from introduction through adoption. This included guidance for enterprise use, operational planning, product education, training programs for all employees, custom GPT workshops, and executive study sessions. MUFG also made AI training mandatory: employees had to complete e-learning before they could use ChatGPT Enterprise. &quot;The blocker was not the technology itself,&quot; Shimano says. &quot;It was inside the organization. People did not know how to use it or what they were allowed to use it for. By making full use of the training program OpenAI provided, we created a positive cycle where more employees started using it and adoption increased.&quot; Sayuri Yonese, Vice President, Artificial Intelligence and Solutions Department at MUFG Bank, says OpenAI&#x27;s support helped MUFG create a foundation for employees to expand AI use on their own. OpenAI provided custom GPT training materials, banking-specific examples, and best practices for driving adoption at scale. MUFG then appointed AI champions in each department. Rather than relying on a single central team, these AI champions encourage colleagues to experiment with AI and help expand usage from within each business area. That shift is visible in internal conversations. Earlier discussions often centered on questions like, &quot;What can we use AI for?&quot; and &quot;Are we even allowed to use it?&quot; Today, the conversation has moved toward, &quot;How should we use it?&quot; and &quot;Where should we apply it next?&quot; Results at a glance Since MUFG began rolling out ChatGPT Enterprise to approximately 35,000 employees at Mitsubishi UFJ Bank, early signs of adoption and impact are emerging across the organization. Training participation among employees receiving accounts reached 100%, with mandatory e-learning helping establish shared standards for safe, effective use. After OpenAI-led custom GPT training, employees created more than 1,800 custom GPTs in four months, showing that teams were starting to embed AI in daily workflows. In selected research tasks, such as tracking AI trends and preparing updates for executives and internal stakeholders, employees reported a 20-30% reduction in workload. Across the bank, employees have also created many custom GPTs known internally as “AI bankers.” Employees in each department tailor these AI bankers to their own workflows, using them to streamline time-consuming tasks and make specialized knowledge that once depended on specific individuals more accessible across the organization. Yonese describes AI bankers as supporters for employees. “They help our employees focus on work that creates greater value and on the work that leads to better value for our customers,” she says. For MUFG, however, the true value of AI is not simply reducing workload. It is about reinvesting the time saved into customer visits, stronger proposals, and the decisions and approvals that remain the responsibility of people. By using AI, employees can focus more on work only humans can do and spend more time engaging directly with customers. That idea lies at the heart of MUFG’s AI native transformation. Reimagining financial services through AI MUFG and OpenAI&#x27;s work does not end with internal transformation. The company is also exploring how AI can change the way customers discover financial services, seek advice, and take action. One example is Moneytree, a wealth management app. Through Apps in ChatGPT, users will be able to ask questions in natural language from within ChatGPT and view information such as account balances and transaction details. The experience can use follow-up questions to organize relevant information and make it easier to understand in a conversational format. *Interface and functionality shown are illustrative and subject to change. At WealthNavi, which provides robo-advisory services, a dedicated AI organization is being established and collaboration with OpenAI is moving forward. Building on the company’s efforts to pioneer fully automated asset management, WealthNavi is now seeking to accelerate that journey further with AI. As part of these efforts, MUFG, including WealthNavi, plans to use OpenAI technology in the digital bank at the center of emutt, its integrated financial services brand. Specifically, it is preparing to implement an AI concierge that makes finance feel more accessible through conversations with customers, as well as MAP (Money Advisory Platform), a comprehensive advisory platform designed to deliver personalized recommendations tailored to each customer’s life stage. “We want to provide financial services 24/7, without the constraints of time or place,” Yamamoto says. “In the digital bank, we want to deliver personalized recommendations that only AI can make possible.” MUFG is moving beyond the conventional experience centered on banking apps and branches toward a future where people can move naturally from financial guidance to transactions through their everyday interactions with AI. Through its digital bank, MUFG aims to bring AI-native finance to more customers. Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading Our approach to government and national security partnerships Global Affairs Jul 8, 2026 Separating signal from noise in coding evaluations Research Jul 8, 2026 Helping K–12 educators build practical AI skills Global Affairs Jul 8, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-ai-sonnet-5-review-and-how" target="_blank">🎙️ How I AI: Sonnet 5 review &amp; How to run autonomous coding agents from your phone</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jul 06, 2026 &middot; 15:01 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ How I AI: Sonnet 5 review &amp; How to run autonomous coding agents from your phone Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Jul 06, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-run-autonomous-coding-agents" target="_blank">How I run autonomous coding agents from my phone with OpenAI Symphony + Linear | Alessio Fanelli (Kernel Labs)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jul 06, 2026 &middot; 12:03 UTC</span>
+          </div>
+          <p class="summary"><span>e with insights, build with confidence Intro Prompter vs.</span> <span>agent manager Live demo: Symphony + Linear Setting up Symphony Purging your skills files The benefits of this system Demo: Using Codex to hunt for Pokémon cards The benefit of AI for small businesses</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Jul/3/judgement/#atom-everything" target="_blank">Fable&#x27;s judgement</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Jul 03, 2026 &middot; 18:51 UTC</span>
+          </div>
+          <p class="summary"><span>You can tell Fable &quot;only use automated testing for larger features, don&#x27;t update and run tests for small copy or design changes&quot; - but it&#x27;s better to just tell Fable to use its own judgement when deciding to write tests instead.</span> <span>Tell Fable to use other models for smaller tasks, applying its own judgement about which model to use.</span> <span>Tags: claude , ai , claude-code , llms , prompt-engineering , coding-agents , generative-ai , claude-mythos-fable , anthropic</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>One of the most interesting tips I got from the Fireside Chat I hosted with Cat Wu and Thariq Shihipar from the Claude Code team at AIE on Wednesday was to let Fable (and to a certain extent Opus) use their own judgement rather than dictating how they should work. The example they gave was testing. You can tell Fable &quot;only use automated testing for larger features, don&#x27;t update and run tests for small copy or design changes&quot; - but it&#x27;s better to just tell Fable to use its own judgement when deciding to write tests instead. Jesse Vincent just gave me a related tip to help avoid burning too many of those valuable Fable tokens in the few days we have left before the prices go up. Tell Fable to use other models for smaller tasks, applying its own judgement about which model to use. I prompted Claude Code just now with: For all coding tasks use your judgement to decide an appropriate lower power model and run that in a subagent Claude saved this memory file in ~/.claude/projects/name-of-project/memory/delegate-coding-to-subagents.md : --- name: delegate-coding-to-subagents description: Simon wants coding tasks delegated to subagents running an appropriately lower-power model metadata: node_type: memory type: feedback originSessionId: 30068d78-43a9-4fb1-bb29-9799e18c526a --- Stated by Simon on 2026-07-03: &quot;For all coding tasks use your judgement to decide an appropriate lower power model and run that in a subagent.&quot; Why: cost/efficiency — implementation work rarely needs the top-tier model; judgment, review, and synthesis stay with the main loop. How to apply: when a task in this project is primarily writing/editing code, spawn an Agent with a model override (sonnet for substantive implementation, haiku for trivial/mechanical edits) and a self-contained prompt; review the result in the main loop before committing. Design, auditing, data synthesis, and anything judgment-heavy stays in the main model. See also [[project-goals]]. So far it seems to be working well. I&#x27;m getting a ton of work done and my Fable allowance is shrinking less quickly than before. Tags: claude , ai , claude-code , llms , prompt-engineering , coding-agents , generative-ai , claude-mythos-fable , anthropic</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/google-deepmind-and-a24-announce-first-of-its-kind-research-partnership/" target="_blank">Google DeepMind and A24 announce first-of-its-kind research partnership</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Jul 03, 2026 &middot; 14:25 UTC</span>
+          </div>
+          <p class="summary"><span>Today, Google DeepMind and A24 are announcing a first-of-its-kind partnership focused on research.</span> <span>The collaboration pairs a world-leading research lab with the industry’s most filmmaker-forward studio to help artists develop new workflows and techniques.</span> <span>This partnership creates a deep research and development collaboration between A24 and Google DeepMind spanning multiple projects over time.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Today, Google DeepMind and A24 are announcing a first-of-its-kind partnership focused on research. The collaboration pairs a world-leading research lab with the industry’s most filmmaker-forward studio to help artists develop new workflows and techniques. This ensures the tools of the future are shaped by the creators who use them. This partnership creates a deep research and development collaboration between A24 and Google DeepMind spanning multiple projects over time. By anchoring Google DeepMind&#x27;s innovations directly within the creative process, A24 and its filmmakers can help shape new technology in service of their vision and expand their storytelling possibilities. This hands-on collaboration provides Google DeepMind with invaluable feedback and guidance from leading artists. In addition, Google has made an investment in A24. Looking ahead, the partnership represents the beginning of a collaborative journey, one rooted in research and shared curiosity. While the initial focus is on bridging the gap between cutting-edge technology and next generation entertainment, the specific goals, technical outputs and creative milestones of this initiative will evolve over time. As A24 and Google DeepMind’s researchers work side-by-side to test, iterate and build, this partnership aims to expand what is possible in the future of entertainment. POSTED IN: Related stories</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 181</span>
+      <span>&middot;</span>
+      <span>17/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
