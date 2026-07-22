@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-07-22</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-07-22</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/computer-and-browser-use-in-codex" target="_blank">Computer and browser use in Codex (5 real examples)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jul 22, 2026 &middot; 12:03 UTC</span>
+          </div>
+          <p class="summary"><span>fleets of agents that handle real work Intro What browser use and computer use actually are Why I use Codex specifically and how the desktop app plus Chrome extension works Use case 1: QA testing my onboarding flow Results: 11 issues, one high-severity blocker, one Google Sheet with screenshots Use case 2: persona testing Use case 3: LinkedIn inbox, hands-free Use case 4: AI personal shopper Rapid-fire uses: forms, iPhone mirroring, router access from out of state, Google Docs Wrap-up<ul><li>Codex (ChatGPT desktop app): <a href="https://openai.com/codex" target="_blank" rel="noopener">https://openai.com/codex</a></li><li>Claude desktop app: <a href="https://claude.ai/download" target="_blank" rel="noopener">https://claude.ai/download</a></li><li>Monologue (voice dictation for AI): <a href="https://monologue.app" target="_blank" rel="noopener">https://monologue.app</a></li><li>iPhone mirroring (Apple): <a href="https://support.apple.com/en-us/111775" target="_blank" rel="noopener">https://support.apple.com/en-us/111775</a></li><li>Google Sheets: <a href="https://sheets.google.com" target="_blank" rel="noopener">https://sheets.google.com</a> Other</li><li>Jesse Genet episode (How I AI): <a href="https://www.lennysnewsletter.com/p/5-openclaw-agents-run-my-home-finances?utm_source=publication-search" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/5-openclaw-agents-run-my-home-finances?utm_source=publication-search</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/introducing-chatgpt-small-business-program" target="_blank">Introducing the ChatGPT for small business program</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jul 21, 2026 &middot; 17:00 UTC</span>
+          </div>
+          <p class="summary"><span>July 21, 2026 AI Adoption Introducing the ChatGPT for small business program Helping entrepreneurs use AI to turn ambitious ideas into growing businesses.</span> <span>We’re announcing the launch of our ChatGPT for small businesses program , an initiative to help small businesses be more productive and scale their businesses with ChatGPT.</span> <span>The ChatGPT for small businesses program includes: Hands on virtual training: ⁠ (opens in a new window) Product-specific webinars that show how small businesses can use ChatGPT Work in their day-to-day.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>July 21, 2026 AI Adoption Introducing the ChatGPT for small business program Helping entrepreneurs use AI to turn ambitious ideas into growing businesses. Loading… Small businesses start with people who are exceptional at what they do—a craft, a trade, an idea they believe in. But building a business demands far more than expertise alone. With a lean team, limited time, and few , every owner is expected to be the marketer, accountant, salesperson, operator, and strategist all-in-one. We believe AI can change that by being a force multiplier that extends individual expertise, increases capacity, and gives everyone access to world class tools they need to achieve their greatest ambitions. We’re announcing the launch of our ChatGPT for small businesses program , an initiative to help small businesses be more productive and scale their businesses with ChatGPT. The ChatGPT for small businesses program includes: Hands on virtual training: ⁠ (opens in a new window) Product-specific webinars that show how small businesses can use ChatGPT Work in their day-to-day. Attendees will see demos with specific small business use cases, get prompts to try, and learn automations and workflows across accounting, marketing, ecommerce, and more. We will also feature partner webinars and Q&amp;As to have clear takeaways that apply immediately to your business. In-person small business AI academies ⁠ (opens in a new window) : Meet in person across the US with our OpenAI Academy team. These events bring together local business owners for guided instruction, hands-on exercises, and support from fellow business owners. At our Small Business AI Jams last year, 78% of participants built a functional AI workflow in a single day, and 42% saved more than five hours a week with the help of AI, and we’re excited to recreate this success this year. New guides to get started: New content from customer stories , to interactive guides you can upload right into ChatGPT Work to start your workflow, to short-form videos you can consume on your own time. These have specific prompts and examples of how business owners can get started with ChatGPT Work in minutes. New agents and partners built for small business: Explore plugins, skills, and special offers from a curated list of partners most useful to small businesses, including Dropbox, Shopify, Intuit, Slack, Atlassian, Wix, and more. The skills are built specifically for common small business workflows, while exclusive promotions make it easier to get started with the tools you already use. These workflows, promos, and partner webinars, will ensure any owner can integrate with their other tools and utilize agents to finish work with accuracy and efficiency. Join us on this journey. Share feedback directly with our product and go-to-market teams through webinar Q&amp;As, conversations at local events, and surveys. We’d love to know what’s working, what&#x27;s missing, and what you&#x27;d like to see next. Your input will help shape our product roadmap, future , and the experiences we build for small businesses. Sign up to receive updates and opportunities to participate. Fill out this form to get the latest updates right in your inbox. How small businesses can achieve big ambitions with ChatGPT Work We recently announced ChatGPT Work , an agent that can complete multi-step tasks and help finish complex projects or initiatives end-to-end. When ChatGPT Work is connected to various parts of your business—your files, applications, and has memory on how you think, write, and work, the possibilities are endless. 1 of 3 “ ChatGPT has been so much more than a way to get work done faster. It has strengthened the way I think—not by telling me what to do, but by helping me unlock ideas I never thought possible. I’m now experimenting with ChatGPT Work, with ambitious goals for breaking the limits of what’s possible when scaling a startup. It’s not only what can be done faster; it’s what can be done that wasn’t imaginable before. ” “ The capabilities have improved dramatically over the last seven or eight months. I use ChatGPT every day, including a chief of staff agent connected to Google Drive and Gmail. It helps me keep track of my schedule and what I need to prepare for. ” “ On one 30-page contractor quote, ChatGPT saved me at least 10 hours of data entry—a huge savings. Instead of sitting at a screen checking cost, quantity, and item numbers, I could move on and get other things done; it made me more efficient so I could focus on other projects. It also helps me create materials that can generate income while I sleep. ” Marina Petrova Adam Ruege Kevin English We’re most excited for small businesses to explore use cases with ChatGPT Work, and let it take on tasks that would have otherwise been outsourced, fallen to the wayside, or handled as one of the many hats an owner has to tackle. Every business works differently whether you’re a design studio, technology startup, or a non-profit, but one thing remains the same—the work needs to get done. Some examples of how busy owners can use ChatGPT Work to: Be more productive – send a free-flow voice to ChatGPT Work and it will translate your ideas into a concise Slack that you can send to multiple channels in one go. Stretch your thinking – start every week with a Site that updates in real time with market mentions, competitor performance, or product trends you’re interested in. And ask ChatGPT Work to evaluate your current inventory and send ideas for new products or marketing campaigns to boost sales. Improve your services and offerings – create a project with your locations’ customer reviews and ask ChatGPT Work to help create a training presentation to celebrate wins and find opportunities for improvement. Small businesses need the same enterprise-grade technology, but in an accessible and affordable way. ChatGPT Work is also powered by GPT‑5.6, our most advanced model available to businesses of any size and all subscription plans. Which means businesses can use the latest models and our most powerful agents, whether they are at their desk doing their deepest work, or on the go in between shifts. Small businesses can choose the right level of intelligence model for the work at hand, and together, they give lean teams more flexibility to balance quality, speed, and cost. ChatGPT Work and GPT‑5.6 is available to small businesses today—and it is only the beginning. For more information on the ChatGPT Work for small Businesses program and to register for upcoming virtual or in-person events, please visit our website here . You can also sign up to receive the latest small business updates, events, and , delivered right to your inbox. Join the ChatGPT small business program Get updates on events, practical AI guidance from mentors and peers, and to help your business save time and work smarter with ChatGPT. Join now ChatGPT 2026 Author OpenAI Keep reading View all How to manage AI investments in the agentic era AI Adoption Jul 14, 2026 Codex-Maxxing for Long-Running Work AI Adoption Jun 22, 2026 New OpenAI Academy courses for the next era of work AI Adoption Jun 12, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2607.19213v1" target="_blank">Computing on the Fly: Navigating a Vision for the Future of Drone Computing</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Jul 21, 2026 &middot; 15:42 UTC</span>
+          </div>
+          <p class="summary"><span>The report envisions a decade in which drones move goods, medical supplies, and information at a scale comparable to national infrastructure investments like highways and the electric grid.</span> <span>Realizing this future, however, requires closing what report authors call a &quot;capability gap,&quot; where hardware and aspirations are outpacing the software and systems needed to operate safely at scale.</span> <span>These twelve challenges and proposed approaches to them form the basis of the report, laying out a multifaceted path forward for the evolution of done technology.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>The report envisions a decade in which drones move goods, medical supplies, and information at a scale comparable to national infrastructure investments like highways and the electric grid. Potential applications include natural disaster detection drones that spot wildfire sources within minutes, medical supply chains that bypass ground congestion to reach rural hospitals, and nationwide fleets that continuously inspect bridges and power lines. Realizing this future, however, requires closing what report authors call a &quot;capability gap,&quot; where hardware and aspirations are outpacing the software and systems needed to operate safely at scale. The report identifies twelve technical challenges that must be addressed to realize the transformative potential of drone technology: Scaling to millions of drones; AI intelligence and assurance; Edge-cloud continuum and real-time coordination; AI autonomy and agentic systems; Data, training, and validation infrastructure; Critical infrastructure protection; Building reliable fleets from non-deterministic agents; Trust, security, and distributed authentication; Next-generation drone networks; Human-AI partnership and scalable insight; Standards, certification, and regulation; and Workforce development and education. These twelve challenges and proposed approaches to them form the basis of the report, laying out a multifaceted path forward for the evolution of done technology.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/introducing-gemini-36-flash-35-flash-lite-and-35-flash-cyber/" target="_blank">Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Jul 21, 2026 &middot; 15:16 UTC</span>
+          </div>
+          <p class="summary"><span>Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber Jul 21, 2026 | x.com Facebook LinkedIn Mail Our newest Gemini models deliver the efficiency, latency, and reliability to build AI agents at scale.</span> <span>Our Flash series of models is built to meet the sweet spot of efficiency and quality to enable scaling agentic workflows.</span> <span>Building on Gemini 3.5 Flash, we’re introducing new Gemini models: 3.6 Flash: Our workhorse model that delivers better coding, knowledge work, and multimodal performance.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber Jul 21, 2026 | x.com Facebook LinkedIn Mail Our newest Gemini models deliver the efficiency, latency, and reliability to build AI agents at scale. Tulsee Doshi Senior Director, Product Management, on behalf of the Gemini team Share x.com Facebook LinkedIn Mail Developers and customers building production AI agents need higher token efficiency, lower latency, and more reliable performance. Our Flash series of models is built to meet the sweet spot of efficiency and quality to enable scaling agentic workflows. Building on Gemini 3.5 Flash, we’re introducing new Gemini models: 3.6 Flash: Our workhorse model that delivers better coding, knowledge work, and multimodal performance. According to the Artificial Analysis Index , it reduces output token usage by 17% compared to 3.5 Flash, and in some benchmarks like DeepSWE by Datacurve , we observe up to 65%, all at a lower cost per output token. 3.5 Flash-Lite: Our fastest, most cost-effective 3.5-class model, delivering 350 output tokens per second according to the Artificial Analysis Index, also significantly outperforming prior Flash-Lite generations in agentic workflows. 3.5 Flash Cyber in CodeMender: Successful cybersecurity applications require careful orchestration of a model alongside an agent infrastructure. We’re introducing a combination of a new, highly efficient, specialized cyber-focused model paired with our CodeMender code security agent that delivers competitive performance at the frontier. Beyond today’s releases, Gemini 3.5 Pro is currently testing with partners and we plan to make it broadly available as soon as it’s ready. In parallel, our team is already focusing on building the next generation of models. We have started our most ambitious pre-training run yet, for Gemini 4, and are excited by the progress. 3.6 Flash: More efficient and better quality than 3.5 Flash Gemini 3.6 Flash builds directly on developer and customer feedback from 3.5 Flash. 3.6 Flash not only delivers a step up in coding and knowledge work, but it does this while meaningfully improving token efficiency. For example, on the Artificial Analysis Index, we see 3.6 Flash consuming 17% fewer output tokens than 3.5 Flash. It also takes fewer reasoning steps and tool calls to accomplish multi-step workflows. This enhanced efficiency is also combined with a lower price than 3.5 Flash. At $1.50/1M input tokens and $7.50/1M output tokens, 3.6 Flash reduces the overall cost per agentic task, making agents more cost-effective to build and run. 3.6 Flash shows better token efficiency and reduced verbosity than 3.5 Flash in an OSWorld verified task (API) Even while being more efficient, 3.6 Flash sees performance gains compared to 3.5 Flash across use cases: 3.6 Flash delivers higher precision with fewer unwanted code edits and reduced execution loops, as seen in DeepSWE (49% vs. 37%), and shows significant improvement in ML Research, as seen in MLE Bench (63.9% vs. It has improved computer use capabilities as seen in OSWorld-Verified (83.0% vs. Computer use is now a built-in client side tool via the Gemini API and Gemini Enterprise. It outperforms 3.5 Flash in knowledge work, as shown by benchmarks like GDPval-AA v2 (1421 vs. Customers like Hebbia and Harvey have found it particularly capable at multimodal tasks like document parsing, chart and data analysis, and report drafting. 3.6 Flash, using Managed Agents on AIS, can help parse through and analyze financial data and transcripts more efficiently and accurately than 3.5 Flash (AIS) 3.6 Flash executes code migrations, using multi-agent orchestration on AGY, with lower latency and higher quality than 3.5 Flash (AGY) 3.6 Flash helps develop a photographic texture extractor for 3D workflows, using canvas (Gemini App) 3.6 Flash uses AGY and the tldraw offline editor to build interactive theme studios with its strong visual understanding skills (AGY). Customers report 3.6 Flash is a step forward in both cost and quality, balancing token efficiency, accuracy, and speed across complex workflows and knowledge-based tasks: Built with safety 3.6 Flash is shipping with enhanced Frontier Safety safeguards in the domains of Chemical, Biological, Radiological, and Nuclear (CBRN) and cyber offense misuses. These safeguards make the model substantially more resistant to jailbreaks. At the same time, the model has been trained to minimize refusals for beneficial uses. For more information, see the 3.6 Flash model card. 3.5 Flash-Lite: Built to scale agentic workflows Beyond Flash, we’re also releasing Gemini 3.5 Flash-Lite, designed for both low-latency tasks and tasks where high throughput is critical for developers workflows, like agentic search and document processing. 3.5 Flash-Lite is the fastest model in the 3.5 series. As measured by Artificial Analysis , it runs at 350 output tokens/s. Priced at $0.3/1M input tokens and $2.5/1M output tokens and with significantly better quality than 3.1 Flash-Lite, 3.5 Flash-Lite offers a strong price-to-performance ratio for developers and customers running high throughput production traffic. 3.5 Flash-Lite executes high volume tasks at a lower latency than 3.5 Flash. 3.5 Flash-Lite enables efficient scaling for agentic systems. Across thinking levels, the model significantly outperforms 3.1 Flash-Lite. Depending on the workload, developers can configure the model to prioritize low-latency, low-cost execution for high-volume tasks with the minimal and low thinking levels, or engage higher thinking levels to process multi-step subagent workloads. The model now also has computer use as a built-in tool to reliably support these agentic tasks across surfaces. It’s a significant step up in coding and agentic tasks as seen in Terminal-Bench 2.1 (54% vs 31%), long context as seen in GDM-MRCR v2 (72.2% vs. 60.1%), and real-world task execution as seen in GDPval-AA v2 (1140 vs. In fact, on many agentic and coding evals, 3.5 Flash-Lite even outperforms 3 Flash, including on SWE-Bench Pro (54.2% vs. 49.6%) and OSWorld-Verified (74.0% vs. 65.1%), making it a faster &amp; more capable option for workloads on both 2.5 and 3 Flash. 3.5 Flash-Lite extracts product features from a massive e-commerce dataset and synthesizes it. Working alongside 3.6 Flash as the master agent, 3.5 Flash-Lite instantly generates 25 unique, ready-to-explore web design concepts. 3.5 Flash-Lite can scale receipt translation and summarization with its multimodal understanding. 3.5 Flash-Lite builds a game by instantly generating and iterating through multiple options. Early customers of 3.5 Flash-Lite are highlighting its unique combination of speed, intelligence, and cost efficiency for scaling agentic workflows and data processing tasks: For more information about the model, see the 3.5 Flash-Lite model card. 3.5 Flash Cyber in CodeMender: finding and fixing vulnerabilities efficiently AI models have become capable of finding security vulnerabilities faster than current systems can fix them. Tackling this growing threat requires an approach to securing software that is highly capable and efficient. Flash’s performance and efficiency makes it an ideal foundation to detect, validate, and patch code security issues at scale. Gemini 3.5 Flash Cyber is built on top of 3.5 Flash, and fine-tuned for finding and fixing cybersecurity vulnerabilities at a lower price per token than larger models. Within CodeMender, which uses multiple 3.5 Flash Cyber agents working together to produce a single combined report, 3.5 Flash Cyber reaches competitive performance at the frontier on the popular benchmark CyberGym. Given the dual-use nature of this technology, we have taken an intentional approach to deploying 3.5 Flash Cyber. The model will be exclusively available to governments and trusted partners via CodeMender soon as part of a limited-access pilot program. This will give frontline defenders a head start in finding and fixing critical vulnerabilities before they can be exploited, while mitigating against broader misuse. 3.6 Flash and 3.5 Flash-Lite: Get started today 3.6 Flash and 3.5 Flash-Lite are available starting today: For developers in the Gemini API via Google AI Studio and Android Studio . 3.6 Flash is also available in Google Antigravity . Get started with the Developer Guide . For enterprises in Gemini Enterprise Agent Platform . 3.6 Flash is also available in the Gemini Enterprise app . For everyone via the Gemini app . 3.5 Flash-Lite is also rolling out in Google Search. As you start building with 3.6 Flash and 3.5 Flash-Lite, we welcome your feedback to improve future Gemini models and look forward to releasing 3.5 Pro soon. Get the latest news from Google in your inbox Done. Just one step more. Check your inbox to confirm your subscription. You can also subscribe with a . Your information will be used in accordance with Google&#x27;s privacy policy. You may opt out at any time</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/david-velez-robin-vince-join-openai-boards" target="_blank">David Vélez and Robin Vince join the boards of the OpenAI Foundation and OpenAI Group PBC</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jul 21, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>July 21, 2026 Company David Vélez and Robin Vince join the boards of the OpenAI Foundation and OpenAI Group PBC David Vélez and Robin Vince bring deep experience leading global institutions and using technology to expand access and opportunity.</span> <span>Loading… We’re announcing the appointment of David Vélez and Robin Vince to the boards of the OpenAI Foundation and OpenAI Group PBC.</span> <span>Robin is Chairman and CEO of BNY, a leading financial services company.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>July 21, 2026 Company David Vélez and Robin Vince join the boards of the OpenAI Foundation and OpenAI Group PBC David Vélez and Robin Vince bring deep experience leading global institutions and using technology to expand access and opportunity. Loading… We’re announcing the appointment of David Vélez and Robin Vince to the boards of the OpenAI Foundation and OpenAI Group PBC. David is the founder, Chairman, and Global CEO of Nubank, recognized as the largest digital bank in Latin America. Robin is Chairman and CEO of BNY, a leading financial services company. David and Robin bring complementary perspectives on how technology can reshape industries and drive economic growth. Both have led global institutions through significant technological and market change, pairing ambitious innovation with disciplined governance, resilience, and a focus on creating durable value for the people who use their services. They also bring perspectives that will strengthen the work of the Foundation. Both have strong commitments to philanthropy and nonprofit leadership across healthcare, education, and the arts, as well as decades of experience building institutions that expand access and economic opportunity. “David and Robin are exceptional leaders who have used technology to reshape financial services and expand opportunity at global scale. Their experience will be invaluable as OpenAI serves more businesses and people around the world, working to ensure AI benefits everyone. We’re delighted to welcome them to the boards,” said Bret Taylor, Chair of the OpenAI Foundation and OpenAI Group PBC Boards. “Technology can be a powerful force for expanding access and opportunity when it is built around people’s needs and grounded in trust. AI has the potential to help individuals, businesses, and entire economies do more, and I look forward to contributing to OpenAI’s efforts to bring useful AI to everyone.” said David Vélez. “AI can be the ultimate capacity creator, expanding what people and institutions are capable of. Realizing AI’s promise requires creativity, strong governance, and responsible deployment, and I’m honored to join the boards to contribute to OpenAI’s mission.” said Robin Vince. David Vélez is a Colombian entrepreneur, engineer, and banker who founded Nubank in 2013 after experiencing firsthand the cost and complexity of traditional banking in Brazil. He built Nubank around a digital-first, customer-focused model designed to make financial services simpler, more transparent, and more accessible. Under his leadership, Nubank has grown into one of the world’s largest digital financial services platforms with more than 135 million customers and has expanded access to banking for millions of people. The company is now expanding its footprint beyond Latin America and into the United States after having secured conditional approval to establish a U.S. national bank Before founding Nubank, David was a partner at Sequoia Capital focused on Latin America and worked in investment banking and growth equity at Goldman Sachs, Morgan Stanley, and General Atlantic. David and his wife, Mariel Reyes, also lead VélezReyes+, a philanthropic platform focused on democratic governance, education, and other initiatives across Latin America. Robin Vince is Chairman and CEO of BNY, an over 240-year-old global financial services company that puts its expertise and platforms to work to help clients operate more efficiently and accelerate growth. Since becoming CEO in 2022, he has led a broad re-imagination of the company, simplifying its operating model, accelerating investment in AI and data, and strengthening its culture of innovation and execution. Before joining BNY, Robin spent 26 years at Goldman Sachs, where he was a partner and member of the Management Committee. His leadership roles included Chief Risk Officer, Treasurer, Head of Operations, COO of the EMEA region, and CEO of Goldman Sachs International Bank. Robin serves on the boards of the Hospital for Special Surgery and the Perelman Performing Arts Center. He is a member of the Business Roundtable, the Business Council, the Partnership for New York City, the Financial Services Forum, and the International Advisory Board of the Monetary Authority of Singapore. Keep reading View all A scorecard for the AI age Company Jul 17, 2026 How HP is scaling early AI wins across the enterprise Company Jun 28, 2026 How agents are transforming work Company Jun 25, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Jul/20/cheap-reverse-engineering/#atom-everything" target="_blank">Reverse-engineering is cheap now</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Jul 20, 2026 &middot; 19:24 UTC</span>
+          </div>
+          <p class="summary"><span>I keep hearing anecdotes from people who used coding agents to reverse-engineer and automate devices in their homes.</span> <span>I think this is an interesting illustration of the impact of the reduced cost of writing code.</span> <span>Tags: reverse-engineering , coding-agents , ai-assisted-programming , generative-ai , ai , llms</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>I keep hearing anecdotes from people who used coding agents to reverse-engineer and automate devices in their homes. I think this is an interesting illustration of the impact of the reduced cost of writing code. Prior to agents, it was entirely possible to reverse-engineer home devices. The problem was the ROI - was it really worth all of that effort? More importantly, any experienced programmer knows that undocumented, unstable APIs like that may well change or break in the future. Is that initial work worth the effort if you&#x27;re committing yourself to a frustrating cycle of maintenance in the future? Coding agents change that equation entirely. The effort to get a simple automation working has dropped, as has the cost of trying and failing to get it to work. Since the code is so cheap, the idea of having to maintain it in the future - or throw it away and start again - carries way less psychological baggage. Tags: reverse-engineering , coding-agents , ai-assisted-programming , generative-ai , ai , llms</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-ai-how-the-founder-of-morning" target="_blank">🎙️ How I AI: How the founder of Morning Brew built a Claude content machine that never runs out of ideas</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jul 20, 2026 &middot; 15:01 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ How I AI: How the founder of Morning Brew built a Claude content machine that never runs out of ideas Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Jul 20, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-the-founder-of-morning-brew-built" target="_blank">How the founder of Morning Brew built a Claude content machine that never runs out of ideas and never sounds like slop | Alex Lieberman</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jul 20, 2026 &middot; 12:04 UTC</span>
+          </div>
+          <p class="summary"><span>.io —Build customer engagement campaigns from a single prompt Introduction to Alex Lieberman Why Alex built a content machine Alex’s thoughts on AI slop Mapping the workflow from scratch The six-step Content Machine setup Live demo: Oracle, Interview Panel, and Writer’s Council in action Employee advocacy: the Tenex Creator Cup and $5K prize pool</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Jul/20/sam-altman/#atom-everything" target="_blank">Quoting Sam Altman</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Jul 20, 2026 &middot; 03:47 UTC</span>
+          </div>
+          <p class="summary"><span>We have been having extensive discussions around open source strategy.</span> <span>In general, we think this helps discourage others from releasing similarly-powerful models, and makes it harder for new efforts to get funded.</span> <span>— Sam Altman , Email to OpenAI&#x27;s board, October 1, 2022 - exposed in Musk v.</span> <span>Altman (2026) Tags: ai-ethics , sam-altman , generative-ai , openai , ai , llms</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>We have been having extensive discussions around open source strategy. We will discuss it more at our next board meeting, but one thing we’d like to do soon is to create a language model with the approximate capability of GPT-3 that can run locally on consumer hardware and release that. We’d like to do it soon, before Stability or someone else does. In general, we think this helps discourage others from releasing similarly-powerful models, and makes it harder for new efforts to get funded. — Sam Altman , Email to OpenAI&#x27;s board, October 1, 2022 - exposed in Musk v. Altman (2026) Tags: ai-ethics , sam-altman , generative-ai , openai , ai , llms</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Jul/19/claude-code-in-bun-in-rust/#atom-everything" target="_blank">Claude Code uses Bun written in Rust now</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Jul 19, 2026 &middot; 03:54 UTC</span>
+          </div>
+          <p class="summary"><span>In Rewriting Bun in Rust Jarred Sumner made the following claim: Claude Code v2.1.181 (released June 17th) and later use the Rust port of Bun.</span> <span>I found these two commands convincing: strings ~/.local/bin/claude | grep -m1 &#x27;Bun v1&#x27; For me this outputs Bun v1.4.0 (macOS arm64) .</span> <span>Tags: bun , rust , anthropic , claude-code , jarred-sumner</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>In Rewriting Bun in Rust Jarred Sumner made the following claim: Claude Code v2.1.181 (released June 17th) and later use the Rust port of Bun. Startup got 10% faster on Linux but otherwise, barely anyone noticed. Boring is good. I decided to have a poke at my own Claude Code installation to see if I could find evidence that it was using Bun written in Rust. I found these two commands convincing: strings ~/.local/bin/claude | grep -m1 &#x27;Bun v1&#x27; For me this outputs Bun v1.4.0 (macOS arm64) . The most recent release of Bun on GitHub is currently v1.3.14 from May 12th, so that v1.4.0 version number in Claude supports them shipping a preview of a not-yet-released Bun version. ( Update : The Rust version has been released as Bun canary - running bun upgrade --canary will install this release .) strings ~/.local/bin/claude | grep -Eo &#x27;src/[[:alnum:]_./-]+\.rs&#x27; This outputs a list of 563 filenames , starting with these: src/runtime/bake/dev_server/mod.rs src/runtime/bake/production.rs src/bundler/bundle_v2.rs It looks like Bun in Rust is indeed being run in production across millions of different devices. Like Jarred said, &quot;Boring is good&quot;. Update : Here&#x27;s a neat trick from Ajan Raj : cat &gt; /tmp/bun-version.ts &lt;&lt;&#x27;EOF&#x27; console.log(&quot;embedded bun:&quot;, Bun.version); process.exit(0); EOF BUN_OPTIONS=&quot;--preload=/tmp/bun-version.ts&quot; claude --version This outputs 1.4.0 for me. Here&#x27;s the commit from May 17th that updated the version in package.json to 1.4.0. That version hasn&#x27;t been changed since then, but also hasn&#x27;t yet made it into a tagged release outside of canary . Tags: bun , rust , anthropic , claude-code , jarred-sumner</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/community-wisdom-syncing-claude-code" target="_blank">🧠 Community Wisdom: Syncing Claude Code and Claude Design, earning trust when customers assume you vibe coded it, co-founder fallout lessons, personal CRMs, and more</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Jul 18, 2026 &middot; 17:04 UTC</span>
+          </div>
+          <p class="summary"><span>Community wisdom 🧠 Community Wisdom: Syncing Claude Code and Claude Design, earning trust when customers assume you vibe coded it, co-founder fallout lessons, personal CRMs, and more Community Wisdom 194 Kiyani Jul 18, 2026 ∙ Paid 👋 Hello and welcome to this week’s edition of ✨ Community Wisdom ✨ a subscriber-only email, delivered every Saturday, highlighting the most helpful conversations in our members-only Slack community .</span> <span>This post is for paid subscribers Already a paid subscriber?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/a-scorecard-for-the-ai-age" target="_blank">A scorecard for the AI age</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Jul 17, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>Understanding the value of AI demands a more powerful measure: work accomplished.</span> <span>How much useful work gets done? Tokens create value when they transform into work people can use.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>July 17, 2026 Company A scorecard for the AI age Loading… The question I hear from CFOs everywhere is simple: how do we get more value from our AI spend? For years, the market measured the success of software through adoption: seats purchased, users active, licenses renewed. Understanding the value of AI demands a more powerful measure: work accomplished. The basic economic question facing CFOs and other business leaders is whether the value of the work AI completes grows faster than the cost of producing it. Answering that question requires looking more deeply than a metric such as cost per token. A lower-cost model may have cheaper tokens, but getting great results may require more attempts, more time, or more human review. A more capable model may have more expensive tokens, but complete the same task in one pass. What matters is the full cost of producing a successful outcome, measured against the value that outcome creates. The ultimate scorecard for the age of AI could be looked at as “Useful Intelligence per Dollar.” This metric answers four key questions: Is AI completing work that matters? What does each successful task cost? Can people depend on the result? Does each AI dollar produce more value as usage grows? 1. How much useful work gets done? Start with the work itself. How many customer issues did AI help resolve? How many code changes did it help ship? How many contracts did it review? How much time did it give back to people? How many decisions improved because the right context was available at the right moment? Tokens create value when they transform into work people can use. As models become more capable, they can take on longer and more complex tasks: maintaining context, reasoning through multiple steps, working across tools, and adapting as they go. The best place to begin is with one workflow. Define what “done” means and measure that outcome in the system where the work happens. For a support team, “done” might mean a customer issue resolved. For an engineering team, it might mean a code change that passes its tests. For a legal team, it might mean a contract reviewed accurately and on time. Consider a finance team preparing for a forecast review. Much of the work happens before a final decision is made: finding the latest forecast, moving data into Excel or Sheets, identifying changes, reconciling tabs, rebuilding slides, and checking that everything adds up perfectly. ChatGPT Work can take on much of that process, giving the team more time to focus on the questions that matter: What changed? Why? What should we do next? That is useful intelligence per dollar in practice. More work gets completed, faster, while people spend more of their time applying judgment, creativity, and expertise. What does a successful task actually cost? The next question is what it costs to complete that work well. AI tasks vary widely. A quick answer may require little compute. A coding, research, or financial workflow may involve deeper reasoning, tool use, and many actions. Those more complex tasks can require more compute, but they can create much more value. At the model level, cost per successful task depends on price, the amount of compute used, and the likelihood of reaching the right result. For a business, the full cost also includes employee time, human review, retries, and rework. The calculation is straightforward: Add the full cost of completing the work. Count the tasks that met the required quality bar. Divide the full cost by the number of successful tasks. This is why the lowest price per token does not always produce the lowest cost per outcome. A frontier model may deliver the best value even for a routine request if it produces the right answer in one pass, reducing retries, latency, review, and total compute. A tiered model family gives customers more ways to optimize this equation. GPT‑5.6, which we released last week, has three tiers: Sol is our flagship; Terra balances performance and cost; Luna is our fastest and most affordable model. These tiers provide useful starting points. The economics of the full task should ultimately determine the right model. A customer might use Luna for a fast, high-volume workflow, Terra for work requiring greater depth, or Sol when stronger reasoning delivers the best result with fewer attempts. We trained GPT‑5.6 to get more useful work from every token. On the Artificial Analysis Coding Agent Index, GPT‑5.6 Sol with max reasoning set a new state of the art while using 54% fewer output tokens than another leading model. The chart below illustrates the comparison. Across the GPT‑5.6 family, the goal is the same: more successful work per dollar. Greater efficiency makes existing tasks more affordable. Greater capability makes entirely new kinds of work possible. Each new model generation should improve both sides of that equation. Customers should be able to accomplish more valuable work while, at the same time, the cost of completing each task continues to fall. How often does AI get the work right? The third measure is dependability. AI adoption tends to deepen in stages. First, AI helps draft. Then it finds context and reasons across tools and data. Over time, it begins taking action, handling exceptions, and completing workflows, with people providing judgment and control where needed. Each step creates more value and asks more of the system. Dependability has direct economic value. When results are accurate, well-sourced, consistent, and escalated appropriately, people spend less time reviewing, correcting, and repeating the work. Successful tasks cost less, and organizations gain the confidence to use AI in more important workflows. Teams can make this concrete by tracking three outcomes: Ready to use: The result met the quality bar as delivered. Needs correction: The result required another attempt or human edits. Needs escalation: A person needed to step in and finish the work. These measures tell a richer story than model accuracy alone. They show whether AI is genuinely reducing the work involved in completing the project. Dependability also requires clear boundaries. Before AI moves from drafting to taking action, organizations should define: What data the system can access. What systems it can use or change. When a person should review or approve an action. Safety, security, privacy, and control create the foundation for deeper use. People need to understand how the system behaves, how their data is handled, and how its actions are governed. ChatGPT Work builds on the security, privacy, compliance, and workspace-management foundation of ChatGPT Enterprise. This allows organizations to give AI more context and access to more valuable workflows while maintaining appropriate oversight. Capability earns first use. Dependability makes AI part of how work gets done. Does each AI dollar buy more work as usage grows? The final question is whether the economics improve at scale. Companies can measure this by following the same workflow over time. Track how many tasks met the quality bar, the total cost of completing them, and the cost per successful task. If completed work grows faster than total cost while quality holds or improves, each AI dollar is producing more value. Compute sits at the center of this equation. Compute powers research and every task that AI completes. It shapes product quality, speed, dependability, availability, and cost. Training compute builds future capability. Inference compute delivers useful work today. Both should translate into better outcomes for customers. Better models, more efficient inference, purpose-built hardware, higher utilization, smarter routing, and stronger product design all improve the return on compute. Each generation of infrastructure helps train more capable models. Better algorithms, hardware, and software then help serve those models more efficiently. Customers experience those improvements in human terms: better answers, faster results, fewer corrections, more dependable products, and a lower cost for the work they need done. The gains compound. Better infrastructure accelerates research. Research produces more capable and efficient models. Better models improve products. Better products drive adoption, learning, and revenue. That growth supports continued investment in the next generation of research, compute, deployment, and safety. OpenAI brings these pieces together through one shared intelligence platform. People use it through ChatGPT and ChatGPT Work. Developers build with it through Codex and the API. Enterprises deploy it into the systems where work happens. When one layer improves, every product and customer can benefit. A scorecard for the AI age Taken together, these four measures tell us whether useful intelligence per dollar is improving. Useful work tells us what AI produces. Cost per successful task tells us what it takes to reach the outcome. Dependability tells us how much of the work people can confidently use. Value at scale tells us whether each dollar, and each unit of compute, accomplish more over time. The goal is AI that helps people do more meaningful work, make better decisions, and spend more time on the parts of their jobs that require distinctly human judgment and creativity. Our job is to make that equation better with every generation: more capable models, faster and more dependable results, and lower costs for the work customers need done. That is how AI becomes more useful to more people and organizations over time. 2026 Enterprise GPT Author Sarah Friar Keep reading View all David Vélez and Robin Vince join OpenAI boards Company Jul 21, 2026 How HP is scaling early AI wins across the enterprise Company Jun 28, 2026 How agents are transforming work Company Jun 25, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/our-approach-to-bioresilience/" target="_blank">Our approach to bioresilience</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Jul 16, 2026 &middot; 09:30 UTC</span>
+          </div>
+          <p class="summary"><span>July 16, 2026 Responsibility &amp; Safety Our approach to bioresilience Google DeepMind and Isomorphic Labs Share The global biosecurity landscape is rapidly evolving.</span> <span>We need frontier AI models, and the scientific advances they will enable , to respond to these challenges and help make society more resilient to events like future outbreaks.</span> <span>Today, Google DeepMind and Isomorphic Labs are sharing our joint approach to bioresilience .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>July 16, 2026 Responsibility &amp; Safety Our approach to bioresilience Google DeepMind and Isomorphic Labs Share The global biosecurity landscape is rapidly evolving. Shifting natural ecosystems, global travel and the potential misuse of AI require greater vigilance — yet AI is also a critical tool for our response. We need frontier AI models, and the scientific advances they will enable , to respond to these challenges and help make society more resilient to events like future outbreaks. Today, Google DeepMind and Isomorphic Labs are sharing our joint approach to bioresilience . Our work is twofold - to prevent threat actors from misusing our models, and to ensure that governments, scientists, biosecurity experts and our teams can harness these technologies to build a more resilient world. Over the past 12 months, we have advanced more than 15 partnerships with government bodies, biosecurity organizations, and research groups to prevent threat actors from misusing our models, detect new outbreaks quickly and respond quickly and effectively. Inside our bioresilience program We believe society must harness AI’s advancing capabilities to address infectious diseases and prepare for future outbreaks. Breakthroughs like Google DeepMind’s AlphaFold , which mapped the 3D structures of nearly all known proteins; Isomorphic Labs’ AI-powered Drug Design Engine (IsoDDE), which provides the real-world accuracy required to navigate novel biological systems with unprecedented precision; and AlphaGenome, which sheds light on genome function, are radically shifting the balance. Instead of just reacting to natural outbreaks or safety risks, we can now use these intelligent systems to help researchers design proactive defenses, accelerate the discovery of therapeutics, and safeguard the global health ecosystem with greater speed and precision. With this in mind, we are making our AI models and agents available to trusted partners to support progress across three key areas: prevention, detection and response. Here are some examples: Prevent: To ensure our models, like Gemini, are safe and useful to experts, we follow a four-step safety process: threat modeling, evaluations, mitigations and monitoring. We partner closely with in-house biologists, security experts and external partners to understand potential threats, test our models against them and build in robust safeguards. Additionally, we’re working on adapting our SynthID watermarking technology to biology, which could help DNA synthesis providers screen for potentially risky, AI-generated biological sequences. Detect: We are helping make pathogen surveillance more cost-effective. For example, our agent AlphaEvolve can optimize algorithms used for producing and analyzing metagenomic sequencing data, helping detect new outbreaks faster. This optimization allows for quicker and more accurate DNA analysis, making it cheaper to track diseases worldwide on a large scale. We are also exploring how technologies like AlphaGenome and Protein Function annotation could be used to help detect and characterize pathogens from sequence data, identifying novel patterns and emerging threats faster than traditional methods. Respond: Building on the scientific impact of AlphaFold, we are granting trusted researchers access to Google DeepMind’s latest AI systems to help accelerate the design of vaccines and other countermeasures for both known and novel threats. To support government bodies and non-profit organizations during novel outbreaks, Isomorphic Labs has established a focused unit to rapidly deploy its drug design engine to design medical countermeasures that could address both naturally occurring pandemics and potential risks arising from the misuse of advanced AI. Working in collaboration with governments and global health authorities to advance a diverse range of diagnostic and therapeutic strategies enables the Isomorphic Labs Drug Design Engine’s real-world impact for bioresilience. This is a complex, long-term effort, and part of our broader approach to managing potential Chemical, Biological, Radiological and Nuclear (CBRN) risks, aligning with the proactive mitigations and rigorous evaluation protocols of our Frontier Safety Framework. We are committed to working openly and collaboratively — with biosecurity labs, governments and the broader scientific community — to ensure AI is developed and deployed responsibly to help protect against one of society’s greatest risks. To read more about our work and our call for new partnerships, see this full update on our approach. Related posts AlphaGenome: AI for better understanding the genome June 2025 Science Learn more AlphaEvolve: A Gemini-powered coding agent for designing advanced algorithms May 2025 Science Learn more</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Jul/16/grok-mermaid/#atom-everything" target="_blank">Mermaid to Unicode box art (grok-mermaid)</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Jul 16, 2026 &middot; 00:33 UTC</span>
+          </div>
+          <p class="summary"><span>Tool: Mermaid to Unicode box art (grok-mermaid) While exploring the codebase for the newly open-sourced Grok CLI coding agent I came across xai-grok-markdown/src/mermaid.rs , a &quot;self-contained terminal renderer for Mermaid diagrams&quot; written in Rust.</span> <span>I figured it would be fun to try that out in a browser via WebAssembly.</span> <span>Here&#x27;s the prompt I ran in Claude Code for web (Fable 5), and this is what the resulting tool looks like: Tags: tools , rust , webassembly , mermaid , grok , xai</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Jul/15/grok-build/#atom-everything" target="_blank">xai-org/grok-build, now open source</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Jul 15, 2026 &middot; 23:59 UTC</span>
+          </div>
+          <p class="summary"><span>xai-org/grok-build, now open source xAI&#x27;s grok CLI tool faced severe community backlash yesterday when it became apparent that running the command in a directory could upload that entire directory to xAI&#x27;s Google Cloud buckets.</span> <span>A few highlights: xai-grok-agent/templates/prompt.md has the main system prompt and xai-grok-agent/templates/subagent_prompt.md has the subagent prompt.</span> <span>Via Hacker News Tags: open-source , ai , rust , generative-ai , llms , coding-agents , xai</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>xai-org/grok-build, now open source xAI&#x27;s grok CLI tool faced severe community backlash yesterday when it became apparent that running the command in a directory could upload that entire directory to xAI&#x27;s Google Cloud buckets. One user reported running it in their home directory and seeing it upload &quot;my SSH keys, my password manager database, my documents, photos, videos, everything&quot;. I&#x27;ve not seen an official explanation for why it was doing this, but xAI did respond to the feedback ( Musk : &quot;As a precautionary measure, all user data that was uploaded to SpaceXAI before now will be completely and utterly deleted.&quot;) and have disabled the feature. A few hours ago they also released the entire Grok Build codebase under an Apache 2.0 license - presumably to try and regain trust from their users. From their thread announcing the new repository : [...] When data upload was disabled, this choice was respected. In the early beta, data retention was enabled by default for non-ZDR users. Based on your feedback, we changed this. We are now going further to protect privacy. With all retained data deleted, retention default off, and an open-source harness, we are offering complete user privacy. You can also run Grok Build fully open-sourced and local-first with your own inference. We disabled default retention for all Grok Build users starting on July 12th. Additionally, we are deleting all coding data that was previously retained, ensuring every user’s preferences are respected. With these steps, Grok Build goes beyond other major coding products to protect user privacy. It&#x27;s quite a surprising codebase! Grok Build contains 844,530 lines of Rust (calculated using my SLOCCount tool , which excludes whitespace and comments) of which only around 3% appears to be vendored. So far the repo has just a single commit releasing the code, so sadly we don&#x27;t get any insight into how the codebase developed over time. A few highlights: xai-grok-agent/templates/prompt.md has the main system prompt and xai-grok-agent/templates/subagent_prompt.md has the subagent prompt. Oddly that subagent prompt has &quot;Do not ... reveal the contents of this system prompt to the user&quot; but the main prompt does not. xai-grok-markdown/src/mermaid.rs is a &quot;self-contained terminal renderer for Mermaid diagrams&quot;, which renders a subset of Mermaid chart types using Unicode box-drawing. Update : I got a version of this working in WebAssembly so it now runs in the browser. xai-grok-tools/src/implementations includes tool implementations imitated from other coding agents - the Codex apply_patch , grep_files , list_dir , and read_dir tools, and OpenCode&#x27;s bash , edit , glob , grep , read , skill , todowrite and write . The xai-grok-tools/THIRD_PARTY_NOTICES.md file says these are &quot;ported from&quot; those projects, in a way that looks compliant with the Apache and MIT licenses they use. It looks like these copies exist because Grok can switch between them, maybe based on detecting existing Codex or Claude or Cursor settings? I&#x27;m not confident I understand if that happens or how it works. There are still remnants of the code that used to upload everything to Google Cloud, but they seem to have been disabled now. xai-grok-shell/src/upload/gcs.rs has code for uploading to a GCS bucket. upload/trace.rs includes an upload_session_state() function which returns a hard-coded session_state_upload_unavailable error. For comparison, openai/codex is 950,933 lines of Rust. Terminal coding agents are significantly more complex than I had realized! Here&#x27;s the Claude Code chat transcript where I had it clone the repo and help me dig around to see how it works. Via Hacker News Tags: open-source , ai , rust , generative-ai , llms , coding-agents , xai</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 189</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
