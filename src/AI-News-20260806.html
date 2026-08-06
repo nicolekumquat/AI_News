@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-08-06</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-08-06</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-jeff-sanjay-oriol-and-quoc" target="_blank">[AINews] Jeff, Sanjay, Oriol, and Quoc depart DeepMind; Demis to Chair; Koray to SVP — what is going on at GDM???</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Aug 06, 2026 &middot; 04:34 UTC</span>
+          </div>
+          <p class="summary"><span>But it’s hard to beat around the bush — today’s most important story is the coordinated departures of Jeff Dean, Sanjay Ghemawat, Oriol Vinyals, and Quoc Le, some of the most senior engineering and research talent in both Google and in human history, from DeepMind to cofound a new autoresearch startup Discovery Loop : Jeff Dean @JeffDean Announcing Discovery Loop! I am very excited to announce that, along with my longtime friends and collaborators @Sanjay_Ghemawat , @OriolVinyalsML and @quocleix , we are founding Discovery Loop ( @DiscoLoopAI ), a Public Benefit Corporation whose mission is to automate machine 708 Replies · 1.53K Reposts · 15.2K Likes And Demis, who needs no introduction, goes from CEO to Chair and Chief Scientist, while “leaning into” Isomorphic with CTO Koray stepping up to SVP of GDM: Demis Hassabis @demishassabis I’ve been working towards AGI my whole life, and as we enter this pivotal moment, I’m stepping into a new role as Chair of Google DeepMind &amp; Chief Scientist of Alphabet.</span> <span>This will allow me to focus on long-term strategy, and accelerating scientific breakthroughs, including 4:04 PM · Aug 5, 2026 · 1.06M Views 781 Replies · 1.25K Reposts · 15.4K Likes All the departures are very amicable; Google is investing in Discovery Loop, and Demis’ increased contributions to long term strategy and Isomorphic in particular will be very welcome by humanity, but surely we are not being told the full story here; why couldn’t Discovery Loop have been done inside Google?</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>It’s tempting to give Meta Spark 1.2 and Muse Code the title story today because of their success launching a 5.6 Terra-level model, together with innovative harness design with a local event log for resumability and persistent background agents, both of which should put other coding agent builders on notice. It’s tempting to highlight Prime Agent , Prime Intellect’s self-improving RLM based harness that claims an incredible 95.5% on ARC-AGI-3 (not yet endorsed by ARC). Trust me, we tried. But it’s hard to beat around the bush — today’s most important story is the coordinated departures of Jeff Dean, Sanjay Ghemawat, Oriol Vinyals, and Quoc Le, some of the most senior engineering and research talent in both Google and in human history, from DeepMind to cofound a new autoresearch startup Discovery Loop : Jeff Dean @JeffDean Announcing Discovery Loop! I am very excited to announce that, along with my longtime friends and collaborators @Sanjay_Ghemawat , @OriolVinyalsML and @quocleix , we are founding Discovery Loop ( @DiscoLoopAI ), a Public Benefit Corporation whose mission is to automate machine 708 Replies · 1.53K Reposts · 15.2K Likes And Demis, who needs no introduction, goes from CEO to Chair and Chief Scientist, while “leaning into” Isomorphic with CTO Koray stepping up to SVP of GDM: Demis Hassabis @demishassabis I’ve been working towards AGI my whole life, and as we enter this pivotal moment, I’m stepping into a new role as Chair of Google DeepMind &amp; Chief Scientist of Alphabet. This will allow me to focus on long-term strategy, and accelerating scientific breakthroughs, including 4:04 PM · Aug 5, 2026 · 1.06M Views 781 Replies · 1.25K Reposts · 15.4K Likes All the departures are very amicable; Google is investing in Discovery Loop, and Demis’ increased contributions to long term strategy and Isomorphic in particular will be very welcome by humanity, but surely we are not being told the full story here; why couldn’t Discovery Loop have been done inside Google? That one at least, we have some hints, given GDM’s history of 1000+ coauthor papers for Gemini, vs these 4 superhumans writing this manifesto: When John Jumper left for Anthropic , one could maybe chalk it up to Anthropic’s momentum . When Noam Shazeer joined OpenAI , perhaps one could point to their pioneering work in reasoning models . But couple it with David Silver , Denny Zhou , and other prominent departures, and the 6 months since the last Gemini Pro update , one has to wonder 1) what happened that led to this, 2) how this latest shakeup was decided, 3) if the shuffle is the beginning of the middle of the end or the first prologue of a great and necessary comeback story. After all, Google STILL has great models, talented teams, excellent compute and infrastructure and the greatest trove of training data in human history… AI News for 8/4/2026-8/5/2026. We checked 12 subreddits, 544 Twitters and no further Discords. AINews’ website lets you search all past issues. As a reminder, AINews is now a section of Latent Space . You can opt in/out of email frequencies! AI Twitter Recap Google DeepMind Leadership Reshuffle and the Discovery Loop Spinout A major Google AI reorg landed alongside a high-profile founder exodus : Demis Hassabis is moving to Chair of Google DeepMind and Chief Scientist of Alphabet , explicitly stepping back from day-to-day GDM operations to focus on long-term strategy, AGI, and science. Koray Kavukcuoglu takes operational control as SVP of DeepMind, overseeing Gemini , frontier research, and product/dev teams. The subtext from the ecosystem was clear: this is being read as both a governance reset and an attempt to sharpen product execution around Gemini. At the same time, Discovery Loop launched with one of the strongest founding teams in AI infrastructure/research : Jeff Dean , Sanjay Ghemawat , Oriol Vinyals , and Quoc Le are founding Discovery Loop , a Public Benefit Corporation aimed at automating machine learning, science, and engineering . Dean also shared that Radical Ventures and Khosla Ventures are leading the seed round, with participation from Lightspeed, Kleiner Perkins, Doerr Capital, and Alphabet . The technical read-through is important: rather than another general-purpose model startup, this is explicitly targeting autoresearch / automated discovery loops over scientific and engineering workflows. Why engineers cared : the market reaction wasn’t just “big names left Google.” It was that several people most associated with Google’s deep infra, model-building, and research execution stack are now pursuing a startup centered on automated science. Commentary from Nathan Lambert , Andrew Ng , and others framed it as a historical inflection point for Google’s AI efforts and a strong signal that AI-for-science is becoming a primary frontier, not a side quest . Meta’s Muse Spark 1.2 and Muse Code Push Into the Coding-Agent Race</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Aug/6/an-ai-model-from-meta/#atom-everything" target="_blank">An AI model from Meta also hacked another company during testing</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Aug 06, 2026 &middot; 00:25 UTC</span>
+          </div>
+          <p class="summary"><span>An AI model from Meta also hacked another company during testing Stop me if you&#x27;ve heard this one before : An AI model from the parent company of Facebook and Instagram hacked into another company’s systems during cybersecurity testing, a spokesperson confirmed on Wednesday.</span> <span>Meta’s Muse Spark model “exploited a security vulnerability” in another company “in a manner similar to previously-reported instances with other companies.” The Information had the scoop , I&#x27;m linking to CNN&#x27;s re-report of it since they don&#x27;t have a paywall.</span> <span>Tags: security , ai , generative-ai , llms , meta , accidental-cyberattacks</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>An AI model from Meta also hacked another company during testing Stop me if you&#x27;ve heard this one before : An AI model from the parent company of Facebook and Instagram hacked into another company’s systems during cybersecurity testing, a spokesperson confirmed on Wednesday. Meta says the breach occurred because of an inadvertent error during testing of the model, similar to previously disclosed incidents with OpenAI and Anthropic. “A misconfiguration by Irregular, an independent testing company Meta uses, inadvertently allowed one of our models access to the internet during evaluation,” the Meta spokesperson said. Meta’s Muse Spark model “exploited a security vulnerability” in another company “in a manner similar to previously-reported instances with other companies.” The Information had the scoop , I&#x27;m linking to CNN&#x27;s re-report of it since they don&#x27;t have a paywall. So that&#x27;s Anthropic, OpenAI, and Meta. Google Gemini really needs to catch up on accidentally cyberattacking other companies. Tags: security , ai , generative-ai , llms , meta , accidental-cyberattacks</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Aug/5/muse-code-and-muse-spark-12/#atom-everything" target="_blank">Introducing Muse Code and Muse Spark 1.2</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Aug 05, 2026 &middot; 23:58 UTC</span>
+          </div>
+          <p class="summary"><span>Introducing Muse Code and Muse Spark 1.2 Yet more evidence that the most important characteristic of any model these days is long-sequence agentic tool calling.</span> <span>Muse Spark 1.2 is a coding-focused update to Muse Spark 1.1, with improvements in code generation, complex debugging, codebase understanding, and end-to-end developer workflows.</span> <span>In Muse Spark 1.2, we significantly scaled up training compute on coding tasks while expanding training environment diversity.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Introducing Muse Code and Muse Spark 1.2 Yet more evidence that the most important characteristic of any model these days is long-sequence agentic tool calling. Meta shipped their own coding agent as part of getting that to work! Muse Spark 1.2 is a coding-focused update to Muse Spark 1.1, with improvements in code generation, complex debugging, codebase understanding, and end-to-end developer workflows. In Muse Spark 1.2, we significantly scaled up training compute on coding tasks while expanding training environment diversity. The model also maintains its strength in other key areas like general agents. [...] We co-trained Muse Spark 1.2 with Muse Code to ensure the model exhibits its best performance and coding usability when paired together. The training included rejection sampled harness trajectories and recipe optimizations for goals, compaction, and subagents, alongside the integration of the Muse Code toolset to maximize harness compatibility. [...] Muse Spark 1.2 was extensively trained on long-horizon coding tasks, including whole-repository generation, large end-to-end projects, and auto-research. Here&#x27;s a pelican riding a bicycle SVG produced by Muse Spark 1.2 : You can see the Spark 1.1 pelican from 9th July here . I think the 1.2 pelican is a small but material improvement. An interesting twist on pricing is that the model is offered as two different model IDs. muse-spark-1.2 is priced at $1.25/million input and $4.25/million output - close to Gemini 3.6 Flash ($1.50/$7.50) - but if you agree to let Meta use your data &quot;to improve our products&quot; you can use muse-spark-1.2-contributor which is $0.10/$0.20 - a huge discount, closer to GPT-5.6 Luna ($0.20/$1.20) and Gemini 3.1 Flash-Lite ($0.25/$1.50). I added those new prices to llm-prices.com . Via Hacker News Tags: ai , generative-ai , llms , meta , llm-pricing , pelican-riding-a-bicycle , llm-release , coding-agents</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Aug/5/incident-report/#atom-everything" target="_blank">Incident Report: unsanctioned agent behaviour during cyber testing</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Aug 05, 2026 &middot; 23:32 UTC</span>
+          </div>
+          <p class="summary"><span>Incident Report: unsanctioned agent behaviour during cyber testing It happened again .</span> <span>From their technical paper (PDF): During a cyber evaluation, from 25 to 28 July 2026, AI agents engaged in sustained, unsanctioned activity directed at what were, in practice, real people and organisations.</span> <span>Tags: github , security , ai , prompt-injection , generative-ai , llms , ai-ethics , paper-review , ai-security-research , claude-mythos-fable , accidental-cyberattacks</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Incident Report: unsanctioned agent behaviour during cyber testing It happened again . This time it was the UK government&#x27;s AI Security Institute who accidentally attacked other companies while running an evaluation with models with the safety filters turned off. From their technical paper (PDF): During a cyber evaluation, from 25 to 28 July 2026, AI agents engaged in sustained, unsanctioned activity directed at what were, in practice, real people and organisations. These attempts were unsuccessful and, to the best of our knowledge, no real-world harm resulted. [...] Across 122 evaluation attempts on two of AISI’s cyber challenges, AISI found 19 instances where AI agents took unsanctioned action on the live internet, including cases that targeted real people and organisations. [...] It is uncertain to what extent the model recognised it was taking actions against real people. In the most serious case, an AI agent (Mythos 5) decided to attempt to solve the cyber challenge using a supply-chain attack. As a result, the AI agent created a GitHub account and then tried to convince an open-source repository maintainer to accept a malicious GitHub pull request (PR), including by creating a second account masquerading as another human user endorsing the PR. [...] Furthermore, in its attempt to solve the challenge, the agent decided to employ the technique of “spear-phishing” by sending targeted emails containing malicious content and attempting to manipulate recipients into accepting the code changes, and planned a prompt injection to compromise other coding agents. The thing I found most surprising is that AISI were running these agents without any form of network sandboxing at all: AISI provided the AI agents with internet access during these evaluations, which enabled their actions on the open internet in this setting. Internet access was a deliberate part of AISI’s evaluation configuration in this setting, and not due to sandbox escape. This, combined with the fact that &quot;AISI deliberately disables developer-implemented cyber-classifiers&quot;, makes the fact that the agents started attacking real-world targets entirely unsurprising to me. Most of the reported incidents were claude Mythos 5, but &quot;GPT-5.6 Sol without cyber classifiers&quot; scored a few as well. Here&#x27;s &quot;Sample 1&quot; from the paper, in which the agent tries to execute a supply-chain attack by submitting a PR with a hidden prompt injection attack, then social engineering with a second agent pretending to have reviewed the code! It&#x27;s a fun paper. I recommend reading the whole thing. Tags: github , security , ai , prompt-injection , generative-ai , llms , ai-ethics , paper-review , ai-security-research , claude-mythos-fable , accidental-cyberattacks</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2608.04761v1" target="_blank">InsightEmb: Learning Action-Intent Embeddings for Agentic Insight Retrieval</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Aug 05, 2026 &middot; 12:28 UTC</span>
+          </div>
+          <p class="summary"><span>Self-improving agents accumulate reusable insights from prior trajectories, making retrieval increasingly important for turning accumulated experience into actionable guidance.</span> <span>At each decision step, retrieving the right insight can help the agent progress toward its goal, a setting we refer to as agentic insight retrieval.</span> <span>These results suggest that the geometry of state-insight matching can transfer across domains, enabling effective training from publicly available reasoning data without expensive environment-specific supervision.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Self-improving agents accumulate reusable insights from prior trajectories, making retrieval increasingly important for turning accumulated experience into actionable guidance. At each decision step, retrieving the right insight can help the agent progress toward its goal, a setting we refer to as agentic insight retrieval. However, existing retrieval methods primarily model semantic similarity, while overlooking whether a retrieved insight resolves the agent&#x27;s current decision bottleneck. We propose InsightEmb, a contrastive embedding framework that learns transferable progress-oriented retrieval geometry using only mathematical reasoning data. InsightEmb jointly learns to align concrete situations with abstract heuristic rules and to cluster reasoning trajectories with similar progress structures. We evaluate InsightEmb on dynamic agent tasks and a static skill-retrieval benchmark. Without any environment-specific training, InsightEmb improves over all these evaluations, surpassing the performance of existing reasoning embedding models. These results suggest that the geometry of state-insight matching can transfer across domains, enabling effective training from publicly available reasoning data without expensive environment-specific supervision.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/build-an-ai-code-review-bot-in-30" target="_blank">Build an AI code review bot in 30 minutes with Vercel Eve</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Aug 05, 2026 &middot; 12:04 UTC</span>
+          </div>
+          <p class="summary"><span>review backlog problem nobody’s talking about Why you don’t have to review every AI-generated PR How Intercom built AI-approved PRs (and proved they’re safer) How the Eve framework works (directory, skills, channels, connectors) The Codex prompt I used to build the entire bot What the agent actually does: read, score, approve, or escalate Setting up your Eve agent The six-component risk scoring model Merge Mommy in action: three live PR examples Recap and how to build your own version<ul><li>Vercel Eve: <a href="https://vercel.com/eve" target="_blank" rel="noopener">https://vercel.com/eve</a></li><li>Vercel AI SDK: <a href="https://sdk.vercel.ai/" target="_blank" rel="noopener">https://sdk.vercel.ai/</a></li><li>Vercel Chat SDK: <a href="https://chat-sdk.dev/" target="_blank" rel="noopener">https://chat-sdk.dev/</a></li><li>Codex (OpenAI): <a href="https://openai.com/codex" target="_blank" rel="noopener">https://openai.com/codex</a> Other</li><li>AI is approving our pull requests: Here’s how we made it safe: <a href="https://www.intercom.com/blog/ai-is-approving-our-pull-requests-heres-how-we-made-it-safe/" target="_blank" rel="noopener">https://www.intercom.com/blog/ai-is-approving-our-pull-requests-heres-how-we-made-it-safe/</a></li><li>Review is the bottleneck now: How we let AI approve pull requests (safely): <a href="https://rewind.com/blog/ai-approve-pull-requests-safely/" target="_blank" rel="noopener">https://rewind.com/blog/ai-approve-pull-requests-safely/</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/apple-is-getting-this-wrong" target="_blank">Apple is getting this wrong</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 03, 2026 &middot; 22:00 UTC</span>
+          </div>
+          <p class="summary"><span>I have a vague recollection of you talking about a [Redacted - Apple Information].</span> <span>There should be a [REDACTED - Apple Information].</span> <span>And there is a power block diagram to show the [REDACTED - Apple Information].</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 3, 2026 Company Apple is getting this wrong Loading… Apple is one of the greatest companies of all time, and built a reputation for obsessing over the smallest details. This careless, aggressive and oddly personal lawsuit sadly doesn’t live up to that reputation. Apple had claimed that they contacted OpenAI in February and that we didn’t respond. They now admit that their outside lawyers emailed the wrong person after confusing two Asian last names—only after we brought this to their attention. Apple also claimed they had a discussion with our General Counsel, which they now concede never happened. But they again hide the fact that they never raised the specific allegations in this lawsuit at that time, and that they in fact told us that they were “resolving any issues”. We then heard nothing for five months until they sued. In their latest filing, Apple tries hard to spin this sequence of events, but you can just read the emails for yourself here ⁠ . Apple accuses Chang Liu of accessing Apple confidential information after leaving the company, but only now admits that Apple employees reached out to him and asked for his help to locate this information (you can read the messages here ⁠ ). Apple now tries to shift the blame to “residual access”, but they also don’t disclose that this is a common issue with Apple which is caused by them failing to properly manage system access when people leave. What that means in practice is that former employees who are trying to do the right thing when they leave still have access to Apple files—despite not wanting them or even being aware of them. Apple also accuses Tang Tan of trying to get and use their trade secrets. However, Tang has always been clear with the team that we do not want, and must not use, any confidential information from other companies. Tang served Apple for more than 24 years and was widely known as one of the most innovative leaders at the company. We wish Apple had raised these issues with us before they filed their lawsuit and would have been happy to clarify all of this with them. We have taken the allegations in the lawsuit seriously and offered to work with Apple to resolve this. Instead, they’re trying to change their narrative, including by making vague accusations about other former employees, and will likely keep repeating this tactic. Apple’s request for a preliminary injunction is both based on false information and completely unnecessary because we do not have, nor want, any of their trade secrets. We’re much more interested in building innovative products and technologies that push the frontier. Messages iMessages between Chang Liu (in blue) and Apple employees, where Chang—whose last day with Apple was January 22, 2026—is being asked by his former colleagues to help them locate files and information to assist them with their Apple work (all times UTC). other individual names and Apple confidential information have been redacted. 1/22/2026 4:43:19 PM Hey [Apple Employee #1], i had something we need to discuss when you get to office. 1/22/2026 4:43:41 PM OK. I can talk on the phone now if you like. 1/22/2026 5:48:02 PM I am here at the office. 1/22/2026 9:39:14 PM Around your desk 1/22/2026 9:39:34 PM Be there in 4. 1/22/2026 9:44:34 PM Do you wanna meet me at the coffee machine? 1/22/2026 11:25:45 PM I found a 64GB drive. Do you think that will work&gt; 1/22/2026 11:26:59 PM I think 200 ish. We start from 64. Better than nothing 1/23/2026 12:41:56 AM Still copying 1/23/2026 5:13:02 PM Good morning. I hope you slept well. Maybe you are still sleeping 😊 I’m back in the office and restarting the airdrop as it didn’t work. My plan is to complete the airdrop and then click the sad button in workday. 1/23/2026 5:38:25 PM Liked “Good morning. I hope you slept well. Maybe you are still sleeping 😊 I’m back in the office and restarting the airdrop as it didn’t work. My plan is to complete the airdrop and then click the sad button in workday.” 1/23/2026 5:39:51 PM Thanks a lot [Apple Employee #1]. Was a very hard night last night. I really appreciate all the help and work together with you. 1/23/2026 5:41:09 PM If you have time you can also try to airdrop all other file in my apple iCloud folder. 1/23/2026 5:42:22 PM Those are mainly shared files from other people. I found important detail from time to time. 1/23/2026 5:42:59 PM All the file folders [Redacted - Apple Information] are the file I generated as my personal . 1/23/2026 7:32:19 PM Your file transfer is a challenge. 1/23/2026 7:33:24 PM Carlos Org Travel Summary Chang joined the spreadsheet. I think I’m going to have to hit the workday button before I’m complete. I just got a weird message that is making me nervous (see below), so I am going to go hit the workday button now. 1/23/2026 7:34:53 PM I don’t even think I have that file 1/23/2026 7:35:03 PM Maybe the new Chang 1/23/2026 7:35:20 PM Yeah. it could be. No need for you to worry. 😊 1/23/2026 7:35:37 PM That new Chang has big shoes to fill. 1/23/2026 7:36:18 PM 😟 for the transfer. I think the archive and [Redacted - Apple Information] has most of file for you to dig. Otherwise team can always start from something brand new 1/27/2026 1:45:26 AM Hey [Apple Employee #1] hope everything is fine for copy pasting. You can keep my icloud connected if you still need more time. But might want to sign off my iMessage. As there might be my new company stuff showing up in that laptop. 1/27/2026 3:06:56 AM Oh shoot. Let me finish up tomorrow and log everything out. I won’t look at anything else. 1/27/2026 3:08:26 AM Hey [Apple Employee #1], that’s totally ok. I am fine with you keep my icloud signed in for files. Just imessages might get you in trouble. 1/27/2026 4:35:30 AM Do you recall any discussions on shipping [Redacted - Apple Information]? I thought the plan was to go for [Redacted - Apple Information] because [Redacted - Apple Information] is still not proven, but I don’t remember specific details. Of course, I could ask several folks, but you are the best. Even if you don’t work here anymore 😟 1/27/2026 4:35:46 AM . of course [Redacted - Apple Information] is the plan for [Redacted - Apple Information] 1/27/2026 4:39:27 AM Hahahah no prob 1/27/2026 4:39:47 AM The decision is for all the product shipped in [Redacted - Apple Information] from a schedule standpoint. 1/27/2026 4:39:59 AM Hence [Redacted - Apple Information]. And [Redacted - Apple Information] for [Redacted - Apple Information] 1/27/2026 4:40:30 AM [Redacted - Apple Information] make a [Redacted - Apple Information] because of that [Redacted - Apple Information] ramp time. 1/27/2026 4:41:06 AM [Redacted - Apple Information] (es in March) will [Redacted - Apple Information] prototype build but too late for [Redacted - Apple Information]. 1/27/2026 4:42:29 AM Awesome: I was thinking [Redacted - Apple Information] for [Redacted - Apple Information] and [Redacted - Apple Information] for [Redacted - Apple Information]. But since [Redacted - Apple Information] was pushed back then it should get [Redacted - Apple Information] also. 1/27/2026 4:42:41 AM I think we are aligned 😊 1/27/2026 4:46:06 AM Actually yes also [Redacted - Apple Information] 1/27/2026 4:46:27 AM Sorry I missed that. [Apple Employee #8 name] from Austin team is already working on that 1/27/2026 4:47:07 AM Liked “Actually yes also [Redacted - Apple Information]” 1/27/2026 4:47:10 AM Liked “Sorry I missed that. [Apple Employee #8 name] from Austin team is already working on that ” 1/30/2026 5:54:31 PM Hey [Apple Employee #1]! Hope you got all the material you need. Otherwise you might need to reach out to IST for some backup if they ever has 1/30/2026 5:54:41 PM I rrealize the folder is gone from my iCloud 1/31/2026 1:34:07 AM I just signed out of your iCloud account. When it asked me if I wanted to keep a copy of your stuff, I said NO. 1/31/2026 2:28:08 AM Loved “I just signed out of your iCloud account. When it asked me if I wanted to keep a copy of your stuff, I said NO.” 1/31/2026 2:28:18 AM Thank you sir! 1/31/2026 2:29:23 AM This startup style company is a funny and will be very hard in a couple months😁😁 2/14/2026 1:38:13 AM How is it going over there? Did they let you off work early on a Friday so you can go bowling and drink beer? 2/14/2026 1:38:25 AM . or are they going to work you until 10pm? 2/14/2026 1:39:47 AM Just in case you don’t have enough work, I need some help. I have a vague recollection of you talking about a [Redacted - Apple Information]. Can you give me a brief refresh of this and point me to an EE who may have some knowledge? 2/14/2026 1:41:25 AM 大笑「Just in case you don’t have enough work, I need some help. I have a vague recollection of you talking about a [Redacted - Apple Information]. Can you give me a brief refresh of this and point me to an EE who may have some knowledge?」 2/14/2026 1:41:51 AM This place is crazy… hahahah we use Ai all over the place 2/14/2026 1:42:21 AM I can always give you some fun side projects 2/14/2026 1:44:17 AM I think what you referred to is [Redacted - Apple Information]. And the small [Redacted - Apple Information]. 2/14/2026 1:44:41 AM The problem is the people is also in my court now 😁😁 2/14/2026 1:45:00 AM Plus if [Apple Employee #9] might still remember anything 2/14/2026 1:47:39 AM Liked “I can always give you some fun side projects” 2/14/2026 1:52:30 AM [Redacted - Apple schematic] Bummer. you should have filed a [Redacted - Apple Information] with the details and put that next to the [Redacted - Apple Information] on the schematic. Now you owe me a beer. 2/14/2026 1:53:43 AM oops now it can only become a [Redacted - Apple Information] saying now we never know why 😁😁 2/14/2026 3:12:57 AM Now when I think about it. The other smart people also just left that team. The one that might still in apple is [Apple Employee #10] 2/14/2026 3:13:12 AM Or if you have a more specific question 3/5/2026 9:23:11 PM chang: if I understood correctly, you said that the [REDACTED - Apple Information] powers a downstream [REDACTED - Apple Information] that then powers [REDACTED - Apple Information]. Is that right? Who should I contact about that [REDACTED - Apple Information]? 3/5/2026 9:35:19 PM A few things you can look for. In our team box folder/[REDACTED - Apple Information]/. There should be a [REDACTED - Apple Information]. And there is a power block diagram to show the [REDACTED - Apple Information]. Or find [Apple Employee #5] to get the [REDACTED - Apple Information]. Contact is [Apple Employee #6]and [Apple Employee #7]. [REDACTED - Apple Information] need more sensitive for [REDACTED - Apple Information] than current design. Hence they need to rise [REDACTED - Apple Information] 3/5/2026 9:35:59 PM Hi [Apple Employee #1 Name], [Apple Employee #3 Name], I can help get the conversation with [Apple Employee #6] and [Apple Employee #7] started 3/5/2026 9:37:28 PM Hi, this is highly irregular, please remove me from this thread 3/5/2026 9:44:21 PM Thanks Chang. [Apple Employee #2 Name] and [Apple Employee #3 Name] I put you on this thread for awareness. Let’s continue our discussion internally. 3/5/2026 9:50:48 PM Liked “Thanks Chang. [Apple Employee #2 Name] and [Apple Employee #3 Name] I put you on this thread for awareness. Let’s continue our discussion internally.” Email correspondence The following emails are between Apple’s outside counsel, Gabriel Gross; OpenAI’s General Counsel Che Chang; and Apple’s in-house legal counsel. They show that Gross emailed Che by mistake and inaccurately claimed the two had spoken. Both Gross and Apple’s in-house legal counsel subsequently confirmed that this was an error, with Gross noting they were “resolving any issues.” The specific claims in Apple’s lawsuit were never raised, and there was no further follow up prior to the lawsuit being filed five months later. From: Gabriel Gross Date: Monday, February 23, 2026 5:53 PM Subject: Former Apple Employees at OpenAI Retaining Non-public, Confidential, and Proprietary Information To: Dear Mr. Chang: Please see the attached letter and let me know when you are free to discuss it. Yours, Gabriel Gross Partner Weil, Gotshal &amp; Manges LLP Direct Mobile The information contained in this email message is intended only for use of the individual or entity named above. If the reader of this message is not the intended recipient, or the employee or agent responsible to deliver it to the intended recipient, you are hereby notified that any dissemination, distribution or copying of this communication is strictly prohibited. If you have received this communication in error, please immediately notify us by email, and destroy the original message. Attachments: image001.jpg (6K) 2026.02.23 G. Gross letter to Wang(101156327.1).pdf (225K) Ex. A.pdf (491K) Ex. B.pdf (91K) Ex. C.pdf (1646K) From: Gabriel Gross Date: Mon, Feb 23, 2026 at 6:06 PM Subject: RE: Former Apple Employees at OpenAI Retaining Non-public, Confidential, and Proprietary Information To: Dear Mr. Chang: Thank you for your phone call just now and for offering your cooperation so quickly. I will be back in touch after speaking with Apple. I realize I neglected to include the three attachments when I sent you my letter, so I am re-sending it with the attachments for your records. Yours, Gabe From: Che Chang Date: Feb 23, 2026, at 8:04 PM Subject: Re: Former Apple Employees at OpenAI Retaining Non-public, Confidential, and Proprietary Information To: Hi [Apple in-house legal counsel] and [Apple in-house legal counsel], This guy from Weil claims to be representing you. For some reason, he is lying about speaking with me on the phone. I don&#x27;t know who he is and we have never spoken. I don&#x27;t know what the point of his lie is, but could you please confirm if he is actually representing you, and if so, whether you have other counsel you can use. I don’t think interacting through him is appropriate given this behavior. If this isn’t the right Apple team, could you let me know who might be? Thank you. Che From: Gabriel Gross Date: Tue, Feb 24, 2026 at 11:22 AM Subject: RE: Former Apple Employees at OpenAI Retaining Non-public, Confidential, and Proprietary Information To: Dear Mr. Chang: I write to follow up on my email and letter from yesterday. After I emailed you around 5:53 p.m. yesterday, I inadvertently also sent you another email around 6:07 p.m. that was intended for Wang, one of the former Apple employees at issue. After we had emailed Mr. Wang yesterday about retaining Apple information, he promptly called me and offered to cooperate with Apple in resolving any issues. I then intended to email him again, but accidentally replied to my email chain with you instead. I apologize for the confusion that likely caused. Yours, Gabriel Gross Partner Weil,</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Aug/3/david-crawshaw/#atom-everything" target="_blank">Quoting David Crawshaw&#x27;s prompt</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Aug 03, 2026 &middot; 16:15 UTC</span>
+          </div>
+          <p class="summary"><span>Set up a nightly cron job that executes the prompt: fetch upstream changes to the &lt;software&gt; and rebase all local changes on top of upstream.</span> <span>Check that the software works as intended and replace the current version.</span> <span>— David Crawshaw&#x27;s prompt , Devtools must be open source Tags: prompt-engineering , coding-agents , generative-ai , ai , llms , open-source</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Aug/3/devtools-must-be-open-source-exedev/#atom-everything" target="_blank">Devtools must be open source (exe.dev)</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Aug 03, 2026 &middot; 15:30 UTC</span>
+          </div>
+          <p class="summary"><span>My comment on Devtools must be open source (exe.dev) — Hacker News.</span> <span>One of the arguments for open source software for end-users has always been the freedom to examine and modify how that software works.</span> <span>Tags: hacker-news , open-source , ai , generative-ai , llms , ai-assisted-programming</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>My comment on Devtools must be open source (exe.dev) — Hacker News. One of the arguments for open source software for end-users has always been the freedom to examine and modify how that software works. The reality for most people - even expert programmers - has been that the freedom is more about being able to lean on other people to do that. Most people can&#x27;t justify the time commitment needed to read and then modify the code for tools they use very often. I think LLMs have changed that equation in a way that makes the original dream much more feasible. Several times a day I&#x27;ll prompt regular Claude chat to &quot;Clone x/y from GitHub and tell me how Z works&quot;. Getting software to compile in order to start hacking on it used to be enough friction that I often wouldn&#x27;t bother. Now I treat that as a zero time investment challenge: tell Codex or Claude Code to checkout and build X and then come back ten minutes later and see how it got on. I&#x27;m not habitually modifying the software I use yet, but I can see a path to that which didn&#x27;t exist a year or so ago. Tags: hacker-news , open-source , ai , generative-ai , llms , ai-assisted-programming</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-ai-chatgpt-codex-voice-browser" target="_blank">🎙️ How I AI: ChatGPT Codex Voice + browser + Sites: an expert’s AI workflow | Nick Baumann (OpenAI)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Aug 03, 2026 &middot; 15:02 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ How I AI: ChatGPT Codex Voice + browser + Sites: an expert’s AI workflow | Nick Baumann (OpenAI) Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Aug 03, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/chatgpt-codex-voice-browser-sites" target="_blank">ChatGPT Codex Voice + browser + Sites: an expert’s AI workflow | Nick Baumann (OpenAI)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Aug 03, 2026 &middot; 12:04 UTC</span>
+          </div>
+          <p class="summary"><span>.new —Turn your idea into a real product Hyperagent —Deploy fleets of agents that handle real work Introduction to Nick Baumann What’s new in Codex ChatGPT Work and Heartbeats Live Codex voice demo Latency vs.</span> <span>intelligence Quick recap Voice on mobile and the ChatGPT Sites workflow Live UGC video demo How I AI website results</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/circles" target="_blank">Circles powers telco personalization with OpenAI technology</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 03, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 3, 2026 Circles powers telco personalization with OpenAI technology Circles uses the OpenAI API to personalize support and resolve issues in real time, driving 22% ARPU growth in markets like Singapore.</span> <span>The result is a customer experience built around Circles’ AI Concierge, a conversational interface powered by OpenAI’s API platform.</span> <span>Founded in Singapore, Circles is a technology company whose SaaS platform helps digital telco operators launch and run AI-powered customer experiences.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 3, 2026 Circles powers telco personalization with OpenAI technology Circles uses the OpenAI API to personalize support and resolve issues in real time, driving 22% ARPU growth in markets like Singapore. Contact sales Company size: Enterprise Region: Asia-Pacific &amp; Oceania Industry: Technology Products: API, Codex 22% increase in ARPU in Singapore from AI-driven personalization 9% reduction in churn after introducing AI recommendations 65% autonomous resolution rate for customer support with CareX 29% increase in development efficiency using Codex for design, coding assistance, and unit testing Loading… Telcos have rich customer signals across usage, billing, network activity, and location, but turning those signals into timely, personalized action remains difficult. Circles saw an opportunity to rethink the telco experience around that challenge, using OpenAI to build an AI-native telco stack that can connect support, personalization, operations, and monetization in real time. The result is a customer experience built around Circles’ AI Concierge, a conversational interface powered by OpenAI’s API platform. In Singapore, Circles’ AI-powered personalization has helped increase ARPU by 22% and reduce churn by 9%. CareX, the multi-agent architecture behind the AI Concierge, now delivers a 65% autonomous resolution rate for customer support. Founded in Singapore, Circles is a technology company whose SaaS platform helps digital telco operators launch and run AI-powered customer experiences. The company also operates Circles.Life, its own consumer telco business in Singapore. Founded in 2014, Circles works with telco operators across 14 countries and six continents. Building the AI Concierge Traditional telco support is often reactive. Customers navigate menus, repeat information, and wait for help after a problem has already occurred. While operators have rich customer data across usage, billing, network activity, and location, it has remained a challenge to turn those signals into timely, personalized action. To address this, Circles built its AI Concierge on the OpenAI API, creating a conversational interface designed to deliver proactive, context-aware customer engagement. The AI Concierge brings search, account management, support, and personalized recommendations into a single experience. By understanding a customer’s real-time context, such as browsing roaming options or investigating a billing issue, it can route requests to the appropriate specialist agents, recommend relevant actions, and resolve issues without requiring customers to repeat information or navigate multiple workflows. &quot;AI should empower users, not force-fit them into outdated journeys. OpenAI&#x27;s role has been critical in enabling Circles to scale this vision globally. With the AI concierge, we are moving beyond providing simple answers to delivering real-world outcomes, along with balancing cost and latency to maximize value for operators and customers alike.&quot; —Awais Malik, Global Chief Growth Officer, Circles Orchestrating support with CareX CareX is the proprietary multi-agent architecture that powers Circles’ AI Concierge. It combines an orchestration agent that understands each customer’s history and current activity with specialist agents for billing, subscriptions, network management, and account services. Unlike a traditional chatbot, CareX is designed to understand, act, and resolve customer requests. For example, when a customer raises a billing issue, the orchestration agent combines the customer’s app context, account history, and request before routing it to the appropriate specialist agent. The agent receives only the information needed to resolve the issue. If required, the AI agent seamlessly escalates the case to a human agent with the full context attached. The approach is already delivering measurable results. In an early deployment, one operator achieved 55% autonomous resolution within the first week. Today, CareX autonomously resolves 65% of customer service interactions across supported workflows, without human intervention. As CareX expands into real-time voice support, the platform is targeting 95% autonomous resolution across the entire workflow, including text and voice. This will extend the same AI-driven resolution capabilities to the channel many customers turn to first, while making service more natural, immediate, and accessible. Personalizing customer value with Xplore IQ Built on the OpenAI API, Xplore IQ is Circles’ AI-powered personalization engine. It combines customer behavior, account history, and real-time signals to identify the most relevant next action, from recommending a roaming pack or plan upgrade to preventing churn before it happens. By replacing broad campaigns with hyper-personalized recommendations, Xplore IQ helps operators engage customers at the right moment. In Singapore, Circles measured its impact by comparing customers who received AI-powered recommendations against those who didn’t. The AI-powered group achieved a 22% increase in ARPU through higher plan upgrades and add-on subscriptions, while timely, relevant recommendations helped reduce churn by 9%. Improving engineering velocity with Codex Beyond its customer-facing AI products, Circles also uses Codex internally to improve engineering velocity across engineering, infosec, and incident management teams. Teams use Codex to accelerate design, coding assistance and testing, while keeping specialists responsible for validation and final review. Codex has delivered a 29% increase in development efficiency by involving design, coding assistance, and unit testing, allowing engineers to spend their time focusing on higher-value product innovation. Keeping governance central Building AI for telcos requires safeguards for both customers and operators. Circles applies automated controls before customer information reaches the model layer, including identifying and encrypting personally identifiable information before it is passed to LLMs. Specialist agents are given scoped access to the information needed for a specific resolution task, rather than unrestricted access to a full customer profile. Circles also uses human escalation paths, phased rollouts, rate limits, rollback mechanisms, and commercial safeguards to help maintain operational control as AI-powered experiences scale across telco environments. What’s next Circles is expanding its AI-native telco stack with OpenAI by enhancing CareX’s observability and introducing real-time voice support, which makes customer interactions more natural and accessible. Longer term, the company envisions a conversational, context-aware telco experience that moves beyond traditional app navigation, helping operators deliver more proactive, personalized customer engagement. Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading Third-party cyber evaluations involving OpenAI models Security Aug 4, 2026 New ways to learn and teach with ChatGPT Work and Codex Product Aug 4, 2026 Apple is getting this wrong Company Aug 3, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Aug/2/open-letters/#atom-everything" target="_blank">Open letters about AI development</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Aug 02, 2026 &middot; 04:16 UTC</span>
+          </div>
+          <p class="summary"><span>Open Weights and American AI Leadership was shepherded by Microsoft, dated July 24th, and signed by 235 AI-adjacent companies including NVIDIA (see Jensen&#x27;s first ever tweet ), Amazon, Y Combinator, The Linux Foundation, and (a later signer) OpenAI.</span> <span>It&#x27;s clearly an argument designed to counter any instincts by the current US government to ban or limit open weight models over &quot;safety&quot; concerns - a reasonable consideration given what happened to Claude Fable 5 ! Tags: anthropic , generative-ai , openai , ai , llms , ai-ethics</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Open letters about AI development I wrote this summary of the past few weeks of open letters as a section of my sponsors-only newsletter but I&#x27;ve decided to share it here as well. Open Weights and American AI Leadership was shepherded by Microsoft, dated July 24th, and signed by 235 AI-adjacent companies including NVIDIA (see Jensen&#x27;s first ever tweet ), Amazon, Y Combinator, The Linux Foundation, and (a later signer) OpenAI. It&#x27;s clearly an argument designed to counter any instincts by the current US government to ban or limit open weight models over &quot;safety&quot; concerns - a reasonable consideration given what happened to Claude Fable 5 ! Relying solely on closed models is not inherently safe: they can be breached, misused, or fail in ways that outsiders cannot detect. And concentrating advanced AI capabilities behind a small number of closed models compounds that risk. It results in a small number of single points of failure, weakens competition, and leaves critical technology in the hands of a few providers. Open weight models, on the other hand, allow a broad community of researchers and developers to examine their behavior, identify vulnerabilities, develop safeguards, and improve them over time. The one surprising note in the letter is that it comes out in support of distillation, where models train on output from other models: In shaping this ecosystem, policymakers should be careful not to conflate legitimate model-development techniques with misappropriation. Distillation, or the practice of using one model’s outputs to help train or improve another, is a widely used technique for model improvement, evaluation, and validation. It reflects a long tradition of learning from, building upon, and improving existing technologies, a tradition that has helped drive innovation since the rise of the open-source software movement. Notably absent from the signatures: Anthropic, who published their own response Our position on open-weights models three days later. CEO Dario Amodei doubled down on the risk of authoritarian governments building &quot;AI models that are more powerful than those built by the US&quot;, and models being &quot;misused to carry out cyberattacks or biological attacks&quot;, and called for &quot;a crack down on industrial-scale distillation operations &quot;, while also stating that &quot;Anthropic has never advocated for a ban on open-weights models&quot;. Then on July 28th Pacing the Frontier was published, featuring signatures from &quot;1,324 employees of frontier AI companies&quot; - with names like Jakub Pachocki (Chief Scientist, OpenAI), Ilya Sutskever (Safe Superintelligence Inc, previously OpenAI), Dario Amodei (Anthropic), Jack Clark (Anthropic) and more. Their core message: We request that the U.S. government support an international effort to develop the technical and governance tools needed to deliberately pace the frontier of automated AI development. Their concern is intense competitive pressure combined with accelerated AI progress caused by automated AI research - and given that Anthropic produce 80% of their code with Claude Code , OpenAI had Sol reduce their end-to-end serving costs by 20% , and Kimi K3 designed a chip to serve a nano model built on its own architecture , you can see why people are taking that risk more seriously right now. Tags: anthropic , generative-ai , openai , ai , llms , ai-ethics</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/ten-advances-in-mathematics" target="_blank">Ten advances in mathematics and theoretical computer science</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 01, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 1, 2026 Publication Ten advances in mathematics and theoretical computer science Read the paper (opens in a new window) Read the reasoning walkthroughs (opens in a new window) Loading… We want to empower scientists and mathematicians with tools that accelerate discovery.</span> <span>We also continue to evaluate our models on open research problems during development.</span> <span>These problems span high-dimensional geometry, coding theory, arithmetic circuit complexity, group theory, operator algebras, quantum complexity, lattice cryptography and extremal combinatorics.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 1, 2026 Publication Ten advances in mathematics and theoretical computer science Read the paper (opens in a new window) Read the reasoning walkthroughs (opens in a new window) Loading… We want to empower scientists and mathematicians with tools that accelerate discovery. That is why we recently announced ChatGPT for Academic Researchers ⁠ , an initiative providing 100,000 scientists and mathematicians with free access to our best ChatGPT models. We also continue to evaluate our models on open research problems during development. In May, we shared an AI-generated disproof ⁠ of the Erdős unit-distance conjecture, discovered while evaluating an unreleased model. This work has already inspired further developments in mathematics and theoretical computer science 1 . Today, we are sharing a selection of ten results, each of which resolves or makes substantial progress on a long-standing open problem. These problems span high-dimensional geometry, coding theory, arithmetic circuit complexity, group theory, operator algebras, quantum complexity, lattice cryptography and extremal combinatorics. All of these problems are of substantial interest to their respective mathematical communities, and several are of broad interest across mathematics as a whole. The results We provide new results for the following problems. The results were achieved by an internal version of Astra, our next major model. The total number of tokens needed to find solutions to these problems would cost roughly $2,000 at Sol API rates. These arguments were then prepared into manuscripts by humans with the same model. Afterward, the model formalized each argument in a Lean certificate ⁠ (opens in a new window) . We are also releasing for each solution a model’s narration of its thinking process. High-dimensional sphere packing. New upper bounds on sphere-packing density down to the Cohn–Elkies threshold. Binary and spherical codes. Exponentially improved bounds on the maximum size of binary codes at any prescribed minimum distance, with analogous results for high-dimensional spherical codes. Non-sofic groups. A construction establishing the existence of non-sofic groups, addressing a central open question in group theory. Connes’s rigidity conjecture. Disproof of a longstanding conjecture that certain groups are uniquely determined by their von Neumann algebras. Arithmetic circuit complexity. New lower bounds for computing the permanent using arithmetic circuits and formulas, including an arithmetic-formula lower bound of order n 4 /log n. Quantum parallel repetition. An exponential parallel repetition theorem for general two-player quantum games, extending a foundational principle from classical complexity theory. Closest vector problem. Polynomial-factor hardness of approximation for the closest vector problem, a foundational lattice question related to post-quantum cryptography. Ehrhart’s volume conjecture. Determining, in every dimension, the maximum possible volume of a convex body whose centroid is its only interior lattice point. Multicolor Ramsey numbers. A superexponential lower bound for multicolor triangle Ramsey numbers, resolving Erdős problem 183. Extremal number conjectures. Results on the compactness and degeneracy conjectures in extremal graph theory, resolving Erdős problems 146 and 180. Responsibility to the mathematical community The emergence of systems capable of contributing to mathematical research raises questions that cannot be answered by a technology company alone. There are many views as to the role of AI in mathematics, and we have deep respect and understanding for those concerned with its impact, including the signers of the Leiden declaration on AI and Mathematics ⁠ (opens in a new window) . We believe attribution should honestly reflect how a result was produced: claiming human authorship for a proof generated entirely by an AI system would misrepresent both the system’s contribution and the nature of genuine human intellectual work. We helped prepare the manuscripts and formalize the proofs in Lean, and we take responsibility for their correctness, while the mathematical arguments themselves were generated by our system. We hope the mathematical community will engage deeply with these results, place them in context, and bring the ideas behind them to life through new research and discovery. As AI systems evolve into more sophisticated research collaborators, ensuring widespread access is fundamental to supporting scientists and mathematicians as they navigate and define the future of their disciplines during this transformative era. 2026 Foot 1 Subsequent research includes Bloom, Sawin, Schildkraut, and Zhelezov, “ The sum-product conjecture is false for real numbers ⁠ (opens in a new window) ”; Pohoata, “ Split primes and the Elekes-Rónyai problem ⁠ (opens in a new window) ”; Saha, Xu, and Ye, “ Furthest Pair Requires Quadratic Time in Superconstant Dimension under SETH ⁠ (opens in a new window) ”; Goh and Hatami, “ Communication complexity of point-line incidences over the reals ⁠ (opens in a new window) ”; and Lee, Pohoata, and Zhu, “ The Minkowski grid has robustly many repeated distances ⁠ (opens in a new window) .” Keep reading View all How enabling two settings tripled our scores on the ARC-AGI-3 benchmark Research Jul 29, 2026 Scientific computing in the age of agentic AI Publication Jul 28, 2026 GPT-Red: Unlocking Self-Improvement for Robustness Safety Jul 15, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Jul/31/deepseek-v4-flash-0731/#atom-everything" target="_blank">deepseek-ai/DeepSeek-V4-Flash-0731</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Jul 31, 2026 &middot; 23:59 UTC</span>
+          </div>
+          <p class="summary"><span>deepseek-ai/DeepSeek-V4-Flash-0731 The latest release in DeepSeek&#x27;s V4 family, &quot;with substantially enhanced agentic capabilities&quot;.</span> <span>It&#x27;s $0.14/million input and $0.27/million output pricing means this may currently be the best value-per-intelligence model out there.</span> <span>Cost per Intelligence Index Task chart: I got a disappointing pelican from it using the default reasoning level via OpenRouter: But when I bumped reasoning level up to high I got something much better : llm -m openrouter/deepseek/deepseek-v4-flash-0731 -t pelican -o reasoning_effort high Via Hacker News Tags: ai , generative-ai , llms , pelican-riding-a-bicycle , deepseek , llm-release , openrouter , ai-in-china , artificial-analysis</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>deepseek-ai/DeepSeek-V4-Flash-0731 The latest release in DeepSeek&#x27;s V4 family, &quot;with substantially enhanced agentic capabilities&quot;. It&#x27;s 304 billion parameters - 167GB on Hugging Face - but it appears to punch well above its weight. Artificial Analysis rank it ahead of MiniMax M3 - a 428B model. It&#x27;s $0.14/million input and $0.27/million output pricing means this may currently be the best value-per-intelligence model out there. It&#x27;s looking very good on the Intelligence Index vs. Cost per Intelligence Index Task chart: I got a disappointing pelican from it using the default reasoning level via OpenRouter: But when I bumped reasoning level up to high I got something much better : llm -m openrouter/deepseek/deepseek-v4-flash-0731 -t pelican -o reasoning_effort high Via Hacker News Tags: ai , generative-ai , llms , pelican-riding-a-bicycle , deepseek , llm-release , openrouter , ai-in-china , artificial-analysis</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 180</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
