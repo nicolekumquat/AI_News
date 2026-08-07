@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-08-07</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-08-07</h1>
+    <div class="subtitle">15 curated articles &middot; 17 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/hsp-gruppe" target="_blank">How HSP GRUPPE builds AI capabilities for tax advisory</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 07, 2026 &middot; 09:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 7, 2026 How HSP GRUPPE builds AI capabilities for tax advisory Tax professionals use ChatGPT Enterprise to process information faster, improve work quality, and create more capacity for advisory work and client service.</span> <span>HSP GRUPPE itself is a network of legally independent tax advisory, auditing, and law firms.</span> <span>When ChatGPT emerged, HSP saw more than another productivity tool.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 7, 2026 How HSP GRUPPE builds AI capabilities for tax advisory Tax professionals use ChatGPT Enterprise to process information faster, improve work quality, and create more capacity for advisory work and client service. Contact sales Company size: Mid-market Region: Europe &amp; UK Industry: Services Products: ChatGPT 98.6% of employees report higher productivity 84% Weekly active usage 500,000+ ChatGPT conversations in six months (Feb 1 to Jul 14, 2026) 40,000+ Estimated annual hours of additional capacity across the firm network Loading… The usage figures in this story refer to the shared ChatGPT Enterprise workspace used by HSP GRUPPE and Kanzleipakt, covering 81 organizational groups. HSP GRUPPE itself is a network of legally independent tax advisory, auditing, and law firms. Reinventing professional work For more than two decades, HSP GRUPPE ⁠ (opens in a new window) has consistently invested in digitizing and standardizing professional firm processes. Long before generative AI, the firm network standardized processes, embedded quality management, and fostered a culture of continuous improvement across the network. When ChatGPT emerged, HSP saw more than another productivity tool. It saw an opportunity to rethink how professional work itself could evolve. Rather than asking how AI could help employees write faster emails or summarize documents, leadership asked a broader question: What happens when AI becomes part of the operating model of a professional services firm? That vision led HSP to embed ChatGPT Enterprise into tax advisory, legal research, client communication, financial analysis, and knowledge sharing across the firm network. “Technology is moving faster than organizations can transform. Our challenge wasn’t introducing AI—it was helping the organization absorb it.” —Carsten Schulz, CEO, HSP GRUPPE Inside the rollout HSP approached AI as an organizational transformation rather than a software rollout. The organization introduced ChatGPT Enterprise with a strong focus on adoption, governance, and continuous learning. Monthly AI forums gave employees a place to share practical use cases and learn from one another. ChatGPT Enterprise’s security features provide an important technical foundation, while the use of client-related information is governed by HSP’s internal data protection, confidentiality, and governance requirements. Professional review and final responsibility always remain with the relevant tax, legal, or accounting professional. The goal wasn’t simply to encourage experimentation. It was to build an organizational capability that could scale. As Carsten Schulz puts it: “People ask me what my favorite AI feature is. I never answer that question. Individual features don’t matter. Once you understand how everything fits together, AI opens the door to a completely new world.” Across the firm network, professionals quickly found new ways to apply AI to their daily work, while the organization also began standardizing successful use cases into custom Agents. One example is AI Client Communication , a shared Agent that supports first drafts, structure, clarity, and a more consistent, client-oriented tone. Professional review and final responsibility remain with the relevant tax, legal or accounting specialist. Another is the Booking Assistant SKR03 &amp; SKR04 , which supports the preparation and classification of specific booking questions. The final professional decision remains with the employee. Together, these kinds of shared Agents reduce repetitive work while making best practices available to every employee—not just AI experts. Professionals then build on those foundations in their own work. Managing Partner Frank Heibel uses ChatGPT as a technical sparring partner to work through complex tax questions and refine client communications. “ChatGPT has become a genuine sparring partner. It completely changes the level at which you can work.” he says. Partner Magdalene Posnak reduced the time required to evaluate multiple real estate investments from nine hours to around two, allowing her to spend more time advising clients. Managing Director Marco Sell uses AI-powered dashboards to help clients explore financial scenarios together during meetings, while lawyer and tax advisor Jan-Henrik Leifelt uses ChatGPT to strengthen—not replace—his professional judgment. The common thread is simple: less time spent preparing information, and more time spent applying expertise. “An analysis of several real estate investments used to take me around nine hours. With ChatGPT, I can prepare it in about two—and use the time saved for client advisory.” —Magdalene Posnak, Partner, HSP GRUPPE Preparing for the next wave with ChatGPT Work HSP is already preparing for the next phase of its AI journey with ChatGPT Work. Just weeks after gaining access, the organization began piloting the platform with a small group of developers and administrators before expanding across the wider workspace. The goal is to understand how agentic AI can safely automate complex workflows while balancing governance, quality, and cost before broader rollout. For HSP, the economic benefit is not about reducing headcount. The firms in the network are already operating at capacity and managing substantial backlogs. Time saved with ChatGPT can therefore be redirected toward additional client work, shorter turnaround times, more advisory capacity, and stronger client service. For Schulz, the opportunity isn’t simply helping people complete existing tasks more quickly. It’s redesigning the workflow itself. He points to year-end accounting as an example. Today, accountants often discover missing information only when they begin preparing annual accounts months after bookkeeping has been completed. HSP is exploring how ChatGPT Work could continuously review bookkeeping, identify missing information throughout the year, and proactively request documents from clients—so that much of the preparation has already happened before an accountant even opens the file. That shift—from AI assisting people to AI orchestrating work across entire processes—represents the next stage of HSP’s transformation. “We identified 88 opportunities for automation. But I think that’s already thinking too small. The real question isn’t how we automate today’s processes. It’s how we redesign them. That’s what opens the door to a completely new world.” —Carsten Schulz, CEO, HSP GRUPPE Results at a glance Achieved 84% weekly active usage, with 755 weekly active users and 913 unique users over six months (February 1 to July 14, 2026). During the evaluated period from February 1 to July 14, 2026, users exchanged more than 500,000 messages with ChatGPT. 98.6% of surveyed employees reported higher productivity, while 84.6% reported improved quality of work. 95.9% of respondents reported weekly time savings; 63.5% saved at least two hours per week, and 25.7% saved at least five hours. HSP is already seeing an operational leading indicator in its annual capacity planning, with professionals planning significantly more work than in previous years because employees recognize additional capacity created through AI-supported work. The organization expects to assess the full financial impact later this year. 79.7% reported better client service and 78.1% reported higher job satisfaction. A deliberately conservative internal scenario estimates approximately 40,000 hours of additional annual capacity. Around 28,000 hours could support productive, generally billable specialist work, while roughly 12,000 hours could support administration, client service, and support. Based on conservative hourly rates, HSP estimates a theoretical annual revenue potential of approximately €3.8 million. This is a capacity scenario—not realized or guaranteed revenue. Leadership lessons Treat AI as an organizational capability, not an individual tool. Scale successful experiments into repeatable workflows that everyone can benefit from. Invest in operational foundations first. Strong processes, governance, and quality systems accelerate AI adoption. Create a culture of continuous learning. Regular AI forums helped successful ideas spread quickly across the organization. Redesign workflows—not just tasks. The greatest value comes from rethinking end-to-end processes rather than automating isolated activities. Build AI around professional judgement. The greatest value comes when AI enhances expertise rather than replacing it. Tips Start with business problems—not AI features. Create regular forums where employees can share successful use cases across teams. Pair AI specialists with domain experts to turn successful experiments into scalable workflows. Pilot new capabilities with small groups before expanding organization-wide. Measure adoption and business impact—not just deployment—to understand where AI is creating real value. What’s next HSP believes its biggest AI gains still lie ahead. Together with Kanzleipakt, HSP GRUPPE plans to establish a joint DATEV-centric AI, firm process, and development team to evaluate successful decentralized experiments and translate them into documented, scalable workflows. As ChatGPT Work and agentic capabilities mature, HSP plans to move beyond assisting individual professionals toward automating entire workflows that proactively support employees and clients alike. For Schulz, the long-term opportunity extends beyond HSP itself. He believes AI can strengthen—not diminish—the role of trusted professionals by enabling them to spend more time exercising judgment, solving complex problems, and building client relationships. “Everyone talks about AI replacing tax advisors. I think that’s the wrong conversation. The real opportunity is helping qualified professionals become dramatically more effective.” —Carsten Schulz, CEO, HSP GRUPPE Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading Improving GPT‑5.6 Sol in ChatGPT—and expanding access to GPT-5.6 Luna for free users Product Aug 6, 2026 OpenAI and APA advance responsible AI for youth Company Aug 6, 2026 How the world is putting ChatGPT to work Company Aug 6, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-amd-buys-taalas" target="_blank">[AINews] AMD buys Taalas</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Aug 07, 2026 &middot; 05:13 UTC</span>
+          </div>
+          <p class="summary"><span>Vals later said it also became the first model above 60% on Finance Agent v2 at $0.77/test , versus the prior #1 Opus 5 at $5.12/test and at 2x the speed ( ValsAI ).</span> <span>One technical concern raised is the practical storage/I/O burden of local inference for a 2.4T -parameter MoE model, jokingly suggesting RAID0 across many SSDs.</span> <span>The quoted announcement says this is the first open-weight Qwen-Max-class model, a 2.4T parameter MoE-style model with A95B active parameters, targeting coding, work, research, and long-horizon tasks.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>In The Custom ASIC Thesis we said Taalas was worth paying attention to, and in the Inference Inflection we said everything would go vertical. Our Baseten episode had some skeptical counterpoints against etched LLMs, not just custom ASICs , but clearly Lisa Su disagrees for now. @taalas_inc We are pleased to share that Taalas has agreed to join AMD. We built Taalas to rethink AI inference from the ground up: hardware designed around the model, rather than the other way around. The result is the world&#x27;s fastest and most cost-effective inference silicon. Joining AMD 30 Replies · 38 Reposts · 317 Likes Congrats! AI News for 8/5/2026-8/6/2026. We checked 12 subreddits, 544 Twitters and no further Discords. AINews’ website lets you search all past issues. As a reminder, AINews is now a section of Latent Space . You can opt in/out of email frequencies! AI Twitter Recap Meta’s Muse Spark 1.2 breakout: Olympiad golds, benchmark gains, and aggressive price-performance Muse Spark 1.2 moved from “not on the board” to frontier-tier quickly . On Vals Index , Muse Spark 1.2 entered the top 5 at $0.69/test , reportedly 3x cheaper than Kimi and 10x+ cheaper than Fable, Opus, and 5.6 Sol . Vals later said it also became the first model above 60% on Finance Agent v2 at $0.77/test , versus the prior #1 Opus 5 at $5.12/test and at 2x the speed ( ValsAI ). Artificial Analysis’ v4.1.1 patch also d one of the largest score increases for Muse Spark 1.2 after grading updates ( Artificial Analysis ). Meta also claimed unusually strong “pure reasoning” results . Meta said its internally trained Muse Spark-family models achieved gold-medal-level performance in five STEM Olympiads , including perfect theory scores at APhO and IPhO , plus gold-level performance on IMO, IChO, and RMM ; three were submitted under live competition conditions and officially graded ( AI at Meta , Trapit Bansal ). Meta emphasized no tools —no search, code, or calculator—and attributed some of the gains to multi-agent orchestration with parallel reasoning . That claim immediately fed into the ongoing “LLMs vs harnesses vs neurosymbolic” argument, with critics and supporters interpreting the setup differently ( fchollet , giffmana ). The broader takeaway : engineers are increasingly treating agentic orchestration, TTC, and evaluation protocol as first-class product features. The Muse story is less “one model won” than “model quality + orchestration + pricing + serving capacity” now decides adoption. That framing showed up in reactions comparing Meta’s current velocity favorably to Google and highlighting that bigger “Watermelon” models are still expected ( Rihard Jarc , alexandr_wang ). OpenAI’s ChatGPT model unification, free-tier expansion, and plugin/security push OpenAI collapsed “instant” and “thinking” into one paid-chat model . The company announced that GPT-5.6 Sol now powers both Instant and deep reasoning for Plus/Pro users in ChatGPT, with a new reasoning-effort slider to choose speed vs comprehensiveness ( OpenAI , OpenAI ). OpenAI said the updated Sol yields 68% fewer factual-error responses than GPT-5.5 Instant on a high-stakes eval spanning finance, medicine, and law ( OpenAI ). Multiple OpenAI staff framed the change as a usability milestone: one model, one chat surface, adjustable effort ( gdb , michpokrass ). Free-tier economics got much more aggressive . OpenAI said Free and Go users get unlimited text chats with GPT-5.6 Luna starting tomorrow, plus a Think button for harder questions ( OpenAI ). This was widely read as a major consumer-distribution move ( sama , kimmonismus ). ARC Prize also re-ran GPT-5.6 Luna after its 80% price cut and reported unchanged capability at much lower cost: 59.6% on ARC-AGI-2 for $0.18/task and 90.7% on ARC-AGI-1 for $0.07/task ( arcprize ). Developer surface area also expanded . OpenAI introduced Agent Plugins , an open standard built with AWS, Cursor, GitHub, Vercel, and others for bundling Agent Skills and MCP server configs in a shared format, with launch support across Codex, ChatGPT, Cursor, GitHub Copilot, Kiro, and Code ( OpenAIDevs , OpenAIDevs ). OpenAI also launched Codex Security Review in research preview, aimed at doing repo-context-aware security review directly on GitHub PRs ( OpenAIDevs , gdb ). Rumor watch : an unverified but highly amplified leak claimed “Astra” —described as OpenAI’s largest new pretrain since GPT-4.5 and internally called mewfour —could arrive next week ( synthwavedd ). The rumor spread widely, but there is no confirmation in the source set. Agents, harnesses, and MCP infrastructure are becoming the real systems battleground Cloudflare made one of the more substantive infra pushes of the day . During Agents Week, the company highlighted Kitesurf , a stateless browser running entirely on Workers , designed for agent use cases where full Chromium is overkill. The technical pitch: split script/DOM from rendering , lazily instantiate renderer workers only when needed, and dramatically cut CPU/memory overhead relative to standard browser automation ( ashleypeacock , imluisduarte ). Cloudflare also pushed WebMCP , AI Search upgrades, dashboard-level AI Readiness/AEO tooling, and a blog on MCP’s rewritten stateless core that better fits commodity web infra like Workers ( mattzcarey ). MCP is moving from novelty to table stakes . Beyond Cloudflare, Weaviate added a built-in /v1/mcp endpoint on the same port as the REST API with collection inspection, tenant listing, hybrid search, and object upsert tools—no separate MCP service required, with RBAC and independent toggles for MCP/write access ( weaviate_io ). MCP-compatible plugin packaging also got a boost from OpenAI’s Agent Plugins rollout and Cursor’s support for it ( cursor_ai ). The industry argument has shifted from “do harnesses matter?” to “where does intelligence live?” . François Chollet argued that a large inference-time harness orchestrating many neural calls is, by definition, neurosymbolic , and that current systems are often “symbolic sandwiches” rather than end-to-end neural programs ( fchollet , fchollet , fchollet ). Others pushed back that while harnesses determine capability, the model remains the core source of intelligence/generalization ( Andrew Lampinen , Andrew Lampinen ). This is now a practical engineering question, not philosophy: routing, orchestration, tool schemas, and eval harnesses are visibly altering outcomes. Multi-agent patterns are getting productized . There were several signs of teams embracing swarm-like workflows: ad hoc thread-based agent coordination ( swyx ), Gemini agents self-naming and collaborating ( fofrAI ), Hugging Face/Gemma experiments with 149 collaborating agents and a new open math-proof collaboration effort ( ClementDelangue , cmpatino_ ). Cognition also leaned heavily into cloud agents as persistent engineering capacity ( cognition ). Open-model serving, routing, and cost engineering Inference routing is becoming a competitive moat . Cursor described its Router as trained on millions of in-product interactions per week to classify and route requests for lower latency and cost, while explicitly acknowledging no single model dominates all task types: Grok 4.5 for routine tasks, GPT-5.6 Sol for planning/codebase comprehension, Opus 5 for execution-heavy work, Fable 5 for debugging/visual implementation ( cursor_ai , cursor_ai ). Open-model availability kept broadening across platforms . Baseten became an official Hugging Face inference provider for Kimi K3, DeepSeek V4 Flash, and GLM-5.2 ( baseten ); Perplexity Computer made GPT-5.6 Terra the default model for subagents and Luna for scheduled automations ( perplexity_ai , AravSrinivas ); and GitHub Copilot began rolling out Kimi K3 hosted by Fireworks before pausing due to a GitHub Actions incident , while publishing pricing of $3/1M input , $15/1M output , and $0.30/1M cached input ( code , github ). Cost/perf optimizations remain very material . Unsloth said DSpark makes DeepSeek-V4-Flash-0731 GGUFs run 1.4–2x faster locally with no accuracy change, reaching 120 tok/s in some settings ( UnslothAI ). Separate commentary on DeepSeek economics pointed out that even large aggregate serving volumes still imply relatively modest total token revenue at today’s pricing ( thdxr ). vLLM and associated ecosystem companies continued to position around production-scale open serving . vLLM promoted verified Kimi K3 serving recipes ( vllm_project ) and conference plans, while Inferact/vLLM messaging emphasized 500K+ GPUs and day-zero open-model production infra ( vllm_project , inferact ). Science, evaluation, and physical-world datasets Google DeepMind open-sourced a high-impact weather model . WeatherNext 2 , published in Nature , is claimed to provide roughly an extra day of lead time on tropical cyclone forecasting—described as about a decade of forecasting progress in a single jump —and is being released with code and model weights ( GoogleDeepMind , NewsFromGoogle ). Operationally, DeepMind said the system now produces 1,000 probabilistic predictions per storm and during Hurricane Melissa gave a Category 5 landfall prediction 5 days in advance with 80% confidence ( GoogleDeepMind ). Benchmarks continue to specialize into domain reasoning rather than generic QA . Elicit introduced BioDecisionBench , a benchmark derived from 26 complex life-sciences reasoning failure cases across 40 task variants , focused on whether systems catch confounders, sensitivity issues, surrogate endpoints, and related errors in drug-development decision making ( elicitorg ). Epoch AI launched a new “game puzzles” benchmark using an undisclosed game to probe reasoning in likely out-of-distribution settings; Opus 5 currently leads at 59% ( EpochAIResearch ). Physical AI data got a notable open release . RekaDaily-10k brings 10,312 hours of unscripted first-person household footage, including ~1,670 hours in native 4K , collected across the US, LatAm, Asia, and Africa, under Apache 2.0 . Reka framed this as “the actual mess of the real world” needed for physical AI instead of synthetic or carefully staged data ( RekaAILabs ). Interpretability and user-model interaction also saw concrete work . Transluce reported “user awareness” effects across 21 of 24 models tested , where model behavior shifts based on perceived user identity; for Claude, the strongest shifts clustered around AI safety researchers ( TransluceAI ). On the interpretability side, Goodfire highlighted use of Silico to probe representations in human motion models and VLMs ( GoodfireAI , GoodfireAI ). Top tweets (by engagement, filtered for technical relevance) OpenAI ChatGPT update : unified GPT-5.6 Sol for paid chats and unlimited GPT-5.6 Luna for free/go users ( OpenAI ). OpenAI Agent Plugins : new cross-client standard for packaging skills and MCP server configs ( OpenAIDevs ). OpenAI Astra rumor : widely shared but unverified claim of an imminent new large pretrain ( synthwavedd ). Meta Olympiad results : five gold-medal-level performances from Muse Spark-family models under no-tool conditions ( AIatMeta ). Cloudflare Kitesurf + MCP updates : one of the denser agent infra announcement bundles of the day ( ashleypeacock ). AI Reddit Recap /r/LocalLlama + /r/localLLM Recap 1. Qwen3.8-Max Release and Benchmarks Qwen 3.8 Max now ranked as best overall model ahead of Opus 5 by Artificial Analysis agentic index (Activity: 947): The post claims Qwen 3.8 Max is ranked above Claude Opus 5 on the Artificial Analysis Agentic Index , a benchmark focused on GDPval-AA v2 and 𝜏³-Banking agentic evaluations. A top commenter disputes the claim, citing the linked screenshot showing Claude Opus 5 at 59.2 versus Qwen 3.8 Max at 58.4 , i.e. Opus remains slightly ahead in that view. One commenter reports practical experience that Qwen is “so much better at PHP than Fable” for daily work, while another dismisses extrapolating smaller Qwen models’ scores as wishful thinking. A commenter disputes the post title’s ranking claim, noting the linked screenshot shows Claude Opus 5 ahead of Qwen 3.8 Max on the displayed metric: 59.2 vs 58.4 ( image ). Another commenter clarifies that the claim appears to apply specifically to the Artificial Analysis agentic index , not necessarily overall model intelligence. One user reports practical coding-performance p for Qwen over Fable in daily PHP development, though no benchmark numbers or task breakdowns are provided. There is interest in smaller Qwen 27B/35B variants as local “dispatch agents”; one commenter claims Qwen 3.6 35B can run at roughly 700 tokens/s on an RTX 5090 using nifter , suggesting a focus on high-throughput local agent orchestration rather than frontier-model quality. Qwen3.8-2.4T-A95B (aka Qwen3.8-Max) open release time: next wednesday (Activity: 867): A ModelScope placeholder page indicates Qwen3.8-2.4T-A95B / Qwen3.8-Max will be openly released “next Wednesday” at modelscope.cn/models/Qwen/Qwen3.8-2.4T-A95B . The page text says this is the first open-weight Qwen-Max-class model, with 2.4T total parameters and A95B active parameters, targeting improvements in coding, work, research, and long-horizon tasks; it also confirms Qwen3.8-27B and potentially additional Qwen3.8-series models will follow on separate pages. Commenters interpret the wording as meaning Qwen3.8-27B will be released after the Max-class model, and that “other model(s)” implies more variants beyond 27B. One technical concern raised is the practical storage/I/O burden of local inference for a 2.4T -parameter MoE model, jokingly suggesting RAID0 across many SSDs. Commenters parsed the release wording as confirming Qwen3.8-2.4T-A95B / Qwen3.8-Max will be released first, with Qwen3.8-27B and potentially other Qwen3.8-series models arriving later on separate pages. The quoted announcement says this is the first open-weight Qwen-Max-class model, a 2.4T parameter MoE-style model with A95B active parameters, targeting coding, work, research, and long-horizon tasks. The announced Qwen3.8-27B is described as offering “flagship-level intelligence” at a condensed 27B size, implying a smaller dense or compact model intended to make the Qwen3.8 generation usable on far more modest hardware than the 2.4T-A95B release. One commenter the wording suggests there may be additional models beyond just the 27B variant. There is technical concern about local inference requirements for the 2.4T-A95B model, with one commenter joking they would need a RAID0 array of 32 SSDs for SSD-based inference. While exaggerated, it reflects the practical storage and bandwidth challenges of running a multi-trillion-parameter open-weight model locally, especially if weights cannot fit fully in GPU memory. Qwen Developers’ responses from their recent Twitter/X AMA (Activity: 534): The image is a Qwen-branded AMA promotional graphic, not a technical diagram or benchmark; its significance is contextual, advertising the Twitter/X AMA summariz</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/openai-and-apa-partner-to-advance-responsible-ai" target="_blank">Working with the American Psychological Association on youth mental health and AI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 06, 2026 &middot; 06:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 6, 2026 Company Working with the American Psychological Association on youth mental health and AI Loading… Young people already use AI to learn, create, ask questions, and seek advice.</span> <span>That’s why we’re working with the American Psychological Association (APA) to bring psychological science into how we think about responsible AI development and use among young people.</span> <span>Our long-term commitment AI may help people find information and navigate systems earlier, but young people’s well-being depends on strong human relationships and trustworthy support.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 6, 2026 Company Working with the American Psychological Association on youth mental health and AI Loading… Young people already use AI to learn, create, ask questions, and seek advice. As that use grows, families, schools, clinicians, and communities need clearer evidence, better , and stronger safeguards. That’s why we’re working with the American Psychological Association (APA) to bring psychological science into how we think about responsible AI development and use among young people. APA is the leading scientific and professional organization for psychology in the United States, whose evidence-grounded work will help clarify what is known, what is uncertain, and what responsible AI should look like as the technology evolves. “ Young people are engaging with AI during some of the most consequential years of their development. APA brings both the developmental science and clinical expertise to say what responsible design looks like and what matters most for protecting and promoting young people’s well-being. This work is about making sure that knowledge reaches the people building these systems. ” “Technology is part of teens’ lives, and our responsibility is to meet that reality with experiences that are safe, age-appropriate, and designed with families in mind. AI should strengthen—not replace—the real-world relationships and care young people rely on,” said Dr. Sara Johansen, head of mental health and well-being product policy at OpenAI. “This work builds on our ongoing efforts with experts. By working with the APA and other leading experts, we’re continuing to ground our approach in evidence and develop practical safeguards that put teens’ well-being first.” Areas of focus Earlier this year, we co-hosted a productive convening with the APA that brought together leaders from mental health organizations, researchers, clinicians, educators, and youth representatives to discuss where young people face gaps in support today, and where AI may responsibly help people find information and connect to real-world support. Building on these conversations, we expect this work to span several areas—including how AI can support young people in moments of distress, how it can be designed to be more developmentally appropriate and useful, and how parents, caregivers, and clinicians can be better equipped to guide young people’s AI use. Throughout, this work will be grounded in the science of human behavior and the voices and lived experiences of parents, caregivers, teachers, and young people themselves. Over time, that work can help inform stronger safeguards and evidence-informed approaches to how AI should show up in young people’s lives. Supporting parents and caregivers One early focus is giving parents and caregivers practical tools for navigating AI use at home, especially as teens start using these tools. Working with APA, we plan to develop family-facing to help parents and caregivers support healthy use, recognize when adult intervention may be appropriate, and reinforce AI as a tool, not a replacement for people or care. We intend to make this guidance broadly accessible across school communities as well. Supporting practitioners and the broader field We are also working with APA to support practitioners who are increasingly fielding questions about AI. Planned work includes for clinicians and school psychologists focused on promoting healthy AI usage, recognizing overreliance, and intervening in unhealthy use patterns. We will also continue convening leaders across healthcare, education, research, policy, technology, and youth advocacy to translate emerging lessons into practical guidance for the broader field. Listening to youth and understanding system gaps It is essential that these efforts are grounded in and shaped by those with lived experience, not based on assumptions. We will work with APA to convene teens, families, clinicians, school psychologists, and others to help us better understand how young people are using AI, how AI-related questions are showing up in schools, therapy, and family settings, where current systems are falling short, and where AI may responsibly help with access, education, or navigation. Our broader safety work This work builds on OpenAI’s efforts to improve how ChatGPT responds in sensitive moments and supports younger users. We work with more than 260 mental health experts to help ChatGPT better recognize signs of distress, respond with care, and guide people toward real-world support. We have also expanded access to localized crisis and one-click hotlines, added reminders to take a break, and introduced additional protections for younger users, including parental controls, notifying parents of safety concerns, etc., under-18 principles in our Model Spec, and an age-prediction model that helps apply the right experience and safeguards. Our long-term commitment AI may help people find information and navigate systems earlier, but young people’s well-being depends on strong human relationships and trustworthy support. We’re glad to be working with the APA, alongside the many researchers, clinicians, and educators we continue to learn from, as we work to make sure AI truly supports young people and those who care for, support, and guide them. User Safety &amp; Control 2026 Author OpenAI Keep reading View all How the world is putting ChatGPT to work Company Aug 6, 2026 Apple is getting this wrong Company Aug 3, 2026 Continuous voice interaction with GPT Live Engineering Aug 3, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-jeff-sanjay-oriol-and-quoc" target="_blank">[AINews] Jeff, Sanjay, Oriol, and Quoc depart DeepMind; Demis to Chair; Koray to SVP — what is going on at GDM???</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Aug 06, 2026 &middot; 04:34 UTC</span>
+          </div>
+          <p class="summary"><span>But it’s hard to beat around the bush — today’s most important story is the coordinated departures of Jeff Dean, Sanjay Ghemawat, Oriol Vinyals, and Quoc Le, some of the most senior engineering and research talent in both Google and in human history, from DeepMind to cofound a new autoresearch startup Discovery Loop : Jeff Dean @JeffDean Announcing Discovery Loop! I am very excited to announce that, along with my longtime friends and collaborators @Sanjay_Ghemawat , @OriolVinyalsML and @quocleix , we are founding Discovery Loop ( @DiscoLoopAI ), a Public Benefit Corporation whose mission is to automate machine 708 Replies · 1.53K Reposts · 15.2K Likes And Demis, who needs no introduction, goes from CEO to Chair and Chief Scientist, while “leaning into” Isomorphic with CTO Koray stepping up to SVP of GDM: Demis Hassabis @demishassabis I’ve been working towards AGI my whole life, and as we enter this pivotal moment, I’m stepping into a new role as Chair of Google DeepMind &amp; Chief Scientist of Alphabet.</span> <span>This will allow me to focus on long-term strategy, and accelerating scientific breakthroughs, including 4:04 PM · Aug 5, 2026 · 1.06M Views 781 Replies · 1.25K Reposts · 15.4K Likes All the departures are very amicable; Google is investing in Discovery Loop, and Demis’ increased contributions to long term strategy and Isomorphic in particular will be very welcome by humanity, but surely we are not being told the full story here; why couldn’t Discovery Loop have been done inside Google?</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>It’s tempting to give Meta Spark 1.2 and Muse Code the title story today because of their success launching a 5.6 Terra-level model, together with innovative harness design with a local event log for resumability and persistent background agents, both of which should put other coding agent builders on notice. It’s tempting to highlight Prime Agent , Prime Intellect’s self-improving RLM based harness that claims an incredible 95.5% on ARC-AGI-3 (not yet endorsed by ARC). Trust me, we tried. But it’s hard to beat around the bush — today’s most important story is the coordinated departures of Jeff Dean, Sanjay Ghemawat, Oriol Vinyals, and Quoc Le, some of the most senior engineering and research talent in both Google and in human history, from DeepMind to cofound a new autoresearch startup Discovery Loop : Jeff Dean @JeffDean Announcing Discovery Loop! I am very excited to announce that, along with my longtime friends and collaborators @Sanjay_Ghemawat , @OriolVinyalsML and @quocleix , we are founding Discovery Loop ( @DiscoLoopAI ), a Public Benefit Corporation whose mission is to automate machine 708 Replies · 1.53K Reposts · 15.2K Likes And Demis, who needs no introduction, goes from CEO to Chair and Chief Scientist, while “leaning into” Isomorphic with CTO Koray stepping up to SVP of GDM: Demis Hassabis @demishassabis I’ve been working towards AGI my whole life, and as we enter this pivotal moment, I’m stepping into a new role as Chair of Google DeepMind &amp; Chief Scientist of Alphabet. This will allow me to focus on long-term strategy, and accelerating scientific breakthroughs, including 4:04 PM · Aug 5, 2026 · 1.06M Views 781 Replies · 1.25K Reposts · 15.4K Likes All the departures are very amicable; Google is investing in Discovery Loop, and Demis’ increased contributions to long term strategy and Isomorphic in particular will be very welcome by humanity, but surely we are not being told the full story here; why couldn’t Discovery Loop have been done inside Google? That one at least, we have some hints, given GDM’s history of 1000+ coauthor papers for Gemini, vs these 4 superhumans writing this manifesto: When John Jumper left for Anthropic , one could maybe chalk it up to Anthropic’s momentum . When Noam Shazeer joined OpenAI , perhaps one could point to their pioneering work in reasoning models . But couple it with David Silver , Denny Zhou , and other prominent departures, and the 6 months since the last Gemini Pro update , one has to wonder 1) what happened that led to this, 2) how this latest shakeup was decided, 3) if the shuffle is the beginning of the middle of the end or the first prologue of a great and necessary comeback story. After all, Google STILL has great models, talented teams, excellent compute and infrastructure and the greatest trove of training data in human history… AI News for 8/4/2026-8/5/2026. We checked 12 subreddits, 544 Twitters and no further Discords. AINews’ website lets you search all past issues. As a reminder, AINews is now a section of Latent Space . You can opt in/out of email frequencies! AI Twitter Recap Google DeepMind Leadership Reshuffle and the Discovery Loop Spinout A major Google AI reorg landed alongside a high-profile founder exodus : Demis Hassabis is moving to Chair of Google DeepMind and Chief Scientist of Alphabet , explicitly stepping back from day-to-day GDM operations to focus on long-term strategy, AGI, and science. Koray Kavukcuoglu takes operational control as SVP of DeepMind, overseeing Gemini , frontier research, and product/dev teams. The subtext from the ecosystem was clear: this is being read as both a governance reset and an attempt to sharpen product execution around Gemini. At the same time, Discovery Loop launched with one of the strongest founding teams in AI infrastructure/research : Jeff Dean , Sanjay Ghemawat , Oriol Vinyals , and Quoc Le are founding Discovery Loop , a Public Benefit Corporation aimed at automating machine learning, science, and engineering . Dean also shared that Radical Ventures and Khosla Ventures are leading the seed round, with participation from Lightspeed, Kleiner Perkins, Doerr Capital, and Alphabet . The technical read-through is important: rather than another general-purpose model startup, this is explicitly targeting autoresearch / automated discovery loops over scientific and engineering workflows. Why engineers cared : the market reaction wasn’t just “big names left Google.” It was that several people most associated with Google’s deep infra, model-building, and research execution stack are now pursuing a startup centered on automated science. Commentary from Nathan Lambert , Andrew Ng , and others framed it as a historical inflection point for Google’s AI efforts and a strong signal that AI-for-science is becoming a primary frontier, not a side quest . Meta’s Muse Spark 1.2 and Muse Code Push Into the Coding-Agent Race</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Aug/6/an-ai-model-from-meta/#atom-everything" target="_blank">An AI model from Meta also hacked another company during testing</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Aug 06, 2026 &middot; 00:25 UTC</span>
+          </div>
+          <p class="summary"><span>An AI model from Meta also hacked another company during testing Stop me if you&#x27;ve heard this one before : An AI model from the parent company of Facebook and Instagram hacked into another company’s systems during cybersecurity testing, a spokesperson confirmed on Wednesday.</span> <span>Meta’s Muse Spark model “exploited a security vulnerability” in another company “in a manner similar to previously-reported instances with other companies.” The Information had the scoop , I&#x27;m linking to CNN&#x27;s re-report of it since they don&#x27;t have a paywall.</span> <span>Tags: security , ai , generative-ai , llms , meta , accidental-cyberattacks</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>An AI model from Meta also hacked another company during testing Stop me if you&#x27;ve heard this one before : An AI model from the parent company of Facebook and Instagram hacked into another company’s systems during cybersecurity testing, a spokesperson confirmed on Wednesday. Meta says the breach occurred because of an inadvertent error during testing of the model, similar to previously disclosed incidents with OpenAI and Anthropic. “A misconfiguration by Irregular, an independent testing company Meta uses, inadvertently allowed one of our models access to the internet during evaluation,” the Meta spokesperson said. Meta’s Muse Spark model “exploited a security vulnerability” in another company “in a manner similar to previously-reported instances with other companies.” The Information had the scoop , I&#x27;m linking to CNN&#x27;s re-report of it since they don&#x27;t have a paywall. So that&#x27;s Anthropic, OpenAI, and Meta. Google Gemini really needs to catch up on accidentally cyberattacking other companies. Tags: security , ai , generative-ai , llms , meta , accidental-cyberattacks</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/how-the-world-is-putting-chatgpt-to-work" target="_blank">From asking to doing: How the world is putting ChatGPT to work</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 06, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 6, 2026 Company From asking to doing: How the world is putting ChatGPT to work New country-by-country data reveals how AI adoption is spreading and changing.</span> <span>For the first time, OpenAI is publishing country-by-country data showing how people around the world use ChatGPT.</span> <span>AI is reaching beyond early adopters: Usage among people over 35 is rising in nearly every country.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 6, 2026 Company From asking to doing: How the world is putting ChatGPT to work New country-by-country data reveals how AI adoption is spreading and changing. Loading… AI is moving from something people ask to something they put to work. For the first time, OpenAI is publishing country-by-country data showing how people around the world use ChatGPT. The findings reveal a technology that is moving beyond answers and into action, spreading beyond early adopters, and becoming useful to more people in more ways: From asking to doing: At work, people are more than twice as likely to use ChatGPT to complete a task or create something, from writing and coding to analysis, than they are outside work. AI adoption is becoming more global: Countries across Latin America, Africa, and Oceania are catching up to early adopters, narrowing the global adoption gap. AI is moving beyond text: Multimedia is the fastest-growing use case globally, accounting for 7.8% of messages and more than one in ten in countries including Brazil and Colombia. AI is reaching beyond early adopters: Usage among people over 35 is rising in nearly every country. In France and Czechia, their share of messages increased by more than 10 percentage points in the past year. Taken together, the data points to a clear shift: AI is no longer just helping people find answers. It is helping more people, in more places, get things done. This new data is available to view or download on OpenAI Signals , our hub for data, research, and analysis, from the OpenAI Economic Research Team. These country-level statistics will help people, including policymakers and researchers around the world, better understand how more than 1 billion people are putting ChatGPT to work. The Signals dataset specifically reflects messages sent within ChatGPT Free, Go, Plus, and Pro accounts—the group of accounts generally managed by individuals rather than organizations. At work, “doing” dominates The data reflect a trend that has appeared in recent headlines, especially since the rollout of ChatGPT Work: people are increasingly using the technology, particularly for professional pursuits. In these settings, users are more frequently “doing”—using ChatGPT to produce an output or perform a task. This type of work includes applications such as editing, coding, or conducting an analysis. Our data shows that, across the globe, people are more than twice as likely to use ChatGPT this way at work than outside of work. Outside of work, use is more exploratory: “asking,” or seeking information and clarification, remains the largest category. The adoption gap is closing Continuing the steadily climbing trend worldwide documented in June , the countries and regions that began their AI journeys with lower ChatGPT per-capita adoption rates are gradually catching up to the established early adopters. For Q2 2026, our team updated our usage rankings across countries (see previous quarterly rankings here ). The chart below shows how the per-capita leaderboard changed since the first quarter of 2026. Notably, in the second quarter, usage in parts of Latin America, Oceania, and Africa increased faster than usage in other parts of the world, with Peru, Uruguay, and Costa Rica rising the most among countries in global rankings. Adoption continues to rise in North America and Europe, but parts of the Southern Hemisphere are catching up in per-capita adoption rates. Multimedia use is the fastest growing use case for ChatGPT As new capabilities emerge, specific use cases command people’s attention and drive adoption. Take multimedia generation, analysis, and retrieval, for example. Since the release of ChatGPT Images 2.0 in April 2026, the share of messages across the world focused on multimedia use increased to 7.8%. While it still lags behind the leading use cases of practical guidance, writing, and information-seeking, multimedia use has been on a consistent upswing year-to-date. Latin American countries stand out in using ChatGPT to make &amp; analyze media Drilling deeper into the category of multimedia messages, the data shows distinctive differences among countries and regions. The graphic below demonstrates the uptick in Latin America where, in countries like Brazil and Colombia, more than one in ten messages to ChatGPT is categorized as multimedia. ChatGPT adoption grew worldwide among people over 35 The quarter-over-quarter changes in per-capita adoption are not limited to use cases and regions alone. The data also demonstrate differences in adoption by age cohort. The trend line over the last year shows that the percentage of messages sent by people over 35 increased in almost every country. Year over year, these users now account for a 5% higher share of messages than they did 12 months earlier. Looking at the data country-by-country, adoption among people aged 35 and older is growing particularly quickly in several countries. The chart below, for example, shows how the share of ChatGPT messages sent by users 35 and above shifted significantly in several European countries. In France and Czechia, the share of messages sent by users 35 or older increased by more than 10 percentage points in the last year. Almost three-quarters of European countries saw larger-than-average increases in their share of messages sent by these users, while the opposite pattern emerged in some Southeast Asian countries, such as Singapore. Overall, the share of messages sent by these users increased in six of the eight countries in the region, albeit by only a small margin. More about OpenAI Signals OpenAI Signals is the OpenAI Economic Research team’s platform for sharing our data and research with the world. In addition to our research , we publish regular updates on how individuals and businesses ⁠ use ChatGPT. We encourage you to download the data here and explore our methodology here ⁠ (opens in a new window) . 2026 Economic Research ChatGPT Author OpenAI Keep reading View all OpenAI and APA advance responsible AI for youth Company Aug 6, 2026 Apple is getting this wrong Company Aug 3, 2026 Continuous voice interaction with GPT Live Engineering Aug 3, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Aug/5/muse-code-and-muse-spark-12/#atom-everything" target="_blank">Introducing Muse Code and Muse Spark 1.2</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Aug 05, 2026 &middot; 23:58 UTC</span>
+          </div>
+          <p class="summary"><span>Introducing Muse Code and Muse Spark 1.2 Yet more evidence that the most important characteristic of any model these days is long-sequence agentic tool calling.</span> <span>Muse Spark 1.2 is a coding-focused update to Muse Spark 1.1, with improvements in code generation, complex debugging, codebase understanding, and end-to-end developer workflows.</span> <span>In Muse Spark 1.2, we significantly scaled up training compute on coding tasks while expanding training environment diversity.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Introducing Muse Code and Muse Spark 1.2 Yet more evidence that the most important characteristic of any model these days is long-sequence agentic tool calling. Meta shipped their own coding agent as part of getting that to work! Muse Spark 1.2 is a coding-focused update to Muse Spark 1.1, with improvements in code generation, complex debugging, codebase understanding, and end-to-end developer workflows. In Muse Spark 1.2, we significantly scaled up training compute on coding tasks while expanding training environment diversity. The model also maintains its strength in other key areas like general agents. [...] We co-trained Muse Spark 1.2 with Muse Code to ensure the model exhibits its best performance and coding usability when paired together. The training included rejection sampled harness trajectories and recipe optimizations for goals, compaction, and subagents, alongside the integration of the Muse Code toolset to maximize harness compatibility. [...] Muse Spark 1.2 was extensively trained on long-horizon coding tasks, including whole-repository generation, large end-to-end projects, and auto-research. Here&#x27;s a pelican riding a bicycle SVG produced by Muse Spark 1.2 : You can see the Spark 1.1 pelican from 9th July here . I think the 1.2 pelican is a small but material improvement. An interesting twist on pricing is that the model is offered as two different model IDs. muse-spark-1.2 is priced at $1.25/million input and $4.25/million output - close to Gemini 3.6 Flash ($1.50/$7.50) - but if you agree to let Meta use your data &quot;to improve our products&quot; you can use muse-spark-1.2-contributor which is $0.10/$0.20 - a huge discount, closer to GPT-5.6 Luna ($0.20/$1.20) and Gemini 3.1 Flash-Lite ($0.25/$1.50). I added those new prices to llm-prices.com . Via Hacker News Tags: ai , generative-ai , llms , meta , llm-pricing , pelican-riding-a-bicycle , llm-release , coding-agents</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Aug/5/incident-report/#atom-everything" target="_blank">Incident Report: unsanctioned agent behaviour during cyber testing</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Aug 05, 2026 &middot; 23:32 UTC</span>
+          </div>
+          <p class="summary"><span>Incident Report: unsanctioned agent behaviour during cyber testing It happened again .</span> <span>From their technical paper (PDF): During a cyber evaluation, from 25 to 28 July 2026, AI agents engaged in sustained, unsanctioned activity directed at what were, in practice, real people and organisations.</span> <span>Tags: github , security , ai , prompt-injection , generative-ai , llms , ai-ethics , paper-review , ai-security-research , claude-mythos-fable , accidental-cyberattacks</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Incident Report: unsanctioned agent behaviour during cyber testing It happened again . This time it was the UK government&#x27;s AI Security Institute who accidentally attacked other companies while running an evaluation with models with the safety filters turned off. From their technical paper (PDF): During a cyber evaluation, from 25 to 28 July 2026, AI agents engaged in sustained, unsanctioned activity directed at what were, in practice, real people and organisations. These attempts were unsuccessful and, to the best of our knowledge, no real-world harm resulted. [...] Across 122 evaluation attempts on two of AISI’s cyber challenges, AISI found 19 instances where AI agents took unsanctioned action on the live internet, including cases that targeted real people and organisations. [...] It is uncertain to what extent the model recognised it was taking actions against real people. In the most serious case, an AI agent (Mythos 5) decided to attempt to solve the cyber challenge using a supply-chain attack. As a result, the AI agent created a GitHub account and then tried to convince an open-source repository maintainer to accept a malicious GitHub pull request (PR), including by creating a second account masquerading as another human user endorsing the PR. [...] Furthermore, in its attempt to solve the challenge, the agent decided to employ the technique of “spear-phishing” by sending targeted emails containing malicious content and attempting to manipulate recipients into accepting the code changes, and planned a prompt injection to compromise other coding agents. The thing I found most surprising is that AISI were running these agents without any form of network sandboxing at all: AISI provided the AI agents with internet access during these evaluations, which enabled their actions on the open internet in this setting. Internet access was a deliberate part of AISI’s evaluation configuration in this setting, and not due to sandbox escape. This, combined with the fact that &quot;AISI deliberately disables developer-implemented cyber-classifiers&quot;, makes the fact that the agents started attacking real-world targets entirely unsurprising to me. Most of the reported incidents were claude Mythos 5, but &quot;GPT-5.6 Sol without cyber classifiers&quot; scored a few as well. Here&#x27;s &quot;Sample 1&quot; from the paper, in which the agent tries to execute a supply-chain attack by submitting a PR with a hidden prompt injection attack, then social engineering with a second agent pretending to have reviewed the code! It&#x27;s a fun paper. I recommend reading the whole thing. Tags: github , security , ai , prompt-injection , generative-ai , llms , ai-ethics , paper-review , ai-security-research , claude-mythos-fable , accidental-cyberattacks</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/build-an-ai-code-review-bot-in-30" target="_blank">Build an AI code review bot in 30 minutes with Vercel Eve</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Aug 05, 2026 &middot; 12:04 UTC</span>
+          </div>
+          <p class="summary"><span>review backlog problem nobody’s talking about Why you don’t have to review every AI-generated PR How Intercom built AI-approved PRs (and proved they’re safer) How the Eve framework works (directory, skills, channels, connectors) The Codex prompt I used to build the entire bot What the agent actually does: read, score, approve, or escalate Setting up your Eve agent The six-component risk scoring model Merge Mommy in action: three live PR examples Recap and how to build your own version<ul><li>Vercel Eve: <a href="https://vercel.com/eve" target="_blank" rel="noopener">https://vercel.com/eve</a></li><li>Vercel AI SDK: <a href="https://sdk.vercel.ai/" target="_blank" rel="noopener">https://sdk.vercel.ai/</a></li><li>Vercel Chat SDK: <a href="https://chat-sdk.dev/" target="_blank" rel="noopener">https://chat-sdk.dev/</a></li><li>Codex (OpenAI): <a href="https://openai.com/codex" target="_blank" rel="noopener">https://openai.com/codex</a> Other</li><li>AI is approving our pull requests: Here’s how we made it safe: <a href="https://www.intercom.com/blog/ai-is-approving-our-pull-requests-heres-how-we-made-it-safe/" target="_blank" rel="noopener">https://www.intercom.com/blog/ai-is-approving-our-pull-requests-heres-how-we-made-it-safe/</a></li><li>Review is the bottleneck now: How we let AI approve pull requests (safely): <a href="https://rewind.com/blog/ai-approve-pull-requests-safely/" target="_blank" rel="noopener">https://rewind.com/blog/ai-approve-pull-requests-safely/</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Aug/3/david-crawshaw/#atom-everything" target="_blank">Quoting David Crawshaw&#x27;s prompt</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Aug 03, 2026 &middot; 16:15 UTC</span>
+          </div>
+          <p class="summary"><span>Set up a nightly cron job that executes the prompt: fetch upstream changes to the &lt;software&gt; and rebase all local changes on top of upstream.</span> <span>Check that the software works as intended and replace the current version.</span> <span>— David Crawshaw&#x27;s prompt , Devtools must be open source Tags: prompt-engineering , coding-agents , generative-ai , ai , llms , open-source</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Aug/3/devtools-must-be-open-source-exedev/#atom-everything" target="_blank">Devtools must be open source (exe.dev)</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Aug 03, 2026 &middot; 15:30 UTC</span>
+          </div>
+          <p class="summary"><span>My comment on Devtools must be open source (exe.dev) — Hacker News.</span> <span>One of the arguments for open source software for end-users has always been the freedom to examine and modify how that software works.</span> <span>Tags: hacker-news , open-source , ai , generative-ai , llms , ai-assisted-programming</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>My comment on Devtools must be open source (exe.dev) — Hacker News. One of the arguments for open source software for end-users has always been the freedom to examine and modify how that software works. The reality for most people - even expert programmers - has been that the freedom is more about being able to lean on other people to do that. Most people can&#x27;t justify the time commitment needed to read and then modify the code for tools they use very often. I think LLMs have changed that equation in a way that makes the original dream much more feasible. Several times a day I&#x27;ll prompt regular Claude chat to &quot;Clone x/y from GitHub and tell me how Z works&quot;. Getting software to compile in order to start hacking on it used to be enough friction that I often wouldn&#x27;t bother. Now I treat that as a zero time investment challenge: tell Codex or Claude Code to checkout and build X and then come back ten minutes later and see how it got on. I&#x27;m not habitually modifying the software I use yet, but I can see a path to that which didn&#x27;t exist a year or so ago. Tags: hacker-news , open-source , ai , generative-ai , llms , ai-assisted-programming</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-ai-chatgpt-codex-voice-browser" target="_blank">🎙️ How I AI: ChatGPT Codex Voice + browser + Sites: an expert’s AI workflow | Nick Baumann (OpenAI)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Aug 03, 2026 &middot; 15:02 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ How I AI: ChatGPT Codex Voice + browser + Sites: an expert’s AI workflow | Nick Baumann (OpenAI) Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Aug 03, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/chatgpt-codex-voice-browser-sites" target="_blank">ChatGPT Codex Voice + browser + Sites: an expert’s AI workflow | Nick Baumann (OpenAI)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Aug 03, 2026 &middot; 12:04 UTC</span>
+          </div>
+          <p class="summary"><span>.new —Turn your idea into a real product Hyperagent —Deploy fleets of agents that handle real work Introduction to Nick Baumann What’s new in Codex ChatGPT Work and Heartbeats Live Codex voice demo Latency vs.</span> <span>intelligence Quick recap Voice on mobile and the ChatGPT Sites workflow Live UGC video demo How I AI website results</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/circles" target="_blank">Circles powers telco personalization with OpenAI technology</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 03, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 3, 2026 Circles powers telco personalization with OpenAI technology Circles uses the OpenAI API to personalize support and resolve issues in real time, driving 22% ARPU growth in markets like Singapore.</span> <span>The result is a customer experience built around Circles’ AI Concierge, a conversational interface powered by OpenAI’s API platform.</span> <span>Founded in Singapore, Circles is a technology company whose SaaS platform helps digital telco operators launch and run AI-powered customer experiences.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 3, 2026 Circles powers telco personalization with OpenAI technology Circles uses the OpenAI API to personalize support and resolve issues in real time, driving 22% ARPU growth in markets like Singapore. Contact sales Company size: Enterprise Region: Asia-Pacific &amp; Oceania Industry: Technology Products: API, Codex 22% increase in ARPU in Singapore from AI-driven personalization 9% reduction in churn after introducing AI recommendations 65% autonomous resolution rate for customer support with CareX 29% increase in development efficiency using Codex for design, coding assistance, and unit testing Loading… Telcos have rich customer signals across usage, billing, network activity, and location, but turning those signals into timely, personalized action remains difficult. Circles saw an opportunity to rethink the telco experience around that challenge, using OpenAI to build an AI-native telco stack that can connect support, personalization, operations, and monetization in real time. The result is a customer experience built around Circles’ AI Concierge, a conversational interface powered by OpenAI’s API platform. In Singapore, Circles’ AI-powered personalization has helped increase ARPU by 22% and reduce churn by 9%. CareX, the multi-agent architecture behind the AI Concierge, now delivers a 65% autonomous resolution rate for customer support. Founded in Singapore, Circles is a technology company whose SaaS platform helps digital telco operators launch and run AI-powered customer experiences. The company also operates Circles.Life, its own consumer telco business in Singapore. Founded in 2014, Circles works with telco operators across 14 countries and six continents. Building the AI Concierge Traditional telco support is often reactive. Customers navigate menus, repeat information, and wait for help after a problem has already occurred. While operators have rich customer data across usage, billing, network activity, and location, it has remained a challenge to turn those signals into timely, personalized action. To address this, Circles built its AI Concierge on the OpenAI API, creating a conversational interface designed to deliver proactive, context-aware customer engagement. The AI Concierge brings search, account management, support, and personalized recommendations into a single experience. By understanding a customer’s real-time context, such as browsing roaming options or investigating a billing issue, it can route requests to the appropriate specialist agents, recommend relevant actions, and resolve issues without requiring customers to repeat information or navigate multiple workflows. &quot;AI should empower users, not force-fit them into outdated journeys. OpenAI&#x27;s role has been critical in enabling Circles to scale this vision globally. With the AI concierge, we are moving beyond providing simple answers to delivering real-world outcomes, along with balancing cost and latency to maximize value for operators and customers alike.&quot; —Awais Malik, Global Chief Growth Officer, Circles Orchestrating support with CareX CareX is the proprietary multi-agent architecture that powers Circles’ AI Concierge. It combines an orchestration agent that understands each customer’s history and current activity with specialist agents for billing, subscriptions, network management, and account services. Unlike a traditional chatbot, CareX is designed to understand, act, and resolve customer requests. For example, when a customer raises a billing issue, the orchestration agent combines the customer’s app context, account history, and request before routing it to the appropriate specialist agent. The agent receives only the information needed to resolve the issue. If required, the AI agent seamlessly escalates the case to a human agent with the full context attached. The approach is already delivering measurable results. In an early deployment, one operator achieved 55% autonomous resolution within the first week. Today, CareX autonomously resolves 65% of customer service interactions across supported workflows, without human intervention. As CareX expands into real-time voice support, the platform is targeting 95% autonomous resolution across the entire workflow, including text and voice. This will extend the same AI-driven resolution capabilities to the channel many customers turn to first, while making service more natural, immediate, and accessible. Personalizing customer value with Xplore IQ Built on the OpenAI API, Xplore IQ is Circles’ AI-powered personalization engine. It combines customer behavior, account history, and real-time signals to identify the most relevant next action, from recommending a roaming pack or plan upgrade to preventing churn before it happens. By replacing broad campaigns with hyper-personalized recommendations, Xplore IQ helps operators engage customers at the right moment. In Singapore, Circles measured its impact by comparing customers who received AI-powered recommendations against those who didn’t. The AI-powered group achieved a 22% increase in ARPU through higher plan upgrades and add-on subscriptions, while timely, relevant recommendations helped reduce churn by 9%. Improving engineering velocity with Codex Beyond its customer-facing AI products, Circles also uses Codex internally to improve engineering velocity across engineering, infosec, and incident management teams. Teams use Codex to accelerate design, coding assistance and testing, while keeping specialists responsible for validation and final review. Codex has delivered a 29% increase in development efficiency by involving design, coding assistance, and unit testing, allowing engineers to spend their time focusing on higher-value product innovation. Keeping governance central Building AI for telcos requires safeguards for both customers and operators. Circles applies automated controls before customer information reaches the model layer, including identifying and encrypting personally identifiable information before it is passed to LLMs. Specialist agents are given scoped access to the information needed for a specific resolution task, rather than unrestricted access to a full customer profile. Circles also uses human escalation paths, phased rollouts, rate limits, rollback mechanisms, and commercial safeguards to help maintain operational control as AI-powered experiences scale across telco environments. What’s next Circles is expanding its AI-native telco stack with OpenAI by enhancing CareX’s observability and introducing real-time voice support, which makes customer interactions more natural and accessible. Longer term, the company envisions a conversational, context-aware telco experience that moves beyond traditional app navigation, helping operators deliver more proactive, personalized customer engagement. Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading Improving GPT‑5.6 Sol in ChatGPT—and expanding access to GPT-5.6 Luna for free users Product Aug 6, 2026 OpenAI and APA advance responsible AI for youth Company Aug 6, 2026 How the world is putting ChatGPT to work Company Aug 6, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Aug/2/open-letters/#atom-everything" target="_blank">Open letters about AI development</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Aug 02, 2026 &middot; 04:16 UTC</span>
+          </div>
+          <p class="summary"><span>Open Weights and American AI Leadership was shepherded by Microsoft, dated July 24th, and signed by 235 AI-adjacent companies including NVIDIA (see Jensen&#x27;s first ever tweet ), Amazon, Y Combinator, The Linux Foundation, and (a later signer) OpenAI.</span> <span>It&#x27;s clearly an argument designed to counter any instincts by the current US government to ban or limit open weight models over &quot;safety&quot; concerns - a reasonable consideration given what happened to Claude Fable 5 ! Tags: anthropic , generative-ai , openai , ai , llms , ai-ethics</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Open letters about AI development I wrote this summary of the past few weeks of open letters as a section of my sponsors-only newsletter but I&#x27;ve decided to share it here as well. Open Weights and American AI Leadership was shepherded by Microsoft, dated July 24th, and signed by 235 AI-adjacent companies including NVIDIA (see Jensen&#x27;s first ever tweet ), Amazon, Y Combinator, The Linux Foundation, and (a later signer) OpenAI. It&#x27;s clearly an argument designed to counter any instincts by the current US government to ban or limit open weight models over &quot;safety&quot; concerns - a reasonable consideration given what happened to Claude Fable 5 ! Relying solely on closed models is not inherently safe: they can be breached, misused, or fail in ways that outsiders cannot detect. And concentrating advanced AI capabilities behind a small number of closed models compounds that risk. It results in a small number of single points of failure, weakens competition, and leaves critical technology in the hands of a few providers. Open weight models, on the other hand, allow a broad community of researchers and developers to examine their behavior, identify vulnerabilities, develop safeguards, and improve them over time. The one surprising note in the letter is that it comes out in support of distillation, where models train on output from other models: In shaping this ecosystem, policymakers should be careful not to conflate legitimate model-development techniques with misappropriation. Distillation, or the practice of using one model’s outputs to help train or improve another, is a widely used technique for model improvement, evaluation, and validation. It reflects a long tradition of learning from, building upon, and improving existing technologies, a tradition that has helped drive innovation since the rise of the open-source software movement. Notably absent from the signatures: Anthropic, who published their own response Our position on open-weights models three days later. CEO Dario Amodei doubled down on the risk of authoritarian governments building &quot;AI models that are more powerful than those built by the US&quot;, and models being &quot;misused to carry out cyberattacks or biological attacks&quot;, and called for &quot;a crack down on industrial-scale distillation operations &quot;, while also stating that &quot;Anthropic has never advocated for a ban on open-weights models&quot;. Then on July 28th Pacing the Frontier was published, featuring signatures from &quot;1,324 employees of frontier AI companies&quot; - with names like Jakub Pachocki (Chief Scientist, OpenAI), Ilya Sutskever (Safe Superintelligence Inc, previously OpenAI), Dario Amodei (Anthropic), Jack Clark (Anthropic) and more. Their core message: We request that the U.S. government support an international effort to develop the technical and governance tools needed to deliberately pace the frontier of automated AI development. Their concern is intense competitive pressure combined with accelerated AI progress caused by automated AI research - and given that Anthropic produce 80% of their code with Claude Code , OpenAI had Sol reduce their end-to-end serving costs by 20% , and Kimi K3 designed a chip to serve a nano model built on its own architecture , you can see why people are taking that risk more seriously right now. Tags: anthropic , generative-ai , openai , ai , llms , ai-ethics</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 84</span>
+      <span>&middot;</span>
+      <span>17/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
