@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-08-18</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-08-18</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/partnering-with-codeai" target="_blank">Partnering with CodeAI to prepare the first AI generation</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 18, 2026 &middot; 11:00 UTC</span>
+          </div>
+          <p class="summary"><span>For parents and educators, the question isn’t simply whether young people will use AI, but whether they will learn to critically evaluate its outputs, understand its limitations, and use it responsibly.</span> <span>The vast majority of students today are already using AI, while only 16% of high school leaders say ⁠ (opens in a new window) all of their students are learning the technical knowledge to understand it in the classroom.</span> <span>Students see this gap too: in a survey ⁠ (opens in a new window) by CodeAI, 75% of high school students say understanding AI will be more important for their futures than it is now.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 18, 2026 Company Partnering with CodeAI to prepare the first AI generation Loading… Today’s students will be the first generation to grow up with AI as part of everyday life. For parents and educators, the question isn’t simply whether young people will use AI, but whether they will learn to critically evaluate its outputs, understand its limitations, and use it responsibly. Right now, there’s a gap between use and understanding. The vast majority of students today are already using AI, while only 16% of high school leaders say ⁠ (opens in a new window) all of their students are learning the technical knowledge to understand it in the classroom. Students see this gap too: in a survey ⁠ (opens in a new window) by CodeAI, 75% of high school students say understanding AI will be more important for their futures than it is now. Young people need to understand how AI works, think critically about its outputs, and develop the skills to shape its future with access to tools that prioritize their safety and development. That’s why OpenAI and CodeAI are announcing a signature partnership to give students and educators access to tools and that will help them learn how to use and benefit from AI. This partnership coincides with the launch of ChatGPT for Teens, a dedicated experience designed with learning at the center to help teens think critically, deepen understanding, and use AI with confidence. It includes built-in protections for teens, including features to promote healthy use and additional controls for parents. It also builds on our ChatGPT for Teachers ⁠ (opens in a new window) work to empower teachers and districts to guide AI use and our ongoing work with the American Federation of Teachers to build AI skills. Alongside the ChatGPT for Teens launch, our partnership with CodeAI focuses on the education that surrounds the technology: helping teens understand how AI works, direct it, question it, and create with it—with teachers playing a meaningful role in shaping how AI enters the classroom. “Parents and educators want young people to be ready for a future shaped by AI—and they are right to expect that to come with care,” said Dr. Allison Mishkin, Head of Child Development, OpenAI. “Our goal is not simply to help more students use AI, but to help them ask better questions, think critically about the answers they receive, and use these tools responsibly. We look forward to working alongside CodeAI, parents, and educators to learn, improve, and help young people build those skills.” “Every student should know how AI actually works and be able to question the technology, catch its mistakes, and know when to stop trusting it,” said Karim Meghji, CEO of CodeAI. “Give them that foundation, and AI becomes less a force shaping their future and instead something they can question, shape, and create on their own.” How we’ll work together Over the next year, OpenAI and CodeAI will focus on practical programs that help students understand AI, use it with care, and explore how it can support learning and creativity. Creating a continuous feedback loop for responsible AI innovation. OpenAI and CodeAI will establish a joint advisory council that will bring together experts and leaders on child development, youth public policy, and learning science. The council will provide ongoing guidance on emerging risks, responsible AI practices, and evolving educational needs, helping to shape the future development of ChatGPT for Teens. Helping students build foundational AI literacy. Through the Hour of AI ⁠ (opens in a new window) , OpenAI and CodeAI will introduce millions of students to the basics of using AI thoughtfully and responsibly. Inspiring the next generation of builders. Through the first-ever Builders Challenge, high school students will have the opportunity to create with AI, receive mentorship from OpenAI team members, and showcase their work on a national stage alongside the teachers who support them. Supporting classroom learning. OpenAI’s experts in AI systems, safety, and responsible use will be a that CodeAI can consult as they further develop AI Foundations ⁠ (opens in a new window) , CodeAI’s free, year-long high school course. Making careers with AI more accessible. Through Career Journeys, students will hear directly from OpenAI researchers, engineers, and leaders about how they work with AI to shape it, helping them see themselves as future builders, creators, and innovators. Preparing young people for a world shaped by AI is a shared responsibility. Technology companies cannot do it alone. Parents, educators, students, researchers, policymakers, and civil-society organizations all have an important role to play. Through this partnership, OpenAI and CodeAI will help more young people approach AI with curiosity and confidence—but also with judgment. We want students to learn how to create with these tools without accepting every answer at face value, and to understand that AI should support—not replace—the guidance of teachers, families, and other trusted people in their lives. That is how we can help the next generation become not only capable users of AI, but thoughtful participants in shaping its future. 2026 Education ChatGPT Author OpenAI Keep reading View all OpenAI joins PORTS-Pike project Global Affairs Aug 17, 2026 OpenAI appoints Dali Rajic as Chief Revenue Officer Company Aug 13, 2026 How enterprises put AI to work Company Aug 12, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-ai-how-a-solo-founder-used" target="_blank">🎙️ How I AI: How a solo founder used Codex and ChatGPT to launch a fashion brand without engineers</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Aug 17, 2026 &middot; 15:03 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ How I AI: How a solo founder used Codex and ChatGPT to launch a fashion brand without engineers Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Aug 17, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-a-solo-founder-used-codex-and" target="_blank">How a solo founder used Codex and ChatGPT to launch a fashion brand without engineers | Yana Welinder</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Aug 17, 2026 &middot; 12:04 UTC</span>
+          </div>
+          <p class="summary"><span>’ worth with Jira Introducing Yana Welinder and Yana Bana Tour of the Yana Bana site The fashion prompt stack Live demo: generating a jacket from a prompt in ChatGPT Why Image Gen 2.0 beats other models The “prompt as spec” principle Iterating the design Using Codex and computer use to build CAD files in 3D software Vendor research, outreach emails, and Superhuman browser use Building the full e-commerce site Quick recap and what’s still hard How Yana prompts when AI pushes back</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/openais-head-of-design-this-is-the" target="_blank">OpenAI’s Head of Design: This is the best time in history to be a designer | Ian Silber</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Aug 16, 2026 &middot; 12:31 UTC</span>
+          </div>
+          <p class="summary"><span>Radically different banking, now with Command</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-gemini-37-flash-brings-gdm" target="_blank">[AINews] Gemini 3.7 Flash brings GDM back to the forefront</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Aug 14, 2026 &middot; 05:30 UTC</span>
+          </div>
+          <p class="summary"><span>AINews: Weekday Roundups [AINews] Gemini 3.7 Flash brings GDM back to the forefront Down, but not out! Aug 14, 2026 ∙ Paid The most compelling chart on today’s Gemini 3.7 Flash update was this one: Where you can see the degree to which 3.5 and 3.6 Flash had fallen behind the more recent Claude 4.8+ and GPT 5.5+ series mod… Keep reading with a 7-day free trial Subscribe to Latent.Space to keep reading this post and get 7 days of free access to the full post archives.</span> <span>Already a paid subscriber?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/introducing-gemini-3-7-flash/" target="_blank">Introducing Gemini 3.7 Flash</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Aug 13, 2026 &middot; 17:04 UTC</span>
+          </div>
+          <p class="summary"><span>Introducing Gemini 3.7 Flash Aug 13, 2026 | x.com Facebook LinkedIn Mail Our most intelligent workhorse model yet for coding and agents.</span> <span>Generative AI is experimental Today, we’re building on the progress of our widely used Flash series by introducing Gemini 3.7 Flash, our most intelligent workhorse model yet for coding and agents.</span> <span>Better intelligence for complex workflows 3.7 Flash shows strong gains over 3.6 Flash in coding tasks like debugging and issue resolution.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Introducing Gemini 3.7 Flash Aug 13, 2026 | x.com Facebook LinkedIn Mail Our most intelligent workhorse model yet for coding and agents. Tulsee Doshi Senior Director, Product Management, on behalf of the Gemini team Share x.com Facebook LinkedIn Mail Your browser does not support the audio element. Listen to article [[duration]] minutes This content is generated by Google AI. Generative AI is experimental Today, we’re building on the progress of our widely used Flash series by introducing Gemini 3.7 Flash, our most intelligent workhorse model yet for coding and agents. This release comes just three weeks after Gemini 3.6 Flash , and is a direct result of developer feedback and algorithmic innovations that we look forward to bringing to future models. 3.7 Flash delivers substantial improvements across software engineering, knowledge work, and web development workflows — with an introductory price of half the original 3.6 Flash cost per million tokens. Better intelligence for complex workflows 3.7 Flash shows strong gains over 3.6 Flash in coding tasks like debugging and issue resolution. It also achieves higher first-pass code accuracy and has improved performance in generating production-ready code as seen in FrontierCode 1.1 Main (43.6% vs 34.4%) and DeepSWE v1.1 (65.3% vs 49.0%). In web development, 3.7 Flash generates more functional layouts and feature-complete apps in fewer prompts. For UI generation, the model shows high design adherence and parity based on a input, whether it’s a screenshot, an image, or a full design system. It outperforms 3.6 Flash on Arena.ai’s WebDev Arena with an Elo score of 1588 vs 1538. For knowledge-dense fields like finance, law, and biosciences, 3.7 Flash delivers improved reasoning and accuracy. It significantly outperforms 3.6 Flash on the GDP.pdf benchmark (34.0% vs 22.0%), an eval for testing a model’s ability to process complex documents. It also surpasses 3.6 Flash in AutomationBench , demonstrating it can more effectively complete real-world business workflows (30.4% vs 17.0%). From a simple text prompt to a fully playable 3D game. We used Gemini 3.7 Flash combined with Nano Banana to dynamically generate characters, items, and textures in real-time. Stunning, interactive landing pages generated in a single shot. We used Gemini 3.7 Flash to orchestrate sub-agents, using Gemini Omni to create smooth, interactive parallax components. A robotics model getting trained with Gemini 3.7 Flash using multimodal understanding in a 3 agent graph loop that helps the robot learn faster. From a static PDF to an interactive data story. Watch how complex annual reports are transformed into engaging web experiences complete with live charts and aggregated insights. Better developer experience and price Gemini 3.7 Flash delivers a noticeably improved developer experience over 3.6 Flash. It better adapts to roadblocks, clarifies intent when needed, and follows instructions with greater fidelity. It thinks more diligently, putting in more effort into multi-step planning and tool calls. A more disciplined execution means less manual oversight and fewer retries across engineering workflows. 3.7 Flash is available through the end of the year at an introductory price 1 of $0.75/1M input tokens and $3.75/1M output tokens. This price combined with the enhanced model performance enables developers and customers to scale production-ready agents cost effectively. Early customer feedback is highlighting 3.7 Flash’s performance and precision, achieving results that are significantly better than 3.6 Flash at a low cost. Improving Gemini Spark with 3.7 Flash Gemini Spark, available to Google AI Pro and Ultra subscribers in over 160 countries , will be using Gemini 3.7 Flash starting today. We launched Spark at I/O as your personal AI agent that runs 24/7, taking action on your behalf while under your direction. This model update makes Spark more efficient for knowledge work with improved tool use for Google Workspace apps, delivering improved accuracy and output quality for complex, multi-skill workflows. With 3.7 Flash, Gemini Spark can turn ideas into action more efficiently by consolidating files, drafting emails, and updating status documents. Built with safety in mind We continually work to improve the coverage and robustness of Frontier Safety safeguards . Gemini 3.7 Flash is shipping with updated safeguards against misuse in the domains of Chemical, Biological, Radiological, and Nuclear (CBRN) and cyber offense, while enabling beneficial use cases, in accordance with our approach to bioresilience and our cyber program . For more information, see the 3.7 Flash model card . Try it today Developers : Explore agent-first workflows in Google Antigravity or start building today in the Gemini API via Google AI Studio and Android Studio . Get started with our developer guide . Enterprises : Access 3.7 Flash in Gemini Enterprise Agent Platform and the Gemini Enterprise app. Individuals : Available via Spark, your 24/7 personal agent in the Gemini app for Google AI Pro and Ultra subscribers in supported countries . Detailed benchmarks Get the latest news from Google in your inbox Done. Just one step more. Check your inbox to confirm your subscription. You can also subscribe with a . Your information will be used in accordance with Google&#x27;s privacy policy. You may opt out at any time</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/dali-rajic-chief-revenue-officer" target="_blank">OpenAI appoints Dali Rajic as Chief Revenue Officer</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 13, 2026 &middot; 09:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 13, 2026 Company OpenAI appoints Dali Rajic as Chief Revenue Officer As enterprise AI deployment accelerates, OpenAI is building on its global scale to grow even faster.</span> <span>Loading… Dali Rajic will be joining as Chief Revenue Officer, leading OpenAI’s global revenue organization.</span> <span>OpenAI brings together research, products, deployment, and infrastructure to make AI more capable, more affordable, and broadly useful.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 13, 2026 Company OpenAI appoints Dali Rajic as Chief Revenue Officer As enterprise AI deployment accelerates, OpenAI is building on its global scale to grow even faster. Loading… Dali Rajic will be joining as Chief Revenue Officer, leading OpenAI’s global revenue organization. OpenAI brings together research, products, deployment, and infrastructure to make AI more capable, more affordable, and broadly useful. Our products now reach more than one billion weekly active users and more than two million businesses—twice as many as a year ago. Denise Dresser helped make that possible. During a formative period for both OpenAI and the enterprise AI market, she built the team, strengthened relationships with major customers, and established the commercial foundation that has brought our business to this point. Denise will leave OpenAI to pursue other opportunities following a transition period, during which she will work closely with the business team to support our customers. We’re deeply grateful for her leadership and everything she’s done for OpenAI. We’re now at an inflection point: the next generation of models will change not just how work gets done but how companies are built and run. Dali will build the revenue operating system needed to scale for this next phase. Dali has deep expertise in running disciplined, metrics-led revenue organizations that scale globally and selling to both large enterprises and technical customers. Most recently, he served as President and Chief Operating Officer of Wiz (recently acquired by Google), helping build the operating discipline and customer-focused execution behind one of the fastest-growing cyber companies. Prior to Wiz, Dali served as President and Chief Operating Officer of Zscaler and as Chief Customer and Revenue Officer at AppDynamics. “We’re moving into a compute-powered economy, with AI becoming embedded in every workflow. Denise has led our revenue organization through a formative period for the business and has worked tirelessly to get the team to where it is today. The way we’re deploying this technology is changing rapidly, and Dali will turn what we’ve learned into repeatable execution as we build out the full system to make AI broadly useful for people and businesses.” — Greg Brockman, President and Co-Founder To further accelerate this work, OpenAI has also formed a strategic partnership with Chad Peets and RPT Partners to support our ongoing efforts to build a world-class go-to-market team. “OpenAI has extraordinary technology, products that more than one billion people already love, and enormous market pull. I’m excited to join the team, build on the momentum already in place, and lead the revenue organization as we help customers realize the full value of AI.” — Dali Rajic, Chief Revenue Officer 2026 Culture &amp; Careers Author OpenAI Keep reading View all Partnering with CodeAI to prepare the first AI generation Company Aug 18, 2026 OpenAI joins PORTS-Pike project Global Affairs Aug 17, 2026 How enterprises put AI to work Company Aug 12, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Aug/12/florian-herrengt/" target="_blank">Quoting Florian Herrengt</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Aug 12, 2026 &middot; 15:08 UTC</span>
+          </div>
+          <p class="summary"><span>But then users start to report a weird bug.</span> <span>It&#x27;s the 4th time your team has been trying to fix it.</span> <span>Neither of you has any idea whether any of it is true but Claude seems very confident.</span> <span>[...] This project has become so convoluted, with so many layers and services, that no one on your team could possibly start to understand what&#x27;s going on.</span> <span>— Florian Herrengt , AI is removing the middle class of software engineering Tags: ai-misuse , cognitive-debt , generative-ai , ai , llms , ai-assisted-programming</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>But then users start to report a weird bug. It&#x27;s the 4th time your team has been trying to fix it. I mean... asking AI to fix it. Unfortunately, it seems like not even Fable can figure it out. You go talk to the person who worked on this feature. &quot;So where does the data come from?&quot; &quot;Hmm... actually I don&#x27;t know. Let me ask Claude.&quot; You sit next to each other watching an endless wall of text appear on the screen. Neither of you has any idea whether any of it is true but Claude seems very confident. [...] This project has become so convoluted, with so many layers and services, that no one on your team could possibly start to understand what&#x27;s going on. — Florian Herrengt , AI is removing the middle class of software engineering Tags: ai-misuse , cognitive-debt , generative-ai , ai , llms , ai-assisted-programming</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/how-enterprises-put-ai-to-work" target="_blank">From assistance to execution: How enterprises put AI to work</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 12, 2026 &middot; 06:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 12, 2026 Company From assistance to execution: How enterprises put AI to work Two new reports show how AI adoption is spreading across firms and workers—and what frontier organizations are doing differently.</span> <span>Frontier firms—those in the top 10% of AI usage each month—now generate 8.3× as many output tokens per active user as typical firms.</span> <span>These reports reveal five key insights on how organizations are putting AI to work: Enterprise use is becoming more agentic.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 12, 2026 Company From assistance to execution: How enterprises put AI to work Two new reports show how AI adoption is spreading across firms and workers—and what frontier organizations are doing differently. Read Enterprise Signals Read working paper (opens in a new window) Loading… Organizations are expanding both where they use AI and what they ask it to do. Enterprise AI is moving from assistance to execution , yet not all firms are making that transition at the same pace. Frontier firms—those in the top 10% of AI usage each month—now generate 8.3× as many output tokens per active user as typical firms. The measure is a proxy for depth of use, and the widening gap appears alongside greater adoption of capabilities that connect agents to company context, tools, and repeatable workflows. Today we are publishing two complementary studies that examine this shift. Enterprise Signals leads with a practical view of agentic AI across OpenAI’s enterprise customer base, including what frontier firms are doing differently and where agentic work is spreading. The companion working paper, How Organizations Use AI: Evidence from ChatGPT ⁠ (opens in a new window) , examines how adoption grows across companies, roles, and levels of seniority. Together, the studies point to a practical enterprise agenda: connect agents to the context and tools needed to complete valuable work; establish clear permissions, review, and governance; and help employees turn effective individual workflows into shared ways of working. These reports reveal five key insights on how organizations are putting AI to work: Enterprise use is becoming more agentic. As of June, Codex generated 64% of combined Codex and ChatGPT output tokens among enterprise customers, suggesting that agents are enabling a shift toward more substantive, delegated work. The frontier gap is widening. Frontier firms—those in the top 10% of AI usage each month—now generate 8.3× as many output tokens per active user as typical firms, up from 2.6× in January. Frontier firms use advanced capabilities more often. Each week, 21% of active users at frontier firms use Plugins, compared with 9% at typical firms. At OpenAI, 95% of employees use Plugins weekly, highlighting the potential for deeper adoption. Agents are spreading across knowledge work. Since February, weekly active enterprise Codex users grew 108× in legal, 41× in sales, 41× in recruiting, and 26× in marketing, compared with 5× in engineering. Early-career employees use AI more. Usage is highest among early-career workers and falls among more senior employees, suggesting a potential comparative advantage in using AI. Enterprises are shifting from asking to doing Enterprise AI is moving from answering questions to carrying out work. Assistants help people think through work; agents help them complete it. Products like ChatGPT Work and Codex can use tools, create files, and produce work for review. Instead of asking AI how to prepare a presentation, for example, a worker can ask an agent to gather relevant information across sources and draft the presentation itself. This shift is visible in enterprise usage. As of June, Codex generated 64% of combined Codex and ChatGPT output tokens among enterprise customers. Agentic workflows typically generate more output because they carry out longer, multi-step tasks, so the figure reflects both how often Codex is used and how much output those tasks produce. The frontier gap widens as firms embrace agentic AI Each month, we rank enterprise customers by output tokens per active user. Frontier firms are those in the top 10% that month, while typical firms fall between the 45th and 55th percentiles. As of June, frontier firms generated 8.3× as many output tokens per active user as typical firms, a threefold increase compared to the 2.6× gap in January. The frontier gap appears across industries and company sizes, showing that intensive AI use is not limited to technology companies. Enterprise Signals examines how the gap varies across industries and functions. Among the U.S. public companies studied in How Organizations Use AI: Evidence from ChatGPT ⁠ (opens in a new window) , enterprise adopters had stronger financial measures compared to non-adopters. They held more assets, employed more workers, and had higher levels of R&amp;D investment. Read together, the reports suggest that access alone may not be enough to scale AI. Complementary investments in continuous employee learning, shared workflows, data infrastructure, and governance can support broader and deeper adoption. Advanced capabilities like Plugins and skills are more common at frontier firms AI agents need access to the right context and tools to be effective. Plugins ⁠ (opens in a new window) bundle capabilities that help agents complete specific workflows. They can combine skills that provide reusable instructions with apps that connect to company data, tools, and actions. For example, a sales Plugin can combine a team’s playbook with access to its CRM, allowing an agent to use current customer information and past proposals to prepare a tailored response for review. Frontier firms have a clear lead in advanced capabilities. Among weekly active users, 21% at frontier firms use Plugins and 19% use skills, compared with just 9% and 3% at typical firms. However, frontier firm adoption represents only a fraction of what is possible. OpenAI’s internal usage the potential for deeper usage of these capabilities, with weekly Plugin usage at 95% of active users. Our research on how agents are transforming work provides a closer look at how employees at OpenAI use advanced capabilities. Agents are spreading across knowledge work Software engineering was an early center of agentic adoption, but Codex use is now growing quickly across knowledge-work functions. Since February, weekly active enterprise Codex users grew 108× in legal, 41× in sales, 41× in recruiting, and 26× in marketing, compared with 5× in engineering. At Virgin Atlantic , that shift is visible across the business. Engineering teams use Codex to refactor legacy code in 30 minutes instead of two weeks. Their product teams use ChatGPT Work to complete weeks of competitive research in hours, shaping the airline’s five-year digital strategy. Enterprise Signals explores how these capabilities are spreading across industries and functions, drawing on a sample of more than 10 million messages. Early-career employees use AI more Many surveys have reported higher levels of AI use among leaders and executives. However, administrative data from millions of conversations finds the opposite. Six months after adoption, early-career employees sent 13 more messages per week than executives. For leaders, the result points to a practical opportunity to identify employees with the strongest AI habits and make their workflows visible, helping effective practices spread across all levels. What leaders can do to narrow the frontier gap Companies may have access to the same models, but frontier firms are putting them to work faster and more deeply across their organizations. The opportunity for leaders is to close the frontier gap by extending agentic workflows beyond engineering and turning successful individual use cases into repeatable practices across the organization. By connecting agents to company context and tools, with clear permissions, governance and human review, firms can move from assistance to execution. Read Enterprise Signals for deeper insights into how frontier firms are putting AI to work across industries and functions. OpenAI Enterprise customers can also request a customized benchmark to see how their organization compares against frontier firms. Read How Organizations Use AI: Evidence from ChatGPT ⁠ (opens in a new window) to understand how adoption spreads across firms and workers. Keep reading View all How the world is putting ChatGPT to work Company Aug 6, 2026 How AI is expanding what people do at work Company Jul 27, 2026 How agents are transforming work Company Jun 25, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/ringcentral" target="_blank">How RingCentral builds AI-native work from engineering to ops</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 12, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 12, 2026 How RingCentral builds AI-native work from engineering to ops With ChatGPT Work and Codex, RingCentral builds AI product features faster and centralizes operational intelligence.</span> <span>Today, the company is extending its tradition of innovation by embracing AI-native ways of working.</span> <span>By giving every employee room to experiment with ChatGPT Work and Codex, RingCentral has ensured that anyone at the company, regardless of engineering experience, can build transformative products and infrastructure.</span> <span>“When you put real AI tools in everyone’s hands, the whole company becomes a product organization.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 12, 2026 How RingCentral builds AI-native work from engineering to ops With ChatGPT Work and Codex, RingCentral builds AI product features faster and centralizes operational intelligence. Contact sales Company size: Enterprise Region: North America Industry: Technology Products: ChatGPT, Codex Loading… With nearly three decades of innovation in business communications, RingCentral has grown into a global company generating more than $2.6 billion in annual revenue, with thousands of employees worldwide. Today, the company is extending its tradition of innovation by embracing AI-native ways of working. By giving every employee room to experiment with ChatGPT Work and Codex, RingCentral has ensured that anyone at the company, regardless of engineering experience, can build transformative products and infrastructure. “When you put real AI tools in everyone’s hands, the whole company becomes a product organization. Every one of our products—including but not limited to our Agentic Voice AI portfolio of AIR, AVA, ACE—gets sharper as we compress the distance between an idea and a shipped feature, and that’s exactly what AI-native development lets us do.” —Kira Makagon, President &amp; Chief Operating Officer, RingCentral The AI-Native Challenge To encourage AI fluency across a global engineering organization, RingCentral’s Office of the CEO sponsored an AI-Native Challenge. Every participant was given ChatGPT Work and Codex, and asked to build a complete, end-to-end project—with no mandated workflow or other constraints. More than a coding exercise, the challenge immersed employees in the full AI-native development lifecycle, from planning and implementation to testing, documentation, CI/CD, and iteration. Nearly every participant created a working repository, and thousands of employees, including non-technical staff and even executives, delivered functioning projects. For RingCentral, the challenge is a working model of a broader strategy: using AI internally to build products faster for their customers. The company applies the same Codex-enabled approach to accelerate development of its own AI-powered product portfolio—RingCentral AI Receptionist (AIR), AI Virtual Assistant (AVA), and AI Conversation Expert (ACE)—shortening the distance between an idea and a shipped customer feature. “The clearest lesson from the challenge was that AI-native development isn’t about replacing engineers—it’s about amplifying them. AI accelerates the entire development cycle, while humans remain in the loop, guiding product requirements, providing business context, making architectural decisions, and ensuring every outcome is tested and verified.” —Engineering leader at RingCentral who spearheaded the project Running daily PMO operations with ChatGPT Work Encouraged by initiatives like the AI-Native Challenge, non-engineering departments at RingCentral have adopted AI-native ways of working. The Program Management Office (PMO) has used ChatGPT Work to build what amounts to an operating system for program management, replacing scattered and chat history with AI-powered workflows for status tracking, reporting, release governance, and knowledge transfer. “ChatGPT brings my project context together. With ChatGPT Work, I can turn that context into actions and execution.” —Vaneet Seth, Senior Manager, R&amp;D Efficiency, PMO, RingCentral One application is automated status reporting: Using ChatGPT Work, the PMO team built workflows that generate notifications from issues tracked across Jira, Google Sheets, CRM systems, and other sources. It’s the difference between walking into a meeting asking what changed and walking in with blockers, owners, and actions already defined. What started as an open invitation to experiment, with thousands of engineers building from scratch, has matured into the operational backbone of how teams like the PMO run their programs. By reducing manual coordination, ChatGPT Work enables RingCentral’s PMO to handle more projects with greater accuracy. Across engineering and operations alike, the same pattern holds: giving employees room to experiment with AI doesn’t just build individual skills, it builds the infrastructure the company runs on. Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading Partnering with CodeAI to prepare the first AI generation Company Aug 18, 2026 Introducing ChatGPT for Teens Product Aug 18, 2026 The Defender’s Window Security Aug 17, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/daybreak-models-are-now-available-on-aws" target="_blank">Daybreak models are now available on AWS</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 11, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>Today, we’re sharing the next step in our work with AWS: making Daybreak capabilities available through Amazon Bedrock.</span> <span>With Daybreak Access , defenders can use frontier cyber models within their existing AWS environments.</span> <span>Get started Daybreak Red and Daybreak Blue require enrollment in Daybreak Access .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 11, 2026 Product Daybreak models are now available on AWS Loading… Earlier this year, OpenAI frontier models and Codex became generally available on AWS, giving enterprises a new path to bring advanced AI into production. Today, we’re sharing the next step in our work with AWS: making Daybreak capabilities available through Amazon Bedrock. With Daybreak Access , defenders can use frontier cyber models within their existing AWS environments. Daybreak Blue and Daybreak Red access levels are both available in AWS: Daybreak Blue provides access to frontier general-purpose models, including GPT‑5.6 Sol, with safeguards tailored to authorized defensive security work. Daybreak Red provides access to our purpose-trained cybersecurity models for authorized vulnerability research, exploit validation, and security testing. These models help accelerate vulnerability research, detection engineering, and incident response, from initial discovery through a validated fix. They also support complex workflows such as exploit reproduction and mitigation development. Bringing frontier cybersecurity capabilities to AWS For enterprises, adopting specialized cybersecurity capabilities requires more than model performance. It also requires security review, governance, procurement, access controls, and an operating model teams can support. Through Amazon Bedrock, eligible customers can use Daybreak, including Daybreak Red and Daybreak Blue, within the AWS environments where they already build, secure, and operate software. This gives security teams a clearer path to apply frontier AI through familiar AWS security, governance, and operational workflows. Together, OpenAI and AWS are helping more organizations put advanced cybersecurity capabilities to work in production. Get started Daybreak Red and Daybreak Blue require enrollment in Daybreak Access . Once approved, you can access the model through the Amazon Bedrock console or the Responses API using the bedrock-mantle endpoint. To learn more, see the documentation. ⁠ (opens in a new window) Learn more about Daybreak Red and Daybreak Blue. 2026 AWS Author OpenAI Keep reading View all Introducing ChatGPT for Teens Product Aug 18, 2026 Previewing Ultrafast mode: GPT-5.6 Sol at up to 14X the speed Product Aug 13, 2026 Testing ads in ChatGPT Company Aug 11, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/building-an-ai-native-finance-function" target="_blank">What building an AI-native finance function taught me</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 10, 2026 &middot; 17:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 10, 2026 Company What building an AI-native finance function taught me Five lessons for CFOs redesigning work around artificial intelligence.</span> <span>Loading… By Sarah Friar Finance has become a real-time function.</span> <span>The work has already changed how our team operates.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 10, 2026 Company What building an AI-native finance function taught me Five lessons for CFOs redesigning work around artificial intelligence. Loading… By Sarah Friar Finance has become a real-time function. To me, the opportunity is much bigger than closing the books faster or refreshing a forecast more often. It is about seeing the business as it changes, helping leaders act sooner, and giving finance teams more time to shape what happens next. When I joined OpenAI two years ago, there was only a small finance team supporting a company growing at extraordinary speed. We needed to build the function from the ground up and make AI fundamental to how we work, make decisions, and support the business. I also saw a familiar starting point. Closing the books and updating forecasts still involved manual, recurring work: finding information, explaining what changed, and assembling the inputs for a decision. We had access to the most advanced AI tools in the world, and we were still learning how to redesign finance around them. So we set two bold ambitions: a zero-day close and automated, continuously updated forecasting. The idea behind a zero-day close is to give leaders a real-time, reconciled, and traceable view of the company’s financial position. Continuous forecasting builds on that foundation, showing how the business is changing, what could happen next, and which decisions could alter the outcome. We are still building toward both ambitions. The work has already changed how our team operates. It has pushed us beyond the limitations of static spreadsheets, manual searches for supporting records, and presentations toward live tools built on the full context and data of the business. It has also given finance professionals the ability to build the tools their work requires and carry their expertise further. For me, that is the real promise of an AI-native finance function: a team that understands what is happening as it happens, helps leaders see the choices ahead, and gives the business more time to act while the outcome can still change. Getting there requires more than adopting new technology. It requires redesigning work around the decisions that matter, giving people room to experiment, building clear accountability into every workflow, and measuring the dependable work AI completes to provide a clear ROI. Here are five practical lessons from our experience that every CFO can apply. Give everyone access, then create a reason to use it The first step was broad access. People need the freedom to explore AI in the context of their own work. Access creates the most value when it is paired with structured experimentation around real problems. We brought sales engineers into a finance hackathon and asked the team to bring work they wanted to transform. One result was IR-GPT, a custom GPT grounded in the approved materials our investor relations team uses to answer diligence questions. We also began building custom GPTs for areas including procurement and tax. The hackathon turned AI from an abstract capability into a working tool. In a single day, people could identify a recurring task, build a solution, test it with colleagues, and improve it. The use cases came from the people closest to the work, while technical experts helped them move faster. For CFOs, the lesson is simple: you need bottom-up experimentation and top-down strategy. Put secure, capable AI in people’s hands and let those closest to the work identify better ways of getting things done. At the same time, focus leadership attention and on the changes that will matter most to the business. The real opportunity comes when both meet: practical ideas from the front lines applied to your biggest priorities. Redesign the full workflow around the decision Finance teams spend enormous energy assembling the inputs to a decision. A forecast review might require people to find the latest data, reconcile spreadsheets, explain variances, build charts, prepare documents, and turn those documents into slides. The analysis eventually reaches the decision-maker, but much of the team’s time has already gone into assembling it. AI changes the unit of work. Finance leaders can redesign the full path from source data to decision. Consider the close. Every CFO knows the monthly process: actuals in one system, purchase orders in another, accruals in a spreadsheet, and the explanation for a variance buried in a message thread. We are working toward a different operating model. The ambition behind a zero-day close is to connect approved spending plans, general-ledger actuals, purchase orders, accruals, and transaction details in a continuously reconciled view. Each variance can be traced to the underlying activity. AI can prepare an initial explanation and flag the exceptions that require attention. Finance validates the numbers, applies judgment, and owns the final sign-off. Budget-versus-actuals reconciliation: approved inputs, source checks, and a finance-owned review The close does not disappear. What begins to disappear is the scramble to reconstruct the business after the period ends. That reconciled foundation can power a continuously updated forecast. Our team is building workflows that bring together statistical models, sales conversations, account-level evidence, operating data, and finance judgment. We are moving beyond the limitations of spreadsheets into more interactive tools that bring the statistical forecast, supporting evidence, and scenarios into one live view. Leaders can see what changed, why it changed, and which decisions could change the outcome. When a new customer commitment is missing from the baseline, the system can surface the supporting evidence and show how an adjustment would affect the quarter or year. Finance can inspect the assumptions, compare scenarios, and decide whether to update the approved forecast. Interactive forecasting and scenario planning That same view can help leaders make better capital-allocation decisions. A finance team can see where marketing spend is producing a return, where results are tapering, and what reallocating the next dollar could mean. Dynamic capital allocation: diminishing-return curves highlight where investment should be rebalanced Automated forecasting is the destination. A continuously refreshed view, faster scenario analysis, and clear finance ownership are how we get there. The broader lesson is to begin with a consequential decision and work backward. Map the data, tools, approvals, and handoffs required to support it. Then determine which parts AI can analyze, coordinate, or complete. This improves the speed and quality of the entire decision cycle. Finance professionals become builders The bigger transformation is that finance professionals can now build the tools their work requires. Recent OpenAI research shows that 40% of finance professionals’ specialized AI use involves work outside traditional finance, and 22% involves engineering-related tasks. Everyone on my team is building custom AI dashboards and tools with ChatGPT Work and Codex. The work is moving from static Excel models and PowerPoint decks toward live dashboards that sit on top of the full context and data of the business. These tools can carry an analysis forward, respond to follow-up questions, and update as the underlying information changes. One teammate supporting our advertising business had never coded. He used Codex to build a tool that turns our monthly advertising forecast into weekly and daily plans. It accounts for weekdays and holidays, compares forecasts, and keeps every number tied to the approved model. Marketing leaders can quickly see what changed, where to invest, and what additional spending could return. The people who understand the problem can now shape the solution. Building these tools also prompts them to reconsider the usual way of doing the job. A finance professional can create the decision-making infrastructure the business needs, test it with colleagues, and improve it as the work evolves. Finance teams are not becoming less specialized. They are gaining the ability to carry their expertise further. Pair speed with clear accountability and controls IR-GPT taught us an important lesson about control. Investor diligence questions can require an analyst to search across prior materials, draft a response, check consistency, and coordinate review. With a custom GPT grounded in approved sources, work that previously took hours, and sometimes continued overnight, can now produce a strong first draft in seconds. The human role remains central. Our investor relations team reads the draft, adds judgment and context, and checks that our answers remain consistent across investors. AI accelerates the work. People own the result. That is the right model for finance. CFOs should work with IT and governance teams to define which data an AI system can access, which actions it can take, when approval is required, and when an issue should be escalated. Every output should connect to a reliable source. Every forecast should carry a clear explanation. Every change to an approved baseline should require finance authorization. The brief craze of “tokenmaxxing” has come and gone. It is now straightforward to set usage limits, budget controls, role-based access, model-routing rules, and approval thresholds. CFOs can manage AI usage with the same discipline they bring to any variable expense while giving teams room to build and experiment. Clear accountability creates the confidence required to move faster. As synthesis, reconciliation, and preparation accelerate, finance professionals gain more time to challenge assumptions, advise the business, and exercise judgment. Measure value per unit of intelligence CFOs need a scorecard for AI grounded in operating performance. Buying more seats or using more tokens doesn’t tell you much. What matters is whether the work gets done well and what it really costs. For each workflow, ask four questions: Did AI complete work that mattered? What did it cost, including employee time, review, and rework? Was the result good enough to use? Did it help us move faster or make a better decision? For a finance team, useful work might mean a forecast updated, a variance explained, an audit request completed, or a board question answered. For the close, the scorecard might include cycle time, the share of transactions reconciled automatically, the number of exceptions requiring review, and the time required to explain a variance. For forecasting, it could include forecast accuracy, refresh frequency, time required to produce a new scenario, and the quality of the decisions the forecast supports. The cheapest model isn’t always the most economical. If a better model gets to a reliable answer with fewer attempts and less review, it may cost less overall. The CFO’s opportunity Finance sits at the center of strategy, capital, data, risk, and performance. That gives CFOs a unique view of how the company works and a powerful mandate to lead its AI transformation. An AI-native finance function is defined by faster cycles, stronger controls, better decisions, and more time for judgment. The path begins with a meaningful workflow and expands through evidence: give people the tools, help them rebuild the work, keep accountability clear, and measure the outcome. The zero-day close and continuous forecast express a broader ambition: a finance team that understands what is happening as it happens, shows leaders what could happen next, and helps the company make better decisions sooner. The result is a finance team with greater capacity and a CFO with a clearer view of the business. It also creates a working model for how the entire company can turn intelligence into durable value. As I always say, you can’t be what you can’t see. If we want our finance teams to embrace what’s possible with AI, we have to show them what it looks like—and as CFOs, that starts with us. My finance team shared what this looks like in practice, you can watch that recording here ⁠ (opens in a new window) . Author Sarah Friar Keep reading View all Partnering with CodeAI to prepare the first AI generation Company Aug 18, 2026 OpenAI joins PORTS-Pike project Global Affairs Aug 17, 2026 OpenAI appoints Dali Rajic as Chief Revenue Officer Company Aug 13, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/responsible-ai-infrastructure-texas" target="_blank">OpenAI’s letter to Governor Abbott on responsible AI infrastructure in Texas</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 10, 2026 &middot; 14:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 10, 2026 Global Affairs OpenAI’s letter to Governor Abbott on responsible AI infrastructure in Texas Read the letter (opens in a new window) Loading… OpenAI sent a letter to Texas Governor Greg Abbott outlining our commitment to responsible AI infrastructure development in Texas.</span> <span>We look forward to working with state and local leaders, utilities, and communities to ensure AI infrastructure delivers meaningful benefits to Texans.</span> <span>Read the letter ⁠ (opens in a new window) 2026 Author OpenAI Keep reading View all OpenAI joins PORTS-Pike project Global Affairs Aug 17, 2026 New policy ideas for the Intelligence Age Global Affairs Aug 17, 2026 Advancing responsible AI across Europe Global Affairs Jul 31, 2026</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/claude-code-for-normal-people-skills" target="_blank">Claude Code for normal people: skills, voice mode, and how to collaborate with AI</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Aug 10, 2026 &middot; 12:01 UTC</span>
+          </div>
+          <p class="summary"><span>.new —Turn your idea into a real product Hyperagent —Deploy fleets of agents that handle real work Grace’s background and why she started building with Claude The pipeline operator: what it is and how it runs her business every hour Building the muscle memory to use AI What goes into building a skill file (voice guide, proposal rules, versioning) How she built her proposal maker The voice guide: teaching Claude how she thinks, not just how she writes Live demo of the custom Gmail replacement built in Cowork Workout tracking, plant photos, and tiny daily Claude habits The biggest misconception holding people back from adopting AI What Grace does when Claude is not giving her what she wants Claude builds a proposal for Claire in real time<ul><li>Claude: <a href="https://claude.ai" target="_blank" rel="noopener">https://claude.ai</a></li><li>Claude Code: <a href="https://claude.ai/code" target="_blank" rel="noopener">https://claude.ai/code</a></li><li>Netlify: <a href="https://www.netlify.com" target="_blank" rel="noopener">https://www.netlify.com</a></li><li>Google Forms: <a href="https://forms.google.com" target="_blank" rel="noopener">https://forms.google.com</a></li><li>Google Sheets: <a href="https://sheets.google.com" target="_blank" rel="noopener">https://sheets.google.com</a></li><li>Google Cloud (for service accounts and custom connectors): <a href="https://cloud.google.com" target="_blank" rel="noopener">https://cloud.google.com</a> Other</li><li>Stratechery by Ben Thompson: <a href="https://stratechery.com" target="_blank" rel="noopener">https://stratechery.com</a> X: <a href="https://x.com/graceclarke" target="_blank" rel="noopener">https://x.com/graceclarke</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/model-ml" target="_blank">Model ML completes finance work more efficiently with GPT-5.6 Sol</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 10, 2026 &middot; 12:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 10, 2026 Startup Model ML completes finance work more efficiently with GPT‑5.6 Sol Model ML uses GPT‑5.6 Sol in workflows that create editable PowerPoint and Excel files, with 21% fewer tokens per deck than Fable 5.</span> <span>The finished PowerPoint deck or Excel workbook has to be editable and ready for scrutiny.</span> <span>Native PowerPoint creation model benchmark, Model ML’s Composite eval Metric GPT 5.6 Sol Δ Sol–O5 Opus 5 Fable 5 Opus 4.8 GPT 5.6 Terra GPT-5.5 Deck quality — Overall score, readiness-gated 59.9% +3.2 56.7% 59.3% 58.7% 52.5% 44.4% Deliverability — Professional-readiness rate (gate) 43.3% +16.6 26.7% 32.0% 17.3% 17.3% 16.0% Deck produced — Items yielding a .pptx 100.0% +24.0 76.0% 82.0% 80.0% 80.0% 74.0% Brief adherence — Instruction following 78.8% +0.9 77.9% 78.5% 78.4% 74.1% 79.6% Visual quality — Aggregate visual judge — components below 77.9% −1.4 79.3% 78.9% 75.1% 74.4% 68.5% Layout — Layout &amp; composition 75.9% −2.9 78.8% 78.7% 76.2% 76.1% 67.8% Hierarchy — Visual hierarchy 87.2% +0.5 86.7% 85.5% 85.5% 85.6% 83.7% Data viz — Chart legibility 78.8% −4.3 83.1% 79.7% 73.3% 74.6% 68.4% Consistency — Design coherence 97.8% +4.5 93.3% 95.8% 97.5% 75.0% 90.0% Efficiency — Tokens per deck (lower = better) 1.10M +144K 953K 1.40M 1.16M 720K 1.01M Native Excel creation model benchmark, Model ML’s Composite eval Metric GPT 5.6 Sol Δ Sol–O5 Opus 5 Fable 5 Opus 4.8 GPT 5.6 Terra GPT-5.5 Key outputs correct — Headline accuracy vs golden model 83.3% +0.5 82.8% 80.6% 74.4% 82.2% 83.3% Fully correct models — Items with every key output right 50.0% −10.0 60.0% 60.0% 40.0% 53.3% 60.0% Outputs located — Expected outputs found in workbook 100.0% ±0 100.0% 100.0% 92.2% 98.9% 100.0% Workbook contract — Structure / no-errors / no-placeholder gates 100.0% ±0 100.0% 100.0% 100.0% 100.0% 100.0% Efficiency — Tokens per workbook (lower = better) 2.44M −1.40M 3.83M 2.59M 2.91M 1.64M 1.16M Wall clock — Minutes per workbook (lower = better) 7.0 min −0.5 min 7.5 min 8.4 min 11.5 min 4.2 min 3.9 min Taken together, the Composite results shown above gave Model ML the evidence to expand GPT‑5.6 Sol in production, including some workflows previously handled by Opus 4.8.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 10, 2026 Startup Model ML completes finance work more efficiently with GPT‑5.6 Sol Model ML uses GPT‑5.6 Sol in workflows that create editable PowerPoint and Excel files, with 21% fewer tokens per deck than Fable 5. Start building with OpenAI Company size: Startup Region: Global Industry: Finance, Technology Products: API Results 21% Fewer tokens per PowerPoint deck than Fable 5 Results 16.6 Percentage-point lead in professional readiness over Opus 5 Results 36% Fewer tokens per Excel workbook than Opus 5 Results 5 Minutes to build a bespoke tearsheet, down from about one hour Loading… Before financial analysis can stand up in front of clients or senior decision-makers, teams have to carry it through a demanding last mile: reconciling evidence, building and formatting the file, checking every number, and linking each claim to its source. The finished PowerPoint deck or Excel workbook has to be editable and ready for scrutiny. Model ML cofounders and brothers Arnie and Chaz Englander saw how much work that required when, after two successful exits, they began investing through a private family office and, as builders do, building software to help themselves. Grown out of that software, Model ML’s agents help finance professionals carry a workflow from the initial request through research, analysis, and a finished deck or workbook. At the center, a core agent plans the work, selects the right tools, reconciles evidence, and runs calculations, routing each step to the model best suited to it, which is often GPT‑5.6 Sol. Among those tools is Model ML’s own document tooling, which creates native PowerPoint and Excel files with traceable sources. “Earlier models could do the work of an analyst, but the user would have to clearly break down the task, specifically what it wanted the output to look like. With GPT-5.6 Sol, we’re finding that the agent gets far closer to the final output.” —Chaz Englander, Co-founder and CEO at Model ML Solving the last mile of finance work Model ML helps finance teams by automating finance workflows end to end. From a brief and source material, the agent can carry an assignment through research and modeling to finished materials for clients or deal teams. The finance professional checks the assumptions, sources, and message before sharing the work. Model ML calls the product “surface-agnostic.” A finance professional can start an assignment in email, or the Model ML app, and continue it in its Microsoft Office plug-ins without explaining it again. That continuity extends into the finished work. For an investment committee deck, Model ML can turn a brief and source material into an editable PowerPoint. For an Excel task, the agent can start with a client template or blank workbook, gather the required data, build formulas and logic across multiple tabs, then apply finance-specific formatting to produce a complete spreadsheet or financial model. In Model ML’s Composite, the company’s evaluation benchmark for AI in financial services, GPT‑5.6 Sol used 36% fewer tokens per workbook than Opus 5 in an Excel workflow. “The user should be focused on the judgment, such as refining the assumptions or sharpening the message, and not just rebuilding the analysis.” —Chaz Englander, Co-founder and CEO at Model ML By carrying the work through that last mile, the agent can also save time on individual deliverables and help teams process large volumes of source material. At one global asset manager, a bespoke tearsheet that took an analyst about an hour to assemble now takes about five minutes. In another workflow, Model ML agents processed virtual data rooms containing more than 100,000 rows and hundreds of files in one pass. GPT‑5.6 Sol delivers more review-ready finance deliverables with fewer tokens Model ML evaluated GPT‑5.6 Sol alongside other leading models across a range of finance workflows. Its Composite evaluations follow an assignment from the initial finance brief through research and calculations to an editable deck or spreadsheet, then check the numbers, sources, formulas, and structure, as well as visual quality for presentations. For PowerPoint, Model ML’s Composite evaluation incorporates real workflows and spans hundreds of generated decks, with a detailed scoring rubric. GPT‑5.6 Sol completed the PowerPoint workflow in 100% of test cases, compared with 76% for Opus 5, and cleared Model ML’s professional-readiness gate, a measure of whether the output was ready for substantive review, in 43.3% of cases, versus 26.7%. It also led Opus 5 on deck quality, brief adherence, hierarchy, and consistency. Native PowerPoint creation model benchmark, Model ML’s Composite eval Metric GPT 5.6 Sol Δ Sol–O5 Opus 5 Fable 5 Opus 4.8 GPT 5.6 Terra GPT-5.5 Deck quality — Overall score, readiness-gated 59.9% +3.2 56.7% 59.3% 58.7% 52.5% 44.4% Deliverability — Professional-readiness rate (gate) 43.3% +16.6 26.7% 32.0% 17.3% 17.3% 16.0% Deck produced — Items yielding a .pptx 100.0% +24.0 76.0% 82.0% 80.0% 80.0% 74.0% Brief adherence — Instruction following 78.8% +0.9 77.9% 78.5% 78.4% 74.1% 79.6% Visual quality — Aggregate visual judge — components below 77.9% −1.4 79.3% 78.9% 75.1% 74.4% 68.5% Layout — Layout &amp; composition 75.9% −2.9 78.8% 78.7% 76.2% 76.1% 67.8% Hierarchy — Visual hierarchy 87.2% +0.5 86.7% 85.5% 85.5% 85.6% 83.7% Data viz — Chart legibility 78.8% −4.3 83.1% 79.7% 73.3% 74.6% 68.4% Consistency — Design coherence 97.8% +4.5 93.3% 95.8% 97.5% 75.0% 90.0% Efficiency — Tokens per deck (lower = better) 1.10M +144K 953K 1.40M 1.16M 720K 1.01M Native Excel creation model benchmark, Model ML’s Composite eval Metric GPT 5.6 Sol Δ Sol–O5 Opus 5 Fable 5 Opus 4.8 GPT 5.6 Terra GPT-5.5 Key outputs correct — Headline accuracy vs golden model 83.3% +0.5 82.8% 80.6% 74.4% 82.2% 83.3% Fully correct models — Items with every key output right 50.0% −10.0 60.0% 60.0% 40.0% 53.3% 60.0% Outputs located — Expected outputs found in workbook 100.0% ±0 100.0% 100.0% 92.2% 98.9% 100.0% Workbook contract — Structure / no-errors / no-placeholder gates 100.0% ±0 100.0% 100.0% 100.0% 100.0% 100.0% Efficiency — Tokens per workbook (lower = better) 2.44M −1.40M 3.83M 2.59M 2.91M 1.64M 1.16M Wall clock — Minutes per workbook (lower = better) 7.0 min −0.5 min 7.5 min 8.4 min 11.5 min 4.2 min 3.9 min Taken together, the Composite results shown above gave Model ML the evidence to expand GPT‑5.6 Sol in production, including some workflows previously handled by Opus 4.8. For PowerPoint workflows, GPT‑5.6 Sol combined competitive deck quality with a higher rate of completed, review-ready decks than Opus 5 and Fable 5, while using about 21% fewer tokens than Fable 5. “Ready for real work means the user can move directly into real review,” says Englander. “The numbers trace back, the workbook recalculates, the slide is editable.” Creating investment decks that hold up in review PowerPoint gave Model ML a demanding test of whether GPT‑5.6 Sol was ready for real work. A deck can look polished and still fail in review if its numbers are wrong or untraceable, its charts are flattened, or its slides have to be rebuilt before they can be shared. Model ML ran the model inside its agent harness, paired with document creation and editing tools that let the agent create slides with editable graphs and tables. It keeps the original brief in context as it works, then reviews every slide visually before returning the file. The example below shows how Model ML’s PowerPoint output improved from GPT‑5.5 to GPT‑5.6 Sol, including clearer hierarchy and more consistent slide design. Before: GPT‑5.5 After: GPT‑5.6 Sol Today, Model ML’s harness provides the agent with toolkits it can load to access data integrations, document editing tools and skills, and code execution environments. This keeps the agent focused and gives it exactly the tools it needs to work with the user’s documents. Model ML reached this setup through on-site sessions with OpenAI. The teams traced how the agent planned presentations, selected tools, and maintained context, then used those findings to refine the agent’s instructions and decide when each toolkit should load. Building for how finance work is changing Model ML’s customers are moving toward browser-based outputs that stay connected to the models and source material behind them. Model ML’s platform can generate secure, interactive outputs that can update continuously or be locked to a moment in time. A reviewer could open an investment summary, click through to the financial model behind a figure, and work with the agent from the same page. “PowerPoint, Excel, and Word were designed for a world where creating knowledge work was manual,” says Englander. “AI has changed that assumption. The software itself is about to change.” OpenAI &lt;3 startups Join the community Start building (opens in a new window) Keep reading View all Warp’s big bet on building open source with GPT-5.5 Startup May 27, 2026 Parloa builds service agents customers want to talk to Startup May 7, 2026 Gradient Labs gives every bank customer an AI account manager Startup Apr 1, 2026</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 187</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
