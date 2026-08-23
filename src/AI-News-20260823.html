@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-08-23</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-08-23</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Aug/20/chatgpt-search-now-uses-the-siteoperator-at-scale/" target="_blank">ChatGPT search now uses the site:operator at scale</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Aug 20, 2026 &middot; 23:57 UTC</span>
+          </div>
+          <p class="summary"><span>ChatGPT search now uses the site:operator at scale Promptwatch is part of the emerging &quot;GEO&quot; space, for Generative Engine Optimization - the chatbot version of SEO, where companies offer tools and consulting to help your site increase its presence in replies to prompts inside tools like ChatGPT.</span> <span>The Promptwatch product uses automation to track responses to prompts across end-user chat products like ChatGPT, Claude, and Gemini.</span> <span>Tags: reddit , seo , openai , chatgpt , ai-assisted-search , system-prompts</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>ChatGPT search now uses the site:operator at scale Promptwatch is part of the emerging &quot;GEO&quot; space, for Generative Engine Optimization - the chatbot version of SEO, where companies offer tools and consulting to help your site increase its presence in replies to prompts inside tools like ChatGPT. The Promptwatch product uses automation to track responses to prompts across end-user chat products like ChatGPT, Claude, and Gemini. They publish aggregate reports on this as part of their own content marketing strategy, which do seem to provide credible hints as to otherwise invisible design changes to those products. Their own tracking shows a notable change aligned with the GPT-5.6 rollout earlier this month: The percentage of all ChatGPT Search fanout queries that contain the site:operator, per day. The share hovered between 0.3% and 0.5% for weeks, dipped briefly to 0.15% on August 3 to 5 (consistent with a staged rollout or pre-launch experiment), then jumped to 16-17% on August 8. It&#x27;s important to note that these figures only reflect the prompts for which they have automated tracking enabled. This corresponds to OpenAI&#x27;s somewhat vague August 6th announcement : For Plus and Pro users, we’re updating GPT‑5.6 Sol in Chat to be more reliable with facts and provide more focused answers. Once again I am hampered by OpenAI&#x27;s decision to actively obscure their system prompts, but from poking at ChatGPT I believe their latest search tool has a shape like search(query, recency, domains) rather than encouraging a site: operator directly. In a follow-up on August 18th Promptwatch reported that ChatGPT appeared to have greatly reduced the likelihood of Reddit being used in those searches. My own attempts to ascertain if the system prompt has been updated to discourage Reddit sourcing have been unsuccessful - the most thorough leaked system prompt collection I know of doesn&#x27;t yet show any relevant changes. Tags: reddit , seo , openai , chatgpt , ai-assisted-search , system-prompts</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/stampli" target="_blank">Stampli cuts launch hours by 68% using ChatGPT Work</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 20, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 20, 2026 Stampli cuts launch hours by 68% using ChatGPT Work With a fixed deadline and design committed elsewhere, Stampli used Codex and ChatGPT Work to compress weeks of launch production into days.</span> <span>Stampli’s marketing team used Codex to connect product context, meeting , decisions, and messaging guidelines into a shared system.</span> <span>That launch is the clearest example of a pattern that runs through Stampli’s product marketing team every day: using ChatGPT Work and Codex together to keep product knowledge current, surface business insights, and move ideas to market faster.</span> <span>“Codex shortens the distance between a customer’s need, our team’s response, and real learnings from usage.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 20, 2026 Stampli cuts launch hours by 68% using ChatGPT Work With a fixed deadline and design committed elsewhere, Stampli used Codex and ChatGPT Work to compress weeks of launch production into days. Contact sales Company size: Mid-market Region: North America Industry: Finance, Technology Products: Codex 100s Pieces of content created each week using ChatGPT Work 3.16x Faster launch to production with Codex Loading… Stampli is an intelligent procure-to-pay platform that connects procurement, accounts payable, vendor management, payments, and employee spend. Its Deep Finance™ product transforms the data moving through Stampli’s procure-to-pay platform into executive spend intelligence for CFOs, VPs, and other business leaders. Launching it meant product development, positioning, design, communications, enablement, and operations all moving in parallel, on a fixed timeline, with design and outside contractors already committed to other priorities. Stampli’s marketing team used Codex to connect product context, meeting , decisions, and messaging guidelines into a shared system. With OpenAI tools, they compressed an estimated 243 hours of production work into about 77, while keeping full human review and final approval on everything customer-facing. That launch is the clearest example of a pattern that runs through Stampli’s product marketing team every day: using ChatGPT Work and Codex together to keep product knowledge current, surface business insights, and move ideas to market faster. “Codex shortens the distance between a customer’s need, our team’s response, and real learnings from usage. By extending technical abilities across every team, it helps us move 10x faster from requirement to deployable solution.” —Eyal Feldman, CEO and Co-Founder, Stampli From prototype to launch, in six weeks Deep Finance moved from an initial prototype demo to a public GTM launch and first shipped product in about six weeks. With design and outside contractors committed to other priorities, the team used Codex to turn evolving product decisions into review-ready assets across a seven-part blog series, launch emails, a webinar and its supporting deck, social and paid creative, a PR Newswire release, the Deep Finance web page, and sales enablement materials. Codex also helped create the launch’s hero animation through exploration, iteration, and packaging, handling roughly 90% of the polished animation work before a contractor finished the opening scene and final format. Across the defined Deep Finance go-to-market and content production workflow, the Stampli team estimates the launch would have taken about 243 modeled active role-hours without Codex. With Codex, it took approximately 77, saving roughly 166 hours or 3.16x faster production. A system built for daily use, not just launches The infrastructure behind the Deep Finance launch is the same one Stampli’s product marketing team relies on day to day. Keeping product materials current used to require interviewing product managers, reading Jira tickets, reviewing GitHub, and working through meeting . The team then had to translate that information into help center articles, presentations, one-pagers, and other assets. Stampli has automated much of that process with a GPT‑powered system. It gathers information from product systems and meeting , then helps keep those materials up to date. The same automations help the product marketing team create content at greater scale. Agents connected to the company’s source of truth can produce material for the website and social channels. According to Melad Zahedi, Director of Product Marketing, “it’s multiplied the output of a small team by 10x, putting out hundreds of pieces of content on a weekly basis, where it was limited to just a couple before.” Surfacing insights when they matter ChatGPT Work also helps employees bring relevant business context into important decisions. Zahedi uses GPT‑powered automations as a “second brain” to organize information across a schedule filled with back-to-back meetings. “Being able to go to every meeting prepared with context, understanding what is needed from me in that meeting and how to stay efficient with my time, has been an amazing benefit,” he says. In one executive meeting, a question arose about metrics stored across HubSpot and other systems. An employee was able to quickly ask Codex to retrieve and analyze the relevant data during the call. “This is something that would’ve taken our FP&amp;A team half a day to put a report together, give us a model, and give us an answer that we felt confident in. Someone was able to do it with 20 seconds of keystrokes,” Zahedi says. Making more room for strategy The time saved let product marketing spend less time reconstructing context and more time advising leaders on product and company strategy. At the same time, the team became more involved in advising VPs and C-suite leaders on corporate and product strategy. ChatGPT Work also serves as a thought partner for product marketing. Employees use it to deepen their knowledge, brainstorm ideas, create stakeholder personas, and test recommendations before presenting them to leadership. Teams across product, marketing, customer success, sales, and enablement are using ChatGPT Work and Codex to take the idea from prototype to launch. Zahedi estimates that with OpenAI tools the process took about six weeks, which previously would have taken months or even quarters. What’s next The Deep Finance launch showed Stampli what a more connected, AI-supported product cycle could look like. Now the company is exploring how to apply that approach across more products, workflows, and go-to-market programs. For Zahedi, the larger opportunity is expanding what employees believe they can take on. ChatGPT Work and Codex have helped his team learn new disciplines, build its own systems, and spend more time on decisions that move the company forward. “Being curious and just asking, ‘What can I do?’ and trying everything first through ChatGPT will unlock a lot of latent capacity that you didn’t realize was there in your organization—and in yourself.” —Melad Zahedi, Director of Product Marketing, Stampli Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading Introducing AI Futures AI Futures Aug 20, 2026 Offering Zero Data Retention for frontier models Company Aug 19, 2026 Replit expands access to software creation with GPT-5.6 Luna Startup Aug 19, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Aug/19/smolmachines-untrusted-sandbox/" target="_blank">smolmachines / smolvm as a sandbox for untrusted Python &amp; JavaScript</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Aug 19, 2026 &middot; 23:16 UTC</span>
+          </div>
+          <p class="summary"><span>Research: smolmachines / smolvm as a sandbox for untrusted Python &amp; JavaScript I tasked Claude Fable 5 running in Claude Code for web with the following research task: Put <a href="https://smolmachines.com" target="_blank" rel="noopener">https://smolmachines.com</a> through its paces as a fast secure sandbox.</span> <span>Explore what it would take to use this to run untrusted Python and JavaScript code in a way that is limited in what RAM and CPU time it can take up (protection against &quot;while true&quot;) with no network access and filesystem access only to designated files Goal is to be able to use this to execute user-provided tasks for things like data transformations It quickly ran into a problem: the Claude Code for web environment can&#x27;t run smol machines .</span> <span>Tags: research , sandboxing , ai , github-actions , generative-ai , llms , coding-agents , claude-mythos-fable</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Research: smolmachines / smolvm as a sandbox for untrusted Python &amp; JavaScript I tasked Claude Fable 5 running in Claude Code for web with the following research task: Put <a href="https://smolmachines.com" target="_blank" rel="noopener">https://smolmachines.com</a> through its paces as a fast secure sandbox. Explore what it would take to use this to run untrusted Python and JavaScript code in a way that is limited in what RAM and CPU time it can take up (protection against &quot;while true&quot;) with no network access and filesystem access only to designated files Goal is to be able to use this to execute user-provided tasks for things like data transformations It quickly ran into a problem: the Claude Code for web environment can&#x27;t run smol machines . Quoting the notes it wrote : This Claude Code container: Linux 6.18.5-fc-v20 (itself a Firecracker guest), 4 vCPU, 15GB RAM. No /dev/kvm, no vmx/svm CPU flags → no nested virt. smolvm machine run fails as expected: &quot;kvm not available&quot;. Plan B: GitHub Actions ubuntu runners DO expose /dev/kvm → run the real test battery via a temporary workflow on this branch, collect logs, remove workflow in final commit. And Plan B is what it did , installing smolvm and running these tests directly in a GitHub Actions runner against that branch. That was a creative solution to the environmental limits posed by Claude Code for web. Another example of Fable being relentlessly proactive . Tags: research , sandboxing , ai , github-actions , generative-ai , llms , coding-agents , claude-mythos-fable</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Aug/19/conceptual-integrity-and-counting-lines-of-code/" target="_blank">Conceptual integrity and counting lines of code</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Aug 19, 2026 &middot; 22:46 UTC</span>
+          </div>
+          <p class="summary"><span>This is the latest version of an argument I&#x27;ve been trying to build about why sometimes it does make sense to talk about lines of code as an indicator of productivity with coding agents, at 35:01 : A lot of people will tell you it makes no sense to measure productivity in lines of code.</span> <span>In the before-times, a software engineer could produce a few hundred lines of production-ready code per day — and 200 lines of working, debugged, production-level code is an incredibly good day.</span> <span>I don’t have the cognitive capacity to stay on top of 100 times the amount of code.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Last week I recorded an episode of the Talking Postgres podcast with Claire Giordano on the subject of &quot;How AI is changing software development&quot;. We had a really great conversation. Here are a couple of my highlights from a lightly edited transcript (prompt to Claude: &quot;very minor edits to remove disfluencies&quot;). This is the latest version of an argument I&#x27;ve been trying to build about why sometimes it does make sense to talk about lines of code as an indicator of productivity with coding agents, at 35:01 : A lot of people will tell you it makes no sense to measure productivity in lines of code. I’d actually disagree, because there’s a hard limit. In the before-times, a software engineer could produce a few hundred lines of production-ready code per day — and 200 lines of working, debugged, production-level code is an incredibly good day. Most days you’d produce 50 or 60. If agents let you produce a thousand lines of debugged code, that really is a very meaningful improvement — as long as the code is the same quality: maintainable, tested, all of that. You can get to that point with agents, but it takes a huge amount of skill and knowledge and experience. That’s what senior engineers are made of. I can do way more work as a single engineer than I could without agents. So you could argue, why should a company have more than one engineer? Beyond the obvious bus factor thing — a team of one is a very badly designed team — the answer is that the new limiting factor is cognitive capacity. I can churn out code a hundred times faster. I don’t have the cognitive capacity to stay on top of 100 times the amount of code. So you still need a team of engineers, so you can load balance that cognitive capacity across the team. And this section on conceptual integrity at 46:03 , which Claire equated to the Winchester Mystery House ! Simon : There’s a concept in The Mythical Man-Month — conceptual integrity — where well-designed software has an integrity to it: there are no surprises in it, it covers exactly the right domain of things, everything fits together and makes sense. That’s so much harder with coding agents, where you can have an idea for a feature, run a prompt, and five minuteslater you’ve got the feature. Your software grows little weird bumps in funny different directions. Claire : You know my analogy for that? The Winchester Mystery House. Simon : It’s got 140 rooms, because the woman who built it was the widow of the guy who invented the Winchester rifle, and her psychic told her she’d be haunted by the ghosts of everyone killed with that rifle unless she kept building the house forever. So for 40 years she kept adding new rooms. That’s exactly the problem with coding agents and software: it’s very easy to keep adding new rooms, because the cost of adding those rooms is so much cheaper. What you end up with is something where the conceptual integrity falls apart — and then it’s harder to make decisions about it. It all keeps coming back to discipline. It used to be that the discipline was enforced on you by the amount of time it took. You’d come up with an idea for a crazy feature and think “yeah, but that would take me a week — I cannot justify that, so I’ll forget about it.” If it takes an hour, it’s so much easier to justify. (Side-note: the Wikipedia article includes credible sources that dispute the story about the psychic.) Tags: ai , generative-ai , llms , podcast-appearances , coding-agents</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/offering-zero-data-retention-for-frontier-models" target="_blank">Offering Zero Data Retention for frontier models</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 19, 2026 &middot; 19:00 UTC</span>
+          </div>
+          <p class="summary"><span>Existing ZDR-compatible safety systems evaluate each interaction individually.</span> <span>Today, we’re previewing Private Safety Processing, which is designed to identify patterns across related interactions without giving OpenAI personnel access to the underlying content.</span> <span>For ZDR deployments, customer content remains on infrastructure the customer controls.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 19, 2026 Company Safety Offering Zero Data Retention for frontier models Previewing Private Safety Processing, which strengthens safeguards across interactions while remaining compatible with ZDR. Loading… Zero Data Retention gives eligible API customers a clear promise: OpenAI does not retain their prompts or model responses after a request is processed. Customer content is not available to OpenAI personnel for review 1 , and enterprise customer data is not used to train our models unless customers explicitly opt-in. As models take on longer, more complex tasks, some serious risks may only become visible across multiple interactions. Existing ZDR-compatible safety systems evaluate each interaction individually. Today, we’re previewing Private Safety Processing, which is designed to identify patterns across related interactions without giving OpenAI personnel access to the underlying content. For ZDR deployments, customer content remains on infrastructure the customer controls. We are also developing an option in which content is stored on OpenAI infrastructure, encrypted with keys controlled by the customer. In both cases, automated systems can identify potential misuse and return limited safety signals without exposing the underlying prompts or responses to OpenAI personnel. Why safety systems need to evolve The most serious AI safety risks are not always visible in a single interaction. Often, potentially harmful intentions become clear only when multiple interactions are viewed together. Similar risks can arise when bad actors repeatedly probe safeguards, coordinate across accounts, or disguise threats as routine research. Risks can also develop over the course of an agentic task—for example, if a system becomes misaligned with the user’s intent by continuing to act after being told to stop. As AI systems take on longer and more complex tasks, this broader context becomes increasingly important for distinguishing legitimate activity from misuse and ensuring that AI agents remain within the bounds of their intended authority. Some recent frontier-model deployments have required customers to allow their AI provider to retain sensitive content for safety monitoring. For many organizations, such requirements conflict with their security obligations or commitments to the people they serve. Private Safety Processing is designed so we can continue to offer ZDR. How Private Safety Processing works Private Safety Processing builds on the automated protections already used in ZDR and other deployments. Existing ZDR-compatible safety systems evaluate interactions individually. Private Safety Processing extends those protections across related interactions, allowing automated systems to identify patterns without OpenAI personnel having access to retained customer content. Private Safety Processing utilizes customer content regardless of where it is stored—whether in infrastructure customers control (ZDR deployments) or in storage provided by OpenAI. With OpenAI-provided storage, customer content is encrypted using keys controlled by the customer. OpenAI personnel do not have a copy of those keys, so they cannot access the underlying content. When a risk is identified, OpenAI receives a narrowly defined signal indicating the type of activity involved, similar to our existing safety systems today. That signal can be used to determine whether enforcement is necessary. OpenAI personnel do not receive access to the customer content even when it is flagged. Customers can investigate alerts and enforcement decisions using information available in their own systems. If they want to appeal, clarify legitimate activity, or support an investigation into verified abuse, they can choose to share relevant information with OpenAI. Private Safety Processing is currently being tested with early customers. We are sharing this preview now because we’ve heard our customers loud and clear that they need predictability about how their content will be protected as AI systems become more capable. Privacy and safety built with and for our customers Our mission is to ensure that artificial general intelligence benefits all of humanity. Collaboration with customers and partners is essential to how we build effective safeguards. As our principles make clear, no AI lab can address emerging risks alone. Private Safety Processing reflects that approach and is being shaped by customers across industries, regions, and company sizes. The organizations we work with handle some of the most sensitive information in their sectors, including financial records, health data, confidential business plans, and proprietary research. Protecting that information is essential to meeting regulatory obligations, maintaining customer trust, and preserving their competitive advantage. Their feedback is helping us build stronger safeguards while keeping their information under their control. “Enterprise AI adoption depends solely on customer control of data, with no direct or derivative use beyond the chosen service. OpenAI’s no-training commitment and ZDR give Glean confidence to build with OpenAI. As models become more capable, OpenAI shows safety can advance without compromising the privacy and control that sustain enterprise trust.” —Sunil Agrawal, Chief Information Security Officer, Glean We will continue working with customers on the technical and operational details of our approach. We plan to start rolling out Private Safety Processing, and share a technical white paper, in September. We’ll keep customers informed every step of the way, sharing updates early, explaining what they mean for existing commitments, and providing the time and support customers need to plan ahead. 2026 API Platform Author OpenAI 1 Like other frontier model providers, OpenAI is required by law ⁠ (opens in a new window) to report apparent child sexual abuse material (CSAM). Images flagged for potential CSAM will continue to be retained for manual review and reporting purposes, even in Zero Data Retention deployments, as they are today. Keep reading View all ChatGPT Ads expands across Europe Product Aug 18, 2026 Partnering with CodeAI to prepare the first AI generation Company Aug 18, 2026 Pacing model development in an era of cyber-critical capabilities Company Aug 18, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/replit" target="_blank">Replit expands access to software creation with GPT-5.6 Luna</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 19, 2026 &middot; 07:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 19, 2026 Startup Replit expands access to software creation with GPT‑5.6 Luna Replit is introducing Free Mode, powered by GPT‑5.6 Luna, so anyone can turn ideas into working software without worrying about token costs.</span> <span>For software creation, that shift is narrowing the distance between having an idea and building something that works.</span> <span>Replit was an early user of GPT‑3, building with OpenAI models as natural-language software development began to take shape.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 19, 2026 Startup Replit expands access to software creation with GPT‑5.6 Luna Replit is introducing Free Mode, powered by GPT‑5.6 Luna, so anyone can turn ideas into working software without worrying about token costs. Start building Company size: Startup Region: North America Industry: Technology Products: API Loading… As models become more capable, their economics are changing just as quickly. Better price performance makes advanced intelligence practical across more products, more workflows, and more moments. For software creation, that shift is narrowing the distance between having an idea and building something that works. Replit ⁠ (opens in a new window) and OpenAI have long shared a goal: making software creation accessible to anyone with an idea, regardless of technical background. Replit was an early user of GPT‑3, building with OpenAI models as natural-language software development began to take shape. Now, GPT‑5.6 Luna is powering Replit Free Mode, showing how the price performance of the GPT‑5.6 series and recent OpenAI price cuts can translate into broader access at scale. “For the first time, you&#x27;ll get access to an amazing experience where you can build applications, build agents, build all sorts of software in Free Mode. And that&#x27;s powered by GPT-5.6 Luna.” —Amjad Masad, Co-Founder and CEO, Replit Making capable models available at scale For Replit, model cost was one of the final barriers to making software creation widely accessible. GPT‑5.6 Luna combines the capability, price performance, and reliable inference at scale needed to make Free Mode available to millions of users. “Thanks to OpenAI and the price cuts that you made recently, you made it possible for us to offer it to millions of users in Free Mode.” —Amjad Masad, Co-Founder and CEO, Replit Helping anyone shape an idea before they build With Replit Free Mode, users can get fast, accurate answers, suggestions, feedback, and analysis in seconds without consuming usage. Because Agent understands the full context of a user&#x27;s projects, it can help them plan, ideate, shape, optimize, and explore ideas before they move into Build Mode. That continuity matters. Instead of treating exploration as separate from creation, Replit lets anyone develop an idea in the same environment where it can become working software. When a task requires more advanced reasoning, Replit can route it to GPT‑5.6 Sol, then return to Free Mode powered by GPT‑5.6 Luna while preserving project context. A shared vision for who gets to build For OpenAI and Replit, Free Mode is an example of what better model economics can unlock. As intelligence becomes more capable and affordable, software creation can extend beyond a small group of specialists to anyone with an idea and an internet connection. “If we can get to a world where anyone with access to the internet can build a product, build a startup, and just kind of get started and get going, I think we&#x27;re going to see another renaissance-level entrepreneurial boom like we&#x27;ve never seen before.” —Sam Altman, CEO, OpenAI That opportunity expands who can use software to solve a problem, improve a community, or make an idea real. Masad calls software &quot;such an empowering tool&quot; and says that increasing the number of people able to build by 100x would open that opportunity far more widely. By pairing GPT‑5.6 Luna with an experience built around project context, Replit is turning improved model price performance into wider access. It is a step toward the shared vision behind the partnership: anyone with an idea should be able to build. OpenAI &lt;3 startups Join the community Start building (opens in a new window) Keep reading View all Model ML completes finance work more efficiently with GPT-5.6 Sol Startup Aug 10, 2026 Warp’s big bet on building open source with GPT-5.5 Startup May 27, 2026 Parloa builds service agents customers want to talk to Startup May 7, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Aug/18/mojo-is-now-open-source/" target="_blank">Mojo🔥 is now open source</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Aug 18, 2026 &middot; 21:39 UTC</span>
+          </div>
+          <p class="summary"><span>Mojo🔥 is now open source The Mojo programming language has been promising an open source release since May 2023 .</span> <span>When Mojo first launched the stated goal was to produce a superset of Python, so existing Python code could be used to bootstrap their own ecosystem.</span> <span>Via Lobste.rs Tags: open-source , python , mojo</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Mojo🔥 is now open source The Mojo programming language has been promising an open source release since May 2023 . Last week they shipped their 1.0 and today they have followed through on that original promise, releasing the compiler and toolchain under an Apache 2 license. When Mojo first launched the stated goal was to produce a superset of Python, so existing Python code could be used to bootstrap their own ecosystem. That plan changed around August 2025 : Mojo may or may not evolve into a full superset of Python, and it’s okay if it doesn’t. We’re encouraged by how well AI-assisted coding tools already help migrate Python to Mojo today, and we’re confident that future tooling and ecosystem maturity will make this evolution even smoother. Today Mojo is its own language, optimized to make GPU programming as painless as possible using syntax inspired by Python, if not 100% compatible with existing code. Via Lobste.rs Tags: open-source , python , mojo</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/i-tested-grok-bot-grok-46-and-cursor" target="_blank">I tested Grok Bot, Grok 4.6, and Cursor Origin - here’s my honest take</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Aug 18, 2026 &middot; 21:30 UTC</span>
+          </div>
+          <p class="summary"><span>.new —Turn your idea into a real product Jira AI SDLC —Get your tokens’ worth with Jira Why everyone’s quietly switching to Grok Grok Bot overview and setup My 5 Grok Bots The killer feature: multi-account connectors Grok Bot’s virtual machine and how it actually works Experience overview What I don’t love about Grok Bot Grok Bot use cases and my honest verdict Cursor Origin: the agent-native GitHub replacement What Origin actually looks like in practice Why I’m not switching from GitHub yet What would get me to move over Grok 4.6 and the How I AI Vibe bench Claire Index results: where Grok 4.6 ranked Design evals: where Grok surprised me My conclusion and how I’m splitting my time now<ul><li>Grok Bot: <a href="https://x.ai/bot" target="_blank" rel="noopener">https://x.ai/bot</a></li><li>Cursor: <a href="https://cursor.com/home" target="_blank" rel="noopener">https://cursor.com/home</a></li><li>Cursor Origin: <a href="https://cursor.com/origin" target="_blank" rel="noopener">https://cursor.com/origin</a></li><li>OpenClaw: <a href="https://openclaw.ai/" target="_blank" rel="noopener">https://openclaw.ai/</a></li><li>GitHub: <a href="https://github.com" target="_blank" rel="noopener">https://github.com</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/partnering-with-codeai" target="_blank">Partnering with CodeAI to prepare the first AI generation</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 18, 2026 &middot; 11:00 UTC</span>
+          </div>
+          <p class="summary"><span>For parents and educators, the question isn’t simply whether young people will use AI, but whether they will learn to critically evaluate its outputs, understand its limitations, and use it responsibly.</span> <span>The vast majority of students today are already using AI, while only 16% of high school leaders say ⁠ (opens in a new window) all of their students are learning the technical knowledge to understand it in the classroom.</span> <span>Students see this gap too: in a survey ⁠ (opens in a new window) by CodeAI, 75% of high school students say understanding AI will be more important for their futures than it is now.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 18, 2026 Company Partnering with CodeAI to prepare the first AI generation Loading… Today’s students will be the first generation to grow up with AI as part of everyday life. For parents and educators, the question isn’t simply whether young people will use AI, but whether they will learn to critically evaluate its outputs, understand its limitations, and use it responsibly. Right now, there’s a gap between use and understanding. The vast majority of students today are already using AI, while only 16% of high school leaders say ⁠ (opens in a new window) all of their students are learning the technical knowledge to understand it in the classroom. Students see this gap too: in a survey ⁠ (opens in a new window) by CodeAI, 75% of high school students say understanding AI will be more important for their futures than it is now. Young people need to understand how AI works, think critically about its outputs, and develop the skills to shape its future with access to tools that prioritize their safety and development. That’s why OpenAI and CodeAI are announcing a signature partnership to give students and educators access to tools and that will help them learn how to use and benefit from AI. This partnership coincides with the launch of ChatGPT for Teens, a dedicated experience designed with learning at the center to help teens think critically, deepen understanding, and use AI with confidence. It includes built-in protections for teens, including features to promote healthy use and additional controls for parents. It also builds on our ChatGPT for Teachers ⁠ (opens in a new window) work to empower teachers and districts to guide AI use and our ongoing work with the American Federation of Teachers to build AI skills. Alongside the ChatGPT for Teens launch, our partnership with CodeAI focuses on the education that surrounds the technology: helping teens understand how AI works, direct it, question it, and create with it—with teachers playing a meaningful role in shaping how AI enters the classroom. “Parents and educators want young people to be ready for a future shaped by AI—and they are right to expect that to come with care,” said Dr. Allison Mishkin, Head of Child Development, OpenAI. “Our goal is not simply to help more students use AI, but to help them ask better questions, think critically about the answers they receive, and use these tools responsibly. We look forward to working alongside CodeAI, parents, and educators to learn, improve, and help young people build those skills.” “Every student should know how AI actually works and be able to question the technology, catch its mistakes, and know when to stop trusting it,” said Karim Meghji, CEO of CodeAI. “Give them that foundation, and AI becomes less a force shaping their future and instead something they can question, shape, and create on their own.” How we’ll work together Over the next year, OpenAI and CodeAI will focus on practical programs that help students understand AI, use it with care, and explore how it can support learning and creativity. Creating a continuous feedback loop for responsible AI innovation. OpenAI and CodeAI will establish a joint advisory council that will bring together experts and leaders on child development, youth public policy, and learning science. The council will provide ongoing guidance on emerging risks, responsible AI practices, and evolving educational needs, helping to shape the future development of ChatGPT for Teens. Helping students build foundational AI literacy. Through the Hour of AI ⁠ (opens in a new window) , OpenAI and CodeAI will introduce millions of students to the basics of using AI thoughtfully and responsibly. Inspiring the next generation of builders. Through the first-ever Builders Challenge, high school students will have the opportunity to create with AI, receive mentorship from OpenAI team members, and showcase their work on a national stage alongside the teachers who support them. Supporting classroom learning. OpenAI’s experts in AI systems, safety, and responsible use will be a that CodeAI can consult as they further develop AI Foundations ⁠ (opens in a new window) , CodeAI’s free, year-long high school course. Making careers with AI more accessible. Through Career Journeys, students will hear directly from OpenAI researchers, engineers, and leaders about how they work with AI to shape it, helping them see themselves as future builders, creators, and innovators. Preparing young people for a world shaped by AI is a shared responsibility. Technology companies cannot do it alone. Parents, educators, students, researchers, policymakers, and civil-society organizations all have an important role to play. Through this partnership, OpenAI and CodeAI will help more young people approach AI with curiosity and confidence—but also with judgment. We want students to learn how to create with these tools without accepting every answer at face value, and to understand that AI should support—not replace—the guidance of teachers, families, and other trusted people in their lives. That is how we can help the next generation become not only capable users of AI, but thoughtful participants in shaping its future. 2026 Education ChatGPT Author OpenAI Keep reading View all Offering Zero Data Retention for frontier models Company Aug 19, 2026 ChatGPT Ads expands across Europe Product Aug 18, 2026 Pacing model development in an era of cyber-critical capabilities Company Aug 18, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/asana" target="_blank">Asana cleared 5 years of engineering work in 2 weeks with Codex</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 18, 2026 &middot; 07:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 18, 2026 Asana cleared 5 years of engineering work in 2 weeks with Codex Using OpenAI Codex, Asana replaced an outdated testing system in two weeks for about $12K.</span> <span>Contact sales Company size: Enterprise Region: North America Industry: Technology Products: Codex, API 2 Calendar weeks to finish work expected to take 5 years $12K Model and infrastructure cost versus Asana’s ~$6M staffing estimate Loading… In about two weeks, Asana completed work it expected to take five years.</span> <span>Asana helps teams coordinate work.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 18, 2026 Asana cleared 5 years of engineering work in 2 weeks with Codex Using OpenAI Codex, Asana replaced an outdated testing system in two weeks for about $12K. Contact sales Company size: Enterprise Region: North America Industry: Technology Products: Codex, API 2 Calendar weeks to finish work expected to take 5 years $12K Model and infrastructure cost versus Asana’s ~$6M staffing estimate Loading… In about two weeks, Asana completed work it expected to take five years. Asana helps teams coordinate work. Its platform uses AI agents and automations to help customers manage, track, and execute that work. Asana brings the same approach to its engineering organization, where people use OpenAI Codex, powered by frontier models, to tackle large codebase changes, then review and approve each proposed change. For this project, Codex helped Asana’s engineers remove Enzyme, an outdated testing system that had made the company’s code harder to upgrade. Model and infrastructure costs came to about $12,000, compared with Asana’s roughly $6 million estimate for the previous staffing plan. “Not every years-long project will collapse into weeks. But agents can give engineers more room for craft—and make once-impossible work worth attempting.” —Amritansh Raghav, Chief Technology Officer, Asana Their old testing tool, Enzyme, had fallen out of active maintenance and was becoming a blocker to modernizing Asana’s frontend stack. Asana used Codex, powered by frontier models, to do the work. From a five-sentence prompt, up to four coding agents worked in parallel, each in a separate copy of the codebase. An engineer checked progress twice a day and reviewed every proposed change. Simpler instructions worked better than a more elaborate setup. After 1.5 weeks of engineering effort spread across two calendar weeks, Enzyme was fully removed. Model and infrastructure costs totaled about $12K. For comparison: the previous plan was expected to take at least five years and estimated to cost roughly $6M. The experience changed which long-running software projects the company believes are practical to take on. With this migration complete, Asana can test agents on other migrations, rewrites, and performance problems it once assumed would take years. The team hopes this will give engineers more room to focus on craft while people continue to review the work. Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading Introducing AI Futures AI Futures Aug 20, 2026 How ChatGPT Work helps Stampli move ideas to market Aug 20, 2026 Offering Zero Data Retention for frontier models Company Aug 19, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/nvidia/chatgpt-work" target="_blank">How NVIDIA scales expertise with ChatGPT Work</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 18, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 18, 2026 How NVIDIA scales expertise with ChatGPT Work NVIDIA teams use ChatGPT Work to reduce manual tasks, connect fast-moving signals, and scale successful workflows globally.</span> <span>Contact sales Company size: Enterprise Region: North America Industry: Technology Products: ChatGPT 16 Hours saved per week using ChatGPT Work during the GTC planning cycle 3–5 Days to create a working prototype with ChatGPT Work, compared to 2–3 weeks previously 5–8 Actionable signals surfaced per week by ChatGPT Work from 25–40 external AI updates Loading… At NVIDIA, ChatGPT Work is helping knowledge workers spend less time assembling information and more time acting on it.</span> <span>For teams like GTM and solutions architecture, ChatGPT has become part of how work gets organized, automated, and scaled.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 18, 2026 How NVIDIA scales expertise with ChatGPT Work NVIDIA teams use ChatGPT Work to reduce manual tasks, connect fast-moving signals, and scale successful workflows globally. Contact sales Company size: Enterprise Region: North America Industry: Technology Products: ChatGPT 16 Hours saved per week using ChatGPT Work during the GTC planning cycle 3–5 Days to create a working prototype with ChatGPT Work, compared to 2–3 weeks previously 5–8 Actionable signals surfaced per week by ChatGPT Work from 25–40 external AI updates Loading… At NVIDIA, ChatGPT Work is helping knowledge workers spend less time assembling information and more time acting on it. For teams like GTM and solutions architecture, ChatGPT has become part of how work gets organized, automated, and scaled. For GTM, it transforms recurring operational processes, while solutions architects are using it to connect fast-moving external developments with NVIDIA’s internal priorities. Freeing teams to focus on customers Will Daney helps NVIDIA’s global sales, business development, and product leaders execute and measure their strategies. One of his recurring responsibilities is supporting the field organization around GTC, NVIDIA’s global AI conference. Previously, preparing for GTC required extensive work in spreadsheets: assembling account lists, tracking registrations, and helping teams identify the actions needed to create a productive experience for customers and partners. During the lead-up to the event, Will estimates that manual analysis consumed about 40% of his time. Today, he has turned much of that work into an automated ChatGPT Work process that runs twice a week. Across the 12-week GTC planning cycle, the workflow saves about 16 hours per week. “I’m able to give time back, work with the actual field team, get to know them better, and help them figure out how to help our customers be more successful,” Will says. And because he owns the workflow, he can adapt it as the event changes without waiting for a new tool to be purchased, implemented, and maintained. He can also share the underlying process with teams in other regions. Colleagues supporting events in San Jose, Taipei, Europe, and Washington, DC have received his ChatGPT workflows and customized them for their local needs. “With ChatGPT, I think the real key is that I’m able to take a workflow I’ve already developed and I’m able to automate it event over event with little to no overhead.” —Will Daney, Go-To-Market Strategist at NVIDIA Finding the signal in a fast-moving industry Rachita Jain works on the AI operations team within NVIDIA’s marketing organization, where she builds AI workflows and helps teams adopt new tools. Her challenge is keeping pace with an industry where new models, benchmarks, and research appear every day. The information is readily available. The harder task is determining which developments matter to NVIDIA and connecting them with internal projects, conversations, and priorities. Rachita built a workflow with ChatGPT Work that reviews trusted external sources alongside internal context, identifies meaningful areas of overlap, and surfaces insights that can inform action. Each week, it distills roughly 25–40 external AI updates into 5–8 actionable signals. “ChatGPT helped me change passive reading into active intelligence,” she says. The same environment supports the broader building process. Rachita can begin with an idea, explore possible approaches, work through a codebase, debug problems, and refine the result without continually moving between disconnected tools. Initiatives that might once have remained side projects can develop into working products within days. In one case, she moved from idea to working prototype in about 3–5 days, compared with an estimated 2–3 weeks if she had built the components manually across separate tools. “I think the biggest problem I’m trying to solve is information overload, because everything is moving so fast. It’s getting harder by the day to keep track of all the changes. And with ChatGPT, it becomes much simpler.” —Rachita Jain, Solutions Architect at NVIDIA What’s next The next opportunity is to scale what’s already working. By turning specialized knowledge into reusable workflows, teams across NVIDIA can adapt proven processes across functions, events, and regions—while keeping the people closest to the work in control of how those processes evolve. And as the AI landscape continues to change, these shared workflows can help NVIDIA connect external developments with internal priorities more quickly and extend AI-enabled ways of working to more employees. The goal is to give teams more time to interpret findings, collaborate, and focus on work that supports customers. That potential is already visible in Will’s experience. “ChatGPT has really been a force multiplier for me personally,” he says. “It feels like I have a team working for me. It’s helped me get out of the weeds and focus more on the work that matters.” Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading Introducing AI Futures AI Futures Aug 20, 2026 How ChatGPT Work helps Stampli move ideas to market Aug 20, 2026 Offering Zero Data Retention for frontier models Company Aug 19, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-ai-how-a-solo-founder-used" target="_blank">🎙️ How I AI: How a solo founder used Codex and ChatGPT to launch a fashion brand without engineers</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Aug 17, 2026 &middot; 15:03 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ How I AI: How a solo founder used Codex and ChatGPT to launch a fashion brand without engineers Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Aug 17, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-a-solo-founder-used-codex-and" target="_blank">How a solo founder used Codex and ChatGPT to launch a fashion brand without engineers | Yana Welinder</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Aug 17, 2026 &middot; 12:04 UTC</span>
+          </div>
+          <p class="summary"><span>’ worth with Jira Introducing Yana Welinder and Yana Bana Tour of the Yana Bana site The fashion prompt stack Live demo: generating a jacket from a prompt in ChatGPT Why Image Gen 2.0 beats other models The “prompt as spec” principle Iterating the design Using Codex and computer use to build CAD files in 3D software Vendor research, outreach emails, and Superhuman browser use Building the full e-commerce site Quick recap and what’s still hard How Yana prompts when AI pushes back</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/openais-head-of-design-this-is-the" target="_blank">OpenAI’s Head of Design: This is the best time in history to be a designer | Ian Silber</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Aug 16, 2026 &middot; 12:31 UTC</span>
+          </div>
+          <p class="summary"><span>Radically different banking, now with Command</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-gemini-37-flash-brings-gdm" target="_blank">[AINews] Gemini 3.7 Flash brings GDM back to the forefront</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Aug 14, 2026 &middot; 05:30 UTC</span>
+          </div>
+          <p class="summary"><span>AINews: Weekday Roundups [AINews] Gemini 3.7 Flash brings GDM back to the forefront Down, but not out! Aug 14, 2026 ∙ Paid The most compelling chart on today’s Gemini 3.7 Flash update was this one: Where you can see the degree to which 3.5 and 3.6 Flash had fallen behind the more recent Claude 4.8+ and GPT 5.5+ series mod… Keep reading with a 7-day free trial Subscribe to Latent.Space to keep reading this post and get 7 days of free access to the full post archives.</span> <span>Already a paid subscriber?</span></p>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 95</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
