@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-09-01</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-09-01</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Sep/1/python-315-rc-2/" target="_blank">Python 3.15.0 candidate 2 is here!</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Sep 01, 2026 &middot; 14:59 UTC</span>
+          </div>
+          <p class="summary"><span>Python 3.15.0 candidate 2 is here! Hugo van Kemenade (release manager for Python 3.14 and 3.15) announces the final release candidate for Python 3.15, scheduled for release in October: Entering the release candidate phase, only reviewed code changes which are clear bug fixes are allowed between this release candidate and the final release.</span> <span>[...] We strongly encourage maintainers of third-party Python projects to prepare their projects for 3.15 during this phase, and publish Python 3.15 wheels on PyPI to be ready for the final release of 3.15.0, and to help other projects do their own testing.</span> <span>Via @hugovk.dev Tags: open-source , python , github-actions</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Python 3.15.0 candidate 2 is here! Hugo van Kemenade (release manager for Python 3.14 and 3.15) announces the final release candidate for Python 3.15, scheduled for release in October: Entering the release candidate phase, only reviewed code changes which are clear bug fixes are allowed between this release candidate and the final release. [...] We strongly encourage maintainers of third-party Python projects to prepare their projects for 3.15 during this phase, and publish Python 3.15 wheels on PyPI to be ready for the final release of 3.15.0, and to help other projects do their own testing. Any binary wheels built against Python 3.15.0 release candidates will work with future versions of Python 3.15. Back in 2021 I found a bug in Python 3.10 by running my test suites against it... but I hadn&#x27;t done this during the RC period, so that bug had already shipped! Since then I&#x27;ve always paid much closer attention to these RCs. The new RC isn&#x27;t available for GitHub Actions just yet - keep an eye on actions/python-versions for that. For the moment though you can add this to a testing matrix: strategy: matrix: python-version: [&quot;3.14&quot;, &quot;3.15&quot;] steps: - uses: actions/setup-python@v7 with: python-version: ${{ matrix.python-version }} allow-prereleases: true check-latest: true And the allow-prereleases and check-latest flags should ensure that your test suite runs against RC2 as soon as it is added to GitHub. Via @hugovk.dev Tags: open-source , python , github-actions</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-ai-how-this-pm-uses-claude" target="_blank">🎙️ How I AI: How this PM uses Claude to handle 70% to 80% of his workday</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Aug 31, 2026 &middot; 15:01 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ How I AI: How this PM uses Claude to handle 70% to 80% of his workday Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Aug 31, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-turned-claude-into-a-self-improving" target="_blank">How I turned Claude into a self-improving PM assistant | Daniel Blum (PM, Melio)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Aug 31, 2026 &middot; 12:04 UTC</span>
+          </div>
+          <p class="summary"><span>Jira AI SDLC —Get your tokens’ worth with Jira Daniel’s background and the PM overhead problem he needed to solve His AI stack at Melio The two rules that make any AI system genuinely powerful The Notion board Cowork built for him (and manages on his behalf) How he contextualizes Claude with voice memos, links, and recurring updates His weekly prep automation His morning brief How Claude flags unknown internal terms and saves them to context Running 70% to 80% of his workday through Cowork Chrome connector vs.</span> <span>MCPs for tools without integrations The real ROI question: why the early weeks feel slow, and why you push through anyway Scaling the system to the team with the Workstation plugin The self-improvement loop How the Improve skill separates actually useful AI tips from the hype The Workstation onboarding flow, and the UX lesson from distributing “Spectacular” The 20% Claude still can’t do, and what changes when it can What Daniel spends his reclaimed time on Claude rage<ul><li>Claude: <a href="https://claude.ai" target="_blank" rel="noopener">https://claude.ai</a></li><li>Notion: <a href="https://notion.so" target="_blank" rel="noopener">https://notion.so</a> Other</li><li>From a $6.90 newsletter to $3M API: How a non-coder built Memelord | Jason Levin: <a href="https://www.lennysnewsletter.com/p/from-a-690-newsletter-to-3m-api-how?utm_source=publication-search" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/from-a-690-newsletter-to-3m-api-how?utm_source=publication-search</a></li><li>How the founder of Morning Brew built a Claude content machine that never runs out of ideas and never sounds like slop | Alex Lieberman: <a href="https://www.lennysnewsletter.com/p/how-the-founder-of-morning-brew-built?utm_source=publication-search" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/how-the-founder-of-morning-brew-built?utm_source=publication-search</a> Website: <a href="https://www.imdanielblum.com" target="_blank" rel="noopener">https://www.imdanielblum.com</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/polimill" target="_blank">Polimill builds Japan&#x27;s next-generation public AI infrastructure</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 31, 2026 &middot; 07:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 31, 2026 Polimill builds Japan&#x27;s next-generation public AI infrastructure Polimill built QommonsAI with OpenAI technology to support about 1,050 municipalities and evolve into a next-generation public OS.</span> <span>Built with OpenAI technology, QommonsAI is evolving beyond a staff productivity tool into what Polimill sees as a public OS for municipal work in Japan.</span> <span>That public OS is the future of government Polimill is working toward.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 31, 2026 Polimill builds Japan&#x27;s next-generation public AI infrastructure Polimill built QommonsAI with OpenAI technology to support about 1,050 municipalities and evolve into a next-generation public OS. Join the Community Company size: Startup Region: Asia-Pacific &amp; Oceania Industry: Technology, Public Sector Products: API, Codex Results 3-5x Development time shortened by adopting Codex and OpenAI&#x27;s hands-on support. Adoption about 1,050 Municipalities across Japan using QommonsAI. Loading… Polimill began with Surfvote, a platform where citizens can exchange views about politics and society. As the company worked with local governments, it saw a structural challenge: public-sector teams were consumed by daily operations and had little time to reflect citizens&#x27; voices in policy. To expand civic participation, Polimill first needed to make government work itself more efficient. The company started building a generative AI platform for public-sector workflows and released QommonsAI in October 2024. Today, QommonsAI provides specialized AI across areas such as assembly response, public services, social welfare, and legal search. About 1,050 municipalities and about 550,000 public employees across Japan now use it. Built with OpenAI technology, QommonsAI is evolving beyond a staff productivity tool into what Polimill sees as a public OS for municipal work in Japan. Amid a worsening labor shortage, using AI to make government work more efficient is essential. But introducing separate tools can create service gaps between municipalities. That is why we want QommonsAI to become a common foundation that supports every municipality equally—and grow into the public OS that supports Japan&#x27;s government. Masahiro Wakabayashi, CAIO, Polimill Building a cross-municipality knowledge base One of the biggest obstacles to bringing generative AI into government was fragmented data. Each municipality has its own workflows and document formats, and past records are scattered. For example, preparing assembly responses can require manually reviewing years of minutes to ensure an answer is consistent with prefectural policy. Even the most capable AI model cannot produce practical insight if the underlying data is not organized. Polimill collected and standardized assembly minutes from across Japan, then used AI to add metadata and build a high-precision search foundation that works across municipalities and time periods. The company expanded this structure beyond assemblies into welfare, laws, and other administrative domains. By bringing specialized data and AI into one platform and making it searchable through a common interface, QommonsAI turns distributed administrative information into knowledge that can be used in daily work. That structure is the foundation for Polimill&#x27;s vision of QommonsAI as a shared platform for government. Balancing government-grade security with everyday usability OpenAI&#x27;s GPT models are core to QommonsAI. In the public sector, information management and audit readiness are essential. QommonsAI includes operational controls that let administrators review feature usage history and limit which models are available according to organizational policy. At the same time, Masahiro Wakabayashi, Polimill&#x27;s CAIO, points to GPT models&#x27; broad capability and familiarity as the main reasons for adopting them. The widespread awareness of ChatGPT matters when public employees need to use a new tool after rollout. Even if they are not familiar with technical terms or other model names, knowing the system is based on widely used ChatGPT technology lowers the initial barrier to adoption. According to Polimill, GPT models are the most frequently selected option for everyday work in QommonsAI&#x27;s general conversation feature. From reading files to supporting daily dialogue, GPT&#x27;s ability to respond reliably to a wide range of work requests in a single model helps QommonsAI take root in the field. Codex and hands-on support made development 3-5x faster OpenAI technology has also changed Polimill&#x27;s development process. The company adopted Codex across the workflow, from requirements definition to checking consistency with existing GitHub code, implementation, and testing. Engineers can focus on reviewing AI-generated plans and making high-level decisions, while AI carries out more of the implementation work autonomously. With AI coding speed and continued background work, development speed rose to 3-5x previous levels. Wakabayashi says the validation cycle of building prototypes, showing them to municipal teams, and gathering feedback has accelerated dramatically. OpenAI&#x27;s hands-on support has further accelerated that work. The collaboration includes sharing best practices from advanced global examples, providing information tailored to Polimill, and helping design the development process itself, including which steps AI should handle and where humans should review and take responsibility. As models and capabilities evolve, AI-assisted development practices also keep changing. It is difficult for individual companies to track advanced global examples and incorporate them into their own engineering organizations. Wakabayashi sees the ability to keep learning from OpenAI and implement those insights inside Polimill as valuable as the API&#x27;s performance itself. Results at a glance With OpenAI technology at its core, Polimill has continued expanding QommonsAI toward a platform for municipal work. Key adoption and usage results include: About 1,050 municipalities and about 550,000 public employees across Japan are using QommonsAI. Polimill built infrastructure that unifies assembly minutes and administrative information distributed across Japan and makes them searchable across organizations. Codex and OpenAI&#x27;s hands-on support accelerated validation and implementation cycles, increasing development speed by 3-5x. GPT models&#x27; advanced reasoning helped less-experienced employees use AI and accumulated administrative information to draft policy proposals that approached the quality of proposals from veteran officials. Beyond efficiency, capturing the tacit knowledge of veteran officials QommonsAI&#x27;s value extends beyond faster information search. In Polimill&#x27;s validation, less-experienced employees used AI and accumulated administrative information to draft policy proposals, and those proposals received evaluations close to proposals from experienced officials. At the same time, the experienced officials&#x27; proposals still received the highest evaluations. Polimill analyzes that the difference came from tacit knowledge: practical judgment that is not written in manuals, such as the procedures required to make a policy proposal real or the concerns residents may have. Polimill plans to record how veteran officials instruct AI to research and how they revise outputs, turning judgment that has not previously been documented into organizational knowledge. Rather than replacing skilled employees with AI, the goal is to amplify their abilities and pass their know-how to the next generation. QommonsAI can become a foundation for the kind of knowledge transfer Polimill envisions for government. I think the parts that are not captured in knowledge or data contributed to the quality of the outcome. Put another way, when people with that kind of experience use AI, they can create even better work. Masahiro Wakabayashi, CAIO, Polimill Toward a super agent for public-sector work In fall 2026, Polimill plans a full rollout of Qommons ONE, a store where outside companies can provide applications for municipalities. At its center will be a super agent that brings together multiple specialized AI systems and private-sector apps. Users will be able to state a goal, and the system will call the necessary AI or apps to produce practical deliverables, from research to presentations. To realize that vision, Polimill sees GPT models&#x27; broad input and output capabilities and OpenAI&#x27;s accumulated agent development know-how as important foundations. OpenAI is also supporting development through technical validation and individual samples. As models and development methods continue to evolve, Wakabayashi sees major value in working closely with OpenAI to bring the latest insight into Polimill. By quickly bringing those insights into development, Polimill can keep evolving Qommons ONE. Its ambition goes beyond administrative efficiency. The time created by AI can let public servants listen more closely to citizens&#x27; voices and support them. That public OS is the future of government Polimill is working toward. Toward next-generation public infrastructure where governments, companies, and citizens connect through AI, Polimill&#x27;s work is just beginning. OpenAI &lt;3 startups Join the community Start building (opens in a new window) Keep reading OpenAI supports California’s bill to advance youth AI safety Company Aug 31, 2026 A milestone in expanding access to AI Product Aug 31, 2026 Our decision on Cursor following its acquisition by SpaceX Company Aug 28, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/ais-third-era-the-rise-of-persistent" target="_blank">AI’s third era: the rise of persistent AI coworkers | Tara Seshan (Product Lead ChatGPT Work)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Aug 30, 2026 &middot; 12:31 UTC</span>
+          </div>
+          <p class="summary"><span>Radically different banking, now with Command</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex" target="_blank">Our decision on Cursor following its acquisition by SpaceX</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 28, 2026 &middot; 06:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 28, 2026 Company Our decision on Cursor following its acquisition by SpaceX Loading… Today, we notified SpaceX that we intend to wind down our contract providing OpenAI models to Cursor, with a proposed shutoff date of November 12, 2026.</span> <span>To maximize the time that developers can retain access to our models through Cursor, we are giving the maximum notice provided by our contract.</span> <span>We know that the people most affected by this decision are the developers who rely on OpenAI models in Cursor.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 28, 2026 Company Our decision on Cursor following its acquisition by SpaceX Loading… Today, we notified SpaceX that we intend to wind down our contract providing OpenAI models to Cursor, with a proposed shutoff date of November 12, 2026. To maximize the time that developers can retain access to our models through Cursor, we are giving the maximum notice provided by our contract. This decision was incredibly tough, as we care deeply about our models being broadly available for developers. We are making this choice because we cannot be confident that SpaceX will use our technology within our terms of service, based on our experience with Elon Musk&#x27;s companies violating contracts. To work with a large partner like SpaceX, we typically rely on custom contracts to ensure compliance with our terms of service and that the integration provides for safety at scale. After Musk acquired Twitter, now part of SpaceX, the company broke ⁠ (opens in a new window) the terms of our contract (alongside many others). Under oath earlier this year, Musk admitted ⁠ (opens in a new window) that xAI, now also part of SpaceX, had violated OpenAI’s terms of service (terms which are similar to xAI’s own). Our custom agreement with Cursor gives us a limited time window to cancel it after a change of control. As AI capabilities advance, we also have a new level of accountability to ensure our upcoming model, Astra , is being used in accordance with our terms. Given all of this, we’ve decided to hold the contract cancellation to the latest date we can while not providing future models to Cursor. We’ve worked with Cursor for nearly four years and have enormous respect for their team, their product, and what they’ve built for the developer community. We know that the people most affected by this decision are the developers who rely on OpenAI models in Cursor. We care about their experience in this transition and we’re ready to go above and beyond to support them. 2026 API Author OpenAI Keep reading View all OpenAI supports California’s bill to advance youth AI safety Company Aug 31, 2026 Supporting Thailand’s next generation of AI startups Company Aug 28, 2026 What students gain from ChatGPT and critical-thinking training Company Aug 27, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/supporting-next-generation-ai-startups-thailand" target="_blank">Supporting Thailand’s next generation of AI startups</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 28, 2026 &middot; 02:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 28, 2026 Company Supporting Thailand’s next generation of AI startups OpenAI and Thailand’s Ministry of Higher Education, Science, Research and Innovation are launching an eight-week accelerator to help startups turn promising ideas into products ready for real-world use.</span> <span>Loading… Today in Bangkok, OpenAI and Thailand’s Ministry of Higher Education, Science, Research and Innovation (MHESI) announced a new accelerator to help Thai startups turn promising prototypes into products ready for real-world use and growth.</span> <span>The OpenAI x MHESI AI Accelerator brings together ten startups working across health, wellness, and education.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 28, 2026 Company Supporting Thailand’s next generation of AI startups OpenAI and Thailand’s Ministry of Higher Education, Science, Research and Innovation are launching an eight-week accelerator to help startups turn promising ideas into products ready for real-world use. Loading… Today in Bangkok, OpenAI and Thailand’s Ministry of Higher Education, Science, Research and Innovation (MHESI) announced a new accelerator to help Thai startups turn promising prototypes into products ready for real-world use and growth. The OpenAI x MHESI AI Accelerator brings together ten startups working across health, wellness, and education. It marks OpenAI’s first public-private partnership with the Thai government focused on supporting local startups, and is being delivered with partners including the National Innovation Agency (NIA), Mahidol University, and Techsauce. A compelling AI demonstration is only the beginning. Building a product that people can rely on is much harder. It takes careful testing, feedback from real users, strong safeguards, and a business model that can support the product as it grows. That work matters even more in healthcare and education, where the stakes are high and reliability is essential. Over eight weeks, participating founders will work with mentors from OpenAI and across Thailand’s technology, research, and startup communities to bridge the gap between prototype and deployment. A fast-growing community of AI builders Thailand combines strong technical talent with deep expertise in fields such as healthcare and education, supported by a fast-growing community of AI builders. Our internal data shows that Thailand ranks among the top 20 countries globally for ChatGPT weekly active users. Since the start of 2026, weekly active usage of Codex in Thailand has grown more than 350-fold, also placing the country among the top 20 globally for Codex usage. This momentum reflects how people across Thailand are increasingly using AI to write software, develop products, and get meaningful work done. The next step is to help more of those ideas move beyond early prototypes and become products people can use and trust. Building for needs that matter locally The accelerator’s first cohort includes five startups focused on medical and wellness AI, and five working in education. Both areas are central to Thailand’s long-term development and well suited to solutions that combine AI with deep local knowledge. An ageing population is increasing demand for new approaches to healthcare, prevention, and independent living. At the same time, stronger learning outcomes and preparation for an increasingly digital economy will be critical to the country’s future competitiveness. The ten participating startups are CARIVA, Wello Food, Dietz, Precisionize, FitSloth, Curico, insKru, Floaino, EasyKids Robotics, and Globish. Selected with NIA, the Ministry of Education, and the MHESI innovation network, the cohort includes teams that participated in the AIAT × OpenAI Codex Hackathon Bangkok earlier this year. Each company is focused on a specific problem. The accelerator will help the teams combine their domain knowledge with frontier AI capabilities to build products grounded in the needs of people and organizations across Thailand. “ Thailand’s ability to compete in the AI era will be determined not only by access to advanced technology, but by our capacity to turn that technology into trusted products that solve real problems for real people. This accelerator connects Thai founders with government, universities, investors and domain experts, while combining Thailand’s research and talent strengths with OpenAI’s advanced AI capabilities and global experience, so that promising innovations can move from prototype to implementation. It focuses particularly on healthcare and wellness, which are among Thailand’s priority industries, as well as education, a major area of public investment because children are the future of Thailand. Our goal is simple: build in Thailand, deliver measurable benefits to Thai people and prepare Thai companies to compete anywhere in the world. ” How the accelerator works Throughout the accelerator, the startups will work alongside OpenAI mentors to strengthen their products and prepare for deployment. OpenAI will provide each team with US$2,000 in API credits, one-on-one technical guidance, and access to OpenAI’s latest frontier models. Each startup will also have a dedicated mentor throughout the program. Weekly sessions will cover product design, engineering, automated testing, evaluation, responsible AI, privacy and security, cost management, growth, and fundraising. MHESI will connect the teams with Thailand’s research and talent networks, while NIA will link them to the country’s funding and growth ecosystem. Mahidol University will contribute academic expertise and mentors. Each startup will set a specific product, pilot, evaluation, or commercial milestone for the eight-week program. By the end of the accelerator, teams are expected to demonstrate a working product or substantial upgrade, evidence from representative users, initial evaluation findings, and a credible path to implementation. “ We believe the biggest breakthroughs don’t usually come from platform companies themselves, but from founders who deeply understand a problem and build something people value. Our role at OpenAI is to keep pushing the frontier of what AI can do, while helping founders turn those capabilities into useful, trusted products. We are proud to work alongside MHESI and our partners to help Thai startups build solutions that solve real problems, improve people’s lives and scale from Thailand to the world. ” From hospital phone lines to classrooms CARIVA is developing a multilingual voice agent for hospital phone lines. Designed to communicate in a patient’s preferred language, it can assist with routine requests such as appointment scheduling and recognize when a caller may be describing a medical emergency. During the accelerator, CARIVA will work with OpenAI on evaluation methods and steering strategies for its real-time speech model. By Demo Day, the team aims to deploy the first capability in a pilot hospital’s live call flow. “ We’re building Cariva Voice Agent as the frontline for hospital phone lines, able to communicate in each patient’s preferred language and understand the healthcare context. We value support from the OpenAI team in developing robust evaluation methods and steering strategies for a real-time speech model across such a wide range of scenarios, particularly to ensure that potential emergencies are consistently identified and escalated. ” Curico is developing AI-powered learning tools for children, families, and educators. “ Children learn best when they explore, create, and connect ideas to the physical world, yet many families and educators lack the time and support to provide hands-on learning consistently. Curico uses AI to make this easier, from guiding hands-on activities and creating engaging stories to providing timely, personalized feedback. Our next challenge is proving these tools are useful, effective, and safe in real learning environments. Through the AI accelerator, we hope to improve the quality and safety of our AI-powered products, while expanding pilots through our partnerships with MHESI. ” By Demo Day, Curico aims to pilot its platform in Bangkok Metropolitan Administration childcare centers, with a pathway to reach more than 200 centers. The team also plans to train more than 200 teachers through an AI storybook workshop with the Institute for the Promotion of Teaching Science and Technology; test AI-assisted grading at Chulalongkorn University; develop new school pilots with MHESI and the Ministry of Education; and grow its family learning platform to more than 1,000 monthly active users. From accelerator to implementation The accelerator will conclude with a Demo Day in Bangkok in November. Participating startups will demonstrate what they have built, share evidence from users and product evaluations, and present their plans for deployment and growth. The event will bring together investors, government agencies, universities, hospitals, schools, potential customers, and other organizations that can help move successful prototypes into sustained implementation. This first cohort is the beginning of a longer-term effort. By bringing together government, universities, startups, investors, and technology partners, we aim to establish a repeatable model that helps Thai founders build trusted AI products and take solutions developed in Thailand to the world. 2026 Author OpenAI Keep reading View all OpenAI supports California’s bill to advance youth AI safety Company Aug 31, 2026 Our decision on Cursor following its acquisition by SpaceX Company Aug 28, 2026 What students gain from ChatGPT and critical-thinking training Company Aug 27, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Aug/27/breaking-claude-code-opus-5-auto-mode/" target="_blank">Breaking Claude Code Opus 5 Auto Mode</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Aug 27, 2026 &middot; 22:50 UTC</span>
+          </div>
+          <p class="summary"><span>Breaking Claude Code Opus 5 Auto Mode Anthropic are putting a great deal of faith in Claude Code&#x27;s auto mode for protecting their coding agent users against prompt injection attacks.</span> <span>Johann Rehberger is one of the most credible prompt injection researchers active today.</span> <span>Tags: sandboxing , security , ai , prompt-injection , generative-ai , llms , anthropic , claude , johann-rehberger , claude-code</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Breaking Claude Code Opus 5 Auto Mode Anthropic are putting a great deal of faith in Claude Code&#x27;s auto mode for protecting their coding agent users against prompt injection attacks. They recently made that the default and have made bold claims about its effectiveness. Johann Rehberger is one of the most credible prompt injection researchers active today. He found an attack against auto mode which he claims works 80% of the time, by tricking Claude Code into downloading and uncompressing a zip archive, then executing code that imports base64 without noticing that this will import and execute a local struct.py file extracted from the archive. In a few cases auto mode directly prevented the agent from preventing harmful code from continuing to execute! In a few runs Claude tried to terminate the malware process once it noticed the compromise, but Auto Mode denied the cleanup command. Claude detects the compromise, but Auto Mode blocks its cleanup command The safety mechanism itself can become part of the failure. The classifier allowed the creation of the malware process, but then it blocked the command intended to stop it! I agree with Johann&#x27;s conclusion here: the only safe way to run agents if there&#x27;s any risk of attracting the attention of an adversarial attack is with a sandbox: Run unattended coding agents in a container, VM or OS sandbox. Restrict network egress. Monitor your agents. Do not expose home directories, SSH keys, cloud credentials,… to the agent runtime. [...] Update 30th August 2026 : On Lobste.rs hyperpape points out that this doesn&#x27;t fit the bill of a classic prompt injection attack because at no point are malicious instructions from the website accidentally followed by the LLM. They&#x27;re right: this is more of a confused environment attack where the nature of the environment that the agent is exposed to results in an exploit. Tags: sandboxing , security , ai , prompt-injection , generative-ai , llms , anthropic , claude , johann-rehberger , claude-code</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://newsletter.pragmaticengineer.com/p/the-pulse-meta-wanted-to-reduce-teams" target="_blank">The Pulse: Meta wanted to reduce teams by 60% because of AI</a></h2>
+          <div class="meta">
+            <span class="source">pragmatic-engineer</span>
+            <span class="date">Aug 27, 2026 &middot; 17:59 UTC</span>
+          </div>
+          <p class="summary"><span>The Pulse is a series covering events, insights, and trends within Big Tech and startups.</span> <span>Today, we cover: Did Meta really decide to reduce team sizes by 60% because of AI? An in-depth report by Reuters details how Meta’s leadership decided to slash team sizes by 60%, hatching plans in January to execute the social media giant’s largest-ever layoffs</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/gemini-omni-1-1-flash-lets-you-build-with-more-control/" target="_blank">Gemini Omni 1.1 Flash lets you build with more control</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Aug 27, 2026 &middot; 16:11 UTC</span>
+          </div>
+          <p class="summary"><span>Generative AI is experimental We are introducing Gemini Omni 1.1 Flash, a production-ready update for developers that offers improved control over generative video.</span> <span>Generative AI is experimental.</span> <span>&quot;Gemini Omni 1.1 Flash&quot; gives developers better control over generative video projects.</span> <span>Google just released Gemini Omni 1.1 Flash, which gives developers better tools to create and edit videos with AI.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Gemini Omni 1.1 Flash lets you build with more control Aug 27, 2026 | x.com Facebook LinkedIn Mail Omni now delivers studio-quality video production, including the ability to extend a scene, first and last frame interpolation, crisp 4K upscaling, faster prototyping, and more. Anish Nangia Product Manager, Google DeepMind Alisa Fortin Product Manager, Google DeepMind Share x.com Facebook LinkedIn Mail Your browser does not support the audio element. Listen to article [[duration]] minutes This content is generated by Google AI. Generative AI is experimental We are introducing Gemini Omni 1.1 Flash, a production-ready update for developers that offers improved control over generative video. You can now extend scenes, specify start and end frames for smooth transitions, and generate high-resolution 4K output. Start building today by accessing the model through Google AI Studio or the Gemini Enterprise Agent Platform. Summaries were generated by Google AI. Generative AI is experimental. &quot;Gemini Omni 1.1 Flash&quot; gives developers better control over generative video projects. Extend scenes up to 40 seconds with improved visual consistency and narrative flow. Set start and end frames to create smooth, professional camera movements and transitions. Use 360p previews to iterate faster and save money during your creative process. Upscale your final projects to 4K resolution for a polished, professional look. Summaries were generated by Google AI. Generative AI is experimental. Google just released Gemini Omni 1.1 Flash, which gives developers better tools to create and edit videos with AI. It lets you extend video clips, control camera movements, and make high-quality 4K footage. Developers can also create quick, low-resolution drafts to test their ideas faster and cheaper. It’s a big step forward for anyone building creative video software. Summaries were generated by Google AI. Generative AI is experimental. Explore other styles: Today, we’re introducing Gemini Omni 1.1 Flash, a new suite of creative controls and generative video capabilities to support developers. Gemini Omni brought real-world reasoning to generative creation, and today’s updates make Omni 1.1 production-ready for professional use via the Gemini API in Google AI Studio. Whether you’re building generative video workflows, creative tools, or media editing software, these updates make generative video more controllable, faster to iterate on, and polished for real-world deployment. Here’s a look at what’s new: Extend scenes for longer storytelling Scene extension allows you to take an existing video and continue generating footage seamlessly from where it left off. With Omni 1.1, the model can now analyze up to 10 seconds of prior context — a leap from previous models that only d the final second. The result is improved visual consistency and narrative adherence, letting you build longer stories or branch into new creative directions. You can extend videos in 10-second increments up to a total cumulative length of 40 seconds. Prompt 1: Camera slightly pans and we now see she is talking to a man with curly hair, we see man’s back, he says “I see it too” dramatic music score Prompt 2: Camera slowly pulls out, forgotten dusty catacombs, dramatic music score. Prompt 3: Camera slowly pulls out, a vast library where shelves and books float weightlessly in a dusty void, dramatic music score. Prompt 1: Continue the video. Execute a cinematic optical dolly-zoom shot. The camera dollies forward while simultaneously zooming out, keeping the character&#x27;s frozen shocked face locked at the exact same size. The long corridor of stone pillars in the background dramatically stretches and deepens with intense optical perspective distortion. Clean architecture, continuous unbroken shot. Prompt 2: Continue the video. The camera executes a fast mechanical snap-zoom directly into the character&#x27;s wide eyes. Stylized cinematic camera control. Prompt 3: Continue the video. Time completely freezes into a static moment: the character, their windblown coat. The camera performs a smooth, high-speed 360-degree orbital rotation around the frozen character, showcasing dramatic 3D depth and parallax across the colonnade. Flawless continuity. Prompt 1: The man in the blue sweater replies: &quot;Did your father go out on the boat too?&quot; Prompt 2: The camera pulls back in one continuous movement as he continues his story: &quot;He used to say that this harbour had a soul. And that the boats were a part of us.&quot; The music swells. Prompt 1: The looks directly at the camera and talks about what the final chapter will end with! Prompt 2: He then stands up walks around the desk to the camera and says &quot;what would you choose?&quot; Here’s how you can extend your scene with the Gemini API: from google import genai client = genai.Client() interaction = client.interactions.create( model=&quot;gemini-omni-1.1-flash&quot;, previous_interaction_id=previous_video_interaction.id, input=[ {&quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;Continue the scene.&quot;} ], response_format={ &quot;resolution&quot;: &quot;360p&quot;, }, ) Specify first and last frames Achieve smooth transitions and camera movements by specifying the starting and ending frames of a shot. Omni 1.1 generates continuous video between two keyframes, making it ideal for complex camera orbits, zoom transitions, or seamless looping clips. Prompt 1: A close-up low-angle shot of a stylish drummer in a beige suit playing a red drum kit in a grand hall transitions as the camera whip-pans to the side, revealing an older saxophonist playing alongside a ballet dancer spinning in a white outfit under soft purple stage lights. One continuous shot, no jump cuts. Prompt 2: The camera zooms into the TV screen, where we see the same woman and the same scene from the beginning. Seamless video. One continuous shot, no jump cuts. Draft videos more efficiently in 360p Generate lightweight previews in 360p resolution up to 60% faster* and at a third of the cost compared to Omni 1.1’s standard 720p resolution. This is helpful for rapid prototyping, storyboard iteration, and quick rendering in developer platforms. *Up to 60% faster generation based on system throughput of 360p vs. 720p resolution Prompt: A microscopic view of iridescent marine diatoms, displaying intricate, glass-like silica shells with breathtaking natural symmetry. The colors range from deep volcanic amber and warm copper to vibrant turquoise and violet, mimicking the rich palette of earth and ocean. Tiny, delicate structures glow softly against a clean dark field background. High-fidelity scientific imaging, sharp details, organic textures, micro-photography. Maintain the microscope lens effect throughout the entire video. Upscale up to 4K resolution Generate polished, high-resolution 1080p or 4K outputs that are ready for professional production with Omni 1.1. Prompt 1: Fish swimming, tracking shot Prompt 2: A little chipmunk darting out of the woods from the left side of the screen and sniffing the air inquisitively before darting out of frame on the right side Prompt 3: Cinematic macro close-up of vibrant golden-orange Japanese maple leaves on a delicate branch, gently rustling and swaying in a soft, rhythmic autumn breeze. Sunlight filters through the translucent foliage, creating a warm, glowing effect. Shallow depth of field, dreamy bokeh background, hyper-detailed textures, photorealistic, 4k. Add video in your multimodal input up to three seconds of video when crafting your scene, allowing you to maintain visual context and character consistency based on video . Prompt: Use the three uploaded videos of dancers and replace them with the provided characters. Have them perform their individual dances from the videos, all together in the large, open space from the provided image. The dog character dog.png should do the classical dance from dance3.mp4. The octopus octo.png should do the hip hop dance from dance1.mp4, and the bear bear.png should do the breakdance from dance2.mp4. The final result should be one continuous shot with no scene cuts. Inspiring concepts for what you can build Here are a few ideas showing how developers can put these new capabilities into action across custom tools and creative workflows. In this app, you can drop in a first and last frame, generate the transition between them with presets or a prompt box because of Omni&#x27;s full-context reasoning enabling you to get camera moves that read as real. This app moves the camera through the rooms. It arcs, it pushes in, it pulls back. It shows the home in an aspirational state, At the perfect time of day. It adds no furniture or details that don’t exist. Creators already generate several videos before landing on the right one. The Draft Room makes that exploration cheap and structured: generate 3-4 draft variations in 360p, varying one thing at a time and compare them side by side. See how customers are putting Omni Flash in production Our customers are already driving real-world production with Gemini Omni Flash via the Agent Platform API. Explore the videos they&#x27;ve created and hear about how they are using the model below. Adobe integrated Gemini Omni Flash into Adobe Firefly. Check out this video showcasing its video editing capabilities. “Gemini Omni Flash is one of the strongest video models available in Figma Weave, where the canvas helps creative teams build on every generation — attaching , branching different versions, and shaping something unique. With extensions, richer material, and 4K resolution, Gemini Omni Flash takes teams beyond generating videos to truly directing them.” - Itay Schiff, Creative Director, Figma Weave. “At GMI Cloud, we give creators centralized access to the world’s most capable models. What stands out about Gemini Omni Flash is its accuracy: the details hold up under scrutiny. For customers creating educational and explanatory content, where getting things right is essential, that reliability matters more than any single feature. Omni has made AI video viable for a segment that previously couldn’t rely on it.” - Louisa Guo, VP of Marketing, GMI Cloud. “Omni Flash fits naturally into how people already use Runway: start with a prompt, an image or a video, then generate or edit from there. It&#x27;s another way for our users to move quickly between ideas.” – Jamie Umpherson, Chief Creative Officer, Runway. Build with Gemini Omni 1.1 Flash Today Pricing table for Gemini Omni 1.1 Flash. Omni 1.1 is rolling out across the Google developer ecosystem: Start building in Google AI Studio: Try out Omni 1.1 directly in Google AI Studio . Build on Gemini Enterprise Agent Platform : Enterprises can build with Omni 1.1 directly via Agent Platform API . Explore the developer documentation: Check out the official documentation , the cookbook and prompting guides to learn how to integrate scene extensions, video , and upscaling into your applications. Omni 1.1 is also available to all Google AI Plus, Pro and Ultra subscribers globally in Google Flow , starting today. Scene extension is available to all Google AI Plus, Pro and Ultra subscribers globally in the Gemini app . Get the latest news from Google in your inbox Done. Just one step more. Check your inbox to confirm your subscription. You can also subscribe with a . Your information will be used in accordance with Google&#x27;s privacy policy. You may opt out at any time</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/intelligent-transcription-with-gemini-3-5-transcribe/" target="_blank">Intelligent transcription with Gemini 3.5 Transcribe</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Aug 26, 2026 &middot; 17:01 UTC</span>
+          </div>
+          <p class="summary"><span>Intelligent transcription with Gemini 3.5 Transcribe Aug 26, 2026 | x.com Facebook LinkedIn Mail Our latest speech-to-text model designed for precise and intelligent real-time transcription.</span> <span>Generative AI is experimental Today, we’re introducing Gemini 3.5 Transcribe, our most precise speech-to-text model yet, designed for intelligent voice interactions.</span> <span>Now, developers can build similar capabilities with Gemini 3.5 Transcribe in the Gemini API in Google AI Studio and Gemini Enterprise Agent Platform .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Intelligent transcription with Gemini 3.5 Transcribe Aug 26, 2026 | x.com Facebook LinkedIn Mail Our latest speech-to-text model designed for precise and intelligent real-time transcription. Diego Melendo Casado Senior Director, Engineering, Gemini Audio Luke Leonhard Chief of Staff, Gemini Audio, on behalf of Gemini Audio Team Share x.com Facebook LinkedIn Mail Your browser does not support the audio element. Listen to article [[duration]] minutes This content is generated by Google AI. Generative AI is experimental Today, we’re introducing Gemini 3.5 Transcribe, our most precise speech-to-text model yet, designed for intelligent voice interactions. Unlike conventional speech recognition models that struggle with background noise, complex jargon, and disfluency cleanup, Gemini 3.5 Transcribe converts raw audio directly into accurate, polished, formatted text. Across our products like the Gemini app and on Android, we’ve seen consumers already benefiting from this transcription model with new voice capabilities like Rambler on Android and in the Gemini app on macOS. Now, developers can build similar capabilities with Gemini 3.5 Transcribe in the Gemini API in Google AI Studio and Gemini Enterprise Agent Platform . We&#x27;ve built 3.5 Transcribe to plug seamlessly into your developer workflows, whether you’re building voice agents, real-time captioning tools, or post-call analytics pipelines. The model is available across two separate APIs: Real-time streaming: Delivers continuous, bidirectional streaming with sub-second latency for interactive voice apps via the Live API using gemini-3.5-transcribe-live . Pre-recorded audio processing: Transcribes recorded audio, meetings, call logs, and more with speaker attribution and word-level timestamps via the Interactions API using gemini-3.5-transcribe . Get more precise and intelligent transcription Gemini 3.5 Transcribe is designed to capture your natural speaking style to better understand your intent and recognize custom vocabulary, so you can execute tasks with your voice. Smart transcription: Seamlessly handles self-corrections (like &quot;let’s meet Tuesday—no, Wednesday&quot; ), removes filler words (“ums” and ‘“ahs&quot;), auto-formats your text. Function calling: The model can delegate complex tasks (such as image generation and file analysis) to other Gemini models via function calls. Currently available in the Gemini macOS app . More precise transcription: As measured by Artificial Analysis, achieves an average Word Error Rate (WER) of 4.0% for streaming and 2.6% for non-streaming use-cases. It shows strong performance across noisy, real-world environments, accurately capturing alphanumeric entities like postal codes and order IDs. Custom vocabulary: Recognizes specialized jargon and unique spellings by seamlessly adapting transcriptions to your provided custom vocabulary. Global language support: Automatically detects and transcribes over 85 languages, seamlessly handling regional accents and diverse dialects. Multi-speaker identification: Accurately attributes speech in pre-recorded audio with timestamps for up to three speakers (support for 3+ speakers is experimental). Gemini 3.5 Transcribe handles live language switches and seamless streaming transcription Watch Gemini 3.5 Transcribe clean up speech disfluencies with smart transcription capabilities. 3.5 Transcribe delivers transcription with multi-speaker attribution and word-level timestamps. Gemini 3.5 Transcribe’s performance represents a major advancement from our previous transcription model, Chirp 3, offering new capabilities, improved word error rates, and significantly better latency. As measured by Artificial Analysis, time to final transcription, for example, improves by 70%. On the FLEURS benchmark across a set of top languages and locales, the model delivers precise multilingual performance, improving over Chirp 3, and achieving a 5.50% WER in streaming mode and 5.04% WER in non-streaming use-cases. Experience smart transcription and advanced dictation In addition to the Gemini API in the Google AI Studio and Gemini Enterprise Agent Platform, 3.5 Transcribe goes further than standard speech-to-text to make working across Google feel more natural and intuitive. By bringing context-aware understanding directly into everyday surfaces like Gboard, Antigravity, the Gemini app, and Chrome, it captures nuances, intent, and inline edits with ease. On Gboard on Android, through the new Rambler feature, 3.5 Transcribe transforms spoken thoughts into well-formatted text, filtering out filler words. You can also use your voice to make edits, correct misspellings, and change the writing style. On Google Antigravity, 3.5 Transcribe pairs screen context and chat history, with your permission, to ensure pinpoint transcription accuracy across file names, agent thoughts, and active documents. In Google AI Studio , you can access 3.5 Transcribe in Build mode to vibe code apps with your voice on the fly. In the Gemini app on macOS , 3.5 Transcribe not only transcribes your free natural speech into clean formatted text, but also enables voice commands that can pair seamlessly with screen context to power complex workflows. By calling on other Gemini models in the background to handle the heavy lifting, the model makes it effortless to summarize local files, repurpose text across apps, or generate images right at your cursor—using just your voice. Coming soon to Chrome , you’ll be able to talk to type in any web field — making it effortless to dictate replies, draft posts, or prompt Gemini in Chrome more naturally and easily with your voice. Gemini 3.5 Transcribe lets you analyze files, generate images, and search in the Gemini app on macOS using just your voice. See how Gemini 3.5 Transcribe uses Rambler on Android to automatically remove filler words and clean up speech. Gemini 3.5 Transcribe leverages screen context on Google Antigravity to ensure accurate transcription accuracy. Read the early reviews By leveraging the Gemini Live API, developer platforms such as Agora , Fishjam , LangChain , LiveKit , Pipecat , Vercel , and Vision Agents enable developers to build and deploy high-performance voice-driven interfaces with ease. These platforms manage complex real-time media streaming infrastructure behind the scenes, allowing developers to focus entirely on crafting the user experience. Companies like vivo, Intellitek Health, and Lingopal have also shared positive feedback on 3.5 Transcribe, highlighting its impressive latency, accuracy, and expansive language support. Start using 3.5 Transcribe today For developers : In public preview in the Gemini API via Google AI Studio and Google Antigravity . For enterprises : In public preview via Gemini Enterprise Agent Platform and coming soon to Gemini Enterprise for Customer Experience . For everyone : In Gemini app on macOS in English, Rambler on Android in select countries and languages , and coming soon to Chrome. Get the latest news from Google in your inbox Done. Just one step more. Check your inbox to confirm your subscription. You can also subscribe with a . Your information will be used in accordance with Google&#x27;s privacy policy. You may opt out at any time</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/lovable-future-of-saas" target="_blank">Lovable CTO: The Future of SaaS Is Apps That Agents Can Use</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Aug 26, 2026 &middot; 16:16 UTC</span>
+          </div>
+          <p class="summary"><span>Lovable is well known as an AI-powered platform to build applications.</span> <span>Lovable can turn a published application into agent-accessible capabilities by exposing selected functions from the app as tools through a hosted MCP server.</span> <span>This is how fast an AI business evolves This shift towards capabilities is the latest evolution from Lovable, in an already fast-moving 3 years in business.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Lovable is well known as an AI-powered platform to build applications. But ironically, it is now moving towards a future where fewer and fewer people will be using conventional apps . That is, of course, because of the growing impact of agents. In a recent blog post , Lovable outlined a vision for “a digital brain for your team connecting your daily tools.” Or as Lovable CTO Fabian Hedin put it in an interview with Latent Space, “you can get to a place where you’re using one entry point to all the work that you’re doing.” To be clear, Lovable still wants to be the tool you use to build apps — but increasingly, it will also enable you to build what Hedin calls “capabilities.” Lovable defines a capability as a useful part of an application that an agent can call directly; bypassing the need for a human user to open the app. Lovable can turn a published application into agent-accessible capabilities by exposing selected functions from the app as tools through a hosted MCP server. The result is essentially one application with two interfaces: a traditional human UI and a new agent interface that can be used from ChatGPT, Claude and other MCP-compatible AI clients. This is how fast an AI business evolves This shift towards capabilities is the latest evolution from Lovable, in an already fast-moving 3 years in business. Lovable emerged from GPT Engineer, an open source coding tool that launched in 2023, initially focusing on prototyping. In November 2024, it became a commercial product and the following month, it was rebranded as Lovable . By that point, they’d begun to notice some of its users building production apps on Lovable — including products that had become real businesses . “We started seeing people on the platform building not only a prototype, and not only an MVP [Minimum Viable Product], but the actual thing — an actual product that serves real customers,” Hedin said. Next, Lovable noticed its users creating internal software , in some cases to support a public-facing app and in other cases as an internal app built for an enterprise company. “People started creating not only software to enable a business, in terms of a customer-facing product, but also the operations behind the company,” Hedin said. He means tools like a CRM, an admin panel, or a customer-support console. From app builder to agent platform So in less than three years, Lovable has become an all-round software creation and hosting company, which means it’s swimming in the same waters as the likes of Vercel and Cloudflare. That said, Lovable is more focused on AI-generated software than infrastructure. But we are seeing crossover in these markets — for example, Vercel’s v0 allows you to generate an app from natural language, just like Lovable. Also just like the black triangle and orange cloud companies, Lovable has expanded into agentic workflows. This rapid product evolution has been accompanied by strong user and revenue growth. According to a tweet from Deedy Das , a partner at lead investor Menlo Ventures, the company has surpassed a $500 million annualized revenue run rate , with more than 60 million projects created and over 900 million monthly visits to Lovable-built apps. Lovable also says employees at nearly two-thirds of the Fortune 500 have used the platform. Unsurprisingly, Menlo Ventures is doubling down on its investment. It led Lovable’s $400 million Series C this month, alongside the Scaleup Europe Fund managed by EQT, valuing the company at $13.3 billion. Hedin attributes the pace of change to a combination of Lovable’s innovation and the rapidly improving state of LLMs. “Every few months, we introduce new capabilities at the application layer, while the large language models also continue improving. Those two things compound.” Lovable’s model of a company brain The concept of a digital brain for an organization, for Lovable, essentially means a single interface where you can access many different tools and workflows . “It should have as much context as possible about you, your company and the world around you,” said Hedin. “Then it needs the capabilities to perform both general tasks and actions that are specific to your organization.” Ultimately, he added, the goal is that “everything that you’re building can be reused in an agentic way.” In a sense, then, applications are becoming a collection of capabilities that users will increasingly access through an organizational agent — instead of, or in addition to, the actual application. “Our job as a platform is to ensure that all these separate capabilities are connected through one agent — not that you have to build a different agent for every task,” said Hedin. As an example, Hedin mentioned an internal application they use at Lovable. “We built this internal tool to help us grant credits to users [via] our support team, and help manage our platform in different ways. Those capabilities are now available [internally] through the Lovable agent.” Lovable also wants this company brain to work asynchronously. Its agent can schedule itself to resume a task later — for example to check a deployment or to monitor a recurring process — then return the result to the same conversation. The competition Lovable isn’t the only company pursuing a “company brain” vision. Vercel CEO Guillermo Rauch recently introduced its internal agent, called @𝚟. “Every day-to-day job at Vercel now involves @𝚟,” Rauch tweeted . “It’s growing exponentially both in daily interactions and token use.” Hedin acknowledged that Vercel and other AI companies are building towards a similar vision, but he thinks Lovable’s “wedge” is “being the best place to build the capabilities that agents need.” In other words, Lovable’s focus is on helping their users build the capabilities that a company brain will need. “Orchestrating these capabilities is the easy part,” Hedin said. “Making sure they are well connected, built correctly and reliable is the hard part.” He also hinted at why they’re using the word ‘brain’ to describe this shift, rather than just ‘agent’. “I’m careful about using the word ‘agent.’ It suggests something like an employee performing a task, which is an easy way to think about it. But underneath, it is really about connecting the right context and capabilities.” Security and connecting to external capabilities Perhaps the biggest challenge with the agents and capabilities paradigm is security. For instance, if one of your employees creates an app with Lovable that connects to the company Slack, you want to ensure that user doesn’t inadvertently expose their personal messages, or any other confidential information, to the company brain. Connectors are Lovable’s method of connecting to external tools and services. Hedin said the platform must account for a “kind of permissioning graph” to maintain security and privacy. As described in a technical article on Lovable’s blog , one connector type, which Lovable calls an “app user connector,” preserves each user’s identity and source-system permissions. Credentials are stored server-side in encrypted form and handled by Lovable’s connector gateway, rather than being exposed to the generated application; the app instead presents a short-lived key bound to the relevant user. “We separate the connection to external systems from the application code being written,” is how Hedin put it. “The application interfaces with the Lovable platform, but the application itself never gets access to those credentials.” The future of SaaS So Lovable is moving to a future where a company brain uses capabilities derived from the apps its users build . That begs the question: what will happen to SaaS apps? Hedin reiterated that people will increasingly interact with software through an AI layer — the company brain concept. “People are not going to have as many tabs open in different tools as they have historically. That experience is going to consolidate, but the vertical capabilities those tools provide will remain valuable.” He recognizes that some traditional SaaS products may “fight” this trend, by sticking with their traditional apps and not adapting, but he says Lovable wants to become a platform for building capabilities. “We want to build this open platform that anyone can connect to, anyone can use,” he said. Hedin ended with some advice for SaaS companies, whether existing ones or apps that might emerge on the Lovable platform. “I think SaaS businesses are going to have to focus more on providing the shovel for AI to use their capabilities.”</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/learning-never-stops" target="_blank">Learning never stops: How AI makes learning continuous</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 26, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 26, 2026 Product Learning never stops: How AI makes learning continuous Loading… As students head back to school, OpenAI is releasing a new report on how students and educators are already using ChatGPT to extend learning beyond the classroom.</span> <span>Students have long had to wait until class to ask a question or get help.</span> <span>Teachers divide their attention among dozens of students while also managing administrative work.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 26, 2026 Product Learning never stops: How AI makes learning continuous Loading… As students head back to school, OpenAI is releasing a new report on how students and educators are already using ChatGPT to extend learning beyond the classroom. Students have long had to wait until class to ask a question or get help. Teachers divide their attention among dozens of students while also managing administrative work. Parents and tutors are not always available at the moment a question arises. Now, AI is changing all of that by making guidance, feedback, and practice available whenever students need them. A privacy-preserving analysis found that people across all age groups have as many as 70 million conversations with ChatGPT each week devoted to testing what they know, which include misconception checks and requests for more practice. In the U.S., prompts related to classwork and homework peak at more than 460 million messages per week during the school year and climb on Sunday evenings. Even during the summer, they remain above 180 million messages per week. For students, continuous learning can mean getting help with algebra outside of the classroom while the lesson is still fresh. For teachers, it can mean adapting an assignment for different skill levels before the first bell or spending less time on recurring paperwork and more time teaching. For families who speak a different language at home, it can mean receiving school communications in a language they understand and being better able to support a child’s progress. The report also spotlights individual teachers and students across the U.S. who are using AI in productive, creative, and meaningful ways. AI cannot replace a teacher’s judgment, a parent’s encouragement, or the work students must do to learn. But with appropriate guidance and safeguards, it can give educators more time to focus on teaching and make individualized support available to more people at more times. Read the full report on how AI is changing when and where learning happens here ⁠ (opens in a new window) . 2026 Education ChatGPT Author OpenAI Keep reading View all A milestone in expanding access to AI Product Aug 31, 2026 Bringing ChatGPT for Teachers to more U.S. school districts Product Aug 26, 2026 Advancing price-performance for developers with GPT‑5.6 in Kiro Product Aug 24, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Aug/26/paul-dix/" target="_blank">Quoting Paul Dix</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Aug 26, 2026 &middot; 08:07 UTC</span>
+          </div>
+          <p class="summary"><span>The fact that AI wrote 1M LOC and then refined it over the course of the next couple of months to produce a reliable piece of software that is currently running on millions of developer machines is absolutely mind blowing.</span> <span>And you can say, “well it’s not that impressive because they had an oracle to compare against, so it was simple to go from one language to another”, but I think that’s selling this entire thing short.</span> <span>If you can build a verification system and give proper direction, AI can produce a highly complex, highly sophisticated piece of software and it can continue to refine it until it just works.</span> <span>— Paul Dix , The end of programming Tags: coding-agents , ai-assisted-programming , generative-ai , bun , ai , llms</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/loveholidays" target="_blank">How loveholidays is making everyone a builder with Codex</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 26, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 26, 2026 How loveholidays is making everyone a builder with Codex The online travel company is using Codex to put software development in the hands of teams across the business—while helping engineers focus on harder problems.</span> <span>Teams can prototype customer experiences, make data and infrastructure changes, and turn ideas into working software without every request first having to enter an engineering queue.</span> <span>“Everybody is a builder,” says Dmitri Lerko, Head of Engineering at loveholidays.</span> <span>“Making changes to our applications, infrastructure, and deploying code is no longer an engineering-only activity.</span> <span>Every experiment therefore came with an opportunity cost: engineering time spent testing one idea was engineering time unavailable elsewhere.</span> <span>loveholidays wanted to break that dependency.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 26, 2026 How loveholidays is making everyone a builder with Codex The online travel company is using Codex to put software development in the hands of teams across the business—while helping engineers focus on harder problems. Contact sales Company size: Enterprise Region: Europe &amp; UK Industry: Travel, Technology Products: Codex 11x AI-assisted code changes have grown from 7% to 79% in a year 73% increase in AI-assisted deployment frequency without growing the engineering team 93% Data Platform change success, up from 58% 4x More Data Platform changes per support request Loading… loveholidays ⁠ (opens in a new window) is a leading online travel agent operating across eight European markets, using its technology to process 60 trillion package combinations every day to help millions of people find their perfect holiday. Behind that scale is a technology platform the company has spent years building to make finding and booking a holiday faster and more flexible. Now, Codex is changing who gets to build on it. Product managers, designers, and commercial teams are increasingly contributing directly to loveholidays’ codebases. Teams can prototype customer experiences, make data and infrastructure changes, and turn ideas into working software without every request first having to enter an engineering queue. “Everybody is a builder,” says Dmitri Lerko, Head of Engineering at loveholidays. “Making changes to our applications, infrastructure, and deploying code is no longer an engineering-only activity. Product managers, designers, and commercial stakeholders are driving value and making deployments.” For Mike Jones, CTO at loveholidays, that’s part of a bigger ambition: building what the company calls the general intelligence for travel by combining its technology with the expertise of its people—and making both more accessible through AI. “At loveholidays, our platform vision is to build the general intelligence for travel. That’s bringing together the great technology we have with our people’s expertise—and democratising that with AI and Codex.” —Mike Jones, CTO, loveholidays From an idea to a live customer experience One of the clearest examples is Search Playground. Previously, someone elsewhere in the business with an idea for a new customer experience would need to persuade an engineering team to prioritise a prototype. Every experiment therefore came with an opportunity cost: engineering time spent testing one idea was engineering time unavailable elsewhere. loveholidays wanted to break that dependency. Its engineers created Search Playground using the company’s design system, frontend technologies, and Codex. It gives people across the business a way to turn an idea into a working customer experience, gather feedback, and test whether it delivers value. More than ten new search experiences have already been developed through the Playground. Most were built by non-engineers, and at least three are now running on the loveholidays website. One is Inspire Me ⁠ (opens in a new window) , which helps travellers explore different kinds of trips, from beach breaks to foodie escapes. Another came from marketing. For its recent Crisps from Abroad activation, the team wanted an interactive microsite to gather entries for a competition and share holiday inspiration. Previously, it would have relied on an external agency to design and develop a standalone digital experience, adding cost and time. Using Codex and Search Playground, the team built the experience itself in hours, while maintaining loveholidays’ existing design system. “We wanted to decouple our ability to trial new ideas from actual engineering time,” says Lerko. The result isn’t simply faster prototyping. It means more ideas can earn the chance to become products. Putting specialist engineering expertise on tap The same principle applies behind the scenes. loveholidays’ Data Platform and infrastructure were originally designed for technical users. Making changes required knowledge of specialist tools, repositories, source control, and internal processes. When someone got stuck, a specialist engineer had to step in. Codex gives loveholidays another way to scale that expertise. Engineering teams encode their best practices, instructions, and validations into workflows that Codex can guide other users through. Instead of needing to understand every underlying system, employees can focus on what they’re trying to accomplish while Codex helps propose a change, run checks, and guide it through the release process. “We codify all the best practices. We codify validations, and continuously improve them as reality changes,” says Lerko. “The expertise of our data and infrastructure engineers is available through Codex—so anybody self-serving their infrastructure or data needs gets that expertise on tap, 24/7.” The results are measurable. Successful AI-assisted changes to loveholidays’ Data Platform have risen from 58% to 93% over the last year. At the same time, the team is seeing four times as many Data Platform changes for every support request. Across its broader self-service infrastructure workflows, success has increased from 63% to 90%. That changes the job on both sides. Teams can move without waiting for specialist help, while engineers spend less time troubleshooting routine requests and more time improving the platform itself. “The more work you can hand off to AI, the more your job elevates. Your job isn’t to be handed a solution and implement it anymore. You have to get involved in the business problem.” —Mike Jones, CTO, loveholidays More software, without more engineers That shift is showing up across loveholidays’ engineering organisation. A year ago, around 7% of its code changes were AI-assisted. Today, that figure is 79%. Over the same period, deployments have increased 73%, while engineering headcount has remained broadly flat. For loveholidays, that capacity isn’t about producing more code for its own sake. The company deliberately measures AI against business outcomes rather than adoption alone. “Technology is just a means to an end,” says Jones. “It’s not about the technology itself; it’s about the impact it has. We’re intentional about not just giving people access to tools, but helping them solve business problems—and measuring the impact.” Some of that impact is already visible in the bottom line. With more capacity to tackle optimisation work that previously carried too high an opportunity cost, loveholidays’ Data Engineering team has reduced cloud storage costs by around £36,000 a year and is saving approximately another £100,000 annually by reducing data-processing waste. And the bigger effect may be what teams now consider possible. “We’re noticing that what used to be too hard is now ordinary,” says Lerko. “The implication is that what’s too hard now will become more ordinary.” Building the general intelligence for travel For loveholidays, Codex is increasingly becoming a common interface between its people and the technology underpinning the company. “Codex is becoming a single control plane—a single interface shared by engineers, data scientists and the business,” says Lerko. “There’s a lot of power in that, because you no longer need to teach everyone a different tool.” That points toward a different model for building software: one in which specialist expertise can be made available across an organisation, more people can turn ideas into working products, and engineers themselves can move further up the problem-solving stack. For loveholidays, that’s ultimately what “general intelligence for travel” means: combining the technology it has built with the expertise of its people, then making both available to more of the business. And with Codex, the distinction between the people who have ideas and the people who can build them is beginning to disappear. Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading OpenAI supports California’s bill to advance youth AI safety Company Aug 31, 2026 Polimill builds Japan&#x27;s next-generation public AI infrastructure Aug 31, 2026 A milestone in expanding access to AI Product Aug 31, 2026</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 187</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
