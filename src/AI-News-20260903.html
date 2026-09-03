@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-09-03</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-09-03</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Sep/2/llm-gemini/" target="_blank">llm-gemini 0.34</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Sep 02, 2026 &middot; 16:39 UTC</span>
+          </div>
+          <p class="summary"><span>Release: llm-gemini 0.34 New model gemini-3.8-flash for Gemini 3.8 Flash , with low, medium and high thinking levels.</span> <span>#146 Fixed async responses failing to record the resolved model version.</span> <span>Thanks, Charlie Tonneslan .</span> <span>#137 Google released Gemini 3.8 Flash (and 3.8 Flash Cyber, but that&#x27;s available to &quot;trusted defenders&quot; only) today.</span> <span>Tags: ai , generative-ai , llms , llm , gemini , pelican-riding-a-bicycle , llm-release</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Release: llm-gemini 0.34 New model gemini-3.8-flash for Gemini 3.8 Flash , with low, medium and high thinking levels. #146 Fixed async responses failing to record the resolved model version. Thanks, Charlie Tonneslan . #137 Google released Gemini 3.8 Flash (and 3.8 Flash Cyber, but that&#x27;s available to &quot;trusted defenders&quot; only) today. Here are the pelicans for high, medium, and low. This is high: For comparison, here are the same pelicans generated using Gemini 3.7 Flash . Something I appreciate about Gemini Flash is that it&#x27;s fast, cheap, and competent at things like HTML and JavaScript. I was messing around with it and prompted &quot;make me a cool thing in html&quot; and it built this , which is certainly a cool thing in HTML! Took 13 seconds, cost 1.8 cents. Your browser does not support HTML5 video. If you click through to the demo you&#x27;ll see one more thing I built with Gemini 3.8 Flash. My markdown-svg-renderer tool lets me feed in the URL to a Gist with Markdown in and renders that markdown with fenced code blocks for SVG correctly rendered. I used Gemini 3.8 Flash (with my very basic llm-coding-agent coding agent plugin) to add support for HTML as well, so now any HTML blocks in the Markdown are rendered using a sandboxed iframe. Here&#x27;s the transcript . Tags: ai , generative-ai , llms , llm , gemini , pelican-riding-a-bicycle , llm-release</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/proactive-cyber-defense-for-governments-and-enterprises/" target="_blank">Proactive cyber defense for governments and enterprises</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Sep 02, 2026 &middot; 16:24 UTC</span>
+          </div>
+          <p class="summary"><span>Proactive cyber defense for governments and enterprises Sep 02, 2026 | x.com Facebook LinkedIn Mail Today, we’re launching our Fairwind Program, a limited access program for governments and trusted partners to use our most advanced cyber defense capabilities.</span> <span>Today, we’re launching our Fairwind Program to bring the best of Google’s AI and cyber defense capabilities to a trusted group of Google Cloud customers, government agencies, and cybersecurity partners, to help them proactively solve cyber risks at scale.</span> <span>As a first step, the Fairwind Program will give defenders access to powerful and advanced Gemini models to help them autonomously find and fix vulnerabilities, protecting critical infrastructure, public services, and national security.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Proactive cyber defense for governments and enterprises Sep 02, 2026 | x.com Facebook LinkedIn Mail Today, we’re launching our Fairwind Program, a limited access program for governments and trusted partners to use our most advanced cyber defense capabilities. Four Flynn Vice President - Security and Privacy Share x.com Facebook LinkedIn Mail Your browser does not support the audio element. Listen to article [[duration]] minutes This content is generated by Google AI. Generative AI is experimental Defenders wanting to use advanced AI have faced a difficult dilemma: adopt enormous frontier models that could be expensive to deploy and difficult to control across enterprise codebases, or turn to smaller open-weight models that might struggle with complex vulnerability remediation and require teams to build their own tooling and infrastructure from scratch. Today, we’re launching our Fairwind Program to bring the best of Google’s AI and cyber defense capabilities to a trusted group of Google Cloud customers, government agencies, and cybersecurity partners, to help them proactively solve cyber risks at scale. As a first step, the Fairwind Program will give defenders access to powerful and advanced Gemini models to help them autonomously find and fix vulnerabilities, protecting critical infrastructure, public services, and national security. Finding and autonomously fixing vulnerabilities The Fairwind Program offerings bring together our most advanced cyber model, Gemini 3.8 Flash Cyber , with our CodeMender harness, to help defenders find, verify, and fix vulnerabilities at agentic scale. Spotting weaknesses creates awareness and fear; autonomously finding and fixing vulnerabilities delivers security. CodeMender with Gemini 3.8 Flash Cyber delivers the specialized reasoning to write and validate code fixes, at a fraction of the operating cost of traditional frontier models. Instead of taking weeks to manually fix vulnerabilities, defenders can now generate verified, deployment-ready patches in minutes — within an organization’s secure cloud environment. Scaling frontline defense Providing early access to these powerful cyber capabilities gives trusted defenders a vital adaptation window to harden their systems before bad actors have a chance to exploit new capabilities. We’re staging initial access to government and enterprise partners most critical to society’s resilience: Governments and national cyber authorities: Hardening public-sector networks and citizen services against targeted intrusions. Critical infrastructure operators: Protecting essential services across healthcare, telecommunications, energy, and financial networks from operational disruption. Core technology platforms: Securing widespread software foundations to uplift digital security for millions of downstream users at once. To ensure these powerful AI capabilities are used responsibly, participating organizations agree to strict operational standards, including limiting access to employees within their internal cybersecurity, incident response, or penetration testing teams and deploying protections like multi-factor authentication. We have more than 650 participating partners globally, including: What our Fairwind Program partners are saying Trusted defenders and industry leaders are already putting Gemini 3.8 Flash Cyber into practice: The Fairwind Program will evolve alongside our partners and users&#x27; needs. We will adapt our product offerings and expand partner access, collaborating closely with industry, governments, and open-weight community leaders to strike the right balance between open access and robust security. While we are prioritizing Gemini 3.8 Flash Cyber access for customers in the Fairwind Program, any Google Cloud customer can proactively secure their code by using CodeMender with publicly available models hosted on Gemini Enterprise Agent Platform, in combination with industry-leading solutions offered through AI Threat Defense . Making an ecosystem-scale impact on cyber defense Years of Google’s pioneering zero-trust architecture, advanced AI defenses, and built-in security allow us to protect billions of accounts daily – keeping more people and organizations safe online than anyone else. The Fairwind Program builds on this experience and is part of our broader commitment to global cyber resilience across the entire digital ecosystem, including helping to fortify grassroots cyber defense. Through Google.org , our latest commitment brings our total cybersecurity funding to more than $100 million globally. We’re pleased to release our 2026 Google.org US Cybersecurity Impact Report , which details $36 million in funding for 35 cyber clinics to date, providing free, hands-on security support to over 1,250 hospitals, public school districts, and municipal utilities in the U.S. Providing a security advantage The defender’s edge comes from shrinking the time between detecting a flaw and patching it. Through Google’s Fairwind Program, government and enterprise partners gain autonomous tools to repair systems faster and at scale, keeping them one step ahead of agentic-speed threats</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/introducing-gemini-3-8-flash-and-38-flash-cyber/" target="_blank">Introducing Gemini 3.8 Flash and 3.8 Flash Cyber</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Sep 02, 2026 &middot; 16:18 UTC</span>
+          </div>
+          <p class="summary"><span>Introducing Gemini 3.8 Flash and 3.8 Flash Cyber Sep 02, 2026 | x.com Facebook LinkedIn Mail Our newest Gemini models deliver next-generation intelligence for agentic workflows and cybersecurity.</span> <span>Gemini 3.8 introduces 2 variants: Gemini 3.8 Flash: our most intelligent workhorse model, delivering significant improvements from 3.7 Flash across software engineering, agentic tasks, and critical, multi-step reasoning in specialized domains.</span> <span>Gemini 3.8 Flash: built for long-horizon coding and autonomous agents Gemini 3.8 Flash delivers substantial gains from 3.7 Flash, often approaching the performance of higher-cost frontier models.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Introducing Gemini 3.8 Flash and 3.8 Flash Cyber Sep 02, 2026 | x.com Facebook LinkedIn Mail Our newest Gemini models deliver next-generation intelligence for agentic workflows and cybersecurity. Tulsee Doshi Senior Director, Product Management Raluca Ada Popa Gemini Security Lead, Google DeepMind Share x.com Facebook LinkedIn Mail Building on the momentum of 3.7 Flash from three weeks ago and marking our third Flash release in only six weeks, today we’re introducing Gemini 3.8, our best reasoning &amp; coding model yet, at the same speed and low cost of 3.7. Gemini 3.8 introduces 2 variants: Gemini 3.8 Flash: our most intelligent workhorse model, delivering significant improvements from 3.7 Flash across software engineering, agentic tasks, and critical, multi-step reasoning in specialized domains. It is available at the same introductory price 1 as 3.7 Flash at $0.75 per million input tokens and $3.75 per million output tokens. Gemini 3.8 Flash Cyber: our most capable cybersecurity model with frontier-level performance in vulnerability detection and automated patching, available to trusted defenders through our new Fairwind Program . While tailored for different deployment environments, both of today&#x27;s releases are powered by the same foundational intelligence, and further accelerated by long-running agentic loops designed to recursively evaluate and refine the underlying models. The significant coding and reasoning gains across this shared core were driven by a number of innovations, including rigorous training in the highly demanding domain of cybersecurity. Gemini 3.8 Flash: built for long-horizon coding and autonomous agents Gemini 3.8 Flash delivers substantial gains from 3.7 Flash, often approaching the performance of higher-cost frontier models. On DeepSWE v1.1 (Long-Horizon Software Engineering ) 3.8 Flash outperforms most larger frontier models in autonomously solving complex engineering problems end to end, only at a fraction of the cost. Additionally, 3.8 Flash exhibits the dependability required for critical enterprise autonomy, across specialized knowledge domains . In quantitative and professional fields that require advanced analysis and reporting, 3.8 Flash outperforms 3.7 Flash and other frontier models in benchmarks like Vals Finance Agent V2 and Harvey&#x27;s Legal Agent Benchmark . 3.8 Flash also achieves a 54.9% on HLE-Verified, demonstrating its ability to handle multi-step reasoning across STEM, humanities, and professional fields. These performance gains stem from a core design choice: 3.8 Flash works harder. On complex tasks, it exhibits greater diligence — executing extra reasoning steps, and calling tools iteratively. At times, the model might use more tokens to maximize performance, especially at higher effort levels. For applications where compute efficiency is the primary constraint, developers can utilize lower effort levels to minimize token overhead or continue to rely on Gemini 3.7 Flash, which remains fully supported for efficiency-first workloads. Gemini 3.8 Flash built this game with a simple prompt using a looping instruction in Google Antigravity. The game uses puzzles, environmental storytelling, and textures generated with Nano Banana to create an immersive 3D level in which you play a wizard navigating a castle. Gemini 3.8 Flash builds a fully functional DOS version of Google Maps in a single prompt in Google Antigravity that is fully playable with locations, directions, and Street View. Explore realtime cross-sections, 2D projections, scientific explanations in a topographic map of famous geographical sites built with Gemini 3.8 Flash in Google Antigravity using real datasets from the U.S. Geological Survey. Hardware Anatomy is an interactive 3D visualizer built with Gemini 3.8 Flash in Google AI Studio that generates realistic Three.js renderings of physically-proportioned teardowns for hardware devices. It automatically decomposes devices into layers you can explode and inspect with a deconstruction slider. Gemini 3.8 Flash Cyber: expert cyber performance Gemini 3.8 Flash Cyber, available to a set of trusted defenders via the Fairwind Program , provides a decisive advantage in today’s complex cybersecurity landscape, with the Flash speed and cost that enables quick iteration. Autonomous vulnerability discovery On the standard industry benchmark for finding vulnerabilities, CyberGym, Gemini 3.8 Flash Cyber demonstrates frontier-level performance in autonomous vulnerability discovery. It surpasses both 3.5 Flash Cyber as well as significantly larger frontier models. To better capture real-world defensive needs which are not limited to just C/C++ codebases like in CyberGym, we also evaluated Gemini 3.8 Flash Cyber against a comprehensive internal benchmark in which the model has to discover a wide range of vulnerabilities across complex codebases spanning 20 programming languages. Here, the model showcases an impressive leap over our previous models and reaches a success rate exceeding 70%. Automated patching With Gemini 3.8 Flash Cyber, we focused specifically on equipping defenders with expert capabilities that give them an advantage over attackers. This is why we have invested in vulnerability fixing from the start, and prioritized it over offensive capabilities like exploitation. CWE-Bench , run by Collinear, is a challenging external benchmark for patching capabilities. On this benchmark, Gemini 3.8 Flash Cyber is on the Pareto frontier: with a pass@1 of 47.2% compared to a leading frontier model at 47.8%, yet offered at a significantly lower cost. Real-world impact: securing Google’s code We’re already using Gemini 3.8 Flash Cyber to secure code across Google. For example: The Chrome Security team found that 3.8 Flash Cyber produced 2.6 times more correct patches to vulnerabilities in Chrome than the best commercial models that are much larger. Wiz found that Gemini 3.8 Flash Cyber achieves +7.5-9.7% higher recall on their internal penetration testing benchmark for a 2.3-5.2x lower cost compared to other leading frontier models. Google’s Cloud Vulnerability Research team leveraged the 3.8 Flash Cyber model to find a critical foundational vulnerability in less than 2 hours, a vulnerability for which research and discovery usually takes months. What our Fairwind Program partners are saying Built with safety in mind 3.8 Flash ships with safeguards against misuse in the domains of Chemical, Biological, Radiological, and Nuclear (CBRN) and cyber offense, while enabling beneficial use cases, as per our Frontier Safety Framework . 3.8 Flash Cyber ships with a more permissive set of mitigations for cybersecurity, and as such, is only available to trusted defenders who require a more comprehensive set of cyber capabilities. Gemini 3.8 models have also made a significant leap in prompt injection robustness as measured by Gray Swan, protecting Gemini model users from prompt-injection related malicious attacks. Gemini 3.8 Flash and Cyber: get started today Developers : Build with 3.8 Flash and explore agent-first workflows in Google Antigravity or start building today in the Gemini API via Google AI Studio and Android Studio , or generate UIs in Stitch . Get started with our developer docs . Enterprises : Access 3.8 Flash in Gemini Enterprise. Consumers : 3.8 Flash is available to Google AI Pro and Ultra subscribers across the Gemini app , AI Mode in Google Search and Gemini in Google Sheets . Cyber: Through our new Fairwind Program , we’re providing trusted government authorities, as well as critical infrastructure operators and software maintainers with prioritized access to Gemini 3.8 Flash Cyber. Apply for access</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2609.02774v1" target="_blank">CodePoisonRAG: Knowledge Poisoning Attacks on Retrieval-Augmented Code Generation</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Sep 02, 2026 &middot; 16:11 UTC</span>
+          </div>
+          <p class="summary"><span>Retrieval-Augmented Code Generation (RACG) improves LLM-based software development by retrieving external code artifacts, documentation, and patches, and incorporating them into the generation context.</span> <span>This reliance on external knowledge introduces a critical trust boundary: poisoned artifacts can influence generated code without modifying the underlying LLM.</span> <span>These results show that RACG poisoning extends beyond the incidental propagation of existing vulnerabilities to the targeted construction and propagation of attacker-selected weaknesses.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Retrieval-Augmented Code Generation (RACG) improves LLM-based software development by retrieving external code artifacts, documentation, and patches, and incorporating them into the generation context. This reliance on external knowledge introduces a critical trust boundary: poisoned artifacts can influence generated code without modifying the underlying LLM. Prior work shows that selecting existing vulnerable examples can increase the general vulnerability rate of RACG outputs, but leaves open whether a black-box attacker can construct a single task-matched artifact that propagates an attacker-selected weakness. We introduce CodePoisonRAG, a targeted upstream knowledge-poisoning framework that transforms benign fixed-code entries into poisoned artifacts. Its attack chain combines CWE-specific Vulnerability Injection, which embeds a selected source-to-sink flow while retaining task alignment, with Semantic Mislabeling, which adds false safety claims without repairing the vulnerable behavior. The attacker has no access to the victim&#x27;s deployed knowledge base, retriever, re-ranker, generator, prompt, or defense mechanism and injects at most one artifact per anticipated programming task. We construct 85 poisoned artifacts covering ten CWE classes across Java and C, yielding an aggregate corpus-poisoning ratio of 0.7%. Across three generators, all 85 artifacts appear among the Top-3 results for their corresponding queries, and CodePoisonRAG achieves attack success rates between 0.80 and 0.93. Against CodeGuarder, which injects vulnerability-specific security knowledge into the generation context, the attack retains success rates between 0.40 and 0.71. These results show that RACG poisoning extends beyond the incidental propagation of existing vulnerabilities to the targeted construction and propagation of attacker-selected weaknesses.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/grok-bot-vs-openclaw-how-i-replaced" target="_blank">Grok Bot vs. OpenClaw: How I replaced my entire agent stack</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Sep 02, 2026 &middot; 12:03 UTC</span>
+          </div>
+          <p class="summary"><span>t —Deploy fleets of agents that handle real work Why I migrated from OpenClaw to Grok Bot Grok Bot overview: the three core primitives Chief: my chief-of-staff bot OpenClaw vs.</span> <span>Grok Bot TradBot: my family agent LGTM the PR Closer Lockdown: SOC 2 control monitoring bot Holly Helpdesk: customer support Penny Pincher: subscription audit, insurance negotiation, Rolex shopping ShopZilla and Sylvie Style: personal shopping and wardrobe bots How to migrate your OpenClaws Final take<ul><li>Grok Bot (SpaceXAI multi-agent platform): <a href="https://x.ai/news/introducing-grok-bot" target="_blank" rel="noopener">https://x.ai/news/introducing-grok-bot</a></li><li>OpenClaw (previous agent platform): <a href="https://openclaw.ai/" target="_blank" rel="noopener">https://openclaw.ai/</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/introducing-agentic-video-in-gemini/" target="_blank">Introducing agentic video understanding with Gemini</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Sep 01, 2026 &middot; 17:08 UTC</span>
+          </div>
+          <p class="summary"><span>Introducing agentic video understanding with Gemini Sep 01, 2026 | x.com Facebook LinkedIn Mail Our new agentic feature for video analysis cuts token consumption by up to 88%, reduces costs by up to 66%, and boosts quality by up to 7%.</span> <span>Generative AI is experimental Google just launched agentic video understanding for Gemini 3.7 Flash, 3.6 Flash, and 3.5 Flash-Lite.</span> <span>Today, we’re launching agentic video understanding across our latest models: Gemini 3.7 Flash, 3.6 Flash and 3.5 Flash-Lite.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Introducing agentic video understanding with Gemini Sep 01, 2026 | x.com Facebook LinkedIn Mail Our new agentic feature for video analysis cuts token consumption by up to 88%, reduces costs by up to 66%, and boosts quality by up to 7%. Rohan Doshi Senior Product Manager, Google DeepMind Mario Lučić Research Director, Google DeepMind Share x.com Facebook LinkedIn Mail Your browser does not support the audio element. Listen to article [[duration]] minutes This content is generated by Google AI. Generative AI is experimental Google just launched agentic video understanding for Gemini 3.7 Flash, 3.6 Flash, and 3.5 Flash-Lite. This feature allows the model to dynamically scan video segments, which improves accuracy while cutting token usage by up to 88% and costs by up to 66%. You can start using this today by setting your API configuration to &quot;agentic&quot; in Google AI Studio or the Gemini Enterprise Agent Platform. Summaries were generated by Google AI. Generative AI is experimental. Today, we’re launching agentic video understanding across our latest models: Gemini 3.7 Flash, 3.6 Flash and 3.5 Flash-Lite. This new capability improves accuracy while dramatically reducing token usage and costs for video analysis. Similar to agentic vision , which combines code execution with Gemini models’ native image understanding, agentic video understanding uses Gemini’s native video tools to improve performance and unlock new capabilities for video processing like sub-second moment retrieval, more accurate anomaly detection, precise counting and more. The feature is available today for video uploads and YouTube videos via the Gemini API in Google AI Studio and the Gemini Enterprise Agent Platform. Benchmarks Unlike current ‘static’ processing, where the model ingests the video at a fixed frames-per-second rate (default 1 FPS, adjustable via API), agentic video understanding pairs the model’s core reasoning with native video tools to dynamically search, scan, and inspect target video segments across visual frames, audio, and transcripts. Across standard video analysis benchmarks, Gemini models with agentic video understanding reduce analysis costs by up to 66% and token consumption by up to 88%, while improving accuracy by up to 7%. These efficiency gains are especially pronounced on long-form video (from 10-minute how-to guides to 90-minute lectures and multi-hour recordings), where static processing forces developers to choose between high token costs or techniques that drop critical details. Activating agentic video understanding drops token consumption by up to 88% and boosts accuracy by up to 7% with Gemini 3.7 Flash. While these gains span all three supported models, Gemini 3.7 Flash with agentic understanding offers the best possible quality overall and the best combination of quality and cost efficiency, putting it at the accuracy-to-cost pareto frontier among tested models for video understanding. Using agentic video understanding places Gemini 3.7 Flash at the accuracy-to-cost pareto frontier for video analysis. How it works Instead of static processing where the model ingests media streams at a fixed frame rate, agentic video understanding enables Gemini to take an active, goal-directed role in determining what to watch, at what speed, and through which modality (frames, audio, or transcript), fetching only the moments and signals needed. While developers could previously do this manually, with agentic video understanding, Gemini can accomplish it through an agentic loop, invoking an internal tool to load the relevant part of the video file, significantly reducing development overheads. Capabilities and use cases Agentic video understanding transforms how developers can process long-form video content across a variety of demanding applications. Sub-second moment retrieval : Pinpoint split-second state changes and tight cut boundaries that are easily missed at 1 FPS, making precise automated video editing possible. Long-form needle-in-a-haystack search : Answer complex queries across multi-hour videos without consuming millions of tokens. Anomaly detection : Resample interesting time windows at higher FPS to inspect rapid motion and subtle visual artifacts. Counting action &amp; object : Accurately track repeated physical movements and distinct objects over time. Token-efficient long-form video analysis See how Gemini 3.7 Flash performs with and without agentic video understanding on LongVideoBench, a long-form video understanding benchmark. Notice the large token reductions and accuracy improvements. Accurate fast action analysis with dynamic FPS With agentic video understanding, 3.7 Flash is able to accurately count a fast-paced movement by scanning and rewatching the video at different frames per second, as needed. Token-efficient needle-in-a-haystack search Using agentic video understanding, Gemini 3.7 is able to accurately answer complex questions based on the content of the video while consuming a significantly lower number of tokens compared to static analysis. Real-world results Many of our early access partners saw strong performance while testing with agentic video understanding. Here’s what they have to say: Getting started Agentic video understanding is available via the Gemini API in Google AI Studio and Gemini Enterprise Agent Platform , launching across Gemini 3.7 Flash, 3.6 Flash, and 3.5 Flash-Lite. It uses standard Gemini API token pricing with no additional feature fee. To enable it, simply set processing to &quot;agentic&quot; in the API configuration. Read our developer guide to get more insights into the feature and how to get started. from google import genai client = genai.Client() interaction = client.interactions.create( model=&quot;gemini-3.7-flash&quot;, input=[ { &quot;type&quot;: &quot;video&quot;, &quot;uri&quot;: &quot;<a href="https://youtu.be/7Z5Vy9JBANs" target="_blank" rel="noopener">https://youtu.be/7Z5Vy9JBANs</a>&quot;, &quot;processing&quot;: &quot;agentic&quot; }, { &quot;type&quot;: &quot;text&quot;, &quot;text&quot;: &quot;What are the 3 most important announcements in this key ?&quot;, }, ], ) print(interaction.output_text) We are also bringing the efficiency and quality improvements of agentic video understanding to billions of users across Google products. The feature will roll out to all users in the Gemini app across Flash and Flash-Lite models soon. And in the coming months, agentic video understanding will also power YouTube&#x27;s ‘ Ask YouTube’ feature on the video watch page, leveraging Gemini to deliver higher-quality answers grounded in the visuals. Acknowledgement for their contribution to this work: Sergi Caelles, Filip Pavetić, Ahmet Iscen, Suhas Yogin, and the Agentic Vision team. Get the latest news from Google in your inbox Done. Just one step more. Check your inbox to confirm your subscription. You can also subscribe with a . Your information will be used in accordance with Google&#x27;s privacy policy. You may opt out at any time</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Sep/1/python-315-rc-2/" target="_blank">Python 3.15.0 candidate 2 is here!</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Sep 01, 2026 &middot; 14:59 UTC</span>
+          </div>
+          <p class="summary"><span>Python 3.15.0 candidate 2 is here! Hugo van Kemenade (release manager for Python 3.14 and 3.15) announces the final release candidate for Python 3.15, scheduled for release in October: Entering the release candidate phase, only reviewed code changes which are clear bug fixes are allowed between this release candidate and the final release.</span> <span>[...] We strongly encourage maintainers of third-party Python projects to prepare their projects for 3.15 during this phase, and publish Python 3.15 wheels on PyPI to be ready for the final release of 3.15.0, and to help other projects do their own testing.</span> <span>Via @hugovk.dev Tags: open-source , python , github-actions</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Python 3.15.0 candidate 2 is here! Hugo van Kemenade (release manager for Python 3.14 and 3.15) announces the final release candidate for Python 3.15, scheduled for release in October: Entering the release candidate phase, only reviewed code changes which are clear bug fixes are allowed between this release candidate and the final release. [...] We strongly encourage maintainers of third-party Python projects to prepare their projects for 3.15 during this phase, and publish Python 3.15 wheels on PyPI to be ready for the final release of 3.15.0, and to help other projects do their own testing. Any binary wheels built against Python 3.15.0 release candidates will work with future versions of Python 3.15. Back in 2021 I found a bug in Python 3.10 by running my test suites against it... but I hadn&#x27;t done this during the RC period, so that bug had already shipped! Since then I&#x27;ve always paid much closer attention to these RCs. The new RC isn&#x27;t available for GitHub Actions just yet - keep an eye on actions/python-versions for that. For the moment though you can add this to a testing matrix: strategy : matrix : python-version : [&quot;3.14&quot;, &quot;3.15&quot;] steps : - uses : actions/setup-python@v7 with : python-version : ${{ matrix.python-version }} allow-prereleases : true check-latest : true The allow-prereleases and check-latest flags mean that today this will test against RC1, and when RC2 lands it will automatically switch to that version (and then the stable version once that comes out.) Update : Datasette passes , sqlite-utils passes , LLM is currently blocked waiting for a 3.15 wheel for scikit-learn , which is optionally used in the test suite. Via @hugovk.dev Tags: open-source , python , github-actions</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/gilbert-tobin" target="_blank">How law firm Gilbert + Tobin governs and scales AI with OpenAI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Sep 01, 2026 &middot; 01:00 UTC</span>
+          </div>
+          <p class="summary"><span>September 1, 2026 How law firm Gilbert + Tobin governs and scales AI with OpenAI CEO-led commitment, rigorous governance, and human accountability enable Gilbert + Tobin to embed AI into the way the firm operates.</span> <span>Turning leadership support into firm-wide adoption Visible leadership helped make AI adoption relevant and legitimate across the firm.</span> <span>What’s next Gilbert + Tobin intends to extend access to ChatGPT Work and Codex as it puts in place the controls required for broader use.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>September 1, 2026 How law firm Gilbert + Tobin governs and scales AI with OpenAI CEO-led commitment, rigorous governance, and human accountability enable Gilbert + Tobin to embed AI into the way the firm operates. Contact sales Company size: Enterprise Region: Asia-Pacific &amp; Oceania Industry: Professional Services Products: ChatGPT, Codex 87% active usage among enabled ChatGPT users, more than twice the adoption rate Gilbert + Tobin typically sees for other tools 20 minutes for one recruitment research and data-extraction workflow, down from approximately four hours 5 minutes for selected conflict, KYC, AML, and related checks, down from three to eight hours One day of manual work avoided when preparing audit reports across 300 entities Loading… Gilbert + Tobin is one of Australia’s leading corporate law firms, recognised for its work across capital markets, mergers and acquisitions, disputes, and technology. The firm’s practice depends on specialist knowledge, careful judgment, and the secure handling of sensitive information. When generative AI began reshaping knowledge work, Gilbert + Tobin saw an opportunity—not to change how it delivers legal advice, but to raise the standard of the operational work that supports it. The firm set out to give every operations team sharper tools for research, drafting, and analysis, while preserving the governance and professional accountability its clients expect. ChatGPT Enterprise was introduced first to operations teams, where practical use cases could be tested in a controlled environment. From there, adoption expanded into marketing, business development, recruitment, finance, technology, business transformation, and parts of the legal practice. Throughout, the focus has remained on how the firm operates, not on displacing the professional judgment at the heart of its legal services. With Codex, the firm is moving further still, from AI that assists individuals with discrete tasks to AI that completes defined steps across larger workflows. Turning leadership support into firm-wide adoption Visible leadership helped make AI adoption relevant and legitimate across the firm. CEO Sam Nickless introduced ChatGPT to employees through examples from his own work. His message, “AI is not cheating,” positioned it as another tool employees could use to apply their judgment, rather than an inappropriate shortcut. Other senior leaders became active users and shared examples with their teams. Gilbert + Tobin paired that leadership support with role-specific enablement. Instead of relying on generic training, the business transformation team joined individual team meetings to demonstrate workflows tailored to marketing, finance, recruitment, operations, and other functions. Internal videos, showcases, challenges, and use-case stories helped employees keep pace as ChatGPT gained new capabilities. The firm did not mandate usage targets. It focused on showing employees what the technology could do while keeping people accountable for the result. As of June 2026, 87% of enabled seats were active, more than twice the adoption rate Gilbert + Tobin typically sees for other tools. Active users included partners and employees outside the technology function. “AI is not cheating. It gives our people another way to apply their judgment and improve how the firm operates. In a profession built on trust and accountability, that starts with strong governance. OpenAI provides the enterprise-grade foundation that allows us to move forward with confidence.” —Sam Nickless, Chief Executive Officer, Gilbert + Tobin Building trust through governance and Australian data residency Gilbert + Tobin handles confidential client and business information, including information subject to different client requirements. Its AI rollout was supported by clear guidance on approved tasks, what employees could enter, and how outputs should be reviewed. The firm also assessed contractual protections, role-based access, data-processing requirements, and administrative controls. Moving to an OpenAI environment with Australian data residency gave Gilbert + Tobin greater confidence to expand access while meeting internal requirements and client expectations. “OpenAI approached the platform from an enterprise perspective and built the controls that organisations like ours need to operate with confidence.” —Mitch Owens, Chief Information Officer, Gilbert + Tobin Improving everyday work across the firm ChatGPT now supports several business functions. It reduced a recruitment research and data-extraction task from approximately four hours to about 20 minutes. A separate -processing workflow saves an estimated 25 minutes per candidate, supporting a team that manages high recruitment volumes. Marketing and business development teams use ChatGPT to synthesize previous pitch materials and tailor responses for new opportunities. The firm produces 400 to 500 pitches each year, and ChatGPT helps teams prepare content faster while improving its quality and alignment with the firm’s writing standards. Teams also use deep research to support industry reports and sector, client, and business-development strategies. Finance teams use ChatGPT for spreadsheet and data-analysis work. Technology teams apply it to documentation, scripts, training materials, and internal guidance. Lawyers who use ChatGPT draw on it for the operational side of their work, while our legal-specific workflows are supported through approved platforms, such as the AI-powered Harvey platform. Across all these use cases, people remain responsible for constraining the task, checking outputs, applying professional judgment, and approving the final work product. One distinctive ChatGPT use case is a custom GPT that helps executives pressure-test ideas before taking up the CEO’s time. Built from approved examples of Nickless’ writing, priorities, professional background, feedback, and business context, it acts as a ‘digital twin’ of the CEO without making decisions on his behalf or speaking for him. “Instead of going straight to our CEO, we can test an idea with his custom GPT first. It helps us pressure-test ideas, refine our thinking and understand how it might align with his priorities.” —Daniel Quinn, Chief Marketing Officer, Gilbert + Tobin Moving from assistance to execution with Codex Codex has helped Gilbert + Tobin complete defined, multistep operational work under human review. For instance, it prepared audit reports covering 300 entities, avoiding a full day of manual work across the entire workflow. Codex also checked and renamed 1,100 files for upload into another system, replacing work that would previously have taken days. These examples show how the firm is applying Codex to tasks that are irregular or difficult to justify automating through conventional, repeatable processes. The business transformation team has also used Codex to turn requirements and an existing specification into a working Python application. “Codex can take AI from being a helper to being a doer. It carries out the steps in an operational workflow, while our people remain responsible for reviewing and approving the result.” —Aviva Leitch, Head of Business Transformation, Gilbert + Tobin Gilbert + Tobin used Codex to help build an AI-enabled workflow for selected conflict, anti-money laundering, politically exposed person, and know-your-customer checks. It completes research and processing steps, then produces a report for human review and sign-off. Selected checks that previously took up to eight hours can now be completed in minutes. Within the technology function, a DevOps team member used Codex to build a monitoring “watchtower” for the firm’s AWS environment. It consolidates operational signals, supports diagnosis and remediation actions, and escalates issues that require human attention. What’s next Gilbert + Tobin intends to extend access to ChatGPT Work and Codex as it puts in place the controls required for broader use. The firm’s longer-term ambition is an interconnected working environment—one where employees can draw on ChatGPT to access approved organisational context, carry out operational tasks, and deliver finished outputs without navigating manually between systems. Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading ATV Big Air Tour turned 3 days of work into 3 hours with ChatGPT Sep 2, 2026 How AI-native companies turn workflows into operating capability AI Adoption Sep 1, 2026 Path to Astra: critical capabilities and frontier safeguards Safety Sep 1, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-ai-how-this-pm-uses-claude" target="_blank">🎙️ How I AI: How this PM uses Claude to handle 70% to 80% of his workday</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Aug 31, 2026 &middot; 15:01 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ How I AI: How this PM uses Claude to handle 70% to 80% of his workday Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Aug 31, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-turned-claude-into-a-self-improving" target="_blank">How I turned Claude into a self-improving PM assistant | Daniel Blum (PM, Melio)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Aug 31, 2026 &middot; 12:04 UTC</span>
+          </div>
+          <p class="summary"><span>Jira AI SDLC —Get your tokens’ worth with Jira Daniel’s background and the PM overhead problem he needed to solve His AI stack at Melio The two rules that make any AI system genuinely powerful The Notion board Cowork built for him (and manages on his behalf) How he contextualizes Claude with voice memos, links, and recurring updates His weekly prep automation His morning brief How Claude flags unknown internal terms and saves them to context Running 70% to 80% of his workday through Cowork Chrome connector vs.</span> <span>MCPs for tools without integrations The real ROI question: why the early weeks feel slow, and why you push through anyway Scaling the system to the team with the Workstation plugin The self-improvement loop How the Improve skill separates actually useful AI tips from the hype The Workstation onboarding flow, and the UX lesson from distributing “Spectacular” The 20% Claude still can’t do, and what changes when it can What Daniel spends his reclaimed time on Claude rage<ul><li>Claude: <a href="https://claude.ai" target="_blank" rel="noopener">https://claude.ai</a></li><li>Notion: <a href="https://notion.so" target="_blank" rel="noopener">https://notion.so</a> Other</li><li>From a $6.90 newsletter to $3M API: How a non-coder built Memelord | Jason Levin: <a href="https://www.lennysnewsletter.com/p/from-a-690-newsletter-to-3m-api-how?utm_source=publication-search" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/from-a-690-newsletter-to-3m-api-how?utm_source=publication-search</a></li><li>How the founder of Morning Brew built a Claude content machine that never runs out of ideas and never sounds like slop | Alex Lieberman: <a href="https://www.lennysnewsletter.com/p/how-the-founder-of-morning-brew-built?utm_source=publication-search" target="_blank" rel="noopener">https://www.lennysnewsletter.com/p/how-the-founder-of-morning-brew-built?utm_source=publication-search</a> Website: <a href="https://www.imdanielblum.com" target="_blank" rel="noopener">https://www.imdanielblum.com</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/polimill" target="_blank">Polimill builds Japan&#x27;s next-generation public AI infrastructure</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 31, 2026 &middot; 07:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 31, 2026 Polimill builds Japan&#x27;s next-generation public AI infrastructure Polimill built QommonsAI with OpenAI technology to support about 1,050 municipalities and evolve into a next-generation public OS.</span> <span>Built with OpenAI technology, QommonsAI is evolving beyond a staff productivity tool into what Polimill sees as a public OS for municipal work in Japan.</span> <span>That public OS is the future of government Polimill is working toward.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 31, 2026 Polimill builds Japan&#x27;s next-generation public AI infrastructure Polimill built QommonsAI with OpenAI technology to support about 1,050 municipalities and evolve into a next-generation public OS. Join the Community Company size: Startup Region: Asia-Pacific &amp; Oceania Industry: Technology, Public Sector Products: API, Codex Results 3-5x Development time shortened by adopting Codex and OpenAI&#x27;s hands-on support. Adoption about 1,050 Municipalities across Japan using QommonsAI. Loading… Polimill began with Surfvote, a platform where citizens can exchange views about politics and society. As the company worked with local governments, it saw a structural challenge: public-sector teams were consumed by daily operations and had little time to reflect citizens&#x27; voices in policy. To expand civic participation, Polimill first needed to make government work itself more efficient. The company started building a generative AI platform for public-sector workflows and released QommonsAI in October 2024. Today, QommonsAI provides specialized AI across areas such as assembly response, public services, social welfare, and legal search. About 1,050 municipalities and about 550,000 public employees across Japan now use it. Built with OpenAI technology, QommonsAI is evolving beyond a staff productivity tool into what Polimill sees as a public OS for municipal work in Japan. Amid a worsening labor shortage, using AI to make government work more efficient is essential. But introducing separate tools can create service gaps between municipalities. That is why we want QommonsAI to become a common foundation that supports every municipality equally—and grow into the public OS that supports Japan&#x27;s government. Masahiro Wakabayashi, CAIO, Polimill Building a cross-municipality knowledge base One of the biggest obstacles to bringing generative AI into government was fragmented data. Each municipality has its own workflows and document formats, and past records are scattered. For example, preparing assembly responses can require manually reviewing years of minutes to ensure an answer is consistent with prefectural policy. Even the most capable AI model cannot produce practical insight if the underlying data is not organized. Polimill collected and standardized assembly minutes from across Japan, then used AI to add metadata and build a high-precision search foundation that works across municipalities and time periods. The company expanded this structure beyond assemblies into welfare, laws, and other administrative domains. By bringing specialized data and AI into one platform and making it searchable through a common interface, QommonsAI turns distributed administrative information into knowledge that can be used in daily work. That structure is the foundation for Polimill&#x27;s vision of QommonsAI as a shared platform for government. Balancing government-grade security with everyday usability OpenAI&#x27;s GPT models are core to QommonsAI. In the public sector, information management and audit readiness are essential. QommonsAI includes operational controls that let administrators review feature usage history and limit which models are available according to organizational policy. At the same time, Masahiro Wakabayashi, Polimill&#x27;s CAIO, points to GPT models&#x27; broad capability and familiarity as the main reasons for adopting them. The widespread awareness of ChatGPT matters when public employees need to use a new tool after rollout. Even if they are not familiar with technical terms or other model names, knowing the system is based on widely used ChatGPT technology lowers the initial barrier to adoption. According to Polimill, GPT models are the most frequently selected option for everyday work in QommonsAI&#x27;s general conversation feature. From reading files to supporting daily dialogue, GPT&#x27;s ability to respond reliably to a wide range of work requests in a single model helps QommonsAI take root in the field. Codex and hands-on support made development 3-5x faster OpenAI technology has also changed Polimill&#x27;s development process. The company adopted Codex across the workflow, from requirements definition to checking consistency with existing GitHub code, implementation, and testing. Engineers can focus on reviewing AI-generated plans and making high-level decisions, while AI carries out more of the implementation work autonomously. With AI coding speed and continued background work, development speed rose to 3-5x previous levels. Wakabayashi says the validation cycle of building prototypes, showing them to municipal teams, and gathering feedback has accelerated dramatically. OpenAI&#x27;s hands-on support has further accelerated that work. The collaboration includes sharing best practices from advanced global examples, providing information tailored to Polimill, and helping design the development process itself, including which steps AI should handle and where humans should review and take responsibility. As models and capabilities evolve, AI-assisted development practices also keep changing. It is difficult for individual companies to track advanced global examples and incorporate them into their own engineering organizations. Wakabayashi sees the ability to keep learning from OpenAI and implement those insights inside Polimill as valuable as the API&#x27;s performance itself. Results at a glance With OpenAI technology at its core, Polimill has continued expanding QommonsAI toward a platform for municipal work. Key adoption and usage results include: About 1,050 municipalities and about 550,000 public employees across Japan are using QommonsAI. Polimill built infrastructure that unifies assembly minutes and administrative information distributed across Japan and makes them searchable across organizations. Codex and OpenAI&#x27;s hands-on support accelerated validation and implementation cycles, increasing development speed by 3-5x. GPT models&#x27; advanced reasoning helped less-experienced employees use AI and accumulated administrative information to draft policy proposals that approached the quality of proposals from veteran officials. Beyond efficiency, capturing the tacit knowledge of veteran officials QommonsAI&#x27;s value extends beyond faster information search. In Polimill&#x27;s validation, less-experienced employees used AI and accumulated administrative information to draft policy proposals, and those proposals received evaluations close to proposals from experienced officials. At the same time, the experienced officials&#x27; proposals still received the highest evaluations. Polimill analyzes that the difference came from tacit knowledge: practical judgment that is not written in manuals, such as the procedures required to make a policy proposal real or the concerns residents may have. Polimill plans to record how veteran officials instruct AI to research and how they revise outputs, turning judgment that has not previously been documented into organizational knowledge. Rather than replacing skilled employees with AI, the goal is to amplify their abilities and pass their know-how to the next generation. QommonsAI can become a foundation for the kind of knowledge transfer Polimill envisions for government. I think the parts that are not captured in knowledge or data contributed to the quality of the outcome. Put another way, when people with that kind of experience use AI, they can create even better work. Masahiro Wakabayashi, CAIO, Polimill Toward a super agent for public-sector work In fall 2026, Polimill plans a full rollout of Qommons ONE, a store where outside companies can provide applications for municipalities. At its center will be a super agent that brings together multiple specialized AI systems and private-sector apps. Users will be able to state a goal, and the system will call the necessary AI or apps to produce practical deliverables, from research to presentations. To realize that vision, Polimill sees GPT models&#x27; broad input and output capabilities and OpenAI&#x27;s accumulated agent development know-how as important foundations. OpenAI is also supporting development through technical validation and individual samples. As models and development methods continue to evolve, Wakabayashi sees major value in working closely with OpenAI to bring the latest insight into Polimill. By quickly bringing those insights into development, Polimill can keep evolving Qommons ONE. Its ambition goes beyond administrative efficiency. The time created by AI can let public servants listen more closely to citizens&#x27; voices and support them. That public OS is the future of government Polimill is working toward. Toward next-generation public infrastructure where governments, companies, and citizens connect through AI, Polimill&#x27;s work is just beginning. OpenAI &lt;3 startups Join the community Start building (opens in a new window) Keep reading ATV Big Air Tour turned 3 days of work into 3 hours with ChatGPT Sep 2, 2026 How AI-native companies turn workflows into operating capability AI Adoption Sep 1, 2026 Path to Astra: critical capabilities and frontier safeguards Safety Sep 1, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/ais-third-era-the-rise-of-persistent" target="_blank">AI’s third era: the rise of persistent AI coworkers | Tara Seshan (Product Lead ChatGPT Work)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Aug 30, 2026 &middot; 12:31 UTC</span>
+          </div>
+          <p class="summary"><span>Radically different banking, now with Command</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex" target="_blank">Our decision on Cursor following its acquisition by SpaceX</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 28, 2026 &middot; 06:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 28, 2026 Company Our decision on Cursor following its acquisition by SpaceX Loading… Today, we notified SpaceX that we intend to wind down our contract providing OpenAI models to Cursor, with a proposed shutoff date of November 12, 2026.</span> <span>To maximize the time that developers can retain access to our models through Cursor, we are giving the maximum notice provided by our contract.</span> <span>We know that the people most affected by this decision are the developers who rely on OpenAI models in Cursor.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 28, 2026 Company Our decision on Cursor following its acquisition by SpaceX Loading… Today, we notified SpaceX that we intend to wind down our contract providing OpenAI models to Cursor, with a proposed shutoff date of November 12, 2026. To maximize the time that developers can retain access to our models through Cursor, we are giving the maximum notice provided by our contract. This decision was incredibly tough, as we care deeply about our models being broadly available for developers. We are making this choice because we cannot be confident that SpaceX will use our technology within our terms of service, based on our experience with Elon Musk&#x27;s companies violating contracts. To work with a large partner like SpaceX, we typically rely on custom contracts to ensure compliance with our terms of service and that the integration provides for safety at scale. After Musk acquired Twitter, now part of SpaceX, the company broke ⁠ (opens in a new window) the terms of our contract (alongside many others). Under oath earlier this year, Musk admitted ⁠ (opens in a new window) that xAI, now also part of SpaceX, had violated OpenAI’s terms of service (terms which are similar to xAI’s own). Our custom agreement with Cursor gives us a limited time window to cancel it after a change of control. As AI capabilities advance, we also have a new level of accountability to ensure our upcoming model, Astra , is being used in accordance with our terms. Given all of this, we’ve decided to hold the contract cancellation to the latest date we can while not providing future models to Cursor. We’ve worked with Cursor for nearly four years and have enormous respect for their team, their product, and what they’ve built for the developer community. We know that the people most affected by this decision are the developers who rely on OpenAI models in Cursor. We care about their experience in this transition and we’re ready to go above and beyond to support them. 2026 API Author OpenAI Keep reading View all OpenAI supports California’s bill to advance youth AI safety Company Aug 31, 2026 Supporting Thailand’s next generation of AI startups Company Aug 28, 2026 What students gain from ChatGPT and critical-thinking training Company Aug 27, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/supporting-next-generation-ai-startups-thailand" target="_blank">Supporting Thailand’s next generation of AI startups</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Aug 28, 2026 &middot; 02:00 UTC</span>
+          </div>
+          <p class="summary"><span>August 28, 2026 Company Supporting Thailand’s next generation of AI startups OpenAI and Thailand’s Ministry of Higher Education, Science, Research and Innovation are launching an eight-week accelerator to help startups turn promising ideas into products ready for real-world use.</span> <span>Loading… Today in Bangkok, OpenAI and Thailand’s Ministry of Higher Education, Science, Research and Innovation (MHESI) announced a new accelerator to help Thai startups turn promising prototypes into products ready for real-world use and growth.</span> <span>The OpenAI x MHESI AI Accelerator brings together ten startups working across health, wellness, and education.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>August 28, 2026 Company Supporting Thailand’s next generation of AI startups OpenAI and Thailand’s Ministry of Higher Education, Science, Research and Innovation are launching an eight-week accelerator to help startups turn promising ideas into products ready for real-world use. Loading… Today in Bangkok, OpenAI and Thailand’s Ministry of Higher Education, Science, Research and Innovation (MHESI) announced a new accelerator to help Thai startups turn promising prototypes into products ready for real-world use and growth. The OpenAI x MHESI AI Accelerator brings together ten startups working across health, wellness, and education. It marks OpenAI’s first public-private partnership with the Thai government focused on supporting local startups, and is being delivered with partners including the National Innovation Agency (NIA), Mahidol University, and Techsauce. A compelling AI demonstration is only the beginning. Building a product that people can rely on is much harder. It takes careful testing, feedback from real users, strong safeguards, and a business model that can support the product as it grows. That work matters even more in healthcare and education, where the stakes are high and reliability is essential. Over eight weeks, participating founders will work with mentors from OpenAI and across Thailand’s technology, research, and startup communities to bridge the gap between prototype and deployment. A fast-growing community of AI builders Thailand combines strong technical talent with deep expertise in fields such as healthcare and education, supported by a fast-growing community of AI builders. Our internal data shows that Thailand ranks among the top 20 countries globally for ChatGPT weekly active users. Since the start of 2026, weekly active usage of Codex in Thailand has grown more than 350-fold, also placing the country among the top 20 globally for Codex usage. This momentum reflects how people across Thailand are increasingly using AI to write software, develop products, and get meaningful work done. The next step is to help more of those ideas move beyond early prototypes and become products people can use and trust. Building for needs that matter locally The accelerator’s first cohort includes five startups focused on medical and wellness AI, and five working in education. Both areas are central to Thailand’s long-term development and well suited to solutions that combine AI with deep local knowledge. An ageing population is increasing demand for new approaches to healthcare, prevention, and independent living. At the same time, stronger learning outcomes and preparation for an increasingly digital economy will be critical to the country’s future competitiveness. The ten participating startups are CARIVA, Wello Food, Dietz, Precisionize, FitSloth, Curico, insKru, Floaino, EasyKids Robotics, and Globish. Selected with NIA, the Ministry of Education, and the MHESI innovation network, the cohort includes teams that participated in the AIAT × OpenAI Codex Hackathon Bangkok earlier this year. Each company is focused on a specific problem. The accelerator will help the teams combine their domain knowledge with frontier AI capabilities to build products grounded in the needs of people and organizations across Thailand. “ Thailand’s ability to compete in the AI era will be determined not only by access to advanced technology, but by our capacity to turn that technology into trusted products that solve real problems for real people. This accelerator connects Thai founders with government, universities, investors and domain experts, while combining Thailand’s research and talent strengths with OpenAI’s advanced AI capabilities and global experience, so that promising innovations can move from prototype to implementation. It focuses particularly on healthcare and wellness, which are among Thailand’s priority industries, as well as education, a major area of public investment because children are the future of Thailand. Our goal is simple: build in Thailand, deliver measurable benefits to Thai people and prepare Thai companies to compete anywhere in the world. ” How the accelerator works Throughout the accelerator, the startups will work alongside OpenAI mentors to strengthen their products and prepare for deployment. OpenAI will provide each team with US$2,000 in API credits, one-on-one technical guidance, and access to OpenAI’s latest frontier models. Each startup will also have a dedicated mentor throughout the program. Weekly sessions will cover product design, engineering, automated testing, evaluation, responsible AI, privacy and security, cost management, growth, and fundraising. MHESI will connect the teams with Thailand’s research and talent networks, while NIA will link them to the country’s funding and growth ecosystem. Mahidol University will contribute academic expertise and mentors. Each startup will set a specific product, pilot, evaluation, or commercial milestone for the eight-week program. By the end of the accelerator, teams are expected to demonstrate a working product or substantial upgrade, evidence from representative users, initial evaluation findings, and a credible path to implementation. “ We believe the biggest breakthroughs don’t usually come from platform companies themselves, but from founders who deeply understand a problem and build something people value. Our role at OpenAI is to keep pushing the frontier of what AI can do, while helping founders turn those capabilities into useful, trusted products. We are proud to work alongside MHESI and our partners to help Thai startups build solutions that solve real problems, improve people’s lives and scale from Thailand to the world. ” From hospital phone lines to classrooms CARIVA is developing a multilingual voice agent for hospital phone lines. Designed to communicate in a patient’s preferred language, it can assist with routine requests such as appointment scheduling and recognize when a caller may be describing a medical emergency. During the accelerator, CARIVA will work with OpenAI on evaluation methods and steering strategies for its real-time speech model. By Demo Day, the team aims to deploy the first capability in a pilot hospital’s live call flow. “ We’re building Cariva Voice Agent as the frontline for hospital phone lines, able to communicate in each patient’s preferred language and understand the healthcare context. We value support from the OpenAI team in developing robust evaluation methods and steering strategies for a real-time speech model across such a wide range of scenarios, particularly to ensure that potential emergencies are consistently identified and escalated. ” Curico is developing AI-powered learning tools for children, families, and educators. “ Children learn best when they explore, create, and connect ideas to the physical world, yet many families and educators lack the time and support to provide hands-on learning consistently. Curico uses AI to make this easier, from guiding hands-on activities and creating engaging stories to providing timely, personalized feedback. Our next challenge is proving these tools are useful, effective, and safe in real learning environments. Through the AI accelerator, we hope to improve the quality and safety of our AI-powered products, while expanding pilots through our partnerships with MHESI. ” By Demo Day, Curico aims to pilot its platform in Bangkok Metropolitan Administration childcare centers, with a pathway to reach more than 200 centers. The team also plans to train more than 200 teachers through an AI storybook workshop with the Institute for the Promotion of Teaching Science and Technology; test AI-assisted grading at Chulalongkorn University; develop new school pilots with MHESI and the Ministry of Education; and grow its family learning platform to more than 1,000 monthly active users. From accelerator to implementation The accelerator will conclude with a Demo Day in Bangkok in November. Participating startups will demonstrate what they have built, share evidence from users and product evaluations, and present their plans for deployment and growth. The event will bring together investors, government agencies, universities, hospitals, schools, potential customers, and other organizations that can help move successful prototypes into sustained implementation. This first cohort is the beginning of a longer-term effort. By bringing together government, universities, startups, investors, and technology partners, we aim to establish a repeatable model that helps Thai founders build trusted AI products and take solutions developed in Thailand to the world. 2026 Author OpenAI Keep reading View all OpenAI supports California’s bill to advance youth AI safety Company Aug 31, 2026 Our decision on Cursor following its acquisition by SpaceX Company Aug 28, 2026 What students gain from ChatGPT and critical-thinking training Company Aug 27, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Aug/27/breaking-claude-code-opus-5-auto-mode/" target="_blank">Breaking Claude Code Opus 5 Auto Mode</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Aug 27, 2026 &middot; 22:50 UTC</span>
+          </div>
+          <p class="summary"><span>Breaking Claude Code Opus 5 Auto Mode Anthropic are putting a great deal of faith in Claude Code&#x27;s auto mode for protecting their coding agent users against prompt injection attacks.</span> <span>Johann Rehberger is one of the most credible prompt injection researchers active today.</span> <span>Tags: sandboxing , security , ai , prompt-injection , generative-ai , llms , anthropic , claude , johann-rehberger , claude-code</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Breaking Claude Code Opus 5 Auto Mode Anthropic are putting a great deal of faith in Claude Code&#x27;s auto mode for protecting their coding agent users against prompt injection attacks. They recently made that the default and have made bold claims about its effectiveness. Johann Rehberger is one of the most credible prompt injection researchers active today. He found an attack against auto mode which he claims works 80% of the time, by tricking Claude Code into downloading and uncompressing a zip archive, then executing code that imports base64 without noticing that this will import and execute a local struct.py file extracted from the archive. In a few cases auto mode directly prevented the agent from preventing harmful code from continuing to execute! In a few runs Claude tried to terminate the malware process once it noticed the compromise, but Auto Mode denied the cleanup command. Claude detects the compromise, but Auto Mode blocks its cleanup command The safety mechanism itself can become part of the failure. The classifier allowed the creation of the malware process, but then it blocked the command intended to stop it! I agree with Johann&#x27;s conclusion here: the only safe way to run agents if there&#x27;s any risk of attracting the attention of an adversarial attack is with a sandbox: Run unattended coding agents in a container, VM or OS sandbox. Restrict network egress. Monitor your agents. Do not expose home directories, SSH keys, cloud credentials,… to the agent runtime. [...] Update 30th August 2026 : On Lobste.rs hyperpape points out that this doesn&#x27;t fit the bill of a classic prompt injection attack because at no point are malicious instructions from the website accidentally followed by the LLM. They&#x27;re right: this is more of a confused environment attack where the nature of the environment that the agent is exposed to results in an exploit. Tags: sandboxing , security , ai , prompt-injection , generative-ai , llms , anthropic , claude , johann-rehberger , claude-code</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 191</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
