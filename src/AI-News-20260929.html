@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-09-29</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-09-29</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-amd-buys-world-labs-for-82b" target="_blank">[AINews] AMD buys World Labs for $8.2B, as Atlas solves sparse reconstruction problem for robotics, design and more</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Sep 29, 2026 &middot; 02:55 UTC</span>
+          </div>
+          <p class="summary"><span>AI Twitter Recap Top Story: Claude Sonnet 5.5 launch and reactions What happened Anthropic shipped Claude Sonnet 5.5, the second model in the Claude 5.5 family, one week after Opus 5.5 and the day before OpenAI DevDay.</span> <span>Early independent evals place it at or near Opus 5.5 on several leaderboards.</span> <span>Free tier: @simonw points out Sonnet 5.5 now powers the free tier on claude.ai.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>AI Twitter Recap Top Story: Claude Sonnet 5.5 launch and reactions What happened Anthropic shipped Claude Sonnet 5.5, the second model in the Claude 5.5 family, one week after Opus 5.5 and the day before OpenAI DevDay. Early independent evals place it at or near Opus 5.5 on several leaderboards. Launch timing: Pre-launch chatter came first. @kimmonismus reported it already routing to his account, and @scaling01 spotted it in the Anthropic API before the official post. Official announcement: @claudeai (53K engagement) and @AnthropicAI called it “a clear upgrade over Sonnet 5.” They claim it runs more than 30% faster and costs up to 30% less for most work. Positioning: @ClaudeDevs positions it for “well-scoped everyday tasks like fixing bugs and quickly iterating on features.” Anthropic also published a build guide covering when to pick Sonnet vs. Opus 5.5, migrating from Sonnet 5, and tuning effort. Free tier: @simonw points out Sonnet 5.5 now powers the free tier on claude.ai. ChatGPT’s free tier is still GPT-5.6 Luna, which he calls “a lot less capable.” Anti-distillation change: @ClaudeDevs extended “preserved thinking” to counter distillation via account-switching. Reasoning traces stay in the org that generated them. If a session moves to another account, Claude rereads it and regenerates thinking. Roadmap: @mikeyk said Haiku 5.5 will “round out the family in the coming weeks.” Availability: It shipped day-one on the Claude Platform and Claude Code, along with a usage reset valid until Oct 22 ( @ClaudeDevs ). Third-party availability: GitHub Copilot in VS Code ( @code ) Cursor Factory Devin Desktop/CLI Cline Arena Agent/Battle modes for WebDev, Text, Vision and Document ( @arena ) T3 Code, after @theo admitted it hadn’t been added to the catalog yet Technical details and specs</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2609.35760v1" target="_blank">TokenCast: Forecasting Token Consumption During LLM Agent Execution</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Sep 28, 2026 &middot; 17:59 UTC</span>
+          </div>
+          <p class="summary"><span>When a large language model (LLM) agent executes the same task, token consumption can vary by over an order of magnitude across runs.</span> <span>The agent chooses its next steps based on tool feedback and intermediate results, while the growing context steadily inflates the input size of every subsequent call.</span> <span>The code is available at <a href="https://github.com/DEFENSE-SEU/TokenCast." target="_blank" rel="noopener">https://github.com/DEFENSE-SEU/TokenCast.</a></span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>When a large language model (LLM) agent executes the same task, token consumption can vary by over an order of magnitude across runs. The agent chooses its next steps based on tool feedback and intermediate results, while the growing context steadily inflates the input size of every subsequent call. The total consumption of a task is therefore hard to predict before execution and the prediction must be revised as the run unfolds. In this paper, we propose TokenCast, which learns a composable cost representation for each execution segment, recording its own consumption and the context growth it introduces. Composing adjacent segments yields a cumulative estimate that captures the extra input cost incurred when context from earlier segments is re-read by every later call. As execution unfolds, newly observed evidence refreshes the forecast, requiring no additional LLM calls and incurring a mean cumulative prediction time of 32.8 ms per run on SWE-bench Verified. Across 4 task suites and 6 agent models, TokenCast&#x27;s mean absolute error reduction against the strongest comparator averages 14.5% over 96 evaluated combinations. In offline budget-control replay, TokenCast uses 21.3% fewer tokens on average than a fixed-budget policy at matched trace completion. The code is available at <a href="https://github.com/DEFENSE-SEU/TokenCast." target="_blank" rel="noopener">https://github.com/DEFENSE-SEU/TokenCast.</a></p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/jev-for-beginners-how-to-use-it-and" target="_blank">Jev for beginners: how to use it and what to build</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Sep 28, 2026 &middot; 12:03 UTC</span>
+          </div>
+          <p class="summary"><span>d more Jev launch and what makes it different from every other model Type-safe values explained Understanding Jev outputs Use case 1: PR categorization and pairwise clustering Use case 2: analyzing your own local Claude Code and Codex sessions Use case 3: Gmail triage with Jev scoring and LLM follow-up Use case 4: ChatPRD’s product insights graph Demo: How I AI audience signal dashboard Demo: voice-to-color emotion-mapping app Jev week recap and what’s coming in episode 2<ul><li>Jev (TypeSafe AI): <a href="https://typesafe.ai" target="_blank" rel="noopener">https://typesafe.ai</a></li><li>Vercel: <a href="https://vercel.com/ai" target="_blank" rel="noopener">https://vercel.com/ai</a></li><li>GitHub API: <a href="https://docs.github.com/en/rest" target="_blank" rel="noopener">https://docs.github.com/en/rest</a></li><li>YouTube Data API v3: <a href="https://developers.google.com/youtube/v3" target="_blank" rel="noopener">https://developers.google.com/youtube/v3</a></li><li>OpenAI Realtime Voice API: <a href="https://platform.openai.com/docs/guides/realtime" target="_blank" rel="noopener">https://platform.openai.com/docs/guides/realtime</a></li><li>Gemini 3.5 Flash-Lite: <a href="https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash-lite" target="_blank" rel="noopener">https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash-lite</a></li><li>API Ninjas Quotes API: <a href="https://api-ninjas.com/api/quotes" target="_blank" rel="noopener">https://api-ninjas.com/api/quotes</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/lenfest-ai-collaborative-expansion" target="_blank">The Lenfest Institute grows landmark program with expanded OpenAI support</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Sep 28, 2026 &middot; 07:00 UTC</span>
+          </div>
+          <p class="summary"><span>The Lenfest Institute for Journalism today announced the next phase of the Lenfest AI Collaborative and Fellowship Program, building on what has become the largest AI fellowship program in American journalism.</span> <span>Since its launch in 2024 with AI engineering fellows in 11 major American news organizations, the program has demonstrated that embedded AI engineers can help local news organizations accelerate innovation, strengthen business sustainability, and responsibly adopt emerging technology.</span> <span>The Lenfest AI Collaborative and Fellowship Program places full-time AI technologists into operating news organizations to drive business innovation in local journalism.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>September 28, 2026 Company The Lenfest Institute grows landmark program with expanded OpenAI support Video courtesy of the Lenfest Institute for Journalism Loading… The following was issued as a joint announcement on Monday, September 28, 2026, from the Lenfest Institute for Journalism and OpenAI. The Lenfest Institute for Journalism today announced the next phase of the Lenfest AI Collaborative and Fellowship Program, building on what has become the largest AI fellowship program in American journalism. Since its launch in 2024 with AI engineering fellows in 11 major American news organizations, the program has demonstrated that embedded AI engineers can help local news organizations accelerate innovation, strengthen business sustainability, and responsibly adopt emerging technology. The program will expand with a new $5 million commitment from OpenAI, along with up to $5 million in software credits and engineering support. OpenAI has doubled its previous support of the program. This expansion builds on OpenAI’s broader work supporting journalism . The Lenfest AI Collaborative and Fellowship Program places full-time AI technologists into operating news organizations to drive business innovation in local journalism. Over the past two years, the program has evolved from an ambitious pilot into a proven model for helping local news organizations develop guardrails and strategies for adopting AI to support their transformation. As the AI Collaborative and Fellowship enters its next stage, The Lenfest Institute will invite a new group of news organizations to join the cohort to further responsible AI experimentation and implementation. AI engineering fellows work alongside newsroom leaders, reporters, product teams, revenue staff, and executives to identify organization-specific challenges and build practical AI engineering solutions, along with safe, transparent, and ethical policies. Their work is designed to strengthen news organizations while preserving the human judgment, editorial integrity, expertise, and trust at the heart of local journalism — in fact, several engineering fellows are expected to stay on as full-time employees at multiple organizations, speaking to the value of their deployment. Across the 11 participating organizations, fellows have demonstrated how AI can support a wide range of functions, from audience engagement and news product development to investigative news research, advertising and reader revenue operations, and expanded staff reporting impact and community reach. The pilot also revealed that successful AI adoption depends as much on trust, collaboration, and a clear understanding of organizational needs as it does on the technology itself. Embedded fellows were hired locally and became part of the organizations they served, learning how journalists work and building solutions rooted in the real needs of newsroom and business teams. “The most valuable lesson of the Lenfest AI Collaborative and Fellowship’s first two years is that responsible AI adoption is less about the technology and more about trust. The fellows have helped their news organizations build practical tools and drive culture change from the inside — through clear guardrails, policy standards, and open communication,” said Lenfest Institute Executive Director and CEO Jim Friedlich. “The next phase of the Collaborative and Fellowship Program is an opportunity for more news enterprises to intentionally experiment with AI under the highest editorial standards and with human news judgment at the forefront.” “Over the first two years of this partnership, it’s been wonderful to see so many practical examples of journalists using AI as a tool to help deliver quality local news,” said Tom Rubin, OpenAI Chief of Intellectual Property and Content. “Local news plays a vital role in building the human connections that make a neighborhood, town, or city truly feel like a community. We’re excited to expand our partnership with The Lenfest Institute to support even more journalists in this important work.” Proof in practice When the fellowship launched, generative AI was still largely untested inside local news organizations. Over the past two years, participating organizations have developed practical applications ⁠ that demonstrate how AI can support the full breadth of the news enterprise. At The Philadelphia Inquirer, the fellowship supported the development of Dewey, a tool that helps journalists search decades of archived reporting, and Scrape, a monitoring tool that transformed a roughly 15-hour-per-week reporting task into a daily digest of potential story leads from around the newspaper’s region. At Chicago Public Media, AI-assisted translation workflows enabled the organization to publish time-sensitive Spanish-language coverage in a fraction of the time previously required, and to transcribe audio archives reflecting Chicago news and culture that had been in storage for decades. Across other participating organizations, projects have addressed advertising prospecting, donor modeling, audience personalization, subscription growth, public-meeting monitoring, print-to-digital production transition, and operational efficiency. Collectively, these projects demonstrated that AI’s potential extends far beyond improvements in journalist impact and productivity. It can strengthen nearly every function of a modern news organization while preserving and empowering journalists&#x27; central role in producing trusted, independent reporting. The AI Collaborative’s projects also began to travel from newsroom to newsroom. Fellows shared code, adapted one another’s ideas, compared implementation strategies, and built on work developed at peer organizations. Tools and approaches originating in one newsroom became starting points for solving related problems elsewhere, demonstrating how innovation developed through the fellowship can extend well beyond a single organization. What we learned Over the course of the pilot, several important lessons emerged: Trust matters more than technology: Embedding locally hired engineers inside organizations for two years proved transformational. Rather than serving as outside consultants with a mission to force AI adoption, fellows worked to develop a deep understanding of editorial workflows, organizational culture, and user needs across each respective news business. Fellows often identified valuable opportunities through listening, spending time with staff, understanding how they worked, identifying recurring pain points, and building solutions alongside the people who would ultimately use them. As trust grew, so did adoption, with journalists increasingly seeing fellows as team members they could collaborate with to solve meaningful problems — bringing their own ideas and challenges to fellows and incorporating the resulting tools into their daily work. Start with the problem, not with AI: Across the cohort, fellows found that the strongest projects began with a clearly defined challenge rather than a predetermined technical solution. Successful projects were built through close collaboration with users, small-scale experimentation, ongoing evaluation, and a focus on whether the technology meaningfully improved the work. Collaboration accelerates innovation: One newsroom’s breakthrough frequently became another newsroom’s starting point. The Baltimore Banner, for example, drew on work developed by The Philadelphia Inquirer’s team while building the Banner’s own news discovery tools. Fellows across the cohort have similarly exchanged code, product ideas, technical approaches, and lessons learned, allowing organizations to advance faster together than they could independently. What’s next The next phase of the AI Collaborative and Fellowship Program builds on the fellowship&#x27;s foundation while significantly expanding its market reach. The program will continue to embed AI fellows within participating news organizations, maintaining its commitment to helping those organizations transform to meet the needs of modern users. The Lenfest Institute will also broaden the fellowship to include a wider range of news organizations. At the same time, The Lenfest Institute will expand its technical capabilities to help proactively turn the strongest fellowship projects into reusable tools, frameworks, plugins, implementation guides, playbooks, and technical intended to benefit hundreds of news organizations. One goal of providing implementation support is to make the cross-newsroom learning that emerged organically during the pilot easier to sustain and scale, so that a tool, workflow, or technical breakthrough developed inside one organization can become shared infrastructure for the broader news field. Together, these efforts represent an evolution from successful experimentation toward scalable impact, creating practical AI solutions that can strengthen local journalism well beyond the fellowship itself. A model for the future of local journalism By combining embedded AI engineering expertise with shared tools, technical infrastructure, and cross-organizational learning, The Lenfest Institute seeks to ensure that innovations developed inside a handful of newsrooms can ultimately benefit hundreds more. The renewed and growing partnership with OpenAI reflects a shared belief that local journalism can benefit most from AI when news organizations have the expertise, infrastructure, and collaborative networks to apply it safely. By scaling what has worked across the fellowship, The Lenfest Institute is focused on helping more news organizations use emerging technology to strengthen their journalism, build sustainable businesses, and better serve their communities. 2026 Author OpenAI Keep reading View all How we will do better for Australia Company Sep 28, 2026 Two years of OpenAI Academy Company Sep 23, 2026 Airbnb expands access to GPT-6 Astra Company Sep 23, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/basis-tax-workbook-with-astra" target="_blank">Basis completes a tax workbook 2x faster with GPT-6 Astra</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Sep 28, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>September 28, 2026 Basis completes a tax workbook 2x faster with GPT‑6 Astra GPT‑6 Astra took 50% less time to finish complex tasks vs.</span> <span>GPT‑5.6 Sol and showed a deeper understanding of user intent.</span> <span>Start building with OpenAI Company size: Startup Region: North America Industry: Technology Products: API Workbook test 50% Less time to complete a 50-tab tax workbook vs.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>September 28, 2026 Basis completes a tax workbook 2x faster with GPT‑6 Astra GPT‑6 Astra took 50% less time to finish complex tasks vs. GPT‑5.6 Sol and showed a deeper understanding of user intent. Start building with OpenAI Company size: Startup Region: North America Industry: Technology Products: API Workbook test 50% Less time to complete a 50-tab tax workbook vs. Sol in Basis’s test. Internal evaluations 20% Approximate improvement in Basis’s internal evaluation scores. Loading… Basis ⁠ (opens in a new window) builds AI agents to automate much of the manual work that accountants do each day, helping them shift their time from repetitive tasks to strategic work. The company’s research focuses on agents that can reliably complete long tasks, and with GPT‑6 Astra, it’s seeing a stronger understanding of what accountants want to accomplish. “GPT-6 Astra does a better job of really understanding the intent of the user and the problem.” —Mitch Troyanovsky, Co-founder, Basis Completing a 50-tab tax workbook in half the time Basis compared GPT‑6 Astra and GPT‑5.6 Sol on a complicated tax workbook with 50 tabs. The task was to complete the workbook accurately and reliably, and GPT‑6 Astra was markedly faster. “GPT-6 Astra is able to complete that workbook in half the time that GPT-5.6 Sol is able to.” —Mitch Troyanovsky, Co-founder, Basis Basis also d that GPT‑6 Astra makes better decisions at the start of a task, helping Basis’s agents take a more direct path through the work with less time spent correcting mistakes. Troyanovsky says that also makes the model more efficient in its use of tokens. Matching reasoning effort to the task Basis also has GPT‑6 Astra adjust how much reasoning it uses as a task progresses, dialing up computation when a step is difficult, and using less when a step is easier. The model can make these adjustments while keeping its cache intact. Troyanovsky says this helps reduce cost and response time, making long-running tasks more economical for Basis and its customers. Building confidence in real-world use Basis saw about a 20% improvement in its internal evaluation scores with GPT‑6 Astra, driven by better understanding of user intent, including when to ask questions, flag assumptions, and follow instructions. Basis evaluates how its agents work and their final answers, including whether they follow templates, consult primary sources for tax questions, and check their own work. GPT‑6 Astra can infer these expectations from a broader context, with fewer explicit instructions. That reduces the need for Basis to write rules for individual situations and gives the team more confidence that its agents can handle situations beyond those covered in internal tests. OpenAI &lt;3 startups Join the community Start building (opens in a new window) Keep reading Towards safety cases for frontier AI training Safety Sep 28, 2026 How we will do better for Australia Company Sep 28, 2026 Lenfest grows landmark program with OpenAI support Company Sep 28, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/the-grief-loneliness-and-burnout" target="_blank">The grief, loneliness, and burnout sweeping through the tech industry right now | Molly Graham</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Sep 27, 2026 &middot; 12:32 UTC</span>
+          </div>
+          <p class="summary"><span>eering intelligence for the AI era</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/proaction" target="_blank">Proaction boosts sales 60% and saves 75+ hours with Codex</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Sep 25, 2026 &middot; 19:00 UTC</span>
+          </div>
+          <p class="summary"><span>September 25, 2026 Proaction boosts sales 60% and saves 75+ hours with Codex With Codex, GPT‑Live‑1, and GPT‑6 Astra, Proaction builds, operates, and sells modern fleet management faster.</span> <span>Codex flipped the script.</span> <span>“As a non-technical person, I used to have to loop engineers in if I wanted a demo,” says Colin Knudsen, co-founder and COO of Proaction.</span> <span>“Now I do it myself in Codex.” Colin creates four to six customized, interactive demos a month, with each taking 30 to 45 minutes to build.</span> <span>Codex uses that context to customize an HTML demo environment that mirrors Proaction’s product and the customer’s own fleet.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>September 25, 2026 Proaction boosts sales 60% and saves 75+ hours with Codex With Codex, GPT‑Live‑1, and GPT‑6 Astra, Proaction builds, operates, and sells modern fleet management faster. Start building Company size: Startup Region: North America Industry: Software &amp; Engineering Products: Codex, API Results 40–60 Engineering hours saved per month Results 33 Founder hours saved per month Results 60% Increase in sales Loading… Proaction ⁠ (opens in a new window) builds software for businesses that manage fleets of vehicles, from cars and trucks to construction machinery. Because every fleet operates differently, showing prospects how Proaction’s platform fits their business is an essential part of selling it. But personalized demos required engineering time the team couldn’t spare. The founders had to rely on conversations and slide decks to explain what was possible. Codex flipped the script. “As a non-technical person, I used to have to loop engineers in if I wanted a demo,” says Colin Knudsen, co-founder and COO of Proaction. “Now I do it myself in Codex.” Colin creates four to six customized, interactive demos a month, with each taking 30 to 45 minutes to build. He estimates that this avoids 40 to 60 hours of engineering work. “We didn’t have the engineering capacity to build a demo for every interested prospect. With Codex, I can easily take a customer conversation and turn it into a custom demo built around their vehicles and workflows.” —Colin Knudsen, Co-founder and COO, Proaction Customizing demos and closing more deals with Codex After a sales call, Colin directs Codex to the Granola recording, prospect email threads, and any spreadsheets the prospect has shared. Codex uses that context to customize an HTML demo environment that mirrors Proaction’s product and the customer’s own fleet. When Colin shares his screen, prospects see their own cars, trucks, or equipment, organized around how they work. They can point to what needs adjusting and help build the solution. “You work together to generate the end solution without getting engineering involved at all,” Colin says. Offering prospects a demo with their own data gives them a concrete reason to move forward. Colin estimates that the percentage of deals moving from initial contact into solution development, rather than nurture, has increased by 50% to 60% with the custom demos. Saving engineering hours all the way to production If Proaction’s engineers produced comparable demos, it would take about 10 hours each, according to Colin. Since Proaction does about four to six demos monthly, that represents 40 to 60 hours of engineering effort spared every month. The demo also saves time on the back end. When a prospect becomes a customer, Colin gives engineers the customized demo as a visual . That reduces questions and back-and-forth about what to build. Using Codex, Proaction also built a customer solution center where prospects can log in, explore workflows tailored to their business, and review sales materials. This empowers customers to explain what they need and gives non-engineering teammates a way to turn those conversations into clearer requirements. By the time engineers get involved, they have a more concrete picture of what to build. Getting more done, all in one place: Codex Colin’s daily work spans sales, customer support, and product management. Through Codex plugins for tools including Granola, Gmail, Slack, Linear, GitHub, and HubSpot, Colin brings together customer context and acts on it within Codex. He pulls call transcripts and email history to prepare follow-ups, creates Linear issues, and updates HubSpot opportunities. He also set up a scheduled automation that reviews recent calls and prepares sales updates for the team. Previously, his heavy workload meant jumping between tabs and copying information from one tool to another. Now, Colin can describe what he needs and use Codex to gather the context and execute the next step. “Everything that I do is centered around working in Codex. I don’t leave it much,” says Colin. Estimating he has 15 to 20 distinct tasks a day, Colin believes Codex saves him 25–33 hours a month. “I can’t really imagine being a startup founder without Codex.” —Colin Knudsen, Co-founder, Proaction Bringing voice agents to fleet operations with GPT‑Live‑1 and GPT‑6 Astra Proaction also uses OpenAI models across its platform. When customers submit photos with vehicle issue reports, ChatGPT‑5.6 Sol helps identify damage. And with GPT‑Live‑1, Proaction is building agents that handle more of the day-to-day work of running a fleet. The company calls this its Managed Execution Layer. “We’re building the ability for Proaction to execute work for our customers, beyond helping them manage and track it. The advances in OpenAI voice are a big reason we can do it.” —Colin Knudsen, Co-founder, Proaction Customers can ask specialized agents to handle things like tolls or service, or set up workflows that put the right agent to work automatically. The agents use OpenAI models, including GPT‑Live‑1 and GPT‑6 Astra, to make voice calls, review documents and images, analyze text, and respond in chat. One agent, Marty, is designed to coordinate vehicle maintenance. Marty talks with a driver about a problem, calls repair shops, arranges service, and helps get the estimate approved and paid. Proaction’s team steps in when the work needs human review or intervention. GPT‑6 Astra also enables Proaction to build these experiences for customers faster. Danny O’Halloran, Head of Product, says, “Astra’s computer-use runs are more succinct. With GPT‑5.6 Sol, I had a much longer run to execute the same work.” Codex and GPT‑6 Astra give Proaction more time to sell, support customers, and move the business forward. And with agents built on GPT‑Live‑1, Proaction gives more time to fleet managers, too. OpenAI &lt;3 startups Join the community Start building (opens in a new window) Keep reading Towards safety cases for frontier AI training Safety Sep 28, 2026 How we will do better for Australia Company Sep 28, 2026 Lenfest grows landmark program with OpenAI support Company Sep 28, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Sep/24/harder/" target="_blank">Note on 24th September 2026</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Sep 24, 2026 &middot; 23:31 UTC</span>
+          </div>
+          <p class="summary"><span>The more time I spend working with coding agents, the more convinced I am that they make software engineering even harder.</span> <span>We can do amazing things with them, but unlocking their full potential requires extraordinary discipline and knowledge.</span> <span>Tags: coding-agents , ai , llms</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/introducing-gemini-38-live-with-live-avatar/" target="_blank">Introducing Gemini 3.8 Live with Live Avatar</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Sep 24, 2026 &middot; 16:20 UTC</span>
+          </div>
+          <p class="summary"><span>Introducing Gemini 3.8 Live with Live Avatar Sep 24, 2026 | x.com Facebook LinkedIn Mail Gemini 3.8 Live with Live Avatar brings real-time visual presence to Gemini’s conversational AI.</span> <span>Starting today, Gemini 3.8 Live with Live Avatar is available in Gemini Enterprise.</span> <span>Get started with Gemini 3.8 Live with Live Avatar Gemini 3.8 Live with Live Avatar is available in Gemini Enterprise .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Introducing Gemini 3.8 Live with Live Avatar Sep 24, 2026 | x.com Facebook LinkedIn Mail Gemini 3.8 Live with Live Avatar brings real-time visual presence to Gemini’s conversational AI. By natively coupling our live dialogue capabilities with low-latency streaming video, Live Avatar enables a more natural and intuitive conversational experience for enterprises and their users. Shuo-yiin Chang Research Scientist CJ Zheng Software Engineer, on behalf of the Gemini Audio Team Share x.com Facebook LinkedIn Mail Building on the momentum of last week&#x27;s Gemini 3.8 Live launch, today we are excited to introduce Gemini 3.8 Live with Live Avatar — bringing near real-time visual presence to our native live dialogue models. By pairing near real-time video generation with speech, the Live Avatar feature creates an experience that listens, sees, and speaks with a dynamic visual persona. With precise lip-syncing, natural expressions, and fluid turn-taking, Live Avatar enables enterprises to expand their virtual offerings more interactively. Whether providing engaging customer service or delivering interactive walkthroughs, it transforms digital exchanges into richer, more accessible experiences. Starting today, Gemini 3.8 Live with Live Avatar is available in Gemini Enterprise. See how Gemini 3.8 Live with Live Avatar supports a wide range of characters, each with a distinct look, voice, and expressive presence. More natural and multimodal conversations Conversation is inherently multimodal: we listen, look, speak, and use facial expressions to communicate. Live Avatar brings these capabilities to enterprise agents. By processing visual and audio inputs simultaneously, it generates enriching conversations for a more comprehensive experience. Watch how Gemini 3.8 Live with Live Avatar takes in what it sees and hears in near real time, responding with expressive audio and video for a more natural conversation. Asynchronous tool execution with continuous presence Beyond visual presence, the feature is backed by Gemini’s advanced reasoning. With asynchronous tool calling, Live Avatar can trigger tool calls and fetch data in the background while continuing active dialogue, handling complex tasks while ensuring an uninterrupted conversational flow. See how Gemini 3.8 Live with Live Avatar handles complex tasks like checking in a guest at a hotel. Calling tools in the background while the dialogue continues uninterrupted. Conversational experiences built for global scale Conversational presence should feel natural and not be limited by languages. Live Avatar features native multilingual speech-to-speech synchronization. The feature dynamically adapts its lip-sync and expressions and can seamlessly transition across 97 languages without degrading video fidelity or introducing visual drift. Watch how Gemini 3.8 Live Avatar switches between languages mid-conversation, with lip-sync and expressions adapting seamlessly across 97 languages. A Live Avatar to fit your brand needs Organizations often need distinct visual identities to fit their brand. In addition to a library of diverse, preset avatars, organizations can customize their Live Avatars. From a high-quality image, developers can generate a fully animated, responsive avatar while preserving likeness, brand styling, or character identity. Custom avatar creation is currently available only through enterprise allowlisting. Trust and transparency at its core We built Live Avatar with strict safeguards designed to respect identity, and keep AI-generated content transparent. All output generated by our AI products is watermarked with SynthID . This imperceptible watermark is woven directly into the audio and video output, helping to ensure AI-generated content remains detectable to help minimise misinformation and misattribution. To explore our comprehensive approach to safety and responsible deployment, read our model card . Get started with Gemini 3.8 Live with Live Avatar Gemini 3.8 Live with Live Avatar is available in Gemini Enterprise . Explore the API documentation to get started</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/two-years-of-openai-academy" target="_blank">Two years of OpenAI Academy</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Sep 23, 2026 &middot; 16:00 UTC</span>
+          </div>
+          <p class="summary"><span>September 23, 2026 Company Two years of OpenAI Academy Building on our work to help people develop practical AI skills, with plans to bring training to more communities.</span> <span>Since launching in September 2024, OpenAI Academy has helped people build those skills through practical training for tasks ranging from teaching and running a small business to developing software.</span> <span>For this next chapter, we’re expanding OpenAI Academy through a new trainer program that prepares people and organizations to teach Academy material in their communities.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>September 23, 2026 Company Two years of OpenAI Academy Building on our work to help people develop practical AI skills, with plans to bring training to more communities. Loading… To ensure the benefits of AI are broadly shared, people need the skills and confidence to use it in their everyday lives. Since launching in September 2024, OpenAI Academy has helped people build those skills through practical training for tasks ranging from teaching and running a small business to developing software. Over the past two years, OpenAI Academy has hosted more than 250 events , and more than 4 million people have engaged with Academy content . That work has brought together educators, small business owners, developers, nonprofit leaders and community members to learn, practice, and share what works. For this next chapter, we’re expanding OpenAI Academy through a new trainer program that prepares people and organizations to teach Academy material in their communities. This program builds on our work with partners and will make training and ongoing support available closer to where people live and work. From access to practical skills We launched the Academy to expand access to AI training, technical guidance, and community, initially focusing on developers and mission-driven organizations working on local problems. Since then, the Academy has grown to include self-paced courses, practical guides, in-person workshops, and large multi-site events known as AI Skills Jams. This month, we also introduced new Academy learning paths for knowledge workers, developers, leaders, educators, and college students. Learners can take courses relevant to their roles and earn Academy course badges by passing assessments. These programs focus on helping participants use AI to solve problems they face day-to-day. An educator might use ChatGPT to adapt a lesson. A small business owner might build a repeatable process for customer research. A developer might use Codex to plan and implement a change while retaining control over review. Across hundreds of events, we’ve found that the most valuable part of our training is giving people dedicated time and space to try AI tools on work that matters to them, learn from their peers, and get coaching and support from OpenAI mentors. We’re building on our work with partners to bring this approach to more communities around the country. Built with community partners Partners have been central to OpenAI Academy’s programming. We work with national and local organizations to bring AI learning to the communities they serve. These partners bring trusted relationships, help bring participants together, and shape programs around the work people do and the problems they face. Together, we’ve offered recurring workshops for communities including small business owners, educators, veterans, and nonprofit leaders, as well as larger, multi-city events. Our AI Skills Jam for K–12 Educators , for example, brought together more than 1,600 teachers, administrators, and district leaders across eight U.S. Helping communities build training capacity To help more partners lead these programs, we’re piloting the OpenAI Academy Community Trainer Program. Participating organizations nominate staff members to learn the Academy curriculum and how to guide a practical workshop: demonstrating useful workflows, helping people apply AI to their own tasks, encouraging peer learning, and supporting participants as they evaluate results. They complete training and a facilitation assessment before leading Academy sessions. The pilot will help us offer more workshops and help partner organizations – including schools, workforce organizations, small-business networks, and community groups – build their own capacity to teach AI skills. Over time, our goal is for more people to have someone in their community they can turn to as their needs and the tools evolve. The next phase of OpenAI Academy We’ll continue developing online courses, workshops, and Academy Jams, informed by what we learn from participants and partners. Through the Community Trainer Program, we’ll also help more people lead practical AI learning in their communities. Our goal is for more people to have opportunities to practice, learn from one another, and build knowledge and confidence as they put AI to work in their everyday lives. 2026 Author OpenAI Keep reading View all How we will do better for Australia Company Sep 28, 2026 Lenfest grows landmark program with OpenAI support Company Sep 28, 2026 Airbnb expands access to GPT-6 Astra Company Sep 23, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech/" target="_blank">Gemini 3.8 text-to-speech says hello</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Sep 23, 2026 &middot; 15:25 UTC</span>
+          </div>
+          <p class="summary"><span>Gemini 3.8 text-to-speech says hello Sep 23, 2026 | x.com Facebook LinkedIn Mail Gemini 3.8 Flash TTS and Gemini 3.8 Flash-Lite TTS are our most expressive audio generation models yet.</span> <span>Generate custom character voices and direct scene dialogue across Google AI Studio, Gemini API, Gemini Enterprise, Gemini book, and Google Vids.</span> <span>Start using our latest Gemini Audio models: Gemini 3.8 Flash TTS is rolling out starting today: For developers : In the Gemini API and Google AI Studio For enterprises : Coming soon via API in Gemini Enterprise For everyone : In Gemini book .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Gemini 3.8 text-to-speech says hello Sep 23, 2026 | x.com Facebook LinkedIn Mail Gemini 3.8 Flash TTS and Gemini 3.8 Flash-Lite TTS are our most expressive audio generation models yet. Generate custom character voices and direct scene dialogue across Google AI Studio, Gemini API, Gemini Enterprise, Gemini book, and Google Vids. Leland Rechis Group Product Manager Alan Cowen Director, Research Science, on Behalf of the Gemini Audio Team Share x.com Facebook LinkedIn Mail Check out &quot;Gemini 3.8 text-to-speech says hello&quot; to see how our new models work. Create custom voices from scratch or replicate existing ones with simple natural language prompts. Direct your audio line-by-line to control pacing, emotion, and even realistic conversational sounds. Use these models for high-quality audiobooks, podcasts, or real-time voice agents at scale. We’ve included built-in safety tools like watermarking to keep your generated audio secure. Summaries were generated by Google AI. Generative AI is experimental. Google just launched new AI tools that let you create and customize realistic voices from scratch. You can direct these voices to sound exactly how you want, from their accent to their emotional tone. It’s perfect for making audiobooks, games, or podcasts that sound like real people talking. Plus, they added safety features to make sure these voices are used responsibly. Summaries were generated by Google AI. Generative AI is experimental. Explore other styles: Today, we’re introducing two new text-to-speech models to the Gemini family, transforming voice generation from static presets into a dynamic creative studio. These models enable creators, developers, and enterprises to create richer, more expressive audio experiences, while enabling improved user experiences in products like Gemini book and Google Vids . Gemini 3.8 Flash TTS: Built for deep creative direction and character design. Create entirely new voices from scratch using natural language prompts to bring characters to life across gaming, immersive audiobooks, podcasts, and interactive media. Direct every performance line by line with granular control over acting cues, pacing, dialect shifts, and backchanneling. Gemini 3.8 Flash-Lite TTS: Built for high-volume, cost-efficient scale. Optimized for high-volume dubbing, audio content creation, and expressive voice agents with fine-grained control over tone, pacing, and expressive nuance. These models complement our fast-growing Gemini Audio family, following 3.5 Live Translate , 3.5 Transcribe , 3.8 Live, and 3.8 Live Extended Thinking . Create and customize your own voices Scale up from 30 original voices to an infinite library. Whether you need an entirely original character voice or a consistent brand ambassador, our 3.8 Flash TTS model powers a full vocal studio. This enables you to create and use expressive, natural-sounding voices for every moment, while empowering developers and enterprises to easily build custom audio experiences. Generative voice design: With Gemini 3.8 Flash TTS, create bespoke voices from scratch by customizing role, accent and voice characteristics across more than 100 languages and dialects using natural language prompting — whether you&#x27;re bringing a dramatic, fire-breathing dragon to life or crafting a charismatic narrator with a distinct regional cadence. Hear how Gemini 3.8 Flash TTS generates a high-energy DJ voice from Melbourne. Hear how Gemini 3.8 Flash TTS generates a super-tinny, monotone robot voice. Hear how Gemini 3.8 Flash TTS brings a Japanese dragon to life. Expansive voice library: Access 2,000+ production-ready voices with broad language coverage — including regional varieties like Mexican Spanish, Quebec French, and Scots English. Voice replication: Recreate consistent vocal profiles from just a 30-second audio sample of your voice or a voice you have the rights to use, backed by built-in consent verification, SynthID watermarking, and C2PA credentials to protect both developers and their vocal talent. Save and scale: Save and manage the custom voices you designed to ensure consistent performance and minimal drift across ongoing projects. Voice remixing: Coming soon, pick a voice from our voice library and fine-tune timbre, pitch, pace, and accent. Use prompts to dial in characteristics (e.g. “add subtle Southern US accent” or “soften the delivery”). Direct the performance, line by line Once you&#x27;ve selected your voices, both TTS models give you precise control over how each line is delivered. Direct performance line by line: Write your own stage directions or let Gemini steer delivery with natural script cues — from a calm customer service agent to a whispered suspense scene. Hear how Gemini 3.8 Flash TTS enables natural, highly expressive conversations for interactive voice agents. Watch and hear how Gemini 3.8 Flash TTS uses granular script control to build a deeply engaging, immersive audio experience. Long-form generation: Maintain high voice quality, natural pacing, and character timbre across hours of continuous audio with minimal speaker drift — ideal for podcasts and audiobooks. Native two-speaker scene staging: Direct multi-turn conversations seamlessly from a single script —whether for a podcast or dramatic storytelling—while keeping both voices distinctly separated with natural conversational turn-taking. Scripted vocal bursts &amp; backchanneling: Add realistic conversational texture using non verbal cues (like , , and active-listening interjections (like |mhm| or|yeah|) for precise comedic timing and reaction beats. See how Gemini 3.8 Flash TTS turns natural language prompts into bespoke vocal personas from scratch. Watch how Gemini 3.8 Flash TTS enables creators to design custom scenes to bring animated dialogue to life. See how Gemini 3.8 Flash TTS turns scripts into fully performed dialogue scenes, letting creators direct vocal delivery, and natural turn-taking. Get expressive high-quality speech generation built for global scale Gemini 3.8 Flash TTS delivers leading voice customization capabilities, securing the #1 overall spot on Hume AI’s Voice Design Benchmark (71.4) and also leading in accent modeling (60.8). Gemini 3.8 Flash TTS and Gemini 3.8 Flash-Lite TTS enable truly expressive performances without sacrificing reliability, also securing the #1 and #2 spots respectively on Hume AI’s Overall Quality Index. The model shows major improvements on a wide range of use cases such as long-form content and dual-speaker screenplay control compared to Gemini 3.1 Flash TTS. In blind human p evaluations on Voice Arena , Gemini 3.8 Flash and Flash-Lite TTS secure top positions amongst competitors in key global languages, including Japanese, Brazilian Portuguese, Vietnamese, Modern Standard Arabic (MSA), Mexican Spanish and Hindi. With support for over 100 languages, these models empower creators, developers, and enterprises to build high-quality, multilingual voice experiences worldwide. Build with trust, consent, and transparency We built our voice creation and replication capabilities with strict safeguards to help protect voice talent, respect identity, and ensure content transparency. For voice replication our system leverages consent verification: users must provide a verbal consent recording from the voice owner that matches the speaker before a voice can be created. More broadly, every audio clip generated by our Gemini Audio models is watermarked with SynthID . This imperceptible watermark is woven directly into the audio output, ensuring AI-generated speech remains detectable to help prevent misinformation. For more details on our approach to safety and responsibility, review the model card . Try our new Google AI Studio audio playground Starting today, developers can experience these new speech generation capabilities in Google AI Studio . Built like a voice design workspace, you can prompt entirely new vocal identities from scratch or replicate your own voice 1 , then bring them directly into a dual-speaker screenplay editor to direct line-by-line delivery. Try voice replication in Google AI Studio. Deploy high-performance voice interfaces with ease By using the Gemini API, developer platforms such as Agora , LiveKit , Pipecat , Vercel enable developers to build and deploy high-performance speech generation experiences with ease. We’re partnering with companies like Figma, HeyGen, Linguana, Wondercraft, 99.co, and Ollang, who are integrating our latest TTS models to help accelerate global dubbing, localize media with nuanced regional accents, and power conversational voice agents at scale. Start using our latest Gemini Audio models: Gemini 3.8 Flash TTS is rolling out starting today: For developers : In the Gemini API and Google AI Studio For enterprises : Coming soon via API in Gemini Enterprise For everyone : In Gemini book . Gemini 3.8 Flash-Lite TTS is rolling out starting today: For developers : In the Gemini API and Google AI Studio For enterprises : Coming soon via API in Gemini Enterprise For everyone : In Google Vids Get the latest news from Google in your inbox Done. Just one step more. Check your inbox to confirm your subscription. You can also subscribe with a . Your information will be used in accordance with Google&#x27;s privacy policy. You may opt out at any time</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/openai-extends-cyber-access-to-ukraine-for-civilian-defense" target="_blank">OpenAI extends cyber access to Ukraine for civilian defense</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Sep 23, 2026 &middot; 13:00 UTC</span>
+          </div>
+          <p class="summary"><span>September 23, 2026 Global Affairs OpenAI extends cyber access to Ukraine for civilian defense Loading… OpenAI today announced it will offer the Government of Ukraine access to its Daybreak program to support the cyber defense of civilian infrastructure.</span> <span>The announcement was made on the sidelines of the UN General Assembly by Dmytro Kushneruk, the Consul General of Ukraine in San Francisco, and Sasha Baker, Head of National Security Policy at OpenAI.</span> <span>In Poland, the national cyber agency, CERT Polska, used OpenAI models to help discover six vulnerabilities in third-party router software.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>September 23, 2026 Global Affairs OpenAI extends cyber access to Ukraine for civilian defense Loading… OpenAI today announced it will offer the Government of Ukraine access to its Daybreak program to support the cyber defense of civilian infrastructure. Working with the Ministry of Digital Transformation, OpenAI will provide Ukrainian teams with access to tools to identify software vulnerabilities and develop and test fixes more quickly. The announcement was made on the sidelines of the UN General Assembly by Dmytro Kushneruk, the Consul General of Ukraine in San Francisco, and Sasha Baker, Head of National Security Policy at OpenAI. Ukrainian defenders face persistent cyber attacks from Russia, alongside physical attacks on the country’s infrastructure. Ukraine’s national cyber incident response team, CERT-UA, handled ⁠ (opens in a new window) nearly 6,000 cyber incidents in 2025. These include attacks on hospital systems, the energy sector and telecommunications, underscoring the pressure on the organizations providing essential services to Ukrainians. OpenAI’s Daybreak gives cyber defenders access to advanced AI for authorized security work, from reviewing older software and investigating suspicious activity to validating vulnerabilities and testing fixes. We are proud to support Ukraine’s cyber defenders, who are protecting essential services against attacks every day. Through Daybreak, public and private entities have an opportunity to strengthen their cyber defenses before emerging threats take hold. Ukraine is already on the front line, and its defenders need support now. We want to put more capable tools in their hands to help them find and fix vulnerabilities and protect the critical networks people depend on. —Sasha Baker, Head of National Security Policy at OpenAI Ukraine has shown under the most extreme pressure that cyber defense is a central part of national security. Protecting civilian infrastructure means defending it against both physical and digital attacks, so people can continue to live, work and access essential services. We’re now putting our technology and behind that effort, helping the Ukrainian government strengthen its cyber defenses with AI. —George Osborne, Head of OpenAI for Countries OpenAI has already provided access to its cyber models to defenders in Europe including France, Germany, Poland, and others. The EU’s cyber agency, ENISA, has used the models to identify vulnerabilities in software used across EU institutions, all of which have since been fixed. In Poland, the national cyber agency, CERT Polska, used OpenAI models to help discover six vulnerabilities in third-party router software. The vendor has released fixes, which CERT Polska confirms prevent the attacks it observed. 2026 Author OpenAI Keep reading View all Sam Altman’s remarks at the United Nations Security Council Global Affairs Sep 23, 2026 Grab and OpenAI bring practical AI skills to Southeast Asia Global Affairs Sep 23, 2026 Building standards for the next phase of AI Global Affairs Sep 21, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/harvey-from-context-to-confidence-with-astra" target="_blank">Harvey turns legal context into stronger drafts with GPT-6 Astra</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Sep 23, 2026 &middot; 12:00 UTC</span>
+          </div>
+          <p class="summary"><span>September 23, 2026 Startup Harvey turns legal context into stronger drafts with GPT‑6 Astra GPT‑6 Astra produces more structured, context-aware legal documents, freeing lawyers to focus on strategy.</span> <span>Start building Company size: Startup Region: North America Industry: Technology Products: API Loading… Harvey helps law firms and in-house legal teams securely deploy AI across complex legal workflows, from litigation to mergers.</span> <span>Because GPT‑6 Astra can process more context, Harvey can produce higher-quality legal documents while customers focus more of their time on strategy.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>September 23, 2026 Startup Harvey turns legal context into stronger drafts with GPT‑6 Astra GPT‑6 Astra produces more structured, context-aware legal documents, freeing lawyers to focus on strategy. Start building Company size: Startup Region: North America Industry: Technology Products: API Loading… Harvey helps law firms and in-house legal teams securely deploy AI across complex legal workflows, from litigation to mergers. Its customers use Harvey to turn vast amounts of information into complex legal documents. With GPT‑6 Astra, Harvey can bring more context into the drafting process and generate more structured outputs. “We can give more context to the model and produce better and better structured outputs.” —Gabe Pereyra, Cofounder and President, Harvey Getting more complete documents with better formatting Harvey uses GPT‑6 Astra to help lawyers analyze, synthesize, and draft from the information that shapes a matter, including court information, law firm documents, case law research, and other sources of legal context. Compared with other models, Harvey has seen substantial improvements in document formatting and context awareness with GPT‑6 Astra, helping customers get more complete documents that better reflect the material behind them. Bringing lawyers’ p into the drafting process Harvey’s memory panel brings individual p directly into the drafting workflow. A lawyer can encode p such as using numbered lists, prioritizing EDGAR as a source, or color coding issues by priority. Those p appear alongside the source material and the draft memorandum, giving the lawyer a clearer way to guide the output. Because GPT‑6 Astra can process more context, Harvey can produce higher-quality legal documents while customers focus more of their time on strategy. OpenAI &lt;3 startups Join the community Start building (opens in a new window) Keep reading View all Parallel cut research time and cost in half with GPT‑6 Astra Startup Sep 22, 2026 Higgsfield AI ships new video features in a day with GPT-6 Astra Startup Sep 21, 2026 How V7 gives AI agents institutional memory Startup Sep 21, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/invideo-builds-with-gpt-6-astra" target="_blank">How invideo improves color grading 3x with GPT‑6 Astra</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Sep 23, 2026 &middot; 12:00 UTC</span>
+          </div>
+          <p class="summary"><span>September 23, 2026 How invideo improves color grading 3x with GPT‑6 Astra With GPT‑6 Astra, invideo plans edits with greater precision, improves color correction and grading threefold, and produces 50 custom effects in one day.</span> <span>Editors have to shape the story, place sound effects, build transitions, adjust color, and more.</span> <span>With the invideo agent using GPT‑6 Astra, creative professionals retain control of the story, their taste, and the final cut without losing hours to the tedious planning and frame-by-frame work.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>September 23, 2026 How invideo improves color grading 3x with GPT‑6 Astra With GPT‑6 Astra, invideo plans edits with greater precision, improves color correction and grading threefold, and produces 50 custom effects in one day. Start building with OpenAI Company size: Startup Region: Asia-Pacific &amp; Oceania Industry: Media, Entertainment &amp; Sport Products: API Results 50 Custom effects created in one day Results 3x Increase in success rate for color-grading and correction Loading… Editing videos is one creative and technical decision after another. Editors have to shape the story, place sound effects, build transitions, adjust color, and more. Invideo ⁠ (opens in a new window) is an agentic video editor designed to handle that work while keeping the human editor in control. With GPT‑6 Astra, invideo sees greater capability to plan and execute complex edits and place changes at the correct points in the timeline. “How Astra can plan a particular edit on a frame-level accuracy is quite stunning.” —Sanket Shah, CEO, invideo Planning complex edits and staying on brief The AI agent must translate the editor’s direction into a sequence of steps, choose the right tools, execute the work, and verify the result. Sanket says GPT‑6 Astra can plan these operations in fewer reasoning steps than the models it previously tested: “Astra is using far fewer reasoning sets and thus output tokens to complete complex work.” Invideo also observed that Astra can carry out several instructions without losing the editor’s original objective as the task grows longer and more complex. Choosing the right approach and adapting to change GPT‑6 Astra is especially effective when it comes to color work, where the agent must choose from overlapping approaches such as correction, grading, regeneration, LUTs, and isolation. For example, changing a background while preserving a person’s skin tone requires the agent to isolate and track the person across frames before applying color elsewhere. “Earlier, we saw very high failure rates for color-grading and color-correction tasks. With Astra, the success rate improved about three times,” said Sanket. Creating custom effects that remain fully editable GPT‑6 Astra also helps invideo turn descriptions and visual into custom effects. The agent can code an effect tailored to the footage, place it on the timeline, and add controls that let the editor refine it. In one day, a few Invideo editors used the model to create about 50 effects. With the invideo agent using GPT‑6 Astra, creative professionals retain control of the story, their taste, and the final cut without losing hours to the tedious planning and frame-by-frame work. OpenAI &lt;3 startups Join the community Start building (opens in a new window) Keep reading Towards safety cases for frontier AI training Safety Sep 28, 2026 How we will do better for Australia Company Sep 28, 2026 Lenfest grows landmark program with OpenAI support Company Sep 28, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Sep/23/bof-agentic-engineering/" target="_blank">SF October 14th: A Birds of a Feather Session on Agentic Engineering</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Sep 23, 2026 &middot; 02:53 UTC</span>
+          </div>
+          <p class="summary"><span>SF October 14th: A Birds of a Feather Session on Agentic Engineering I&#x27;m hosting an evening event with Jesse Vincent in San Francisco on Wednesday 14th October for people who are building weird and interesting things with and on top of coding agents.</span> <span>Think of it as an agentic show-and-tell: ​Compare notes with other builders and experimenters on things you’re trying, what you&#x27;re learning, and what you haven’t figured out yet.</span> <span>Tags: events , ai , generative-ai , llms , coding-agents , jesse-vincent , agentic-engineering</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>SF October 14th: A Birds of a Feather Session on Agentic Engineering I&#x27;m hosting an evening event with Jesse Vincent in San Francisco on Wednesday 14th October for people who are building weird and interesting things with and on top of coding agents. Think of it as an agentic show-and-tell: ​Compare notes with other builders and experimenters on things you’re trying, what you&#x27;re learning, and what you haven’t figured out yet. We’re especially interested in work you haven’t discussed publicly, odd experiments, or unfinished projects that don’t have an obvious market. ​Expect one flowing conversation with an informal show-and-tell. Sharing something you’re working on is encouraged but no presentation is required. This isn&#x27;t about product pitches, it&#x27;s about much earlier explorations than that. This agentic AI stuff is weird! Let&#x27;s celebrate and lean into that weirdness. Tags: events , ai , generative-ai , llms , coding-agents , jesse-vincent , agentic-engineering</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 206</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
