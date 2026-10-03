@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-10-03</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-10-03</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/airbnb" target="_blank">Inside-Out AI: Rebuilding Airbnb Behind the Scenes and Across the Guest Experience</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Oct 02, 2026 &middot; 14:04 UTC</span>
+          </div>
+          <p class="summary"><span>Prior to joining Airbnb as CTO in January, Ahmad Al-Dahle was head of generative AI at Meta and led the launch of its open source Llama models over 2023-2025.</span> <span>Now Al-Dahle is in charge of turning Airbnb into an “AI-native company”.</span> <span>Al-Dahle spoke with Latent Space about Airbnb’s AI transformation.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Prior to joining Airbnb as CTO in January, Ahmad Al-Dahle was head of generative AI at Meta and led the launch of its open source Llama models over 2023-2025. Now Al-Dahle is in charge of turning Airbnb into an “AI-native company”. What that means in practice is using AI internally to speed up product development, then using those same capabilities to transform the customer experience . We’re calling this an “inside-out AI” approach and in this article we’ll dig into the details. Al-Dahle spoke with Latent Space about Airbnb’s AI transformation. We began by asking him why he made the shift from building frontier models at Meta to deploying them at Airbnb . “Fundamentally, I like to chase where I believe the hard frontiers live ,” he replied, pun perhaps intended. “We kind of knew [at Meta] what the flywheel looks like, we understood how to improve the model capabilities, generation on generation.” The next challenge, Al-Dahle thinks, is deploying models at scale. At Airbnb, his goals are to “ push people to work differently , because these tools are transforming how you work,” and to “ take these systems and deploy them in production , in creative ways that actually add value to a core user experience.” Jumping to prototypes, code is the artifact From its launch in 2008, Airbnb has been considered a technology company operating in the hospitality industry. The company went public in 2020 and now has a market capitalization of approximately $93 billion (at time of writing). So it’s a big operation to try and make “AI-native.” Al-Dahle reeled off a few statistics to show that Airbnb is AI-pilled now: 60% of its code is now AI-authored , it has shipped nearly 80% more features and improvements year over year, and pull-request throughput for the average engineer is up about 1.6x . But how exactly has Airbnb done all this? Firstly, he said it’s about changing the organizational process for software engineering . Traditionally, you might do product requirements, then design work in Figma, then engineering implementation, and eventually production testing. In the past, these would’ve required handoffs from one team to another. But now, Airbnb has its product, design and engineering teams move directly to working with prototypes . “Breaking that time down is actually one of the biggest savings that a lot of traditional software companies have to make the leap to do,” said Al-Dahle. “And so we made that leap and it actually ended up adding a ton of tailwind to our product development process.” A byproduct of this change is that teams deal directly with code , rather than dealing with “artifacts” like a product requirements document. “We moved away from excessive artifact generation to the code being the artifact that we reason upon, and prototypes ,” he said. AI resolves roughly half of support tickets Al-Dahle told us that customer support was the first user-facing area that it introduced AI into. He described it as “the hardest problem to deploy,” because “the stakes and the consequences of a mistake are really high.” Roughly half of Airbnb’s support tickets are now resolved purely by AI , said Al-Dahle (this is in line with the company’s Q2 results , which put the figure at nearly 45%). The key to this, he says, is using synthetic data to thoroughly test the system before taking it to production. “We start with: build a model, build the agent, and begin to generate a battery of synthetic data before you ever go into production.” He that although agents handle about half of customer support queries, they are careful about what requires human assistance — with safety issues, for example. “So while we solve 50% of the tickets, we’re actually deliberate about the tickets we don’t choose to solve yet [with agents].” Everest, Airbnb’s AI context graph Two Airbnb Services projects you may not be familiar with yet are grocery deliveries and airport pickups (the grocery service has just been expanded to more cities ). Both were launched earlier this year, thanks in part to Airbnb’s inside-out AI approach. It was an internal organizational context graph called Everest that helped bring these products to market quickly. Al-Dahle said that Everest uses technologies such as LLMs, embeddings and AI-based retrieval to build and query the graph. He explained that the grocery delivery and airport pickup services are “kind of similar services — API integrations with partner services [external companies] that integrated onto our platform.” The grocery service was built first, and learnings from it were made available in Everest. That enabled the airport pickup team to do its project much more quickly. In its Q2 earnings report , Airbnb states that “groceries took eight months, nine months and airport pickups took about six weeks to develop.” Additionally, using Everest means its developers don’t necessarily need specialist knowledge to work on projects. “Because of this context graph that exists across the codebase,” said Al-Dahle, “we’re able to have generalists work across very specialist parts of the code .” Both of the new services were highlighted by CEO Brian Chesky at Airbnb’s 2026 Summer Release in May. Brian Chesky @bchesky Introducing the Airbnb 2026 Summer Release 327 Replies · 172 Reposts · 3.51K Likes Choosing which models to use and customizing open models To give more of a sense of Airbnb’s internal AI usage, Al-Dahle described it as a “multi-model company” and says it deploys “a lot of different models” in its production systems. Airbnb uses a mixture of frontier and open models, but conducts most of its own post-training and reinforcement learning on open models . Al-Dahle said the company deploys at least 10 customized models for production use cases. It also evaluates models along a Pareto frontier for cost, performance and latency , selecting a different trade-off for each application. “We run evals specifically for each use case,” he explained. “So if we’re using a model for search, we have a set of search queries that are sampled from production that we measure against. If we’re doing customer support, we also sample all the production queries that we care most about — including edge cases.” “We try to use the right tool for the right job,” he added. For example, coding can tolerate more latency but mistakes are expensive. So they prefer to use the strongest available frontier model for coding tasks. “It makes sense to use the absolute most frontier coding model , because for every defect that a model produces, it could easily cost us a lot more.” On the other hand, search is used at scale by Airbnb’s users and so is very latency-sensitive. So for that job, they prefer smaller specialized models. Al-Dahle claimed that smaller, post-trained models sometimes out-perform frontier models. “For narrow use cases, we’ve been able to take really small, really nimble models that are very fast and cheap and post-train them beyond the frontier.” Async agents: the next big shift Like other AI-native companies , Airbnb has created an internal agent — in its case called AirChat . “We have our own internal agent that we call AirChat, which [includes] basically all the necessary MCP organizational context,” said Al-Dahle. But Airbnb is also starting to implement what Al-Dahle sees as the next development in agents: asynchronous agents running in containers and activated by events. “A lot of our teams are starting to basically automate their on-calls,” he explained. “So if something trips, if a Grafana limit or whatever monitoring system that you use trips, agents spin up to then triage and run your on-call , your initial on-call.” A human engineer can review a PR proposed by the agent, while the agent may close the incident itself if it determines that the alert was flaky. This process reminds us of how open source projects like Vercel’s AI SDK, Astro, Flue and tldraw use software factories — teams of agents — to apply fixes and features . Al-Dahle sees this approach eventually being used across its entire marketplace platform; for example to monitor fraud, “trust violations,” marketplace quality, and software defects. “My vision is large amounts of asynchronous agents that are helping automate and manage the marketplace.” Maintaining the craft of software engineering Al-Dahle believes that organizing teams around outcomes rather than features is key to becoming an AI-native company. “If you’re a company that organizes by feature development, you’re going to struggle in the age of AI,” he said. “If you’re a company that organizes by objectives and missions and results that you’re trying to achieve, you’re going to be fine.” That said, there’s one thing Al-Dahle worries about during this AI-native transition: whether junior engineers are developing their craft and judgement , given that AI is able to do so much work for them now. Senior engineers, he says, have acquired their judgement through many years of shipping systems and operating software in production — including the mistakes they made along the way. Part of the solution, Al-Dahle says, is ensuring all of their engineers can explain the work AI does for them. “One of the things I’m pushing very strongly is that every engineer must be able to explain, even if an AI generated the PR, must be able to explain what they built. I think if that fundamental premise remains true, then more junior engineers will learn the craft of interface design and architecture, and the importance of testing and unit testing and integration tests. So we’re trying to keep our craft really high.”</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2610.02203v1" target="_blank">Embedding Prediction Helps Image Generation</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Oct 01, 2026 &middot; 17:59 UTC</span>
+          </div>
+          <p class="summary"><span>In diffusion transformers, a class label or a text prompt is embedded once, and the same condition is reused at every denoising step.</span> <span>We ask whether predicted embeddings can serve as this condition instead.</span> <span>Next-Embedding Predictive Autoregression (NEPA) trains a Transformer to predict the next continuous embedding in a sequence.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>In diffusion transformers, a class label or a text prompt is embedded once, and the same condition is reused at every denoising step. We ask whether predicted embeddings can serve as this condition instead. Next-Embedding Predictive Autoregression (NEPA) trains a Transformer to predict the next continuous embedding in a sequence. In generation, the clean image follows the noisy image, so its embeddings are the next embeddings after the condition and the noisy image. We train a NEPA model to predict them all at once with Multi-Embedding Prediction, and in Embedding Conditioned Generation, a DiT generator is conditioned on these predictions, recomputed at every denoising step, so the conditioning signal adapts to the current noisy state. Experiments on class-conditional ImageNet $256\times256$ study the condition of the generator, the design of Multi-Embedding Prediction, and the scaling of both models. The NEPA model adds a second network to every sampling step; with it, and combined with REPA, our final model, NEPA-DiT-XL, reaches an FID of 1.32 using about a third of the training compute of REPA.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://newsletter.pragmaticengineer.com/p/the-pulse-firebases-global-outage" target="_blank">The Pulse: Firebase’s global outage &amp; poor response</a></h2>
+          <div class="meta">
+            <span class="source">pragmatic-engineer</span>
+            <span class="date">Oct 01, 2026 &middot; 16:43 UTC</span>
+          </div>
+          <p class="summary"><span>Today, we cover: Firebase: global outage &amp; poor handling by Google.</span> <span>The Firebase iOS SDK crashed after a backend change, crashing all apps which used Firebase analytics for 2-6 hours.</span> <span>Firebase SDK: global outage &amp; poor handling by Google</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>The Pulse is a series covering events, insights, and trends within Big Tech and startups. Today, we cover: Firebase: global outage &amp; poor handling by Google. The Firebase iOS SDK crashed after a backend change, crashing all apps which used Firebase analytics for 2-6 hours. Google did not update the status page or offer any postmortem, which is a head-scratcher from a company known for standout incident management practices. OpenAI’s platform play from AWS playbook? OpenAI is becoming a platform where it’s possible to allocate ChatGPT spend on open models and AI offerings from among 16 partners, not just OpenAI models. It’s fair to ask if Anthropic will consider a similar platform play. More data on companies moving to open models. Vercel’s AI gateway shows 60% of model spend goes to open weight models, and OpenRouter also shows open models are being more used than closed ones. Why CTOs and VPEs are quitting en masse: another take. What if it’s not “founder mode”, but about people who love building software, feeling like they can do it solo (or with a small team) with AI tools? 1. Firebase SDK: global outage &amp; poor handling by Google</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2610.01947v1" target="_blank">Latent JEPA: Abstract Future Prediction for Latent Reasoning in Chemistry</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Oct 01, 2026 &middot; 16:11 UTC</span>
+          </div>
+          <p class="summary"><span>Large language models offer a promising foundation for chemical reasoning, bringing together chemical knowledge and multistep problem solving.</span> <span>Representation analyses show that future prediction makes latent thoughts more informative about molecular outcomes and strengthens their correspondence with chemical structure.</span> <span>These findings support abstract future prediction as a learning principle for connecting continuous latent reasoning with scientific outcomes.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Large language models offer a promising foundation for chemical reasoning, bringing together chemical knowledge and multistep problem solving. Chemical intuition can provide an initial sense of plausible outcomes before the details of a solution are fully worked out. Inspired by how such expectations complement explicit analysis, we study how continuous latent thoughts can be trained to anticipate informative aspects of future solutions without verbalizing every intermediate step. We introduce Latent JEPA, a framework that combines autoregressive learning with joint-embedding prediction of one or more future views. For chemical reasoning, we develop textual and molecular prediction objectives that connect latent thoughts to both subsequent reasoning and molecular outcomes. Experiments on ChemCoTBench show gains in molecular optimization and on several editing and reaction metrics. Representation analyses show that future prediction makes latent thoughts more informative about molecular outcomes and strengthens their correspondence with chemical structure. These findings support abstract future prediction as a learning principle for connecting continuous latent reasoning with scientific outcomes.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/the-den-family-social" target="_blank">The Den frees up 10-15 hours a week to grow with ChatGPT Work</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 01, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>October 1, 2026 The Den frees up 10-15 hours a week to grow with ChatGPT Work As it opens a new location, the social club prepares grant applications in 2 hours instead of 3 days and liquor-license materials in 3 hours instead of 4 days.</span> <span>As The Den began construction and pre-opening for a second location, Chandler turned to ChatGPT Work to help manage the increasing administrative load.</span> <span>All of this work comes back to why Chandler started The Den: giving parents a place to feel like themselves, with their children welcome alongside them.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>October 1, 2026 The Den frees up 10-15 hours a week to grow with ChatGPT Work As it opens a new location, the social club prepares grant applications in 2 hours instead of 3 days and liquor-license materials in 3 hours instead of 4 days. Contact sales Company size: SMB Region: North America Industry: Arts &amp; Culture, Food &amp; Beverage Products: ChatGPT 10-15 Hours a week saved by the leadership team 92% less time to apply for grants 91% less time to apply for liquor license Loading… The Den Family Social ⁠ (opens in a new window) is a Denver-based social club that brings together hospitality, community, work, and play to give parents a place where they can feel like themselves and their children are welcome too. The business grew from founder Chandler Lipe’s own transition into parenthood and her belief that parents deserve elevated, inspiring spaces built with their wellbeing in mind. As The Den began construction and pre-opening for a second location, Chandler turned to ChatGPT Work to help manage the increasing administrative load. Her small team now saves 10-15 hours a week and prepares licensing and grant applications in hours instead of days, giving them more capacity to grow while staying focused on the families they serve. “ChatGPT Work allows us to build the company we need before we have the size or of that company.” —Chandler Lipe, Founder and CEO, The Den Turning scattered information into an action plan To open their second location, The Den’s team had to operationalize their knowledge and context from the first. Using the Gmail, Slack, and Google Drive plugins, they asked ChatGPT Work to gather and analyze information from across the business and propose next steps. Planning is now more organized, repeatable, and faster, while the team still reviews ChatGPT Work’s output for accuracy and makes the final decisions. One example is The Den’s second liquor-license application. When an earlier hearing slot suddenly became available, The Den used ChatGPT Work to quickly pull together documents, identify what was missing, and convert files into the required formats. “Work that would have taken four days of searching, sorting, formatting, and assembling was condensed into three hours of team review and completion with ChatGPT Work.” —Chandler Lipe, Founder and CEO, The Den The Den uses the same workflow to respond to time-sensitive grant opportunities. Applying for grants now takes two hours, down from three days, and that means more opportunities to support The Den’s growth. Asking complex questions and making faster decisions The Den’s leaders also use ChatGPT to think through questions and develop proposals before bringing problems to the group. Chandler estimates that this saves her about 7 hours of exploratory conversations a week so she can focus on decision making. For example, Brooke, The Den’s Head of Programming and Partnerships, wanted a more consistent approach to partnerships as the business grew. She workshopped the problem with ChatGPT, sharing what she knew about which partnerships worked, which didn’t, and why. The result was a proposed partnership structure for the leadership team to review. The Den extends this approach to financial analysis and operational planning. Maia, the General Manager, gathered financial reports from the accountant as well as sales and inventory data from point-of-sale systems. She then used ChatGPT to organize that information into a digestible view of the business that makes it easier to forecast inventory needs and decide how purchasing and systems should work across both locations. Supporting a growing business with OpenAI As the club expands, Chandler spends significant time traveling between locations and meetings. She’s starting to use ChatGPT Voice to turn her travel time into productive work: talking through an email and having ChatGPT draft it, capturing follow-ups from a meeting, or organizing an idea while it’s still fresh. She can then review the work and send it when she’s ready, rather than returning to her desk with a growing list of things to tackle. The Den also plans to explore Codex to build more customized systems, including a member app for check-in and class registration, better connections between its point-of-sale systems, and Slack alerts that connect the team across locations. All of this work comes back to why Chandler started The Den: giving parents a place to feel like themselves, with their children welcome alongside them. Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading A practical guide to building with GPT-6 Product Oct 2, 2026 Chatham scales its capital markets expertise with OpenAI Oct 2, 2026 The eternal complement Intelligence Age Oct 1, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/" target="_blank">Gemini 4 Argon: our next era of frontier intelligence</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Sep 30, 2026 &middot; 20:01 UTC</span>
+          </div>
+          <p class="summary"><span>Gemini 4 Argon: our next era of frontier intelligence Sep 30, 2026 | x.com Facebook LinkedIn Mail Gemini 4 Argon delivers frontier performance in complex workflows across real-world software engineering, enterprise knowledge work like legal and finance, and cybersecurity defense.</span> <span>Argon is currently rolling out to trusted cyber defenders through the Fairwind Program.</span> <span>Built to sustain deep reasoning across complex, long-horizon workflows, Argon is fundamentally changing the way we work and build at Google.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Gemini 4 Argon: our next era of frontier intelligence Sep 30, 2026 | x.com Facebook LinkedIn Mail Gemini 4 Argon delivers frontier performance in complex workflows across real-world software engineering, enterprise knowledge work like legal and finance, and cybersecurity defense. Koray Kavukcuoglu SVP, Google DeepMind and Chief AI Architect, Google Share x.com Facebook LinkedIn Mail Google’s new Gemini 4 Argon model brings advanced reasoning to complex, long-horizon professional tasks. The model features an industry-leading 1 million token limit for deep, multi-step problem solving. It excels at coding, financial research, legal drafting, and autonomous cybersecurity vulnerability patching. Argon is currently rolling out to trusted cyber defenders through the Fairwind Program. Google is prioritizing safety and rigorous testing before a wider release to the public. Summaries were generated by Google AI. Generative AI is experimental. In this article Today, we’re announcing our new frontier model, Gemini 4 Argon, which is rolling out to a set of trusted cyber defenders through our Fairwind Program . Built to sustain deep reasoning across complex, long-horizon workflows, Argon is fundamentally changing the way we work and build at Google. It delivers frontier performance in complex workflows across real-world software engineering, enterprise knowledge work like legal and finance, and cybersecurity defense. Safely releasing frontier capabilities at this level requires a phased approach. We are actively engaged in the U.S. government’s voluntary process for pre-release model access while we gradually expand access. We’ll continue to gather feedback from early testers as we iterate on guardrails before making Argon available to developers, enterprises, and consumers as soon as possible. Argon will launch at an introductory price 1 of $2 per million input tokens and $10 per million output tokens, with cached input tokens priced at 95% off input token price. Changing how we work and build at Google Gemini 4 Argon is already powering our internal workflows, with thousands of Googlers highlighting the model’s strengths in specialized coding tasks, conducting deeper research, and writing quality. It’s helping teams build faster and push the boundaries of engineering productivity and accelerating breakthroughs: Quantum algorithmic optimization: Argon is helping our quantum computing researchers optimize the spacetime (qubits × gates) of subroutines that bottleneck important applications. In one example, it beat the published baseline by 40% in a matter of minutes. Memory efficiency: A team of Argon agents analyzed fleet-wide profiling telemetry to autonomously identify and apply memory optimizations across Google’s data centers, freeing up over 300 TiB of memory once rolled out, with an estimated 500 TiB to 1 PiB in total savings. Large Scale Codebase Migrations and Optimizations: Argon agents are working on migrating C/C++ codebases to Rust across Google — scaling from tens of thousands of lines in core libraries like re2, libgav1 up to 800K+ lines for the Fuchsia Zircon kernel. Given the criticality of many of these systems, such large-scale rewrites are undergoing rigorous automated and manual auditing, emulation testing, and review before rolling out to production. For libgav1, Google&#x27;s open source software for decoding video, Argon agents took an existing Rust port and replaced 32K lines of SIMD code by running many rounds of profile-guided experiments, studying the compiler&#x27;s output, producing safe Rust so the compiler would vectorize it automatically. The end result is a memory-safe video decoder that runs 2.7x faster than the Rust port, with identical video output, bringing it closer to the optimized C++. Working harder on your most complex problems To support Gemini 4 Argon’s capabilities across longer, more complex use cases, we are significantly expanding the model’s output token limit to an industry-leading 1M tokens, up from the previous 64K tokens. When the model has the headroom to think deeply and generate hundreds of thousands of tokens in a single trajectory, it adds a new level of depth in reasoning to solve tough problems in one go. Enabling coding and enterprise workflows across domains Gemini 4 Argon’s capabilities across coding, reasoning, and multimodality and its ability to sustain long, multi-step tasks enable it to excel across a range of enterprise workflows. Google engineers have been using Argon for their daily tasks, from everyday debugging to large-scale codebase migrations and algorithm designs. It sets a new state of the art on DeepSWE v1.1 (77.9%), which measures a model’s performance in real-world long-horizon software engineering tasks. Beyond coding, Argon is the leading model on the Vals Index , which measures economic impact across finance, coding, legal, and tax work, with every sector weighted by its contribution to U.S. We see similarly leading performance across other domain specific evaluations, like Vals Finance Agent v2 (multi-step financial research) and Harvey’s Legal Agent Benchmark (legal research and drafting). On AutomationBench, Zapier’s benchmark measuring end-to-end execution across core business functions, Argon ranks #1 with a score of 51.3%. Argon is also uniquely strong when knowledge work requires visual understanding. It’s able to drive professional chart analysis, identify details from long videos, and take action based on a series of documents. For example, on LVBench, which measures long video understanding, Argon is state of the art with a score of 91.7%. Leading in defensive cybersecurity To better equip cyber defenders for the new era of cyberattacks, we trained Gemini 4 Argon to be highly capable at cybersecurity defense. Argon can autonomously find, validate, and patch critical software vulnerabilities. For trusted defenders and our own internal teams at Google, we’ll be releasing Argon without cyber guardrails so they can leverage its full frontier-level cybersecurity defense capabilities. Wiz is already using Argon for cybersecurity defense through its Scan for Good initiative – a program dedicated to protecting critical public infrastructure for free by finding and remediating high-risk exposures. In an early demonstration of its impact, the model uncovered a critical vulnerability exposing sensitive personal information across healthcare software used by hospitals worldwide, identifying a severe risk that previous frontier models had missed. On CWE-bench v1 , which evaluates the model’s ability to remediate security vulnerabilities, Argon ties for first place with a top score of 68%, building on 3.8 Flash Cyber’s frontier performance on CWE-bench v0 . Gemini 4 Argon demonstrates impressive leaps in vulnerability discovery over 3.8 Flash Cyber. For example: On Google’s internal comprehensive vulnerability benchmark, Argon uncovered a wide range of exposures across complex codebases spanning 20 programming languages. On Wiz’s internal black-box penetration testing benchmark, which tests a model’s ability to analyze live web systems without source code, Argon outperforms 3.8 Flash Cyber in discovering the attack surface, identifying vulnerabilities, and producing proof-of-concept evidence to validate them. Strengthening frontier safeguards before broad availability Before rolling out Gemini 4 Argon broadly, we’re continuing to strengthen critical frontier safeguards across four main areas: Defending against misuse: To prevent bad actors from using Argon for cyber or chemical, biological, radiological, and nuclear (CBRN) attacks, the model is designed to refuse harmful requests while preserving legitimate, dual-use scientific research, as per our Frontier Safety Framework . We are strengthening the robustness of our safeguards for this launch, including improving our techniques to monitor the model’s internal activations to spot misuse. These safeguards underwent robustness testing by internal and external red teams using a combination of manual and automated attack methods. Defending against prompt injection attacks: Argon is also our most resilient model yet against indirect prompt injections, where malicious instructions or context are used to hijack a model’s behavior. These are complex attacks that require constant vigilance and multiple layers of defense. Through automated red teaming and adversarial training, Gemini 4 Argon is leading in prompt injection robustness on the Gray Swan’s Indirect Prompt Injection (IPI) benchmark. Monitoring for misalignment: In order to prevent Argon from stepping out of bounds to try to accomplish a task in a way that goes beyond the user’s intentions, we are deploying misalignment mitigations that monitor Argon’s chain-of-thought and actions and stop execution when necessary. We used a similar system to monitor our training runs and send alerts to a dedicated incident response team, taking careful precautions against feeding the findings back into training so as to not risk shaping Argon’s reasoning to evade our monitoring. We strongly encourage the rest of the industry to preserve reasoning transparency in these pivotal moments of increased capabilities while navigating alignment risks, so that model thoughts remain helpful in identifying and diagnosing misalignment. Hardening systems: As frontier models grow increasingly capable, safely testing them requires secure environments that can keep up with the systems themselves. In line with our agent control roadmap , we are hardening our sandboxed environments by isolating and sealing them before high-risk training or evaluations begin. We’re committed to sharing these agent security best practices with our partners to improve security across the ecosystem. Rolling out soon We built Gemini 4 Argon with frontier-level capabilities on coding, knowledge work, cybersecurity defense, and creative writing to be a partner for developers, professionals, and enterprises while they tackle the most difficult problems. We’re grateful for the initial cohort of cyber defenders and trusted testers whose real-world evaluations and feedback will help us strengthen our systems before we release to developers, enterprises, and consumers, starting with paid API customers and Google AI Ultra subscribers</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://newsletter.pragmaticengineer.com/p/distributed-databases-with-peter" target="_blank">Distributed databases with Peter Mattis</a></h2>
+          <div class="meta">
+            <span class="source">pragmatic-engineer</span>
+            <span class="date">Sep 30, 2026 &middot; 16:30 UTC</span>
+          </div>
+          <p class="summary"><span>Peter Mattis is co-founder and CTO of Cockroach Labs , and an original creator of GIMP.</span> <span>He also worked on Gmail and distributed storage at Google.</span> <span>, Peter reflects on his journey from open source to Google to founding a database company, and we explore how to keep systems fast, reliable, and correct at scale, from Gmail’s early storage challenges to the tradeoffs in building distributed databases.</span> <span>We also consider the future of code review, and Peter has some advice about how to level up our engineering skills.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Stream the latest episode Listen and watch now on YouTube , Apple , and Spotify . See the episode transcript at the top of this page, and timestamps for the episode at the bottom. they are completely redesigning their storage architecture from first principles to make search faster, cheaper, and more reliable at scale. And they’re documenting all of it! Follow along their rewrite at turbopuffer.com/v3<ul><li>Linear – most of us work with agents in a “single-player” setting. Linear’s take is agent work should be teamwork: your teammates can follow the session of the agent, check out the PR it produces, and join the review. Works with Codex, Cursor, Linear’s own agent, or custom agents. Check it out</li><li>ization layer for AI agents. It evaluates every request against the agent’s intent and your rules and either allows it, denies it, or routes it to a human for approval. Works with Claude Code, Codex and MCP gateways. Give it a spin . How is it that a software veteran who regularly shipped ~100K of database-grade code to production each year, pre-AI, feels like he’s even more productive today, with no drop in quality? Peter Mattis is co-founder and CTO of Cockroach Labs , and an original creator of GIMP. He also worked on Gmail and distributed storage at Google. , Peter reflects on his journey from open source to Google to founding a database company, and we explore how to keep systems fast, reliable, and correct at scale, from Gmail’s early storage challenges to the tradeoffs in building distributed databases. Peter tells us how AI has brought him back to writing code after his work shifted toward management, and why he believes AI can improve quality and multiply the impact of domain experts. We also consider the future of code review, and Peter has some advice about how to level up our engineering skills. Takeaways from the conversation with Peter 1. Peter initially turned down Sergey Brin’s offer to join Google because of the commute. The very first version of the famous Google logo was made in GIMP, the free, open-source raster graphics and image editing software created by Peter and his college roommate Spencer Kimball. In 2001, Sergey reached out to Peter, invited him to an interview and then made an offer. But Peter said “no” because he lived in San Francisco and did not fancy the hour-long commute to Mountain View. Instead, he joined another startup, but that didn’t go anywhere. When Google reached out again, he took the chance. Peter almost did not ship GIMP after learning about an even more ambitious photo editor. Peter and Spencer worked hard on GIMP, but a few weeks before launching it, they saw an announcement about another program that promised to do everything GIMP did – and then some! Peter and Spencer felt discouraged but shipped anyway – and the rest is history. They never heard about the other ambitious project again. “There’s always going to be someone else working on your idea,” says Peter. “You can’t get dissuaded if they pre-announce it. To founders: assume that dozens of people have the same idea you have, but most won’t ship it! Know that it’s a competition; you’ve got to enjoy that aspect of it – don’t be afraid of it.” 3. B-trees were used in the first version of Gmail. Gmail launched on 1 April 2004, offering 1GB of email storage for free, an offer seen as so ridiculously generous at the time that most people assumed it was an April Fool’s joke! B-trees played a role in Gmail’s storage layer, thanks to storing email threads. Under the hood, each incoming message was matched to a thread using the search index. Threads and their unread counts were tracked by B-trees. Colossus reduced Google’s file storage overhead by 33%, while increasing redundancy. Before Colossus, Google File System (GFS) stored three full copies of data. For Colossus, which became GFS’s successor, Peter and the team pioneered Reed–Solomon erasure coding in a distributed file system. Data was stored twice, but redundancy increased! 5. The fastest way to send a packet around the globe is through space! Peter keeps “speed of light numbers” in his head – similar to what turbopuffer founder Simon Eskildsen does with ”napkin math” calculations. For example, a network round trip within a zone went from milliseconds when Colossus was built to about 100 microseconds today (10x faster!). But sometimes the bottleneck is the speed of light, and as light speed is faster in a vacuum than anywhere else, that means the fastest global route is straight up to Starlink, across by laser, and then back down. Find out more in ‘ Delay is not an option: low latency routing in space ’. Peter twice “beat” standard library data structures in performance terms. At Google, one of his colleagues noticed that std::map showed up in memory profiles. Peter looked closer and figured out that the std::map implementation is a red-black tree , meaning every node has two pointers. Peter built a B-tree with nearly the same semantics which was both faster, due to spatial locality, and smaller because it used fewer pointers. They used this data structure inside Google. Peter also did something similar with Go’s map: it was performant, but he built a Swiss Table implementation that was faster. That implementation later made it into the Go library, with the Go team helping to finish it! 7. If you squint hard, everything in distributed databases and storage systems starts looking like a B-tree. These B-trees are a recurring theme in this podcast episode: the backend of Gmail, the std::map replacement, CockroachDB’s range index, etc. There’s even a paper on this phenomenon, The Ubiquitous B-Tree . For consensus in a distributed database, at least three replicas are needed. With only one, recovery after it crashes isn’t possible. With primary and secondary replicas, neither one will know if the other received the last write following a crash. So, CockroachDB uses three replicas by default – and up to five for some system tables – and customers can add more, although this will result in higher latency. CockroachDB’s design was inspired by Google’s Colossus data storage system and Spanner. Colossus was append-only, meaning you could only add to files and not mutate them. Google’s distributed database, Spanner, was built on top of Colossus, and so Spanner’s design decisions came from Colossus’ append-only nature. But if you cannot update files and only append to them, it’s not possible to use B-trees as the database’s design structure since B-trees need the files to be updated. An ideal data structure for append-only filesystems is the Log-structured merge tree (LSM tree), where writes are appended to a log file for durability: Google popularized LSMs with LevelDB , and RocksDB later forked LevelDB. RocksDB was the underlying storage engine that CockroachDB used in its early years. In 2019, Peter wrote and open sourced Pebble , which is now CockroachDB’s storage engine. Peter, the former C++ readability reviewer at Google, predicts we will stop reviewing code: At Google, every code change needs to be signed off for “readability” by a language readability reviewer, and Peter was a C++ readability reviewer for years. But these days, he’s reviewing less code and foresees this continuing. As he puts it: “What I’m finding is the agents are getting better; you’re having to give less and less scrutiny. I don’t know if it’s going to be this year or next, [but] we’re materially going to stop looking at the code in the same way we don’t look at assembly anymore.” 11. Non-engineers at Cockroach Labs built ~1,000 internal apps (!!) in a couple of months. Earlier this year, Cockroach Labs launched an internal platform for non-devs to build apps (think of it as an “internal Lovable”). Folks jumped at it; HR professionals built new tools they’d only dreamt of, while the CFO created the dashboards they’d always longed for, and many others too. Peter and the engineering team were surprised at this uptake, but it chimes with how OpenAI saw nearly all its non-engineers move almost their entire token spend from ChatGPT to Codex within just 4 months. Does “flow” still exist with AI? I asked Peter this, and he believes it does, but it’s different from the “coding flow” state: “It definitely feels a bit different. It’s maybe a bit less intense, but you’re managing more things cognitively. I’m thinking of ideas that normally would’ve taken me a week to experiment with. And I think of multiple of these experiments and then fire them off all simultaneously. [It feels as] if I was a college professor with a whole swarm of research assistants, and they’re all off doing things and it’s coming back really rapidly.” The Pragmatic Engineer deepdives relevant for this episode</li><li>Inside Google’s Engineering Culture</li><li>Resiliency in distributed systems</li><li>How to debug large, distributed systems: Antithesis</li><li>Pushing software engineering limits with “napkin math”</li><li>Designing Data-intensive Applications with Martin Kleppmann</li><li>Formal methods with Hillel Wayne Timestamps 00:00 Intro 02:42 Peter’s path into tech 04:00 Building GIMP 09:30 Working on Gmail at Google 14:51 Google’s infra: google3, build files, Bazel, and Colossus 21:30 Distributed storage bottlenecks 23:59 Latency, throughput, and availability 30:04 Contributing to libraries 41:52 Google Spanner 46:10 CockroachDB 52:00 Manual vs. automatic sharding 55:28 Consistency models and strong consistency 1:00:03 Raft consensus 1:06:15 How AI brought Peter back to coding 1:19:12 Peter’s tools and agentic workflows 1:23:08 How AI can improve quality 1:26:39 Code reviews: are they done? 1:29:17 100x engineers 1:35:33 Peter’s advice for leveling up your engineering skills</li></ul></p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Sep/29/anthropic-frontier-red-team/" target="_blank">Quoting Anthropic Frontier Red Team</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Sep 29, 2026 &middot; 22:20 UTC</span>
+          </div>
+          <p class="summary"><span>We evaluate several models on 100 tasks from the [internal Binary Exploitation benchmark] (selected at random), and find that GLM-5.3 develops full control flow hijacks in 4% of the trials; Claude Mythos Preview did so in 6%.</span> <span>Although GLM-5.3 performs below Claude Mythos Preview here, a meaningful threshold has clearly been crossed: earlier models, like Claude Opus 4.6 and GLM-5.2, do not succeed in any of them.</span> <span>— Anthropic Frontier Red Team , GLM-5.3 and the spread of advanced cyber capabilities Tags: anthropic , generative-ai , ai-security-research , glm , ai , ai-in-china , llms</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/introducing-gpt-6-1-sol" target="_blank">Introducing GPT-6.1 Sol</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Sep 29, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>GPT-6.1 Sol Near-Astra intelligence for a fifth of the price We’re introducing GPT‑6.1 Sol , an upgrade to GPT‑6 Sol that nearly matches GPT‑6 Astra’s intelligence on agentic coding, computer use, and professional work at one-fifth of Astra’s standard input and output token prices.</span> <span>A more capable Sol across tasks GPT‑6.1 Sol offers a new balance of capability and cost for important everyday work.</span> <span>Coding On DeepSWE v1.1 , which evaluates complex software-engineering tasks in real codebases, GPT‑6.1 Sol matches GPT‑6 Astra at roughly one-fifth of the cost, while eclipsing GPT‑6 Sol’s best score by 6.4 percentage points at a lower reasoning effort and cost.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>GPT-6.1 Sol Near-Astra intelligence for a fifth of the price We’re introducing GPT‑6.1 Sol , an upgrade to GPT‑6 Sol that nearly matches GPT‑6 Astra’s intelligence on agentic coding, computer use, and professional work at one-fifth of Astra’s standard input and output token prices. Cached input costs just $0.10 per million tokens —95% less than standard input pricing and 50% less than GPT‑6 Sol’s cached input pricing—giving developers more room to build and run capable agents that reuse context across requests. A more capable Sol across tasks GPT‑6.1 Sol offers a new balance of capability and cost for important everyday work. It delivers substantial improvements over GPT‑6 Sol across complex professional tasks, from writing and debugging code to understanding documents and executing multi-step business workflows. On several of these evaluations, it approaches GPT‑6 Astra’s performance at substantially lower cost. Coding On DeepSWE v1.1 , which evaluates complex software-engineering tasks in real codebases, GPT‑6.1 Sol matches GPT‑6 Astra at roughly one-fifth of the cost, while eclipsing GPT‑6 Sol’s best score by 6.4 percentage points at a lower reasoning effort and cost. Professional work On GDP.pdf , which measures how accurately models answer professional questions using complex PDF documents, including tables, charts, diagrams, and fine-print details, GPT‑6.1 Sol scores higher than Opus 5.5 with fallbacks at less than half the cost per task across the tested reasoning settings. It also approaches GPT‑6 Astra’s state-of-the-art performance at roughly one-fifth the cost per task. On AutomationBench , which measures whether agents correctly complete multi-step business workflows, GPT‑6.1 Sol scores 2.2 percentage points above Opus 5.5 at medium reasoning effort, at roughly a third of the cost. That score is also up 4.8 percentage points from GPT‑6 Sol at the same setting. Computer use GPT‑6.1 Sol also makes substantial progress on tasks that require interacting with computer applications. On OSWorld 2.0 ’s offline set, which evaluates agents on demanding computer-use workflows, GPT‑6.1 Sol outperforms GPT‑6 Sol by seven percentage points at maximum reasoning effort at less than half the cost. It comes within 2.1 percentage points of Astra’s score at maximum reasoning effort at roughly one-seventh the cost per task. Scientific research On Terminal-Bench Science 0.1 , which evaluates scientific workflows including data analysis, simulation, and theorem proving, GPT‑6.1 Sol more than doubles GPT‑6 Sol’s score at maximum reasoning effort at less than half the cost per task. At maximum effort, GPT‑6.1 Sol costs $5.47 per task on average, compared with $23.21 for Opus 5.5 and $23.80 for Astra, delivering substantial scientific capability at over 75% lower cost than either model. GPT‑6 Astra still achieves the highest score among the models tested at 68.1%, and should be used for the most difficult scientific research tasks. Factuality GPT‑6.1 Sol also improves factual accuracy on difficult prompts. Its largest factuality improvement over GPT‑6 Sol comes at low reasoning effort, where it reduces the share of responses containing a factual error from 11.4% to 7.7%—a reduction of approximately 32%. Across the tested reasoning settings, its error rate remains within 1.9 percentage points of GPT‑6 Astra’s, at less than one-fifth the cost per task. This evaluation measures the share of answers containing at least one factual error on de-identified conversations where users flagged an earlier model’s error. These deliberately difficult prompts are not representative of typical usage. Deploying GPT‑6.1 Sol safely GPT‑6.1 Sol shows substantial improvements over GPT‑6 Sol in our alignment evaluations, bringing it closer to GPT‑6 Astra. GPT‑6.1 Sol is more transparent about its limitations and more reliable at respecting user intent and safety constraints. In challenging evaluations, it shows lower failure rates than GPT‑6 Sol on transparency about broken search tools, respecting explicit restrictions, and avoiding unauthorized outcomes during agentic tasks. We observed no attempts to bypass an automated safety reviewer, matching GPT‑6 Astra and GPT‑6 Sol. Full details can be found in the GPT‑6.1 Sol system card addendum ⁠ (opens in a new window) . The evaluations below deliberately test challenging situations and do not measure failure rates in typical use. Pricing and availability GPT‑6.1 Sol is available starting today to all Plus, Pro, Business, Enterprise, and Edu users in ChatGPT Work and Codex. GPT‑6.1 Sol is not yet available in Chat. Developers can also access it through the OpenAI API as gpt-6.1-sol. Its standard API prices are $2 per million input tokens, $0.10 per million cached input tokens, and $10 per million output tokens. In the coming days, we’ll also offer GPT‑6.1 Sol Ultrafast ⁠ , with up to 8x faster token generation compared to its standard speed in Codex. 2026 GPT Author OpenAI Evaluations of GPT were performed in our research environment or via our API, which may provide slightly different output from production ChatGPT due to differences in the system prompts, tools available, efforts, etc. Evaluations of competitor models were taken from publicly available reports. Keep reading View all Introducing GPT-6 Sol and Luna Product Sep 22, 2026 GPT-6 Astra: A new generation of intelligence Research Sep 3, 2026 DevDay 2026 Recap Company Sep 29, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://www.latent.space/p/ainews-amd-buys-world-labs-for-82b" target="_blank">[AINews] AMD buys World Labs for $8.2B, as Atlas solves sparse reconstruction problem for robotics, design and more</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Sep 29, 2026 &middot; 02:55 UTC</span>
+          </div>
+          <p class="summary"><span>AI Twitter Recap Top Story: Claude Sonnet 5.5 launch and reactions What happened Anthropic shipped Claude Sonnet 5.5, the second model in the Claude 5.5 family, one week after Opus 5.5 and the day before OpenAI DevDay.</span> <span>Early independent evals place it at or near Opus 5.5 on several leaderboards.</span> <span>Free tier: @simonw points out Sonnet 5.5 now powers the free tier on claude.ai.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>AI Twitter Recap Top Story: Claude Sonnet 5.5 launch and reactions What happened Anthropic shipped Claude Sonnet 5.5, the second model in the Claude 5.5 family, one week after Opus 5.5 and the day before OpenAI DevDay. Early independent evals place it at or near Opus 5.5 on several leaderboards. Launch timing: Pre-launch chatter came first. @kimmonismus reported it already routing to his account, and @scaling01 spotted it in the Anthropic API before the official post. Official announcement: @claudeai (53K engagement) and @AnthropicAI called it “a clear upgrade over Sonnet 5.” They claim it runs more than 30% faster and costs up to 30% less for most work. Positioning: @ClaudeDevs positions it for “well-scoped everyday tasks like fixing bugs and quickly iterating on features.” Anthropic also published a build guide covering when to pick Sonnet vs. Opus 5.5, migrating from Sonnet 5, and tuning effort. Free tier: @simonw points out Sonnet 5.5 now powers the free tier on claude.ai. ChatGPT’s free tier is still GPT-5.6 Luna, which he calls “a lot less capable.” Anti-distillation change: @ClaudeDevs extended “preserved thinking” to counter distillation via account-switching. Reasoning traces stay in the org that generated them. If a session moves to another account, Claude rereads it and regenerates thinking. Roadmap: @mikeyk said Haiku 5.5 will “round out the family in the coming weeks.” Availability: It shipped day-one on the Claude Platform and Claude Code, along with a usage reset valid until Oct 22 ( @ClaudeDevs ). Third-party availability: GitHub Copilot in VS Code ( @code ) Cursor Factory Devin Desktop/CLI Cline Arena Agent/Battle modes for WebDev, Text, Vision and Document ( @arena ) T3 Code, after @theo admitted it hadn’t been added to the catalog yet Technical details and specs</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/jev-for-beginners-how-to-use-it-and" target="_blank">Jev for beginners: how to use it and what to build</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Sep 28, 2026 &middot; 12:03 UTC</span>
+          </div>
+          <p class="summary"><span>d more Jev launch and what makes it different from every other model Type-safe values explained Understanding Jev outputs Use case 1: PR categorization and pairwise clustering Use case 2: analyzing your own local Claude Code and Codex sessions Use case 3: Gmail triage with Jev scoring and LLM follow-up Use case 4: ChatPRD’s product insights graph Demo: How I AI audience signal dashboard Demo: voice-to-color emotion-mapping app Jev week recap and what’s coming in episode 2<ul><li>Jev (TypeSafe AI): <a href="https://typesafe.ai" target="_blank" rel="noopener">https://typesafe.ai</a></li><li>Vercel: <a href="https://vercel.com/ai" target="_blank" rel="noopener">https://vercel.com/ai</a></li><li>GitHub API: <a href="https://docs.github.com/en/rest" target="_blank" rel="noopener">https://docs.github.com/en/rest</a></li><li>YouTube Data API v3: <a href="https://developers.google.com/youtube/v3" target="_blank" rel="noopener">https://developers.google.com/youtube/v3</a></li><li>OpenAI Realtime Voice API: <a href="https://platform.openai.com/docs/guides/realtime" target="_blank" rel="noopener">https://platform.openai.com/docs/guides/realtime</a></li><li>Gemini 3.5 Flash-Lite: <a href="https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash-lite" target="_blank" rel="noopener">https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash-lite</a></li><li>API Ninjas Quotes API: <a href="https://api-ninjas.com/api/quotes" target="_blank" rel="noopener">https://api-ninjas.com/api/quotes</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/lenfest-ai-collaborative-expansion" target="_blank">The Lenfest Institute grows landmark program with expanded OpenAI support</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Sep 28, 2026 &middot; 07:00 UTC</span>
+          </div>
+          <p class="summary"><span>The Lenfest Institute for Journalism today announced the next phase of the Lenfest AI Collaborative and Fellowship Program, building on what has become the largest AI fellowship program in American journalism.</span> <span>Since its launch in 2024 with AI engineering fellows in 11 major American news organizations, the program has demonstrated that embedded AI engineers can help local news organizations accelerate innovation, strengthen business sustainability, and responsibly adopt emerging technology.</span> <span>The Lenfest AI Collaborative and Fellowship Program places full-time AI technologists into operating news organizations to drive business innovation in local journalism.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>September 28, 2026 Company The Lenfest Institute grows landmark program with expanded OpenAI support Video courtesy of the Lenfest Institute for Journalism Loading… The following was issued as a joint announcement on Monday, September 28, 2026, from the Lenfest Institute for Journalism and OpenAI. The Lenfest Institute for Journalism today announced the next phase of the Lenfest AI Collaborative and Fellowship Program, building on what has become the largest AI fellowship program in American journalism. Since its launch in 2024 with AI engineering fellows in 11 major American news organizations, the program has demonstrated that embedded AI engineers can help local news organizations accelerate innovation, strengthen business sustainability, and responsibly adopt emerging technology. The program will expand with a new $5 million commitment from OpenAI, along with up to $5 million in software credits and engineering support. OpenAI has doubled its previous support of the program. This expansion builds on OpenAI’s broader work supporting journalism . The Lenfest AI Collaborative and Fellowship Program places full-time AI technologists into operating news organizations to drive business innovation in local journalism. Over the past two years, the program has evolved from an ambitious pilot into a proven model for helping local news organizations develop guardrails and strategies for adopting AI to support their transformation. As the AI Collaborative and Fellowship enters its next stage, The Lenfest Institute will invite a new group of news organizations to join the cohort to further responsible AI experimentation and implementation. AI engineering fellows work alongside newsroom leaders, reporters, product teams, revenue staff, and executives to identify organization-specific challenges and build practical AI engineering solutions, along with safe, transparent, and ethical policies. Their work is designed to strengthen news organizations while preserving the human judgment, editorial integrity, expertise, and trust at the heart of local journalism — in fact, several engineering fellows are expected to stay on as full-time employees at multiple organizations, speaking to the value of their deployment. Across the 11 participating organizations, fellows have demonstrated how AI can support a wide range of functions, from audience engagement and news product development to investigative news research, advertising and reader revenue operations, and expanded staff reporting impact and community reach. The pilot also revealed that successful AI adoption depends as much on trust, collaboration, and a clear understanding of organizational needs as it does on the technology itself. Embedded fellows were hired locally and became part of the organizations they served, learning how journalists work and building solutions rooted in the real needs of newsroom and business teams. “The most valuable lesson of the Lenfest AI Collaborative and Fellowship’s first two years is that responsible AI adoption is less about the technology and more about trust. The fellows have helped their news organizations build practical tools and drive culture change from the inside — through clear guardrails, policy standards, and open communication,” said Lenfest Institute Executive Director and CEO Jim Friedlich. “The next phase of the Collaborative and Fellowship Program is an opportunity for more news enterprises to intentionally experiment with AI under the highest editorial standards and with human news judgment at the forefront.” “Over the first two years of this partnership, it’s been wonderful to see so many practical examples of journalists using AI as a tool to help deliver quality local news,” said Tom Rubin, OpenAI Chief of Intellectual Property and Content. “Local news plays a vital role in building the human connections that make a neighborhood, town, or city truly feel like a community. We’re excited to expand our partnership with The Lenfest Institute to support even more journalists in this important work.” Proof in practice When the fellowship launched, generative AI was still largely untested inside local news organizations. Over the past two years, participating organizations have developed practical applications ⁠ that demonstrate how AI can support the full breadth of the news enterprise. At The Philadelphia Inquirer, the fellowship supported the development of Dewey, a tool that helps journalists search decades of archived reporting, and Scrape, a monitoring tool that transformed a roughly 15-hour-per-week reporting task into a daily digest of potential story leads from around the newspaper’s region. At Chicago Public Media, AI-assisted translation workflows enabled the organization to publish time-sensitive Spanish-language coverage in a fraction of the time previously required, and to transcribe audio archives reflecting Chicago news and culture that had been in storage for decades. Across other participating organizations, projects have addressed advertising prospecting, donor modeling, audience personalization, subscription growth, public-meeting monitoring, print-to-digital production transition, and operational efficiency. Collectively, these projects demonstrated that AI’s potential extends far beyond improvements in journalist impact and productivity. It can strengthen nearly every function of a modern news organization while preserving and empowering journalists&#x27; central role in producing trusted, independent reporting. The AI Collaborative’s projects also began to travel from newsroom to newsroom. Fellows shared code, adapted one another’s ideas, compared implementation strategies, and built on work developed at peer organizations. Tools and approaches originating in one newsroom became starting points for solving related problems elsewhere, demonstrating how innovation developed through the fellowship can extend well beyond a single organization. What we learned Over the course of the pilot, several important lessons emerged: Trust matters more than technology: Embedding locally hired engineers inside organizations for two years proved transformational. Rather than serving as outside consultants with a mission to force AI adoption, fellows worked to develop a deep understanding of editorial workflows, organizational culture, and user needs across each respective news business. Fellows often identified valuable opportunities through listening, spending time with staff, understanding how they worked, identifying recurring pain points, and building solutions alongside the people who would ultimately use them. As trust grew, so did adoption, with journalists increasingly seeing fellows as team members they could collaborate with to solve meaningful problems — bringing their own ideas and challenges to fellows and incorporating the resulting tools into their daily work. Start with the problem, not with AI: Across the cohort, fellows found that the strongest projects began with a clearly defined challenge rather than a predetermined technical solution. Successful projects were built through close collaboration with users, small-scale experimentation, ongoing evaluation, and a focus on whether the technology meaningfully improved the work. Collaboration accelerates innovation: One newsroom’s breakthrough frequently became another newsroom’s starting point. The Baltimore Banner, for example, drew on work developed by The Philadelphia Inquirer’s team while building the Banner’s own news discovery tools. Fellows across the cohort have similarly exchanged code, product ideas, technical approaches, and lessons learned, allowing organizations to advance faster together than they could independently. What’s next The next phase of the AI Collaborative and Fellowship Program builds on the fellowship&#x27;s foundation while significantly expanding its market reach. The program will continue to embed AI fellows within participating news organizations, maintaining its commitment to helping those organizations transform to meet the needs of modern users. The Lenfest Institute will also broaden the fellowship to include a wider range of news organizations. At the same time, The Lenfest Institute will expand its technical capabilities to help proactively turn the strongest fellowship projects into reusable tools, frameworks, plugins, implementation guides, playbooks, and technical intended to benefit hundreds of news organizations. One goal of providing implementation support is to make the cross-newsroom learning that emerged organically during the pilot easier to sustain and scale, so that a tool, workflow, or technical breakthrough developed inside one organization can become shared infrastructure for the broader news field. Together, these efforts represent an evolution from successful experimentation toward scalable impact, creating practical AI solutions that can strengthen local journalism well beyond the fellowship itself. A model for the future of local journalism By combining embedded AI engineering expertise with shared tools, technical infrastructure, and cross-organizational learning, The Lenfest Institute seeks to ensure that innovations developed inside a handful of newsrooms can ultimately benefit hundreds more. The renewed and growing partnership with OpenAI reflects a shared belief that local journalism can benefit most from AI when news organizations have the expertise, infrastructure, and collaborative networks to apply it safely. By scaling what has worked across the fellowship, The Lenfest Institute is focused on helping more news organizations use emerging technology to strengthen their journalism, build sustainable businesses, and better serve their communities. 2026 Author OpenAI Keep reading View all How Albertsons Companies is reimagining retail from the inside out Company Oct 1, 2026 DevDay 2026 Recap Company Sep 29, 2026 Introducing dots Product Sep 29, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/the-grief-loneliness-and-burnout" target="_blank">The grief, loneliness, and burnout sweeping through the tech industry right now | Molly Graham</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Sep 27, 2026 &middot; 12:32 UTC</span>
+          </div>
+          <p class="summary"><span>eering intelligence for the AI era</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/proaction" target="_blank">Proaction boosts sales 60% and saves 75+ hours with Codex</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Sep 25, 2026 &middot; 19:00 UTC</span>
+          </div>
+          <p class="summary"><span>September 25, 2026 Proaction boosts sales 60% and saves 75+ hours with Codex With Codex, GPT‑Live‑1, and GPT‑6 Astra, Proaction builds, operates, and sells modern fleet management faster.</span> <span>Codex flipped the script.</span> <span>“As a non-technical person, I used to have to loop engineers in if I wanted a demo,” says Colin Knudsen, co-founder and COO of Proaction.</span> <span>“Now I do it myself in Codex.” Colin creates four to six customized, interactive demos a month, with each taking 30 to 45 minutes to build.</span> <span>Codex uses that context to customize an HTML demo environment that mirrors Proaction’s product and the customer’s own fleet.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>September 25, 2026 Proaction boosts sales 60% and saves 75+ hours with Codex With Codex, GPT‑Live‑1, and GPT‑6 Astra, Proaction builds, operates, and sells modern fleet management faster. Start building Company size: Startup Region: North America Industry: Software &amp; Engineering Products: Codex, API Results 40–60 Engineering hours saved per month Results 33 Founder hours saved per month Results 60% Increase in sales Loading… Proaction ⁠ (opens in a new window) builds software for businesses that manage fleets of vehicles, from cars and trucks to construction machinery. Because every fleet operates differently, showing prospects how Proaction’s platform fits their business is an essential part of selling it. But personalized demos required engineering time the team couldn’t spare. The founders had to rely on conversations and slide decks to explain what was possible. Codex flipped the script. “As a non-technical person, I used to have to loop engineers in if I wanted a demo,” says Colin Knudsen, co-founder and COO of Proaction. “Now I do it myself in Codex.” Colin creates four to six customized, interactive demos a month, with each taking 30 to 45 minutes to build. He estimates that this avoids 40 to 60 hours of engineering work. “We didn’t have the engineering capacity to build a demo for every interested prospect. With Codex, I can easily take a customer conversation and turn it into a custom demo built around their vehicles and workflows.” —Colin Knudsen, Co-founder and COO, Proaction Customizing demos and closing more deals with Codex After a sales call, Colin directs Codex to the Granola recording, prospect email threads, and any spreadsheets the prospect has shared. Codex uses that context to customize an HTML demo environment that mirrors Proaction’s product and the customer’s own fleet. When Colin shares his screen, prospects see their own cars, trucks, or equipment, organized around how they work. They can point to what needs adjusting and help build the solution. “You work together to generate the end solution without getting engineering involved at all,” Colin says. Offering prospects a demo with their own data gives them a concrete reason to move forward. Colin estimates that the percentage of deals moving from initial contact into solution development, rather than nurture, has increased by 50% to 60% with the custom demos. Saving engineering hours all the way to production If Proaction’s engineers produced comparable demos, it would take about 10 hours each, according to Colin. Since Proaction does about four to six demos monthly, that represents 40 to 60 hours of engineering effort spared every month. The demo also saves time on the back end. When a prospect becomes a customer, Colin gives engineers the customized demo as a visual . That reduces questions and back-and-forth about what to build. Using Codex, Proaction also built a customer solution center where prospects can log in, explore workflows tailored to their business, and review sales materials. This empowers customers to explain what they need and gives non-engineering teammates a way to turn those conversations into clearer requirements. By the time engineers get involved, they have a more concrete picture of what to build. Getting more done, all in one place: Codex Colin’s daily work spans sales, customer support, and product management. Through Codex plugins for tools including Granola, Gmail, Slack, Linear, GitHub, and HubSpot, Colin brings together customer context and acts on it within Codex. He pulls call transcripts and email history to prepare follow-ups, creates Linear issues, and updates HubSpot opportunities. He also set up a scheduled automation that reviews recent calls and prepares sales updates for the team. Previously, his heavy workload meant jumping between tabs and copying information from one tool to another. Now, Colin can describe what he needs and use Codex to gather the context and execute the next step. “Everything that I do is centered around working in Codex. I don’t leave it much,” says Colin. Estimating he has 15 to 20 distinct tasks a day, Colin believes Codex saves him 25–33 hours a month. “I can’t really imagine being a startup founder without Codex.” —Colin Knudsen, Co-founder, Proaction Bringing voice agents to fleet operations with GPT‑Live‑1 and GPT‑6 Astra Proaction also uses OpenAI models across its platform. When customers submit photos with vehicle issue reports, ChatGPT‑5.6 Sol helps identify damage. And with GPT‑Live‑1, Proaction is building agents that handle more of the day-to-day work of running a fleet. The company calls this its Managed Execution Layer. “We’re building the ability for Proaction to execute work for our customers, beyond helping them manage and track it. The advances in OpenAI voice are a big reason we can do it.” —Colin Knudsen, Co-founder, Proaction Customers can ask specialized agents to handle things like tolls or service, or set up workflows that put the right agent to work automatically. The agents use OpenAI models, including GPT‑Live‑1 and GPT‑6 Astra, to make voice calls, review documents and images, analyze text, and respond in chat. One agent, Marty, is designed to coordinate vehicle maintenance. Marty talks with a driver about a problem, calls repair shops, arranges service, and helps get the estimate approved and paid. Proaction’s team steps in when the work needs human review or intervention. GPT‑6 Astra also enables Proaction to build these experiences for customers faster. Danny O’Halloran, Head of Product, says, “Astra’s computer-use runs are more succinct. With GPT‑5.6 Sol, I had a much longer run to execute the same work.” Codex and GPT‑6 Astra give Proaction more time to sell, support customers, and move the business forward. And with agents built on GPT‑Live‑1, Proaction gives more time to fleet managers, too. OpenAI &lt;3 startups Join the community Start building (opens in a new window) Keep reading A practical guide to building with GPT-6 Product Oct 2, 2026 Chatham scales its capital markets expertise with OpenAI Oct 2, 2026 The eternal complement Intelligence Age Oct 1, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Sep/24/harder/" target="_blank">Note on 24th September 2026</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Sep 24, 2026 &middot; 23:31 UTC</span>
+          </div>
+          <p class="summary"><span>The more time I spend working with coding agents, the more convinced I am that they make software engineering even harder.</span> <span>We can do amazing things with them, but unlocking their full potential requires extraordinary discipline and knowledge.</span> <span>Tags: coding-agents , ai , llms</span></p>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 212</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
