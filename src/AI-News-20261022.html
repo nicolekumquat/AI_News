@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-10-22</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-10-22</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/claude-duet-is-beautiful-i-still" target="_blank">Claude Duet is beautiful. I still forgot to use it</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Oct 21, 2026 &middot; 20:25 UTC</span>
+          </div>
+          <p class="summary"><span>Personal agent fatigue: does Claude Duet make the cut? What Claude Duet is and who it’s for Why the design polish stands out Task lists, artifacts, and channels The icon What I didn’t like: not proactive enough Testing it on email, Slack, and Warriors tickets Why latency matters so much in a personal agent The missing desktop app Sales pipeline and a Google Docs deck Launch videos and the local skills gap Single-player vs.</span> <span>multiplayer agents Final verdict<ul><li>Claude Duet (Anthropic): <a href="https://claude.com/" target="_blank" rel="noopener">https://claude.com/</a> /articles/claude-duet</li><li>Claude Duet Waitlist: <a href="https://claude.com/product/claude-duet" target="_blank" rel="noopener">https://claude.com/product/claude-duet</a></li><li>Claude Cowork: <a href="https://claude.com/product/cowork" target="_blank" rel="noopener">https://claude.com/product/cowork</a></li><li>Meta Muse: <a href="https://muse.ai/" target="_blank" rel="noopener">https://muse.ai/</a></li><li>Codex (OpenAI): <a href="https://openai.com/codex" target="_blank" rel="noopener">https://openai.com/codex</a></li><li>Grok Bot: <a href="https://x.ai/bot" target="_blank" rel="noopener">https://x.ai/bot</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/att-legal" target="_blank">How AT&amp;T is rethinking in-house legal work with OpenAI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 21, 2026 &middot; 17:00 UTC</span>
+          </div>
+          <p class="summary"><span>October 21, 2026 How AT&amp;T is rethinking in-house legal work with OpenAI AT&amp;T is building on LegalEdge to explore new ways to support its legal team.</span> <span>Contact sales Company size: Enterprise Region: Global Industry: Technology Loading… AT&amp;T’s in-house legal department has hundreds of lawyers and legal professionals around the world.</span> <span>Before they can advise the business, they need to assemble facts, documents, and relevant past work, often drawing on expertise held across different teams.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>October 21, 2026 How AT&amp;T is rethinking in-house legal work with OpenAI AT&amp;T is building on LegalEdge to explore new ways to support its legal team. Contact sales Company size: Enterprise Region: Global Industry: Technology Loading… AT&amp;T’s in-house legal department has hundreds of lawyers and legal professionals around the world. Before they can advise the business, they need to assemble facts, documents, and relevant past work, often drawing on expertise held across different teams. For David McAtee, AT&amp;T’s Senior Executive Vice President and General Counsel, making that experience easier to access is central to how the department’s work can improve. AT&amp;T is working with OpenAI to build that next phase. “Our partnership with OpenAI is going to allow us to build that plumbing that powers the knowledge layer throughout the company and that all of us will draw into,” McAtee says. The collaboration builds on LegalEdge, AT&amp;T’s team of attorneys, legal professionals, technologists, and project managers focused on applying AI to major legal matters. The next step is to connect more of the company’s accumulated expertise to the work arriving on a lawyer’s desk. Requests arrive from across the business, and legal teams need to respond quickly without overlooking risks. Before they can advise, they have to understand the issue, gather the relevant context and decide what needs attention first. That makes intake a critical part of protecting the business. Bill Ryan, AT&amp;T’s Chief Compliance Officer, describes one planned initiative as an intake system with “a front door where we have natural language intake.” The system would classify and prioritize requests, connect them with relevant precedent, research, and past work, and give the responsible legal professional historical context and recommended first steps. That would give lawyers a more informed starting point, with less time spent gathering the material they need to assess a matter. Ryan sees the opportunity in helping the department bring its judgment to more of the business’s needs. “What most excites me about the future is expanding our ability to provide legal judgment at greater scale,” he says. For McAtee, the principle guiding that work remains clear: “The decision making will always remain with the lawyers.” The partnership’s goal is to put better information within reach so those lawyers can spend more time applying their expertise. Watch McAtee and Ryan discuss LegalEdge and the next phase of AT&amp;T’s legal work with OpenAI. Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading What forward deployed engineering means at OpenAI Engineering Oct 22, 2026 Broad access through consistent standards Safety Oct 21, 2026 OpenAI models are coming to Google Cloud Company Oct 21, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/openai-models-google-cloud" target="_blank">OpenAI models are coming to Google Cloud</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 21, 2026 &middot; 12:00 UTC</span>
+          </div>
+          <p class="summary"><span>October 21, 2026 Company OpenAI models are coming to Google Cloud Loading… OpenAI and Google Cloud ⁠ (opens in a new window) are partnering to bring OpenAI’s frontier models and Codex ⁠ (opens in a new window) agentic workflows into Google Cloud’s Model Garden.</span> <span>The integration will give customers native access to these models to power complex agentic workflows at scale, backed by Google Cloud’s data governance and high-performance infrastructure.</span> <span>Request access to OpenAI on Google Cloud here .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>October 21, 2026 Company OpenAI models are coming to Google Cloud Loading… OpenAI and Google Cloud ⁠ (opens in a new window) are partnering to bring OpenAI’s frontier models and Codex ⁠ (opens in a new window) agentic workflows into Google Cloud’s Model Garden. The integration will give customers native access to these models to power complex agentic workflows at scale, backed by Google Cloud’s data governance and high-performance infrastructure. Google Cloud’s longstanding investment in machine learning and AI has made it a destination for AI workloads and the developers and data scientists building them. Bringing OpenAI models to its model garden gives these teams access to OpenAI’s frontier models within the environment where they already work, enabling enterprises to modernize their software development lifecycle, build agentic workflows, and change how people work. For organizations in regulated industries, deploying AI requires control over who can access sensitive data and how it is used. The integration will pair OpenAI’s frontier models with Google Cloud’s built-in access controls, centralized data governance, and high-performance infrastructure to support demanding enterprise workloads. Google Cloud customers will be able to purchase OpenAI frontier models via model garden, transacted through the Google Cloud Marketplace. Enterprises with Google Cloud spend commitments will be able to draw down their GCP commitments for these purchases. Additionally, OpenAI models will soon be available in Google Antigravity and the Gemini Agent, providing enterprise customers with model choice flexibility and the best model for each task. By expanding access through Google Cloud, we are giving enterprises greater choice in how they discover and use frontier models, with a path from evaluation to broader adoption. “ Google Cloud is a leading platform for developers and businesses building AI agents, writing software, and putting AI to work. This partnership is an important step in making our most capable models and Codex available where customers are already building, giving them even more choice in how they use frontier AI as we grow the agentic ecosystem together. ” “ We are focused on giving customers a broad selection of models, including those from OpenAI, so they can choose the right model for any given job, helping to deliver optimal quality and lower costs. ” 1 of 2 “ Google Cloud is a leading platform for developers and businesses building AI agents, writing software, and putting AI to work. This partnership is an important step in making our most capable models and Codex available where customers are already building, giving them even more choice in how they use frontier AI as we grow the agentic ecosystem together. ” “ We are focused on giving customers a broad selection of models, including those from OpenAI, so they can choose the right model for any given job, helping to deliver optimal quality and lower costs. ” Greg Brockman Thomas Kurian General availability is planned in the coming weeks. Request access to OpenAI on Google Cloud here . Microsoft remains OpenAI’s primary cloud partner. 2026 Partnerships Codex Author OpenAI Keep reading View all Access OpenAI models and Codex through your Oracle cloud commitment Company Jun 10, 2026 Offering Zero Data Retention for frontier models Company Aug 19, 2026 How enterprises put AI to work Company Aug 12, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/cloudflare-cyber" target="_blank">Cloudflare links vulnerability discovery to defense with OpenAI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 21, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>October 21, 2026 Cloudflare links vulnerability discovery to defense with OpenAI Cloudflare uses OpenAI Daybreak with live traffic and security signals to investigate vulnerabilities and propose fixes for customer review.</span> <span>Cloudflare combines OpenAI models accessed through Daybreak with its global network and threat context in Vulnerability Discovery and Remediation ⁠ (opens in a new window) , an early-access service offered through Cloudflare Managed Defense.</span> <span>The models investigate code and assess potential vulnerabilities.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>October 21, 2026 Cloudflare links vulnerability discovery to defense with OpenAI Cloudflare uses OpenAI Daybreak with live traffic and security signals to investigate vulnerabilities and propose fixes for customer review. Contact sales Company size: Enterprise Region: North America Industry: Technology Products: Daybreak, Codex 234 billion cyber threats blocked daily on average across Cloudflare’s network, Q1 2026 10x reduced development to create a new product 3 days to rebuild a product with Codex $1,100 token spend for the product rebuild Loading… Cloudflare operates one of the world’s largest networks and proxies roughly 20% of the web’s traffic. Organizations depend on that network to keep their applications and services secure, fast, and reliable. Cloudflare combines OpenAI models accessed through Daybreak with its global network and threat context in Vulnerability Discovery and Remediation ⁠ (opens in a new window) , an early-access service offered through Cloudflare Managed Defense. The models investigate code and assess potential vulnerabilities. Cloudflare adds live traffic data, security signals, and validation to prioritize findings and prepare proposed mitigations and patches for customers to review. Codex extends OpenAI’s role across Cloudflare’s engineering organization, where developers use it to increase output and improve code quality. “The beauty of the automation that Daybreak and Codex provide is that you can assign machines to do the grunt work so humans can exercise their judgment on the most important engineering and security decisions.” —Mark Anderson, President of Revenue, Cloudflare Scaling security analysis with Daybreak Security teams face a constant stream of vulnerability information and alerts. Manually sifting through that data takes time and effort, leaving teams with less capacity to investigate and address critical issues. “Traditional security teams have a ton of useful data. They just don’t have the people and time to deal with it,” Anderson says. Cloudflare’s approach is to connect a vulnerability in source code to what is happening in production. Is the affected route active? Is it receiving suspicious traffic? Are existing security controls already protecting it? Those signals give security teams more context for deciding what to investigate first. Through Vulnerability Discovery and Remediation ⁠ (opens in a new window) , Cloudflare uses OpenAI models accessed through Daybreak to investigate customer-authorized code, identify potential vulnerabilities, and check the evidence supporting each finding. The service prepares proposed code patches and, where appropriate, custom web application firewall rules to reduce exposure while developers review a fix. Cloudflare runs automated checks on these proposals, and its team reviews them before sharing them with customers. For Cloudflare customers, the benefit is a clear path from identifying a vulnerability to protecting the affected application. The service gives them evidence to prioritize vulnerabilities, proposed edge protections to reduce exposure, and code fixes to review, while they retain control over which changes to implement. Rebuilding a product in 3 days with Codex Protecting applications also depends on the code teams write and maintain. Anderson connects Cloudflare’s use of Codex to greater developer productivity, better code quality, and fewer bugs introduced during development. “At Cloudflare, a third of our company are software developers building services and features for our platform, and 100% of them use Codex to boost their output and deliver better code.” —Mark Anderson, President of Revenue, Cloudflare Anderson describes a recent rebuild the team had postponed. “We were putting off building it because we didn’t have the manpower to do it,” he says. With Codex scaling developer productivity, the question shifts from “Can we take this on?” to “Why not?” Anderson estimates that the work would have required months of sequencing and “maybe 10x more developers.” With Codex, a Cloudflare team of four developers took on the build. “We built it in three days, rolled it out and tested it, and spent $1,100 on tokens,” he says. Shaping cyber defense around AI and human judgment For Anderson, making AI part of everyday engineering means “rebuilding the internal process to build technology with machines in mind, not as a separate element, but as something that’s integrated into the build process.” Cloudflare’s early-access security service puts that approach into practice by connecting code investigation with production evidence and proposed actions customers can review. The goal is to give security teams the information they need to decide which vulnerabilities to prioritize and how to protect and fix affected applications, while customers retain control over changes. Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading How AT&amp;T is rethinking in-house legal work with OpenAI Oct 21, 2026 How Block is building AI-powered security with OpenAI Oct 14, 2026 SentinelOne cuts malware analysis from weeks to hours Oct 14, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/openai-to-acquire-orchestra-bio" target="_blank">OpenAI acquires Orchestra Bio</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 20, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>October 20, 2026 Company OpenAI acquires Orchestra Bio AI-powered drug development platform accelerates progress toward new treatments.</span> <span>Loading… OpenAI has acquired Orchestra Bio ⁠ (opens in a new window) , a platform that helps biopharma teams coordinate the complex process of drug development.</span> <span>We’re bringing Orchestra’s team and technology together with Rosalind , our AI models and tools for life sciences research.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>October 20, 2026 Company OpenAI acquires Orchestra Bio AI-powered drug development platform accelerates progress toward new treatments. Loading… OpenAI has acquired Orchestra Bio ⁠ (opens in a new window) , a platform that helps biopharma teams coordinate the complex process of drug development. We’re bringing Orchestra’s team and technology together with Rosalind , our AI models and tools for life sciences research. Our goal is to help scientists make discoveries and manage the work needed to turn them into treatments that reach patients sooner. Developing a new medicine is extraordinarily complex, taking roughly 10 to 15 years on average from target discovery to regulatory approval in the United States. Beyond the science, teams must orchestrate programs across internal departments and external partners, often relying on disconnected systems. We’re now at an inflection point where AI can help take on these specialized tasks and complex workflows. Bringing Rosalind and Orchestra together Rosalind brings our AI models and tools to life sciences researchers. GPT‑Rosalind helps scientists reason through questions in biology and chemistry. Rosalind Workbench ⁠ connects those capabilities with scientific tools and data to help researchers analyze results and plan experiments. Orchestra brings a team with experience across biotech, software, and AI, along with a platform built to coordinate drug development. Together, we aim to build agents that help teams connect scientific findings with the studies, decisions, and next steps needed to advance a potential medicine. Designed for the way biopharma teams work Orchestra Bio is a platform where people and AI agents work together to advance drug programs. Scientists and program leaders delegate the monitoring and tracking of studies and campaigns to agents, freeing up time to guide the work, make decisions, and address issues before they cause delays. A problem in one part of a drug program can affect many others. A failed manufacturing batch, for example, can delay the start of a clinical trial. Orchestra’s agents help teams identify which activities and timelines are affected, gather the relevant information, and compare ways to respond. Scientists and program leaders can then use that analysis to decide what to do next. Realizing the potential of AI in life sciences requires close collaboration with the organizations working at the forefront of drug discovery and development. Our partnership with Novo Nordisk ⁠ aims to translate its scale and scientific expertise into faster R&amp;D and commercial execution while maintaining strong governance. At Moderna ⁠ , AI is helping teams translate insights from complex data into experimental workflows, with the potential to accelerate R&amp;D. Our vision is for AI to help scientists across the full process of discovering and developing new medicines: exploring ideas, designing experiments, interpreting results, and coordinating the work needed to advance promising treatments. Bringing Orchestra Bio together with Rosalind is a step toward that vision. Alongside researchers and our partners, we aim to make more discoveries possible and help new medicines reach patients sooner. 2026 Author OpenAI Keep reading View all Introducing the Rosalind Academic Plan Research Oct 15, 2026 How a researcher uses Codex and ChatGPT to search for new antimicrobial molecules Applied AI Sep 10, 2026 Introducing new capabilities to GPT-Rosalind Product Jun 3, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/claude-cuts-my-tiktok-how-this-creator" target="_blank">“Claude cuts my TikTok”: How this creator is scaling video with AI | Brooke Lacey</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Oct 19, 2026 &middot; 12:04 UTC</span>
+          </div>
+          <p class="summary"><span>nd AI Intro and guest welcome Brooke’s background in video Her first session cutting videos with Claude Code Live demo: Claude edits a video in real time Walking through the edit chain How she taught Claude her cadence, her hooks, and what funny sounds like Quick recap Posting frequency, live streaming plans, and TikTok ads</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Oct/16/code-review/" target="_blank">Quoting Addy Osmani, Morgan Westlee Lunt, and Qing Wang</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Oct 16, 2026 &middot; 22:06 UTC</span>
+          </div>
+          <p class="summary"><span>We think &quot;did a human read the code?&quot; is an imprecise proxy for &quot;what could go wrong with this change, and which check—automated or human—is the right one to catch it?&quot; Asking that question also changed when review happens.</span> <span>Now, review runs continuously, more like spellcheck while you write.</span> <span>This catches most routine mistakes, and saves team attention for higher-level questions and scrutiny.</span> <span>— Addy Osmani, Morgan Westlee Lunt, and Qing Wang , How the Claude Code team does code review Tags: anthropic , claude , ai , claude-code , llms , addy-osmani , coding-agents , generative-ai , agentic-engineering , code-review</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>We think &quot;did a human read the code?&quot; is an imprecise proxy for &quot;what could go wrong with this change, and which check—automated or human—is the right one to catch it?&quot; Asking that question also changed when review happens. Before, review was a gate at the end of the road: write the code, open a PR, wait for your colleague. Now, review runs continuously, more like spellcheck while you write. Most changes have been reviewed and fixed by Claude at least once before a human is asked to look. This catches most routine mistakes, and saves team attention for higher-level questions and scrutiny. — Addy Osmani, Morgan Westlee Lunt, and Qing Wang , How the Claude Code team does code review Tags: anthropic , claude , ai , claude-code , llms , addy-osmani , coding-agents , generative-ai , agentic-engineering , code-review</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/itau-generative-ai" target="_blank">How Itaú is building generative AI for its entire customer base</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 16, 2026 &middot; 19:00 UTC</span>
+          </div>
+          <p class="summary"><span>October 16, 2026 How Itaú is building generative AI for its entire customer base With ia.i, a conversational interface, and the IARA governance platform, Itaú is applying its AI First strategy to customers and employees — in one of Brazil’s most regulated sectors.</span> <span>Contact sales Company size: Enterprise Region: Latin America Industry: Finance Products: API ~300,000 customers in the first phase of ia.i 100% of the customer base is the goal by the end of 2026 90M+ documents in the legal solution’s repository 20% to 80% efficiency gains in the department’s processes Loading… The challenge is to make the technology disappear Creating a close, personalized experience for millions of customers in a country like Brazil is, first and foremost, a question of simplicity rather than of models.</span> <span>“Much of it is about making something simple, direct, and useful, delivering a direct benefit to the customer, and making the technology almost unnoticeable,” says Carlos Eduardo Mazzei, CTO of Itaú.</span> <span>At the center of this experience is Customer DNA, a layer of financial context that helps the bank understand the needs, habits, and life stages of approximately 70 million customers.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>October 16, 2026 How Itaú is building generative AI for its entire customer base With ia.i, a conversational interface, and the IARA governance platform, Itaú is applying its AI First strategy to customers and employees — in one of Brazil’s most regulated sectors. Contact sales Company size: Enterprise Region: Latin America Industry: Finance Products: API ~300,000 customers in the first phase of ia.i 100% of the customer base is the goal by the end of 2026 90M+ documents in the legal solution’s repository 20% to 80% efficiency gains in the department’s processes Loading… The challenge is to make the technology disappear Creating a close, personalized experience for millions of customers in a country like Brazil is, first and foremost, a question of simplicity rather than of models. “Much of it is about making something simple, direct, and useful, delivering a direct benefit to the customer, and making the technology almost unnoticeable,” says Carlos Eduardo Mazzei, CTO of Itaú. The standard he describes is demanding: the solution must solve a real everyday problem and be direct, simple, and memorable. Technology serves as the means, never as the centerpiece of the experience. There is demand for this. A study by Itaú in partnership with Grupo Consumoteca shows that 80% of Brazilians want to better organize their financial lives and seek more effective support for decisions, and that 65% would like technologies that act as a financial copilot, providing ongoing guidance. “OpenAI’s models were very important in delivering this experience, because they were able to operate across this range of solutions.” —Carlos Eduardo Mazzei, CTO, Itaú ia.i: from convenience to advice, in one place The journey began in 2024, when the bank introduced the first Inteligência Itaú capabilities for specific financial needs. ia.i is the next stage: a complete conversational layer, activated by text or voice, bringing interactions related to checking accounts, credit, cards, insurance, and other services into one environment — and connecting customers to specialized human support whenever needed. This breadth was precisely what guided the choice of models. “OpenAI’s models were very important in delivering this experience, because they were able to operate across this range of solutions,” Mazzei explains. “From the simplest ones, which need to be efficient in cost and latency, to more complex solutions, where reasoning and all the necessary grounding are required to provide an appropriate answer.” Having a range of models — rather than a single model — made it possible to deliver the complete solution in one product. At the center of this experience is Customer DNA, a layer of financial context that helps the bank understand the needs, habits, and life stages of approximately 70 million customers. Under governance and responsible AI controls, GPT models are among the components that help maintain and enrich this representation, making interactions progressively more relevant. The solution rests on three principles: interactivity, multimodality — text, voice, image, and clicks in the same experience — and individualization. With approximately 300,000 customers in the first phase, the bank entered a period of learning about the real relationship between customer and product. “We can understand how customers begin to use this product more deeply and see how it can directly benefit each person’s daily financial life,” says Mazzei. Its presence extends across the journey: from a question about an expense in an account statement to investment advice and convenient transactions on WhatsApp. “The financial world often has products that are not so straightforward and need this context, this simpler relationship with money.” —Carlos Eduardo Mazzei, CTO, Itaú IARA: the layer that makes scale possible Behind the visible experiences is an architectural decision. To operate AI at the scale of a bank, Itaú built IARA — a governance and orchestration platform that gives teams controlled access to different models in line with internal policies. OpenAI is among the model providers available in this environment. This layer supports solutions such as the legal department’s, where the platform automates document reading, analysis, and interpretation. The solution operates on a repository of more than 90 million documents and executes more than 2 million tasks per month, with efficiency gains of 20% to 80% in stages of the department’s processes. “It is essential that this information be preserved, remain within the bank’s context, and access models in a secure, governed way, with an understanding of token-use efficiency so that the entire solution is economically viable for the bank,” Mazzei says. IARA addresses three problems at once: cost control per token, accuracy of responses, and application of responsible AI policies. In such a regulated sector, this makes it possible to move quickly while maintaining control. “When we talk about Responsible AI at the bank, it is a discipline we take great care with,” he says. “We need customers to interact with the bank and our responses to align with our values and culture.” This includes reducing any risk of bias that may arise in frontier models. Responsible AI principles guide the entire lifecycle of solutions, from development to continuous monitoring, aiming to ensure safety, transparency, ethics, and regulatory compliance as the technology scales. “IARA is a fundamental platform, because it ensures we can have governance and observability in a highly regulated environment.” —Carlos Eduardo Mazzei, CTO, Itaú AI First on the inside, too The bank’s AI First strategy extends beyond end customers. The same intelligence layer that supports ia.i also assists specialists, managers, and customer service teams. Mazzei describes a range extending from automating simple tasks to performing work that was previously unfeasible — but adds value to customer relationships: summaries before meetings, meeting preparation, understanding a specific issue, and developing plans and alternatives that were previously less obvious and time-consuming. The bank has significant expectations for this implementation: three times more time available for customer relationships, service up to twice as fast, and conversations up to three times more effective. “This set of tools in the hands of relationship managers allows us to focus on what matters most: creating value for our customers.” —Carlos Eduardo Mazzei, CTO, Itaú Results overview ia.i reached approximately 300,000 customers in its first phase, covering everything from convenient transactions to investment advice, activated by text or voice. The IARA platform makes different models available to the bank’s teams with governance, observability, cost control per token, and enforcement of Responsible AI. The legal solution operates on more than 90 million documents and executes more than 2 million tasks per month, with efficiency gains of 20% to 80%. Using a range of models made it possible to serve both cost- and latency-sensitive cases and those requiring deeper reasoning; GPT‑5.x models are part of Customer DNA, which provides financial context for approximately 70 million customers. Lessons for leaders Measure the experience by its simplicity, rather than sophistication. The goal is for the technology to go unnoticed and the benefit to be apparent. Choose a range of models, rather than a single one. Real journeys combine low-latency interactions with decisions that require reasoning. Build the governance layer before scaling. Observability, cost control, and responsible AI make scale viable in regulated sectors. Treat bias and cultural alignment as product requirements. Responses to customers must reflect the institution’s values. Apply the strategy internally, too. Giving time back to teams frees up human relationships where they matter most. Tips Start with concrete everyday problems, such as a question about an account statement or a simple transaction. Launch to an initial customer group and use it to learn actual behavior before expanding. Centralize model access on one platform to maintain control over costs and quality. Monitor token efficiency from day one — economic viability is part of the design. Combine conversation and navigation: not every action is best handled through natural language. Next steps ia.i continues to evolve. The bank expects to make the experience available to its entire customer base by the end of 2026. Planned capabilities for the next stages include product simulations and sign-ups, as well as recurring financial analyses of income, expenses, and habits. For Mazzei, the significance of the initiative goes beyond the product — the bank has navigated decades of transformation, with customers’ habits and expectations constantly changing. “Leading the AI era is about responding faster to our customers’ needs. It is about understanding how technology can add value and help customers engage with financial products and services in a much simpler, more direct way that helps them achieve what they are seeking.” —Carlos Eduardo Mazzei, CTO, Itaú Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading What forward deployed engineering means at OpenAI Engineering Oct 22, 2026 How AT&amp;T is rethinking in-house legal work with OpenAI Oct 21, 2026 Broad access through consistent standards Safety Oct 21, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Oct/16/sqlite-sparql-rust/" target="_blank">sparqlite: SPARQL 1.1 inside SQLite, written in Rust</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Oct 16, 2026 &middot; 01:58 UTC</span>
+          </div>
+          <p class="summary"><span>Research: sparqlite: SPARQL 1.1 inside SQLite, written in Rust This research task is really an experiment in running Claude Code for web in &quot;Ultracode&quot; mode, as described in Orchestrate subagents at scale with dynamic workflows in the Claude Code documentation.</span> <span>With Ultracode turned on, Claude Code makes aggressive use of dynamic workflows - it generates JavaScript that defines and coordinates a network of subagents to take on complex problems.</span> <span>Tags: rdf , semantic-web , sqlite , ai , rust , generative-ai , llms , coding-agents , claude-code</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Research: sparqlite: SPARQL 1.1 inside SQLite, written in Rust This research task is really an experiment in running Claude Code for web in &quot;Ultracode&quot; mode, as described in Orchestrate subagents at scale with dynamic workflows in the Claude Code documentation. With Ultracode turned on, Claude Code makes aggressive use of dynamic workflows - it generates JavaScript that defines and coordinates a network of subagents to take on complex problems. My initial prompt was this - I meant &quot;hit the rows directly&quot;, the word &quot;delete&quot; was an accidental typo on my phone: Write a SQLite extension in Rust that implants SPARQL and runs really fast because it can hit the delete rows directly This caused Claude Code for web to churn for over 12 hours. I checked in on its progress the next day and sent a single follow-up prompt when I noticed how many Rust crates it had built: Every folder in the crates/ directory needs a README Include a tutorial.md teaching users how to install the extension and how to run it in the SQLite CLI and then teaching them SPARQL in addition to how to use the SQLite extension Include a script with the tutorial for populating a SQLite database with useful and realistic example data for that tutorial This project feels like next-level vibe coding - it&#x27;s not remotely feasible to review the code that was produced here, and even following the documentation is a significant investment in work. I&#x27;m not entirely sure what to do with this - I appear to have a full SPARQL implementation in Rust inside SQLite now, but how valuable is that if I created it on a whim and can&#x27;t (or won&#x27;t) invest the necessary time to understand what it can do? Tags: rdf , semantic-web , sqlite , ai , rust , generative-ai , llms , coding-agents , claude-code</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/benefit-street-partners" target="_blank">Benefit Street Partners answers questions faster with Codex</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 16, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>October 16, 2026 Benefit Street Partners answers questions faster with Codex Anant Kumar builds tools to compare loan valuations and analyze credit agreements, using Codex for code review and faster follow-ups.</span> <span>Contact sales Company size: Enterprise Region: North America Industry: Finance Products: Codex ~1 day First BDC mark tracker version; ~10–12 total development hours, including refinements.</span> <span>~20 min First-pass credit agreement analysis, followed by 1+ hour of human review.</span> <span>Loading… At Benefit Street Partners, a credit-focused investment manager, answering an investment committee’s follow-up questions used to take days or weeks.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>October 16, 2026 Benefit Street Partners answers questions faster with Codex Anant Kumar builds tools to compare loan valuations and analyze credit agreements, using Codex for code review and faster follow-ups. Contact sales Company size: Enterprise Region: North America Industry: Finance Products: Codex ~1 day First BDC mark tracker version; ~10–12 total development hours, including refinements. ~20 min First-pass credit agreement analysis, followed by 1+ hour of human review. Loading… At Benefit Street Partners, a credit-focused investment manager, answering an investment committee’s follow-up questions used to take days or weeks. Portfolio manager Anant Kumar says analysts can now turn a round of comments in a day with Codex, and often answer questions during the meeting itself. BSP is using these tools to add more review capacity and rigor to underwriting within the same timeframe, rather than to do more deals. “I’ve gone from being just an analyst and a portfolio manager to being a developer as well now. I can build things.” —Anant Kumar, Portfolio Manager, Benefit Street Partners Building his own dashboards To create a dashboard he could share with colleagues, Kumar used to need someone with software expertise to build a website and pull in the data. Now he builds his own tools, using AI to draft code and review it for errors. His tracker uses public SEC filings from business development companies (BDCs) to compare how firms value the same loan. The team can see how its marks compare with other holders’ valuations. Kumar built the tracker and used Codex for code review. The first version took a day. After adding features and refining the interface over subsequent weeks, he estimates total development time at 10–12 hours total. Building a credit agreement analyzer Kumar’s other tool analyzes credit agreements, which are often 300 pages or longer. Investors need to find clauses that could shift value away from lenders, a task that previously meant asking outside counsel to work through the agreement page by page. Kumar brought together memos from leading law firms on clauses and risks to watch for. He describes the analyzer as a “second brain within our organization.” An uploaded credit agreement takes about 20 minutes to process into a first-pass analysis, followed by an hour or more of human review. BSP has refactored the tool with GPT‑6 Astra, and it is now live in the company-hosted portal. “The AI is very helpful in collating data, ingesting it, synthesizing analysis, but the ultimate investment decision needs to be made by a human,” he says. Underwriting is typically a multi-round process. A round consists of further diligence and a revised memo responding to the investment committee’s questions. Deal timelines range from a few days to a few weeks, so the number of rounds varies. Kumar says, “We feel more confident in our decision making because we have more information at our disposal.” “The quality of my analysis has become so much better and so much faster.” —Anant Kumar, Portfolio Manager, Benefit Street Partners Results at a glance Built the first BDC tracker in a day, using Codex for code review; about 10–12 hours total including later additions. Produces a first-pass analysis of a credit agreement in about 20 minutes, followed by an hour or more of human review. Answers committee follow-up questions faster with Codex, often during the meeting, according to Kumar. What’s next BSP is working to connect information across deals. Continuous underwriting is a longer-term aspiration: the team could monitor loans as news happens and examine the effects across its portfolio, rather than re-underwriting only after an event. “Codex has unlocked my day, because I have many more hours in the day to do more high-level work and less routine work,” says Kumar. Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading How Itaú is building generative AI for its entire customer base Oct 16, 2026 How Block is building AI-powered security with OpenAI Oct 14, 2026 Australian Payments Plus moves faster with ChatGPT and Codex Jul 7, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/stack-overflow-chatgpt-plugin" target="_blank">Stack Overflow for Agents triples signups with ChatGPT plugin</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 16, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>October 16, 2026 Startup Stack Overflow for Agents triples signups with ChatGPT plugin Two engineers shipped Stack Overflow for Agents in a few weeks with Codex, and its ChatGPT plugin helped drive up to 10× growth in agent creation.</span> <span>That’s why Stack Overflow ⁠ (opens in a new window) is building a knowledge intelligence platform that unifies those sources and turns raw context into verified knowledge available wherever people and agents work.</span> <span>Codex helps the company’s engineers build the products, while a ChatGPT plugin makes their newer agentic product, Stack Overflow for Agents, easier to discover and use.</span> <span>“We built a ChatGPT plugin for Stack Overflow for Agents, and our registrations tripled overnight.” —Alexandra Lato, VP of Product, Stack Overflow Two engineers ship a net-new product in a few weeks with Codex Stack Overflow for Agents, which extends Stack’s intelligence layer to agents, began with a hypothesis and two engineers using Codex.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>October 16, 2026 Startup Stack Overflow for Agents triples signups with ChatGPT plugin Two engineers shipped Stack Overflow for Agents in a few weeks with Codex, and its ChatGPT plugin helped drive up to 10× growth in agent creation. Start building with OpenAI (opens in a new window) Company size: Startup Region: North America Industry: Technology Products: Codex, API 10x More agents created with the ChatGPT plugin 3x More signups for Stack Overflow for Agents overnight with the ChatGPT plugin 87% Maximum reduction in time to build one connector, from 3–6 weeks to 4 days Loading… People and AI agents need context to get work done, but it’s usually scattered across systems, from Slack to Google Docs. Finding it and understanding how it all fits together can be a challenge. That’s why Stack Overflow ⁠ (opens in a new window) is building a knowledge intelligence platform that unifies those sources and turns raw context into verified knowledge available wherever people and agents work. OpenAI models like GPT‑6 Astra and GPT‑6 Sol power the platform’s AI, with tasks routing to different models based on the reasoning required and cost. Codex helps the company’s engineers build the products, while a ChatGPT plugin makes their newer agentic product, Stack Overflow for Agents, easier to discover and use. “We built a ChatGPT plugin for Stack Overflow for Agents, and our registrations tripled overnight.” —Alexandra Lato, VP of Product, Stack Overflow Two engineers ship a net-new product in a few weeks with Codex Stack Overflow for Agents, which extends Stack’s intelligence layer to agents, began with a hypothesis and two engineers using Codex. The engineers gave Codex a development environment and a plan, and then worked with it to build the product. Within a few weeks, Alex says, they had a full-fledged product. “So it really made their team feel bigger,” Alex says. “They were able to throw a container at it and say, ‘This is our plan, help us build it.’” Developing connectors in days, not weeks, with Codex Stack Internal, Stack Overflow’s enterprise product, needs to connect to all the systems where organizations keep their knowledge. Building this capability requires more human involvement than the two-engineer effort behind Stack Overflow for Agents, but Codex is accelerating this work, too. Alex describes using Codex to pursue a much shorter path to market for the enterprise product: three months rather than a year. Building connectors is one concrete example. “On average, it takes us 3 to 6 weeks to build one connector. With Codex, we were able to build it within 4 days.” —Alexandra Lato, VP of Product, Stack Overflow More recently, the team built a connector in a single day. By accelerating connectors, Codex helps Stack Overflow bring enterprise products to market faster. Increasing agent creation and signups with a ChatGPT plugin Once Stack Overflow for Agents was ready for distribution, the team needed a way to get it into people’s workflows. It built a ChatGPT plugin so users could discover and set up the product in ChatGPT, with fewer steps than a traditional Model Context Protocol (MCP) setup. “Once you have a plugin, it becomes a frictionless setup with ChatGPT.” —Alexandra Lato, VP of Product, Stack Overflow Alex says the plugin tripled registrations and accelerated agent creation: “I think we were up to 10X last time I checked.” Reducing configuration work with the Decisions API Stack Overflow manages its own model routing and configuration, but Alex hopes to explore using the Decisions API to reduce some of that work and put more engineering capacity into the product. “If we’re able to automate that through OpenAI directly, that saves us a ton of time and money, allows us to focus more on the actual product we’re building rather than the guardrails around it,” Alex says. Expanding across the full knowledge lifecycle Stack Overflow is also working on expanding its knowledge product to enable sharing of what people learn. To date, its focus has been pulling information in. Now, Alex is closing the loop so knowledge gained in a one-to-one session with a developer or someone outside engineering can help others, too. “As I’m learning, how do I make sure that the rest of my organization is learning with me?”, said Alex. “I’m really looking forward to building a product that allows for that full knowledge life cycle.” OpenAI &lt;3 startups Join the community Start building (opens in a new window) Keep reading View all Terminal X matches senior investor judgment 88.6% with GPT-6.1 Startup Oct 20, 2026 Amp puts AI agents to work beyond code with OpenAI Startup Oct 14, 2026 How Third Moment Research runs 10,000 agents for 36+ hours Startup Oct 14, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://newsletter.pragmaticengineer.com/p/the-pulse-openai-software-engineer" target="_blank">The Pulse: OpenAI software engineer accused of spying</a></h2>
+          <div class="meta">
+            <span class="source">pragmatic-engineer</span>
+            <span class="date">Oct 15, 2026 &middot; 16:55 UTC</span>
+          </div>
+          <p class="summary"><span>The Pulse is a series covering events, insights, and trends within Big Tech and startups.</span> <span>Today, we cover: OpenAI software engineer accused of spying.</span> <span>A software engineer working on OpenAI’s Agents SDK has been arrested after allegedly planting a secret audio recording device in a meeting room at the AI company.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/sullivan-cromwell" target="_blank">Sullivan &amp; Cromwell brings legal expertise into agreement review</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 15, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>October 15, 2026 Sullivan &amp; Cromwell brings legal expertise into agreement review In collaboration with OpenAI, Sullivan &amp; Cromwell developed Agreement Analyzer, an AI tool for identifying issues in a draft agreement.</span> <span>The firm’s Agreement Analyzer brings those inputs into a single review workflow, producing analysis and proposed changes that lawyers can inspect and refine.</span> <span>“I think AI will .</span> <span>allow lawyers to focus on the areas where their judgment is most important .</span> <span>so they can concentrate on the questions that are most critical for their clients.” —John Savva, Partner, Sullivan &amp; Cromwell Bringing firm expertise into agreement review Though AI was initially used most for repetitive, administrative tasks like drafting email responses or checking calendars, Savva finds that recent improvements in AI models’ analytical capabilities have changed its usage.</span> <span>“Now, we’re seeing many more opportunities for use in challenging legal tasks such as deep analysis of complex agreements,” he says.</span> <span>Agreement Analyzer helps lawyers compare corresponding provisions across precedents and track how those provisions interact.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>October 15, 2026 Sullivan &amp; Cromwell brings legal expertise into agreement review In collaboration with OpenAI, Sullivan &amp; Cromwell developed Agreement Analyzer, an AI tool for identifying issues in a draft agreement. Contact sales Company size: Enterprise Region: North America Industry: Services Products: ChatGPT, Codex Loading… For lawyers at Sullivan &amp; Cromwell, reviewing a draft agreement includes weighing its terms against relevant precedents, using approaches based on the Firm’s experience and being mindful of a client’s priorities. The firm’s Agreement Analyzer brings those inputs into a single review workflow, producing analysis and proposed changes that lawyers can inspect and refine. “I think AI will . allow lawyers to focus on the areas where their judgment is most important . so they can concentrate on the questions that are most critical for their clients.” —John Savva, Partner, Sullivan &amp; Cromwell Bringing firm expertise into agreement review Though AI was initially used most for repetitive, administrative tasks like drafting email responses or checking calendars, Savva finds that recent improvements in AI models’ analytical capabilities have changed its usage. “Now, we’re seeing many more opportunities for use in challenging legal tasks such as deep analysis of complex agreements,” he says. Agreement Analyzer helps lawyers compare corresponding provisions across precedents and track how those provisions interact. Sullivan &amp; Cromwell partner John Savva developed Agreement Analyzer as a single-user proof of concept built with Codex. He then collaborated with OpenAI on improving the quality of outputs, enhancing efficiency through parallel processing and transforming the application into a tool that could be used by multiple lawyers at the same time. Agreement Analyzer integrates Sullivan &amp; Cromwell’s workflows, curated firm precedents, negotiating playbooks and ChatGPT Enterprise. After inputting a draft agreement into the tool, a lawyer can add their own selected precedents and a playbook with firm and client positions, as well as information on market practice. The tool performs multiple review cycles from different perspectives, synthesizes the outputs, helps identify potential issues and returns a memorandum and proposed tracked changes for a lawyer to review, adapt or reject. “It’s not about replacing lawyers. It’s about providing a tool for lawyers to do deeper analyses and find more authority and precedents to provide an even higher quality product for their clients.” —John Savva, Partner, Sullivan &amp; Cromwell Making sources and uncertainty visible Savva emphasizes that what makes an AI tool’s output trustworthy is full transparency. “If an AI tool makes a claim about market practice, you need to be able to see the source of that information,” he says. Savva describes an application in which agents develop conclusions and other agents challenge them in an adversarial process. In a potential use case, specialized agents review the agreement in parallel for such things as market deviations and risk allocation, interactions between clauses, and ambiguities that could impact litigation. The results distinguish findings supported after challenge by other agents, dismissed findings, and unverified issues retained with qualifications. Lawyers can inspect the issues, their supporting explanations, and the relevant precedents, then decide which findings warrant changes in the final markup. What’s next Sullivan &amp; Cromwell is continuing to explore tools shaped around specific legal tasks. For Savva, stronger analytical capabilities create an opportunity to support more of the research and writing process. Savva points to advances in reasoning capabilities with GPT‑6 Astra: “Astra’s really moved things forward in terms of the quality of the reasoning that’s available, and that has been the bottleneck in the past,” he says. Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading What forward deployed engineering means at OpenAI Engineering Oct 22, 2026 How AT&amp;T is rethinking in-house legal work with OpenAI Oct 21, 2026 Broad access through consistent standards Safety Oct 21, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Oct/14/ai-is-mass-decompiling-games/" target="_blank">AI is mass decompiling games. That&#x27;s both awesome and scary.</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Oct 14, 2026 &middot; 16:26 UTC</span>
+          </div>
+          <p class="summary"><span>AI is mass decompiling games.</span> <span>Indie game developer Popcar talks about the recent wave of AI-powered decompilation of existing games, enabling weird mashups between existing games, and producing a boom in game preservation projects to get old games working on new hardware (often in a browser using WebAssembly).</span> <span>Via Hacker News Tags: computer-history , game-design , ai , webassembly , generative-ai , llms , ai-ethics , coding-agents</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>AI is mass decompiling games. That&#x27;s both awesome and scary. Indie game developer Popcar talks about the recent wave of AI-powered decompilation of existing games, enabling weird mashups between existing games, and producing a boom in game preservation projects to get old games working on new hardware (often in a browser using WebAssembly). I like how this piece captures both the positives and the negatives of this new development: Most people already realized the scary part by now. If AI can decompile games and software, then the entire tech industry is about to explode. Anybody can decompile other software and use it any way they&#x27;d like, and nobody can stop them. Companies can steal from competitors. Your paid game or app can be open-sourced against your will. This isn&#x27;t exclusive to old video games, we can apply this to any software. [...] This is also a big win for preservation. Old games can be ported, modified, enhanced, and made much more easily accessible than before. [...[ With console makers going all in on digital and games becoming entirely unplayable due to servers shutting down, this is fantastic news. We could own software we bought regardless of what the company thinks. Via Hacker News Tags: computer-history , game-design , ai , webassembly , generative-ai , llms , ai-ethics , coding-agents</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/metas-new-muse-wonder-model-good" target="_blank">Meta’s new ‘Muse Wonder’ model: good for AI agents, bad for design</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Oct 14, 2026 &middot; 12:04 UTC</span>
+          </div>
+          <p class="summary"><span>ith insights, build with confidence Intro and what Muse Wonder is Meta’s frontier capability claims Muse code Benchmark overview and how the How I AI bench works Overall results and TL;DR verdict Agentic tasks Email writing and voice assistant performance Where Muse falls short SVG illustration results Short-form video editing Fast on one-shot work, slow on agent tasks Final verdict and where I’ll use Muse Wonder next<ul><li>Meta Muse Wonder / Muse Wonder Full: <a href="https://research.meta.ai/blog/muse-wonder" target="_blank" rel="noopener">https://research.meta.ai/blog/muse-wonder</a></li><li>Muse Code: <a href="https://developer.meta.com/ai/lp/muse-code" target="_blank" rel="noopener">https://developer.meta.com/ai/lp/muse-code</a></li></ul></span></p>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 205</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
