@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-10-28</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-10-28</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/legora-agentic-operating-system-for-legal-work" target="_blank">Legora is building the agentic operating system for legal work</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 28, 2026 &middot; 09:30 UTC</span>
+          </div>
+          <p class="summary"><span>October 28, 2026 Legora is building the agentic operating system for legal work Powered by OpenAI models and coding agents, Legora helps legal teams move faster, broaden analysis and focus on higher-value work.</span> <span>Today, OpenAI is a key model provider for Legora, powering core workflows across its legal AI platform, from agentic legal work to large-scale document review.</span> <span>With Legora, we get that on tap.</span> <span>” An AI-native company building an AI-native product Legora’s use of AI goes beyond the product it sells, and has expanded its use of ChatGPT Work, Codex and dots across its own teams.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>October 28, 2026 Legora is building the agentic operating system for legal work Powered by OpenAI models and coding agents, Legora helps legal teams move faster, broaden analysis and focus on higher-value work. Contact sales Company size: Mid-market Region: Global Industry: Technology Products: API, Codex, ChatGPT 95%+ reduction in Legora legal-team time spent reviewing NDAs 90% faster contract turnaround for a Fortune 100 customer 9.5 hours returned per lawyer, per week Loading… Building for a profession where time—and trust—are scarce Founded in Stockholm in 2023, Legora ⁠ (opens in a new window) is building what CEO and co-founder Max Junestrand calls “the agentic operating system for legal work”: bringing AI into the workflows lawyers rely on every day. The company started with the insight that legal teams are unusually time crunched, meaning some valuable work doesn’t get done. Think of the junior lawyer told to review an impossible number of contracts overnight and only able to focus on a fraction. Legora can provide those services “on tap”, which is why Junestrand’s ambition is that every piece of legal work in the world should run on his platform. OpenAI has been part of that journey from the beginning: the release of GPT‑3.5 was the moment many of the legal use cases the founding team had been experimenting with became possible. Today, OpenAI is a key model provider for Legora, powering core workflows across its legal AI platform, from agentic legal work to large-scale document review. Legora builds on new OpenAI model capabilities as they become available, translating advances in intelligence into what lawyers can accomplish with its product. “ The world needs more legal services and legal intelligence. With Legora, we get that on tap. ” An AI-native company building an AI-native product Legora’s use of AI goes beyond the product it sells, and has expanded its use of ChatGPT Work, Codex and dots across its own teams. OpenAI’s technology is becoming part of both the product Legora builds for its customers as well as shaping how the company itself operates. “It’s incredibly important to me that we stay as AI-native as possible,” confirms Junestrand. For Jacob Lauritzen, CTO at Legora, coding agents have changed how quickly the engineering team can develop new ideas. Instead of researching one possible solution and committing engineering time before knowing whether it’s the right path, teams can prototype many approaches at once. “We can explore 20 solutions at the same time and, within days, pick the one we know will be the best.” The same approach changes how Legora responds when something goes wrong. Previously, diagnosing a product issue could mean several engineers investigating different possible causes over a number of hours. Coding agents can now search millions of lines of logs and pursue many possible explanations simultaneously, sometimes taking Legora from bug report to working fix in around five minutes . Customers, of course, don’t see the engineering efficiency itself. But they do experience the results: problems can be resolved faster, feedback can reach product teams sooner, and new ideas can be tested with customers earlier in the development cycle. “ We can go to customers much more quickly with feedback. It enables us to build a better product faster. ” Giving Legora’s own lawyers room to do higher-value work Legora’s own legal team experiences the same transformation its product is designed to create for customers. General Counsel Emma Kadri Bergström points to the example of NDAs. Her team analysed the agreements they had historically signed and built a playbook that allows Legora to take a first pass at incoming NDAs, highlighting terms that fall outside acceptable parameters. Before the workflow was introduced, Kadri Bergström estimates that reviewing these “boring documents” consumed around 20% of the legal team’s capacity . Today, it’s under 1% . That reclaimed time matters because the company itself is scaling rapidly. In the past year, Kadri Bergström says the business has expanded from three offices to 18 , completed three financing rounds and made five acquisitions . The legal team has had to support that growth while remaining closely connected to the business. AI has also allowed the team to take on work that might previously have been outsourced or narrowed because of limited capacity. In M&amp;A diligence, for example, agents can begin reviewing contracts and surfacing information across the deal set, with lawyers reviewing and interpreting the output. “AI doesn’t just make you faster. It also increases quality.” —Emma Kadri Bergström, General Counsel, Legora From faster review to broader, higher-quality analysis For Legora’s customers, the opportunity isn’t simply to complete the same work faster. AI has also increased the scope of work that can be taken on. Alex Fortescue-Webb, Global Head of Legal Engineering, points to due diligence as an example. In a traditional review, time and cost constraints can force teams to concentrate deeply on only the most valuable contracts. Legora’s Tabular Review workflow can analyse thousands of contracts across multiple questions in minutes, allowing lawyers to apply detailed scrutiny much more broadly. That can alter the quality of the final work. Risks that might previously have sat in contracts outside the manually reviewed subset can now be surfaced for a lawyer to assess. The results are already measurable. Junestrand cites one Fortune 100 customer that has: reduced contract turnaround time by 90% saved more than $20 million on external litigation and diligence returned 9.5 hours per lawyer each week for higher-value work “ AI has fundamentally changed both the speed at which you can do existing tasks and the breadth of analysis you can apply. ” Through the Legora plugin for ChatGPT ⁠ , legal teams can also use Legora’s capabilities within their ChatGPT conversations . Results at a glance 95%+ reduction in Legora legal-team time spent reviewing NDAs, from ~20% of team capacity to under 1%. 90% faster contract turnaround for one Fortune 100 Legora customer. $20M+ saved on external litigation and diligence for the same customer. 9.5 hours returned per lawyer, per week for higher-value work. Leadership lessons Lead by using. When more than 75% of leaders actively use Legora, median usage across the organisation is 3× higher. Start with the problem. Focus on what people need to accomplish, then determine where AI can improve the workflow. Build a network of champions. Internal advocates help turn experimentation into sustained adoption. Be ready to rebuild. As models improve, yesterday’s product assumptions can quickly become outdated. Design for trust. Build evaluation, testing and transparency into the experience from the start. What’s next For Legora, the next frontier isn’t just making today’s legal workflows faster. It’s expanding the kinds of work AI can take on, while making collaboration between lawyers and AI increasingly natural. Jacob Lauritzen sees two advances happening in parallel. First, agents will be able to tackle longer-running tasks that require far greater context and autonomy. He imagines due diligence spanning millions of pages running overnight, with the analysis ready for a lawyer to review when they arrive the next morning. At the same time, increasingly capable models are becoming faster. That opens up a different kind of experience: real-time collaboration where a lawyer and AI can work back and forth on a contract, analysis or piece of advice rather than treating AI as a tool that receives a task and returns an answer. “When you blend human and AI, that’s when the output comes out best.” —Jacob Lauritzen, CTO, Legora That moving frontier means Legora’s roadmap can’t be static. “Model improvements force me to reconsider the roadmap on a biweekly basis,” says Lauritzen. Engineers, product managers, designers and sales teams all frequently ask him what’s the new thing that’s become possible for customers. For Bergström, it’s about changing the perception of legal teams. “Every legal department is worried about becoming a bottleneck. That’s when the business stops coming to you,” she says. AI is transforming legal teams from bottleneck to business partner, from the people you avoid to the people you want in the room alongside you. If Legora succeeds, the outcome won’t simply be lawyers completing today’s workload more efficiently. It will be legal teams able to take on work that capacity once made impossible, with more time for judgement, strategy and the high-value decisions that still require a human. As Junestrand puts it: “It’s the best time in history to be a lawyer.” Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading How ChatGPT Work helps Stampli move ideas to market Aug 20, 2026 How Omio is building the future of conversational travel Jun 23, 2026 How Preply combines AI and human tutors to personalize learning Jun 12, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://latent.space/p/how_anthropic_ships_the_1_llm_in_the_world_safely_separating_the_brain_from_the_hands/" target="_blank">How Anthropic ships the #1 LLM in the World safely: Separating the Brain from the Hands</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Oct 27, 2026 &middot; 18:40 UTC</span>
+          </div>
+          <p class="summary"><span>Katelyn Lesse and Angela Jiang join Latent Space to explain the engineering behind the Claude Platform: launching Opus 5.5, separating the model’s “brain” from the agent’s “hands,” scaling APIs, and building reliable managed agents.</span> <span>A new introduction covers Anthropic’s S-1, the improvement and investment loops, and why the platform matters.</span> <span>How Anthropic contains Claude — Isolation, credentials and network controls.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Katelyn Lesse and Angela Jiang join Latent Space to explain the engineering behind the Claude Platform: launching Opus 5.5, separating the model’s “brain” from the agent’s “hands,” scaling APIs, and building reliable managed agents. A new introduction covers Anthropic’s S-1, the improvement and investment loops, and why the platform matters. Watch the full episode on YouTube Claude Opus 5.5 — Anthropic’s launch on model behavior, evaluation and pricing. Scaling Managed Agents — Decoupling the brain, harness and sandbox. How Anthropic contains Claude — Isolation, credentials and network controls. Effective harnesses for long-running agents — Maintaining progress across context windows. Our Anthropic S-1 breakdown — Context for the newly recorded introduction. Sponsored Your sponsor ad here Reach the AI engineers building what comes next. Latent Space is read by the people shipping agents, models and infrastructure. Enquire about sponsoring this slot. business@latent.space → Timestamps 0:00 Anthropic’s S-1 and this interview 1:06 Revenue per employee and efficiency 3:13 The improvement and investment loops 4:04 Why Claude Platform matters 6:25 Training incidents and production safeguards 7:30 Opus 5.5 launch and pricing 9:25 Distillation and preserved thinking 14:35 Product and engineering at Anthropic 18:05 Scaling the Claude Platform 19:25 Model access and safety decisions 26:25 Trust grants and product roadmaps 30:25 How Anthropic launches models 35:55 Benchmarks and model personalization 42:10 Claude Managed Agents 44:25 Memory, dreaming, and agent harnesses 48:25 Evaluating agents 53:25 CPU constraints and scaling 56:05 Rebuilding the Messages API in Rust 1:03:25 The brain and the hands 1:05:25 Protecting credentials and sandboxes 1:08:25 Training incidents versus production 1:10:55 Pacing and launching frontier models 1:12:25 Safety classifiers and model routing 1:19:25 Emerging agent workloads 1:20:55 Fighting AI slop 1:27:25 Management, writing, and working styles 1:33:25 Building Anthropic’s DevRel team 1:40:25 Developer relations and product voices 1:43:25 What to try with Opus 5.5</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/retell-ai" target="_blank">Retell uses OpenAI models to help power 100M monthly calls</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 27, 2026 &middot; 15:00 UTC</span>
+          </div>
+          <p class="summary"><span>October 27, 2026 Retell uses OpenAI models to help power 100M monthly calls GPT‑6 Astra tops Retell’s voice agent benchmark, while Codex helps it reach a $1.6M annual revenue run rate per employee.</span> <span>Today, OpenAI models generate responses for 80% of calls on Retell, with customers achieving resolution rates above 80%.</span> <span>In Retell’s October 13, 2026 benchmark, GPT‑6 Astra ranked first for instruction following at 89.7%.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>October 27, 2026 Retell uses OpenAI models to help power 100M monthly calls GPT‑6 Astra tops Retell’s voice agent benchmark, while Codex helps it reach a $1.6M annual revenue run rate per employee. Start building (opens in a new window) Company size: Startup Region: North America Industry: Technology Products: API, Codex 100M+ Monthly calls handled 80%+ Customer resolution rates 1 trillion OpenAI tokens consumed $1.6M Annual revenue run rate per employee Loading… Retell AI ⁠ (opens in a new window) is a voice AI platform for contact center operations, helping businesses build agents that can answer questions, take action, and connect a caller with a person when needed. Its platform now serves more than 4,000 businesses, with monthly call volume growing from 30 million in early 2026 to more than 100 million by September. As Retell serves more enterprises with complex workflows, it uses OpenAI models to keep call quality and reliability high. Today, OpenAI models generate responses for 80% of calls on Retell, with customers achieving resolution rates above 80%. Retell has also surpassed 1 trillion tokens consumed across OpenAI models, reflecting the scale of that adoption. Retell’s engineers use Codex throughout development, from researching unfamiliar code to building features and debugging issues, and GPT‑6 Astra to test front-end interfaces. “We choose models the way our customers choose vendors: on real calls, not demos. OpenAI keeps earning its spot.” —Bing Wu, Co-founder and CEO, Retell AI Choosing OpenAI models for the demands of a live call Enterprise voice agents need to follow company policies and stay within their assigned roles, even as conversations change. Retell built its vCX benchmark to compare dozens of models using difficult, multi-turn conversations drawn from real production scenarios. It tests how well models follow instructions, stay grounded in the information they are given, call the right tools, and use natural conversational language. In Retell’s October 13, 2026 benchmark, GPT‑6 Astra ranked first for instruction following at 89.7%. Retell also shared evaluations conducted before the launch of the GPT‑6 Astra model that showed GPT‑5.5 ranking highest among models on both non-hallucination rate (88.0%) and tool-call correctness (88.3%) with reasoning enabled, outperforming Gemini‑3.1‑Pro and Claude‑4.6 on both measures. It also led on non-hallucination rate with reasoning off. Retell says new customers who choose OpenAI models continue using them. Customers also have access to OpenAI Realtime models through the Realtime API and OpenAI text-to-speech as a voice engine. Retell makes new OpenAI models available the day they launch and reruns its benchmark as models improve. Resolving more than 80% of customer requests with agents Contact center teams use Retell to define their agents’ business context, goals, and rules. Developers can further configure workflows and integrations. During a call, Retell’s harness runs the audio models, tracks the conversation, and manages when the agent speaks, listens, or responds to interruptions. OpenAI models, including GPT‑6.1 Sol, GPT‑6 Astra, and GPT‑5.5, use the customer’s instructions and conversation context to generate responses and request tool calls. Retell executes those calls through integrations with the customer’s systems and can write outcomes back to a customer record. When human judgment is needed, the voice agent briefs the representative with context, answers their follow-up questions, and confirms they are ready before connecting the customer. After a call, Retell uses GPT‑5.6 Terra to analyze the transcript and extract outcomes and other data. With this approach, Retell reports customer resolution rates above 80%. At electronics company Anker, agents handle Tier‑1 post-sales support in the US and UK, including order tracking, warranty checks, and troubleshooting. Anker reported an 80.4% case resolution rate and a Net Promoter Score (NPS) of 63. Its team also said the agents’ tone, pacing, and warmth met the standard they expected of a human agent. At Pine Park Health, Retell agents handle appointment reminders and proactive scheduling and record the outcomes in patients’ medical charts. The team recovered medical-assistant time equivalent to 2.1 full-time roles and redirected it to patient care. Its scheduling agent achieved a 55.7% booking rate when it reached a patient. Keeping calls responsive as volume grows Daytime traffic on Retell’s platform can reach more than 50 times its overnight low. To help keep calls responsive even at peak demand, Retell uses dedicated servers with OpenAI, shared across its customers. In Retell’s October 13, 2026 benchmark, GPT‑6 Astra and GPT‑6 Sol each recorded median first-sentence latency of 883 milliseconds, with GPT‑5.6 Luna ranking highest at 497 milliseconds. OpenAI’s regional API endpoints allow developers to route traffic to specific geographic regions, which helps Retell reduce network travel time and meet customers’ data residency requirements in industries such as healthcare and financial services. Retell also builds redundancy into each layer of the service. It runs its own telephony stack with a second stack ready to take over, along with backups for voice and model services, to help keep calls running when a service fails. Using Codex to research, build, and debug As Retell’s enterprise growth brings more requests for custom workflows and integrations, its engineers often need to work in unfamiliar parts of the codebase. Before writing code, they give Codex a high-level requirement. Codex surveys the code, checks it against actual data, and explains what needs to change. One engineer said Codex did this research better and much faster than he could. During implementation, engineers say Codex often catches details they had not considered. For debugging, Codex cross- logs and database records with the code to investigate what is happening. Retell’s engineers also use Codex in their work with customers building on OpenAI models to speed up tasks such as writing the instructions that guide how a model responds in a customer’s application. To test changes to its web interface, Retell relies on GPT‑6 Astra’s computer use. When an engineer opens a front-end pull request, GPT‑6 Astra opens the interface, clicks through it, tests flows, tries to break them, and reports the issues it finds. Retell says earlier models could not perform this work reliably. Retell continues to hire, but its engineering team hasn’t needed to grow at the same pace as the business. Retell reports $1.6 million in annual revenue run rate per employee. “By using Codex, the engineering team has a virtual teammate that can pair with them on any kind of difficult task.” —Bing Wu, Co-founder and CEO, Retell AI Putting customer expertise to work Every business knows how it wants to serve its customers. Retell’s goal is to let the people closest to that work apply their expertise directly, using advanced voice AI and a platform that lets them build, test, and improve their own agents. Next, Retell plans to expand quality assurance and simulation, support more languages, and develop knowledge base auto-learning. As OpenAI models continue to advance, Retell expects its customers to deliver world-class service to millions of callers, on their own terms. “No one knows a company’s customers better than the company itself. We give them the power to act on that expertise and improve AI agents directly. The goal is for them to build an in-house team of internally deployed engineers who own and run it all,” says Bing. OpenAI &lt;3 startups Join the community Start building (opens in a new window) Keep reading Driving scalable growth with OpenAI o3, GPT-4.1, and CUA Jun 24, 2025 Creating websites in minutes with AI Website Builder May 29, 2025 Shipping code faster with o3, o4-mini, and GPT-4.1 May 22, 2025</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/oracle-apps-in-chatgpt" target="_blank">OpenAI expands partnership with Oracle to bring its apps to ChatGPT</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 27, 2026 &middot; 07:00 UTC</span>
+          </div>
+          <p class="summary"><span>October 27, 2026 Company OpenAI expands partnership with Oracle to bring its apps to ChatGPT Expanding what businesses can do with Oracle—in ChatGPT and through new offerings powered by OpenAI.</span> <span>Learn more Contact sales Loading… OpenAI and Oracle are bringing Oracle applications and data into ChatGPT and powering new Oracle products and services with OpenAI models and products.</span> <span>Access OpenAI through Oracle Marketplace Oracle customers in the U.S.</span> <span>can purchase access to the OpenAI API, Codex, and ChatGPT Work through Oracle Marketplace ⁠ , using existing procurement processes and eligible Oracle Universal Credits.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>October 27, 2026 Company OpenAI expands partnership with Oracle to bring its apps to ChatGPT Expanding what businesses can do with Oracle—in ChatGPT and through new offerings powered by OpenAI. Learn more Contact sales Loading… OpenAI and Oracle are bringing Oracle applications and data into ChatGPT and powering new Oracle products and services with OpenAI models and products. Together, we aim to help businesses use AI to run core operations, build better applications, and strengthen security. This builds on our commercial relationship across the OpenAI API, ChatGPT Work, and Codex. Oracle reported ⁠ 130,000 active ChatGPT users and more than 95,000 active Codex users. Its recruiting team uses ChatGPT Work for market research that once took two to four days to compile, with preparation now taking 15–20 minutes. OpenAI and Oracle share a vision for an agent-ready enterprise where people and AI agents work across business applications in one connected environment. Our goal is to make Oracle software easier to discover, use, and manage, with simpler administration, unified sign-in, and access governed by each organization’s permissions and approvals. This would help businesses scale AI across core operations and get more value from the software they already use. Working with Oracle in ChatGPT Oracle is developing Oracle AI Workspace ⁠ to bring that vision into ChatGPT through integrations with Oracle applications and data. The goal is to let people describe what they need to accomplish, find the right information, and complete approved business workflows in one place. For example, a new finance team member could use ChatGPT to investigate costs, understand purchasing decisions, and identify what remains before month-end close. The intended experience would bring information from finance, procurement, and planning applications together, helping more employees use Oracle software within their organization’s permissions and approvals. Bringing AI to Oracle’s products Alongside Oracle AI Workspace, Oracle is announcing updates and new offerings built with OpenAI models and tools: Oracle AI Security Mesh is designed to help customers find and fix vulnerabilities in applications and infrastructure using OpenAI cyber models. Oracle manages the testing infrastructure, helping customers put these capabilities to work safely and within their authorized scope. Oracle AI SMB Bundle combines ChatGPT Business and Codex with Oracle applications and recurring Oracle Cloud Infrastructure credits to help small businesses build products and manage operations. Oracle App Composer is designed to help teams build apps with Codex and other AI tools, connect them to approved Oracle data and workflows, and share them across their organization. Oracle manages deployment on Oracle Cloud Infrastructure, with company permissions and access controls built in. Access OpenAI through Oracle Marketplace Oracle customers in the U.S. can purchase access to the OpenAI API, Codex, and ChatGPT Work through Oracle Marketplace ⁠ , using existing procurement processes and eligible Oracle Universal Credits. Learn more about the OpenAI and Oracle partnership ⁠ . 2026 Partnerships Author OpenAI Keep reading View all Atlassian and OpenAI expand their partnership Company Oct 6, 2026 Uber brings ChatGPT Work to all employees with OpenAI Company Oct 22, 2026 Democratic governance of frontier AI, part II: Empowering cyber defenders Global Affairs Oct 21, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/check-point-daybreak" target="_blank">How Check Point accelerates vulnerability research with Daybreak</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 27, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>October 27, 2026 How Check Point accelerates vulnerability research with Daybreak With OpenAI Daybreak, Check Point speeds up the research behind new security protections, enabling its analysts to turn vulnerability intelligence into customer defenses faster.</span> <span>Contact sales Company size: Enterprise Region: North America Industry: Technology Products: Daybreak Results Hours to minutes Vulnerability research with Daybreak Loading… Check Point’s vulnerability research workflow used to take hours to complete.</span> <span>As part of the OpenAI Daybreak Defense Network, the company uses Daybreak to reduce that work to minutes, according to Jonathan Zanger, CTO of Check Point.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>October 27, 2026 How Check Point accelerates vulnerability research with Daybreak With OpenAI Daybreak, Check Point speeds up the research behind new security protections, enabling its analysts to turn vulnerability intelligence into customer defenses faster. Contact sales Company size: Enterprise Region: North America Industry: Technology Products: Daybreak Results Hours to minutes Vulnerability research with Daybreak Loading… Check Point’s vulnerability research workflow used to take hours to complete. As part of the OpenAI Daybreak Defense Network, the company uses Daybreak to reduce that work to minutes, according to Jonathan Zanger, CTO of Check Point. Daybreak gives defenders access to OpenAI’s frontier cyber models that can analyze vulnerabilities, reason through attack paths, and identify security gaps in code and configurations. Check Point helps secure over 100,000 organizations through its AI, workspace, cloud, and network security products. Check Point Research brings vulnerability research expertise to the company’s prevention-first approach, investigating emerging vulnerabilities and translating findings into protections for customers. Daybreak accelerates that research, shortening the path from understanding a vulnerability to developing a defense. “OpenAI is putting frontier cybersecurity intelligence in the hands of defenders and enabling companies like Check Point to turn this intelligence into threat prevention.” —Jonathan Zanger, CTO, Check Point Turning vulnerability research into customer protection “We’re seeing more cyber threats, and those threats are becoming increasingly sophisticated,” Zanger says. For Check Point, keeping pace means quickly turning information about newly disclosed vulnerabilities into protections for customers. “When a new vulnerability emerges, our job is to make sure our customers are protected against it as fast as possible.” That work depends on expert analysts who investigate vulnerabilities and translate their findings into security signatures or indicators of compromise that Check Point’s systems use to recognize threats. This research requires specialized expertise, and the team’s capacity was previously constrained by the number of analysts available to do it. Check Point uses OpenAI Daybreak to automate more of this workflow. “We leverage Daybreak to speed up and automate this process, and we can now do it in minutes instead of hours,” Zanger says. The value comes from the models’ ability to reason about security problems. “OpenAI Daybreak can understand vulnerabilities, analyze different attack patterns and scan the code to identify gaps.” —Jonathan Zanger, CTO, Check Point Zanger also points to advances in understanding complex code and configurations, and identifying how systems could be exposed to attack. Check Point now considers those capabilities mature enough to incorporate into its cybersecurity workflows. For vulnerability research, Daybreak supports the investigative work that informs the development of a signature or indicator of compromise, giving analysts a faster path from understanding a threat to developing protections. Developing autonomous network security with Daybreak Check Point is also working with OpenAI to develop its Agentic Network Security Orchestration solution using Daybreak. The approach Zanger describes would combine continuous monitoring of customer environments with clearly defined operating boundaries and human approval for consequential actions. Customers would set their security objectives, and the system would explain its findings, recommended actions, and associated risks so they could decide how to proceed. With vulnerability research now taking minutes to complete, Check Point’s next priority is remediation. The company is looking to use Daybreak’s capabilities to make it easier for their security teams to address the gaps they identify. “Combining OpenAI’s Daybreak with our existing security workflows unlocks a level of automation that can prevent threats in real time.” —Jonathan Zanger, CTO, Check Point For Check Point customers, faster research supports the development of protections against newly discovered vulnerabilities. With Daybreak, Check Point aims to extend that progress toward more autonomous defenses, with customers setting security objectives and approving consequential actions. Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading How AT&amp;T is rethinking in-house legal work with OpenAI Oct 21, 2026 Cloudflare links vulnerability discovery to defense with OpenAI Oct 21, 2026 How Block is building AI-powered security with OpenAI Oct 14, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/greptile-code-review-codex-astra" target="_blank">Greptile takes bug detection beyond code review with GPT-6 Astra</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 26, 2026 &middot; 22:00 UTC</span>
+          </div>
+          <p class="summary"><span>October 26, 2026 Startup Greptile takes bug detection beyond code review with GPT‑6 Astra How Greptile uses GPT‑6 Astra to test user workflows, Daybreak to strengthen security, and Codex to reduce rework.</span> <span>For some of that testing, you need to actually run the application because reading the code alone might not reveal the problem.</span> <span>With GPT‑6 Astra, Greptile can automate this kind of application testing at scale.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>October 26, 2026 Startup Greptile takes bug detection beyond code review with GPT‑6 Astra How Greptile uses GPT‑6 Astra to test user workflows, Daybreak to strengthen security, and Codex to reduce rework. Start building with OpenAI Company size: Startup Region: North America Industry: Technology Products: API, Codex Loading… Greptile ⁠ (opens in a new window) builds AI agents that review and test code changes with full context of the codebase. “We are in the business of reducing bugs and making the world’s software more reliable,” says Co-founder and CEO Daksh Gupta. For Daksh, that mission requires testing an application’s behavior as well as reading its code, and GPT‑6 Astra’s computer use gives Greptile a way to automate testing at scale. “ For the first time ever, computer use is in a place where you can automate the experience of having a user try to break your application and allow large companies to ship much more confidently. ” Testing applications at scale with GPT‑6 Astra Validating a pull request involves checking whether the code is logically correct, does what the developer intended, is secure, and avoids breaking existing functionality. For some of that testing, you need to actually run the application because reading the code alone might not reveal the problem. Daksh gives the example of a button that disappears when a website is viewed on an iPhone. With GPT‑6 Astra, Greptile can start a development server for a pull request, resize the browser to an iPhone-sized viewport, and simulate a user moving through the application. The model’s visual understanding lets it inspect the screen and spot the hidden button. “A QA firm testing all of your changes is just impractically slow considering how fast we’re able to ship code with these models,” he says. With GPT‑6 Astra, Greptile can automate this kind of application testing at scale. Strengthening customers’ defenses with Daybreak Daksh says more powerful models also make it easier for attackers to exploit applications, putting companies at risk, even those that previously would not have been typical targets. “We want to make it very easy for even a startup to secure their systems,” says Daksh. “With Daybreak, we’re able to do this in a way that is very safe, and we can ensure that our customers have more sophisticated defense mechanisms than the adversaries have offense mechanisms.” Reducing bugs and rework with Codex Greptile’s Knowledge Base indexes a company’s codebase and documents how it works in a form people and agents can read. The company makes that documentation available to Codex through a Model Context Protocol (MCP) server. This allows Codex to write code that follows the customer’s existing patterns, and thousands of customers have connected Codex to Greptile’s knowledge base, according to Daksh. To measure the impact, the team tracks how often AI-generated code is reverted. “When we provide agents with context, fewer reverts happen and customers save time and save inference,” Daksh says. Customers can put those savings toward new work instead of reworking the same changes. Greptile also uses Codex to build its own software and agents. “We are massive users of Codex,” Daksh says. “We have enormous amounts of usage across every single function, engineering in particular.” Looking ahead to faster development with Ultrafast For Greptile, Daksh explains, the only real bottleneck is how quickly the team can turn ideas into working software. He says model intelligence is already sufficient for many tasks, so he sees Ultrafast as a way to speed up development. “ I’m most excited about Ultrafast as a lever for us to move exactly as fast as we can come up with good ideas. ” His longer-term goal is to make changing and shipping critical enterprise software as easy as shipping a side project, with OpenAI helping Greptile build the validation that requires. Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading View all Anima helps clinics cut call waits by 75% with GPT-6 and GPT-Live Startup Oct 23, 2026 Terminal X matches senior investor judgment 88.6% with GPT-6.1 Startup Oct 20, 2026 Stack Overflow for Agents triples signups with ChatGPT plugin Startup Oct 16, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-ai-claude-duet-honest-review" target="_blank">🎙️ How I AI: Claude Duet honest review + Why Reddit built its own AI prototyping tool</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Oct 26, 2026 &middot; 15:00 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ How I AI: Claude Duet honest review + Why Reddit built its own AI prototyping tool Your weekly listens from How I AI, part of the Lenny’s Podcast Network Oct 26, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/why-reddit-built-its-own-ai-prototyping" target="_blank">Why Reddit built its own AI prototyping tool | Blair Metcalf</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Oct 26, 2026 &middot; 12:04 UTC</span>
+          </div>
+          <p class="summary"><span>This entire episode is Introduction to Blair Reddit Proto demo Annotations to Cursor: the targeted edit workflow Internal deployment and adoption How leadership reviews and gives feedback Engineering handoff and the feature capsule How the custom MCP was built Quick recap</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/openai-cut-incident-investigation" target="_blank">How Ultrafast cut incident investigation from hours to minutes at OpenAI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 26, 2026 &middot; 07:00 UTC</span>
+          </div>
+          <p class="summary"><span>October 26, 2026 OpenAI on OpenAI How Ultrafast cut incident investigation from hours to minutes at OpenAI Loading… This is part of our series sharing internal examples of how OpenAI is using its own technology and APIs.</span> <span>Ultrafast is a high-speed mode in Codex, and for engineers at OpenAI, it’s become the default for incident response.</span> <span>Codex 2026 Author OpenAI Keep reading View all How Codex became a collaborator for OpenAI’s creative team OpenAI on OpenAI Jul 16, 2026 Improving support with every interaction at OpenAI API Sep 29, 2025 Building OpenAI with OpenAI ChatGPT Sep 29, 2025</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>October 26, 2026 OpenAI on OpenAI How Ultrafast cut incident investigation from hours to minutes at OpenAI Loading… This is part of our series sharing internal examples of how OpenAI is using its own technology and APIs. These tools are being used internally, at OpenAI, and are shared here as illustrative examples of how frontier AI is supporting use cases across our teams. Ultrafast is a high-speed mode in Codex, and for engineers at OpenAI, it’s become the default for incident response. When something breaks, engineers often don’t have time to wait minutes for an answer while the issue compounds. With Ultrafast, they can investigate multiple potential causes at once and get answers without splitting their attention. “ If you take two humans who are equally smart, and one gets back to you in an hour and one gets back to you in a minute, the second person is way better. You’re just going to get way more done with somebody who responds faster. ” Finding the needle in the haystack Aaron Friel, Member of the Technical Staff at OpenAI, is usually the one running point on an incident. He spins up a Slack channel for incident response and then points Codex at the problem, asking Codex to monitor, investigate, and answer any questions as they come in. “In any incident, there are usually many hops along the way of what could have gone wrong, and finding the right needle in the right haystack is really the chief job of the people on that channel,” he says. “Using Ultrafast, I’m able to essentially search all of those haystacks at the same time, and respond to incidents much faster.” AJ Trbojevic, Member of the Technical Staff and a Datacenter Security Architect, says investigations into security issues used to take an hour or two to pull structured and unstructured data together, normalize it, and provide context to make a decision. “Now that happens in 10 to 15 minutes,” he says. “And at times it’s near real time.” Adam Perry and Sayan Sisodiya both work on the core agent team, building the code that lets Codex take actions, run commands, and use tools. Ultrafast has changed how they operate during security incidents. “Before, I’d ask Codex to look into something, and then go look into it myself at the same time, because I knew it wouldn’t be fast enough to just wait on,” Adam says. “Now with Ultrafast, Codex is fast enough that I can just stay focused instead of splitting my attention.” Sayan appreciates how Ultrafast lets him get immediate answers from multiple data sources: “Beyond just digging through logs in an incident, I use Codex to dig through Slack to see if there are to changes that might be suspect or people talking about similar symptoms elsewhere in Slack,” he says. Fast responses in under 30 seconds If it takes more than 30 seconds to find an answer with AI, Jeff Niu, another Member of the Technical Staff, says he’ll check Slack or chat with a coworker. But most of his work is now under that threshold with Ultrafast. He used to ask Codex a question, switch over to something else while it thought, and come back having lost his train of thought. Now that conversation happens in real time; it helps him stay focused on the task at hand. Ultrafast also makes Jeff more willing to tackle large refactors, because reworking existing code takes less time. “Technical debt is much easier to pay down now than it ever was before,” he says. “Code is cheap, and now it’s very quick to produce. A refactor that used to cost a lot happens almost instantly.” Working as a copilot Adam keeps a running Codex thread that he calls his chief of staff. Every morning it tells him what meetings he has and which messages he might have forgotten to reply to. “It’s already looked at all the data to write that summary, so when I ask a followup, it’s not waiting to go fetch more,” he says. “I can just keep asking questions in the same conversation just like an actual chief of staff.” Sayan uses Codex to do tedious manual work in the browser, like filling out forms—something he’d previously avoided because it was too slow. “It would open a browser, sit there thinking for five seconds, click something, sit there again,” he says. With the latest models’ improvements in computer use, he’s more comfortable letting Codex handle that work. “Now I’m totally fine letting it click through the browser and it’s fast enough that I’m not losing time by not doing it myself.” Across incident response, daily planning, and refactoring, Ultrafast lets OpenAI’s Technical Staff work with Codex at the pace of their questions. They can follow up on an answer, try another approach, and keep working without losing their train of thought. That shorter wait also changes what they’re willing to take on, from a refactor they’d put off to a routine task that’s finally worth delegating. Codex 2026 Author OpenAI Keep reading View all How Codex became a collaborator for OpenAI’s creative team OpenAI on OpenAI Jul 16, 2026 Improving support with every interaction at OpenAI API Sep 29, 2025 Building OpenAI with OpenAI ChatGPT Sep 29, 2025</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/fanatics-streamline-fan-experience" target="_blank">How Fanatics and OpenAI streamline the fan experience</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 26, 2026 &middot; 07:00 UTC</span>
+          </div>
+          <p class="summary"><span>October 26, 2026 How Fanatics and OpenAI streamline the fan experience New “Shop the Look” online commerce feature launches in time for fall sports calendar.</span> <span>Contact sales Learn more Company size: Enterprise Region: North America Industry: Retail Products: ChatGPT, Codex Engagement 10% Higher engagement than the previous Shop the Look experience.</span> <span>Testing scale ~30,000 MLB products included in recommendation testing.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>October 26, 2026 How Fanatics and OpenAI streamline the fan experience New “Shop the Look” online commerce feature launches in time for fall sports calendar. Contact sales Learn more Company size: Enterprise Region: North America Industry: Retail Products: ChatGPT, Codex Engagement 10% Higher engagement than the previous Shop the Look experience. Testing scale ~30,000 MLB products included in recommendation testing. Testing speed &lt;24 hours To test the first 50 products. Loading… Fanatics and OpenAI are collaborating to improve the fan experience. As part of that work, Fanatics is launching an OpenAI-powered version of Shop the Look, which uses AI models to recommend coordinated merchandise to help fans complete their game-day outfits. Fanatics, a global digital sports platform, uses ChatGPT Work and Codex across Fanatics Corporate, Commerce, Collectibles, and Betting and Gaming. Helping fans complete the look Shop the Look is now live across many sites across the Fanatics network—including Fanatics.com and the official NFL, NBA, MLB and NHL online stores. With it, fans can more easily find recommended merchandise to match with items they’re looking to wear. When fans browse for their favorite team’s jersey, Shop the Look suggests coordinated outfits on the product page, using in-stock items that match their team and intended style. OpenAI models draw on enriched product data, team and inventory information to assemble the recommendations. Fanatics’ merchandising rules keep the selections compatible and relevant, and looks are refreshed daily as catalogs change. Building and testing the first 50 looks in 24 hours Using Codex, OpenAI and the Fanatics engineering team quickly developed custom recommendation tools to enrich product and catalog data, find compatible merchandise, evaluate recommendations, and generate looks for each product. Testing the new approach on 50 products took less than a day to complete. Fanatics reviewed the looks and gave feedback directly to the builders. After a couple days of iteration, the company approved the minimum viable product that same week. OpenAI helped design the solution which enabled Fanatics to implement the new Shop the Look experience in their production environment and scale the approach across thousands of products. After testing the recommendations across roughly 30,000 MLB products, the OpenAI-powered Shop the Look experience achieved 10% higher engagement than the previous experience. Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Keep reading The future of the firm Intelligence Age Oct 28, 2026 Legora is building the agentic operating system for legal work Oct 28, 2026 Legora is building the agentic operating system for legal work Oct 28, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/introducing-gpt-6-1-terra" target="_blank">Introducing GPT-6.1 Terra</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 26, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>In ChatGPT Work and Codex, your plan goes further with GPT-6.1 Terra—the same usage allowance covers more tasks than with GPT‑5.6 Terra and substantially more than with GPT‑6.1 Sol or GPT‑6 Astra.</span> <span>At medium reasoning effort, GPT-6.1 Terra scores 15 percentage points higher than GPT-5.6 Terra at about one-third the cost.</span> <span>GPT-6.1 Terra marks a substantial improvement over GPT-5.6 Terra for software engineering.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>GPT-6.1 Terra Delivering fast and capable computer use at scale We’re introducing GPT-6.1 Terra , a fast, efficient model that combines detailed visual reasoning and precise computer use alongside clearer, more natural writing. A significant step up from GPT‑5.6 Terra, it excels at the communication and computer-based tasks that fill the workday, from drafting proposals and interpreting technical drawings to filling out forms and editing videos. Terra continues to advance the cost-intelligence frontier across our model families, providing a new balance of speed, capability, and cost. Its standard API prices are 50% lower than those of GPT-5.6 Terra and GPT-6.1 Sol, making it practical for developers to automate high-volume work, like reading incoming invoices and entering their details into accounting software. In ChatGPT Work and Codex, your plan goes further with GPT-6.1 Terra—the same usage allowance covers more tasks than with GPT‑5.6 Terra and substantially more than with GPT‑6.1 Sol or GPT‑6 Astra. From visual understanding to action We measured GPT-6.1 Terra’s computer-use capabilities on Agents’ Last Exam, a benchmark of professional tasks that includes turning architectural drawings into a 3D model and reviewing an animated film shot by shot to create a time-coded log for a restoration team. At medium reasoning effort, GPT-6.1 Terra scores 15 percentage points higher than GPT-5.6 Terra at about one-third the cost. It even performs on par with GPT-6 Astra at only one-tenth its price per token. At max effort, Terra is over three times as token efficient as Claude Opus 5.5, and one-fourth its price per token, resulting in a ~9x lower cost per task. Terra is also much quicker, completing tasks over three times faster than both GPT-6 Astra and GPT-6.1 Sol. On MMMU-Pro , a benchmark of visual reasoning, GPT-6.1 Terra outperforms GPT-5.6 Terra at every reasoning setting. It even nearly matches the scores of our most capable frontier model, GPT-6 Astra, and GPT-6.1 Sol at much lower cost. OSWorld 2.1 tests how well AI agents use desktop apps to complete multistep tasks, such as building a 3D model from a technical drawing. At medium reasoning effort, GPT-6.1 Terra surpasses GPT-5.6 Terra’s best score at a fraction of the cost per task. A significant step up on factuality and coding This year, we’ve invested heavily in reducing hallucinations and factual errors produced by our models. On our internal benchmark of error-inducing prompts, the error rate at low reasoning effort fell from 53.6% with GPT-5.6 Terra to 16.7% with GPT-6.1 Terra, a drop of nearly 37 percentage points. At maximum effort, the error rate fell by 18 percentage points to 4.3%, nearly matching the rates for GPT-6 Astra and GPT-6.1 Sol. GPT-6.1 Terra marks a substantial improvement over GPT-5.6 Terra for software engineering. Terminal-Bench 4.0 tests how well coding agents solve problems from the command line, such as fixing a webpage whose layout shifts as it loads. At maximum reasoning effort, GPT‑6.1 Terra solves 50.3% of tasks, more than double GPT‑5.6 Terra’s published score of 21.5%. For the most complex coding tasks, GPT-6.1 Sol and GPT-6 Astra remain the better choice. Terminal-Bench-Science 0.1 tests how well agents use code to carry out scientific research tasks, such as tracking cell divisions in a time-lapse video. At max reasoning, GPT-6.1 Terra surpasses GPT-6.1 Sol at lower cost, coming within five points of Opus 5.5 at less than one-fifth the estimated cost. Safety and alignment As we make powerful AI more efficient and accessible, we continue training, testing, and refining our safeguards. GPT‑6.1 Terra meets the Critical threshold in cybersecurity under our Preparedness Framework, and maintains the protections developed for GPT‑6 Astra. GPT-6.1 Terra brings with it the alignment improvements of the GPT-6 series. According to our evaluations, GPT-6.1 Terra is more likely to stay within scope and honestly disclose limitations and potential blockers to the user compared to GPT-5.6 Terra. In our prompt-injection tests, GPT-6.1 Terra also showed strong resistance to malicious instructions designed to divert it from the user’s task. More detail is available in the system card ⁠ (opens in a new window) . Pricing and availability Starting today, GPT-6.1 Terra is available to all Plus, Pro, Enterprise, and Edu users in ChatGPT Work and Codex. Developers can also access it through the OpenAI API as gpt-6.1-terra . Standard API pricing is $1 per million input tokens, $0.05 per million cached input tokens, and $5 per million output tokens. 2026 GPT Author OpenAI</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/openai-nask-ai-safety-security-partnership" target="_blank">OpenAI and Poland’s NASK partner to advance AI safety and security</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 23, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>October 23, 2026 Global Affairs OpenAI and Poland’s NASK partner to advance AI safety and security Loading… OpenAI and Poland’s NASK National Research Institute have signed an agreement to explore collaboration on AI safety, security and technical research.</span> <span>As AI systems become more capable, international collaboration between developers and public research institutions will be essential to understanding their risks and building stronger safeguards.</span> <span>OpenAI’s existing work with the US Center for Advancing Standards and Innovation for Super Intelligence (CAISSI), UK AI Security Institute (AISI) and other public research institutions around the world has already helped strengthen safeguards, identify and fix security vulnerabilities in AI agents, and advance frontier AI safety.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>October 23, 2026 Global Affairs OpenAI and Poland’s NASK partner to advance AI safety and security Loading… OpenAI and Poland’s NASK National Research Institute have signed an agreement to explore collaboration on AI safety, security and technical research. The partnership will bring together expertise from both organizations to better understand emerging risks, strengthen safeguards, and explore how advanced AI can contribute to a more secure and resilient digital ecosystem. As AI systems become more capable, international collaboration between developers and public research institutions will be essential to understanding their risks and building stronger safeguards. OpenAI’s existing work with the US Center for Advancing Standards and Innovation for Super Intelligence (CAISSI), UK AI Security Institute (AISI) and other public research institutions around the world has already helped strengthen safeguards, identify and fix security vulnerabilities in AI agents, and advance frontier AI safety. Through the agreement, NASK’s AI Safety Research Center – serving as the Polish Artificial Intelligence Safety Institute (AISI) – and OpenAI will collaborate on AI safety research, exploring ways to evaluate increasingly capable AI systems, identify potential vulnerabilities and strengthen safeguards. “ Collaboration with OpenAI is a natural step for the Institute and its AI Safety Research Center, which is actively involved in AI safety research. This work spans developing safeguards against emerging risks, detecting synthetic AI-generated content, and understanding both its malicious uses and the multilingual aspects of these challenges. AI safety cannot be achieved in isolation. It is a collaborative effort, and only through active cooperation between public AI Safety Institutes and frontier AI developers can we ensure that AI becomes truly reliable and safe to use. By combining our research expertise with OpenAI’s technical capabilities, we can better anticipate risks, strengthen safeguards, and build public trust in these transformative technologies. ” “ Poland is home to exceptional scientists and technical talent, many of whom have helped lead OpenAI’s own research. As AI becomes more capable, it’s vital that we draw on expertise beyond our own organization to challenge our assumptions, test our systems and strengthen safeguards. This agreement with NASK opens the door to doing that together, bringing Poland’s research expertise into the international effort to make AI safer. ” OpenAI has called for the US to work with countries around the world on international technical standards for frontier AI, drawing on the expertise of AI safety institutes and standards bodies. Common approaches to evaluating capabilities, assessing risks, testing safeguards and reporting incidents can help countries compare evidence and respond to risks that cross borders. The collaboration with NASK reflects the value of bringing national expertise into this wider effort. In NASK’s case, this expertise rests on extensive research in AI safety, applied directly to protecting public services and Poland’s digital information ecosystem. Without national partners like NASK, global AI safety standards may remain detached from the realities in which AI is actually used. The agreement also builds on OpenAI’s existing work with cyber defenders in Poland. In July, CERT Polska, which operates within NASK, gained access ⁠ (opens in a new window) to OpenAI’s cyber capable models through Daybreak. The team used OpenAI models to help discover six vulnerabilities in MikroTik RouterOS, including flaws that could be combined to take control of affected devices without authentication. The vendor released fixes, which CERT Polska confirmed prevented the attacks it observed. 2026 Author OpenAI Keep reading View all Building standards for the next phase of AI Global Affairs Sep 21, 2026 Responding to the next frontier of critical cyber capabilities Security Aug 7, 2026 Daybreak for Frontline Defenders Security Sep 3, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Oct/22/donating-agent-skills/" target="_blank">Donating Agent Skills to the Agentic AI Foundation</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Oct 22, 2026 &middot; 18:09 UTC</span>
+          </div>
+          <p class="summary"><span>Donating Agent Skills to the Agentic AI Foundation News today from Anthropic: We’re committed to keeping Agent Skills open, community-driven, and vendor-neutral.</span> <span>Fun side note: since my blog content is available to Claude via the datasette-mcp plugin I found that post by prompting Claude to &quot; Use simonwillison.net MCP to find if I ever talked about how I want skills to be donated to a standards body &quot;.</span> <span>Tags: standards , ai , generative-ai , llms , anthropic , model-context-protocol , skills</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Donating Agent Skills to the Agentic AI Foundation News today from Anthropic: We’re committed to keeping Agent Skills open, community-driven, and vendor-neutral. Today, we are donating the standard to the Agentic AI Foundation (AAIF) under the Linux Foundation, which we co-founded with Block and OpenAI last year, and to which we donated the Model Context Protocol (MCP). I&#x27;m pleased to note I called this one last December , when Anthropic first declared skills to be an &quot;open standard&quot;: I wouldn&#x27;t be surprised to see this end up in the AAIF , recently the new home of the MCP specification. Fun side note: since my blog content is available to Claude via the datasette-mcp plugin I found that post by prompting Claude to &quot; Use simonwillison.net MCP to find if I ever talked about how I want skills to be donated to a standards body &quot;. Tags: standards , ai , generative-ai , llms , anthropic , model-context-protocol , skills</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/uber-chatgpt-work-rollout" target="_blank">Uber brings ChatGPT Work to all employees with OpenAI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 22, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>October 22, 2026 Company Uber brings ChatGPT Work to all employees with OpenAI Loading… Uber announced the company-wide rollout of ChatGPT Work , an agent that helps employees take on a wide range of tasks within ChatGPT Enterprise, starting today.</span> <span>The rollout will make ChatGPT Work available to more than 30,000 employees across Uber’s global workforce.</span> <span>The expansion makes ChatGPT Work Uber’s first company-wide deployment of an agentic platform tailored for knowledge work.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>October 22, 2026 Company Uber brings ChatGPT Work to all employees with OpenAI Loading… Uber announced the company-wide rollout of ChatGPT Work , an agent that helps employees take on a wide range of tasks within ChatGPT Enterprise, starting today. The rollout will make ChatGPT Work available to more than 30,000 employees across Uber’s global workforce. Expanding from an initial pilot of 1,000 employees, the rollout will give teams across Uber access to an agentic platform designed to take on complex, multi-step tasks and deliver finished work. The expansion makes ChatGPT Work Uber’s first company-wide deployment of an agentic platform tailored for knowledge work. ChatGPT Work connects with tools companies like Uber use on a daily basis, including Google Drive, Gmail, Google Calendar, and Slack, enabling workers to research information, prepare meeting briefs, create presentations, analyze data and complete workflows across applications. ChatGPT Work also gives Uber access to OpenAI’s portfolio of frontier models. Uber will benefit from models like GPT‑6.1 Sol ⁠ which will be deployed as the default capability within ChatGPT Work, balancing frontier performance and cost efficiency. Uber teams will also be supported by OpenAI multimodal capabilities, including voice and image generation, giving them the flexibility to choose the right models and tools for different needs. The rollout will be supported by Uber’s internal AI skills library, approved integrations and dedicated employee training, helping teams across functions including operations, finance, marketing and product put the technology to work. Uber’s developers and software engineering teams will also continue using Codex to accelerate software development and streamline coding workflows. “ Uber has always been a company of builders, and every day, millions of people around the world rely on what we create. As AI transforms how we work, we want to give everyone the tools to innovate, solve problems and help shape Uber’s future. Rolling out ChatGPT Work across the company is an exciting step toward that ambition, and I can’t wait to see what our teams build with it. ” “ Uber is putting AI to work across its business, and bringing ChatGPT Work to tens of thousand employees is a big step toward expanding access to frontier AI capabilities and tools. Now teams across Uber can tap into our portfolio of frontier models and agents to take on more complex work, connect the tools they use every day, and get more done. ” 1 of 2 “ Uber has always been a company of builders, and every day, millions of people around the world rely on what we create. As AI transforms how we work, we want to give everyone the tools to innovate, solve problems and help shape Uber’s future. Rolling out ChatGPT Work across the company is an exciting step toward that ambition, and I can’t wait to see what our teams build with it. ” “ Uber is putting AI to work across its business, and bringing ChatGPT Work to tens of thousand employees is a big step toward expanding access to frontier AI capabilities and tools. Now teams across Uber can tap into our portfolio of frontier models and agents to take on more complex work, connect the tools they use every day, and get more done. ” Praveen Neppalli Naga Greg Brockman The expansion marks another step in Uber’s broader AI strategy and its collaboration with OpenAI. The companies plan to share further insights into adoption, use cases and measurable outcomes as the rollout progresses. 2026 Partnerships Author OpenAI Keep reading View all ChatGPT is now a partner for your most ambitious work Product Jul 9, 2026 Introducing GPT-6.1 Sol Product Sep 29, 2026 Uber uses OpenAI to help millions earn smarter and book faster May 6, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/claude-duet-is-beautiful-i-still" target="_blank">Claude Duet is beautiful. I still forgot to use it</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Oct 21, 2026 &middot; 20:25 UTC</span>
+          </div>
+          <p class="summary"><span>Personal agent fatigue: does Claude Duet make the cut? What Claude Duet is and who it’s for Why the design polish stands out Task lists, artifacts, and channels The icon What I didn’t like: not proactive enough Testing it on email, Slack, and Warriors tickets Why latency matters so much in a personal agent The missing desktop app Sales pipeline and a Google Docs deck Launch videos and the local skills gap Single-player vs.</span> <span>multiplayer agents Final verdict<ul><li>Claude Duet (Anthropic): <a href="https://claude.com/" target="_blank" rel="noopener">https://claude.com/</a> /articles/claude-duet</li><li>Claude Duet Waitlist: <a href="https://claude.com/product/claude-duet" target="_blank" rel="noopener">https://claude.com/product/claude-duet</a></li><li>Claude Cowork: <a href="https://claude.com/product/cowork" target="_blank" rel="noopener">https://claude.com/product/cowork</a></li><li>Meta Muse: <a href="https://muse.ai/" target="_blank" rel="noopener">https://muse.ai/</a></li><li>Codex (OpenAI): <a href="https://openai.com/codex" target="_blank" rel="noopener">https://openai.com/codex</a></li><li>Grok Bot: <a href="https://x.ai/bot" target="_blank" rel="noopener">https://x.ai/bot</a></li></ul></span></p>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 210</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
