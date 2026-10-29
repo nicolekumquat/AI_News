@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-10-29</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-10-29</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Oct/29/how-i-built-the-most-ai-pilled-company-in-the-world/" target="_blank">Building a multiplayer game world with autonomous Fable-class models</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Oct 29, 2026 &middot; 17:00 UTC</span>
+          </div>
+          <p class="summary"><span>Spawn is a massively multiplayer gaming environment where players can use prompts (to the in-game agent, Savi) to modify the game world.</span> <span>By Jacob&#x27;s telling, Spawn is now being developed autonomously by a swarm of Fable-powered agents costing over $3 million in tokens per month : Our agents change the live code directly and ship to production hourly, so they read every error, bug report and metric themselves.</span> <span>Tags: game-design , ai , generative-ai , llms , claude , coding-agents , agentic-engineering , claude-mythos-fable</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>How I Built the Most AI-Pilled Company in the World Don&#x27;t be put off by the clickbait headline, this piece by Jacob Sansbury describing how they are building Spawn is a fascinating exploration of the bleeding edge of what&#x27;s possible with agentic engineering against frontier models. Spawn is a massively multiplayer gaming environment where players can use prompts (to the in-game agent, Savi) to modify the game world. I fired it up on my phone for a few minutes and was able to prompt a castle into existence, then a dragon, then ride the dragon to fly around that castle. By Jacob&#x27;s telling, Spawn is now being developed autonomously by a swarm of Fable-powered agents costing over $3 million in tokens per month : Our agents change the live code directly and ship to production hourly, so they read every error, bug report and metric themselves. About 60% of our work starts from a production error, a Savi bug report (Savi is the AI you build games with in Spawn), something odd in our logs, or a feature request. Savi files bugs herself. When a user hits one, or Savi hits one in the product, she files it. It goes straight to an agent that decides whether it&#x27;s a real bug to fix, something we won&#x27;t fix, or intentional design that needs a decision. Usually it becomes a change, delivered to that user within an hour, with a message in the same chat. This is continuous deployment turned up to 11: A loop this tight only works if it never stops, so we treat an hour without a ship as a SEV-0, our most severe kind of incident. Unshipped changes pile up, and every problem already in production lasts longer. The feedback slows down too. An agent can only keep a few hours of work in its head, so shipping faster than that actually helps it stay coherent. [...] We can roll back a broken change in 30 seconds, exactly where it&#x27;s broken and nowhere else. When a monitor or a log alert fires, it starts or wakes an agent that owns the incident, and we break things on purpose to test that those recovery paths work. My eyebrows raised at least a dozen times reading thing. I have trouble imagining this style of development working on software with higher stakes for when something goes wrong, but for a game this appears to be working surprisingly well. Jacob says that Fable 5 (and then 5.1) was the model that made this level of autonomy possible. Opus 5.5 doesn&#x27;t quite hack it for them, and when they tried GPT-6 Astra to apply fixes from a security review everything stopped working: Every feature had been disabled and marked to be turned on again once the security fixes were done. Astra had gone through our whole product and made the insecure things secure by turning them off. These kinds of extreme experiments are why I&#x27;m excited about game development as a substrate for exploring the edges of what today&#x27;s coding agents can do. Tags: game-design , ai , generative-ai , llms , claude , coding-agents , agentic-engineering , claude-mythos-fable</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Oct/29/ben-hylak/" target="_blank">Quoting Ben Hylak</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Oct 29, 2026 &middot; 14:06 UTC</span>
+          </div>
+          <p class="summary"><span>every product i use should just be a headless mcp, that feeds into an agent, where i never have to think about anything underneath.</span> <span>except for our product, of course.</span> <span>in our product, customers love the ui and love us very much.</span> <span>we&#x27;re special that way.</span> <span>— Ben Hylak Tags: model-context-protocol , ai</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/how-we-detect-frontier-model-misalignment" target="_blank">How we detect frontier model misalignment</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 29, 2026 &middot; 09:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI uses layered monitoring to detect frontier model misalignment and unauthorized agent behavior so responders can intervene before incidents escalate.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/the-future-of-the-firm" target="_blank">The future of the firm</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 28, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>How AI might enter the org chart—beneath, beside, and between us.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/legora" target="_blank">Legora is building the agentic operating system for legal work</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 28, 2026 &middot; 09:30 UTC</span>
+          </div>
+          <p class="summary"><span>See how Legora uses OpenAI models, ChatGPT, and Codex to accelerate legal workflows, expand contract analysis, and free lawyers to focus on higher-value work.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://latent.space/p/how_anthropic_ships_the_1_llm_in_the_world_safely_separating_the_brain_from_the_hands/" target="_blank">How Anthropic ships the #1 LLM in the World safely: Separating the Brain from the Hands</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Oct 27, 2026 &middot; 18:40 UTC</span>
+          </div>
+          <p class="summary"><span>Katelyn Lesse and Angela Jiang join Latent Space to explain the engineering behind the Claude Platform: launching Opus 5.5, separating the model’s “brain” from the agent’s “hands,” scaling APIs, and building reliable managed agents.</span> <span>A new introduction covers Anthropic’s S-1, the improvement and investment loops, and why the platform matters.</span> <span>How Anthropic contains Claude — Isolation, credentials and network controls.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Katelyn Lesse and Angela Jiang join Latent Space to explain the engineering behind the Claude Platform: launching Opus 5.5, separating the model’s “brain” from the agent’s “hands,” scaling APIs, and building reliable managed agents. A new introduction covers Anthropic’s S-1, the improvement and investment loops, and why the platform matters. Watch the full episode on YouTube Claude Opus 5.5 — Anthropic’s launch on model behavior, evaluation and pricing. Scaling Managed Agents — Decoupling the brain, harness and sandbox. How Anthropic contains Claude — Isolation, credentials and network controls. Effective harnesses for long-running agents — Maintaining progress across context windows. Our Anthropic S-1 breakdown — Context for the newly recorded introduction. Sponsored Your sponsor ad here Reach the AI engineers building what comes next. Latent Space is read by the people shipping agents, models and infrastructure. Enquire about sponsoring this slot. business@latent.space → Timestamps 0:00 Anthropic’s S-1 and this interview 1:06 Revenue per employee and efficiency 3:13 The improvement and investment loops 4:04 Why Claude Platform matters 6:25 Training incidents and production safeguards 7:30 Opus 5.5 launch and pricing 9:25 Distillation and preserved thinking 14:35 Product and engineering at Anthropic 18:05 Scaling the Claude Platform 19:25 Model access and safety decisions 26:25 Trust grants and product roadmaps 30:25 How Anthropic launches models 35:55 Benchmarks and model personalization 42:10 Claude Managed Agents 44:25 Memory, dreaming, and agent harnesses 48:25 Evaluating agents 53:25 CPU constraints and scaling 56:05 Rebuilding the Messages API in Rust 1:03:25 The brain and the hands 1:05:25 Protecting credentials and sandboxes 1:08:25 Training incidents versus production 1:10:55 Pacing and launching frontier models 1:12:25 Safety classifiers and model routing 1:19:25 Emerging agent workloads 1:20:55 Fighting AI slop 1:27:25 Management, writing, and working styles 1:33:25 Building Anthropic’s DevRel team 1:40:25 Developer relations and product voices 1:43:25 What to try with Opus 5.5</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/oracle-apps-in-chatgpt" target="_blank">OpenAI expands partnership with Oracle to bring its apps to ChatGPT</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 27, 2026 &middot; 07:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI and Oracle are expanding their partnership to bring business applications and AI agents into ChatGPT and power new Oracle offerings.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/check-point-daybreak" target="_blank">How Check Point accelerates vulnerability research with Daybreak</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 27, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>With OpenAI Daybreak, Check Point speeds up the research behind new security protections, enabling its analysts to turn vulnerability intelligence into customer defenses faster.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/greptile-code-review-codex-astra" target="_blank">Greptile takes bug detection beyond code review with GPT-6 Astra</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 26, 2026 &middot; 22:00 UTC</span>
+          </div>
+          <p class="summary"><span>How Greptile uses GPT-6 Astra to test user workflows, Daybreak to strengthen security, and Codex to reduce rework.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/why-reddit-built-its-own-ai-prototyping" target="_blank">Why Reddit built its own AI prototyping tool | Blair Metcalf</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Oct 26, 2026 &middot; 12:04 UTC</span>
+          </div>
+          <p class="summary"><span>This entire episode is Introduction to Blair Reddit Proto demo Annotations to Cursor: the targeted edit workflow Internal deployment and adoption How leadership reviews and gives feedback Engineering handoff and the feature capsule How the custom MCP was built Quick recap</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/fanatics-streamline-fan-experience" target="_blank">How Fanatics and OpenAI streamline the fan experience</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 26, 2026 &middot; 07:00 UTC</span>
+          </div>
+          <p class="summary"><span>Fanatics uses OpenAI to help fans complete their game-day outfits with Shop the Look.</span> <span>Testing across roughly 30,000 MLB products showed 10% higher engagement.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/openai-cut-incident-investigation" target="_blank">How Ultrafast cut incident investigation from hours to minutes at OpenAI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 26, 2026 &middot; 07:00 UTC</span>
+          </div>
+          <p class="summary"><span>See how OpenAI engineers use Codex Ultrafast to investigate incidents in minutes.</span> <span>Explore faster security analysis, code refactoring, and daily workflows.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/scaling-storage-one-billion-users-part-two" target="_blank">Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 23, 2026 &middot; 17:00 UTC</span>
+          </div>
+          <p class="summary"><span>Learn how OpenAI scaled Habitat with reliable multi-tenancy, global caching, and Azure Cosmos DB to deliver 12× faster reads for ChatGPT.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/openai-nask-ai-safety-security-partnership" target="_blank">OpenAI and Poland’s NASK partner to advance AI safety and security</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Oct 23, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI and Poland’s NASK are partnering on AI safety, security, and technical research to strengthen safeguards and support a more resilient digital ecosystem.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Oct/22/donating-agent-skills/" target="_blank">Donating Agent Skills to the Agentic AI Foundation</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Oct 22, 2026 &middot; 18:09 UTC</span>
+          </div>
+          <p class="summary"><span>Donating Agent Skills to the Agentic AI Foundation News today from Anthropic: We’re committed to keeping Agent Skills open, community-driven, and vendor-neutral.</span> <span>Fun side note: since my blog content is available to Claude via the datasette-mcp plugin I found that post by prompting Claude to &quot; Use simonwillison.net MCP to find if I ever talked about how I want skills to be donated to a standards body &quot;.</span> <span>Tags: standards , ai , generative-ai , llms , anthropic , model-context-protocol , skills</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Donating Agent Skills to the Agentic AI Foundation News today from Anthropic: We’re committed to keeping Agent Skills open, community-driven, and vendor-neutral. Today, we are donating the standard to the Agentic AI Foundation (AAIF) under the Linux Foundation, which we co-founded with Block and OpenAI last year, and to which we donated the Model Context Protocol (MCP). I&#x27;m pleased to note I called this one last December , when Anthropic first declared skills to be an &quot;open standard&quot;: I wouldn&#x27;t be surprised to see this end up in the AAIF , recently the new home of the MCP specification. Fun side note: since my blog content is available to Claude via the datasette-mcp plugin I found that post by prompting Claude to &quot; Use simonwillison.net MCP to find if I ever talked about how I want skills to be donated to a standards body &quot;. Tags: standards , ai , generative-ai , llms , anthropic , model-context-protocol , skills</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 128</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
