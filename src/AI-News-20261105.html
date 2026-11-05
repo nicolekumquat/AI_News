@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-11-05</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-11-05</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/gemini-omni-12-flash-fast-and-cost-effective-with-longer-clips/" target="_blank">Gemini Omni 1.2 Flash: Fast and cost-effective with longer clips</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Nov 05, 2026 &middot; 17:05 UTC</span>
+          </div>
+          <p class="summary"><span>Gemini Omni 1.2 Flash: Fast and cost-effective with longer clips Nov 05, 2026 | x.com Facebook LinkedIn Mail Gemini Omni 1.2 Flash brings 15-second clips, stronger consistency, and faster, more cost-effective generation.</span> <span>Generative AI is experimental We’re rolling out Gemini Omni 1.2 Flash, which offers native 15-second video creation, improved adherence, and multi-turn conversational editing.</span> <span>We are launching Gemini Omni 1.2 Flash with support for fifteen-second videos and improved adherence.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Gemini Omni 1.2 Flash: Fast and cost-effective with longer clips Nov 05, 2026 | x.com Facebook LinkedIn Mail Gemini Omni 1.2 Flash brings 15-second clips, stronger consistency, and faster, more cost-effective generation. Anish Nangia Product Manager, Google DeepMind Share x.com Facebook LinkedIn Mail Your browser does not support the audio element. Listen to article [[duration]] minutes This content is generated by Google AI. Generative AI is experimental We’re rolling out Gemini Omni 1.2 Flash, which offers native 15-second video creation, improved adherence, and multi-turn conversational editing. This update lowers costs by 30% and provides better consistency for your professional projects. You can start using these capabilities today across the Gemini API, Google Vids, and Gemini for business to produce high-quality video content at scale. Summaries were generated by Google AI. Generative AI is experimental. We are launching Gemini Omni 1.2 Flash with support for fifteen-second videos and improved adherence. You can now edit clips through multi-turn conversations, which allows for faster adjustments without starting over. We reduced the price by 30% to help you produce high-quality video content at a lower cost. This model is generally available on the Gemini API and Google Cloud for your production needs. Summaries were generated by Google AI. Generative AI is experimental. Explore other styles: Today, we’re rolling out Gemini Omni 1.2 Flash, and making it generally available across the Gemini API and Gemini for business . Gemini Omni 1.2 Flash introduces native 15-second video creation, multi-turn conversational editing capabilities, and enhanced following. We have dropped the price 30% from Gemini Omni 1.1 making it available at $0.07 per second for 720p video. Here’s an overview of what’s new: Fast and cost-effective at scale Beyond the lower price, the workflow keeps costs down: you can draft fast at 360p or 720p, fix a detail with a follow-up edit instead of re-generating the entire clip, and then upscale your best creations to 1080p or 4K. Longer clips up to 15 seconds You can now generate and edit videos natively up to 15 seconds long, up from 10 seconds with Omni 1.1. You can also specify duration in one-second increments from 3 to 15 seconds, giving you room to tell complete stories, create product explainers, or produce full social ad spots in a single generation. Better adherence You can guide generation combining character, product, or style images, short motion clips (up to three seconds), and audio cues — and Omni 1.2 Flash holds onto those details from start to finish. Faces, garments, packaging typography, and brand colors stay consistent across camera angles, making it easy to turn existing product photography or character sheets into virtual try-on clips, catalog spins, and branded video ads. Combining one model photo with front-and-back product shots of three outfits, Gemini Omni 1.2 Flash generates a 15-second virtual try-on sequence across 360-degree turns and match cuts while keeping the model’s identity and each garment’s cut, drape, and back details consistent. More consistent results You can maintain stronger character, object, and scene consistency from the first to the last frame, with less visual drift or morphing across motion and camera transitions. Whether you’re interpolating between a first and last keyframe, or extending a clip to build a longer sequence, products, characters, props, and environments stay consistent from shot to shot. Given the same static studio lighting exhibition poster and five-layer animation prompt, Gemini Omni 1.1 Flash does not match the image as closely as 1.2 does. Gemini Omni 1.2 Flash builds the poster sequentially layer by layer on the dusty-pink cyclorama rising the hexagonal plinth, assembling the ribbed glass, warm filament, faceted crystal, and coiled-cord letterforms for HALO, GLOW, and LUMEN, and locking every material, shadow, and typographic detail consistently through the final frame. Easier editing in conversation You can refine the same clip turn by turn — such as swapping a product or background, changing the lighting or weather, or switching the aspect ratio — instead of starting over from scratch. Multi-turn conversational editing works across full 15-second clips, making it easy to produce ad variants for different audiences and placements without re-briefing or re-generating. Starting from one generated clip, multi-turn conversational prompts swap the background turn by turn — from a striped pavilion tent to an oak forest, a stable with a white horse, a market fair, and a stone castle — while keeping both characters’ performances, armor reflections, and camera framing intact. More natural speech You can generate scenes with more fluid, natural-sounding dialogue, clearer lip-sync, and distinct multi-speaker conditioning. This will show up whether you’re directing multi-character dialogue in Flow , creating video explainers in Gemini for business , or creating polished, pro videos with avatars, music and narration in Google Vids . Conditioned on one conservatory scene image alongside four character, mouth, and one-second voice , Gemini Omni 1.2 Flash routes each sampled voice to the right character with expressive lip-sync and natural comedic timing across a 15-second animated scene. More controllable, cinematic look You can direct complex, continuous camera movements like sweeping FPV flythroughs to dramatic zoom-outs and orbits with significantly fewer unwanted jump cuts, steadier scale, and a more polished, cinematic look. Guided by two architectural photos, Gemini Omni 1.2 Flash directs one continuous FPV drone flight across the piazza, through the bronze doors, and up through the Pantheon’s coffered dome to the oculus with zero jump cuts. Longer clips with smoother motion and tighter consistency Gemini Omni 1.2 Flash generates clips up to 15 seconds long that hold together better than before. You can scroll through to see characters, text, and camera moves stay consistent across longer shots, multiple turns and transitions with no cuts. 15 second long clips: Turns one style frame into a 4-shot, 15-second macro science explainer with accurately spelled, motion-tracked callouts. Multi-turn motion transfer: Generates a rippling octopus in Turn 1, then replaces it in Turn 2 with a dancer whose gown mirrors the exact fluid motion. First-to-last frame consistency (1.1 vs. 1.2): Connects an exterior start frame and interior end frame in one continuous camera push in 1.2 Flash. You can see subtle differences like the cats on the roof, the soup ladle turning into chopsticks, and some other minor changes. Unbroken crash zoom-out: Pulls continuously from a tight shoreline close-up to an aerial island vista in one 10-second shot with natural scale and zero cuts. Real-world results, from creatives to global brands Businesses, startups, and creatives are already using Gemini Omni 1.2 Flash in their workflows. And for the first time, Gemini Omni is now generally available, backed by Google Cloud’s enterprise-grade infrastructure and security. Provisioned Throughput is available, and outputs carry an imperceptible SynthID watermark. Get started with Gemini Omni 1.2 Flash While development is ongoing to further improve things like fast sports action, rapid script changes and complex physics, Gemini Omni 1.2 Flash is ideal for businesses, developers, and creators producing videos at scale. You can get started with Gemini Omni 1.2 Flash today as it rolls out across Google’s products and developer platforms: For developers using the Gemini API: Prototype in Google AI Studio , explore interactive starter apps, and check out the developer documentation and pricing . For businesses: Try it in the Google Cloud console , and build enterprise solutions with the API . For everyone using Google apps: Direct scenes and multi-turn edits in Flow , generate 15-second clips at no additional cost in Google Vids with a Google account or Google Workspace subscription, create 15-second videos in the Gemini app (rolling out to Google AI Ultra subscribers), and scale video campaigns in Google Ads . Get the latest news from Google in your inbox Done. Just one step more. Check your inbox to confirm your subscription. You can also subscribe with a . Your information will be used in accordance with Google&#x27;s privacy policy. You may opt out at any time</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/setting-new-standard-responsible-ai-infrastructure" target="_blank">Setting a new standard for responsible AI infrastructure</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 05, 2026 &middot; 02:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI introduces its National Community Compact and Compute Campus Policy Blueprint to protect local resources, create jobs, and guide responsible AI infrastructure development.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/devrev-enterprise-self-service" target="_blank">DevRev delivers autonomous self-service with GPT-6.1 Sol</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 04, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>DevRev uses GPT-6.1 Sol to power Computer and Operator, balancing reasoning, speed, and cost for enterprise service.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/introducing-images-2-6" target="_blank">Introducing Images 2.6</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 04, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>Images 2.6 brings faster image generation, GIF creation, more precise editing, and new API controls across ChatGPT, Codex, and the API.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/accelerating-engineering-for-the-physical-world" target="_blank">Accelerating engineering for the physical world</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 03, 2026 &middot; 12:00 UTC</span>
+          </div>
+          <p class="summary"><span>Discover how ChatGPT and Codex are helping engineers accelerate CAD, PCB design, simulation, and other workflows across the physical world.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/heimstaden" target="_blank">Heimstaden is changing residential real estate management with AI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 03, 2026 &middot; 08:00 UTC</span>
+          </div>
+          <p class="summary"><span>Discover how Heimstaden uses OpenAI’s ChatGPT Enterprise and Codex to transform property management, cut costs, and empower employees across Europe.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/cisco-cyber" target="_blank">How Cisco defends at machine speed with OpenAI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 03, 2026 &middot; 08:00 UTC</span>
+          </div>
+          <p class="summary"><span>Cisco combines network intelligence with OpenAI models to strengthen enterprise security.</span> <span>Learn how it is building more adaptive defenses.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://latent.space/p/building_legal_agents_when_you_can_t_see_the_data_-_jacob_lauritzen_cto_of_legora/" target="_blank">Building Legal Agents When You Can&#x27;t See the Data - Jacob Lauritzen, CTO of Legora</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Nov 02, 2026 &middot; 22:54 UTC</span>
+          </div>
+          <p class="summary"><span>Legora can’t read a single trace of what its agent does for a lawyer.</span> <span>Jacob Lauritzen is the CTO of Legora, one of the fastest-growing companies in legal tech history.</span> <span>Enquire about sponsoring this slot.</span> <span>business@latent.space → 12:18 What legal practice could look like in five to ten years 14:18 Will the law firm partnership model survive? 16:40 What happens to paralegals and junior lawyers? 18:00 The billable hour and why earlier legal tech fell short 19:39 Where the money goes now 22:44 How Legora used its own product for acquisition diligence 23:59 How Swedish and American law firms differ 26:12 Product metrics when you can’t read the traces 27:41 Paraphrasing traces and narrowing failures down to 10 or 20 types 28:42 Why data privacy led Legora to run everything on Azure 30:04 Open-weight models and model arbitrage 30:55 Transcription models and why Legora doesn’t use ElevenLabs 33:33 The agent, Tabular Review, projects, and the Word add-in 34:24 How a lawyer uses Tabular Review 35:51 Why a spreadsheet works and what you learn from the first 10 rows 37:53 How the legal intake bot works in Slack 39:11 How agents create lists and lists start agents 40:15 Building products on those same pieces and acquiring Wexler 42:37 What forward-deployed engineers do at Legora 43:52 How legal engineers and forward-deployed engineers onboard a big client 46:43 What’s next for the forward-deployed team over the coming year 47:24 Why Legora resisted building APIs 49:26 Can the agent be the API? 50:12 The 300 Spartans slide and the plan to stay at 20 engineers 51:32 The bets nobody asked Legora to make 53:05 Post-training open-weight models for legal research 54:05 Search, retrieval, and late interaction 54:51 What makes a good legal agent harness and why drafting depends on search 56:25 Which model writes the best draft? 57:03 Hallucinations and Legora’s citation system 57:41 Do lawyers check the citations? 58:19 MapReduce or one big context window for a million-token contract? 1:00:16 Getting anonymized examples and the idea of buying a law firm for its data 1:01:53 Why Jacob advises against default embeddings 1:02:44 Will lawyers work in Legora or through Claude? 1:03:26 Will the model labs cut Legora off? 1:04:24 Law schools and scholarships for computer science majors 1:05:28 Hiring in New York, Stockholm, and London 1:06:09 Why most work eventually becomes legal work Guest — Jacob Lauritzen, CTO of Legora <a href="https://legora.com" target="_blank" rel="noopener">https://legora.com</a> Co-host — swyx, Latent Space Host — Basil Chatha, Forward Deployed <a href="https://forwardeployed.com" target="_blank" rel="noopener">https://forwardeployed.com</a></span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Legora can’t read a single trace of what its agent does for a lawyer. The data belongs to the law firm’s clients. How do you build and test an agent when you can’t see its work? Jacob Lauritzen is the CTO of Legora, one of the fastest-growing companies in legal tech history. The team started in a Stockholm basement with ChatGPT, Swedish law, and a search tool. Today, a lawyer can use Legora to draft and edit Word documents, review 10,000 contracts in a single table, or run due diligence. The agent also coordinates work between lawyers, clients, and other agents. When Legora made its own acquisitions, the team used it for diligence. What we talked about<ul><li>Why Legora resisted adding a model picker for years, and why it finally added one</li><li>Jacob’s estimate that models already do about 60% of legal work well, and why the rest takes a smarter model</li><li>How three engineers and three lawyers build test environments modeled on customers’ work, much like the “worlds” used in reinforcement learning</li><li>A citation problem where the model got it right 70% of the time, then 99% after one release. Legora didn’t have to change anything.</li><li>Why Legora runs everything on Azure and why it doesn’t use ElevenLabs</li><li>Tabular Review, the million-cell spreadsheet the industry copied down to the name</li><li>How intake works, how agents create lists, and how a list can start another agent</li><li>What legal engineers and forward-deployed engineers each do, and who gets to write code</li><li>The 300 Spartans slide Jacob used to argue that 20 engineers would be enough forever. Now there are 100, and he still feels short-handed.</li><li>Why Jacob finds Fable and Opus too chatty for drafting and likes Astra’s concise writing</li><li>Why drafting a long contract is a search problem</li><li>Whether model labs will cut off legal tools the way they cut off coding tools</li><li>What happens to law firm partnerships, the billable hour, and jobs for junior lawyers Legora is hiring engineers in New York, Stockholm, and London. Chapters 0:00 Cold open 0:40 Meet Jacob Lauritzen, CTO of Legora 1:05 Starting out as underdogs in a Stockholm basement 1:54 How Legora grew from ChatGPT with Swedish law into a legal agent 4:12 The switch from assistant to agent 5:23 Which models Legora uses and why it added a model picker 7:48 Are today’s models good enough for lawyers? 8:20 What agents couldn’t do nine months ago 9:18 Testing the agent in simulated worlds and a 10,000-file data room 10:07 The evals team and Legora’s 100 legal engineers 11:03 When evals didn’t seem worth it and one release took citations from 70% to 99% Sponsored Your sponsor ad here Reach the AI engineers building what comes next. Latent Space is read by the people shipping agents, models and infrastructure. Enquire about sponsoring this slot. business@latent.space → 12:18 What legal practice could look like in five to ten years 14:18 Will the law firm partnership model survive? 16:40 What happens to paralegals and junior lawyers? 18:00 The billable hour and why earlier legal tech fell short 19:39 Where the money goes now 22:44 How Legora used its own product for acquisition diligence 23:59 How Swedish and American law firms differ 26:12 Product metrics when you can’t read the traces 27:41 Paraphrasing traces and narrowing failures down to 10 or 20 types 28:42 Why data privacy led Legora to run everything on Azure 30:04 Open-weight models and model arbitrage 30:55 Transcription models and why Legora doesn’t use ElevenLabs 33:33 The agent, Tabular Review, projects, and the Word add-in 34:24 How a lawyer uses Tabular Review 35:51 Why a spreadsheet works and what you learn from the first 10 rows 37:53 How the legal intake bot works in Slack 39:11 How agents create lists and lists start agents 40:15 Building products on those same pieces and acquiring Wexler 42:37 What forward-deployed engineers do at Legora 43:52 How legal engineers and forward-deployed engineers onboard a big client 46:43 What’s next for the forward-deployed team over the coming year 47:24 Why Legora resisted building APIs 49:26 Can the agent be the API? 50:12 The 300 Spartans slide and the plan to stay at 20 engineers 51:32 The bets nobody asked Legora to make 53:05 Post-training open-weight models for legal research 54:05 Search, retrieval, and late interaction 54:51 What makes a good legal agent harness and why drafting depends on search 56:25 Which model writes the best draft? 57:03 Hallucinations and Legora’s citation system 57:41 Do lawyers check the citations? 58:19 MapReduce or one big context window for a million-token contract? 1:00:16 Getting anonymized examples and the idea of buying a law firm for its data 1:01:53 Why Jacob advises against default embeddings 1:02:44 Will lawyers work in Legora or through Claude? 1:03:26 Will the model labs cut Legora off? 1:04:24 Law schools and scholarships for computer science majors 1:05:28 Hiring in New York, Stockholm, and London 1:06:09 Why most work eventually becomes legal work Guest — Jacob Lauritzen, CTO of Legora <a href="https://legora.com" target="_blank" rel="noopener">https://legora.com</a> Co-host — swyx, Latent Space Host — Basil Chatha, Forward Deployed <a href="https://forwardeployed.com" target="_blank" rel="noopener">https://forwardeployed.com</a></li></ul></p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/scaling-git-at-openai" target="_blank">Scaling Git at OpenAI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 02, 2026 &middot; 15:30 UTC</span>
+          </div>
+          <p class="summary"><span>How OpenAI built Pando, a Git-compatible backend designed for the scale of development that Codex makes possible.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/grid-protectors-program" target="_blank">Introducing the Grid Protectors Program</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 02, 2026 &middot; 15:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI’s Grid Protectors Program will work with utilities to help future compute campuses support grid reliability and protect consumer electricity costs.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/qodo-codex-plugin" target="_blank">Qodo builds context into AI code review with Codex</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 02, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>Qodo brings company knowledge and coding standards into Codex, helping developers catch P0 issues across repositories before opening a pull request.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/dan-driscoll-joins-openai" target="_blank">OpenAI appoints Dan Driscoll as Senior Counselor for National Security Modernization</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 02, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI appoints Dan Driscoll to advise on responsible AI for national security modernization, cyber resilience, and collaboration with U.S.</span> <span>allies.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Nov/1/kyle-kingsbury/" target="_blank">Quoting Kyle Kingsbury</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Nov 01, 2026 &middot; 16:49 UTC</span>
+          </div>
+          <p class="summary"><span>More broadly, the use of LLMs erodes trust in documentation, in software, and in the organizations which produce them.</span> <span>Perhaps engineers will begin to treat any new software project with suspicion—the signals we used to rely on as markers of a mature system are now easier to counterfeit.</span> <span>[...] In the age of LLMs, what can maintainers do to ensure correct software and accurate documentation? Having done that work, how can they demonstrate its quality to users? — Kyle Kingsbury , Jepsen results for ParticleDB 1.1.4 Tags: kyle-kingsbury , llms , ai , generative-ai , ai-misuse</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Oct/31/how-we-took-over-chatgpt-accounts/" target="_blank">How We Took Over ChatGPT Accounts</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Oct 31, 2026 &middot; 23:15 UTC</span>
+          </div>
+          <p class="summary"><span>How We Took Over ChatGPT Accounts Parameter Labs describe an exploit they found against ChatGPT&#x27;s implementation of the artifacts pattern (OpenAI used to call this &quot;Canvas&quot; but it looks like the latest revision is called HTML previews ), where interactive custom HTML apps are displayed in a sandboxed iframe.</span> <span>It&#x27;s important that HTML in these stays tightly sandboxed to avoid untrusted code interacting with OpenAI APIs and accessing private data.</span> <span>Once the attack had JavaScript execution on ChatGPT, it was trivial to fetch private user data from APIs and exfiltrate it via an image</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>How We Took Over ChatGPT Accounts Parameter Labs describe an exploit they found against ChatGPT&#x27;s implementation of the artifacts pattern (OpenAI used to call this &quot;Canvas&quot; but it looks like the latest revision is called HTML previews ), where interactive custom HTML apps are displayed in a sandboxed iframe. It&#x27;s important that HTML in these stays tightly sandboxed to avoid untrusted code interacting with OpenAI APIs and accessing private data. Parameter found quite a complex attack chain. OpenAI use the MathLive JavaScript library as part of their graph support, and that library includes its own virtual keyboard , which can be triggered in the parent page via postMessage() from the sandboxed iframe. That message receiving code uses innerHTML , so anything that sends a message can add custom HTML to the parent - and there was no mechanism to prevent other sandboxed frames, including HTML preview frames, from calling that method. This meant untrusted code in an iframe could insert HTML, and while innerHTML doesn&#x27;t directly execute script elements it could be used to inject a new iframe without sandbox restrictions. OpenAI’s CSP rules blocked inline scripts entirely, and only allowed script loading from a handful of domains, but one of those was YouTube - and the YouTube oEmbed endpoint could be used to reflect JavaScript back in a way that executed it. Once the attack had JavaScript execution on ChatGPT, it was trivial to fetch private user data from APIs and exfiltrate it via an image</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://latent.space/p/arca/" target="_blank">Agents Prompt People: Using Agents for Long-Horizon Financial Work</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Oct 31, 2026 &middot; 16:05 UTC</span>
+          </div>
+          <p class="summary"><span>At AI Engineer New York this month, we sat down with Aman Singh , the lead AI Engineer at Arca , an “AI-native” company providing wealth management services.</span> <span>One of the features of using AI in financial services, explained Singh, is that it’s typically long-horizon work — although not long-running.</span> <span>In his AIE presentation, Singh d that agent tasks at Arca can take up to ten days.</span> <span>“It&#x27;s very stop-start, there&#x27;s many actors in between, many decision points, many handoffs,” he said.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>At AI Engineer New York this month, we sat down with Aman Singh , the lead AI Engineer at Arca , an “AI-native” company providing wealth management services. We discovered that while agents do most of the background work in the firm, there are guardrails in place to ensure that human advisors are making the final decisions. The goal is for AI to guide the process; or as Singh nicely put it, “agents prompt people more than people prompt agents.” Play video Open video on YouTube ↗ Arca recently raised $48.5 Million in a round led by General Catalyst, with participation from Index Ventures and Venrock. One of the features of using AI in financial services, explained Singh, is that it’s typically long-horizon work — although not long-running. In his AIE presentation, Singh d that agent tasks at Arca can take up to ten days. “It&#x27;s very stop-start, there&#x27;s many actors in between, many decision points, many handoffs,” he said. For this reason, Arca has developed an internal memory system . “So we have this persistence for every client ,” Singh said in our podcast discussion. “What has happened so far? What are we tracking for next? What needs to happen immediately in the next couple of days [and] what are we tracking for the long term? Which individual is responsible for which action? All of this is being tracked by our memory systems that our agents contribute to.” Arca uses models from frontier labs like Anthropic and OpenAI, with Claude its primary model provider. The company has built its own harness , which automatically selects the best model to use for a particular task, based on the company’s internal benchmarks. Owning the harness, rather than using a managed agent harness, also means that Arca has the flexibility to change model providers if it needs to. Safety is obviously key for financial services. Singh d that although agents do much of the work, an agent’s role is limited to analysis and proposing solutions. Trading and any other money movement is handled by a human advisor. “All of our safety restrictions are fully deterministic,” he said. “And they take the decision making off the agent&#x27;s hands.” In other words, there are certain tools and tasks the agent can execute by itself — but not ones that involve risk to the client. Arca also runs verification checks on known AI security issues, such as prompt injections. Sponsored Your sponsor ad here Reach the AI engineers building what comes next. Latent Space is read by the people shipping agents, models and infrastructure. Enquire about sponsoring this slot. business@latent.space → Arca’s agent isn’t itself sandboxed, but it does use sandboxes for computation. Singh explained they’ve gone even further, with extra security measures for handling sensitive data. “We&#x27;ve built systems to make it safe for code inside of that sandbox to access our data,” he said. “So we have this thing which translates the code it [the agent] wrote into a strict format that we expect, throw away the code, and you install guardrails on that format before it reaches your back end. So we allow the agents to use code to query our data, which means that they can aggregate it, they can munge it, they can work with it as they see fit to produce [things] like a financial plan.” Another interesting process Arca has implemented is using feedback from human advisors, along with traces from the agents, to improve the harness. A “meta-agent” is used to analyze all this data and suggest changes to the harness. Podcast timestamps 00:00 — Introducing Arca’s AI-native wealth management firm 01:40 — How AI supports human financial advisors 02:40 — Choosing models with internal benchmarks 04:01 — Building a custom harness and routing tasks 05:25 — Handling a $100,000 tax bill: Agents and human approvals 07:20 — Agent memory across long-running tasks 09:22 — Safety guardrails and prompt injection defenses 11:02 — Compliance and auditability by default 12:14 — “Agents prompt people more than people prompt agents” 13:46 — Why Arca owns its agent infrastructure 15:05 — AI-native firms versus firms using AI tools 16:09 — Sandboxes and financial plan verification 18:40 — Decision models and checking financial facts 19:51 — Why trade execution stays with human experts 20:32 — Turning staff feedback into evals and improvements 22:22 — Turning operational knowledge into agent context 23:41 — Client examples: Hidden fees and proactive service Watch Aman’s AIE presentation Play video Open video on YouTube ↗</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 213</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
