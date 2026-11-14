@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-11-14</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-11-14</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/business/customer-stories/amplitude" target="_blank">How Amplitude ships product improvements in 1–2 days with OpenAI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 12, 2026 &middot; 20:00 UTC</span>
+          </div>
+          <p class="summary"><span>Built primarily on OpenAI models, Amplitude’s proactive product agent, Wave, identifies what to build, helps teams ship changes with coding agents, and measures the impact.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/introducing-gemini-4-hydrogen/" target="_blank">Introducing Gemini 4 Hydrogen</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Nov 12, 2026 &middot; 18:00 UTC</span>
+          </div>
+          <p class="summary"><span>Introducing Gemini 4 Hydrogen Nov 12, 2026 | x.com Facebook LinkedIn Mail Hydrogen brings cutting-edge intelligence to everyone.</span> <span>While our frontier models, Gemini 4 Carbon and Gemini 4 Argon , excel at deep, long-horizon reasoning on your hardest problems, Hydrogen is built for rapid execution across diverse agentic workflows.</span> <span>With Hydrogen, we’re also bringing Gemini 4 to everyone — for all tiers of Google AI Studio , the Gemini API, Gemini for business , the Gemini app , Google Search , and paid Google AI Pro and Ultra subscribers in Google Antigravity .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Introducing Gemini 4 Hydrogen Nov 12, 2026 | x.com Facebook LinkedIn Mail Hydrogen brings cutting-edge intelligence to everyone. Koray Kavukcuoglu SVP, Google DeepMind and Chief AI Architect, Google Share x.com Facebook LinkedIn Mail Your browser does not support the audio element. Listen to article [[duration]] minutes This content is generated by Google AI. Generative AI is experimental In this article Last updated November 13, 2026 Today, we’re introducing Gemini 4 Hydrogen, bringing cutting-edge intelligence to everyone — with speed and efficiency for everyday coding and agentic workflows. While our frontier models, Gemini 4 Carbon and Gemini 4 Argon , excel at deep, long-horizon reasoning on your hardest problems, Hydrogen is built for rapid execution across diverse agentic workflows. With Hydrogen, we’re also bringing Gemini 4 to everyone — for all tiers of Google AI Studio , the Gemini API, Gemini for business , the Gemini app , Google Search , and paid Google AI Pro and Ultra subscribers in Google Antigravity . Hydrogen surpasses Argon on the Artificial Analysis Intelligence Index at its default high thinking level (51 vs. 50, and reaching 54 at its highest xhigh thinking setting), while often completing tasks faster than models in its class. Gemini 4 Hydrogen is priced flat across its entire 1 million-token context window at $1.50 per million input tokens and $7.50 per million output tokens. Unlocking efficiencies in multi-model workloads In real-world software development, while teams rely on frontier models like Carbon and Argon for deep architectural judgment when designing systems or untangling subtle bugs, they still need a fast, disciplined execution model for writing code, running tests, and verifying changes. Hydrogen is built to stand on its own as a model for everyday work — or to pair with Carbon and Argon as the high-efficiency execution engine in multi-model workflows. To help make this multi-model collaboration automatic, we’re introducing Orchestrator in Google Antigravity . Rather than using a single model from start to finish, Orchestrator dynamically switches between models like Carbon and Hydrogen within the same session. On Terminal-Bench 4.0 , Orchestrator reached near-Carbon task success rates while, on average, consuming 24% less quota and completing 19% faster. For workflows that require parallel agents, Carbon can act as the coordinator while Hydrogen can power worker and verifier agents to build and test changes simultaneously across isolated workspaces — helping teams ship complex projects faster without driving up token costs. Scaling developer and enterprise workflows Beyond multi-model workflows, Hydrogen is a major standalone upgrade for teams migrating from Gemini 3.8 Flash. It delivers significant leaps in both speed and intelligence — finishing tasks 2.5 times faster at its high default setting while more than tripling Terminal-Bench 4.1 scores (57% vs. 18.2%), cutting fabricated claims by more than 5x, and adapting cleanly when a tool call fails or a search returns empty. It also matches or outperforms competing models in its class across core developer and enterprise workflows: Iterative repository coding and debugging: Hydrogen handles issue resolution, debugging, rapid iteration, and codebase Q&amp;A with focused, surgical edits — delivering cleaner, production-ready code without rewriting unrelated files. It outperforms similar-tier models on SWE-sweep where it has to discover and repair bugs without breaking existing code. To explore large repositories efficiently, the model excels at natively batching file-read and search calls in parallel rather than inspecting files one by one; in early testing across complex graphs, SQL, and data-heavy enterprise workflows, our partners have seen Hydrogen run 2x to 2.8x faster while reducing token usage by 12% to 23%, compared to 3.8 Flash. Open-ended agentic execution: On multi-step tasks like deep research, data analysis, and broad codebase navigation, Hydrogen ranks #5 on Agent Arena , arena.ai’s live benchmark. For deep domain reasoning and analysis, it leads its class on HLE-Diamond (58.8%), ranks #1 overall on Vals Tax Agent Bench (52.3%), ties for #1 on the Vals Legal Research Bench (55.8%), and leads its class on AutomationBench-AA . Multimodal knowledge work: Hydrogen pairs native 1 million-token input with up to 1 million output tokens to synthesize dense PDFs, spreadsheets, charts, audio, and recorded video into polished, cited reports and structured deliverables. It outperforms other models on the new Multimodal Knowledge Agent (MKA) benchmark (53.4%) for end-to-end agentic knowledge work over complex visual files, and on Agents’ Last Exam v1.1 (71.6%) for end-to-end professional workflows. Web development : On tasks where speed matters to developers, like live UI prototyping, design-to-code iteration, and interactive app building, Hydrogen generates more functional, feature-complete layouts in fewer prompts. Using Hydrogen for on-the-fly 3D coding, Geminisland lets anyone add to a shared voxel island from a single prompt to generate custom structures live on the map that players can walk around and explore in first person. Try the live app . Paired with our new Gemini front end design skill in Google Antigravity, Hydrogen built an e-commerce storefront in one shot complete with a WebGL2 topographic shader, pinned four-stage scrollytelling, a thermal split-slider, a 3D wireframe spec card, and a live finish configurator. Try the live app and the Gemini front end design skill . In Google Antigravity, Hydrogen turned Google Sheets into an animated pixel canvas by shrinking thousands of cells combining Python, native =LET(...) formulas, and conditional formatting to paint and animate full-motion scenes directly inside a live spreadsheet. Starting from a YouTube key video and a design template in Google Antigravity, Hydrogen generated a multi-slide presentation directly in Google Slides, then ran an autonomous audit-and-fix loop to catch overlapping text and clean up every slide layout. With Gemini in Google Sheets, Hydrogen can help teams rapidly turn financial data into interactive models that dynamically adjust based on various forecasting scenarios, generating outputs over 30% faster than previous models in Sheets canvas. Adaptable speed and intelligence across four thinking levels We built Gemini 4 Hydrogen for real-world usability. Hydrogen’s four thinking levels — low, medium, high (default), and a new xhigh tier — offer a wide range of options across quality, latency, and cost, scaling in a smooth, predictable progression so you only wait and pay for the reasoning depth a task requires. Across thinking levels, Hydrogen matches or outperforms some of the competing models in its class while often finishing tasks faster and using fewer output tokens. Fast, everyday help in the Gemini app and Search For consumers, Gemini 4 Hydrogen makes it easier to get things done, staying on track and following instructions more closely across multi-turn conversations. In the Gemini app, Hydrogen makes your everyday assistant even more helpful — it’s better at following your guidance, calling the right tools, and getting you to a reliable output with less back-and-forth. Ready-to-go writing, research, and everyday work: Hydrogen sticks closely to your tone, format, and specific rules, so email drafts, study guides, rewrites, and documents come back ready to use on the first try. When you are comparing products or synthesizing dense material, it pulls together clear tables and visual breakdowns without dropping key details. Connects the dots and gets more tasks done: Hydrogen breaks down your goal step-by-step, pulling relevant context from your uploads, Google apps like Gmail and Google Drive, and Connected Apps like Airtable and Dropbox. When you start a task in Gemini, it also more frequently calls the right tools and skills for the job, helping save you time as you check things off your to-do list. Everyday prototyping and iteration: For exploring and testing ideas, Hydrogen generates clean, working layouts in fewer prompts, making it easy to prototype and refine interactive projects quickly, like synthesizing real-time global lightning strike data into an interactive 3D globe. Moving fast from idea to working prototype, Hydrogen built an interactive 3D globe and Web Audio music engine driven by real-time lightning strikes and mapped every bolt around the world into visual ripples and live ambient music. When tasked to create a WebGL2 water and glass visualizer, Hydrogen built it from pure math and SDF textures — simulating real-time light refraction, reflection, dispersion, and absorption. Using a custom skill for video assembly and adhering to a creative brief, Gemini 4 Hydrogen created an archival sizzle reel about the element ‘Hydrogen’, sourcing public-domain footage and cutting it into one continuous edit with clean narration. Hydrogen is significantly upgrading Search , delivering more helpful, intuitive responses for all users globally. Better understands your true intent: With Hydrogen, you can ask your question in your natural flow of thought — even if you have multiple parts to your query, hard-to-understand typos, or highly specific requests — and Search will intelligently comprehend what you’re looking for. More visual responses: You’ll get highly adaptive, visual, and easy-to-scan responses that are uniquely relevant to your needs, at the speed you expect from Search. Wider range of relevant links: With Hydrogen’s advanced reasoning, we’re also upgrading our query fan-out technique in Search, connecting you to a broader range of helpful links than before, helping you find sites you previously might not have discovered. Designed for safe, dependable execution at scale Gemini 4 Hydrogen brings improvements from our latest Gemini 4 safety and security stack to our broadest audience yet, combining built-in training with real-time surface safeguards to help mitigate both misalignment and misuse. Beyond foundational protections, we focused on two areas that matter most for a faster model that’s for everyday work: Safe, aligned, and secure agentic workflows: While 3.8 Flash has strong alignment and safeguards, Hydrogen is a leap ahead. It reduces overreach in agentic tasks by up to 81% and under-service by up to 79%, and cuts misaligned actions and task shortcutting across tool-use and coding evaluations by 12x. When faced with impossible or blocked tasks, it is up to 2x less likely to bypass permission boundaries and achieves a 94% honesty rate on our internal agent honesty evaluation. Building on our commitment to reasoning transparency , Hydrogen also preserves 99.9% chain-of-thought legibility with zero deceptive reasoning edits across more than 200,000 audited turns. Against indirect prompt injection attacks, Hydrogen is more than 2.3x more resilient on the Gray Swan IPI benchmark, while significantly improving robustness across tool use, computer use, and coding agents. Helpful, reliable everyday interactions: Across our product surfaces, we tuned Hydrogen to make everyday conversations more reliable and safe. Our updated safeguards are also much more precise at distinguishing between real biosecurity risks and legitimate medical or scientific questions — keeping false refusals on HealthBench Pro under 0.4%. For more details see the Gemini 4 Hydrogen model card . Gemini 4 Hydrogen, available to everyone today Starting today, Hydrogen is rolling out globally across our developer, enterprise, and consumer surfaces: For developers: Build with the Gemini API in AI Studio and Android Studio , try it in AI Studio and if you’re a paid Google AI Pro or Ultra subscriber, you can try it in Google Antigravity . For enterprises: Deploy it in Gemini for business via the API or model drop down, Google Antigravity, and in Gemini in Google Sheets for eligible business subscriptions. For everyone: Start using it in the Gemini app model drop down 1 and in Google Search for all users, and in Gemini in Google Sheets starting with Google AI Pro and Ultra subscribers. Get the latest news from Google in your inbox Done. Just one step more. Check your inbox to confirm your subscription. You can also subscribe with a . Your information will be used in accordance with Google&#x27;s privacy policy. You may opt out at any time</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/business/customer-stories/holidays-extras-codex" target="_blank">Holiday Extras is rethinking what it can build with Codex</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 12, 2026 &middot; 09:30 UTC</span>
+          </div>
+          <p class="summary"><span>With Codex, Holiday Extras is turning customer expertise into better apps, higher booking conversion and new possibilities for growth.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/children-first-declaration" target="_blank">Supporting research on AI and children’s safety</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 12, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI commits $2 million to research on AI and children’s safety.</span> <span>The work supports shared tools to measure risks and opportunities for young people.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Nov/11/anthropic-ipo-roadshow/" target="_blank">Anthropic&#x27;s IPO roadshow video</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Nov 11, 2026 &middot; 15:11 UTC</span>
+          </div>
+          <p class="summary"><span>The section on &quot;Approach to compute&quot; with co-founder Tom Brown is particularly interesting, describing how Anthropic train and serve Claude across AWS Trainium, Google TPUs, NVIDIA GPUs, and AMD GPUs.</span> <span>Highlights below: We train and serve Claude now across all four major chip families.</span> <span>Claude will be able to discover compute multipliers entirely by itself , allowing the number of compute multipliers to grow faster and faster.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Anthropic&#x27;s IPO roadshow video Anthropic kicked off their IPO roadshow yesterday, and their roadshow video has some previously unreleased information about how their business works. The section on &quot;Approach to compute&quot; with co-founder Tom Brown is particularly interesting, describing how Anthropic train and serve Claude across AWS Trainium, Google TPUs, NVIDIA GPUs, and AMD GPUs. I&#x27;m not sure why there&#x27;s no official video transcript, but here&#x27;s one that I extracted using MacWhisper. Highlights below: We train and serve Claude now across all four major chip families. That&#x27;s only possible because early on we made an unconventional bet on a multi-chip strategy. At the time, many people thought that running AI models on different chips wasn&#x27;t worth the effort. Each chip needs its own tailored software stack and inference stack, which is expensive and difficult to build. We&#x27;ve now been doing it for years, and we&#x27;ve gotten incredibly good at it. [...] As an example, this year, we started working with AMD GPUs for the first time. In the past, bringing on a new chip platform took dozens of engineers months of work This time, we had Mythos try it out. It got Claude running on AMD in just three days, with basically no human intervention . Claude ported or wrote almost 100% of the kernels. [...] The second driver of our compute advantage is our rate of discovery of compute multipliers. We focus on total effective compute, which is the multiplicative product of physical capacity times the compute multipliers that we discover. Each one we discover makes our pool of total effective compute bigger. For example, say you need 100 units of compute to train a model of a certain intelligence. A 4x compute multiplier means you can use 25 units of compute to train the exact same model. Or you can use those hundred physical units to train an even more intelligent model that would have previously required 400 units. Compute multipliers create a competitive advantage for us that&#x27;s hard to replicate. They build on each other. Each new multiplier we discover has a positive effect on the multipliers before it. They stack. We believe that this can accelerate even further as we approach recursive self-improvement. Claude will be able to discover compute multipliers entirely by itself , allowing the number of compute multipliers to grow faster and faster. We got a hint at Anthropic&#x27;s multi-chip strategy last September in their postmortem of three recent issues , where they described bugs that affected just their TPU deployments. Tags: ai , generative-ai , llms , anthropic , gpus , claude-mythos-fable , recursive-self-improvement</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/claude-code-obsidian-my-familys-ai" target="_blank">Claude Code + Obsidian: My family’s AI brain | Scott Farrar</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Nov 11, 2026 &middot; 13:04 UTC</span>
+          </div>
+          <p class="summary"><span>uct Discovery —Prioritize with insights, build with confidence Teaser The problem (and solution) Demo: shopping for car insurance Building a household brain Type A vs.</span> <span>type B AI organization His shared household to-do list Household DAKboard wall display Does it actually change behavior? Household tasks to hand to AI AI, kids, and student agency When AI gets out of sync</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/introducing-alphaproof-code/" target="_blank">Introducing AlphaProof Code: a breakthrough in verifying complex software at depth</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Nov 10, 2026 &middot; 12:02 UTC</span>
+          </div>
+          <p class="summary"><span>November 10, 2026 Research Introducing AlphaProof Code: a breakthrough in verifying complex software at depth Pushmeet Kohli and Swarat Chaudhuri Read the technical paper Share How Google DeepMind researchers built a new agentic framework that formally verified the code of Signal’s cryptographic protocol — long considered to be a grand security challenge Today, we’re sharing a milestone in software security long considered to be a grand challenge: Google DeepMind researchers guided AI agents to mathematically prove key security properties of the actual code underlying the Signal protocol, the technology that protects billions of private conversations in apps like Signal and Google Messages.</span> <span>This breakthrough discovery was made using AlphaProof Code , a novel agentic framework for formal verification at unprecedented depth that combines human expertise with AI agents.</span> <span>Formal verification—mathematically proving code runs correctly without flaws—is the highest standard of security assurance; however, it is difficult and often labor-intensive.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>November 10, 2026 Research Introducing AlphaProof Code: a breakthrough in verifying complex software at depth Pushmeet Kohli and Swarat Chaudhuri Read the technical paper Share How Google DeepMind researchers built a new agentic framework that formally verified the code of Signal’s cryptographic protocol — long considered to be a grand security challenge Today, we’re sharing a milestone in software security long considered to be a grand challenge: Google DeepMind researchers guided AI agents to mathematically prove key security properties of the actual code underlying the Signal protocol, the technology that protects billions of private conversations in apps like Signal and Google Messages. This breakthrough discovery was made using AlphaProof Code , a novel agentic framework for formal verification at unprecedented depth that combines human expertise with AI agents. Formal verification—mathematically proving code runs correctly without flaws—is the highest standard of security assurance; however, it is difficult and often labor-intensive. Our work marks the first time AI has been used to formally verify a widely deployed cryptographic protocol at this depth. It&#x27;s also the first time the implementation of a widely deployed protocol like this has been formally verified by any method, with or without AI. How we verified Signal AlphaProof Code is a multi-LLM agentic framework that splits the work of formal verification the way a research team would: human experts work with AI to decide what to prove, and a group of AI agents does it. First, our researchers collaborated with a mix of models to translate Signal’s security goals into formal mathematical specifications, with human experts reviewing every one. From there, agents powered by Gemini Carbon did the proofs, generating over six million lines of Lean, a computer language that mathematically proves the accuracy of code. Next, the agents audited the proof and highlighted areas that needed a second look by a human – just one percent of the codebase, a massive time savings. Because Lean automatically checks the rest, our experts could focus their review where human judgment matters most. Cryptographic protocols underpin nearly all digital communication, from online banking to web browsing, and a single flaw can expose millions of people at once. That&#x27;s why experts have spent decades formally analyzing them. But most protocol verification stops at the design level. Our agents went further, proving that the compiled code fulfills the key security properties – such as keeping messages protected before and after a device is temporarily compromised – down to the exact code running on devices. Because real-world vulnerabilities often hide in the gap between design and implementation, bridging this gap makes these proofs vastly more complex. Even at this complexity, our verification process took just four weeks – a task that historically takes expert teams years – proving that Signal&#x27;s core cryptographic code delivers the security protections our experts specified. To confirm that AlphaProof Code can tell correct code from buggy code, we reintroduced two real, previously fixed bugs into an isolated version of Signal&#x27;s code. In both cases, the system produced a machine-checked proof that the buggy version was insecure. While prior formal verification focused on smaller portions of the code, Google DeepMind&#x27;s approach enables significant expansion. Using AI agents to translate live code into valid Lean theorems is a major breakthrough. As AI-driven security threats grow, rigorously verifying the Signal protocol implementation gives us even greater confidence in our code&#x27;s privacy guarantees. While prior formal verification work has necessarily focused on smaller scopes, this new approach enables a significant expansion. Traditionally, verifying that production code strictly matches its cryptographic design required extensive manual effort, making the use of AI agents to automatically translate live code into valid Lean theorems a great breakthrough. As AI-driven security threats grow, having the core Signal protocol rigorously verified with automated theorem proving gives us even greater confidence that our code delivers on its privacy guarantees. The future of security Achieving this long-standing challenge demonstrates how AI can bring elite security assurance to businesses, governments, and critical infrastructure, helping defend against agent-driven cyber threats. Verifying Signal&#x27;s core cryptography lays the groundwork to secure other vital systems, from medical device firmware to power grid software. Scaling these techniques requires continued research. Paired with automated defense agents like CodeMender , formal verification can help counter the speed and scale of modern cyber threats to create software with mathematical proof that its protections work. We are open-sourcing our formal verification artifacts for community use. Read the technical paper below. Read the technical paper Acknowledgements This research was developed by Swarat Chaudhuri, Andrew Ferraiuolo, Anton Kovsharov, Tej Chajed, Sam Schlesinger, Karn Seth, Jonathan Katz, Charles Sutton, and Pushmeet Kohli. We thank Eric Wieser for help with open-sourcing our code, Owen Jones for program management support, and Martín Abadi, Christopher Henson, Katerina Hristova, Henryk Michalewski, Jonathan Protzenko and George Tsoukalas for helpful discussions. We thank Signal&#x27;s Rolfe Schmidt, Michael Rosenberg, and Ehren Kret for their feedback on our methodology. We also thank Tulsee Doshi, Four Flynn, Kate Olszewska, Alicia Huang, Andy Liu, Benoit Schillings, Raluca Ada Popa, Melvin Johnson, Koray Kavukcuoglu, Demis Hassabis, and Sundar Pichai for their support of the project. Related posts Introducing CodeMender: an AI agent for code security October 2025 Responsibility &amp; Safety Learn more Proactive cyber defense for governments and enterprises September 2026 Models Learn more Gemini 4 Carbon: Our next frontier model October 2026 Models Learn more AI achieves silver-medal standard solving International Mathematical Olympiad problems July 2024 Science Learn more</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/introducing-businesses-chatgpt" target="_blank">Introducing Businesses in ChatGPT</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 10, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>Manage your business information, get insights about how your business shows up, and turn interest into action in ChatGPT.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Nov/10/muse-ember/" target="_blank">Introducing Our Smallest, Most Efficient Model: Muse Ember</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Nov 10, 2026 &middot; 07:28 UTC</span>
+          </div>
+          <p class="summary"><span>For shorter prompts it&#x27;s priced the same as GPT-6 Luna and Claude Haiku 5.5 - both are $0.10/million input tokens and $0.50/million output.</span> <span>Today&#x27;s other big model release, Claude Fable 5.2, is 80x that price at $8/$40.</span> <span>Tags: ai , generative-ai , llms , meta , llm-pricing , llm-release , artificial-analysis , muse</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Introducing Our Smallest, Most Efficient Model: Muse Ember Meta AI just launched their entry in the Claude Haiku/GPT Luna category: Muse Ember, which they describe as: [...] our smallest and most efficient model designed for complex reasoning execution and the work agents repeat all day: tool calls, coding subtasks, routing, extraction, and long document parsing. For shorter prompts it&#x27;s priced the same as GPT-6 Luna and Claude Haiku 5.5 - both are $0.10/million input tokens and $0.50/million output. Today&#x27;s other big model release, Claude Fable 5.2, is 80x that price at $8/$40. The pricing is a little less straightforward as prompts get longer, though. Luna, Ember, and Haiku all support up to a million input tokens, but they also all have a threshold after which the price goes up. Taking that threshold into account Ember is priced between the two others: Model Prompt size Input ($/M) Cached input Output GPT-6 Luna ≤272k $0.10 $0.01 $0.50 &gt;272k $0.20 $0.02 $0.75 Muse Ember 1.0 ≤200k $0.10 $0.004 $0.50 &gt;200k $0.30 $0.012 $1.50 Claude Haiku 5.5 ≤100k $0.10 $0.01 $0.50 &gt;100k $0.50 $0.05 $2.50 But comparing price-per-token doesn&#x27;t really make sense these days, when reasoning tokens mean that different models might use dramatically different numbers of tokens to solve the same problem. For that, one measure that&#x27;s useful is the Artificial Analysis. And even more useful than that is their Intelligence Index vs. Cost per Task chart, which shows the following for those three models: The Muse Ember models sit right on that Pareto line - the line at which you can only improve one dimension by giving up another. Meta call this out in their announcement: It also sits on the efficiency frontier of the full Artificial Analysis leaderboard: no model scores higher for less per task. (That grey dot on the Pareto line in the middle of the green area is GPT-6.1 Terra (low) - clearly I should be paying more attention to the Terra family!) Muse Ember has six reasoning levels - minimal, low, medium, high, xhigh, and max - so I rendered six pelicans riding bicycles . The &quot;high&quot; reasoning level failed to return a full SVG, and the other SVGs were surprising in that the reasoning level didn&#x27;t cleanly map to the visual quality of the response. Here&#x27;s the &quot;max&quot; one, but the others are worth a look too: The Ember pelicans are comparable in quality to those I got from Muse Wonder , which is 40x the price of Muse Ember. Tags: ai , generative-ai , llms , meta , llm-pricing , llm-release , artificial-analysis , muse</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Nov/10/prompting-claude-fable-52/" target="_blank">Quoting Prompting Claude Fable 5.2</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Nov 10, 2026 &middot; 05:34 UTC</span>
+          </div>
+          <p class="summary"><span>Claude Fable 5.2 pays close attention to who owns the code it works on.</span> <span>When the prompt said the code base was the model’s own, it often consolidated duplicated code and sometimes made related fixes without being asked.</span> <span>In Anthropic’s testing on small coding tasks, the model consolidated duplicated code in under 10 percent of runs without the sentence and in about 75 percent of runs with it.</span> <span>— Prompting Claude Fable 5.2 , Anthropic documentation Tags: prompt-engineering , anthropic , generative-ai , ai , llms , claude-mythos-fable</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Claude Fable 5.2 pays close attention to who owns the code it works on. In Anthropic’s testing on small coding tasks, the model tended to add to the existing structure when the prompt said nothing about ownership or presented the code base as someone else’s, even when that duplicated existing code. When the prompt said the code base was the model’s own, it often consolidated duplicated code and sometimes made related fixes without being asked. If you want the model to improve the structure as it works, say that the code is its own: You are the owner and long-term maintainer of this codebase, and its design is up to you. The ownership sentence makes the model much more likely to consolidate duplicated code into one shared function. In Anthropic’s testing on small coding tasks, the model consolidated duplicated code in under 10 percent of runs without the sentence and in about 75 percent of runs with it. — Prompting Claude Fable 5.2 , Anthropic documentation Tags: prompt-engineering , anthropic , generative-ai , ai , llms , claude-mythos-fable</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/cogent-security" target="_blank">Cogent and OpenAI build cyber defense factories for enterprises</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 10, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>Cogent combines OpenAI models with enterprise context to help automatically remediate vulnerabilities with agents.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/claude-fable-52-review-fast-creative" target="_blank">Claude Fable 5.2 review: fast, creative, and finally not annoying</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Nov 09, 2026 &middot; 20:37 UTC</span>
+          </div>
+          <p class="summary"><span>Confessions of a Claude hater What Anthropic launched: Fable 5.2 and Mythos 5.2 When to use Fable 5.2 vs.</span> <span>Opus 5.5 Black holes, coding claims, and benchmarks Guardrails and anti-distillation safeguards My high-level pros and cons Video generation: turning a tweet into an animated film Animating the invader bots Flat-pack furniture with no instructions The bug factory game and its trailer Real engineering: re-architecting ChatPRD’s product intelligence pipeline Where it falls down: web design Claire’s typewriter How I AI bench preview How to get it: availability, fast mode, and Fable resets Final take<ul><li>Claude Fable 5.2: <a href="https://www.anthropic.com/claude-fable-and-mythos-5-2" target="_blank" rel="noopener">https://www.anthropic.com/claude-fable-and-mythos-5-2</a></li><li>Claude Opus 5.5: <a href="https://www.anthropic.com/claude-opus-5-5" target="_blank" rel="noopener">https://www.anthropic.com/claude-opus-5-5</a></li><li>Claude Code: <a href="https://claude.com/claude-code" target="_blank" rel="noopener">https://claude.com/claude-code</a></li><li>HyperFrames: <a href="https://hyperframes.heygen.com/" target="_blank" rel="noopener">https://hyperframes.heygen.com/</a></li><li>typed.page: <a href="https://typed.page/" target="_blank" rel="noopener">https://typed.page/</a> Other</li><li>Guillermo Rauch’s 3D record player: <a href="https://vinyl-gl.vercel.app/" target="_blank" rel="noopener">https://vinyl-gl.vercel.app/</a></li><li>The bug factory game: <a href="https://www.cxo.dev/games/bug-factory" target="_blank" rel="noopener">https://www.cxo.dev/games/bug-factory</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-ai-how-this-founder-built-a" target="_blank">🎙️ How I AI: How this founder built a better Duolingo with Codex</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Nov 09, 2026 &middot; 16:01 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ How I AI: How this founder built a better Duolingo with Codex Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Nov 09, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-this-founder-built-a-better-duolingo" target="_blank">How this founder built a better Duolingo with Codex | William Imoh</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Nov 09, 2026 &middot; 13:04 UTC</span>
+          </div>
+          <p class="summary"><span>tomate compliance and simplify security Teaser Introduction to William and his language learning app William’s tech background and how he started building The first prompt The importance of design language and articulation Live demo: a Norwegian conversation Having a growth mindset Why GPT Live works for this What it costs to run Running Hackmamba with agents Codex projects for organization His Lord of the Rings Grok Bot fellowship Recap Prompting strategies</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://latent.space/p/one_million_ai_engineer_special_how_stanford_teaches_ai-native_engineering_mihail_eric_monaco/" target="_blank">[One Million AI Engineer Special] How Stanford Teaches AI-Native Engineering — Mihail Eric, Monaco</a></h2>
+          <div class="meta">
+            <span class="source">latent-space</span>
+            <span class="date">Nov 08, 2026 &middot; 21:23 UTC</span>
+          </div>
+          <p class="summary"><span>What do you assign when a coding agent can finish last year’s homework in one prompt? Demystifying Claude Code — Mihail traces a real agent harness.</span> <span>Monaco’s agent workspaces — How the team sets up a workspace for each agent.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>What do you assign when a coding agent can finish last year’s homework in one prompt? In the second run of Stanford’s CS146S, Mihail Eric brought open-source maintainers into the course. Students have to learn an unfamiliar repo, propose a change, and explain the patch to the person who might merge it. We invited Mihail, who teaches The Modern Software Developer at Stanford and leads AI at Monaco, to celebrate one million subscribers on the AI Engineer YouTube channel. He opens up the course syllabus and shows us which lessons survived contact with his own engineering team. Monaco built its agent workspaces, bought its code review tools, and gave an on-call agent access to Datadog and GitHub. We ask how he decides which tools his team needs to own. Watch the full interview and screenshares on YouTube . Stanford CS146S — The ten-week syllabus and assignments. The Emperor Has No Clothes — Mihail builds a coding agent from scratch. Demystifying Claude Code — Mihail traces a real agent harness. Monaco’s agent workspaces — How the team sets up a workspace for each agent. How to Kill the Code Review — Our essay on what happens when code generation outruns review. Basis’s Authority Map — How agents distinguish current behavior from earlier design decisions. Stripe’s Minions — A look inside Stripe’s background coding agents. AI Engineer CODE Summit — The conference mentioned in the opening. Timestamps Sponsored Your sponsor ad here Reach the AI engineers building what comes next. Latent Space is read by the people shipping agents, models and infrastructure. Enquire about sponsoring this slot. business@latent.space → 0:00 One million AI Engineer subscribers and the CODE Summit 0:51 Mihail Eric and Stanford CS146S 5:26 What junior engineers need to learn now 10:02 Open-source maintainers review the students’ code 15:04 A tour of the ten-week syllabus 24:04 The loop, tools and harness inside a coding agent 32:18 Context engineering for a large codebase 38:15 Skills that make you understand the diff 46:42 The Monaco.com dispute and the airplane banner 50:23 What Monaco does for sales teams 59:21 Inside Monaco’s engineering team 1:01:40 “You buy to learn, and you build to keep” 1:05:24 Making repos agent-ready and closing the on-call loop 1:12:37 When code review becomes the bottleneck 1:20:37 Security, dependencies and permissions 1:30:13 Background agents and Stripe’s Minions 1:34:16 MCP portals and why infrastructure converges 1:41:22 Building the software factory 1:45:24 What work is left for developers? 1:52:16 From personal adoption to team autonomy Opening excerpt from The Thinking Mode, EO Studio .</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 164</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
