@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-11-18</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-11-18</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/advancing-chip-design-with-our-models" target="_blank">Advancing chip design with OpenAI models</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 18, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI models optimized circuits used in Jalapeño silicon and improved RISC‑V core designs, showing progress in AI-assisted chip design with GPT‑6 Astra.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/the-silent-consensus" target="_blank">The Silent Consensus</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 18, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>Dean Ball, Head of Strategic Futures at OpenAI, examines how more capable AI could reshape society and how people can retain control of their institutions.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents/" target="_blank">External sandboxes for coding agents</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Nov 17, 2026 &middot; 22:52 UTC</span>
+          </div>
+          <p class="summary"><span>External sandboxes for coding agents I&#x27;ve been exploring new ways to sandbox code that is executed by agents, with a focus on making it safer to try out local models without worrying that a mistake or prompt injection attack might cause them to take damaging actions on a machine.</span> <span>My post on the Prime Radiant blog introduces the external sandbox pattern, where code executed by the agent runs inside a dedicated sandbox while the agent itself lives outside of that sandbox.</span> <span>Tags: sandboxing , security , ai , webassembly , generative-ai , llms , coding-agents , claude-code , codex , pi</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>External sandboxes for coding agents I&#x27;ve been exploring new ways to sandbox code that is executed by agents, with a focus on making it safer to try out local models without worrying that a mistake or prompt injection attack might cause them to take damaging actions on a machine. I worked on this project with Prime Radiant , the AI research lab behind Superpowers and other projects . My post on the Prime Radiant blog introduces the external sandbox pattern, where code executed by the agent runs inside a dedicated sandbox while the agent itself lives outside of that sandbox. To demonstrate this pattern we&#x27;ve released three sandbox server implementations: external-sandbox-v86 runs a Node.js server which then uses v86 to run Alpine Linux inside WebAssembly. external-sandbox-container is a Python web server which runs the sandbox in Alpine Linux inside an Apple Containers instance. external-sandbox-quicksand is another Python web server, this time using Microsoft&#x27;s Quicksand sandboxing library, which bundles QEMU and Alpine Linux in a Python package! Each of these implementations offers the same localhost API. You can then configure Pi, Claude Code, or Codex to send API calls to that sandbox any time they want to execute code. The sandboxes also include an optional HTTP/HTTPS allow-list proxy, so you can control exactly which hosts your agent&#x27;s code is allowed to communicate with - plus a credential replacement mechanism to make authenticated API calls without sharing a secret with the agent. Here&#x27;s the UI you can use to reconfigure that proxy while the sandbox is still running: I continue to be fascinated by the challenge of safely running untrusted code. This external sandbox pattern provides a neat way to experiment with different approaches. Tags: sandboxing , security , ai , webassembly , generative-ai , llms , coding-agents , claude-code , codex , pi</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/introducing-gpt-6-2-astra-sol" target="_blank">Introducing GPT-6.2 Astra and Sol</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 17, 2026 &middot; 17:45 UTC</span>
+          </div>
+          <p class="summary"><span>Introducing GPT‑6.2 Astra and Sol, with better professional outputs, coding, computer use, and efficiency at lower cost across ChatGPT Work, Codex, and the API.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="http://arxiv.org/abs/2611.22989v1" target="_blank">How Web Research Agents Interpret User Priorities</a></h2>
+          <div class="meta">
+            <span class="source">arxiv</span>
+            <span class="date">Nov 17, 2026 &middot; 16:07 UTC</span>
+          </div>
+          <p class="summary"><span>Web research agents gather information online and write cited reports, including financial analysis.</span> <span>Users can state a priority to guide this research, but a priority may not say how to judge the options, leaving the agent to choose the criteria.</span> <span>We examine how two such agents, built on OpenAI and Anthropic models, interpret a stated priority.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Web research agents gather information online and write cited reports, including financial analysis. Users can state a priority to guide this research, but a priority may not say how to judge the options, leaving the agent to choose the criteria. We examine how two such agents, built on OpenAI and Anthropic models, interpret a stated priority. In 36 runs, the agents compared Microsoft and Alphabet as businesses. Prompts asked for special attention to growth or resilience, or gave no priority. We analyzed reports, searches, returned sources and cited sources. Of the 24 reports given a priority, 21 focused on it, but their criteria varied. Under the growth priority, OpenAI reports that ranked the companies accounted for risk or predictability and favored Microsoft, while the Anthropic ones judged growth by its pace and favored Alphabet. Under the resilience priority, reports used partly different criteria, and most named Microsoft as the more resilient company. Of the search and source measures tested, only the Anthropic agent&#x27;s search wording differed detectably by condition. These findings suggest evaluations should examine the criteria behind a report&#x27;s judgements, not only its focus or accuracy. Interfaces could let users see and adjust those criteria.</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/introducing-openai-for-chile" target="_blank">Introducing OpenAI for Chile</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 17, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI and the Government of Chile are partnering to support responsible AI adoption, build public-sector skills and help local startups develop AI applications.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-ai-fable-52-review-how-i-fight" target="_blank">🎙️ How I AI: Fable 5.2 Review + How I fight token fraud as a solo founder + Building a Claude Code family OS</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Nov 16, 2026 &middot; 16:02 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ How I AI: Fable 5.2 Review + How I fight token fraud as a solo founder + Building a Claude Code family OS Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Nov 16, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-fight-token-fraud-as-a-solo" target="_blank">How I fight token fraud as a solo founder</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Nov 16, 2026 &middot; 13:04 UTC</span>
+          </div>
+          <p class="summary"><span>e human network behind AI Token fraud and what it cost me Six abuse patterns Four kinds of abusers Business controls Technical defenses Bots that watch the bots Final takeaways<ul><li>Stripe Radar: <a href="https://stripe.com/radar" target="_blank" rel="noopener">https://stripe.com/radar</a></li><li>Vercel AI Gateway: <a href="https://vercel.com/docs/ai-gateway" target="_blank" rel="noopener">https://vercel.com/docs/ai-gateway</a></li><li>Vercel Bot ID: <a href="https://vercel.com/docs/botid" target="_blank" rel="noopener">https://vercel.com/docs/botid</a></li><li>Vercel Firewall: <a href="https://vercel.com/docs/vercel-firewall" target="_blank" rel="noopener">https://vercel.com/docs/vercel-firewall</a></li><li>Clerk: <a href="https://clerk.com/" target="_blank" rel="noopener">https://clerk.com/</a></li><li>Codex: <a href="https://openai.com/codex" target="_blank" rel="noopener">https://openai.com/codex</a></li><li>Jev (TypeSafe AI): <a href="https://docs.typesafe.ai/introduction/quickstart" target="_blank" rel="noopener">https://docs.typesafe.ai/introduction/quickstart</a> Other</li><li>Claire Vo on token fraud at ChatPRD: <a href="https://x.com/clairevo/status/2119985786045227197" target="_blank" rel="noopener">https://x.com/clairevo/status/2119985786045227197</a></li><li>Gareth Wham (Atlassian) on fighting AI abuse: <a href="https://x.com/gareth_w/status/2120226872177095114" target="_blank" rel="noopener">https://x.com/gareth_w/status/2120226872177095114</a></li><li>FBI Internet Crime Complaint Center (IC3): <a href="https://www.ic3.gov" target="_blank" rel="noopener">https://www.ic3.gov</a></li><li>Simon Willison’s pelican riding a bicycle: <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle/" target="_blank" rel="noopener">https://simonwillison.net/tags/pelican-riding-a-bicycle/</a></li><li>How I AI: I’m using Jev more than Opus 5.5 or GPT-6: <a href="https://www.youtube.com/watch?v=-KIBgpGA_XI" target="_blank" rel="noopener">https://www.youtube.com/watch?v=-KIBgpGA_XI</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/our-first-phase-of-embedded-assessments" target="_blank">Our first phase of embedded assessments</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 16, 2026 &middot; 08:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI begins embedded assessments with Apollo Research, METR, and Transluce, and Goodfire to independently evaluate model alignment, safeguards, and monitoring systems.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/more-ways-to-move-care-forward-with-chatgpt-for-healthcare" target="_blank">More ways to move care forward with ChatGPT for Healthcare</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 16, 2026 &middot; 06:00 UTC</span>
+          </div>
+          <p class="summary"><span>Introducing computer-use agents, improved clinical answers, and new healthcare plugins that work across healthcare software to get real work done.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/metas-muse-how-we-launched-the-most" target="_blank">Meta’s Muse: How we launched the most successful consumer product this year | Mona Sarantakos</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Nov 15, 2026 &middot; 13:31 UTC</span>
+          </div>
+          <p class="summary"><span>eering intelligence for the AI era</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Nov/15/datasette-agent/" target="_blank">datasette-agent 0.6a0</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Nov 15, 2026 &middot; 03:49 UTC</span>
+          </div>
+          <p class="summary"><span>Release: datasette-agent 0.6a0 Accumulated small fixes for Datasette Agent, my agent plugin for Datasette that lets you ask questions about your data.</span> <span>Most notably, it now adds an agent prompt directly to the Datasette homepage, with support for hash-mentions of tables and queries: Tags: datasette-agent , llm , datasette , llms , ai , generative-ai</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/business/customer-stories/amplitude" target="_blank">How Amplitude ships product improvements in 1–2 days with OpenAI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 12, 2026 &middot; 20:00 UTC</span>
+          </div>
+          <p class="summary"><span>Built primarily on OpenAI models, Amplitude’s proactive product agent, Wave, identifies what to build, helps teams ship changes with coding agents, and measures the impact.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/introducing-gemini-4-hydrogen/" target="_blank">Introducing Gemini 4 Hydrogen</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Nov 12, 2026 &middot; 18:00 UTC</span>
+          </div>
+          <p class="summary"><span>Introducing Gemini 4 Hydrogen Nov 12, 2026 | x.com Facebook LinkedIn Mail Hydrogen brings cutting-edge intelligence to everyone.</span> <span>While our frontier models, Gemini 4 Carbon and Gemini 4 Argon , excel at deep, long-horizon reasoning on your hardest problems, Hydrogen is built for rapid execution across diverse agentic workflows.</span> <span>With Hydrogen, we’re also bringing Gemini 4 to everyone — for all tiers of Google AI Studio , the Gemini API, Gemini for business , the Gemini app , Google Search , and paid Google AI Pro and Ultra subscribers in Google Antigravity .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Introducing Gemini 4 Hydrogen Nov 12, 2026 | x.com Facebook LinkedIn Mail Hydrogen brings cutting-edge intelligence to everyone. Koray Kavukcuoglu SVP, Google DeepMind and Chief AI Architect, Google Share x.com Facebook LinkedIn Mail Your browser does not support the audio element. Listen to article [[duration]] minutes This content is generated by Google AI. Generative AI is experimental In this article Last updated November 16, 2026 Today, we’re introducing Gemini 4 Hydrogen, bringing cutting-edge intelligence to everyone — with speed and efficiency for everyday coding and agentic workflows. While our frontier models, Gemini 4 Carbon and Gemini 4 Argon , excel at deep, long-horizon reasoning on your hardest problems, Hydrogen is built for rapid execution across diverse agentic workflows. With Hydrogen, we’re also bringing Gemini 4 to everyone — for all tiers of Google AI Studio , the Gemini API, Gemini for business , the Gemini app , Google Search , and paid Google AI Pro and Ultra subscribers in Google Antigravity . Hydrogen surpasses Argon on the Artificial Analysis Intelligence Index at its default high thinking level (51 vs. 50, and reaching 54 at its highest xhigh thinking setting), while often completing tasks faster than models in its class. Gemini 4 Hydrogen is priced flat across its entire 1 million-token context window at $1.50 per million input tokens and $7.50 per million output tokens. Unlocking efficiencies in multi-model workloads In real-world software development, while teams rely on frontier models like Carbon and Argon for deep architectural judgment when designing systems or untangling subtle bugs, they still need a fast, disciplined execution model for writing code, running tests, and verifying changes. Hydrogen is built to stand on its own as a model for everyday work — or to pair with Carbon and Argon as the high-efficiency execution engine in multi-model workflows. To help make this multi-model collaboration automatic, we’re introducing Orchestrator in Google Antigravity . Rather than using a single model from start to finish, Orchestrator dynamically switches between models like Carbon and Hydrogen within the same session. On Terminal-Bench 4.0 , Orchestrator reached near-Carbon task success rates while, on average, consuming 24% less quota and completing 19% faster. For workflows that require parallel agents, Carbon can act as the coordinator while Hydrogen can power worker and verifier agents to build and test changes simultaneously across isolated workspaces — helping teams ship complex projects faster without driving up token costs. Scaling developer and enterprise workflows Beyond multi-model workflows, Hydrogen is a major standalone upgrade for teams migrating from Gemini 3.8 Flash. It delivers significant leaps in both speed and intelligence — finishing tasks 2.5 times faster at its high default setting while more than tripling Terminal-Bench 4.1 scores (57% vs. 18.2%), cutting fabricated claims by more than 5x, and adapting cleanly when a tool call fails or a search returns empty. It also matches or outperforms competing models in its class across core developer and enterprise workflows: Iterative repository coding and debugging: Hydrogen handles issue resolution, debugging, rapid iteration, and codebase Q&amp;A with focused, surgical edits — delivering cleaner, production-ready code without rewriting unrelated files. It outperforms similar-tier models on SWE-sweep where it has to discover and repair bugs without breaking existing code. To explore large repositories efficiently, the model excels at natively batching file-read and search calls in parallel rather than inspecting files one by one; in early testing across complex graphs, SQL, and data-heavy enterprise workflows, our partners have seen Hydrogen run 2x to 2.8x faster while reducing token usage by 12% to 23%, compared to 3.8 Flash. Open-ended agentic execution: On multi-step tasks like deep research, data analysis, and broad codebase navigation, Hydrogen ranks #5 on Agent Arena , arena.ai’s live benchmark. For deep domain reasoning and analysis, it leads its class on HLE-Diamond (58.8%), ranks #1 overall on Vals Tax Agent Bench (52.3%), ties for #1 on the Vals Legal Research Bench (55.8%), and leads its class on AutomationBench-AA . Multimodal knowledge work: Hydrogen pairs native 1 million-token input with up to 1 million output tokens to synthesize dense PDFs, spreadsheets, charts, audio, and recorded video into polished, cited reports and structured deliverables. It outperforms other models on the new Multimodal Knowledge Agent (MKA) benchmark (53.4%) for end-to-end agentic knowledge work over complex visual files, and on Agents’ Last Exam v1.1 (71.6%) for end-to-end professional workflows. Web development : On tasks where speed matters to developers, like live UI prototyping, design-to-code iteration, and interactive app building, Hydrogen generates more functional, feature-complete layouts in fewer prompts. Using Hydrogen for on-the-fly 3D coding, Geminisland lets anyone add to a shared voxel island from a single prompt to generate custom structures live on the map that players can walk around and explore in first person. Try the live app . Paired with our new Gemini front end design skill in Google Antigravity, Hydrogen built an e-commerce storefront in one shot complete with a WebGL2 topographic shader, pinned four-stage scrollytelling, a thermal split-slider, a 3D wireframe spec card, and a live finish configurator. Try the live app and the Gemini front end design skill . In Google Antigravity, Hydrogen turned Google Sheets into an animated pixel canvas by shrinking thousands of cells combining Python, native =LET(...) formulas, and conditional formatting to paint and animate full-motion scenes directly inside a live spreadsheet. Starting from a YouTube key video and a design template in Google Antigravity, Hydrogen generated a multi-slide presentation directly in Google Slides, then ran an autonomous audit-and-fix loop to catch overlapping text and clean up every slide layout. With Gemini in Google Sheets, Hydrogen can help teams rapidly turn financial data into interactive models that dynamically adjust based on various forecasting scenarios, generating outputs over 30% faster than previous models in Sheets canvas. Adaptable speed and intelligence across four thinking levels We built Gemini 4 Hydrogen for real-world usability. Hydrogen’s four thinking levels — low, medium, high (default), and a new xhigh tier — offer a wide range of options across quality, latency, and cost, scaling in a smooth, predictable progression so you only wait and pay for the reasoning depth a task requires. Across thinking levels, Hydrogen matches or outperforms some of the competing models in its class while often finishing tasks faster and using fewer output tokens. Fast, everyday help in the Gemini app and Search For consumers, Gemini 4 Hydrogen makes it easier to get things done, staying on track and following instructions more closely across multi-turn conversations. In the Gemini app, Hydrogen makes your everyday assistant even more helpful — it’s better at following your guidance, calling the right tools, and getting you to a reliable output with less back-and-forth. Ready-to-go writing, research, and everyday work: Hydrogen sticks closely to your tone, format, and specific rules, so email drafts, study guides, rewrites, and documents come back ready to use on the first try. When you are comparing products or synthesizing dense material, it pulls together clear tables and visual breakdowns without dropping key details. Connects the dots and gets more tasks done: Hydrogen breaks down your goal step-by-step, pulling relevant context from your uploads, Google apps like Gmail and Google Drive, and Connected Apps like Airtable and Dropbox. When you start a task in Gemini, it also more frequently calls the right tools and skills for the job, helping save you time as you check things off your to-do list. Everyday prototyping and iteration: For exploring and testing ideas, Hydrogen generates clean, working layouts in fewer prompts, making it easy to prototype and refine interactive projects quickly, like synthesizing real-time global lightning strike data into an interactive 3D globe. Moving fast from idea to working prototype, Hydrogen built an interactive 3D globe and Web Audio music engine driven by real-time lightning strikes and mapped every bolt around the world into visual ripples and live ambient music. When tasked to create a WebGL2 water and glass visualizer, Hydrogen built it from pure math and SDF textures — simulating real-time light refraction, reflection, dispersion, and absorption. Using a custom skill for video assembly and adhering to a creative brief, Gemini 4 Hydrogen created an archival sizzle reel about the element ‘Hydrogen’, sourcing public-domain footage and cutting it into one continuous edit with clean narration. Hydrogen is significantly upgrading Search , delivering more helpful, intuitive responses for all users globally. Better understands your true intent: With Hydrogen, you can ask your question in your natural flow of thought — even if you have multiple parts to your query, hard-to-understand typos, or highly specific requests — and Search will intelligently comprehend what you’re looking for. More visual responses: You’ll get highly adaptive, visual, and easy-to-scan responses that are uniquely relevant to your needs, at the speed you expect from Search. Wider range of relevant links: With Hydrogen’s advanced reasoning, we’re also upgrading our query fan-out technique in Search, connecting you to a broader range of helpful links than before, helping you find sites you previously might not have discovered. Designed for safe, dependable execution at scale Gemini 4 Hydrogen brings improvements from our latest Gemini 4 safety and security stack to our broadest audience yet, combining built-in training with real-time surface safeguards to help mitigate both misalignment and misuse. Beyond foundational protections, we focused on two areas that matter most for a faster model that’s for everyday work: Safe, aligned, and secure agentic workflows: While 3.8 Flash has strong alignment and safeguards, Hydrogen is a leap ahead. It reduces overreach in agentic tasks by up to 81% and under-service by up to 79%, and cuts misaligned actions and task shortcutting across tool-use and coding evaluations by 12x. When faced with impossible or blocked tasks, it is up to 2x less likely to bypass permission boundaries and achieves a 94% honesty rate on our internal agent honesty evaluation. Building on our commitment to reasoning transparency , Hydrogen also preserves 99.9% chain-of-thought legibility with zero deceptive reasoning edits across more than 200,000 audited turns. Against indirect prompt injection attacks, Hydrogen is more than 2.3x more resilient on the Gray Swan IPI benchmark, while significantly improving robustness across tool use, computer use, and coding agents. Helpful, reliable everyday interactions: Across our product surfaces, we tuned Hydrogen to make everyday conversations more reliable and safe. Our updated safeguards are also much more precise at distinguishing between real biosecurity risks and legitimate medical or scientific questions — keeping false refusals on HealthBench Pro under 0.4%. For more details see the Gemini 4 Hydrogen model card and the Safety and Security Report . Gemini 4 Hydrogen, available to everyone today Starting today, Hydrogen is rolling out globally across our developer, enterprise, and consumer surfaces: For developers: Build with the Gemini API in AI Studio and Android Studio , try it in AI Studio and if you’re a paid Google AI Pro or Ultra subscriber, you can try it in Google Antigravity . For enterprises: Deploy it in Gemini for business via the API or model drop down, Google Antigravity, and in Gemini in Google Sheets for eligible business subscriptions. For everyone: Start using it in the Gemini app model drop down 1 and in Google Search for all users, and in Gemini in Google Sheets starting with Google AI Pro and Ultra subscribers. Get the latest news from Google in your inbox Done. Just one step more. Check your inbox to confirm your subscription. You can also subscribe with a . Your information will be used in accordance with Google&#x27;s privacy policy. You may opt out at any time</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/children-first-declaration" target="_blank">Supporting research on AI and children’s safety</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 12, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI commits $2 million to research on AI and children’s safety.</span> <span>The work supports shared tools to measure risks and opportunities for young people.</span></p>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 228</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
