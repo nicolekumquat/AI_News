@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-11-19</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-11-19</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Nov/18/llm-gemini/" target="_blank">llm-gemini 0.38</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Nov 18, 2026 &middot; 23:59 UTC</span>
+          </div>
+          <p class="summary"><span>Release: llm-gemini 0.38 Today Google introduced Gemini 4 Neon .</span> <span>I wrote recently about how confusing the pricing for the Gemini 4 series was - Neon has somehow made this even worse.</span> <span>Tags: yonkers-rising , gemini , llm , pelican-riding-a-bicycle , ai , llms , llm-release , google , generative-ai</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Release: llm-gemini 0.38 Today Google introduced Gemini 4 Neon . I wrote recently about how confusing the pricing for the Gemini 4 series was - Neon has somehow made this even worse. Previously the Gemini 4 lineup was Hydrogen, Argon, and Carbon - where Argon and Carbon were the same price , and Hydrogen was 3/4 of that price now but will be 1/4 of that price when the other two double an 1st December once their initial discount pricing expires. The Neon announcement pretends that Argon doesn&#x27;t exist. Here&#x27;s their new image explaining the model line-up: So the lineup now, from most to least expensive, is Carbon, Neon, Hydrogen. Except Carbon is currently half price, so right now Neon ($3/million input, $15/million output) is the most expensive of the three - then Carbon ($2/$10), then Hydrogen ($1.50/$7.50). I guess this will make more sense when Carbon doubles to $4/$20 on December 1st. I ran some pelicans through the three reasoning levels for Neon - low, medium, high. I dropped Argon from my Gemini 4 comparison grid - here&#x27;s the new Gemini 4 lineup, where the Neon pelicans do look better than Hydrogen and worse than Carbon: As I&#x27;ve done with several recent models , I also fired the following prompt against Gemini 4 Neon on &quot;extra&quot; effort level in Google Antigravity: Make a three js animation where yonkers stands up as a big mech (cool stand up motion) and stomps around manhattan and queens and Brooklyn, use openstreetmap mapping data Here&#x27;s the result . Tags: yonkers-rising , gemini , llm , pelican-riding-a-bicycle , ai , llms , llm-release , google , generative-ai</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/introducing-gemini-4-neon/" target="_blank">Introducing Gemini 4 Neon</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Nov 18, 2026 &middot; 21:35 UTC</span>
+          </div>
+          <p class="summary"><span>Introducing Gemini 4 Neon Nov 18, 2026 | x.com Facebook LinkedIn Mail Bringing frontier-level intelligence with fast end-to-end task completion across complex software engineering, knowledge work, and science workflows.</span> <span>On the Vals Index , Neon ranks #2 and lands on the Pareto frontier.</span> <span>Gemini 4 Neon is rolling out today in the Gemini API in Google AI Studio , Gemini for business (via API and model dropdown), for paid Google AI Pro and Ultra subscribers in Google Antigravity , and for Pro and Ultra subscribers in the Gemini app .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Introducing Gemini 4 Neon Nov 18, 2026 | x.com Facebook LinkedIn Mail Bringing frontier-level intelligence with fast end-to-end task completion across complex software engineering, knowledge work, and science workflows. Koray Kavukcuoglu SVP, Google DeepMind and Chief AI Architect, Google Share x.com Facebook LinkedIn Mail In this article Today, we’re introducing Gemini 4 Neon — bringing frontier-level intelligence with fast end-to-end task completion across complex software engineering, knowledge work, and science workflows. Neon ranks ahead of comparable models and #3 overall with a score of 61 on the Artificial Analysis Intelligence Index at its xhigh thinking level, landing just behind larger, slower models. On the Vals Index , Neon ranks #2 and lands on the Pareto frontier. Beyond just pushing on raw model capability, we’re continuing to make our models better to work with, Neon ranks #2 on steerability (adapting cleanly to mid-task user corrections) on the new Agent Arena Index . Neon also excels at multi-step instruction following and builds on our ongoing progress to curb fabrication, recording our lowest fabrication rate yet in internal Google Antigravity testing. The model is priced at $3 per million input tokens ($0.15 per million cached input tokens, a 95% discount) and $15 per million output tokens, with a 1 million-token context window. Gemini 4 Neon is rolling out today in the Gemini API in Google AI Studio , Gemini for business (via API and model dropdown), for paid Google AI Pro and Ultra subscribers in Google Antigravity , and for Pro and Ultra subscribers in the Gemini app . Delivers across enterprise, analytical, and scientific work Enterprise work lives in spreadsheets, PDFs, charts, audio, and video. Neon can synthesize across all of these inputs in a single 1 million-token context window and turns inputs into structured deliverables. Independent evaluations rank Neon as one of the top models and on benchmarks like the Vals Index , it ranks #2 (70.9%), and reaches #1 on both the Legal Research Bench and Tax Agent Bench . Neon also shows strong wins across categories on Surge AI , ranking #1 on most benchmarks across finance, accounting, spreadsheet modeling, and complex constraint following. It also scores 73.5% on Chartography for reading dense professional charts and performs on par with leading models on Agents&#x27; Last Exam v1.1 (75.8%). It achieves #1 overall on both Zapier’s AutomationBench (56.3%) and Andon Labs&#x27; Vending-Bench 2 ($16,843), a long-horizon simulation of running a business. Finally, it debuts #2 globally with a score of 1336 on Arena&#x27;s new Agent Arena Index across 4,200+ real-world agent sessions. On scientific and mathematical reasoning, spanning quantitative analysis, mathematics, and technical research problems, Neon is best in class on Terminal-Bench Science (70.5%), RiemannBench (84.0%), and HLE-Diamond (71.3%). Built for production-ready code Engineered for long-running agent workflows, Neon sustains performance through complex, tool-heavy tasks end-to-end — whether running standalone or acting as a fast, high-judgment Orchestrator directing parallel Hydrogen subagents in Google Antigravity. It cuts down on redundant file reads, shares progress as it works, and handles context compaction reliably in long sessions. Across core developer and researcher workflows, Neon achieves frontier performance and is competitive with the leading models in its class, ranking #1 overall on the Artificial Analysis Coding Agent Index (58.6), with a score of 65.2% on Terminal-Bench 4.1 and 46.2% (at its default high setting) on FrontierCode 2.0 . For production-ready code, Neon handles multi-file debugging and refactoring across repositories with targeted, surgical edits. On SWE-sweep, it already leads on the mini-SWE harness (12.8%) and more than triples to a state-of-the-art 39.0% in Google Antigravity showing what the Antigravity harness unlocks. Driving Blender MCP in Google Antigravity, Gemini 4 Neon used /swarm to build a photorealistic 3D lab bench visualizing the model names with elemental accuracy pairing Bunsen flames for Gemini 4 Carbon and Gemini 4 Hydrogen with high-voltage gas discharge tubes for Gemini 4 Argon and Neon. In Google Antigravity, Gemini 4 Neon wrote a first-person WebGL2 freeride ski simulator from scratch on real Mont Blanc and Chamonix elevation terrain — combining 10,200 lines of custom shaders, 120 Hz ski physics across six alpine lines, dynamic carved tracks, slab avalanches, and spatial Web Audio with zero pre-made assets. Using /swarm in Google Antigravity, Gemini 4 Neon pulled archival photos to recreate Alan Turing’s 1936 study at King’s College, Cambridge in interactive 3D — from King’s Chapel outside to Room X.8 inside, complete with a working Universal Turing Machine running on his desk. In Google Antigravity, a Gemini 4 Neon agent swarm turned a single image into a 100,000-cell Google Sheet with zero embedded images and zero Apps Script — using over 500,000 live spreadsheet formulas to run edge detection, map 3D depth, and relight the scene across six interactive modes. Brings efficiency and control to production-grade workflows We’re refining thinking levels with each new model release to give teams finer control and a smoother progression from one tier to the next. Neon’s four levels scale steadily, letting teams dial intelligence and token spend to what each workload needs. Neon delivers high performance at a lower cost per task across third-party benchmarks. At its default high thinking level, it pairs a high Artificial Analysis Intelligence Index score with a 32% lower cost per task than Carbon. It also sits on the Pareto frontier on both the Vals index and Agent Arena at high, with roughly 50% to 80% lower cost per task than top competing frontier models. xhigh thinking adds deeper, multi-step reasoning for the hardest engineering, analytical, and scientific workloads. Neon shows its highest intelligence score here, while still costing 36%+ less per task than competing models at their highest setting. Built for fast, low cost, frontier-level cyber defense As agentic coding scales, generating secure code from the start is critical. Gemini 4 Neon produces more secure code than Carbon across all easy, medium, and hard challenges on AutoBaxBench , achieving state-of-the-art on the hard tier (76%). Securing systems also means proactively finding flaws before attackers do. Penetration testing has served as a cornerstone of enterprise cybersecurity. On WebExploitBench v1.2 , Neon is state-of-the-art (51.26%) at half the cost of competing large models. To fortify existing code, Neon for cyber delivers frontier-level performance across the code hardening lifecycle — vulnerability finding, validating, and patching — all while being faster and more cost efficient than large frontier models. Finding code vulnerabilities: Neon achieves state-of-the-art performance on SEC-bench Pro (90.5%), while costing roughly half as much per challenge. Validating risk through exploitation: To prioritize which vulnerabilities to remediate, defenders rely on models to check which vulnerabilities are exploitable. On ExploitGym, it achieves frontier-level performance using half the tokens of Carbon. Patching vulnerabilities: Fixing the root cause of vulnerabilities is a critical step in the cybersecurity defense lifecycle. Neon reaches 70.7% on Collinear’s CWE-bench v2 , driving a 3.4% uplift over Carbon. Gemini 4 Neon for cyber is rolling out to trusted defenders in the coming days as part of the Fairwind Program . Designed for safe, dependable execution Gemini 4 Neon builds on improvements from our Gemini 4 safety and security stack — maintaining Gemini 4 Carbon-level protections against severe misuse and prompt injection while advancing further on model alignment and agentic behavior. For a model meant to carry demanding, long-running work in production, we concentrated on: Mitigating frontier misuse safety risks: Because Neon brings frontier-level capabilities to a faster, lower-cost model, we paired it with strong real-time safeguards against cyber and biosecurity misuse comparable to our Carbon protections, while declining far less legitimate work in these areas, refusing for instance just 1.98% of tasks on Terminal-Bench 4.0 and 0% on Terminal-Bench-Science. Advancing alignment and disciplined model behavior: In internal coding use, alert rates from our chain-of-thought and action misalignment monitor remained below the already low baselines set by Carbon, suggesting improved alignment propensity for Neon — and that same monitor is deployed to protect Neon across external surfaces. Neon is trained to complete multi-step work without cutting corners, fabricating results, or overstepping user boundaries — continuing to improve the balance between following through on requests and staying within scope. It matched Carbon with 0.0% cheating on Terminal-Bench 4.0 and took shortcuts on just 2.45% of tasks on our coding cheating evaluation (the lowest rate of any Gemini 4 model). It also achieved a 0.09% misaligned action rate on our agentic safety suite and a 99.2% pass rate on our agent honesty evaluation. On our agentic behavior evaluation, Neon builds on Carbon’s strong baseline by further reducing under-service by 43%–56% and overreach by 15%–35% across different effort levels. Protecting users from indirect prompt injection attacks: On Gray Swan&#x27;s IPI benchmark, Neon is more resilient than other models in its class when malicious instructions are planted in the web pages, emails, documents, or code it accesses. We found that with real-time safeguards at its highest thinking level, Neon resisted every attack within this Gray Swan benchmark, matching the 0.0% attack success rate reached only by other Gemini models. For more details, see the Gemini 4 Neon model card . Built for deeper analysis In the Gemini app, Gemini 4 Neon excels at work that requires frontier-level reasoning and fast responses. Higher-quality writing and knowledge work: Neon writes clearly, with well-structured responses and a natural, direct tone. It reads uploads like spreadsheets, PDFs, and photos more precisely, turns dense material into helpful reports and summaries, and pulls in relevant details from Google apps like Gmail and Docs. Reliable research and analysis: Neon frequently incorporates details from sources across the web to keep responses current for fast-moving topics like comparing pricing across vendors before a major purchase or pulling together a complex brief with the latest market data. Faster help for tougher tasks: Tasks in Gemini can now run on Neon, working through complex, multi-step jobs more quickly and efficiently than with larger models. Get more done while stretching usage limits further when handing off tedious to-dos, like analyzing billing statements to spot why a utility charge spiked or cross-checking multiple receipts and documents to negotiate a refund. Where Neon sits in the Gemini 4 family Neon is built for complex coding, analytical reasoning, and production-grade enterprise workflows. While Carbon tackles your hardest, long-horizon projects and Hydrogen handles fast everyday execution, Neon balances depth and efficiency. Neon delivers frontier-level reasoning for complex, high-frequency workflows faster and more cost efficiently. Start building with Gemini 4 Neon today Gemini 4 Neon begins rolling out today: For developers: Build with the Gemini API paid tier in Google AI Studio and Android Studio , if you’re a paid Google AI Pro or Ultra subscriber, you can try Neon in Google Antigravity and all Pro and Ultra subscribers can try it in AI Studio. For enterprises: Use Gemini 4 Neon in Gemini for business (via the API or model drop-down) and Google Antigravity. For consumers: If you’re a Google AI Pro or Ultra subscriber, you can select Gemini 4 Neon from the model drop-down in the Gemini app . For cybersecurity defenders: Eligible Fairwind Program members will begin receiving access over the next few days. To request access to the Fairwind Program, contact your Cloud account team. Get the latest news from Google in your inbox Done. Just one step more. Check your inbox to confirm your subscription. You can also subscribe with a . Your information will be used in accordance with Google&#x27;s privacy policy. You may opt out at any time</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/the-silent-consensus" target="_blank">The Silent Consensus</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 18, 2026 &middot; 10:00 UTC</span>
+          </div>
+          <p class="summary"><span>Dean Ball, Head of Strategic Futures at OpenAI, examines how more capable AI could reshape society and how people can retain control of their institutions.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/research-acceleration-jagged-frontier" target="_blank">Research acceleration: The jagged frontier</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 18, 2026 &middot; 08:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI measures how coding agents are accelerating AI research, where their performance remains uneven, and what this signals about recursive self-improvement.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/inside-the-codex-sandbox" target="_blank">Inside the Codex sandbox</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 18, 2026 &middot; 08:00 UTC</span>
+          </div>
+          <p class="summary"><span>See how Codex runs commands on your machine while enforcing the filesystem and network limits you control across macOS, Linux, and Windows.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/managing-frontier-ai-risk" target="_blank">Managing frontier AI risk: From training to deployment</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 18, 2026 &middot; 06:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI explains how it manages frontier AI risk from training through deployment with model alignment, sandboxing, blocking safeguards, and monitoring.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/advancing-chip-design-with-our-models" target="_blank">Advancing chip design with OpenAI models</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 18, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI models optimized circuits used in Jalapeño silicon and improved RISC‑V core designs, showing progress in AI-assisted chip design with GPT‑6 Astra.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents/" target="_blank">External sandboxes for coding agents</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Nov 17, 2026 &middot; 22:52 UTC</span>
+          </div>
+          <p class="summary"><span>External sandboxes for coding agents I&#x27;ve been exploring new ways to sandbox code that is executed by agents, with a focus on making it safer to try out local models without worrying that a mistake or prompt injection attack might cause them to take damaging actions on a machine.</span> <span>My post on the Prime Radiant blog introduces the external sandbox pattern, where code executed by the agent runs inside a dedicated sandbox while the agent itself lives outside of that sandbox.</span> <span>Tags: sandboxing , security , ai , webassembly , generative-ai , llms , coding-agents , claude-code , codex , pi</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>External sandboxes for coding agents I&#x27;ve been exploring new ways to sandbox code that is executed by agents, with a focus on making it safer to try out local models without worrying that a mistake or prompt injection attack might cause them to take damaging actions on a machine. I worked on this project with Prime Radiant , the AI research lab behind Superpowers and other projects . My post on the Prime Radiant blog introduces the external sandbox pattern, where code executed by the agent runs inside a dedicated sandbox while the agent itself lives outside of that sandbox. To demonstrate this pattern we&#x27;ve released three sandbox server implementations: external-sandbox-v86 runs a Node.js server which then uses v86 to run Alpine Linux inside WebAssembly. external-sandbox-container is a Python web server which runs the sandbox in Alpine Linux inside an Apple Containers instance. external-sandbox-quicksand is another Python web server, this time using Microsoft&#x27;s Quicksand sandboxing library, which bundles QEMU and Alpine Linux in a Python package! Each of these implementations offers the same localhost API. You can then configure Pi, Claude Code, or Codex to send API calls to that sandbox any time they want to execute code. The sandboxes also include an optional HTTP/HTTPS allow-list proxy, so you can control exactly which hosts your agent&#x27;s code is allowed to communicate with - plus a credential replacement mechanism to make authenticated API calls without sharing a secret with the agent. Here&#x27;s the UI you can use to reconfigure that proxy while the sandbox is still running: I continue to be fascinated by the challenge of safely running untrusted code. This external sandbox pattern provides a neat way to experiment with different approaches. Tags: sandboxing , security , ai , webassembly , generative-ai , llms , coding-agents , claude-code , codex , pi</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/introducing-gpt-6-2-astra-sol" target="_blank">Introducing GPT-6.2 Astra and Sol</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 17, 2026 &middot; 17:45 UTC</span>
+          </div>
+          <p class="summary"><span>Introducing GPT‑6.2 Astra and Sol, with better professional outputs, coding, computer use, and efficiency at lower cost across ChatGPT Work, Codex, and the API.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/introducing-openai-for-chile" target="_blank">Introducing OpenAI for Chile</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 17, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI and the Government of Chile are partnering to support responsible AI adoption, build public-sector skills and help local startups develop AI applications.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-ai-fable-52-review-how-i-fight" target="_blank">🎙️ How I AI: Fable 5.2 Review + How I fight token fraud as a solo founder + Building a Claude Code family OS</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Nov 16, 2026 &middot; 16:02 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ How I AI: Fable 5.2 Review + How I fight token fraud as a solo founder + Building a Claude Code family OS Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Nov 16, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-fight-token-fraud-as-a-solo" target="_blank">How I fight token fraud as a solo founder</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Nov 16, 2026 &middot; 13:04 UTC</span>
+          </div>
+          <p class="summary"><span>e human network behind AI Token fraud and what it cost me Six abuse patterns Four kinds of abusers Business controls Technical defenses Bots that watch the bots Final takeaways<ul><li>Stripe Radar: <a href="https://stripe.com/radar" target="_blank" rel="noopener">https://stripe.com/radar</a></li><li>Vercel AI Gateway: <a href="https://vercel.com/docs/ai-gateway" target="_blank" rel="noopener">https://vercel.com/docs/ai-gateway</a></li><li>Vercel Bot ID: <a href="https://vercel.com/docs/botid" target="_blank" rel="noopener">https://vercel.com/docs/botid</a></li><li>Vercel Firewall: <a href="https://vercel.com/docs/vercel-firewall" target="_blank" rel="noopener">https://vercel.com/docs/vercel-firewall</a></li><li>Clerk: <a href="https://clerk.com/" target="_blank" rel="noopener">https://clerk.com/</a></li><li>Codex: <a href="https://openai.com/codex" target="_blank" rel="noopener">https://openai.com/codex</a></li><li>Jev (TypeSafe AI): <a href="https://docs.typesafe.ai/introduction/quickstart" target="_blank" rel="noopener">https://docs.typesafe.ai/introduction/quickstart</a> Other</li><li>Claire Vo on token fraud at ChatPRD: <a href="https://x.com/clairevo/status/2119985786045227197" target="_blank" rel="noopener">https://x.com/clairevo/status/2119985786045227197</a></li><li>Gareth Wham (Atlassian) on fighting AI abuse: <a href="https://x.com/gareth_w/status/2120226872177095114" target="_blank" rel="noopener">https://x.com/gareth_w/status/2120226872177095114</a></li><li>FBI Internet Crime Complaint Center (IC3): <a href="https://www.ic3.gov" target="_blank" rel="noopener">https://www.ic3.gov</a></li><li>Simon Willison’s pelican riding a bicycle: <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle/" target="_blank" rel="noopener">https://simonwillison.net/tags/pelican-riding-a-bicycle/</a></li><li>How I AI: I’m using Jev more than Opus 5.5 or GPT-6: <a href="https://www.youtube.com/watch?v=-KIBgpGA_XI" target="_blank" rel="noopener">https://www.youtube.com/watch?v=-KIBgpGA_XI</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/our-first-phase-of-embedded-assessments" target="_blank">Our first phase of embedded assessments</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 16, 2026 &middot; 08:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI begins embedded assessments with Apollo Research, METR, and Transluce, and Goodfire to independently evaluate model alignment, safeguards, and monitoring systems.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/more-ways-to-move-care-forward-with-chatgpt-for-healthcare" target="_blank">More ways to move care forward with ChatGPT for Healthcare</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 16, 2026 &middot; 06:00 UTC</span>
+          </div>
+          <p class="summary"><span>Introducing computer-use agents, improved clinical answers, and new healthcare plugins that work across healthcare software to get real work done.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/metas-muse-how-we-launched-the-most" target="_blank">Meta’s Muse: How we launched the most successful consumer product this year | Mona Sarantakos</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Nov 15, 2026 &middot; 13:31 UTC</span>
+          </div>
+          <p class="summary"><span>eering intelligence for the AI era</span></p>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 226</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
