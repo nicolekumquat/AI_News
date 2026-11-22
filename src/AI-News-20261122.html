@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-11-22</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-11-22</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/business/learn/pr-scans-demo" target="_blank">See PR scans in action</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 19, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>Watch a walkthrough of PR scans and see how the presenter reviews scan results in a pull request workflow.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Nov/18/llm-gemini/" target="_blank">llm-gemini 0.38</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Nov 18, 2026 &middot; 23:59 UTC</span>
+          </div>
+          <p class="summary"><span>Release: llm-gemini 0.38 Today Google introduced Gemini 4 Neon .</span> <span>I wrote recently about how confusing the pricing for the Gemini 4 series was - Neon has somehow made this even worse.</span> <span>Tags: yonkers-rising , gemini , llm , pelican-riding-a-bicycle , ai , llms , llm-release , google , generative-ai</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Release: llm-gemini 0.38 Today Google introduced Gemini 4 Neon . I wrote recently about how confusing the pricing for the Gemini 4 series was - Neon has somehow made this even worse. Previously the Gemini 4 lineup was Hydrogen, Argon, and Carbon - where Argon and Carbon were the same price , and Hydrogen was 3/4 of that price now but will be 1/4 of that price when the other two double an 1st December once their initial discount pricing expires. The Neon announcement pretends that Argon doesn&#x27;t exist. Here&#x27;s their new image explaining the model line-up: So the lineup now, from most to least expensive, is Carbon, Neon, Hydrogen. Except Carbon is currently half price, so right now Neon ($3/million input, $15/million output) is the most expensive of the three - then Carbon ($2/$10), then Hydrogen ($1.50/$7.50). I guess this will make more sense when Carbon doubles to $4/$20 on December 1st. I ran some pelicans through the three reasoning levels for Neon - low, medium, high. I dropped Argon from my Gemini 4 comparison grid - here&#x27;s the new Gemini 4 lineup, where the Neon pelicans do look better than Hydrogen and worse than Carbon: As I&#x27;ve done with several recent models , I also fired the following prompt against Gemini 4 Neon on &quot;extra&quot; effort level in Google Antigravity: Make a three js animation where yonkers stands up as a big mech (cool stand up motion) and stomps around manhattan and queens and Brooklyn, use openstreetmap mapping data Here&#x27;s the result . Tags: yonkers-rising , gemini , llm , pelican-riding-a-bicycle , ai , llms , llm-release , google , generative-ai</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/introducing-gemini-4-neon/" target="_blank">Introducing Gemini 4 Neon</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Nov 18, 2026 &middot; 21:35 UTC</span>
+          </div>
+          <p class="summary"><span>Introducing Gemini 4 Neon Nov 18, 2026 | x.com Facebook LinkedIn Mail Bringing frontier-level intelligence with fast end-to-end task completion across complex software engineering, knowledge work, and science workflows.</span> <span>On the Vals Index , Neon ranks #2 and lands on the Pareto frontier.</span> <span>Gemini 4 Neon is rolling out today in the Gemini API in Google AI Studio , Gemini for business (via API and model dropdown), for paid Google AI Pro and Ultra subscribers in Google Antigravity , and for Pro and Ultra subscribers in the Gemini app .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Introducing Gemini 4 Neon Nov 18, 2026 | x.com Facebook LinkedIn Mail Bringing frontier-level intelligence with fast end-to-end task completion across complex software engineering, knowledge work, and science workflows. Koray Kavukcuoglu SVP, Google DeepMind and Chief AI Architect, Google Share x.com Facebook LinkedIn Mail In this article Today, we’re introducing Gemini 4 Neon — bringing frontier-level intelligence with fast end-to-end task completion across complex software engineering, knowledge work, and science workflows. Neon ranks ahead of comparable models and #3 overall with a score of 61 on the Artificial Analysis Intelligence Index at its xhigh thinking level, landing just behind larger, slower models. On the Vals Index , Neon ranks #2 and lands on the Pareto frontier. Beyond just pushing on raw model capability, we’re continuing to make our models better to work with, Neon ranks #2 on steerability (adapting cleanly to mid-task user corrections) on the new Agent Arena Index . Neon also excels at multi-step instruction following and builds on our ongoing progress to curb fabrication, recording our lowest fabrication rate yet in internal Google Antigravity testing. The model is priced at $3 per million input tokens ($0.15 per million cached input tokens, a 95% discount) and $15 per million output tokens, with a 1 million-token context window. Gemini 4 Neon is rolling out today in the Gemini API in Google AI Studio , Gemini for business (via API and model dropdown), for paid Google AI Pro and Ultra subscribers in Google Antigravity , and for Pro and Ultra subscribers in the Gemini app . Delivers across enterprise, analytical, and scientific work Enterprise work lives in spreadsheets, PDFs, charts, audio, and video. Neon can synthesize across all of these inputs in a single 1 million-token context window and turns inputs into structured deliverables. Independent evaluations rank Neon as one of the top models and on benchmarks like the Vals Index , it ranks #2 (70.9%), and reaches #1 on both the Legal Research Bench and Tax Agent Bench . Neon also shows strong wins across categories on Surge AI , ranking #1 on most benchmarks across finance, accounting, spreadsheet modeling, and complex constraint following. It also scores 73.5% on Chartography for reading dense professional charts and performs on par with leading models on Agents&#x27; Last Exam v1.1 (75.8%). It achieves #1 overall on both Zapier’s AutomationBench (56.3%) and Andon Labs&#x27; Vending-Bench 2 ($16,843), a long-horizon simulation of running a business. Finally, it debuts #2 globally with a score of 1336 on Arena&#x27;s new Agent Arena Index across 4,200+ real-world agent sessions. On scientific and mathematical reasoning, spanning quantitative analysis, mathematics, and technical research problems, Neon is best in class on Terminal-Bench Science (70.5%), RiemannBench (84.0%), and HLE-Diamond (71.3%). Built for production-ready code Engineered for long-running agent workflows, Neon sustains performance through complex, tool-heavy tasks end-to-end — whether running standalone or acting as a fast, high-judgment Orchestrator directing parallel Hydrogen subagents in Google Antigravity. It cuts down on redundant file reads, shares progress as it works, and handles context compaction reliably in long sessions. Across core developer and researcher workflows, Neon achieves frontier performance and is competitive with the leading models in its class, ranking #1 overall on the Artificial Analysis Coding Agent Index (58.6), with a score of 65.2% on Terminal-Bench 4.1 and 46.2% (at its default high setting) on FrontierCode 2.0 . For production-ready code, Neon handles multi-file debugging and refactoring across repositories with targeted, surgical edits. On SWE-sweep, it already leads on the mini-SWE harness (12.8%) and more than triples to a state-of-the-art 39.0% in Google Antigravity showing what the Antigravity harness unlocks. Driving Blender MCP in Google Antigravity, Gemini 4 Neon used /swarm to build a photorealistic 3D lab bench visualizing the model names with elemental accuracy pairing Bunsen flames for Gemini 4 Carbon and Gemini 4 Hydrogen with high-voltage gas discharge tubes for Gemini 4 Argon and Neon. In Google Antigravity, Gemini 4 Neon wrote a first-person WebGL2 freeride ski simulator from scratch on real Mont Blanc and Chamonix elevation terrain — combining 10,200 lines of custom shaders, 120 Hz ski physics across six alpine lines, dynamic carved tracks, slab avalanches, and spatial Web Audio with zero pre-made assets. Using /swarm in Google Antigravity, Gemini 4 Neon pulled archival photos to recreate Alan Turing’s 1936 study at King’s College, Cambridge in interactive 3D — from King’s Chapel outside to Room X.8 inside, complete with a working Universal Turing Machine running on his desk. In Google Antigravity, a Gemini 4 Neon agent swarm turned a single image into a 100,000-cell Google Sheet with zero embedded images and zero Apps Script — using over 500,000 live spreadsheet formulas to run edge detection, map 3D depth, and relight the scene across six interactive modes. Brings efficiency and control to production-grade workflows We’re refining thinking levels with each new model release to give teams finer control and a smoother progression from one tier to the next. Neon’s four levels scale steadily, letting teams dial intelligence and token spend to what each workload needs. Neon delivers high performance at a lower cost per task across third-party benchmarks. At its default high thinking level, it pairs a high Artificial Analysis Intelligence Index score with a 32% lower cost per task than Carbon. It also sits on the Pareto frontier on both the Vals index and Agent Arena at high, with roughly 50% to 80% lower cost per task than top competing frontier models. xhigh thinking adds deeper, multi-step reasoning for the hardest engineering, analytical, and scientific workloads. Neon shows its highest intelligence score here, while still costing 36%+ less per task than competing models at their highest setting. Built for fast, low cost, frontier-level cyber defense As agentic coding scales, generating secure code from the start is critical. Gemini 4 Neon produces more secure code than Carbon across all easy, medium, and hard challenges on AutoBaxBench , achieving state-of-the-art on the hard tier (76%). Securing systems also means proactively finding flaws before attackers do. Penetration testing has served as a cornerstone of enterprise cybersecurity. On WebExploitBench v1.2 , Neon is state-of-the-art (51.26%) at half the cost of competing large models. To fortify existing code, Neon for cyber delivers frontier-level performance across the code hardening lifecycle — vulnerability finding, validating, and patching — all while being faster and more cost efficient than large frontier models. Finding code vulnerabilities: Neon achieves state-of-the-art performance on SEC-bench Pro (90.5%), while costing roughly half as much per challenge. Validating risk through exploitation: To prioritize which vulnerabilities to remediate, defenders rely on models to check which vulnerabilities are exploitable. On ExploitGym, it achieves frontier-level performance using half the tokens of Carbon. Patching vulnerabilities: Fixing the root cause of vulnerabilities is a critical step in the cybersecurity defense lifecycle. Neon reaches 70.7% on Collinear’s CWE-bench v2 , driving a 3.4% uplift over Carbon. Gemini 4 Neon for cyber is rolling out to trusted defenders in the coming days as part of the Fairwind Program . Designed for safe, dependable execution Gemini 4 Neon builds on improvements from our Gemini 4 safety and security stack — maintaining Gemini 4 Carbon-level protections against severe misuse and prompt injection while advancing further on model alignment and agentic behavior. For a model meant to carry demanding, long-running work in production, we concentrated on: Mitigating frontier misuse safety risks: Because Neon brings frontier-level capabilities to a faster, lower-cost model, we paired it with strong real-time safeguards against cyber and biosecurity misuse comparable to our Carbon protections, while declining far less legitimate work in these areas, refusing for instance just 1.98% of tasks on Terminal-Bench 4.0 and 0% on Terminal-Bench-Science. Advancing alignment and disciplined model behavior: In internal coding use, alert rates from our chain-of-thought and action misalignment monitor remained below the already low baselines set by Carbon, suggesting improved alignment propensity for Neon — and that same monitor is deployed to protect Neon across external surfaces. Neon is trained to complete multi-step work without cutting corners, fabricating results, or overstepping user boundaries — continuing to improve the balance between following through on requests and staying within scope. It matched Carbon with 0.0% cheating on Terminal-Bench 4.0 and took shortcuts on just 2.45% of tasks on our coding cheating evaluation (the lowest rate of any Gemini 4 model). It also achieved a 0.09% misaligned action rate on our agentic safety suite and a 99.2% pass rate on our agent honesty evaluation. On our agentic behavior evaluation, Neon builds on Carbon’s strong baseline by further reducing under-service by 43%–56% and overreach by 15%–35% across different effort levels. Protecting users from indirect prompt injection attacks: On Gray Swan&#x27;s IPI benchmark, Neon is more resilient than other models in its class when malicious instructions are planted in the web pages, emails, documents, or code it accesses. We found that with real-time safeguards at its highest thinking level, Neon resisted every attack within this Gray Swan benchmark, matching the 0.0% attack success rate reached only by other Gemini models. For more details, see the Gemini 4 Neon model card . Built for deeper analysis In the Gemini app, Gemini 4 Neon excels at work that requires frontier-level reasoning and fast responses. Higher-quality writing and knowledge work: Neon writes clearly, with well-structured responses and a natural, direct tone. It reads uploads like spreadsheets, PDFs, and photos more precisely, turns dense material into helpful reports and summaries, and pulls in relevant details from Google apps like Gmail and Docs. Reliable research and analysis: Neon frequently incorporates details from sources across the web to keep responses current for fast-moving topics like comparing pricing across vendors before a major purchase or pulling together a complex brief with the latest market data. Faster help for tougher tasks: Tasks in Gemini can now run on Neon, working through complex, multi-step jobs more quickly and efficiently than with larger models. Get more done while stretching usage limits further when handing off tedious to-dos, like analyzing billing statements to spot why a utility charge spiked or cross-checking multiple receipts and documents to negotiate a refund. Where Neon sits in the Gemini 4 family Neon is built for complex coding, analytical reasoning, and production-grade enterprise workflows. While Carbon tackles your hardest, long-horizon projects and Hydrogen handles fast everyday execution, Neon balances depth and efficiency. Neon delivers frontier-level reasoning for complex, high-frequency workflows faster and more cost efficiently. Start building with Gemini 4 Neon today Gemini 4 Neon begins rolling out today: For developers: Build with the Gemini API paid tier in Google AI Studio and Android Studio , if you’re a paid Google AI Pro or Ultra subscriber, you can try Neon in Google Antigravity and all Pro and Ultra subscribers can try it in AI Studio. For enterprises: Use Gemini 4 Neon in Gemini for business (via the API or model drop-down) and Google Antigravity. For consumers: If you’re a Google AI Pro or Ultra subscriber, you can select Gemini 4 Neon from the model drop-down in the Gemini app . For cybersecurity defenders: Eligible Fairwind Program members will begin receiving access over the next few days. To request access to the Fairwind Program, contact your Cloud account team. Get the latest news from Google in your inbox Done. Just one step more. Check your inbox to confirm your subscription. You can also subscribe with a . Your information will be used in accordance with Google&#x27;s privacy policy. You may opt out at any time</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Nov/18/psf-end-of-year-fundraiser/" target="_blank">The PSF end-of-year fundraiser</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Nov 18, 2026 &middot; 14:44 UTC</span>
+          </div>
+          <p class="summary"><span>The PSF end-of-year fundraiser With my Python Software Foundation board director hat on: we&#x27;ve launched our end-of-year fundraiser for the non-profit that supports Python development and the Python community.</span> <span>If your company or your work benefits from Python, please consider donating this year! We also operate the Developers in Residence program , which now includes three security developers (welcome, Brett Smith) focused on helping secure Python, PyPI, and the wider ecosystem.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>The PSF end-of-year fundraiser With my Python Software Foundation board director hat on: we&#x27;ve launched our end-of-year fundraiser for the non-profit that supports Python development and the Python community. If your company or your work benefits from Python, please consider donating this year! The PSF looks after the IP behind Python, operates PyPI, sponsors core developer sprints, supports community events (including running PyCon US every year), and employs a small and excellent staff team to keep everything running. We also operate the Developers in Residence program , which now includes three security developers (welcome, Brett Smith) focused on helping secure Python, PyPI, and the wider ecosystem. Tags: python , psf</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/le-groupe-figaro-and-openai-announce-partnership" target="_blank">Le Groupe Figaro and OpenAI partner to bring Le Figaro journalism to ChatGPT</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 18, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>November 18, 2026 Company Le Groupe Figaro and OpenAI partner to bring Le Figaro journalism to ChatGPT The collaboration will make Le Figaro’s journalism discoverable in ChatGPT using summaries and excerpts, including links to underlying stories.</span> <span>Le Groupe Figaro and OpenAI announced a strategic partnership ⁠ (opens in a new window) today to help more people discover and engage with Le Figaro’s journalism.</span> <span>Le Figaro also plans to introduce ChatGPT Enterprise across various teams to support their day-to-day work.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>November 18, 2026 Company Le Groupe Figaro and OpenAI partner to bring Le Figaro journalism to ChatGPT The collaboration will make Le Figaro’s journalism discoverable in ChatGPT using summaries and excerpts, including links to underlying stories. Le Groupe Figaro and OpenAI announced a strategic partnership ⁠ (opens in a new window) today to help more people discover and engage with Le Figaro’s journalism. The partnership covers current reporting and archive content from Le Figaro and associated publications, spanning news, business, culture and lifestyle. These articles will be discoverable using summaries and excerpts, including links to underlying stories. “ This partnership reflects Groupe Figaro’s ambition to build meaningful relationships with a leader in artificial intelligence research and deployment. Combining Groupe Figaro’s editorial heritage and trusted brands supported by a team of more than 600 journalists who provide a reliable source of information with OpenAI’s technological expertise and global reach will bring new opportunities for innovation and create long-term value for our readers. ” “ Le Figaro’s reporting helps readers make sense of the stories shaping France and the wider world, and we want AI to help more people discover that work. This partnership reflects our commitment to working with publishers to support quality journalism and connect it with new audiences. ” Le Figaro will retain full editorial independence and control over its journalism. The partnership builds on OpenAI’s work with news organisations around the world to improve the discovery of reliable information, create responsible applications of AI for publishers, and develop new ways for audiences to engage with original reporting. Le Figaro also plans to introduce ChatGPT Enterprise across various teams to support their day-to-day work. It will explore additional uses of OpenAI technology in its workflows and reader services, guided by its AI charter and editorial standards. 2026 ChatGPT Author OpenAI Keep reading View all Astra for Law leads in legal intelligence Company Nov 17, 2026 LVMH’s Media Division announces partnership with OpenAI Company Nov 16, 2026 ChatGPT Plus for veterans and servicemembers Company Nov 11, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents/" target="_blank">External sandboxes for coding agents</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Nov 17, 2026 &middot; 22:52 UTC</span>
+          </div>
+          <p class="summary"><span>External sandboxes for coding agents I&#x27;ve been exploring new ways to sandbox code that is executed by agents, with a focus on making it safer to try out local models without worrying that a mistake or prompt injection attack might cause them to take damaging actions on a machine.</span> <span>My post on the Prime Radiant blog introduces the external sandbox pattern, where code executed by the agent runs inside a dedicated sandbox while the agent itself lives outside of that sandbox.</span> <span>Tags: sandboxing , security , ai , webassembly , generative-ai , llms , coding-agents , claude-code , codex , pi</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>External sandboxes for coding agents I&#x27;ve been exploring new ways to sandbox code that is executed by agents, with a focus on making it safer to try out local models without worrying that a mistake or prompt injection attack might cause them to take damaging actions on a machine. I worked on this project with Prime Radiant , the AI research lab behind Superpowers and other projects . My post on the Prime Radiant blog introduces the external sandbox pattern, where code executed by the agent runs inside a dedicated sandbox while the agent itself lives outside of that sandbox. To demonstrate this pattern we&#x27;ve released three sandbox server implementations: external-sandbox-v86 runs a Node.js server which then uses v86 to run Alpine Linux inside WebAssembly. external-sandbox-container is a Python web server which runs the sandbox in Alpine Linux inside an Apple Containers instance. external-sandbox-quicksand is another Python web server, this time using Microsoft&#x27;s Quicksand sandboxing library, which bundles QEMU and Alpine Linux in a Python package! Each of these implementations offers the same localhost API. You can then configure Pi, Claude Code, or Codex to send API calls to that sandbox any time they want to execute code. The sandboxes also include an optional HTTP/HTTPS allow-list proxy, so you can control exactly which hosts your agent&#x27;s code is allowed to communicate with - plus a credential replacement mechanism to make authenticated API calls without sharing a secret with the agent. Here&#x27;s the UI you can use to reconfigure that proxy while the sandbox is still running: I continue to be fascinated by the challenge of safely running untrusted code. This external sandbox pattern provides a neat way to experiment with different approaches. Tags: sandboxing , security , ai , webassembly , generative-ai , llms , coding-agents , claude-code , codex , pi</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/introducing-openai-for-chile" target="_blank">Introducing OpenAI for Chile</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 17, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>November 17, 2026 Global Affairs Introducing OpenAI for Chile Today we’re launching OpenAI for Chile, a partnership with the Government of Chile, led by the Ministry of Science, Technology, Knowledge and Innovation, to support responsible AI adoption in public administration, build civil servants’ skills and help local startups develop useful AI applications.</span> <span>The partnership builds on Chile’s National AI Policy and action plan ⁠ (opens in a new window) , which support talent development, research and responsible adoption.</span> <span>About OpenAI for Countries OpenAI for Chile is part of OpenAI for Countries, our global initiative to help countries use AI to advance their national priorities, strengthen their economies and expand opportunity.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>November 17, 2026 Global Affairs Introducing OpenAI for Chile Today we’re launching OpenAI for Chile, a partnership with the Government of Chile, led by the Ministry of Science, Technology, Knowledge and Innovation, to support responsible AI adoption in public administration, build civil servants’ skills and help local startups develop useful AI applications. The partnership builds on Chile’s National AI Policy and action plan ⁠ (opens in a new window) , which support talent development, research and responsible adoption. The Memorandum of Understanding was signed on the sidelines of Semafor’s Silicon Valley &amp; The World conference in California, with Minister Ximena Lincolao leading the agreement on behalf of Chile. The partnership is supported by the U.S. Department of Commerce’s American SI Exports Program ⁠ (opens in a new window) , of which OpenAI is an anchor partner, helping Chile advance its own AI ambitions through public sector innovation, skills development, and entrepreneurship. “ Artificial Intelligence is going to be one of the most important ways we make people’s lives better—from accelerating scientific discovery to helping people build things we haven’t imagined yet. I’m excited to work with Chile to help public servants use these tools, improve public services, and support entrepreneurs building new companies. I am excited to see Chilean startups solve some of the most important problems in the world and build things that benefit people everywhere. ” “ We are incredibly excited about this collaboration and the extraordinary opportunities it will open for scientific discovery, entrepreneurship, and innovation across Chile. This is about empowering Chileans to push the boundaries of what is possible, create new technologies, and develop solutions that improve people&#x27;s lives. ” Putting AI to work in Chile The partnership will explore technology adoption in the ministry’s administrative processes, including potential support from OpenAI on adopting new models, alongside advice and training for ministry personnel. For civil servants, the partnership will explore practical AI literacy, upskilling and reskilling tailored to their roles. Activities could include workshops and a train-the-trainer approach, covering effective use of AI tools, checking outputs, protecting sensitive information and maintaining human oversight. To support Chile’s AI startup and innovation ecosystem, the partners will explore access to relevant OpenAI programs and technology, practical learning, technical guidance and mentorship. Cooperation could also connect entrepreneurs with public institutions, universities and other local partners to develop applications that support Chile’s economic development and public-service priorities. A joint task force of ministry and OpenAI representatives is expected to agree priorities and an initial workplan, with leads, milestones and measures of success for each activity. Specific activities, eligibility, and access to technology will be agreed separately. The MoU sets no investment or purchasing commitment. Activities will be subject to appropriate safeguards for privacy, information security and responsible use. About OpenAI for Countries OpenAI for Chile is part of OpenAI for Countries, our global initiative to help countries use AI to advance their national priorities, strengthen their economies and expand opportunity. We work with governments and local partners to turn AI’s potential into practical benefits for their people. 2026 Author OpenAI Keep reading View all Expanding AI access across every level of US government Global Affairs Sep 10, 2026 Grab and OpenAI bring practical AI skills to Southeast Asia Global Affairs Sep 23, 2026 Helping small businesses put AI to work Global Affairs Sep 30, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/strengthening-nato-allied-cyber-defences-ai" target="_blank">Strengthening NATO and allied cyber defenses with AI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 17, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>November 17, 2026 Global Affairs Strengthening NATO and allied cyber defenses with AI Governments and national cyber agencies protect the systems that people, public services and economies depend on.</span> <span>Strengthening NATO’s cyber defenses OpenAI works with NATO’s Communications and Information Agency (NCIA) to provide NATO’s core institutions with access to advanced cybersecurity models, helping protect Allied networks.</span> <span>NATO’s early use of OpenAI tools shows how capable cyber defenders can put frontier models to work, supporting NATO’s mission of safeguarding the freedom and security of its member states.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>November 17, 2026 Global Affairs Strengthening NATO and allied cyber defenses with AI Governments and national cyber agencies protect the systems that people, public services and economies depend on. Through Daybreak, we’re putting advanced AI into the hands of trusted defenders for authorized security work, from reviewing software and investigating suspicious activity to validating vulnerabilities, and developing and testing fixes. Strengthening NATO’s cyber defenses OpenAI works with NATO’s Communications and Information Agency (NCIA) to provide NATO’s core institutions with access to advanced cybersecurity models, helping protect Allied networks. NATO has used up to 300 billion raw input and output tokens per month as part of this work. NATO’s early use of OpenAI tools shows how capable cyber defenders can put frontier models to work, supporting NATO’s mission of safeguarding the freedom and security of its member states. It also helps strengthen cyber expertise across multinational teams responsible for protecting Allied networks around the clock, and creates lessons that can benefit defenders across Europe and the broader Alliance. OpenAI also supported ⁠ (opens in a new window) the 2026 Crossed Swords exercise. Organized by the NATO Cooperative Cyber Defence Centre of Excellence (CCDCOE), the exercise included a new training stream in which participants built, deployed, and evaluated AI agents for cyber operations, using OpenAI Daybreak in the technical environment. The training put participants alongside AI agents as operators, with an emphasis on maintaining human oversight. OpenAI remains fully committed to NATO’s principles for responsible AI adoption and to delivering solutions that are safe and secure. “ AI-powered cyber defence models represent a generational leap in cyber security. They accelerate vulnerability discovery, detect emerging threats at machine speed and enable defenders to stay ahead of adversaries. For NATO, these technologies strengthen our cyber resilience, enhance our operational advantage and reinforce our ability to protect critical digital infrastructure at unprecedented scale and speed. As we scale adoption, we will build a deeper understanding of token consumption, usage patterns and the underlying economics of AI models. This insight will help us optimise costs, evaluate competing solutions and make informed procurement decisions. ” “ The people defending our democracies should have the most advanced technology on their side. NATO’s cyber defenders protect networks that are essential to the security of the Alliance. Through Daybreak, we’re putting more capable tools in their hands to help them find and fix vulnerabilities before attackers can exploit them. We look forward to deepening this work with NATO and our allies, helping turn advances in AI into stronger cyber defenses. ” Supporting allied governments Beyond NATO, we have already provided access to our cyber models to defenders in Europe, including the EU’s ENISA and national cyber agencies in France (ANSSI), Germany and Poland. The Ministry of Digital Transformation of Ukraine is using ⁠ OpenAI’s Daybreak tool to strengthen the cyber defence of civilian infrastructure. The initiative is designed to help Ukrainian teams identify software vulnerabilities and develop and test fixes more quickly, supporting defenders who protect essential services amid persistent cyber attacks. The EU’s cyber agency, ENISA, used our models to identify four vulnerabilities in software used across EU institutions, with fixes published for all four ( 1 ⁠ (opens in a new window) , ⁠ (opens in a new window) 2 ⁠ (opens in a new window) , ⁠ (opens in a new window) 3 ⁠ (opens in a new window) , ⁠ (opens in a new window) 4 ⁠ (opens in a new window) ). A November ⁠ (opens in a new window) joint report from ENISA and CERT-EU ⁠ (opens in a new window) also describes a review of 27 software projects using frontier models including OpenAI models accessed through Daybreak, and tools including the Codex security plug-in. Across the models tested, 95% of the 88 potential issues assessed by software maintainers were confirmed as genuine, demonstrating the value of combining AI with human expertise. CERT Polska used OpenAI models to help identify six vulnerabilities in MikroTik RouterOS ⁠ (opens in a new window) and coordinated their disclosure with the vendor. Researchers directed the work, tested findings on real systems and verified their impact, with AI accelerating analysis and the exploration of potential vulnerabilities. MikroTik released fixes, which CERT Polska confirmed prevented the attacks it had observed, giving network operators a concrete way to protect affected devices. We will continue working with governments, national cyber agencies and international partners to turn frontier AI capability into stronger, safer, more resilient systems, helping defenders find weaknesses, fix them faster and protect the services people rely on every day. 2026 Author OpenAI Keep reading View all Introducing OpenAI for Chile Global Affairs Nov 17, 2026 The King’s Trust and OpenAI launch £1m partnership Global Affairs Nov 16, 2026 Supporting research on AI and children’s safety Global Affairs Nov 12, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-ai-fable-52-review-how-i-fight" target="_blank">🎙️ How I AI: Fable 5.2 Review + How I fight token fraud as a solo founder + Building a Claude Code family OS</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Nov 16, 2026 &middot; 16:02 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ How I AI: Fable 5.2 Review + How I fight token fraud as a solo founder + Building a Claude Code family OS Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Nov 16, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-fight-token-fraud-as-a-solo" target="_blank">How I fight token fraud as a solo founder</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Nov 16, 2026 &middot; 13:04 UTC</span>
+          </div>
+          <p class="summary"><span>e human network behind AI Token fraud and what it cost me Six abuse patterns Four kinds of abusers Business controls Technical defenses Bots that watch the bots Final takeaways<ul><li>Stripe Radar: <a href="https://stripe.com/radar" target="_blank" rel="noopener">https://stripe.com/radar</a></li><li>Vercel AI Gateway: <a href="https://vercel.com/docs/ai-gateway" target="_blank" rel="noopener">https://vercel.com/docs/ai-gateway</a></li><li>Vercel Bot ID: <a href="https://vercel.com/docs/botid" target="_blank" rel="noopener">https://vercel.com/docs/botid</a></li><li>Vercel Firewall: <a href="https://vercel.com/docs/vercel-firewall" target="_blank" rel="noopener">https://vercel.com/docs/vercel-firewall</a></li><li>Clerk: <a href="https://clerk.com/" target="_blank" rel="noopener">https://clerk.com/</a></li><li>Codex: <a href="https://openai.com/codex" target="_blank" rel="noopener">https://openai.com/codex</a></li><li>Jev (TypeSafe AI): <a href="https://docs.typesafe.ai/introduction/quickstart" target="_blank" rel="noopener">https://docs.typesafe.ai/introduction/quickstart</a> Other</li><li>Claire Vo on token fraud at ChatPRD: <a href="https://x.com/clairevo/status/2119985786045227197" target="_blank" rel="noopener">https://x.com/clairevo/status/2119985786045227197</a></li><li>Gareth Wham (Atlassian) on fighting AI abuse: <a href="https://x.com/gareth_w/status/2120226872177095114" target="_blank" rel="noopener">https://x.com/gareth_w/status/2120226872177095114</a></li><li>FBI Internet Crime Complaint Center (IC3): <a href="https://www.ic3.gov" target="_blank" rel="noopener">https://www.ic3.gov</a></li><li>Simon Willison’s pelican riding a bicycle: <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle/" target="_blank" rel="noopener">https://simonwillison.net/tags/pelican-riding-a-bicycle/</a></li><li>How I AI: I’m using Jev more than Opus 5.5 or GPT-6: <a href="https://www.youtube.com/watch?v=-KIBgpGA_XI" target="_blank" rel="noopener">https://www.youtube.com/watch?v=-KIBgpGA_XI</a></li></ul></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/business/customer-stories/revolut" target="_blank">How Revolut raises ambition without lowering the bar</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 16, 2026 &middot; 09:30 UTC</span>
+          </div>
+          <p class="summary"><span>November 16, 2026 How Revolut raises ambition without lowering the bar With OpenAI models and Codex, Revolut is giving its teams more room to solve complex problems—from software engineering to financial crime.</span> <span>Contact sales Company size: Enterprise Region: Global Industry: Technology, Finance Products: ChatGPT, API, Codex 30–60% Reduction in coding time from task start to feature merge One day To turn seven years of design documentation into AI-readable context 1–2 days Saved on security code review with Codex Moving faster on the everyday Revolut ⁠ (opens in a new window) was built to challenge the way people interact with money.</span> <span>That’s why one of Revolut’s largest AI applications is a FinCrime agent powered by OpenAI models.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>November 16, 2026 How Revolut raises ambition without lowering the bar With OpenAI models and Codex, Revolut is giving its teams more room to solve complex problems—from software engineering to financial crime. Contact sales Company size: Enterprise Region: Global Industry: Technology, Finance Products: ChatGPT, API, Codex 30–60% Reduction in coding time from task start to feature merge One day To turn seven years of design documentation into AI-readable context 1–2 days Saved on security code review with Codex Moving faster on the everyday Revolut ⁠ (opens in a new window) was built to challenge the way people interact with money. That ambition now stretches across more than 40 markets, 800,000 businesses and a consumer base that’s grown by 23% in the last 12 months. Add to that a company culture that expects small, lean teams to move quickly and it’s no surprise that ChatGPT and Codex have proven a natural fit. “The perfect description for a high-caliber Revolut person is someone who can identify a problem really quickly, deduce the solution, design four scenarios, identify the best one of those four then take it to market,” says Kim Maniovich, Revolut’s Global Head of Business Marketing. “Partnering with OpenAI enables us to build a lot of these solutions in a way that’s incredibly lean, cost-efficient and really tailored to the unique way that we work.” But moving faster is only part of the opportunity. For Revolut, the bigger question is what becomes possible when talented people spend less time on the mechanics of getting things done—and more time tackling problems that could fundamentally change financial services. Starting where scale meets impact As Revolut grows, so does the complexity of protecting its customers. According to one report ⁠ (opens in a new window) , over half of adults worldwide reported a scam encounter in 2025. For Revolut, every transaction creates another opportunity to identify suspicious activity, investigate potential risks and implement robust and tailored protections for its customers. But the sheer volume of those transactions far outstrips the human available to any bank. “The biggest problem we can tackle with AI today is the scaling of humans versus the demand that we get,” says AI Lead David Abitbol. That’s why one of Revolut’s largest AI applications is a FinCrime agent powered by OpenAI models. Rather than requiring investigators to work through every eligible case manually, the agent can examine information, apply Revolut’s rules and complete the defined process automatically. The release of GPT‑5.5 was a turning point. It was then, says Abitbol, that the models had become capable and cost-effective enough for Revolut to delegate screening and investigation workflows entirely to the agent. The result is greater capacity to monitor transactions without increasing investigator headcount at the same rate as demand. That, adds Information Security Engineer Mo Amiri, “translates directly into stronger protection and a more resilient system our customers can trust.” ‘Move fast but build trust’ could easily be Revolut’s internal engineering slogan. While Abitbol points out that Codex has delivered a 30-60% reduction in coding time, he’s also clear that certain guardrails are non-negotiable. “We have a systematic framework where anyone in the company who’s building anything with AI has the same set of standards across development, A/B testing, and business metric prediction,” he says. “So every engineer is held to the same standard of quality across the company. We started to get enough intelligence for reasonable costs where we could increasingly delegate initial investigations and screenings to the agent.” Delegating implementation, not accountability For Senior Platform Engineer Dmitry Pitik, that 30-60% reduction in coding time became tangible while he was building an internal code-review service. He designed the system, broke it into features and initially assumed he’d need a development team to implement it. “I realised I don’t need a whole team of developers to implement this,” he recalls. “I can just launch different agents and assign each of them a particular task.” Codex became his implementation team, while Dmitry spent more time designing the system, planning the work and reviewing what came back. This is a pattern that Abitbol has seen across Revolut. As Codex returns capacity to engineers they’re using that reclaimed time “to spend more time discussing design and the best solution. So we spend more time designing instead of implementing.” That doesn’t remove the need for engineering expertise, it just changes where that expertise is applied. “Every developer is responsible for the code they produce, and we don’t blindly trust AI,” Pitik says. The result is a different division of work: AI can help with implementation, while engineers devote more attention to the decisions that determine whether the software is useful, reliable and worth building. That overhead is worth it. As Codex works on one task, Pitik can work in parallel on another. That kind of multitasking is essential in a company where, as Kim Maniovich explains, the average employee has “three different jobs.” Using Codex creates a virtuous (if challenging) flywheel where “month on month the targets we’re setting get more aggressive, but also more attainable. And so the bar keeps moving up. AI is making that possible.” Examples of what Revolut has been able to do with this new-found capacity include developing a tool to build web UIs for internal apps and external-facing products. Or turning seven years of design documentation into AI-readable context in a single day, creating a foundation for tools intended to help designers work more effectively. The exercise illustrates how AI can make accumulated organisational knowledge more accessible, reducing the effort required to work with complex systems. “We can shift focus from the things which are important but hard to do without AI to the things which matter for customers,” says Senior Designer Dmytro Pavlov. “I realised I don’t need a whole team of developers. I can just launch different agents and assign them a task.” —Dmitry Pitik, Senior Platform Engineer, Revolut Building trust into the system Mo Amiri’s job is to make sure all of this speed is matched by security—not just for customers but for Revolut’s own employees. That gives him two views of AI at once: how it can help Revolut investigate a problem, and what teams need before they can deploy it safely. In a phishing investigation, for example, an analyst once had to gather an email, inspect its links and attachments, trace the sender and assemble the evidence manually. “With stronger AI tools, we can uncover those connections instantly, and dig deeper into the questions that really matter,” he says. While AI does the legwork and presents an investigator with a structured case, it’s still down to the individual to review the original records, decide whether the explanation makes sense and approve any action. Amiri applies the same thinking when teams bring new AI applications into Revolut. He follows the complete chain: what information the system sees, where that information goes, which tools it can reach, what it can do with that access and what happens when something fails. He also tests whether apparently convincing conclusions are actually supported by the evidence. “The most critical decision is always about accountability,” he says. “If an AI tool suggests a code change, a human engineer needs to understand that change well enough to stand by it. That directly drives how we design the review process, giving developers the context they need without cluttering their everyday workflow.” For Revolut, safeguards aren’t separate from innovation. They help establish the conditions under which teams can confidently adopt more capable technology. “That’s how you earn real confidence in AI,” he explains, “by making thoughtful decisions upfront and testing as you go.” “You earn real confidence in AI by making thoughtful decisions upfront and testing as you go.” —Mo Amiri, Information Security Engineer, Revolut Results at a glance 30–60% reduction in coding time from task start to feature merge One engineer built an internal code-review service by delegating implementation tasks to multiple Codex agents One day to transform existing design-system documentation developed over roughly seven years into AI-readable context One to two days saved on one substantial security code-review task More transactions screened through the FinCrime agent without scaling investigators one for one Leadership lessons Start with a problem worth solving. Revolut has put AI to work where demand is growing fastest and the stakes for customers are highest. Use speed to raise ambition, not lower standards. Time saved on coding and investigation creates room for better design, harder questions and more consequential work. Keep people on the hook. AI can gather evidence, write code and recommend action. A person still needs to understand the work well enough to stand behind it. Build trust before you scale. Be clear about what a system can see, what it can do and what happens when it fails—then test those decisions as you go. Make your knowledge usable. AI works better when it can reach clear, well-organised context. The same exercise often shows where the organisation itself needs to be clearer. What’s next Revolut has already shown how AI can increase the amount and complexity of work its teams can attempt. Its next opportunity is to carry that combination of capability, judgment and design into the way customers interact with their money. Abitbol imagines a more conversational interface in which customers can ask Revolut to help with everyday financial tasks: blocking a card, managing a subscription or finding ways to save for a trip. Pavlov sees the design challenge underneath that experience—turning complexity into something consistent, familiar and easy to use. Kim Maniovich connects that future to the culture driving the work. “I hope that we can take the values that we operate by every day—this unapologetic ambition, the desire to never settle—and enable people to apply that to their own lives through the products that we build for them.” As AI makes it easier to build, the differentiator becomes knowing what to build—and maintaining the judgment, standards and customer understanding to do it well. For Revolut, that’s the bigger promise of intelligence at work: less time spent on the mechanics of getting things done, and more capacity to make financial services safer, simpler and more useful for everyone. Banking services provided by licensed Revolut Group entities. Visit Revolut.com ⁠ (opens in a new window) . Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Get OpenAI for Business updates Product updates, practical guides, upcoming events, and more. Keep reading Benefit Street Partners answers questions faster with Codex Oct 16, 2026 1Password increases engineering productivity 21% with Codex Sep 8, 2026 Credit Saison achieves 954% ROI in a ChatGPT Enterprise pilot Oct 29, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/the-kings-trust-and-openai" target="_blank">The King’s Trust and OpenAI launch £1m partnership</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 16, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>November 16, 2026 Global Affairs The King’s Trust and OpenAI launch £1m partnership The new partnership will help young people build AI skills for the future workforce, prioritizing those not in education or employment.</span> <span>The King’s Trust ⁠ (opens in a new window) has announced a major partnership with OpenAI designed to help up to 25,000 young people build AI skills for work, prioritizing those not in education, employment or training.</span> <span>This is part of a wider program of nationally recognized AI qualifications that The Trust will launch in the coming months, designed to help young people stay ahead of a changing labor market.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>November 16, 2026 Global Affairs The King’s Trust and OpenAI launch £1m partnership The new partnership will help young people build AI skills for the future workforce, prioritizing those not in education or employment. The King’s Trust ⁠ (opens in a new window) has announced a major partnership with OpenAI designed to help up to 25,000 young people build AI skills for work, prioritizing those not in education, employment or training. OpenAI is making a £1m donation to the youth charity to support this work. This is part of a wider program of nationally recognized AI qualifications that The Trust will launch in the coming months, designed to help young people stay ahead of a changing labor market. The announcement comes as The King’s Trust marks its 50th year and looks to the future, helping ensure young people are supported to succeed in an increasingly AI-enabled world. The King’s Trust and OpenAI have launched a £1 million partnership to help young people across the UK build AI skills for work, prioritizing those who are not in education, employment or training (NEET). The program aims to support up to 25,000 young people over the next 18 months, helping them develop practical skills and confidence to move toward education and employment in an AI-enabled economy. The program will help address a gap in young people’s experience of AI while responding to their appetite to learn. The Open University’s Business Barometer 2026 ⁠ (opens in a new window) found that 68% of 16–24-year-olds surveyed who were not in education, employment or training would be willing to train or upskill to improve their job prospects. The partnership will help prepare young people for the opportunities and challenges of a rapidly changing world of work by combining opportunities to learn AI skills with recognized qualifications and practical experience. It forms part of a wider program of nationally recognized AI qualifications being developed by The King’s Trust, designed to equip young people with the skills employers need as AI transforms the world of work. Working with employers, AI specialists and young people, The King’s Trust is exploring the skills young people will need in a world of work where AI is becoming part of everyday life, and how these can complement the employability skills already embedded across its programs. Building on a 50-year legacy of supporting more than 1.3 million young people, The King’s Trust wants to ensure the next generation gains the skills and confidence needed to thrive in an AI-enabled economy. Ahead of the final report of the independent Young People and Work review, the Rt Hon Alan Milburn welcomed the partnership, reflecting on the shared ambition to improve young people’s opportunities to learn and earn. “ Young people deserve to be equipped for a changing world of work, with the skills and confidence to make the most of it. AI will bring disruption as well as opportunity, so it is vital that young people get a fair share of the opportunity and don’t bear the cost of the disruption. ” For OpenAI, the partnership forms part of a broader commitment to helping young people develop the skills and confidence to benefit from AI. It builds on wider efforts to make practical AI learning more accessible, including through OpenAI Academy , which provides free learning for students, job-seekers and other learners. “ AI has the potential to create enormous opportunities for young people, but only if they have the chance to develop the skills and confidence to use it. We want young people to shape the future, not be shaped by it. Through this partnership with OpenAI, we’ll help thousands of young people build practical AI skills, gain recognized qualifications and prepare for a world of work that is changing rapidly. We’re incredibly grateful for OpenAI’s support as we help the next generation unlock the opportunities of the AI era. ” “ Young people who are out of education or work deserve a real foothold in the AI economy. We’re committing £1 million and our AI expertise to help The King’s Trust reach up to 25,000 young people with practical skills, recognized learning and support toward education and employment. We’re excited about the talent this can unlock. Our ambition is for young people facing the greatest barriers to have a real chance to shape, and benefit from, an AI-powered future. ” 2026 Author OpenAI Keep reading View all Strengthening NATO and allied cyber defenses with AI Global Affairs Nov 17, 2026 Introducing OpenAI for Chile Global Affairs Nov 17, 2026 Supporting research on AI and children’s safety Global Affairs Nov 12, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/metas-muse-how-we-launched-the-most" target="_blank">Meta’s Muse: How we launched the most successful consumer product this year | Mona Sarantakos</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Nov 15, 2026 &middot; 13:31 UTC</span>
+          </div>
+          <p class="summary"><span>eering intelligence for the AI era</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Nov/15/datasette-agent/" target="_blank">datasette-agent 0.6a0</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Nov 15, 2026 &middot; 03:49 UTC</span>
+          </div>
+          <p class="summary"><span>Release: datasette-agent 0.6a0 Accumulated small fixes for Datasette Agent, my agent plugin for Datasette that lets you ask questions about your data.</span> <span>Most notably, it now adds an agent prompt directly to the Datasette homepage, with support for hash-mentions of tables and queries: Tags: datasette-agent , llm , datasette , llms , ai , generative-ai</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/introducing-chatgpt-wallet" target="_blank">Introducing ChatGPT Wallet</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 13, 2026 &middot; 15:00 UTC</span>
+          </div>
+          <p class="summary"><span>November 13, 2026 Product Introducing ChatGPT Wallet Building trusted agentic payments with networks, banks, and businesses.</span> <span>We’re introducing ChatGPT Wallet, setting a new bar for secure payments by agents.</span> <span>How a purchase works ChatGPT Wallet gives agents a secure way to pay on a user’s behalf.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>November 13, 2026 Product Introducing ChatGPT Wallet Building trusted agentic payments with networks, banks, and businesses. We’re introducing ChatGPT Wallet, setting a new bar for secure payments by agents. It’s the first wallet that lets agents pay without access to users’ actual card details and that requires a security check for every purchase, while also preserving existing card rewards and protections for eligible disputes. Built in partnership with American Express, Chase, Mastercard, and Visa, ChatGPT Wallet will initially be available through dots ⁠ for ChatGPT Pro subscribers in the US. Alongside ChatGPT Wallet, we’re releasing tools and guidance to help businesses support customers using agents. 1.2B people use ChatGPT each week, and many of them turn to it to research products, compare options, and decide what to buy. With ChatGPT Wallet, we’re now helping people complete purchases, and giving their agents a way to pay that businesses can accept with their existing systems. To accept payment from ChatGPT Wallet, websites need to ensure agents are not inadvertently blocked, and payment and risk systems need to recognize legitimate purchases made by agents. We’re starting with limited availability to ChatGPT Pro users, so we can learn from real-world use and work with businesses, banks, and payment networks to improve compatibility and reliability. How a purchase works ChatGPT Wallet gives agents a secure way to pay on a user’s behalf. Users add a card once, then approve each purchase without re-entering their payment details. Before each purchase, the user reviews the items, total, and selected card, then approves it with a security check such as Face ID or a fingerprint scan. Each approval creates a clear record of the purchase the user authorized the agent to make. After the user approves, the payment network provides a payment token—a substitute for the user’s actual card details—with a card number, security code, and expiration date. The payment is charged to their selected card without ChatGPT Wallet sharing their actual card details with the business or agent. We’re building agent-led commerce to fit reliably into existing systems. Users keep their card’s existing rewards and protections for eligible disputes with businesses, for example when an item is defective. Banks and networks bring their expertise to evaluating transactions. Users transact directly with businesses, which keep their customer relationships and control over pricing, fulfillment, returns, and customer service. Over time, we expect users to be able to delegate purchases entirely to their agent by setting clear parameters—such as spending limits, purchase categories, or time periods—and pre-approve those purchases with enhanced safeguards that build on today’s protections, including biometric checks and clear records of authorization. 1 of 3 “ Working with OpenAI, we’re bringing the trust, security and control of American Express payments into new AI-powered shopping experiences. ChatGPT Wallet marks our first American Express Agentic Commerce Experiences integration, enabling eligible Card Members to use their Amex Card while reviewing and approving each purchase. We’re excited to learn together from this early phase and build toward bringing these experiences to more Card Members over time. ” “ An agent making a purchase should strengthen, not bypass, the trust built into payments. Our collaboration with OpenAI brings Mastercard’s payments and security expertise to ChatGPT Wallet, helping connect user-approved purchases with the systems businesses and banks already use. Working together across the industry is how we turn the promise of agentic commerce into experiences people and businesses can trust. ” “ To deliver on the promise of agentic commerce, consumers, businesses and banks all need to trust the process. We’re partnering with OpenAI to bring Visa’s trusted infrastructure to the experience, helping connect user-approved purchases with the systems businesses already use. ” American Express Mastercard Visa Equipping businesses for agentic commerce Agentic commerce is still in its early days. As agents begin to take on more shopping and purchasing tasks, many websites and payment systems are still adapting to this modality. Some sites may unintentionally block purchases through ChatGPT Wallet or other agentic payment products, and we are focused on helping businesses make that transition. Alongside ChatGPT Wallet, we’re publishing a Commerce Partner Playbook ⁠ (opens in a new window) with tools and practical guidance to help businesses support customers using agents through their existing websites and systems. It covers making product information available, ensuring agent access, and working with payment and risk providers to reduce unnecessary declines. Businesses can start with the areas most relevant to their customers: Help customers find accurate product information. Claim your business in ChatGPT and, once verified, update your business details and upload a product feed with current pricing and availability. Ensure ChatGPT agents can access your website. Configure your CDN or firewall to recognize signed requests using Web Bot Auth and confirm your general site security measures are not inadvertently blocking ChatGPT agents. Browser access does not require a plugin or product feed. Work with your payments and risk providers to support agent purchases. Wallet’s payment tokens work with existing checkout flows, but risk systems may still flag legitimate purchases made by agents, leading to declines or cancellations. You can work with your providers to understand how they recognize these transactions. We’re also working with fraud prevention partners including Forter, Riskified, Sardine and Signifyd and payment service providers including Adyen, Checkout.com, and Stripe to help their systems recognize legitimate purchases made by agents. Give agents more ways to work with your business. Build a plugin to let agents check availability, manage carts, or take other actions through your existing systems. Websites can also add WebMCP tools. Availability ChatGPT Wallet begins rolling out today in dots, enabling users to have their dot complete purchases on their behalf. It will initially be available to ChatGPT Pro subscribers aged 18 and older in the US with eligible US-issued cards. We’ll work with businesses, banks, and payment networks to learn from early use and expand availability, helping more customers and businesses benefit from agentic commerce. ChatGPT 2026 Author OpenAI Keep reading View all Introducing GPT-6.2 Astra and Sol Product Nov 17, 2026 Introducing ChatGPT for Sales Product Nov 17, 2026 More ways to move care forward with ChatGPT for Healthcare Product Nov 16, 2026</p></div></details>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 130</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
