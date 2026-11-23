@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Daily Digest - 2026-11-23</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c8cff;
+    --accent-glow: #4a6bff;
+    --number: #3d4260;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont,
+                 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header .logo {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  header .subtitle {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .cache-badge {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-dim);
+    vertical-align: middle;
+    margin-left: 8px;
+  }
+
+  /* ── Articles ── */
+  article {
+    display: flex;
+    gap: 20px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  article:last-child {
+    border-bottom: none;
+  }
+
+  .article-number {
+    flex-shrink: 0;
+    width: 32px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--number);
+    padding-top: 2px;
+    text-align: right;
+  }
+
+  .article-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .article-content h2 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .article-content h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .article-content h2 a:hover {
+    color: var(--accent);
+  }
+
+  .meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+  }
+
+  .source {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .summary {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .summary a, .expanded-body a {
+    color: var(--accent);
+    text-decoration: none;
+    word-break: break-all;
+  }
+
+  .summary a:hover, .expanded-body a:hover {
+    text-decoration: underline;
+  }
+
+  .summary ul, .expanded-body ul {
+    margin: 8px 0;
+    padding-left: 20px;
+  }
+
+  .summary li, .expanded-body li {
+    margin-bottom: 4px;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--text-dim);
+    padding: 60px 0;
+    font-size: 16px;
+  }
+
+  /* ── Expand accordion ── */
+  .expand-content {
+    margin-top: 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .expand-content summary {
+    cursor: pointer;
+    padding: 8px 14px;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--surface);
+    user-select: none;
+    list-style: none;
+  }
+
+  .expand-content summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .expand-content summary::before {
+    content: '▶ ';
+    font-size: 10px;
+    margin-right: 6px;
+    display: inline-block;
+    transition: transform 0.15s;
+  }
+
+  .expand-content[open] summary::before {
+    transform: rotate(90deg);
+  }
+
+  .expanded-body {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-dim);
+    background: var(--bg);
+  }
+
+  .expanded-body p {
+    margin-bottom: 10px;
+  }
+
+  .expanded-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  footer .stats {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+
+  footer .stats span {
+    white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo">AI Daily Digest</div>
+    <h1>2026-11-23</h1>
+    <div class="subtitle">15 curated articles &middot; 18 of 21 sources</div>
+  </header>
+
+  <main>
+      <article>
+        <div class="article-number">1</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/openclaw-for-executives-automate" target="_blank">OpenClaw for executives: Automate every 1% annoyance | Ankit Maheshwari (Innovaccer)</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Nov 23, 2026 &middot; 13:04 UTC</span>
+          </div>
+          <p class="summary"><span>oorest Teaser Why OpenClaw Approvals Flight approvals in Navan, the notification problem, and the domino effect Soul files and subagents Subagent structure: health coach, email triage, and the master soul Why one global agent hallucinated on personas, and the fix Why well-scoped subagents beat one agent for everything How he builds Food ordering Travel and restaurants Smart home The 1% annoyance rule Guardrails Local models and cost What GLM 5.2 Flash can and can’t do OpenClaw: <a href="https://openclaw.ai/" target="_blank" rel="noopener">https://openclaw.ai/</a> Bland AI: <a href="https://www.bland.ai" target="_blank" rel="noopener">https://www.bland.ai</a> Navan: <a href="https://navan.com" target="_blank" rel="noopener">https://navan.com</a> Coupa: <a href="https://www.coupa.com" target="_blank" rel="noopener">https://www.coupa.com</a> DoorDash Meal Manager: <a href="https://www.doordash.com/business/meal-plans/" target="_blank" rel="noopener">https://www.doordash.com/business/meal-plans/</a> GLM 5.3 Flash: <a href="https://docs.z.ai/guides/vlm/glm-5.3-flash" target="_blank" rel="noopener">https://docs.z.ai/guides/vlm/glm-5.3-flash</a> WhatsApp: <a href="https://www.whatsapp.com" target="_blank" rel="noopener">https://www.whatsapp.com</a> Android Auto: <a href="https://www.android.com/auto/" target="_blank" rel="noopener">https://www.android.com/auto/</a> Claude Code: <a href="https://claude.ai/code" target="_blank" rel="noopener">https://claude.ai/code</a> Codex: <a href="https://chatgpt.com/codex" target="_blank" rel="noopener">https://chatgpt.com/codex</a> Slack: <a href="https://slack.com" target="_blank" rel="noopener">https://slack.com</a> ElevenLabs: <a href="https://elevenlabs.io" target="_blank" rel="noopener">https://elevenlabs.io</a> Twilio: <a href="https://www.twilio.com" target="_blank" rel="noopener">https://www.twilio.com</a> Other REA (Reverse Engineer Anything): <a href="https://github.com/morluto/rea" target="_blank" rel="noopener">https://github.com/morluto/rea</a> X: <a href="https://x.com/ankitTwiits" target="_blank" rel="noopener">https://x.com/ankitTwiits</a> Innovaccer: <a href="https://innovaccer.com" target="_blank" rel="noopener">https://innovaccer.com</a></span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">2</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/business/customer-stories/richpanel-ai-customer-support" target="_blank">Richpanel helps companies automate 50% of support in 30 days</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 23, 2026 &middot; 08:00 UTC</span>
+          </div>
+          <p class="summary"><span>November 23, 2026 Startup Richpanel helps companies automate 50% of support in 30 days Richpanel uses GPT‑6 Astra and GPT‑6.1 Sol to equip its AI support agents with tools and procedures, and GPT‑6 Luna for their conversations.</span> <span>Start building with OpenAI Company size: Startup Region: Asia-Pacific &amp; Oceania Industry: Technology Products: API Beyond knowing how to answer a customer’s request, AI support agents need to be able to execute a solution.</span> <span>According to Richpanel CEO Amit RG, human support agents can use 20 or 30 tools to serve a customer, and the procedures they follow may never have been written down.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>November 23, 2026 Startup Richpanel helps companies automate 50% of support in 30 days Richpanel uses GPT‑6 Astra and GPT‑6.1 Sol to equip its AI support agents with tools and procedures, and GPT‑6 Luna for their conversations. Start building with OpenAI Company size: Startup Region: Asia-Pacific &amp; Oceania Industry: Technology Products: API Beyond knowing how to answer a customer’s request, AI support agents need to be able to execute a solution. And for that, they need access to the right tools and instructions. According to Richpanel CEO Amit RG, human support agents can use 20 or 30 tools to serve a customer, and the procedures they follow may never have been written down. Richpanel ⁠ (opens in a new window) solves that using OpenAI models to both set up the tools and procedures AI support agents need to act and handle customer conversations. “The intelligence is no longer the bottleneck. It’s everything around it.” —Amit RG, CEO, Richpanel Building the tools and procedures for AI support Deploying a support agent often requires a forward-deployed engineer to connect the agent to a customer’s systems and define how it should work. Amit saw that many companies didn’t have engineers to spare and asked himself, “What if that forward-deployed engineer itself was an AI agent?” So Richpanel built it: an AI manager to handle agent setup. Customers began calling it Boss AI. It writes procedures and defines how Richpanel’s frontline support agent, copilot, and quality-assurance agent call the tools they need. Richpanel uses GPT‑6 Astra and GPT‑6.1 Sol for Boss AI, prioritizing accuracy when building the tools and procedures its other agents will follow. Balancing intelligence and cost across support operations Richpanel designs the frontline agent to handle hundreds of thousands of conversations, making the cost of each interaction an important part of model selection. It uses GPT‑6 Luna and other OpenAI models for that work. Amit says Richpanel takes the same approach to its copilot and quality-assurance agents. “What matters is a balance of cost and intelligence,” Amit says. Richpanel’s customers may already use low-cost outsourced support. Automating their operations has to make financial sense against that starting point. Amit credits OpenAI with making models available that can handle long context and longer tasks while remaining cost efficient. Richpanel can use deeper reasoning to prepare its support agents and more economical models to run the conversations that follow. “OpenAI models can run these long-context, longer-horizon tasks while still being very cost efficient.” —Amit RG, CEO, Richpanel Increasing contact center automation and customer satisfaction At the time of the October 2026 interview, Amit said Richpanel had completed approximately 300 AI customer-support deployments over the previous six months. The company guarantees customers a 50% automation rate within the first 30 days or their money back. Amit says it met that commitment across all of those deployments, adding, “In each of the cases, the AI is beating human support agents when it comes to customer satisfaction.” OpenAI &lt;3 startups Join the community Start building (opens in a new window) Get OpenAI for Business updates Product updates, practical guides, upcoming events, and more. Keep reading View all Gondola doubles revenue as its team builds more with Codex Startup Nov 12, 2026 Cogent and OpenAI build cyber defense factories for enterprises Startup Nov 10, 2026 CodeRabbit scales agentic software development and ships 20x more Startup Nov 9, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">3</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/business/learn/connected-intelligence-for-in-house-legal" target="_blank">Connected intelligence for in-house legal</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 23, 2026 &middot; 08:00 UTC</span>
+          </div>
+          <p class="summary"><span>OpenAI November 23, 2026 Webinars Connected intelligence for in-house legal Watch OpenAI’s Stacey Wang and Craig Bruney, Mary O’Carroll of LECG, and Cooley’s Richard Segal explore how AI can help in-house legal teams connect business context, build reusable workflows and get more from outside counsel.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">4</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/business/learn/pr-scans-demo" target="_blank">See PR scans in action</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 19, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>Watch a walkthrough of PR scans and see how the presenter reviews scan results in a pull request workflow.</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">5</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Nov/18/llm-gemini/" target="_blank">llm-gemini 0.38</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Nov 18, 2026 &middot; 23:59 UTC</span>
+          </div>
+          <p class="summary"><span>Release: llm-gemini 0.38 Today Google introduced Gemini 4 Neon .</span> <span>I wrote recently about how confusing the pricing for the Gemini 4 series was - Neon has somehow made this even worse.</span> <span>Tags: yonkers-rising , gemini , llm , pelican-riding-a-bicycle , ai , llms , llm-release , google , generative-ai</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Release: llm-gemini 0.38 Today Google introduced Gemini 4 Neon . I wrote recently about how confusing the pricing for the Gemini 4 series was - Neon has somehow made this even worse. Previously the Gemini 4 lineup was Hydrogen, Argon, and Carbon - where Argon and Carbon were the same price , and Hydrogen was 3/4 of that price now but will be 1/4 of that price when the other two double an 1st December once their initial discount pricing expires. The Neon announcement pretends that Argon doesn&#x27;t exist. Here&#x27;s their new image explaining the model line-up: So the lineup now, from most to least expensive, is Carbon, Neon, Hydrogen. Except Carbon is currently half price, so right now Neon ($3/million input, $15/million output) is the most expensive of the three - then Carbon ($2/$10), then Hydrogen ($1.50/$7.50). I guess this will make more sense when Carbon doubles to $4/$20 on December 1st. I ran some pelicans through the three reasoning levels for Neon - low, medium, high. I dropped Argon from my Gemini 4 comparison grid - here&#x27;s the new Gemini 4 lineup, where the Neon pelicans do look better than Hydrogen and worse than Carbon: As I&#x27;ve done with several recent models , I also fired the following prompt against Gemini 4 Neon on &quot;extra&quot; effort level in Google Antigravity: Make a three js animation where yonkers stands up as a big mech (cool stand up motion) and stomps around manhattan and queens and Brooklyn, use openstreetmap mapping data Here&#x27;s the result . Tags: yonkers-rising , gemini , llm , pelican-riding-a-bicycle , ai , llms , llm-release , google , generative-ai</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">6</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/introducing-gemini-4-neon/" target="_blank">Introducing Gemini 4 Neon</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Nov 18, 2026 &middot; 21:35 UTC</span>
+          </div>
+          <p class="summary"><span>Introducing Gemini 4 Neon Nov 18, 2026 | x.com Facebook LinkedIn Mail Bringing frontier-level intelligence with fast end-to-end task completion across complex software engineering, knowledge work, and science workflows.</span> <span>On the Vals Index , Neon ranks #2 and lands on the Pareto frontier.</span> <span>Gemini 4 Neon is rolling out today in the Gemini API in Google AI Studio , Gemini for business (via API and model dropdown), for paid Google AI Pro and Ultra subscribers in Google Antigravity , and for Pro and Ultra subscribers in the Gemini app .</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Introducing Gemini 4 Neon Nov 18, 2026 | x.com Facebook LinkedIn Mail Bringing frontier-level intelligence with fast end-to-end task completion across complex software engineering, knowledge work, and science workflows. Koray Kavukcuoglu SVP, Google DeepMind and Chief AI Architect, Google Share x.com Facebook LinkedIn Mail Your browser does not support the audio element. Listen to article [[duration]] minutes This content is generated by Google AI. Generative AI is experimental In this article Last updated November 23, 2026 Today, we’re introducing Gemini 4 Neon — bringing frontier-level intelligence with fast end-to-end task completion across complex software engineering, knowledge work, and science workflows. Neon ranks ahead of comparable models and #3 overall with a score of 61 on the Artificial Analysis Intelligence Index at its xhigh thinking level, landing just behind larger, slower models. On the Vals Index , Neon ranks #2 and lands on the Pareto frontier. Beyond just pushing on raw model capability, we’re continuing to make our models better to work with, Neon ranks #2 on steerability (adapting cleanly to mid-task user corrections) on the new Agent Arena Index . Neon also excels at multi-step instruction following and builds on our ongoing progress to curb fabrication, recording our lowest fabrication rate yet in internal Google Antigravity testing. The model is priced at $3 per million input tokens ($0.15 per million cached input tokens, a 95% discount) and $15 per million output tokens, with a 1 million-token context window. Gemini 4 Neon is rolling out today in the Gemini API in Google AI Studio , Gemini for business (via API and model dropdown), for paid Google AI Pro and Ultra subscribers in Google Antigravity , and for Pro and Ultra subscribers in the Gemini app . Delivers across enterprise, analytical, and scientific work Enterprise work lives in spreadsheets, PDFs, charts, audio, and video. Neon can synthesize across all of these inputs in a single 1 million-token context window and turns inputs into structured deliverables. Independent evaluations rank Neon as one of the top models and on benchmarks like the Vals Index , it ranks #2 (70.9%), and reaches #1 on both the Legal Research Bench and Tax Agent Bench . Neon also shows strong wins across categories on Surge AI , ranking #1 on most benchmarks across finance, accounting, spreadsheet modeling, and complex constraint following. It also scores 73.5% on Chartography for reading dense professional charts and performs on par with leading models on Agents&#x27; Last Exam v1.1 (75.8%). It achieves #1 overall on both Zapier’s AutomationBench (56.3%) and Andon Labs&#x27; Vending-Bench 2 ($16,843), a long-horizon simulation of running a business. Finally, it debuts #2 globally with a score of 1336 on Arena&#x27;s new Agent Arena Index across 4,200+ real-world agent sessions. On scientific and mathematical reasoning, spanning quantitative analysis, mathematics, and technical research problems, Neon is best in class on Terminal-Bench Science (70.5%), RiemannBench (84.0%), and HLE-Diamond (71.3%). Built for production-ready code Engineered for long-running agent workflows, Neon sustains performance through complex, tool-heavy tasks end-to-end — whether running standalone or acting as a fast, high-judgment Orchestrator directing parallel Hydrogen subagents in Google Antigravity. It cuts down on redundant file reads, shares progress as it works, and handles context compaction reliably in long sessions. Across core developer and researcher workflows, Neon achieves frontier performance and is competitive with the leading models in its class, ranking #1 overall on the Artificial Analysis Coding Agent Index (58.6), with a score of 65.2% on Terminal-Bench 4.1 and 46.2% (at its default high setting) on FrontierCode 2.0 . For production-ready code, Neon handles multi-file debugging and refactoring across repositories with targeted, surgical edits. On SWE-sweep, it already leads on the mini-SWE harness (12.8%) and more than triples to a state-of-the-art 39.0% in Google Antigravity showing what the Antigravity harness unlocks. Driving Blender MCP in Google Antigravity, Gemini 4 Neon used /swarm to build a photorealistic 3D lab bench visualizing the model names with elemental accuracy pairing Bunsen flames for Gemini 4 Carbon and Gemini 4 Hydrogen with high-voltage gas discharge tubes for Gemini 4 Argon and Neon. In Google Antigravity, Gemini 4 Neon wrote a first-person WebGL2 freeride ski simulator from scratch on real Mont Blanc and Chamonix elevation terrain — combining 10,200 lines of custom shaders, 120 Hz ski physics across six alpine lines, dynamic carved tracks, slab avalanches, and spatial Web Audio with zero pre-made assets. Using /swarm in Google Antigravity, Gemini 4 Neon pulled archival photos to recreate Alan Turing’s 1936 study at King’s College, Cambridge in interactive 3D — from King’s Chapel outside to Room X.8 inside, complete with a working Universal Turing Machine running on his desk. In Google Antigravity, a Gemini 4 Neon agent swarm turned a single image into a 100,000-cell Google Sheet with zero embedded images and zero Apps Script — using over 500,000 live spreadsheet formulas to run edge detection, map 3D depth, and relight the scene across six interactive modes. Brings efficiency and control to production-grade workflows We’re refining thinking levels with each new model release to give teams finer control and a smoother progression from one tier to the next. Neon’s four levels scale steadily, letting teams dial intelligence and token spend to what each workload needs. Neon delivers high performance at a lower cost per task across third-party benchmarks. At its default high thinking level, it pairs a high Artificial Analysis Intelligence Index score with a 32% lower cost per task than Carbon. It also sits on the Pareto frontier on both the Vals index and Agent Arena at high, with roughly 50% to 80% lower cost per task than top competing frontier models. xhigh thinking adds deeper, multi-step reasoning for the hardest engineering, analytical, and scientific workloads. Neon shows its highest intelligence score here, while still costing 36%+ less per task than competing models at their highest setting. Built for fast, low cost, frontier-level cyber defense As agentic coding scales, generating secure code from the start is critical. Gemini 4 Neon produces more secure code than Carbon across all easy, medium, and hard challenges on AutoBaxBench , achieving state-of-the-art on the hard tier (76%). Securing systems also means proactively finding flaws before attackers do. Penetration testing has served as a cornerstone of enterprise cybersecurity. On WebExploitBench v1.2 , Neon is state-of-the-art (51.26%) at half the cost of competing large models. To fortify existing code, Neon for cyber delivers frontier-level performance across the code hardening lifecycle — vulnerability finding, validating, and patching — all while being faster and more cost efficient than large frontier models. Finding code vulnerabilities: Neon achieves state-of-the-art performance on SEC-bench Pro (90.5%), while costing roughly half as much per challenge. Validating risk through exploitation: To prioritize which vulnerabilities to remediate, defenders rely on models to check which vulnerabilities are exploitable. On ExploitGym, it achieves frontier-level performance using half the tokens of Carbon. Patching vulnerabilities: Fixing the root cause of vulnerabilities is a critical step in the cybersecurity defense lifecycle. Neon reaches 70.7% on Collinear’s CWE-bench v2 , driving a 3.4% uplift over Carbon. Gemini 4 Neon for cyber is rolling out to trusted defenders in the coming days as part of the Fairwind Program . Designed for safe, dependable execution Gemini 4 Neon builds on improvements from our Gemini 4 safety and security stack — maintaining Gemini 4 Carbon-level protections against severe misuse and prompt injection while advancing further on model alignment and agentic behavior. For a model meant to carry demanding, long-running work in production, we concentrated on: Mitigating frontier misuse safety risks: Because Neon brings frontier-level capabilities to a faster, lower-cost model, we paired it with strong real-time safeguards against cyber and biosecurity misuse comparable to our Carbon protections, while declining far less legitimate work in these areas, refusing for instance just 1.98% of tasks on Terminal-Bench 4.0 and 0% on Terminal-Bench-Science. Advancing alignment and disciplined model behavior: In internal coding use, alert rates from our chain-of-thought and action misalignment monitor remained below the already low baselines set by Carbon, suggesting improved alignment propensity for Neon — and that same monitor is deployed to protect Neon across external surfaces. Neon is trained to complete multi-step work without cutting corners, fabricating results, or overstepping user boundaries — continuing to improve the balance between following through on requests and staying within scope. It matched Carbon with 0.0% cheating on Terminal-Bench 4.0 and took shortcuts on just 2.45% of tasks on our coding cheating evaluation (the lowest rate of any Gemini 4 model). It also achieved a 0.09% misaligned action rate on our agentic safety suite and a 99.2% pass rate on our agent honesty evaluation. On our agentic behavior evaluation, Neon builds on Carbon’s strong baseline by further reducing under-service by 43%–56% and overreach by 13%–35% across different effort levels. Protecting users from indirect prompt injection attacks: On Gray Swan&#x27;s IPI benchmark, Neon is more resilient than other models in its class when malicious instructions are planted in the web pages, emails, documents, or code it accesses. We found that with real-time safeguards at its highest thinking level, Neon resisted every attack within this Gray Swan benchmark, matching the 0.0% attack success rate reached only by other Gemini models. For more details, see the Gemini 4 Neon model card . Built for deeper analysis In the Gemini app, Gemini 4 Neon excels at work that requires frontier-level reasoning and fast responses. Higher-quality writing and knowledge work: Neon writes clearly, with well-structured responses and a natural, direct tone. It reads uploads like spreadsheets, PDFs, and photos more precisely, turns dense material into helpful reports and summaries, and pulls in relevant details from Google apps like Gmail and Docs. Reliable research and analysis: Neon frequently incorporates details from sources across the web to keep responses current for fast-moving topics like comparing pricing across vendors before a major purchase or pulling together a complex brief with the latest market data. Faster help for tougher tasks: Tasks in Gemini can now run on Neon, working through complex, multi-step jobs more quickly and efficiently than with larger models. Get more done while stretching usage limits further when handing off tedious to-dos, like analyzing billing statements to spot why a utility charge spiked or cross-checking multiple receipts and documents to negotiate a refund. Where Neon sits in the Gemini 4 family Neon is built for complex coding, analytical reasoning, and production-grade enterprise workflows. While Carbon tackles your hardest, long-horizon projects and Hydrogen handles fast everyday execution, Neon balances depth and efficiency. Neon delivers frontier-level reasoning for complex, high-frequency workflows faster and more cost efficiently. Start building with Gemini 4 Neon today Gemini 4 Neon begins rolling out today: For developers: Build with the Gemini API paid tier in Google AI Studio and Android Studio , if you’re a paid Google AI Pro or Ultra subscriber, you can try Neon in Google Antigravity and all Pro and Ultra subscribers can try it in AI Studio. For enterprises: Use Gemini 4 Neon in Gemini for business (via the API or model drop-down) and Google Antigravity. For consumers: If you’re a Google AI Pro or Ultra subscriber, you can select Gemini 4 Neon from the model drop-down in the Gemini app . For cybersecurity defenders: Eligible Fairwind Program members will begin receiving access over the next few days. To request access to the Fairwind Program, contact your Cloud account team. Get the latest news from Google in your inbox Done. Just one step more. Check your inbox to confirm your subscription. You can also subscribe with a . Your information will be used in accordance with Google&#x27;s privacy policy. You may opt out at any time</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">7</div>
+        <div class="article-content">
+          <h2><a href="https://deepmind.google/blog/genie-4-is-now-available/" target="_blank">Genie 4 is now available</a></h2>
+          <div class="meta">
+            <span class="source">deepmind</span>
+            <span class="date">Nov 18, 2026 &middot; 18:13 UTC</span>
+          </div>
+          <p class="summary"><span>Genie 4 is now available Nov 18, 2026 | x.com Facebook LinkedIn Mail Explore a new Project Genie experience for Google AI Ultra subscribers, featuring Genie 4, the Project Genie agent, and a community gallery.</span> <span>We are rolling out Genie 4 to eligible Google AI Ultra subscribers for creating interactive worlds.</span> <span>The new Project Genie agent helps you build custom worlds through simple natural language conversations.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>Genie 4 is now available Nov 18, 2026 | x.com Facebook LinkedIn Mail Explore a new Project Genie experience for Google AI Ultra subscribers, featuring Genie 4, the Project Genie agent, and a community gallery. Diego Rivas Group Product Manager, Google DeepMind Pavan Kumar Group Product Manager, Google Labs Share x.com Facebook LinkedIn Mail We are rolling out Genie 4 to eligible Google AI Ultra subscribers, offering more responsive, social, and interactive world generation. You can now use natural language to edit environments in real time, add native audio, and share your creations in our new community gallery. Visit the Project Genie website to start building your own worlds or join the waitlist if you are a Google AI Pro member. Summaries were generated by Google AI. Generative AI is experimental. We are rolling out Genie 4 to eligible Google AI Ultra subscribers for creating interactive worlds. You can now modify environments in real time using text prompts and native audio features. Our updated Genie 3 model supports longer sessions, panorama grounding, and linked world sequences today. The new Project Genie agent helps you build custom worlds through simple natural language conversations. You can publish your creations to our community gallery for others to explore and remix. Summaries were generated by Google AI. Generative AI is experimental. We are updating Project Genie to help you create and explore interactive digital worlds. With our new Genie 4 model, you can change weather, add characters, and hear adaptive audio in real time just by typing prompts. You can also use our new creative agent to build complex environments through simple conversation. If you subscribe to Google AI Ultra, you can start building, sharing, and remixing these custom worlds in our community gallery today. Summaries were generated by Google AI. Generative AI is experimental. Explore other styles: Earlier this year we introduced Project Genie , an experimental research prototype that lets you generate and explore interactive worlds. Early testers told us they wanted deeper control over what happens inside those worlds, and easier ways to build and share them. So today, we are rolling out a new Project Genie experience to eligible Google AI Ultra subscribers, making these worlds far more responsive, creative, and social. This update unlocks first-time access to Genie 4, new upgrades to Genie 3, the Project Genie agent which helps users build their vision, and a community gallery to discover, explore, and remix worlds. Project Genie brings together our most advanced world models alongside our Gemini models, empowering you to generate, step inside, and shape worlds directly from your browser. Experience Genie 4 in Project Genie With Genie 4 , our most realistic and interactive world model yet, you can now prompt mid-session to change the world you created. Just type a new prompt while you navigate your world and you can edit your environments in real time. Shift the weather, drop in a character, or redirect the action. For the first time, Genie 4 pairs these visuals with real-time native audio that adapts as the scene unfolds, from ambient soundscapes to character dialogue. Discover new Genie 3 capabilities While Genie 4 delivers our highest-fidelity visuals, physics, and native audio, Genie 3 remains available in Project Genie’s model picker when you want longer runs or panorama-seeded spaces. Today’s Genie 3 updates include: Extended sessions and world chaining: Explore for up to 3 minutes per generation (up from 60 seconds), or link multiple worlds together for longer journeys. 360-degree panorama image grounding: Seed new worlds from 360-degree panorama images. Real-time in-world events: Dynamically change the environment with natural-language prompts while you explore. Genie 3 uses real-time promptable events to connect different worlds into one continuous flight across forests, underwater ruins, and icy seas. See how 360-degree panorama grounding in Genie 3 keeps Petra’s canyon and facade consistent as you look around. Watch how Genie 3 combines longer runs, 360-degree panorama grounding, and real-time promptable events - transforming the world as you fly and even summoning a dragon to ride on command. Create new interactive experiences The new Project Genie agent takes creation beyond a single text or image prompt. Now crafting an interactive universe is as effortless as having a conversation. Simply describe your vision in natural language, and the agent orchestrates Google’s suite of multimodal models to craft initial visuals establishing your world’s signature look, paired with custom background scores tailored to the mood. You can also bring Gemini models into the session as you explore: it observes what is happening on screen, surfaces context-aware suggestion chips for where to go next, or triggers in-world events automatically as your journey unfolds. Turns a natural language prompt into an interactive spacewalk, then an alien spaceship appears on command Remix a hillside cafe into a glass pavilion in the desert. Publish custom worlds to the gallery for others to explore and remix. Explore the new gallery When you just want to jump straight into exploring, the new Project Genie gallery brings together a rich collection of curated worlds alongside creative work from the community. Transform personal photos into explorable spaces in “Living Memory,” wander through rich prehistoric habitats grounded in 360-degree panoramas in “Dino Field Guide,” or pit themed objects against one another on a desk with Gemini serving as your real-time referee in “Rock Paper Scissors.” Browse curated and community-built worlds and jump straight into exploring. “Villa Giallo,” created with Will aka BLVCKL!GHT, uses Genie 4 to turn a gothic manor into an interactive, room-by-room mystery. “The Life of Ants,” built with filmmaker Anand Gandhi, uses Genie 4’s photorealism to let you navigate a colony from an ant’s perspective. The gallery also showcases inspiring collaborations with pioneering creators who had early access to these tools. Teaming up with creative technologist Will aka BLVCKL!GHT, we created “Villa Giallo,” an atmospheric, room-by-room mystery inside a gothic manor. And with filmmaker Anand Gandhi, we built “The Life of Ants,” inviting you to navigate a complex colony from an ant’s perspective, drawing on Genie 4’s stunning photorealism. Beyond exploring curated worlds, you can also launch your vision with a simple prompt or remix existing gallery experiences alongside the Project Genie agent — tweaking the underlying world structure, soundtrack, or rules to make it uniquely your own. Once you’ve crafted something special, publish your creation to the community gallery for others to explore and remix. Learn how we are building responsibly We are committed to developing and rolling out interactive world models responsibly. All video and audio generated in Project Genie includes SynthID watermarking, and all model inputs and outputs go through safety screenings. Genie 3 and Genie 4 remain world models in the frontier research space. As the research continues to evolve, we are actively tackling key challenges such as camera latency, intricate physical interactions, real-time audio precision, and long-term scene permanence. For a deeper look into model limitations and our progress on these fronts, read our Genie 4 model research overview . Try Project Genie today Eligible Google AI Ultra subscribers can try the new Project Genie experience starting today, and Google AI Pro members can join the waitlist on the same page. Get the latest news from Google in your inbox Done. Just one step more. Check your inbox to confirm your subscription. You can also subscribe with a . Your information will be used in accordance with Google&#x27;s privacy policy. You may opt out at any time</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">8</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Nov/18/psf-end-of-year-fundraiser/" target="_blank">The PSF end-of-year fundraiser</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Nov 18, 2026 &middot; 14:44 UTC</span>
+          </div>
+          <p class="summary"><span>The PSF end-of-year fundraiser With my Python Software Foundation board director hat on: we&#x27;ve launched our end-of-year fundraiser for the non-profit that supports Python development and the Python community.</span> <span>If your company or your work benefits from Python, please consider donating this year! We also operate the Developers in Residence program , which now includes three security developers (welcome, Brett Smith) focused on helping secure Python, PyPI, and the wider ecosystem.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>The PSF end-of-year fundraiser With my Python Software Foundation board director hat on: we&#x27;ve launched our end-of-year fundraiser for the non-profit that supports Python development and the Python community. If your company or your work benefits from Python, please consider donating this year! The PSF looks after the IP behind Python, operates PyPI, sponsors core developer sprints, supports community events (including running PyCon US every year), and employs a small and excellent staff team to keep everything running. We also operate the Developers in Residence program , which now includes three security developers (welcome, Brett Smith) focused on helping secure Python, PyPI, and the wider ecosystem. Tags: python , psf</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">9</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/business/customer-stories/sumitomo-life" target="_blank">How Sumitomo Life’s leaders helped teams adopt ChatGPT Enterprise</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 18, 2026 &middot; 08:00 UTC</span>
+          </div>
+          <p class="summary"><span>November 18, 2026 How Sumitomo Life’s leaders helped teams adopt ChatGPT Enterprise Planning teams use ChatGPT to research overseas insurers and prepare proposals.</span> <span>Teams in accounting and finance also use ChatGPT for research and analysis.</span> <span>The Japanese life insurer’s executives and managers were among the first to use ChatGPT.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>November 18, 2026 How Sumitomo Life’s leaders helped teams adopt ChatGPT Enterprise Planning teams use ChatGPT to research overseas insurers and prepare proposals. Investment teams use it to draft code for risk analysis. Contact sales Company size: Enterprise Region: Asia-Pacific &amp; Oceania Industry: Finance Products: ChatGPT Results 80%+ Weekly usage rate for ChatGPT Enterprise Results 524% Average estimated ROI among employees using ChatGPT at least 101 times a month ROI estimates are based on employee-reported time savings; overall estimated ROI is 203%. When Sumitomo Life’s planning teams prepare proposals for senior management, ChatGPT Enterprise helps them review source material and organize their findings. They combine those findings with firsthand information and draw on their expertise to decide what to recommend. Teams in accounting and finance also use ChatGPT for research and analysis. The Japanese life insurer’s executives and managers were among the first to use ChatGPT. Their example and the president’s encouragement helped more employees try it in their own work. From a pilot to a wider rollout Sumitomo Life began using generative AI at work in 2023. At first, employees mainly asked questions in chat. As they tested general-purpose AI tools, ChatGPT stood out for its range. They could use deep research to explore a question across sources and bring ChatGPT into work they were already doing in Word, PowerPoint, and Excel. In 2025, about 100 to 150 people, including executives and members of planning teams, piloted ChatGPT Business. In June 2026, the company moved to ChatGPT Enterprise. In planning a rollout to thousands of employees, the insurer weighed output quality, how well ChatGPT fit different kinds of work, and the security requirements of a financial institution. Sumitomo Life worked with OpenAI to assess ChatGPT Enterprise against the insurer’s security standards. The review covered how Sumitomo Life could manage workspace access and feature permissions, along with OpenAI’s policy of excluding business data from model training by default. The insurer continues to decide how employees can use ChatGPT based on the information they handle and the systems they connect to. Writing code and preparing proposals Sumitomo Life’s investment teams use statistical analysis to forecast returns and assess risks such as price swings. ChatGPT helps analysts draft the code for that work, reducing the amount they need to write themselves. Planning teams use ChatGPT to track developments at other Japanese insurers and find examples from overseas. They use that research to strengthen proposals for senior management. Planning teams supplement public sources with firsthand information from people familiar with the work. They use projects in ChatGPT to keep the material together with related chats, files, and custom instructions. The president leads by example Sumitomo Life’s president began using AI during the ChatGPT Business pilot. In management meetings and on the company’s internal portal, the president regularly encouraged employees to put it to work. Kakeru Tateyama, a senior member of Sumitomo Life’s planning department, saw how that example shaped adoption. “When senior leaders don’t understand a new technology, it can be hard to get it off the ground,” he says. “Here, our executives and managers were among the first to use it. They saw for themselves what it could do. I think that made it easier for everyone else to start using it.” Since the initial training, OpenAI has shared examples of how organizations around the world use ChatGPT. The teams discuss which approaches fit Sumitomo Life’s priorities and assess new features as they become available. How usage relates to return on investment Sumitomo Life tracks how often employees use ChatGPT Enterprise and estimates the return on that investment. Weekly usage of ChatGPT Enterprise is over 80%. Estimated ROI averaged 524% for employees who used ChatGPT at least 101 times a month. This estimate is based on employee-reported time savings; the overall estimated ROI is 203%. The insurer looks beyond the number of accounts it has issued. Its quarterly survey asks employees how often they use ChatGPT, which steps in their work they use it for, and whether they use it with colleagues. Sumitomo Life used employee-reported time savings to estimate ROI for different levels of ChatGPT use. The estimates were higher among more frequent users. ROI averaged 55% for 8 to 15 uses per month, 231% for 16 to 30, and 524% for 101 or more. The overall average was 203%. Employees are also beginning to take on work they previously lacked the time or specialist skills to tackle. For Sumitomo Life, that broadens what each person can contribute, even where the benefit is harder to capture in hours saved. Masakazu Obi, a deputy general manager in the planning department, sees a larger opportunity in changing how the work itself gets done. “If we take our existing ways of working for granted, we won’t get the full benefit of AI,” he says. “The question is whether we can change the processes themselves. As we introduce AI, we’re also working to change those processes over the long term.” Making more time for conversations with customers Sumitomo Life plans to start expanding AI use to more employees in the second half of fiscal 2026. For each role, it will identify which tasks AI can handle, where employees can work alongside it, and which responsibilities people should keep. Over the longer term, the insurer is considering AI for more specialized work, including underwriting and claims payments. It plans to explore new technologies and services with OpenAI as it redesigns workflows with AI in mind. The goal is to give employees more time to talk with customers. Sumitomo Life sees those conversations as part of its commitment to the well-being of both customers and employees. “For us, the value of insurance is the peace of mind it brings to our customers and to society. There’s something only people can offer, and it comes from talking with our customers and understanding how they feel.” —Kuniaki Nakagawa, Manager, AI Strategy Task Force, Sumitomo Life Join the new era of work More than 1 million businesses around the world are achieving meaningful results with OpenAI. Contact sales Get OpenAI for Business updates Product updates, practical guides, upcoming events, and more. Keep reading Franklin Templeton uses OpenAI to support investment research Nov 5, 2026 Credit Saison achieves 954% ROI in a ChatGPT Enterprise pilot Oct 29, 2026 How Itaú is building generative AI for its entire customer base Oct 16, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">10</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/le-groupe-figaro-and-openai-announce-partnership" target="_blank">Le Groupe Figaro and OpenAI partner to bring Le Figaro journalism to ChatGPT</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 18, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>November 18, 2026 Company Le Groupe Figaro and OpenAI partner to bring Le Figaro journalism to ChatGPT The collaboration will make Le Figaro’s journalism discoverable in ChatGPT using summaries and excerpts, including links to underlying stories.</span> <span>Le Groupe Figaro and OpenAI announced a strategic partnership ⁠ (opens in a new window) today to help more people discover and engage with Le Figaro’s journalism.</span> <span>Le Figaro also plans to introduce ChatGPT Enterprise across various teams to support their day-to-day work.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>November 18, 2026 Company Le Groupe Figaro and OpenAI partner to bring Le Figaro journalism to ChatGPT The collaboration will make Le Figaro’s journalism discoverable in ChatGPT using summaries and excerpts, including links to underlying stories. Le Groupe Figaro and OpenAI announced a strategic partnership ⁠ (opens in a new window) today to help more people discover and engage with Le Figaro’s journalism. The partnership covers current reporting and archive content from Le Figaro and associated publications, spanning news, business, culture and lifestyle. These articles will be discoverable using summaries and excerpts, including links to underlying stories. “ This partnership reflects Groupe Figaro’s ambition to build meaningful relationships with a leader in artificial intelligence research and deployment. Combining Groupe Figaro’s editorial heritage and trusted brands supported by a team of more than 600 journalists who provide a reliable source of information with OpenAI’s technological expertise and global reach will bring new opportunities for innovation and create long-term value for our readers. ” “ Le Figaro’s reporting helps readers make sense of the stories shaping France and the wider world, and we want AI to help more people discover that work. This partnership reflects our commitment to working with publishers to support quality journalism and connect it with new audiences. ” Le Figaro will retain full editorial independence and control over its journalism. The partnership builds on OpenAI’s work with news organisations around the world to improve the discovery of reliable information, create responsible applications of AI for publishers, and develop new ways for audiences to engage with original reporting. Le Figaro also plans to introduce ChatGPT Enterprise across various teams to support their day-to-day work. It will explore additional uses of OpenAI technology in its workflows and reader services, guided by its AI charter and editorial standards. 2026 ChatGPT Author OpenAI Keep reading View all Astra for Law leads in legal intelligence Company Nov 17, 2026 LVMH’s Media Division announces partnership with OpenAI Company Nov 16, 2026 ChatGPT Plus for veterans and servicemembers Company Nov 11, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">11</div>
+        <div class="article-content">
+          <h2><a href="https://simonwillison.net/2026/Nov/17/external-sandboxes-for-coding-agents/" target="_blank">External sandboxes for coding agents</a></h2>
+          <div class="meta">
+            <span class="source">simon-willison</span>
+            <span class="date">Nov 17, 2026 &middot; 22:52 UTC</span>
+          </div>
+          <p class="summary"><span>External sandboxes for coding agents I&#x27;ve been exploring new ways to sandbox code that is executed by agents, with a focus on making it safer to try out local models without worrying that a mistake or prompt injection attack might cause them to take damaging actions on a machine.</span> <span>My post on the Prime Radiant blog introduces the external sandbox pattern, where code executed by the agent runs inside a dedicated sandbox while the agent itself lives outside of that sandbox.</span> <span>Tags: sandboxing , security , ai , webassembly , generative-ai , llms , coding-agents , claude-code , codex , pi</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>External sandboxes for coding agents I&#x27;ve been exploring new ways to sandbox code that is executed by agents, with a focus on making it safer to try out local models without worrying that a mistake or prompt injection attack might cause them to take damaging actions on a machine. I worked on this project with Prime Radiant , the AI research lab behind Superpowers and other projects . My post on the Prime Radiant blog introduces the external sandbox pattern, where code executed by the agent runs inside a dedicated sandbox while the agent itself lives outside of that sandbox. To demonstrate this pattern we&#x27;ve released three sandbox server implementations: external-sandbox-v86 runs a Node.js server which then uses v86 to run Alpine Linux inside WebAssembly. external-sandbox-container is a Python web server which runs the sandbox in Alpine Linux inside an Apple Containers instance. external-sandbox-quicksand is another Python web server, this time using Microsoft&#x27;s Quicksand sandboxing library, which bundles QEMU and Alpine Linux in a Python package! Each of these implementations offers the same localhost API. You can then configure Pi, Claude Code, or Codex to send API calls to that sandbox any time they want to execute code. The sandboxes also include an optional HTTP/HTTPS allow-list proxy, so you can control exactly which hosts your agent&#x27;s code is allowed to communicate with - plus a credential replacement mechanism to make authenticated API calls without sharing a secret with the agent. Here&#x27;s the UI you can use to reconfigure that proxy while the sandbox is still running: I continue to be fascinated by the challenge of safely running untrusted code. This external sandbox pattern provides a neat way to experiment with different approaches. Tags: sandboxing , security , ai , webassembly , generative-ai , llms , coding-agents , claude-code , codex , pi</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">12</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/introducing-openai-for-chile" target="_blank">Introducing OpenAI for Chile</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 17, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>November 17, 2026 Global Affairs Introducing OpenAI for Chile Today we’re launching OpenAI for Chile, a partnership with the Government of Chile, led by the Ministry of Science, Technology, Knowledge and Innovation, to support responsible AI adoption in public administration, build civil servants’ skills and help local startups develop useful AI applications.</span> <span>The partnership builds on Chile’s National AI Policy and action plan ⁠ (opens in a new window) , which support talent development, research and responsible adoption.</span> <span>About OpenAI for Countries OpenAI for Chile is part of OpenAI for Countries, our global initiative to help countries use AI to advance their national priorities, strengthen their economies and expand opportunity.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>November 17, 2026 Global Affairs Introducing OpenAI for Chile Today we’re launching OpenAI for Chile, a partnership with the Government of Chile, led by the Ministry of Science, Technology, Knowledge and Innovation, to support responsible AI adoption in public administration, build civil servants’ skills and help local startups develop useful AI applications. The partnership builds on Chile’s National AI Policy and action plan ⁠ (opens in a new window) , which support talent development, research and responsible adoption. The Memorandum of Understanding was signed on the sidelines of Semafor’s Silicon Valley &amp; The World conference in California, with Minister Ximena Lincolao leading the agreement on behalf of Chile. The partnership is supported by the U.S. Department of Commerce’s American SI Exports Program ⁠ (opens in a new window) , of which OpenAI is an anchor partner, helping Chile advance its own AI ambitions through public sector innovation, skills development, and entrepreneurship. “ Artificial Intelligence is going to be one of the most important ways we make people’s lives better—from accelerating scientific discovery to helping people build things we haven’t imagined yet. I’m excited to work with Chile to help public servants use these tools, improve public services, and support entrepreneurs building new companies. I am excited to see Chilean startups solve some of the most important problems in the world and build things that benefit people everywhere. ” “ We are incredibly excited about this collaboration and the extraordinary opportunities it will open for scientific discovery, entrepreneurship, and innovation across Chile. This is about empowering Chileans to push the boundaries of what is possible, create new technologies, and develop solutions that improve people&#x27;s lives. ” Putting AI to work in Chile The partnership will explore technology adoption in the ministry’s administrative processes, including potential support from OpenAI on adopting new models, alongside advice and training for ministry personnel. For civil servants, the partnership will explore practical AI literacy, upskilling and reskilling tailored to their roles. Activities could include workshops and a train-the-trainer approach, covering effective use of AI tools, checking outputs, protecting sensitive information and maintaining human oversight. To support Chile’s AI startup and innovation ecosystem, the partners will explore access to relevant OpenAI programs and technology, practical learning, technical guidance and mentorship. Cooperation could also connect entrepreneurs with public institutions, universities and other local partners to develop applications that support Chile’s economic development and public-service priorities. A joint task force of ministry and OpenAI representatives is expected to agree priorities and an initial workplan, with leads, milestones and measures of success for each activity. Specific activities, eligibility, and access to technology will be agreed separately. The MoU sets no investment or purchasing commitment. Activities will be subject to appropriate safeguards for privacy, information security and responsible use. About OpenAI for Countries OpenAI for Chile is part of OpenAI for Countries, our global initiative to help countries use AI to advance their national priorities, strengthen their economies and expand opportunity. We work with governments and local partners to turn AI’s potential into practical benefits for their people. 2026 Author OpenAI Keep reading View all Expanding AI access across every level of US government Global Affairs Sep 10, 2026 Grab and OpenAI bring practical AI skills to Southeast Asia Global Affairs Sep 23, 2026 Helping small businesses put AI to work Global Affairs Sep 30, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">13</div>
+        <div class="article-content">
+          <h2><a href="https://openai.com/index/strengthening-nato-allied-cyber-defences-ai" target="_blank">Strengthening NATO and allied cyber defenses with AI</a></h2>
+          <div class="meta">
+            <span class="source">openai</span>
+            <span class="date">Nov 17, 2026 &middot; 00:00 UTC</span>
+          </div>
+          <p class="summary"><span>November 17, 2026 Global Affairs Strengthening NATO and allied cyber defenses with AI Governments and national cyber agencies protect the systems that people, public services and economies depend on.</span> <span>Strengthening NATO’s cyber defenses OpenAI works with NATO’s Communications and Information Agency (NCIA) to provide NATO’s core institutions with access to advanced cybersecurity models, helping protect Allied networks.</span> <span>NATO’s early use of OpenAI tools shows how capable cyber defenders can put frontier models to work, supporting NATO’s mission of safeguarding the freedom and security of its member states.</span></p>
+          <details class="expand-content"><summary>Expand full summary</summary><div class="expanded-body"><p>November 17, 2026 Global Affairs Strengthening NATO and allied cyber defenses with AI Governments and national cyber agencies protect the systems that people, public services and economies depend on. Through Daybreak, we’re putting advanced AI into the hands of trusted defenders for authorized security work, from reviewing software and investigating suspicious activity to validating vulnerabilities, and developing and testing fixes. Strengthening NATO’s cyber defenses OpenAI works with NATO’s Communications and Information Agency (NCIA) to provide NATO’s core institutions with access to advanced cybersecurity models, helping protect Allied networks. NATO has used up to 300 billion raw input and output tokens per month as part of this work. NATO’s early use of OpenAI tools shows how capable cyber defenders can put frontier models to work, supporting NATO’s mission of safeguarding the freedom and security of its member states. It also helps strengthen cyber expertise across multinational teams responsible for protecting Allied networks around the clock, and creates lessons that can benefit defenders across Europe and the broader Alliance. OpenAI also supported ⁠ (opens in a new window) the 2026 Crossed Swords exercise. Organized by the NATO Cooperative Cyber Defence Centre of Excellence (CCDCOE), the exercise included a new training stream in which participants built, deployed, and evaluated AI agents for cyber operations, using OpenAI Daybreak in the technical environment. The training put participants alongside AI agents as operators, with an emphasis on maintaining human oversight. OpenAI remains fully committed to NATO’s principles for responsible AI adoption and to delivering solutions that are safe and secure. “ AI-powered cyber defence models represent a generational leap in cyber security. They accelerate vulnerability discovery, detect emerging threats at machine speed and enable defenders to stay ahead of adversaries. For NATO, these technologies strengthen our cyber resilience, enhance our operational advantage and reinforce our ability to protect critical digital infrastructure at unprecedented scale and speed. As we scale adoption, we will build a deeper understanding of token consumption, usage patterns and the underlying economics of AI models. This insight will help us optimise costs, evaluate competing solutions and make informed procurement decisions. ” “ The people defending our democracies should have the most advanced technology on their side. NATO’s cyber defenders protect networks that are essential to the security of the Alliance. Through Daybreak, we’re putting more capable tools in their hands to help them find and fix vulnerabilities before attackers can exploit them. We look forward to deepening this work with NATO and our allies, helping turn advances in AI into stronger cyber defenses. ” Supporting allied governments Beyond NATO, we have already provided access to our cyber models to defenders in Europe, including the EU’s ENISA and national cyber agencies in France (ANSSI), Germany and Poland. The Ministry of Digital Transformation of Ukraine is using ⁠ OpenAI’s Daybreak tool to strengthen the cyber defence of civilian infrastructure. The initiative is designed to help Ukrainian teams identify software vulnerabilities and develop and test fixes more quickly, supporting defenders who protect essential services amid persistent cyber attacks. The EU’s cyber agency, ENISA, used our models to identify four vulnerabilities in software used across EU institutions, with fixes published for all four ( 1 ⁠ (opens in a new window) , ⁠ (opens in a new window) 2 ⁠ (opens in a new window) , ⁠ (opens in a new window) 3 ⁠ (opens in a new window) , ⁠ (opens in a new window) 4 ⁠ (opens in a new window) ). A November ⁠ (opens in a new window) joint report from ENISA and CERT-EU ⁠ (opens in a new window) also describes a review of 27 software projects using frontier models including OpenAI models accessed through Daybreak, and tools including the Codex security plug-in. Across the models tested, 95% of the 88 potential issues assessed by software maintainers were confirmed as genuine, demonstrating the value of combining AI with human expertise. CERT Polska used OpenAI models to help identify six vulnerabilities in MikroTik RouterOS ⁠ (opens in a new window) and coordinated their disclosure with the vendor. Researchers directed the work, tested findings on real systems and verified their impact, with AI accelerating analysis and the exploration of potential vulnerabilities. MikroTik released fixes, which CERT Polska confirmed prevented the attacks it had observed, giving network operators a concrete way to protect affected devices. We will continue working with governments, national cyber agencies and international partners to turn frontier AI capability into stronger, safer, more resilient systems, helping defenders find weaknesses, fix them faster and protect the services people rely on every day. 2026 Author OpenAI Keep reading View all Introducing OpenAI for Chile Global Affairs Nov 17, 2026 The King’s Trust and OpenAI launch £1m partnership Global Affairs Nov 16, 2026 Supporting research on AI and children’s safety Global Affairs Nov 12, 2026</p></div></details>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">14</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-ai-fable-52-review-how-i-fight" target="_blank">🎙️ How I AI: Fable 5.2 Review + How I fight token fraud as a solo founder + Building a Claude Code family OS</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Nov 16, 2026 &middot; 16:02 UTC</span>
+          </div>
+          <p class="summary"><span>How I AI 🎙️ How I AI: Fable 5.2 Review + How I fight token fraud as a solo founder + Building a Claude Code family OS Your weekly listens from How I AI, part of the Lenny’s Podcast Network Lenny Rachitsky Nov 16, 2026 If you’re enjoying these episodes, reply and let me know what you’d love to learn more about: AI workflows, hiring, growth, product strategy—anything.</span> <span>Catch you next week, Lenny P.S.</span> <span>Want every new episode delivered the moment it drops?</span></p>
+        </div>
+      </article>
+      <article>
+        <div class="article-number">15</div>
+        <div class="article-content">
+          <h2><a href="https://www.lennysnewsletter.com/p/how-i-fight-token-fraud-as-a-solo" target="_blank">How I fight token fraud as a solo founder</a></h2>
+          <div class="meta">
+            <span class="source">lennys-newsletter</span>
+            <span class="date">Nov 16, 2026 &middot; 13:04 UTC</span>
+          </div>
+          <p class="summary"><span>e human network behind AI Token fraud and what it cost me Six abuse patterns Four kinds of abusers Business controls Technical defenses Bots that watch the bots Final takeaways<ul><li>Stripe Radar: <a href="https://stripe.com/radar" target="_blank" rel="noopener">https://stripe.com/radar</a></li><li>Vercel AI Gateway: <a href="https://vercel.com/docs/ai-gateway" target="_blank" rel="noopener">https://vercel.com/docs/ai-gateway</a></li><li>Vercel Bot ID: <a href="https://vercel.com/docs/botid" target="_blank" rel="noopener">https://vercel.com/docs/botid</a></li><li>Vercel Firewall: <a href="https://vercel.com/docs/vercel-firewall" target="_blank" rel="noopener">https://vercel.com/docs/vercel-firewall</a></li><li>Clerk: <a href="https://clerk.com/" target="_blank" rel="noopener">https://clerk.com/</a></li><li>Codex: <a href="https://openai.com/codex" target="_blank" rel="noopener">https://openai.com/codex</a></li><li>Jev (TypeSafe AI): <a href="https://docs.typesafe.ai/introduction/quickstart" target="_blank" rel="noopener">https://docs.typesafe.ai/introduction/quickstart</a> Other</li><li>Claire Vo on token fraud at ChatPRD: <a href="https://x.com/clairevo/status/2119985786045227197" target="_blank" rel="noopener">https://x.com/clairevo/status/2119985786045227197</a></li><li>Gareth Wham (Atlassian) on fighting AI abuse: <a href="https://x.com/gareth_w/status/2120226872177095114" target="_blank" rel="noopener">https://x.com/gareth_w/status/2120226872177095114</a></li><li>FBI Internet Crime Complaint Center (IC3): <a href="https://www.ic3.gov" target="_blank" rel="noopener">https://www.ic3.gov</a></li><li>Simon Willison’s pelican riding a bicycle: <a href="https://simonwillison.net/tags/pelican-riding-a-bicycle/" target="_blank" rel="noopener">https://simonwillison.net/tags/pelican-riding-a-bicycle/</a></li><li>How I AI: I’m using Jev more than Opus 5.5 or GPT-6: <a href="https://www.youtube.com/watch?v=-KIBgpGA_XI" target="_blank" rel="noopener">https://www.youtube.com/watch?v=-KIBgpGA_XI</a></li></ul></span></p>
+        </div>
+      </article>
+  </main>
+
+  <footer>
+    <div class="stats">
+      <span>Curated 15 of 127</span>
+      <span>&middot;</span>
+      <span>18/21 sources</span>
+    </div>
+    <div>Generated by AI Daily Digest</div>
+  </footer>
+
+</div>
+</body>
+</html>
